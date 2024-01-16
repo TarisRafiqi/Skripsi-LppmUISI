@@ -1,5 +1,5 @@
 # Skripsi - Website LPPM UISI
-Link Website LPPM UISI: 
+Link Website LPPM UISI: https://www.lppmuisi.dififa.com/
 
 - Increment 1 = Pembuatan fitur Pendaftaran Proposal
 - Increment 2 = Pembuatan fitur Profile User
