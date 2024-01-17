@@ -32,8 +32,14 @@ const esbuildconfig = config.esbuild || [];
 const env = config.env || [];
 
 // index.html
-let indexContent = fs.readFileSync(path.join(cwd, outdir, "index.html"), "utf8");
-let index = indexContent.replace("</head>", dev ? reloadScript(port) : "" + "</head>");
+let indexContent = fs.readFileSync(
+   path.join(cwd, outdir, "index.html"),
+   "utf8"
+);
+let index = indexContent.replace(
+   "</head>",
+   dev ? reloadScript(port) : "" + "</head>"
+);
 
 let routes = [],
    reroute;
@@ -59,7 +65,13 @@ if (dev || serv) {
       res.writeHead(code, { "Content-Type": contentType(ext) });
       res.end(content);
 
-      console.log(greenColor + getTime(), code, url, code === 200 ? greenColor + "✔" : redColor + "✘", whiteColor);
+      console.log(
+         greenColor + getTime(),
+         code,
+         url,
+         code === 200 ? greenColor + "✔" : redColor + "✘",
+         whiteColor
+      );
    });
 
    server.listen(port, () => {
@@ -77,8 +89,8 @@ if (dev || serv) {
 async function compile() {
    if (serv) return;
 
-   if (!dev && sw) fs.writeFileSync(sw, serviceWorker(cssVersion));
-   else if (fs.existsSync(sw)) fs.unlinkSync(sw);
+   // if (!dev && sw) fs.writeFileSync(sw, serviceWorker(cssVersion));
+   // else if (fs.existsSync(sw)) fs.unlinkSync(sw);
 
    const ctx = await esbuild.context({
       entryPoints: ["src/main.js"],
@@ -93,7 +105,10 @@ async function compile() {
       ],
       define: {
          process: JSON.stringify({
-            ENV: { sw: serv && sw },
+            ENV: {
+               production: !dev,
+               sw: serv && sw,
+            },
             ...env,
          }),
       },
@@ -114,7 +129,10 @@ function createReIndex(filename) {
       if (ofile.endsWith("Index.svelte")) {
          routes.push(ofilename);
       } else if (ofile.endsWith(".svelte") && /^[a-z]/.test(ofile)) {
-         reIndex += `export { default as ${ofile.replace(".svelte", "")} } from "./${ofile}";\n`;
+         reIndex += `export { default as ${ofile.replace(
+            ".svelte",
+            ""
+         )} } from "./${ofile}";\n`;
       }
    });
    fs.writeFileSync(filename + "/index.js", reIndex);
@@ -141,9 +159,15 @@ function createRoute() {
       if (cmp === "Index") {
          cmp = filepath.split("/")[2] + "Index";
       }
-      cmp = cmp.replace(".svelte", "").replace("src", ".").replace("IndexIndex", "Home");
+      cmp = cmp
+         .replace(".svelte", "")
+         .replace("src", ".")
+         .replace("IndexIndex", "Home");
       conImp += `import ${cmp} from "${filepath.replace("src", ".")}";\n`;
-      conExp += `\t{ path: "/${cmp.toLowerCase().replace("index", "/:0").replace("home", "")}", page: ${cmp} },\n`;
+      conExp += `\t{ path: "/${cmp
+         .toLowerCase()
+         .replace("index", "/:0")
+         .replace("home", "")}", page: ${cmp} },\n`;
    });
    conExp += "]";
    fs.writeFileSync(path.join("src/routes.js"), conImp + conExp);
@@ -155,7 +179,10 @@ function watch(ws) {
 
    // Monitor src folder
 
-   const pages = chokidar.watch("src/pages", { ignored: /(^|[\/\\])\../, persistent: true });
+   const pages = chokidar.watch("src/pages", {
+      ignored: /(^|[\/\\])\../,
+      persistent: true,
+   });
 
    pages
       .on("add", (fpath) => {
@@ -176,7 +203,8 @@ function watch(ws) {
          if (reroute) return;
          fpath = fpath.replace(/\\/g, "/");
          let dirname = fpath.substring(0, fpath.lastIndexOf("/"));
-         if (dirname.split("/").length > 2 && fs.existsSync(dirname)) createReIndex(dirname);
+         if (dirname.split("/").length > 2 && fs.existsSync(dirname))
+            createReIndex(dirname);
       })
       .on("addDir", (fpath) => {
          if (!ready) return;
@@ -197,7 +225,10 @@ function watch(ws) {
 
    // Monitor public folder
 
-   const public = chokidar.watch(outdir, { ignored: /(^|[\/\\])\../, persistent: true });
+   const public = chokidar.watch(outdir, {
+      ignored: /(^|[\/\\])\../,
+      persistent: true,
+   });
 
    public.on("change", (fpath) => {
       if (!ready) return;

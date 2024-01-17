@@ -24782,18 +24782,6 @@
   var App_default = App;
 
   // src/main.js
-  if (define_process_default.ENV) {
-    const { sw } = define_process_default.ENV;
-    if (sw) {
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js").then((serviceWorker) => {
-          console.log("Service Worker registered: ", serviceWorker);
-        }).catch((error) => {
-          console.error("Error registering the Service Worker: ", error);
-        });
-      }
-    }
-  }
   var app = new App_default({
     target: document.body
   });
