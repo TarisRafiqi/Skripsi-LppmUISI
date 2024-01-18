@@ -6,17 +6,17 @@ module.exports = async function (fastify, opts) {
       let connection;
 
       const sql =
-         "INSERT INTO pengalaman_penelitian (uid, tahun_penelitian, judul_penelitian, role_penelitian, sumber_dana, jumlah) values (?, ?, ?, ?, ?, ?)";
+         "INSERT INTO pengalaman_penulisanbuku (uid, tahun_buku, judul_buku, nama_penulis, penerbit, isbn) values (?, ?, ?, ?, ?, ?)";
 
       try {
          connection = await fastify.mysql.getConnection();
          await connection.query(sql, [
             data.id,
-            data.tahunPenelitian,
-            data.judulPenelitian,
-            data.rolePenelitian,
-            data.sumberDanaPenelitian,
-            data.biayaPenelitian,
+            data.tahunBuku,
+            data.JudulBuku,
+            data.namaPenulisBuku,
+            data.PenerbitBuku,
+            data.Isbn,
          ]);
          connection.release();
          reply.send({
@@ -35,7 +35,7 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
 
-      const sql = "SELECT * FROM pengalaman_penelitian WHERE uid = ?";
+      const sql = "SELECT * FROM pengalaman_penulisanbuku WHERE uid = ?";
 
       try {
          connection = await fastify.mysql.getConnection();
@@ -56,7 +56,7 @@ module.exports = async function (fastify, opts) {
       const id = Number(request.params.id);
       let connection;
 
-      const sql = "DELETE FROM pengalaman_penelitian WHERE id = ?";
+      const sql = "DELETE FROM pengalaman_penulisanbuku WHERE id = ?";
 
       try {
          connection = await fastify.mysql.getConnection();

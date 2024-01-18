@@ -9,7 +9,7 @@
 
    const id = localStorage.getItem("id");
    let items;
-   let data, dataPP, dataPM;
+   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB;
 
    let vmataKuliah;
 
@@ -20,6 +20,15 @@
       sumberDanaPenelitian;
 
    let biayaPengmas, tahunPengmas, judulPengmas, rolePengmas, sumberDanaPengmas;
+
+   let tahunDiseminasi,
+      judulDiseminasi,
+      namaPemakalahDiseminasi,
+      namaPertemuanDiseminasi;
+
+   let tahunPublikasi, judulPublikasi, namaJurnal, impactFactor;
+
+   let tahunBuku, JudulBuku, namaPenulisBuku, PenerbitBuku, Isbn;
 
    let idProfile,
       idUser,
@@ -153,13 +162,16 @@
 
       getPengalamanPenelitian();
       getPengalamanPengmas();
+      getPengalamanDiseminasi();
+      getPengalamanPublikasi();
+      getPengalamanPenulisanBuku();
    });
 
    // -----------------------------------------------
    // Get Pengalaman Penelitian
    // -----------------------------------------------
    async function getPengalamanPenelitian() {
-      const responsePP = await fetch($apiURL + "/pengalamanpenelitian/" + id, {
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, {
          method: "GET",
          headers: headers,
       });
@@ -177,7 +189,7 @@
    // Get Pengalaman Pengmas
    // -----------------------------------------------
    async function getPengalamanPengmas() {
-      const responsePM = await fetch($apiURL + "/pengalamanpengmas/" + id, {
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, {
          method: "GET",
          headers: headers,
       });
@@ -192,8 +204,133 @@
    }
 
    // -----------------------------------------------
+   // Get Pengalaman Diseminasi
+   // -----------------------------------------------
+   async function getPengalamanDiseminasi() {
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultPD = await responsePD.json();
+
+      if (responsePD.ok) {
+         dataPD = resultPD.dbData;
+      } else {
+         console.log(responsePD);
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Pengalaman Publikasi
+   // -----------------------------------------------
+   async function getPengalamanPublikasi() {
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultPPub = await responsePPub.json();
+
+      if (responsePPub.ok) {
+         dataPPub = resultPPub.dbData;
+      } else {
+         console.log(responsePPub);
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Pengalaman Penulisan Buku
+   // -----------------------------------------------
+   async function getPengalamanPenulisanBuku() {
+      const responsePPB = await fetch(
+         $apiURL + "/pengalamanPenulisanBuku/" + id,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPPB = await responsePPB.json();
+
+      if (responsePPB.ok) {
+         dataPPB = resultPPB.dbData;
+      } else {
+         console.log(responsePPB);
+      }
+   }
+
+   // -----------------------------------------------
    // Tombol Simpan
    // -----------------------------------------------
+   async function simpanPPB() {
+      const payload = {
+         tahunBuku,
+         JudulBuku,
+         namaPenulisBuku,
+         PenerbitBuku,
+         Isbn,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         showModalPenulisanBuku = false;
+
+         tahunBuku = "";
+         JudulBuku = "";
+         namaPenulisBuku = "";
+         PenerbitBuku = "";
+         Isbn = "";
+
+         getPengalamanPenulisanBuku();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function simpanPPublikasi() {
+      const payload = {
+         tahunPublikasi,
+         judulPublikasi,
+         namaJurnal,
+         impactFactor,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanPublikasi", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         showModalPublikasi = false;
+
+         tahunPublikasi = "";
+         judulPublikasi = "";
+         namaJurnal = "";
+         impactFactor = "";
+
+         getPengalamanPublikasi();
+      } else {
+         console.log(response);
+      }
+   }
+
    async function simpanPP() {
       const payload = {
          tahunPenelitian,
@@ -204,7 +341,7 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanpenelitian", {
+      const response = await fetch($apiURL + "/pengalamanPenelitian", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -213,8 +350,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       if (response.ok) {
          showModalPenelitian = false;
@@ -241,7 +376,7 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanpengmas", {
+      const response = await fetch($apiURL + "/pengalamanPengmas", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -261,6 +396,39 @@
          biayaPengmas = "";
 
          getPengalamanPengmas();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function simpanPD() {
+      const payload = {
+         tahunDiseminasi,
+         judulDiseminasi,
+         namaPemakalahDiseminasi,
+         namaPertemuanDiseminasi,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanDiseminasi", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         showModalDiseminasi = false;
+
+         tahunDiseminasi = "";
+         judulDiseminasi = "";
+         namaPemakalahDiseminasi = "";
+         namaPertemuanDiseminasi = "";
+
+         getPengalamanDiseminasi();
       } else {
          console.log(response);
       }
@@ -344,27 +512,23 @@
    let tab1 = true;
    let tab2;
    let tab3;
-   let tab4;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
       tab3 = false;
-      tab4 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
       tab3 = false;
-      tab4 = false;
    }
 
    function clicktab3() {
       tab1 = false;
       tab2 = false;
       tab3 = true;
-      tab4 = false;
    }
 
    function addMatkul() {
@@ -383,7 +547,7 @@
    async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
 
-      const response = await fetch($apiURL + "/pengalamanpenelitian/" + idPP, {
+      const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, {
          method: "DELETE",
          headers: {
             "Content-Type": "application/json",
@@ -405,7 +569,7 @@
    async function delrowPM(ev) {
       let idPM = ev.target.getAttribute("pid");
 
-      const response = await fetch($apiURL + "/pengalamanpengmas/" + idPM, {
+      const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, {
          method: "DELETE",
          headers: {
             "Content-Type": "application/json",
@@ -419,6 +583,66 @@
       if (response.ok) {
          // $route("/dosen");
          getPengalamanPengmas();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function delrowPD(ev) {
+      let idPD = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, {
+         method: "DELETE",
+         headers: {
+            "Content-Type": "application/json",
+         },
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         getPengalamanDiseminasi();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function delrowPPub(ev) {
+      let idPPub = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, {
+         method: "DELETE",
+         headers: {
+            "Content-Type": "application/json",
+         },
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         getPengalamanPublikasi();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function delrowPPB(ev) {
+      let idPPB = ev.target.getAttribute("pid");
+
+      const response = await fetch(
+         $apiURL + "/pengalamanPenulisanBuku/" + idPPB,
+         {
+            method: "DELETE",
+            headers: {
+               "Content-Type": "application/json",
+            },
+         }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+         getPengalamanPenulisanBuku();
       } else {
          console.log(response);
       }
@@ -970,8 +1194,41 @@
 
       <Modal bind:show={showModalDiseminasi}>
          <h4 class="title is-4" slot="header">
-            Pengalaman Diseminasi Ilmiah <br />dalam Pertemuan/Pameran
+            Pengalaman Diseminasi Ilmiah dalam<br />Pertemuan / Pameran
          </h4>
+
+         <Field name="Tahun">
+            <input class="input" type="number" bind:value={tahunDiseminasi} />
+         </Field>
+
+         <Field name="Judul Artikel">
+            <input class="input" type="text" bind:value={judulDiseminasi} />
+         </Field>
+
+         <Field name="Nama Pemakalah">
+            <input
+               class="input"
+               type="text"
+               bind:value={namaPemakalahDiseminasi}
+            />
+         </Field>
+
+         <Field name="Nama Pertemuan Ilmiah/Pameran">
+            <input
+               class="input"
+               type="text"
+               bind:value={namaPertemuanDiseminasi}
+            />
+         </Field>
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanPD}>Simpan</button
+               >
+            </p>
+         </div>
       </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
@@ -984,7 +1241,28 @@
                <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th>
             </tr>
          </thead>
-         <tbody> </tbody>
+         <tbody>
+            {#if dataPD}
+               {#each dataPD as PD}
+                  <tr>
+                     <td
+                        ><button
+                           class="button is-danger is-rounded is-small"
+                           pid={PD.id}
+                           on:click={delrowPD}
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        ></td
+                     >
+                     <td>{PD.tahun_diseminasi}</td>
+                     <td>{PD.judul_artikel}</td>
+                     <td>{PD.nama_pemakalah}</td>
+                     <td>{PD.nama_pertemuan}</td>
+                  </tr>
+               {/each}
+            {/if}
+         </tbody>
       </table>
       <br />
 
@@ -996,7 +1274,7 @@
          <div class="level-left">
             <div class="level-item">
                <h6 class="title is-6">
-                  Pengalaman Publikasi Ilmiah dalam Jurnal (Bukan Proceeding)
+                  Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
                </h6>
             </div>
          </div>
@@ -1019,6 +1297,32 @@
          <h4 class="title is-4" slot="header">
             Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
          </h4>
+
+         <Field name="Tahun">
+            <input class="input" type="number" bind:value={tahunPublikasi} />
+         </Field>
+
+         <Field name="Judul Artikel">
+            <input class="input" type="text" bind:value={judulPublikasi} />
+         </Field>
+
+         <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
+            <input class="input" type="text" bind:value={namaJurnal} />
+         </Field>
+
+         <Field name="Nama Pertemuan Ilmiah/Pameran">
+            <input class="input" type="text" bind:value={impactFactor} />
+         </Field>
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanPPublikasi}
+                  >Simpan</button
+               >
+            </p>
+         </div>
       </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
@@ -1031,7 +1335,28 @@
                <th>Impact Factor/Scopus Quarter/Akreditasi</th>
             </tr>
          </thead>
-         <tbody> </tbody>
+         <tbody>
+            {#if dataPPub}
+               {#each dataPPub as PPub}
+                  <tr>
+                     <td
+                        ><button
+                           class="button is-danger is-rounded is-small"
+                           pid={PPub.id}
+                           on:click={delrowPPub}
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        ></td
+                     >
+                     <td>{PPub.tahun_publikasi}</td>
+                     <td>{PPub.judul_artikel}</td>
+                     <td>{PPub.nama_jurnal}</td>
+                     <td>{PPub.impact}</td>
+                  </tr>
+               {/each}
+            {/if}
+         </tbody>
       </table>
       <br />
 
@@ -1065,6 +1390,36 @@
 
       <Modal bind:show={showModalPenulisanBuku}>
          <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
+
+         <Field name="Tahun">
+            <input class="input" type="number" bind:value={tahunBuku} />
+         </Field>
+
+         <Field name="Judul Buku">
+            <input class="input" type="text" bind:value={JudulBuku} />
+         </Field>
+
+         <Field name="Nama Penulis">
+            <input class="input" type="text" bind:value={namaPenulisBuku} />
+         </Field>
+
+         <Field name="Penerbit">
+            <input class="input" type="text" bind:value={PenerbitBuku} />
+         </Field>
+
+         <Field name="ISBN">
+            <input class="input" type="text" bind:value={Isbn} />
+         </Field>
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanPPB}
+                  >Simpan</button
+               >
+            </p>
+         </div>
       </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
@@ -1078,7 +1433,29 @@
                <th>ISBN</th>
             </tr>
          </thead>
-         <tbody> </tbody>
+         <tbody>
+            {#if dataPPB}
+               {#each dataPPB as PPB}
+                  <tr>
+                     <td
+                        ><button
+                           class="button is-danger is-rounded is-small"
+                           pid={PPB.id}
+                           on:click={delrowPPB}
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        ></td
+                     >
+                     <td>{PPB.tahun_buku}</td>
+                     <td>{PPB.judul_buku}</td>
+                     <td>{PPB.nama_penulis}</td>
+                     <td>{PPB.penerbit}</td>
+                     <td>{PPB.isbn}</td>
+                  </tr>
+               {/each}
+            {/if}
+         </tbody>
       </table>
       <br />
 
