@@ -18,6 +18,22 @@
       rolePenelitian,
       sumberDanaPenelitian;
 
+   let tblPP = [],
+      aPP,
+      bPP,
+      cPP,
+      dPP,
+      ePP;
+
+   let tblPM = [],
+      aPM,
+      bPM,
+      cPM,
+      dPM,
+      ePM;
+
+   let biayaPengmas, tahunPengmas, judulPengmas, rolePengmas, sumberDanaPengmas;
+
    let idProfile,
       idUser,
       namaLengkap,
@@ -56,13 +72,6 @@
    let showModalPublikasi = false;
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
-
-   let tblPP = [],
-      aPP,
-      bPP,
-      cPP,
-      dPP,
-      ePP;
 
    async function clickModalPenelitian() {
       showModalPenelitian = true;
@@ -157,12 +166,49 @@
       }
 
       getPengalamanPenelitian();
+      getPengalamanPengmas();
    });
 
+   async function getPengalamanPengmas() {
+      // -----------------------
+      // Get Pengalaman Pengmas
+      // -----------------------
+      const responsePM = await fetch($apiURL + "/pengalamanpengmas/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const dataPM = await responsePM.json();
+
+      if (responsePM.ok) {
+         aPM = dataPM.tahun_pengmas;
+         bPM = dataPM.judul_pengmas;
+         cPM = dataPM.role_pengmas;
+         dPM = dataPM.sumber_dana;
+         ePM = dataPM.jumlah;
+
+         if (!aPM) return;
+
+         tblPM = [];
+         for (let i = 0; i < aPM.length; i++) {
+            tblPM = [
+               ...tblPM,
+               [
+                  aPM[i].label,
+                  bPM[i].label,
+                  cPM[i].label,
+                  dPM[i].label,
+                  ePM[i].label,
+               ],
+            ];
+         }
+      }
+   }
+
    async function getPengalamanPenelitian() {
-      // --------------------------------------------
+      // --------------------------
       // Get Pengalaman Penelitian
-      // --------------------------------------------
+      // --------------------------
       const responsePP = await fetch($apiURL + "/pengalamanpenelitian/" + id, {
          method: "GET",
          headers: headers,
@@ -195,7 +241,77 @@
       }
    }
 
-   async function simpanPengalamanPenelitian() {
+   async function simpanPM() {
+      // ------------------------------------------------
+      // Memasukkan tahun pengmas kedalam object
+      // ------------------------------------------------
+      tahunPengmas = String(tahunPengmas);
+      let addVtahunPengmas = {
+         label: tahunPengmas,
+      };
+      aPM = [...aPM, addVtahunPengmas];
+
+      // ------------------------------------------------
+      // Memasukkan judul pengmas kedalam object
+      // ------------------------------------------------
+      let addVjudulPengmas = {
+         label: judulPengmas,
+      };
+      bPM = [...bPM, addVjudulPengmas];
+
+      // ------------------------------------------------
+      // Memasukkan role pengmas kedalam object
+      // ------------------------------------------------
+      let addVrolePengmas = {
+         label: rolePengmas,
+      };
+      cPM = [...cPM, addVrolePengmas];
+
+      // ------------------------------------------------
+      // Memasukkan sumber dana pengmas kedalam object
+      // ------------------------------------------------
+      let addVsumberDanaPengmas = {
+         label: sumberDanaPengmas,
+      };
+      dPM = [...dPM, addVsumberDanaPengmas];
+
+      // ------------------------------------------------
+      // Memasukkan biaya pengmas kedalam object
+      // ------------------------------------------------
+      let addVbiayaPengmas = {
+         label: biayaPengmas,
+      };
+      ePM = [...ePM, addVbiayaPengmas];
+
+      const payload = {
+         aPM,
+         bPM,
+         cPM,
+         dPM,
+         ePM,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanpengmas", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         showModalPengmas = false;
+
+         getPengalamanPengmas();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function simpanPP() {
       // ------------------------------------------------
       // Memasukkan tahun penelitian kedalam object
       // ------------------------------------------------
@@ -377,6 +493,46 @@
       // console.log(mataKuliah);
       mataKuliah = [...mataKuliah, addVmatkul];
       vmataKuliah = "";
+   }
+
+   async function delrowPM(ev, num) {
+      let suspect = document.querySelector("#row" + num);
+      if (suspect) {
+         suspect.remove();
+         aPM.splice(num, 1);
+         bPM.splice(num, 1);
+         cPM.splice(num, 1);
+         dPM.splice(num, 1);
+         ePM.splice(num, 1);
+      }
+
+      const payload = {
+         aPM,
+         bPM,
+         cPM,
+         dPM,
+         ePM,
+         id,
+      };
+
+      // console.log(payload);
+      // return;
+
+      const response = await fetch($apiURL + "/pengalamanpengmas", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         // $route("/dosen");
+      } else {
+         console.log(response);
+      }
    }
 
    async function delrowPP(ev, num) {
@@ -736,7 +892,8 @@
       </nav>
 
       <Modal bind:show={showModalPenelitian}>
-         <h2 class="title is-3" slot="header">Pengalaman Penelitian</h2>
+         <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
+
          <Field name="Tahun">
             <input class="input" type="number" bind:value={tahunPenelitian} />
          </Field>
@@ -749,7 +906,7 @@
             <div class="select is-fullwidth">
                <select bind:value={rolePenelitian}>
                   <option value="" disabled selected hidden
-                     >Pilih peran penelitian</option
+                     >Pilih peran dalam kegiatan</option
                   >
                   <option value="Ketua">Ketua</option>
                   <option value="Anggota">Anggota</option>
@@ -780,9 +937,7 @@
 
          <div class="field is-grouped is-grouped-right">
             <p class="control">
-               <button
-                  class="button is-info"
-                  on:click={simpanPengalamanPenelitian}>Simpan</button
+               <button class="button is-info" on:click={simpanPP}>Simpan</button
                >
             </p>
          </div>
@@ -800,8 +955,6 @@
             </tr>
          </thead>
          <tbody>
-            <!-- ### -->
-
             {#if tblPP.length > 0}
                {#each tblPP as row, idx}
                   <tr id={"row" + idx}>
@@ -839,7 +992,7 @@
          <!-- Right side -->
          <div class="level-right">
             <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
+               <button class="button is-info" on:click={clickModalPengmas}>
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -850,18 +1003,88 @@
          </div>
       </nav>
 
+      <Modal bind:show={showModalPengmas}>
+         <h4 class="title is-4" slot="header">
+            Pengalaman Pengabdian Masyarakat
+         </h4>
+
+         <Field name="Tahun">
+            <input class="input" type="number" bind:value={tahunPengmas} />
+         </Field>
+
+         <Field name="Judul Pengmas">
+            <input class="input" type="text" bind:value={judulPengmas} />
+         </Field>
+
+         <Field name="Ketua/Anggota">
+            <div class="select is-fullwidth">
+               <select bind:value={rolePengmas}>
+                  <option value="" disabled selected hidden
+                     >Pilih peran dalam kegiatan</option
+                  >
+                  <option value="Ketua">Ketua</option>
+                  <option value="Anggota">Anggota</option>
+               </select>
+            </div>
+         </Field>
+
+         <Field name="Sumber Dana">
+            <input class="input" type="text" bind:value={sumberDanaPengmas} />
+         </Field>
+
+         <Field name="Jumlah Rp.">
+            <input
+               class="input"
+               type="text"
+               placeholder="Masukkan Biaya Pengmas"
+               bind:value={biayaPengmas}
+               on:keyup={() =>
+                  (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
+            />
+         </Field>
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanPM}>Simpan</button
+               >
+            </p>
+         </div>
+      </Modal>
+
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
          <thead>
             <tr>
                <th class="is-narrow"></th>
                <th class="is-narrow">Tahun</th>
-               <th>Judul Pengmas</th>
+               <th>Judul Pengabdian Masyarakat</th>
                <th class="is-narrow">Ketua / Anggota</th>
                <th class="is-narrow">Sumber Dana</th>
                <th>Jumlah Rp.</th>
             </tr>
          </thead>
-         <tbody> </tbody>
+         <tbody>
+            {#if tblPM.length > 0}
+               {#each tblPM as row, idx}
+                  <tr id={"row" + idx}>
+                     <td
+                        ><button
+                           on:click={(e) => delrowPM(e, idx)}
+                           class="button is-danger is-rounded is-small"
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        ></td
+                     >
+                     {#each row as td}
+                        <td>{td}</td>
+                     {/each}
+                  </tr>
+               {/each}
+            {/if}
+         </tbody>
+         <br />
       </table>
       <br />
 
@@ -881,7 +1104,7 @@
          <!-- Right side -->
          <div class="level-right">
             <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
+               <button class="button is-info" on:click={clickModalDiseminasi}>
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -891,6 +1114,12 @@
             </div>
          </div>
       </nav>
+
+      <Modal bind:show={showModalDiseminasi}>
+         <h4 class="title is-4" slot="header">
+            Pengalaman Diseminasi Ilmiah <br />dalam Pertemuan/Pameran
+         </h4>
+      </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
          <thead>
@@ -914,7 +1143,7 @@
          <div class="level-left">
             <div class="level-item">
                <h6 class="title is-6">
-                  Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding"
+                  Pengalaman Publikasi Ilmiah dalam Jurnal (Bukan Proceeding)
                </h6>
             </div>
          </div>
@@ -922,7 +1151,7 @@
          <!-- Right side -->
          <div class="level-right">
             <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
+               <button class="button is-info" on:click={clickModalPublikasi}>
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -932,6 +1161,12 @@
             </div>
          </div>
       </nav>
+
+      <Modal bind:show={showModalPublikasi}>
+         <h4 class="title is-4" slot="header">
+            Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
+         </h4>
+      </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
          <thead>
@@ -948,20 +1183,23 @@
       <br />
 
       <!-- ------------------------------------------------------------------------>
-      <!-- Pengalaman Penulisan Buku" -->
+      <!-- Pengalaman Penulisan Buku -->
       <!-- ------------------------------------------------------------------------>
       <nav class="level">
          <!-- Left side -->
          <div class="level-left">
             <div class="level-item">
-               <h6 class="title is-6">Pengalaman Penulisan Buku"</h6>
+               <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
             </div>
          </div>
 
          <!-- Right side -->
          <div class="level-right">
             <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
+               <button
+                  class="button is-info"
+                  on:click={clickModalPenulisanBuku}
+               >
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -971,6 +1209,10 @@
             </div>
          </div>
       </nav>
+
+      <Modal bind:show={showModalPenulisanBuku}>
+         <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
+      </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
          <thead>
@@ -1001,7 +1243,7 @@
          <!-- Right side -->
          <div class="level-right">
             <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
+               <button class="button is-info" on:click={clickModalHKI}>
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -1011,6 +1253,13 @@
             </div>
          </div>
       </nav>
+
+      <Modal bind:show={showModalHKI}>
+         <h4 class="title is-4" slot="header">
+            Pengalaman Hak Kekayaan Intelektual
+         </h4>
+      </Modal>
+
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
          <thead>
             <tr>
