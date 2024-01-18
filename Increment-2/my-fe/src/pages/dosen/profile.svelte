@@ -9,7 +9,7 @@
 
    const id = localStorage.getItem("id");
    let items;
-   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB;
+   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
    let vmataKuliah;
 
@@ -29,6 +29,8 @@
    let tahunPublikasi, judulPublikasi, namaJurnal, impactFactor;
 
    let tahunBuku, JudulBuku, namaPenulisBuku, PenerbitBuku, Isbn;
+
+   let tahunHKI, JudulHKI, namaPenulisHKI, jenisHKI, noHKI;
 
    let idProfile,
       idUser,
@@ -165,6 +167,7 @@
       getPengalamanDiseminasi();
       getPengalamanPublikasi();
       getPengalamanPenulisanBuku();
+      getPengalamanHKI();
    });
 
    // -----------------------------------------------
@@ -261,8 +264,61 @@
    }
 
    // -----------------------------------------------
+   // Get Pengalaman Hak Kekayaan Intelektual
+   // -----------------------------------------------
+   async function getPengalamanHKI() {
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultPHKI = await responsePHKI.json();
+
+      if (responsePHKI.ok) {
+         dataPHKI = resultPHKI.dbData;
+      } else {
+         console.log(responsePHKI);
+      }
+   }
+
+   // -----------------------------------------------
    // Tombol Simpan
    // -----------------------------------------------
+   async function simpanPHKI() {
+      const payload = {
+         tahunHKI,
+         JudulHKI,
+         namaPenulisHKI,
+         jenisHKI,
+         noHKI,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanHKI", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         showModalHKI = false;
+
+         tahunHKI = "";
+         JudulHKI = "";
+         namaPenulisHKI = "";
+         jenisHKI = "";
+         noHKI = "";
+
+         getPengalamanHKI();
+      } else {
+         console.log(response);
+      }
+   }
+
    async function simpanPPB() {
       const payload = {
          tahunBuku,
@@ -643,6 +699,25 @@
 
       if (response.ok) {
          getPengalamanPenulisanBuku();
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function delrowPHKI(ev) {
+      let idPHKI = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, {
+         method: "DELETE",
+         headers: {
+            "Content-Type": "application/json",
+         },
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         getPengalamanHKI();
       } else {
          console.log(response);
       }
@@ -1488,6 +1563,36 @@
          <h4 class="title is-4" slot="header">
             Pengalaman Hak Kekayaan Intelektual
          </h4>
+
+         <Field name="Tahun">
+            <input class="input" type="number" bind:value={tahunHKI} />
+         </Field>
+
+         <Field name="Judul HKI">
+            <input class="input" type="text" bind:value={JudulHKI} />
+         </Field>
+
+         <Field name="Nama Penulis">
+            <input class="input" type="text" bind:value={namaPenulisHKI} />
+         </Field>
+
+         <Field name="Penerbit">
+            <input class="input" type="text" bind:value={jenisHKI} />
+         </Field>
+
+         <Field name="ISBN">
+            <input class="input" type="text" bind:value={noHKI} />
+         </Field>
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanPHKI}
+                  >Simpan</button
+               >
+            </p>
+         </div>
       </Modal>
 
       <table class="table is-fullwidth is-striped is-hoverable is-bordered">
@@ -1501,7 +1606,29 @@
                <th>No HKI</th>
             </tr>
          </thead>
-         <tbody> </tbody>
+         <tbody>
+            {#if dataPHKI}
+               {#each dataPHKI as PHKI}
+                  <tr>
+                     <td
+                        ><button
+                           class="button is-danger is-rounded is-small"
+                           pid={PHKI.id}
+                           on:click={delrowPHKI}
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        ></td
+                     >
+                     <td>{PHKI.tahun_hki}</td>
+                     <td>{PHKI.judul_hki}</td>
+                     <td>{PHKI.nama_penulis}</td>
+                     <td>{PHKI.jenis_hki}</td>
+                     <td>{PHKI.no_hki}</td>
+                  </tr>
+               {/each}
+            {/if}
+         </tbody>
       </table>
       <br />
    {/if}

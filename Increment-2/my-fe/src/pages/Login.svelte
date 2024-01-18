@@ -42,17 +42,20 @@
 <article class="container">
    <div class="box">
       <h2>LOGIN</h2>
+
       <div>
          <div>Username</div>
          <input class="input" type="text" bind:value={username} />
       </div>
+
       <div>
          <div>Password</div>
          <input class="input" type="password" bind:value={password} />
       </div>
+
       <div>
          <br />
-         <button on:click={handleSubmit}>Submit</button>
+         <button class="button is-info" on:click={handleSubmit}>Submit</button>
       </div>
 
       <div>
@@ -103,12 +106,13 @@
       -ms-user-select: none;
       -webkit-appearance: none;
        */
-      background-color: #f2f2f2;
+      /* background-color: #f2f2f2; */
+      background-color: #ffffff;
       background-image: none;
       /* border: none; */
-      border: 1px solid var(--border, #dadce0);
-      -webkit-border-radius: 20px;
-      border-radius: 20px;
+      border: 1.5px solid var(--border, #dadce0);
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       color: #1f1f1f;

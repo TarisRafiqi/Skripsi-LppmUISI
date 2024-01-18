@@ -49,7 +49,6 @@
 
       const result = await response.json();
       view = !isEdit(result.status);
-      console.log(result);
 
       if (response.ok) {
          data = result;
@@ -149,7 +148,7 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      abstrak = tinymce.get("abstract").getContent();
+      // abstrak = tinymce.get("abstract").getContent();
       isi = tinymce.get("isi").getContent();
 
       const reader = new FileReader();
@@ -224,7 +223,7 @@
 
    async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      abstrak = tinymce.get("abstract").getContent();
+      // abstrak = tinymce.get("abstract").getContent();
       isi = tinymce.get("isi").getContent();
 
       const reader = new FileReader();
@@ -299,7 +298,7 @@
 
    async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-      abstrak = tinymce.get("abstract").getContent();
+      // abstrak = tinymce.get("abstract").getContent();
       isi = tinymce.get("isi").getContent();
 
       const reader = new FileReader();
@@ -636,14 +635,18 @@
                </Field>
 
                <Field name="Abstrak">
-                  <Wysiwyg id="abstract" content={abstrak} />
+                  <!-- <Wysiwyg id="abstract" content={abstrak} /> -->
+                  <textarea class="textarea" bind:value={abstrak}></textarea>
                </Field>
 
                <Field name="Isi Proposal">
                   <Wysiwyg id="isi" content={isi} />
                </Field>
 
-               <Field name="Comment">
+               <br /><br />
+               <hr />
+
+               <Field name="Catatan Revisi">
                   {comment}
                </Field>
             {:else}
@@ -728,19 +731,31 @@
                </Field>
             {/if}
 
-            {#if !view}
-               <br />
-               {#if status === 0}
-                  <Field>
-                     <button on:click={simpanProposal}>Simpan</button>
-                     <button on:click={submitProposal}>Submit</button>
-                  </Field>
-               {:else}
-                  <Field>
-                     <button on:click={remediasi}>Remediasi</button>
-                  </Field>
+            <hr />
+
+            <div class="field is-grouped is-grouped-right">
+               {#if !view}
+                  {#if status === 0}
+                     <p class="control">
+                        <button
+                           class="button is-info is-light"
+                           on:click={simpanProposal}>Simpan</button
+                        >
+                     </p>
+                     <p class="control">
+                        <button class="button is-info" on:click={submitProposal}
+                           >Submit</button
+                        >
+                     </p>
+                  {:else}
+                     <p class="control">
+                        <button class="button is-info" on:click={remediasi}
+                           >Remediasi</button
+                        >
+                     </p>
+                  {/if}
                {/if}
-            {/if}
+            </div>
          </div>
       {/if}
 

@@ -6,6 +6,7 @@
    import Field from "../../libs/Field.svelte";
    import { deleteIcon } from "../../store/icons";
    import Select from "../../libs/Select.svelte";
+   import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    let value;
    let label;
@@ -71,21 +72,21 @@
       randomFileName = resultxx;
    });
 
-   onMount(() => {
-      tinymce.init({
-         selector: "textarea",
-         plugins:
-            "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
-         toolbar:
-            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
-         tinycomments_mode: "embedded",
-         tinycomments_author: "Author name",
-         mergetags_list: [
-            { value: "First.Name", title: "First Name" },
-            { value: "Email", title: "Email" },
-         ],
-      });
-   });
+   // onMount(() => {
+   //    tinymce.init({
+   //       selector: "textarea",
+   //       plugins:
+   //          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
+   //       toolbar:
+   //          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+   //       tinycomments_mode: "embedded",
+   //       tinycomments_author: "Author name",
+   //       mergetags_list: [
+   //          { value: "First.Name", title: "First Name" },
+   //          { value: "Email", title: "Email" },
+   //       ],
+   //    });
+   // });
 
    function formatRupiah(angka, prefix) {
       var number_string = angka.replace(/[^,\d]/g, "").toString(),
@@ -105,7 +106,7 @@
 
    async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-      myAbstract = tinymce.get("abstract").getContent();
+      // myAbstract = tinymce.get("abstract").getContent();
       myIsi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -176,7 +177,7 @@
 
    async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      myAbstract = tinymce.get("abstract").getContent();
+      // myAbstract = tinymce.get("abstract").getContent();
       myIsi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -268,7 +269,7 @@
             <option value="" selected disabled hidden
                >Pilih Jenis Proposal</option
             >
-            <option selected value="Proposal Awal">Proposal Awal</option>
+            <option value="Proposal Awal">Proposal Awal</option>
             <option value="Proposal Lanjutan">Proposal Lanjutan</option>
          </select>
       </div>
@@ -414,8 +415,16 @@
       />
    </Field>
 
-   <Field id="abstract" textarea name="Abstrak" />
-   <Field id="isi" textarea name="Isi Proposal" />
+   <Field name="Abstrak">
+      <textarea class="textarea" bind:value={myAbstract}></textarea>
+   </Field>
+
+   <Field name="Isi Proposal">
+      <Wysiwyg id="isi" content={myIsi} />
+   </Field>
+
+   <!-- <Field id="abstract" textarea name="Abstrak" />
+   <Field id="isi" textarea name="Isi Proposal" /> -->
 
    <hr />
 

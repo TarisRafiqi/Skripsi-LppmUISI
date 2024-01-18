@@ -86,17 +86,11 @@
             <div class="navbar-item">
                <div class="buttons">
                   {#if $isLogin || token}
-                     <a
-                        class="button is-info is-rounded is-fullwidth"
-                        href="/logout"
-                     >
+                     <a class="button is-info is-fullwidth" href="/logout">
                         Logout
                      </a>
                   {:else}
-                     <a
-                        class="button is-info is-rounded is-fullwidth"
-                        href="/login"
-                     >
+                     <a class="button is-info is-fullwidth" href="/login">
                         Login
                      </a>
                   {/if}

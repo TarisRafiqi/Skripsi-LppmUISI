@@ -98,7 +98,7 @@
          judul,
          abstrak,
          isi,
-         comment: "",
+         comment,
          status: Number(data.status) - 1,
          kdeptSelected,
          klppmSelected,
@@ -362,58 +362,83 @@
                {@html data.isi}
             </div>
          </Field>
-         <br />
+
+         <hr />
+
+         <Field name="Catatan Revisi">
+            <textarea class="textarea" bind:value={comment}></textarea>
+         </Field>
+
+         <hr />
 
          {#if role === "Ka.Departemen"}
             {#if status === 4}
-               <Field>
-                  <button class="button is-warning" on:click={handleRevisi}
-                     >Revisi</button
-                  >
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
-                  >
-               </Field>
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}>Revisi</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button class="button is-info" on:click={handlePass}
+                        >Proses</button
+                     >
+                  </p>
+               </div>
             {/if}
          {/if}
 
          {#if role === "Ka.LPPM"}
             {#if status === 6}
-               <Field>
-                  <button class="button is-warning" on:click={handleRevisi}
-                     >Revisi</button
-                  >
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
-                  >
-               </Field>
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}>Revisi</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button class="button is-info" on:click={handlePass}
+                        >Proses</button
+                     >
+                  </p>
+               </div>
             {/if}
          {/if}
 
          {#if role === "reviewer"}
             {#if status === 8}
-               <Field>
-                  <!-- <button class="button is-warning" on:click={handleRevisi}
-                     >Revisi</button
-                  > -->
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
-                  >
-               </Field>
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button class="button is-info" on:click={handlePass}
+                        >Proses</button
+                     >
+                  </p>
+               </div>
             {/if}
          {/if}
 
          {#if role === "Ka.PusatKajian"}
             {#if status === 10}
-               <Field>
-                  <button class="button is-warning" on:click={handleRevisi}
-                     >Revisi</button
-                  >
-                  <button class="button is-danger">Ditolak</button>
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
-                  >
-               </Field>
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}>Revisi</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button class="button is-danger is-light is-outlined"
+                        >Ditolak</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button class="button is-info" on:click={handlePass}
+                        >Proses</button
+                     >
+                  </p>
+               </div>
             {/if}
          {/if}
       {/if}

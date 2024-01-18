@@ -209,7 +209,7 @@
          judul,
          abstrak,
          isi,
-         comment: "",
+         comment,
          status: Number(data.status) - 1,
          kdeptSelected,
          klppmSelected,
@@ -643,7 +643,9 @@
                <Wysiwyg id="isi" content={isi} />
             </Field>
 
-            <Field name="Comment">
+            <hr />
+
+            <Field name="Catatan Revisi">
                {comment}
             </Field>
          {:else}
@@ -726,24 +728,37 @@
                   {@html data.isi}
                </div>
             </Field>
+
+            <hr />
+
+            <Field name="Catatan Revisi">
+               <textarea class="textarea" bind:value={comment}></textarea>
+            </Field>
          {/if}
 
-         {#if view}
-            <Field>
-               <button class="button is-warning" on:click={handleRevisi}
-                  >Revisi</button
-               >
-               <button class="button is-info" on:click={handlePass}
-                  >Proses</button
-               >
-            </Field>
-         {:else}
-            <Field>
-               <button class="button is-info" on:click={remediasi}
-                  >Remediasi</button
-               >
-            </Field>
-         {/if}
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            {#if view}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {:else}
+               <p class="control">
+                  <button class="button is-info" on:click={remediasi}
+                     >Remediasi</button
+                  >
+               </p>
+            {/if}
+         </div>
       {/if}
 
       <!-- Tab Status -->
@@ -763,9 +778,15 @@
                   <td
                      ><div class="select is-normal">
                         <select>
-                           <option>Dana belum dicairkan</option>
-                           <option>50% dana sudah dicairkan</option>
-                           <option>100% dana sudah dicairkan</option>
+                           <option value="Dana belum dicairkan"
+                              >Dana belum dicairkan</option
+                           >
+                           <option value="50% dana sudah dicairkan"
+                              >50% dana sudah dicairkan</option
+                           >
+                           <option value="100% dana sudah dicairkan"
+                              >100% dana sudah dicairkan</option
+                           >
                         </select>
                      </div></td
                   >
@@ -773,9 +794,13 @@
             </tbody>
          </table>
 
-         <button class="button is-info" on:click={handleSubmitDana}
-            >Submit</button
-         >
+         <div class="field is-grouped is-grouped-left">
+            <p class="control">
+               <button class="button is-info" on:click={handleSubmitDana}
+                  >Simpan</button
+               >
+            </p>
+         </div>
       {/if}
 
       <!-- Tab Reviewer -->
@@ -816,11 +841,14 @@
             userId={kpkSelected}
          />
          <br />
-         <Field>
-            <button class="button is-info" on:click={handleSubmitReviewer}
-               >Submit</button
-            >
-         </Field>
+
+         <div class="field is-grouped is-grouped-left">
+            <p class="control">
+               <button class="button is-info" on:click={handleSubmitReviewer}
+                  >Submit</button
+               >
+            </p>
+         </div>
       {/if}
 
       <!-- Tab Logbook / Monev -->

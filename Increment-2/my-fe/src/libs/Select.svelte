@@ -85,7 +85,7 @@
       display: inline-flex;
    }
    span {
-      /* z-index: 100; */
+      z-index: 10;
       position: absolute;
       display: none;
       right: 0;

@@ -2,7 +2,7 @@
    import Article from "../../libs/Article.svelte";
    import { route, apiURL } from "../../store";
 
-   function addUser() {
+   function kembali() {
       $route("/admin/users");
    }
 </script>
@@ -48,7 +48,9 @@
 
    <div class="field is-grouped">
       <div class="control">
-         <button class="button is-info is-light">Kembali</button>
+         <button class="button is-info is-light" on:click={kembali}
+            >Kembali</button
+         >
       </div>
       <div class="control">
          <button class="button is-info">Create</button>

@@ -213,12 +213,12 @@ strong.svelte-1h60z37 {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/Login.esbuild-svelte-fake-css */
-.gsi-material-button.svelte-12kpkg0.svelte-12kpkg0 {
-  background-color: #f2f2f2;
+.gsi-material-button.svelte-t9pr81.svelte-t9pr81 {
+  background-color: #ffffff;
   background-image: none;
-  border: 1px solid var(--border, #dadce0);
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
+  border: 1.5px solid var(--border, #dadce0);
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #1f1f1f;
@@ -246,13 +246,13 @@ strong.svelte-1h60z37 {
   vertical-align: middle;
   white-space: nowrap;
 }
-.gsi-material-button.svelte-12kpkg0 .gsi-material-button-icon.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81 .gsi-material-button-icon.svelte-t9pr81 {
   height: 20px;
   margin-right: 12px;
   min-width: 20px;
   width: 20px;
 }
-.gsi-material-button.svelte-12kpkg0 .gsi-material-button-content-wrapper.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81 .gsi-material-button-content-wrapper.svelte-t9pr81 {
   -webkit-align-items: center;
   align-items: center;
   display: flex;
@@ -265,7 +265,7 @@ strong.svelte-1h60z37 {
   position: relative;
   width: 100%;
 }
-.gsi-material-button.svelte-12kpkg0 .gsi-material-button-contents.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81 .gsi-material-button-contents.svelte-t9pr81 {
   -webkit-flex-grow: 1;
   flex-grow: 1;
   font-family:
@@ -277,7 +277,7 @@ strong.svelte-1h60z37 {
   text-overflow: ellipsis;
   vertical-align: top;
 }
-.gsi-material-button.svelte-12kpkg0 .gsi-material-button-state.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81 .gsi-material-button-state.svelte-t9pr81 {
   -webkit-transition: opacity 0.218s;
   transition: opacity 0.218s;
   bottom: 0;
@@ -287,45 +287,45 @@ strong.svelte-1h60z37 {
   right: 0;
   top: 0;
 }
-.gsi-material-button.svelte-12kpkg0.svelte-12kpkg0:disabled {
+.gsi-material-button.svelte-t9pr81.svelte-t9pr81:disabled {
   cursor: default;
   background-color: #ffffff61;
 }
-.gsi-material-button.svelte-12kpkg0:disabled .gsi-material-button-state.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-state.svelte-t9pr81 {
   background-color: #1f1f1f1f;
 }
-.gsi-material-button.svelte-12kpkg0:disabled .gsi-material-button-contents.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-contents.svelte-t9pr81 {
   opacity: 38%;
 }
-.gsi-material-button.svelte-12kpkg0:disabled .gsi-material-button-icon.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-icon.svelte-t9pr81 {
   opacity: 38%;
 }
-.gsi-material-button.svelte-12kpkg0:not(:disabled):active .gsi-material-button-state.svelte-12kpkg0,
-.gsi-material-button.svelte-12kpkg0:not(:disabled):focus .gsi-material-button-state.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81:not(:disabled):active .gsi-material-button-state.svelte-t9pr81,
+.gsi-material-button.svelte-t9pr81:not(:disabled):focus .gsi-material-button-state.svelte-t9pr81 {
   background-color: #001d35;
   opacity: 12%;
 }
-.gsi-material-button.svelte-12kpkg0.svelte-12kpkg0:not(:disabled):hover {
+.gsi-material-button.svelte-t9pr81.svelte-t9pr81:not(:disabled):hover {
   -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
-.gsi-material-button.svelte-12kpkg0:not(:disabled):hover .gsi-material-button-state.svelte-12kpkg0 {
+.gsi-material-button.svelte-t9pr81:not(:disabled):hover .gsi-material-button-state.svelte-t9pr81 {
   background-color: #001d35;
   opacity: 8%;
 }
-article.container.svelte-12kpkg0.svelte-12kpkg0 {
+article.container.svelte-t9pr81.svelte-t9pr81 {
   padding-top: 10rem;
   text-align: center;
 }
-div.box.svelte-12kpkg0.svelte-12kpkg0 {
+div.box.svelte-t9pr81.svelte-t9pr81 {
   display: inline-flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-div.box.svelte-12kpkg0 div.svelte-12kpkg0 {
+div.box.svelte-t9pr81 div.svelte-t9pr81 {
   text-align: left;
 }
-button.svelte-12kpkg0.svelte-12kpkg0 {
+button.svelte-t9pr81.svelte-t9pr81 {
   width: 100%;
 }
 
@@ -459,11 +459,12 @@ div.svelte-1tzudmn {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Select.esbuild-svelte-fake-css */
-div.svelte-js5tvc.svelte-js5tvc {
+div.svelte-z10axy.svelte-z10axy {
   position: relative;
   display: inline-flex;
 }
-span.svelte-js5tvc.svelte-js5tvc {
+span.svelte-z10axy.svelte-z10axy {
+  z-index: 10;
   position: absolute;
   display: none;
   right: 0;
@@ -473,7 +474,7 @@ span.svelte-js5tvc.svelte-js5tvc {
   border: 1px solid #ccc;
   cursor: pointer;
 }
-a.svelte-js5tvc.svelte-js5tvc {
+a.svelte-z10axy.svelte-z10axy {
   position: relative;
   display: block;
   margin: 0;
@@ -481,7 +482,7 @@ a.svelte-js5tvc.svelte-js5tvc {
   text-decoration: none;
   color: inherit;
 }
-a.svelte-js5tvc.svelte-js5tvc:hover {
+a.svelte-z10axy.svelte-z10axy:hover {
   background: #f0f6fd;
 }
 .select a.selected::after {
@@ -489,7 +490,7 @@ a.svelte-js5tvc.svelte-js5tvc:hover {
   position: absolute;
   right: 0.25rem;
 }
-.focused.svelte-js5tvc + span.svelte-js5tvc {
+.focused.svelte-z10axy + span.svelte-z10axy {
   display: block;
 }
 

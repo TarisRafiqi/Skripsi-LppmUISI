@@ -119,8 +119,8 @@
       <div class="columns notification is-info is-light">
          <div class="column is-4">
             <p>
-               Untuk <strong>Dosen / Reviewer</strong> dari luar UISI, buat akun
-               disini.
+               Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br />buat
+               akun disini
             </p>
          </div>
 
