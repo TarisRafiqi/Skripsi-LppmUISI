@@ -9,7 +9,8 @@
 
    const id = localStorage.getItem("id");
    let items;
-   let data;
+   let data, dataPP, dataPM;
+
    let vmataKuliah;
 
    let biayaPenelitian,
@@ -17,20 +18,6 @@
       judulPenelitian,
       rolePenelitian,
       sumberDanaPenelitian;
-
-   let tblPP = [],
-      aPP,
-      bPP,
-      cPP,
-      dPP,
-      ePP;
-
-   let tblPM = [],
-      aPM,
-      bPM,
-      cPM,
-      dPM,
-      ePM;
 
    let biayaPengmas, tahunPengmas, judulPengmas, rolePengmas, sumberDanaPengmas;
 
@@ -141,7 +128,6 @@
       });
 
       const dataRP = await responseRP.json();
-      // console.log(dataRP);
 
       if (responseRP.ok) {
          pertiS1 = dataRP.nama_perti_s1;
@@ -169,131 +155,94 @@
       getPengalamanPengmas();
    });
 
-   async function getPengalamanPengmas() {
-      // -----------------------
-      // Get Pengalaman Pengmas
-      // -----------------------
-      const responsePM = await fetch($apiURL + "/pengalamanpengmas/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const dataPM = await responsePM.json();
-
-      if (responsePM.ok) {
-         aPM = dataPM.tahun_pengmas;
-         bPM = dataPM.judul_pengmas;
-         cPM = dataPM.role_pengmas;
-         dPM = dataPM.sumber_dana;
-         ePM = dataPM.jumlah;
-
-         if (!aPM) return;
-
-         tblPM = [];
-         for (let i = 0; i < aPM.length; i++) {
-            tblPM = [
-               ...tblPM,
-               [
-                  aPM[i].label,
-                  bPM[i].label,
-                  cPM[i].label,
-                  dPM[i].label,
-                  ePM[i].label,
-               ],
-            ];
-         }
-      }
-   }
-
+   // -----------------------------------------------
+   // Get Pengalaman Penelitian
+   // -----------------------------------------------
    async function getPengalamanPenelitian() {
-      // --------------------------
-      // Get Pengalaman Penelitian
-      // --------------------------
       const responsePP = await fetch($apiURL + "/pengalamanpenelitian/" + id, {
          method: "GET",
          headers: headers,
       });
 
-      const dataPP = await responsePP.json();
+      const resultPP = await responsePP.json();
 
       if (responsePP.ok) {
-         aPP = dataPP.tahun_penelitian;
-         bPP = dataPP.judul_penelitian;
-         cPP = dataPP.role_penelitian;
-         dPP = dataPP.sumber_dana;
-         ePP = dataPP.jumlah;
+         dataPP = resultPP.dbData;
+      } else {
+         console.log(responsePP);
+      }
+   }
 
-         if (!aPP) return;
+   // -----------------------------------------------
+   // Get Pengalaman Pengmas
+   // -----------------------------------------------
+   async function getPengalamanPengmas() {
+      const responsePM = await fetch($apiURL + "/pengalamanpengmas/" + id, {
+         method: "GET",
+         headers: headers,
+      });
 
-         tblPP = [];
-         for (let i = 0; i < aPP.length; i++) {
-            tblPP = [
-               ...tblPP,
-               [
-                  aPP[i].label,
-                  bPP[i].label,
-                  cPP[i].label,
-                  dPP[i].label,
-                  ePP[i].label,
-               ],
-            ];
-         }
+      const resultPM = await responsePM.json();
+
+      if (responsePM.ok) {
+         dataPM = resultPM.dbData;
+      } else {
+         console.log(responsePM);
+      }
+   }
+
+   // -----------------------------------------------
+   // Tombol Simpan
+   // -----------------------------------------------
+   async function simpanPP() {
+      const payload = {
+         tahunPenelitian,
+         judulPenelitian,
+         rolePenelitian,
+         sumberDanaPenelitian,
+         biayaPenelitian,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/pengalamanpenelitian", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      // console.log(result);
+      // return;
+
+      if (response.ok) {
+         showModalPenelitian = false;
+
+         tahunPenelitian = "";
+         judulPenelitian = "";
+         rolePenelitian = "";
+         sumberDanaPenelitian = "";
+         biayaPenelitian = "";
+
+         getPengalamanPenelitian();
+      } else {
+         console.log(response);
       }
    }
 
    async function simpanPM() {
-      // ------------------------------------------------
-      // Memasukkan tahun pengmas kedalam object
-      // ------------------------------------------------
-      tahunPengmas = String(tahunPengmas);
-      let addVtahunPengmas = {
-         label: tahunPengmas,
-      };
-      aPM = [...aPM, addVtahunPengmas];
-
-      // ------------------------------------------------
-      // Memasukkan judul pengmas kedalam object
-      // ------------------------------------------------
-      let addVjudulPengmas = {
-         label: judulPengmas,
-      };
-      bPM = [...bPM, addVjudulPengmas];
-
-      // ------------------------------------------------
-      // Memasukkan role pengmas kedalam object
-      // ------------------------------------------------
-      let addVrolePengmas = {
-         label: rolePengmas,
-      };
-      cPM = [...cPM, addVrolePengmas];
-
-      // ------------------------------------------------
-      // Memasukkan sumber dana pengmas kedalam object
-      // ------------------------------------------------
-      let addVsumberDanaPengmas = {
-         label: sumberDanaPengmas,
-      };
-      dPM = [...dPM, addVsumberDanaPengmas];
-
-      // ------------------------------------------------
-      // Memasukkan biaya pengmas kedalam object
-      // ------------------------------------------------
-      let addVbiayaPengmas = {
-         label: biayaPengmas,
-      };
-      ePM = [...ePM, addVbiayaPengmas];
-
       const payload = {
-         aPM,
-         bPM,
-         cPM,
-         dPM,
-         ePM,
+         tahunPengmas,
+         judulPengmas,
+         rolePengmas,
+         sumberDanaPengmas,
+         biayaPengmas,
          id,
       };
 
       const response = await fetch($apiURL + "/pengalamanpengmas", {
-         method: "PATCH",
+         method: "POST",
          headers: {
             "Content-Type": "application/json",
          },
@@ -305,80 +254,13 @@
       if (response.ok) {
          showModalPengmas = false;
 
+         tahunPengmas = "";
+         judulPengmas = "";
+         rolePengmas = "";
+         sumberDanaPengmas = "";
+         biayaPengmas = "";
+
          getPengalamanPengmas();
-      } else {
-         console.log(response);
-      }
-   }
-
-   async function simpanPP() {
-      // ------------------------------------------------
-      // Memasukkan tahun penelitian kedalam object
-      // ------------------------------------------------
-      tahunPenelitian = String(tahunPenelitian);
-      let addVtahunPenelitian = {
-         label: tahunPenelitian,
-      };
-      aPP = [...aPP, addVtahunPenelitian];
-
-      // ------------------------------------------------
-      // Memasukkan judul penelitian kedalam object
-      // ------------------------------------------------
-      let addVjudulPenelitian = {
-         label: judulPenelitian,
-      };
-      bPP = [...bPP, addVjudulPenelitian];
-
-      // ------------------------------------------------
-      // Memasukkan role penelitian kedalam object
-      // ------------------------------------------------
-      let addVrolePenelitian = {
-         label: rolePenelitian,
-      };
-      cPP = [...cPP, addVrolePenelitian];
-
-      // ------------------------------------------------
-      // Memasukkan sumber dana penelitian kedalam object
-      // ------------------------------------------------
-      let addVsumberDanaPenelitian = {
-         label: sumberDanaPenelitian,
-      };
-      dPP = [...dPP, addVsumberDanaPenelitian];
-
-      // ------------------------------------------------
-      // Memasukkan biaya penelitian kedalam object
-      // ------------------------------------------------
-      let addVbiayaPenelitian = {
-         label: biayaPenelitian,
-      };
-      ePP = [...ePP, addVbiayaPenelitian];
-
-      const payload = {
-         aPP,
-         bPP,
-         cPP,
-         dPP,
-         ePP,
-         id,
-      };
-
-      // console.log(payload);
-      // return;
-
-      const response = await fetch($apiURL + "/pengalamanpenelitian", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-         showModalPenelitian = false;
-
-         getPengalamanPenelitian();
       } else {
          console.log(response);
       }
@@ -495,81 +377,48 @@
       vmataKuliah = "";
    }
 
-   async function delrowPM(ev, num) {
-      let suspect = document.querySelector("#row" + num);
-      if (suspect) {
-         suspect.remove();
-         aPM.splice(num, 1);
-         bPM.splice(num, 1);
-         cPM.splice(num, 1);
-         dPM.splice(num, 1);
-         ePM.splice(num, 1);
-      }
+   // -----------------------------------------------
+   // Tombol Delete
+   // -----------------------------------------------
+   async function delrowPP(ev) {
+      let idPP = ev.target.getAttribute("pid");
 
-      const payload = {
-         aPM,
-         bPM,
-         cPM,
-         dPM,
-         ePM,
-         id,
-      };
-
-      // console.log(payload);
-      // return;
-
-      const response = await fetch($apiURL + "/pengalamanpengmas", {
-         method: "PATCH",
+      const response = await fetch($apiURL + "/pengalamanpenelitian/" + idPP, {
+         method: "DELETE",
          headers: {
             "Content-Type": "application/json",
          },
-         body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      // console.log(result);
+      // return;
 
       if (response.ok) {
          // $route("/dosen");
+         getPengalamanPenelitian();
       } else {
          console.log(response);
       }
    }
 
-   async function delrowPP(ev, num) {
-      let suspect = document.querySelector("#row" + num);
-      if (suspect) {
-         suspect.remove();
-         aPP.splice(num, 1);
-         bPP.splice(num, 1);
-         cPP.splice(num, 1);
-         dPP.splice(num, 1);
-         ePP.splice(num, 1);
-      }
+   async function delrowPM(ev) {
+      let idPM = ev.target.getAttribute("pid");
 
-      const payload = {
-         aPP,
-         bPP,
-         cPP,
-         dPP,
-         ePP,
-         id,
-      };
-
-      // console.log(payload);
-      // return;
-
-      const response = await fetch($apiURL + "/pengalamanpenelitian", {
-         method: "PATCH",
+      const response = await fetch($apiURL + "/pengalamanpengmas/" + idPM, {
+         method: "DELETE",
          headers: {
             "Content-Type": "application/json",
          },
-         body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      // console.log(result);
+      // return;
 
       if (response.ok) {
          // $route("/dosen");
+         getPengalamanPengmas();
       } else {
          console.log(response);
       }
@@ -577,11 +426,9 @@
 
    function deleteMatkul(e) {
       let delMatkul = e.target.getAttribute("data-value");
-      console.log(delMatkul);
       mataKuliah = mataKuliah.filter((matkul) => {
          return matkul.label !== delMatkul;
       });
-      console.log(mataKuliah);
    }
 
    function formatRupiah(angka, prefix) {
@@ -955,21 +802,24 @@
             </tr>
          </thead>
          <tbody>
-            {#if tblPP.length > 0}
-               {#each tblPP as row, idx}
-                  <tr id={"row" + idx}>
+            {#if dataPP}
+               {#each dataPP as PP}
+                  <tr>
                      <td
                         ><button
-                           on:click={(e) => delrowPP(e, idx)}
                            class="button is-danger is-rounded is-small"
+                           pid={PP.id}
+                           on:click={delrowPP}
                            ><span class="icon">
                               <Icon id="delete" src={deleteIcon} />
                            </span></button
                         ></td
                      >
-                     {#each row as td}
-                        <td>{td}</td>
-                     {/each}
+                     <td>{PP.tahun_penelitian}</td>
+                     <td>{PP.judul_penelitian}</td>
+                     <td>{PP.role_penelitian}</td>
+                     <td>{PP.sumber_dana}</td>
+                     <td>{PP.jumlah}</td>
                   </tr>
                {/each}
             {/if}
@@ -1065,21 +915,24 @@
             </tr>
          </thead>
          <tbody>
-            {#if tblPM.length > 0}
-               {#each tblPM as row, idx}
-                  <tr id={"row" + idx}>
+            {#if dataPM}
+               {#each dataPM as PM}
+                  <tr>
                      <td
                         ><button
-                           on:click={(e) => delrowPM(e, idx)}
                            class="button is-danger is-rounded is-small"
+                           pid={PM.id}
+                           on:click={delrowPM}
                            ><span class="icon">
                               <Icon id="delete" src={deleteIcon} />
                            </span></button
                         ></td
                      >
-                     {#each row as td}
-                        <td>{td}</td>
-                     {/each}
+                     <td>{PM.tahun_pengmas}</td>
+                     <td>{PM.judul_pengmas}</td>
+                     <td>{PM.role_pengmas}</td>
+                     <td>{PM.sumber_dana}</td>
+                     <td>{PM.jumlah}</td>
                   </tr>
                {/each}
             {/if}

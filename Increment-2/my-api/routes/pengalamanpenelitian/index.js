@@ -1,6 +1,40 @@
 "use strict";
 
 module.exports = async function (fastify, opts) {
+   fastify.post("/", async function (request, reply) {
+      let data = request.body;
+      let connection;
+
+      // reply.send({
+      //    data,
+      // });
+      // return;
+
+      const sql =
+         "INSERT INTO pengalaman_penelitian (uid, tahun_penelitian, judul_penelitian, role_penelitian, sumber_dana, jumlah) values (?, ?, ?, ?, ?, ?)";
+
+      try {
+         connection = await fastify.mysql.getConnection();
+         await connection.query(sql, [
+            data.id,
+            data.tahunPenelitian,
+            data.judulPenelitian,
+            data.rolePenelitian,
+            data.sumberDanaPenelitian,
+            data.biayaPenelitian,
+         ]);
+         connection.release();
+         reply.send({
+            msg: "Sukses Menambahkan Data",
+         });
+      } catch (error) {
+         reply.send({
+            msg: "gagal terkoneksi ke db",
+            error,
+         });
+      }
+   });
+
    fastify.get("/:id", async function (request, reply) {
       const id = Number(request.params.id);
       let dbData;
@@ -11,47 +45,35 @@ module.exports = async function (fastify, opts) {
       try {
          connection = await fastify.mysql.getConnection();
          const [rows] = await connection.query(sql, [id]);
-         dbData = rows[0];
+         dbData = rows;
          connection.release();
          reply.send({
-            ...dbData,
+            dbData,
          });
       } catch (error) {
          reply.send({
-            msg: "gagal terkoneksi ke db profile",
+            msg: "gagal terkoneksi ke database",
          });
       }
    });
 
-   fastify.patch("/", async function (request, reply) {
-      let dbData;
+   fastify.delete("/:id", async function (request, reply) {
+      const id = Number(request.params.id);
       let connection;
-      let data = request.body;
 
       // reply.send({
       //    data,
       // });
       // return;
 
-      const sql =
-         "UPDATE pengalaman_penelitian SET tahun_penelitian = ?, judul_penelitian = ?, role_penelitian = ?, sumber_dana = ?, jumlah = ? WHERE uid = ?";
+      const sql = "DELETE FROM pengalaman_penelitian WHERE id = ?";
 
       try {
          connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [
-            JSON.stringify(data.aPP),
-            JSON.stringify(data.bPP),
-            JSON.stringify(data.cPP),
-            JSON.stringify(data.dPP),
-            JSON.stringify(data.ePP),
-            data.id,
-         ]);
-         dbData = rows;
+         await connection.query(sql, [id]);
          connection.release();
          reply.send({
-            sent: data,
-            data: dbData,
-            msg: "Berhasil menyimpan data baru!",
+            msg: "Sukses Menghapus Data",
          });
       } catch (error) {
          reply.send({
