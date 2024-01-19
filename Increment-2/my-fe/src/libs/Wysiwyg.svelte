@@ -15,6 +15,7 @@
       } catch (error) {}
       tinymce.init({
          selector: selector,
+         height: 500,
          plugins:
             "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
          toolbar:

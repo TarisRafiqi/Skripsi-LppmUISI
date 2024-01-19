@@ -1,15 +1,9 @@
 <script>
    import { onMount } from "svelte";
    import Article from "../../libs/Article.svelte";
-   import Modal from "../../libs/Modal.svelte";
-   import Field from "../../libs/Field.svelte";
-   import Status from "../../modules/Status.svelte";
    import { route, apiURL } from "../../store";
-   import Select from "../../libs/Select.svelte";
 
    let file;
-   let showModal = false;
-   let showModal2 = false;
 
    async function handleDownload(e) {
       const accessToken = localStorage.getItem("token");
@@ -31,13 +25,6 @@
       } catch (error) {
          console.error("Error downloading file:", error);
       }
-   }
-
-   async function cekmodal() {
-      showModal = true;
-   }
-   async function cekmodal2() {
-      showModal2 = true;
    }
 
    async function handleFileUpload() {
@@ -65,7 +52,6 @@
                body: JSON.stringify(payloadfile),
             });
             const result = await response.json();
-            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -93,38 +79,6 @@
    <br />
 
    <button on:click={handleDownload}>Download</button>
-
-   <br />
-   <br />
-
-   <button on:click={cekmodal}> Cek Modal </button>
-   <br />
-   <button on:click={cekmodal2}> Cek Modal2 </button>
-
-   <br />
-   <br />
-
-   <Modal bind:show={showModal}>
-      <h2 slot="header">Find Approval</h2>
-      <p>
-         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
-         fuga odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est
-         delectus soluta iusto odio architecto impedit maxime non asperiores
-         eligendi?
-      </p>
-   </Modal>
-
-   <br />
-
-   <Modal bind:show={showModal2}>
-      <h2 slot="header">Test Modal 2</h2>
-      <p>
-         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores
-         fuga odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est
-         delectus soluta iusto odio architecto impedit maxime non asperiores
-         eligendi?
-      </p>
-   </Modal>
 </Article>
 
 <style>

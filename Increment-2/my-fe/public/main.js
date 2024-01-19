@@ -2231,7 +2231,6 @@
       const response = await fetch($apiURL + "//user", payload);
       const result = await response.json();
       if (response.ok) {
-        console.log(result);
         localStorage.setItem("code", result.code);
         $route("/verify");
       } else {
@@ -3426,6 +3425,7 @@
       }
       tinymce.init({
         selector,
+        height: 500,
         plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
         toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
         tinycomments_mode: "embedded",
@@ -5739,6 +5739,7 @@
     let icon;
     let t1;
     let span1;
+    let button_disabled_value;
     let current;
     let mounted;
     let dispose;
@@ -5762,6 +5763,8 @@
         attr(p0, "class", "control is-expanded");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
+        button.disabled = button_disabled_value = /*vmataKuliah*/
+        ctx[6] ? false : true;
         attr(p1, "class", "control");
         attr(div, "class", "field is-grouped");
       },
@@ -5809,6 +5812,11 @@
             /*vmataKuliah*/
             ctx2[6]
           );
+        }
+        if (!current || dirty[0] & /*vmataKuliah*/
+        64 && button_disabled_value !== (button_disabled_value = /*vmataKuliah*/
+        ctx2[6] ? false : true)) {
+          button.disabled = button_disabled_value;
         }
       },
       i(local) {
@@ -11847,7 +11855,7 @@
         $$invalidate(43, alamatKantor = data2.alamat_kantor);
         $$invalidate(44, telpFaxKantor = data2.telp_fax_kantor);
         $$invalidate(45, email = data2.email);
-        $$invalidate(46, mataKuliah = data2.mata_kuliah);
+        $$invalidate(46, mataKuliah = data2.mata_kuliah || []);
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
@@ -13362,12 +13370,12 @@
   // src/pages/admin/proposal.svelte
   function get_each_context_12(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[70] = list[i];
+    child_ctx[71] = list[i];
     return child_ctx;
   }
   function get_each_context5(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[70] = list[i];
+    child_ctx[71] = list[i];
     return child_ctx;
   }
   function create_if_block5(ctx) {
@@ -13391,7 +13399,7 @@
         const article_changes = {};
         if (dirty[0] & /*tab5, tab4, kpkSelected, ka_pusat_kajian, reviewerSelected, reviewer, klppmSelected, ka_lppm, kdeptSelected, ka_departemen, tab3, data, tab2, view, comment, isi, abstrak, judul, anggotaTim, items, file, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal, tab1*/
         1073610751 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -13740,61 +13748,61 @@
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
         2 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
         4 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema*/
         8 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
         16 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
         32 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (dirty[0] & /*tahunPelaksanaan*/
         64 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
         if (dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
@@ -13816,28 +13824,28 @@
         const field9_changes = {};
         if (dirty[0] & /*data*/
         1 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*data*/
         1 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*data*/
         1 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
         const field12_changes = {};
         if (dirty[0] & /*comment*/
         4096 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field12.$set(field12_changes);
@@ -14155,35 +14163,35 @@
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
         2 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
         4 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema, jenisKegiatan*/
         12 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
         16 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
         32 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -14199,21 +14207,21 @@
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
         if (dirty[0] & /*file*/
         8388608 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[0] & /*items, anggotaTim*/
         4194560 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
@@ -14243,28 +14251,28 @@
         const field9_changes = {};
         if (dirty[0] & /*judul*/
         512 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*abstrak*/
         1024 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*isi*/
         2048 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
         const field12_changes = {};
         if (dirty[0] & /*comment*/
         4096 | dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field12.$set(field12_changes);
@@ -14655,7 +14663,7 @@
     let td1;
     let t2_value = (
       /*member*/
-      ctx[70].label + ""
+      ctx[71].label + ""
     );
     let t2;
     let t3;
@@ -14680,7 +14688,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
         256 && t2_value !== (t2_value = /*member*/
-        ctx2[70].label + ""))
+        ctx2[71].label + ""))
           set_data(t2, t2_value);
       },
       d(detaching) {
@@ -14796,8 +14804,8 @@
           dispose = listen(
             textarea,
             "input",
-            /*textarea_input_handler*/
-            ctx[53]
+            /*textarea_input_handler_1*/
+            ctx[54]
           );
           mounted = true;
         }
@@ -15489,7 +15497,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[70].label + ""
+      ctx[71].label + ""
     );
     let t3;
     let t4;
@@ -15514,7 +15522,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[70].value);
+        ctx[71].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -15542,12 +15550,12 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*anggotaTim*/
         256 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[70].value)) {
+        ctx2[71].value)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[0] & /*anggotaTim*/
         256) && t3_value !== (t3_value = /*member*/
-        ctx2[70].label + ""))
+        ctx2[71].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -15619,45 +15627,47 @@
     };
   }
   function create_default_slot_47(ctx) {
-    let wysiwyg;
-    let current;
-    wysiwyg = new Wysiwyg_default({
-      props: {
-        id: "abstract",
-        content: (
-          /*abstrak*/
-          ctx[10]
-        )
-      }
-    });
+    let textarea;
+    let mounted;
+    let dispose;
     return {
       c() {
-        create_component(wysiwyg.$$.fragment);
+        textarea = element("textarea");
+        attr(textarea, "class", "textarea");
       },
       m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        current = true;
+        insert(target, textarea, anchor);
+        set_input_value(
+          textarea,
+          /*abstrak*/
+          ctx[10]
+        );
+        if (!mounted) {
+          dispose = listen(
+            textarea,
+            "input",
+            /*textarea_input_handler*/
+            ctx[53]
+          );
+          mounted = true;
+        }
       },
       p(ctx2, dirty) {
-        const wysiwyg_changes = {};
         if (dirty[0] & /*abstrak*/
-        1024)
-          wysiwyg_changes.content = /*abstrak*/
-          ctx2[10];
-        wysiwyg.$set(wysiwyg_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
+        1024) {
+          set_input_value(
+            textarea,
+            /*abstrak*/
+            ctx2[10]
+          );
+        }
       },
       d(detaching) {
-        destroy_component(wysiwyg, detaching);
+        if (detaching) {
+          detach(textarea);
+        }
+        mounted = false;
+        dispose();
       }
     };
   }
@@ -15973,10 +15983,10 @@
     let mounted;
     let dispose;
     function field0_value_binding(value) {
-      ctx[54](value);
+      ctx[55](value);
     }
     function field0_selected_binding(value) {
-      ctx[55](value);
+      ctx[56](value);
     }
     let field0_props = {
       name: "Ka. Departemen",
@@ -16005,10 +16015,10 @@
     binding_callbacks.push(() => bind(field0, "value", field0_value_binding));
     binding_callbacks.push(() => bind(field0, "selected", field0_selected_binding));
     function field1_value_binding(value) {
-      ctx[56](value);
+      ctx[57](value);
     }
     function field1_selected_binding(value) {
-      ctx[57](value);
+      ctx[58](value);
     }
     let field1_props = {
       name: "Ka. LPPM",
@@ -16037,10 +16047,10 @@
     binding_callbacks.push(() => bind(field1, "value", field1_value_binding));
     binding_callbacks.push(() => bind(field1, "selected", field1_selected_binding));
     function field2_value_binding(value) {
-      ctx[58](value);
+      ctx[59](value);
     }
     function field2_selected_binding(value) {
-      ctx[59](value);
+      ctx[60](value);
     }
     let field2_props = {
       name: "Reviewer",
@@ -16069,10 +16079,10 @@
     binding_callbacks.push(() => bind(field2, "value", field2_value_binding));
     binding_callbacks.push(() => bind(field2, "selected", field2_selected_binding));
     function field3_value_binding(value) {
-      ctx[60](value);
+      ctx[61](value);
     }
     function field3_selected_binding(value) {
-      ctx[61](value);
+      ctx[62](value);
     }
     let field3_props = {
       name: "Ka. Pusat Kajian",
@@ -16749,7 +16759,7 @@
       ctx[0] && create_if_block5(ctx)
     );
     function modal_show_binding(value) {
-      ctx[62](value);
+      ctx[63](value);
     }
     let modal_props = {
       $$slots: {
@@ -16807,7 +16817,7 @@
         }
         const modal_changes = {};
         if (dirty[2] & /*$$scope*/
-        8192) {
+        16384) {
           modal_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty[0] & /*showModal*/
@@ -16859,8 +16869,8 @@
   function instance19($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(65, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(66, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(66, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(67, $route = $$value));
     let { params } = $$props;
     const id = params["1"];
     let data2;
@@ -16943,7 +16953,6 @@
     });
     async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(10, abstrak = tinymce.get("abstract").getContent());
       $$invalidate(11, isi = tinymce.get("isi").getContent());
       const reader = new FileReader();
       reader.onloadend = async () => {
@@ -17089,9 +17098,7 @@
       const result = await response.json();
       if (response.ok) {
       } else {
-        console.log(
-          response
-        );
+        console.log(response);
       }
     }
     function deleteMember(e) {
@@ -17215,6 +17222,10 @@
       $$invalidate(9, judul);
     }
     function textarea_input_handler() {
+      abstrak = this.value;
+      $$invalidate(10, abstrak);
+    }
+    function textarea_input_handler_1() {
       comment = this.value;
       $$invalidate(12, comment);
     }
@@ -17313,6 +17324,7 @@
       select_result_binding,
       input_input_handler_3,
       textarea_input_handler,
+      textarea_input_handler_1,
       field0_value_binding,
       field0_selected_binding,
       field1_value_binding,
@@ -22069,6 +22081,7 @@
     });
     let if_block = (
       /*mataKuliah*/
+      ctx[46] && /*mataKuliah*/
       ctx[46].length > 0 && create_if_block_95(ctx)
     );
     return {
@@ -22255,6 +22268,7 @@
         field11.$set(field11_changes);
         if (
           /*mataKuliah*/
+          ctx2[46] && /*mataKuliah*/
           ctx2[46].length > 0
         ) {
           if (if_block) {
@@ -22890,6 +22904,7 @@
     let icon;
     let t1;
     let span1;
+    let button_disabled_value;
     let current;
     let mounted;
     let dispose;
@@ -22913,6 +22928,8 @@
         attr(p0, "class", "control is-expanded");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
+        button.disabled = button_disabled_value = /*vmataKuliah*/
+        ctx[6] ? false : true;
         attr(p1, "class", "control");
         attr(div, "class", "field is-grouped");
       },
@@ -22960,6 +22977,11 @@
             /*vmataKuliah*/
             ctx2[6]
           );
+        }
+        if (!current || dirty[0] & /*vmataKuliah*/
+        64 && button_disabled_value !== (button_disabled_value = /*vmataKuliah*/
+        ctx2[6] ? false : true)) {
+          button.disabled = button_disabled_value;
         }
       },
       i(local) {
@@ -28939,7 +28961,6 @@
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(162, $apiURL = $$value));
     component_subscribe($$self, route, ($$value) => $$invalidate(163, $route = $$value));
     const id = localStorage.getItem("id");
-    console.log(id);
     let data2, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
     let vmataKuliah;
     let biayaPenelitian, tahunPenelitian, judulPenelitian, rolePenelitian, sumberDanaPenelitian;
@@ -28998,7 +29019,7 @@
         $$invalidate(43, alamatKantor = data2.alamat_kantor);
         $$invalidate(44, telpFaxKantor = data2.telp_fax_kantor);
         $$invalidate(45, email = data2.email);
-        $$invalidate(46, mataKuliah = data2.mata_kuliah);
+        $$invalidate(46, mataKuliah = data2.mata_kuliah || []);
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
@@ -31307,10 +31328,7 @@
           });
           const result2 = await response2.json();
         } catch (error) {
-          console.error(
-            "Error uploading file:",
-            error
-          );
+          console.error("Error uploading file:", error);
         }
       };
       reader.readAsDataURL(file);
@@ -31369,7 +31387,6 @@
             body: JSON.stringify(payloadfile)
           });
           const result2 = await response2.json();
-          console.log(result2);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -31409,7 +31426,6 @@
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
       $$invalidate(8, anggotaTim = anggotaTim.filter((member) => {
-        console.log(member.value, uid);
         return member.value !== uid;
       }));
     }
@@ -34726,10 +34742,7 @@
           });
           const result2 = await response2.json();
         } catch (error) {
-          console.error(
-            "Error uploading file:",
-            error
-          );
+          console.error("Error uploading file:", error);
         }
       };
       if (file)
@@ -34792,10 +34805,7 @@
           });
           const result2 = await response2.json();
         } catch (error) {
-          console.error(
-            "Error uploading file:",
-            error
-          );
+          console.error("Error uploading file:", error);
         }
       };
       reader.readAsDataURL(file);
@@ -34857,10 +34867,7 @@
           });
           const result2 = await response2.json();
         } catch (error) {
-          console.error(
-            "Error uploading file:",
-            error
-          );
+          console.error("Error uploading file:", error);
         }
       };
       reader.readAsDataURL(file);
@@ -35032,80 +35039,6 @@
 
   // src/pages/dosen/select.svelte
   init_define_process();
-  function create_default_slot_219(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores\r\n         fuga odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est\r\n         delectus soluta iusto odio architecto impedit maxime non asperiores\r\n         eligendi?";
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_header_slot_13(ctx) {
-    let h2;
-    return {
-      c() {
-        h2 = element("h2");
-        h2.textContent = "Find Approval";
-        attr(h2, "slot", "header");
-      },
-      m(target, anchor) {
-        insert(target, h2, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(h2);
-        }
-      }
-    };
-  }
-  function create_default_slot_121(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores\r\n         fuga odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est\r\n         delectus soluta iusto odio architecto impedit maxime non asperiores\r\n         eligendi?";
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_header_slot4(ctx) {
-    let h2;
-    return {
-      c() {
-        h2 = element("h2");
-        h2.textContent = "Test Modal 2";
-        attr(h2, "slot", "header");
-      },
-      m(target, anchor) {
-        insert(target, h2, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(h2);
-        }
-      }
-    };
-  }
   function create_default_slot16(ctx) {
     let br0;
     let t0;
@@ -35122,69 +35055,8 @@
     let br4;
     let t7;
     let button1;
-    let t9;
-    let br5;
-    let t10;
-    let br6;
-    let t11;
-    let button2;
-    let t13;
-    let br7;
-    let t14;
-    let button3;
-    let t16;
-    let br8;
-    let t17;
-    let br9;
-    let t18;
-    let modal0;
-    let updating_show;
-    let t19;
-    let br10;
-    let t20;
-    let modal1;
-    let updating_show_1;
-    let current;
     let mounted;
     let dispose;
-    function modal0_show_binding(value) {
-      ctx[7](value);
-    }
-    let modal0_props = {
-      $$slots: {
-        header: [create_header_slot_13],
-        default: [create_default_slot_219]
-      },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModal*/
-      ctx[1] !== void 0
-    ) {
-      modal0_props.show = /*showModal*/
-      ctx[1];
-    }
-    modal0 = new Modal_default({ props: modal0_props });
-    binding_callbacks.push(() => bind(modal0, "show", modal0_show_binding));
-    function modal1_show_binding(value) {
-      ctx[8](value);
-    }
-    let modal1_props = {
-      $$slots: {
-        header: [create_header_slot4],
-        default: [create_default_slot_121]
-      },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModal2*/
-      ctx[2] !== void 0
-    ) {
-      modal1_props.show = /*showModal2*/
-      ctx[2];
-    }
-    modal1 = new Modal_default({ props: modal1_props });
-    binding_callbacks.push(() => bind(modal1, "show", modal1_show_binding));
     return {
       c() {
         br0 = element("br");
@@ -35204,28 +35076,6 @@
         t7 = space();
         button1 = element("button");
         button1.textContent = "Download";
-        t9 = space();
-        br5 = element("br");
-        t10 = space();
-        br6 = element("br");
-        t11 = space();
-        button2 = element("button");
-        button2.textContent = "Cek Modal";
-        t13 = space();
-        br7 = element("br");
-        t14 = space();
-        button3 = element("button");
-        button3.textContent = "Cek Modal2";
-        t16 = space();
-        br8 = element("br");
-        t17 = space();
-        br9 = element("br");
-        t18 = space();
-        create_component(modal0.$$.fragment);
-        t19 = space();
-        br10 = element("br");
-        t20 = space();
-        create_component(modal1.$$.fragment);
         attr(input, "class", "input");
         attr(input, "accept", ".xlsx");
         attr(input, "type", "file");
@@ -35246,98 +35096,26 @@
         insert(target, br4, anchor);
         insert(target, t7, anchor);
         insert(target, button1, anchor);
-        insert(target, t9, anchor);
-        insert(target, br5, anchor);
-        insert(target, t10, anchor);
-        insert(target, br6, anchor);
-        insert(target, t11, anchor);
-        insert(target, button2, anchor);
-        insert(target, t13, anchor);
-        insert(target, br7, anchor);
-        insert(target, t14, anchor);
-        insert(target, button3, anchor);
-        insert(target, t16, anchor);
-        insert(target, br8, anchor);
-        insert(target, t17, anchor);
-        insert(target, br9, anchor);
-        insert(target, t18, anchor);
-        mount_component(modal0, target, anchor);
-        insert(target, t19, anchor);
-        insert(target, br10, anchor);
-        insert(target, t20, anchor);
-        mount_component(modal1, target, anchor);
-        current = true;
         if (!mounted) {
           dispose = [
             listen(
               input,
               "change",
               /*change_handler*/
-              ctx[6]
+              ctx[2]
             ),
             listen(
               button0,
               "click",
               /*handleFileUpload*/
-              ctx[5]
+              ctx[1]
             ),
-            listen(button1, "click", handleDownload2),
-            listen(
-              button2,
-              "click",
-              /*cekmodal*/
-              ctx[3]
-            ),
-            listen(
-              button3,
-              "click",
-              /*cekmodal2*/
-              ctx[4]
-            )
+            listen(button1, "click", handleDownload2)
           ];
           mounted = true;
         }
       },
-      p(ctx2, dirty) {
-        const modal0_changes = {};
-        if (dirty & /*$$scope*/
-        1024) {
-          modal0_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show && dirty & /*showModal*/
-        2) {
-          updating_show = true;
-          modal0_changes.show = /*showModal*/
-          ctx2[1];
-          add_flush_callback(() => updating_show = false);
-        }
-        modal0.$set(modal0_changes);
-        const modal1_changes = {};
-        if (dirty & /*$$scope*/
-        1024) {
-          modal1_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show_1 && dirty & /*showModal2*/
-        4) {
-          updating_show_1 = true;
-          modal1_changes.show = /*showModal2*/
-          ctx2[2];
-          add_flush_callback(() => updating_show_1 = false);
-        }
-        modal1.$set(modal1_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(modal0.$$.fragment, local);
-        transition_in(modal1.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(modal0.$$.fragment, local);
-        transition_out(modal1.$$.fragment, local);
-        current = false;
-      },
+      p: noop,
       d(detaching) {
         if (detaching) {
           detach(br0);
@@ -35355,27 +35133,7 @@
           detach(br4);
           detach(t7);
           detach(button1);
-          detach(t9);
-          detach(br5);
-          detach(t10);
-          detach(br6);
-          detach(t11);
-          detach(button2);
-          detach(t13);
-          detach(br7);
-          detach(t14);
-          detach(button3);
-          detach(t16);
-          detach(br8);
-          detach(t17);
-          detach(br9);
-          detach(t18);
-          detach(t19);
-          detach(br10);
-          detach(t20);
         }
-        destroy_component(modal0, detaching);
-        destroy_component(modal1, detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -35400,8 +35158,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, showModal2, showModal, file*/
-        1031) {
+        if (dirty & /*$$scope, file*/
+        17) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -35441,16 +35199,8 @@
   }
   function instance30($$self, $$props, $$invalidate) {
     let $apiURL;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(9, $apiURL = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
     let file;
-    let showModal = false;
-    let showModal2 = false;
-    async function cekmodal() {
-      $$invalidate(1, showModal = true);
-    }
-    async function cekmodal2() {
-      $$invalidate(2, showModal2 = true);
-    }
     async function handleFileUpload() {
       const accessToken = localStorage.getItem("token");
       const reader = new FileReader();
@@ -35474,7 +35224,6 @@
             body: JSON.stringify(payloadfile)
           });
           const result = await response.json();
-          console.log(result);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -35482,33 +35231,15 @@
       reader.readAsDataURL(file);
     }
     const change_handler = (e) => $$invalidate(0, file = e.target.files[0]);
-    function modal0_show_binding(value) {
-      showModal = value;
-      $$invalidate(1, showModal);
-    }
-    function modal1_show_binding(value) {
-      showModal2 = value;
-      $$invalidate(2, showModal2);
-    }
-    return [
-      file,
-      showModal,
-      showModal2,
-      cekmodal,
-      cekmodal2,
-      handleFileUpload,
-      change_handler,
-      modal0_show_binding,
-      modal1_show_binding
-    ];
+    return [file, handleFileUpload, change_handler];
   }
-  var Select_1 = class extends SvelteComponent {
+  var Select2 = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance30, create_fragment38, safe_not_equal, {});
     }
   };
-  var select_default = Select_1;
+  var select_default = Select2;
 
   // src/pages/dosen/Index.svelte
   function create_else_block7(ctx) {

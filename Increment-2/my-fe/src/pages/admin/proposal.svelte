@@ -122,7 +122,7 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      abstrak = tinymce.get("abstract").getContent();
+      // abstrak = tinymce.get("abstract").getContent();
       isi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -296,7 +296,6 @@
       const result = await response.json();
 
       if (response.ok) {
-         // $route("/admin/proposals");
       } else {
          console.log(response);
       }
@@ -636,7 +635,7 @@
             </Field>
 
             <Field name="Abstrak">
-               <Wysiwyg id="abstract" content={abstrak} />
+               <textarea class="textarea" bind:value={abstrak}></textarea>
             </Field>
 
             <Field name="Isi Proposal">

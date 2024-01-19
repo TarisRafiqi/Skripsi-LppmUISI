@@ -172,8 +172,8 @@
                },
                body: JSON.stringify(payloadfile),
             });
+
             const result = await response.json();
-            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -247,8 +247,8 @@
                },
                body: JSON.stringify(payloadfile),
             });
+
             const result = await response.json();
-            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -323,7 +323,6 @@
                body: JSON.stringify(payloadfile),
             });
             const result = await response.json();
-            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -411,10 +410,8 @@
    function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
       anggotaTim = anggotaTim.filter((member) => {
-         // console.log(member.value, uid);
          return member.value !== uid;
       });
-      // console.log(anggotaTim);
    }
 </script>
 
@@ -635,7 +632,6 @@
                </Field>
 
                <Field name="Abstrak">
-                  <!-- <Wysiwyg id="abstract" content={abstrak} /> -->
                   <textarea class="textarea" bind:value={abstrak}></textarea>
                </Field>
 

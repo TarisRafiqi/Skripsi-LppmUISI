@@ -8,8 +8,6 @@
    import { deleteIcon, add } from "../../store/icons";
 
    const id = localStorage.getItem("id");
-   console.log(id);
-   // let items;
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
    let vmataKuliah;
@@ -128,7 +126,7 @@
          alamatKantor = data.alamat_kantor;
          telpFaxKantor = data.telp_fax_kantor;
          email = data.email;
-         mataKuliah = data.mata_kuliah;
+         mataKuliah = data.mata_kuliah || [];
       }
 
       // --------------------------------------------
@@ -520,8 +518,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       if (response.ok) {
          $route("/dosen");
@@ -557,7 +553,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (response.ok) {
          $route("/dosen");
@@ -589,11 +584,9 @@
    }
 
    function addMatkul() {
-      // console.log(vmataKuliah);
       let addVmatkul = {
          label: vmataKuliah,
       };
-      // console.log(mataKuliah);
       mataKuliah = [...mataKuliah, addVmatkul];
       vmataKuliah = "";
    }
@@ -612,11 +605,8 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       if (response.ok) {
-         // $route("/dosen");
          getPengalamanPenelitian();
       } else {
          console.log(response);
@@ -634,11 +624,8 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       if (response.ok) {
-         // $route("/dosen");
          getPengalamanPengmas();
       } else {
          console.log(response);
@@ -845,7 +832,11 @@
                />
             </p>
             <p class="control">
-               <button on:click={addMatkul} class="button is-info">
+               <button
+                  on:click={addMatkul}
+                  class="button is-info"
+                  disabled={vmataKuliah ? false : true}
+               >
                   <span class="icon">
                      <Icon id="orang" src={add} />
                   </span>
@@ -865,7 +856,7 @@
             </tr>
          </thead>
          <tbody>
-            {#if mataKuliah.length > 0}
+            {#if mataKuliah && mataKuliah.length > 0}
                {#each mataKuliah as matkul}
                   <tr>
                      <td

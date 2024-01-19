@@ -20,7 +20,6 @@
       const result = await response.json();
 
       if (response.ok) {
-         console.log(result);
          localStorage.setItem("code", result.code);
          $route("/verify");
       } else {
