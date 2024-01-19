@@ -39,7 +39,7 @@ module.exports = async function (fastify, opts) {
          try {
             connection = await fastify.mysql.getConnection();
             const [rows] = await connection.query(sql, [id]);
-            dbData = rows;
+            dbData = rows[0];
             connection.release();
             reply.send({
                ...dbData,

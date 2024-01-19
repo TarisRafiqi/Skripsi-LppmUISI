@@ -8,7 +8,8 @@
    import { deleteIcon, add } from "../../store/icons";
 
    const id = localStorage.getItem("id");
-   let items;
+   console.log(id);
+   // let items;
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
    let vmataKuliah;
@@ -33,7 +34,7 @@
    let tahunHKI, JudulHKI, namaPenulisHKI, jenisHKI, noHKI;
 
    let idProfile,
-      idUser,
+      // idUser,
       namaLengkap,
       jabatanFungsional,
       nip,
