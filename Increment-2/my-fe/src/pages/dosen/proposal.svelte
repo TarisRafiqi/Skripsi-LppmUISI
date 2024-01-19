@@ -58,8 +58,9 @@
          console.log(response);
       }
 
-      //_______________________________________________________________________
+      //------------------------------------------------------------
       // Generate Random Character
+      //------------------------------------------------------------
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultxx = "";
@@ -186,6 +187,7 @@
                body: JSON.stringify(payloadfile),
             });
             const result = await response.json();
+            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }

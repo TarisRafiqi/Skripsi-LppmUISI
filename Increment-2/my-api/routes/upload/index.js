@@ -10,11 +10,10 @@ module.exports = async function (fastify, opts) {
       const decodedToken = fastify.jwt.decode(token);
 
       const randomFileName = request.params.randomFileName;
-      // console.log(randomFileName);
 
       const filepath = path.join(
          __dirname,
-         "../../../upload",
+         "../../upload",
          randomFileName + ".xlsx"
       );
 
@@ -34,6 +33,10 @@ module.exports = async function (fastify, opts) {
 
       const fileData = request.body.file;
       const randomFileName = request.body.randomFileName;
+      // reply.send({
+      //    fileData,
+      //    randomFileName,
+      // });
 
       const filepath = "./upload/" + randomFileName + ".xlsx";
 
@@ -48,7 +51,5 @@ module.exports = async function (fastify, opts) {
             .status(500)
             .send({ success: false, message: "Internal Server Error" });
       }
-
-     
    });
 };

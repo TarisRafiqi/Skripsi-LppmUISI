@@ -127,7 +127,10 @@
          alamatKantor = data.alamat_kantor;
          telpFaxKantor = data.telp_fax_kantor;
          email = data.email;
-         mataKuliah = data.mata_kuliah || [];
+         mataKuliah =
+            typeof data.mata_kuliah === "string"
+               ? JSON.parse(data.mata_kuliah)
+               : data.mata_kuliah || [];
       }
 
       // --------------------------------------------

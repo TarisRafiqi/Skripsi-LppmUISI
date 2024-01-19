@@ -30,7 +30,6 @@
             },
          ];
       }
-      console.log(result);
    }
 
    function doFilter() {

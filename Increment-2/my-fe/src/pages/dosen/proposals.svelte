@@ -132,7 +132,7 @@
       };
       let filename = "rab.xlsx";
       try {
-         const response = await fetch(`/api/upload/${randomFileName}`, {
+         const response = await fetch($apiURL + `/upload/${randomFileName}`, {
             method: "GET",
             headers: headers,
          });

@@ -3,18 +3,13 @@ require("dotenv").config();
 const path = require("path");
 const cwd = process.cwd();
 
-const dev = !process.argv.includes("-p");
+const dev = !process.env.PRODUCTION;
 
 const port = dev ? 10443 : 80;
 const host = "0.0.0.0";
 
-process.env.DEV = dev;
-
 const fastify = require("fastify")({
-   logger: true,
-   // logger: {
-   //    level: "error",
-   // },
+   logger: dev ? true : false,
 });
 
 fastify.register(require("@fastify/autoload"), {
