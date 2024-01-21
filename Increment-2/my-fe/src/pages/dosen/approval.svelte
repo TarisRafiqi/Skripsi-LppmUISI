@@ -7,6 +7,8 @@
    import { infoOutline } from "../../store/icons";
 
    const id = localStorage.id;
+   let role = localStorage.role;
+   console.log(role);
    let items;
 
    onMount(async () => {
@@ -14,6 +16,7 @@
       const result = await response.json();
       if (response.ok) {
          items = result.dbData;
+         console.log(items);
       } else {
          console.log(response);
       }
@@ -53,26 +56,105 @@
          </thead>
 
          <tbody>
-            {#each items as item}
-               <tr>
-                  <td>{item.judul}</td>
-                  <td><p>{item.jenis_kegiatan}</p></td>
-                  <td><p>{item.jenis_skema}</p></td>
-                  <td class="status" pid={item.id}>
-                     <Status code={item.status} />
-                  </td>
-                  <td class="review"
-                     ><button
-                        class="button is-info is-rounded is-small"
-                        pid={item.id}
-                        on:click={detail}
-                        ><span class="icon">
-                           <Icon id="orang" src={infoOutline} />
-                        </span></button
-                     ></td
-                  >
-               </tr>
-            {/each}
+            {#if role === "Ka.PusatKajian"}
+               {#each items as item}
+                  {#if item.status === 10}
+                     <tr>
+                        <td>{item.judul}</td>
+                        <td><p>{item.jenis_kegiatan}</p></td>
+                        <td><p>{item.jenis_skema}</p></td>
+                        <td class="status" pid={item.id}>
+                           <Status code={item.status} />
+                        </td>
+                        <td class="review"
+                           ><button
+                              class="button is-info is-rounded is-small"
+                              pid={item.id}
+                              on:click={detail}
+                              ><span class="icon">
+                                 <Icon id="orang" src={infoOutline} />
+                              </span></button
+                           ></td
+                        >
+                     </tr>
+                  {/if}
+               {/each}
+            {/if}
+
+            {#if role === "reviewer"}
+               {#each items as item}
+                  {#if item.status === 8}
+                     <tr>
+                        <td>{item.judul}</td>
+                        <td><p>{item.jenis_kegiatan}</p></td>
+                        <td><p>{item.jenis_skema}</p></td>
+                        <td class="status" pid={item.id}>
+                           <Status code={item.status} />
+                        </td>
+                        <td class="review"
+                           ><button
+                              class="button is-info is-rounded is-small"
+                              pid={item.id}
+                              on:click={detail}
+                              ><span class="icon">
+                                 <Icon id="orang" src={infoOutline} />
+                              </span></button
+                           ></td
+                        >
+                     </tr>
+                  {/if}
+               {/each}
+            {/if}
+
+            {#if role === "Ka.LPPM"}
+               {#each items as item}
+                  {#if item.status === 6}
+                     <tr>
+                        <td>{item.judul}</td>
+                        <td><p>{item.jenis_kegiatan}</p></td>
+                        <td><p>{item.jenis_skema}</p></td>
+                        <td class="status" pid={item.id}>
+                           <Status code={item.status} />
+                        </td>
+                        <td class="review"
+                           ><button
+                              class="button is-info is-rounded is-small"
+                              pid={item.id}
+                              on:click={detail}
+                              ><span class="icon">
+                                 <Icon id="orang" src={infoOutline} />
+                              </span></button
+                           ></td
+                        >
+                     </tr>
+                  {/if}
+               {/each}
+            {/if}
+
+            {#if role === "Ka.Departemen"}
+               {#each items as item}
+                  {#if item.status === 4}
+                     <tr>
+                        <td>{item.judul}</td>
+                        <td><p>{item.jenis_kegiatan}</p></td>
+                        <td><p>{item.jenis_skema}</p></td>
+                        <td class="status" pid={item.id}>
+                           <Status code={item.status} />
+                        </td>
+                        <td class="review"
+                           ><button
+                              class="button is-info is-rounded is-small"
+                              pid={item.id}
+                              on:click={detail}
+                              ><span class="icon">
+                                 <Icon id="orang" src={infoOutline} />
+                              </span></button
+                           ></td
+                        >
+                     </tr>
+                  {/if}
+               {/each}
+            {/if}
          </tbody>
       </table>
    </Article>
