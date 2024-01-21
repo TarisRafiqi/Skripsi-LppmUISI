@@ -1530,13 +1530,13 @@
       <br />
 
       <!-- ------------------------------------------------------------------------>
-      <!-- Pengalaman Hak Kekayaan Intelektual" -->
+      <!-- Pengalaman Hak Kekayaan Intelektual -->
       <!-- ------------------------------------------------------------------------>
       <nav class="level">
          <!-- Left side -->
          <div class="level-left">
             <div class="level-item">
-               <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual"</h6>
+               <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6>
             </div>
          </div>
 

@@ -235,6 +235,46 @@
       }
    }
 
+   async function handleDitolak() {
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tahunPelaksanaan,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         isi,
+         comment: "",
+         status: Number(data.status) + 1,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomFileName,
+      };
+
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         $route("/admin/proposals");
+      } else {
+         console.log(response);
+      }
+   }
+
    async function handlePass() {
       const payload = {
          jenisProposal,
@@ -477,9 +517,7 @@
                      <option value="" selected disabled hidden
                         >Pilih Jenis Proposal</option
                      >
-                     <option selected value="Proposal Awal"
-                        >Proposal Awal</option
-                     >
+                     <option value="Proposal Awal">Proposal Awal</option>
                      <option value="Proposal Lanjutan">Proposal Lanjutan</option
                      >
                   </select>
@@ -738,7 +776,7 @@
          <hr />
 
          <div class="field is-grouped is-grouped-right">
-            {#if view}
+            <!-- {#if view}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
@@ -751,6 +789,47 @@
                   >
                </p>
             {:else}
+               <p class="control">
+                  <button class="button is-info" on:click={remediasi}
+                     >Remediasi</button
+                  >
+               </p>
+            {/if} -->
+            {#if status === 2 || status === 4 || status === 6 || status === 8}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 10}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button
+                     class="button is-danger is-light is-outlined"
+                     on:click={handleDitolak}>Ditolak</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 1 || status === 3 || status === 5 || status === 7 || status === 9}
                <p class="control">
                   <button class="button is-info" on:click={remediasi}
                      >Remediasi</button
