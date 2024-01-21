@@ -1,6 +1,7 @@
 # Skripsi - Website LPPM UISI
+
 Link Website LPPM UISI: https://www.lppmuisi.dififa.com/
 
-- Increment 1 = Pembuatan fitur Pendaftaran Proposal
-- Increment 2 = Pembuatan fitur Profile User
-- Increment 3 = Pembuatan fitur Input Laporan & Penyimpanan Data PPM yang telah selesai
+-  Increment 1 = Login, User Managament
+-  Increment 2 = Pendaftaran Proposal, PPM Management, Approval Management
+-  Increment 3 = User Profile
