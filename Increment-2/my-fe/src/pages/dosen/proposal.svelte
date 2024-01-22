@@ -310,7 +310,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Kelompok Keahlian"
+         placeholder="Masukkan kelompok keahlian"
          bind:value={kelompokKeahlian}
       />
    </Field>
@@ -319,7 +319,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Topik"
+         placeholder="Masukkan topik"
          bind:value={topik}
       />
    </Field>
@@ -330,7 +330,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Biaya Penelitian"
+         placeholder="Masukkan biaya penelitian"
          bind:value={biayaPenelitian}
          on:keyup={() =>
             (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
@@ -393,13 +393,17 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Judul"
+         placeholder="Masukkan judul"
          bind:value={judul}
       />
    </Field>
 
    <Field name="Abstrak">
-      <textarea class="textarea" bind:value={myAbstract}></textarea>
+      <textarea
+         class="textarea"
+         bind:value={myAbstract}
+         placeholder="Masukkan abstrak"
+      ></textarea>
    </Field>
 
    <Field name="Isi Proposal">

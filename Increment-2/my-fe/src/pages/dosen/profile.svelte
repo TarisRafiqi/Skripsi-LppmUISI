@@ -798,6 +798,10 @@
          <input class="input" type="text" bind:value={tempatLahir} />
       </Field>
 
+      <Field name="Tanggal Lahir">
+         <input class="input" type="text" bind:value={tanggalLahir} />
+      </Field>
+
       <Field name="Alamat Rumah">
          <input class="input" type="text" bind:value={alamatRumah} />
       </Field>

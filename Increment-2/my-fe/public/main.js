@@ -5246,37 +5246,37 @@
   // src/pages/admin/profile.svelte
   function get_each_context3(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[174] = list[i];
+    child_ctx[175] = list[i];
     return child_ctx;
   }
   function get_each_context_1(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[177] = list[i];
+    child_ctx[178] = list[i];
     return child_ctx;
   }
   function get_each_context_2(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[180] = list[i];
+    child_ctx[181] = list[i];
     return child_ctx;
   }
   function get_each_context_3(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[183] = list[i];
+    child_ctx[184] = list[i];
     return child_ctx;
   }
   function get_each_context_4(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[186] = list[i];
+    child_ctx[187] = list[i];
     return child_ctx;
   }
   function get_each_context_5(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[189] = list[i];
+    child_ctx[190] = list[i];
     return child_ctx;
   }
   function get_each_context_6(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[192] = list[i];
+    child_ctx[193] = list[i];
     return child_ctx;
   }
   function create_if_block_8(ctx) {
@@ -5304,15 +5304,17 @@
     let t10;
     let field11;
     let t11;
-    let br;
+    let field12;
     let t12;
+    let br;
+    let t13;
     let table;
     let thead;
-    let t15;
-    let tbody;
     let t16;
-    let hr;
+    let tbody;
     let t17;
+    let hr;
+    let t18;
     let div;
     let p;
     let button;
@@ -5322,74 +5324,81 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_46] },
+        $$slots: { default: [create_default_slot_47] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_45] },
+        $$slots: { default: [create_default_slot_46] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_44] },
+        $$slots: { default: [create_default_slot_45] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_43] },
+        $$slots: { default: [create_default_slot_44] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_42] },
+        $$slots: { default: [create_default_slot_43] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
+      props: {
+        name: "Tanggal Lahir",
+        $$slots: { default: [create_default_slot_42] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_41] },
         $$scope: { ctx }
       }
     });
-    field6 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_40] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Nomor Handphone",
         $$slots: { default: [create_default_slot_39] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_38] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field10 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_37] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field11 = new Field_default({
       props: {
         class: "input",
         name: "Email",
@@ -5397,7 +5406,7 @@
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field12 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_35] },
@@ -5406,8 +5415,8 @@
     });
     let if_block = (
       /*mataKuliah*/
-      ctx[46] && /*mataKuliah*/
-      ctx[46].length > 0 && create_if_block_9(ctx)
+      ctx[47] && /*mataKuliah*/
+      ctx[47].length > 0 && create_if_block_9(ctx)
     );
     return {
       c() {
@@ -5435,18 +5444,20 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        br = element("br");
+        create_component(field12.$$.fragment);
         t12 = space();
+        br = element("br");
+        t13 = space();
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow"></th> <th>Mata Kuliah</th></tr>`;
-        t15 = space();
+        t16 = space();
         tbody = element("tbody");
         if (if_block)
           if_block.c();
-        t16 = space();
-        hr = element("hr");
         t17 = space();
+        hr = element("hr");
+        t18 = space();
         div = element("div");
         p = element("p");
         button = element("button");
@@ -5481,17 +5492,19 @@
         insert(target, t10, anchor);
         mount_component(field11, target, anchor);
         insert(target, t11, anchor);
-        insert(target, br, anchor);
+        mount_component(field12, target, anchor);
         insert(target, t12, anchor);
+        insert(target, br, anchor);
+        insert(target, t13, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t15);
+        append(table, t16);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t16, anchor);
-        insert(target, hr, anchor);
         insert(target, t17, anchor);
+        insert(target, hr, anchor);
+        insert(target, t18, anchor);
         insert(target, div, anchor);
         append(div, p);
         append(p, button);
@@ -5501,7 +5514,7 @@
             button,
             "click",
             /*simpanIdentitas*/
-            ctx[84]
+            ctx[85]
           );
           mounted = true;
         }
@@ -5510,96 +5523,103 @@
         const field0_changes = {};
         if (dirty[1] & /*namaLengkap*/
         16 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[1] & /*jabatanFungsional*/
         32 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[1] & /*nip*/
         64 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[1] & /*nidn*/
         128 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[1] & /*tempatLahir*/
         256 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*alamatRumah*/
+        if (dirty[1] & /*tanggalLahir*/
         512 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
+        if (dirty[1] & /*alamatRumah*/
         1024 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
+        if (dirty[1] & /*telpFaxRumah*/
         2048 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*alamatKantor*/
+        if (dirty[1] & /*nomorHandphone*/
         4096 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
+        if (dirty[1] & /*alamatKantor*/
         8192 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*email*/
+        if (dirty[1] & /*telpFaxKantor*/
         16384 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*vmataKuliah*/
-        64 | dirty[6] & /*$$scope*/
-        512) {
+        if (dirty[1] & /*email*/
+        32768 | dirty[6] & /*$$scope*/
+        1024) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
+        const field12_changes = {};
+        if (dirty[0] & /*vmataKuliah*/
+        64 | dirty[6] & /*$$scope*/
+        1024) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
         if (
           /*mataKuliah*/
-          ctx2[46] && /*mataKuliah*/
-          ctx2[46].length > 0
+          ctx2[47] && /*mataKuliah*/
+          ctx2[47].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
             if (dirty[1] & /*mataKuliah*/
-            32768) {
+            65536) {
               transition_in(if_block, 1);
             }
           } else {
@@ -5631,6 +5651,7 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
+        transition_in(field12.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
@@ -5647,6 +5668,7 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
+        transition_out(field12.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -5664,12 +5686,13 @@
           detach(t9);
           detach(t10);
           detach(t11);
-          detach(br);
           detach(t12);
+          detach(br);
+          detach(t13);
           detach(table);
-          detach(t16);
-          detach(hr);
           detach(t17);
+          detach(hr);
+          detach(t18);
           detach(div);
         }
         destroy_component(field0, detaching);
@@ -5684,6 +5707,7 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
+        destroy_component(field12, detaching);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -5691,7 +5715,7 @@
       }
     };
   }
-  function create_default_slot_46(ctx) {
+  function create_default_slot_47(ctx) {
     let input;
     let t0;
     let p;
@@ -5721,7 +5745,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[97]
+            ctx[98]
           );
           mounted = true;
         }
@@ -5748,7 +5772,7 @@
       }
     };
   }
-  function create_default_slot_45(ctx) {
+  function create_default_slot_46(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -5770,7 +5794,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[98]
+            ctx[99]
           );
           mounted = true;
         }
@@ -5783,6 +5807,53 @@
             input,
             /*jabatanFungsional*/
             ctx2[36]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_45(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "number");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*nip*/
+          ctx[37]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_2*/
+            ctx[100]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nip*/
+        64 && to_number(input.value) !== /*nip*/
+        ctx2[37]) {
+          set_input_value(
+            input,
+            /*nip*/
+            ctx2[37]
           );
         }
       },
@@ -5809,27 +5880,27 @@
         insert(target, input, anchor);
         set_input_value(
           input,
-          /*nip*/
-          ctx[37]
+          /*nidn*/
+          ctx[38]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_2*/
-            ctx[99]
+            /*input_input_handler_3*/
+            ctx[101]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[1] & /*nip*/
-        64 && to_number(input.value) !== /*nip*/
-        ctx2[37]) {
+        if (dirty[1] & /*nidn*/
+        128 && to_number(input.value) !== /*nidn*/
+        ctx2[38]) {
           set_input_value(
             input,
-            /*nip*/
-            ctx2[37]
+            /*nidn*/
+            ctx2[38]
           );
         }
       },
@@ -5850,33 +5921,33 @@
       c() {
         input = element("input");
         attr(input, "class", "input");
-        attr(input, "type", "number");
+        attr(input, "type", "text");
       },
       m(target, anchor) {
         insert(target, input, anchor);
         set_input_value(
           input,
-          /*nidn*/
-          ctx[38]
+          /*tempatLahir*/
+          ctx[39]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_3*/
-            ctx[100]
+            /*input_input_handler_4*/
+            ctx[102]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[1] & /*nidn*/
-        128 && to_number(input.value) !== /*nidn*/
-        ctx2[38]) {
+        if (dirty[1] & /*tempatLahir*/
+        256 && input.value !== /*tempatLahir*/
+        ctx2[39]) {
           set_input_value(
             input,
-            /*nidn*/
-            ctx2[38]
+            /*tempatLahir*/
+            ctx2[39]
           );
         }
       },
@@ -5903,27 +5974,27 @@
         insert(target, input, anchor);
         set_input_value(
           input,
-          /*tempatLahir*/
-          ctx[39]
+          /*tanggalLahir*/
+          ctx[40]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_4*/
-            ctx[101]
+            /*input_input_handler_5*/
+            ctx[103]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[1] & /*tempatLahir*/
-        256 && input.value !== /*tempatLahir*/
-        ctx2[39]) {
+        if (dirty[1] & /*tanggalLahir*/
+        512 && input.value !== /*tanggalLahir*/
+        ctx2[40]) {
           set_input_value(
             input,
-            /*tempatLahir*/
-            ctx2[39]
+            /*tanggalLahir*/
+            ctx2[40]
           );
         }
       },
@@ -5951,26 +6022,26 @@
         set_input_value(
           input,
           /*alamatRumah*/
-          ctx[40]
+          ctx[41]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_5*/
-            ctx[102]
+            /*input_input_handler_6*/
+            ctx[104]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*alamatRumah*/
-        512 && input.value !== /*alamatRumah*/
-        ctx2[40]) {
+        1024 && input.value !== /*alamatRumah*/
+        ctx2[41]) {
           set_input_value(
             input,
             /*alamatRumah*/
-            ctx2[40]
+            ctx2[41]
           );
         }
       },
@@ -5998,26 +6069,26 @@
         set_input_value(
           input,
           /*telpFaxRumah*/
-          ctx[41]
+          ctx[42]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
-            ctx[103]
+            /*input_input_handler_7*/
+            ctx[105]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*telpFaxRumah*/
-        1024 && to_number(input.value) !== /*telpFaxRumah*/
-        ctx2[41]) {
+        2048 && to_number(input.value) !== /*telpFaxRumah*/
+        ctx2[42]) {
           set_input_value(
             input,
             /*telpFaxRumah*/
-            ctx2[41]
+            ctx2[42]
           );
         }
       },
@@ -6045,26 +6116,26 @@
         set_input_value(
           input,
           /*nomorHandphone*/
-          ctx[42]
+          ctx[43]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
-            ctx[104]
+            /*input_input_handler_8*/
+            ctx[106]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*nomorHandphone*/
-        2048 && to_number(input.value) !== /*nomorHandphone*/
-        ctx2[42]) {
+        4096 && to_number(input.value) !== /*nomorHandphone*/
+        ctx2[43]) {
           set_input_value(
             input,
             /*nomorHandphone*/
-            ctx2[42]
+            ctx2[43]
           );
         }
       },
@@ -6092,26 +6163,26 @@
         set_input_value(
           input,
           /*alamatKantor*/
-          ctx[43]
+          ctx[44]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
-            ctx[105]
+            /*input_input_handler_9*/
+            ctx[107]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*alamatKantor*/
-        4096 && input.value !== /*alamatKantor*/
-        ctx2[43]) {
+        8192 && input.value !== /*alamatKantor*/
+        ctx2[44]) {
           set_input_value(
             input,
             /*alamatKantor*/
-            ctx2[43]
+            ctx2[44]
           );
         }
       },
@@ -6139,26 +6210,26 @@
         set_input_value(
           input,
           /*telpFaxKantor*/
-          ctx[44]
+          ctx[45]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
-            ctx[106]
+            /*input_input_handler_10*/
+            ctx[108]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*telpFaxKantor*/
-        8192 && to_number(input.value) !== /*telpFaxKantor*/
-        ctx2[44]) {
+        16384 && to_number(input.value) !== /*telpFaxKantor*/
+        ctx2[45]) {
           set_input_value(
             input,
             /*telpFaxKantor*/
-            ctx2[44]
+            ctx2[45]
           );
         }
       },
@@ -6186,26 +6257,26 @@
         set_input_value(
           input,
           /*email*/
-          ctx[45]
+          ctx[46]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
-            ctx[107]
+            /*input_input_handler_11*/
+            ctx[109]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*email*/
-        16384 && input.value !== /*email*/
-        ctx2[45]) {
+        32768 && input.value !== /*email*/
+        ctx2[46]) {
           set_input_value(
             input,
             /*email*/
-            ctx2[45]
+            ctx2[46]
           );
         }
       },
@@ -6280,14 +6351,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_11*/
-              ctx[108]
+              /*input_input_handler_12*/
+              ctx[110]
             ),
             listen(
               button,
               "click",
               /*addMatkul*/
-              ctx[88]
+              ctx[89]
             )
           ];
           mounted = true;
@@ -6334,7 +6405,7 @@
     let current;
     let each_value_6 = ensure_array_like(
       /*mataKuliah*/
-      ctx[46]
+      ctx[47]
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_6.length; i += 1) {
@@ -6361,11 +6432,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*mataKuliah*/
-        32768 | dirty[3] & /*deleteMatkul*/
-        4) {
+        65536 | dirty[3] & /*deleteMatkul*/
+        8) {
           each_value_6 = ensure_array_like(
             /*mataKuliah*/
-            ctx2[46]
+            ctx2[47]
           );
           let i;
           for (i = 0; i < each_value_6.length; i += 1) {
@@ -6421,7 +6492,7 @@
     let td1;
     let t1_value = (
       /*matkul*/
-      ctx[192].label + ""
+      ctx[193].label + ""
     );
     let t1;
     let t2;
@@ -6443,7 +6514,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "data-value", button_data_value_value = /*matkul*/
-        ctx[192].label);
+        ctx[193].label);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -6461,20 +6532,20 @@
             button,
             "click",
             /*deleteMatkul*/
-            ctx[95]
+            ctx[96]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (!current || dirty[1] & /*mataKuliah*/
-        32768 && button_data_value_value !== (button_data_value_value = /*matkul*/
-        ctx2[192].label)) {
+        65536 && button_data_value_value !== (button_data_value_value = /*matkul*/
+        ctx2[193].label)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[1] & /*mataKuliah*/
-        32768) && t1_value !== (t1_value = /*matkul*/
-        ctx2[192].label + ""))
+        65536) && t1_value !== (t1_value = /*matkul*/
+        ctx2[193].label + ""))
           set_data(t1, t1_value);
       },
       i(local) {
@@ -6688,7 +6759,7 @@
         set_input_value(
           input0,
           /*pertiS1*/
-          ctx[47]
+          ctx[48]
         );
         append(tr1, t10);
         append(tr1, td1);
@@ -6696,7 +6767,7 @@
         set_input_value(
           input1,
           /*pertiS2*/
-          ctx[48]
+          ctx[49]
         );
         append(tr1, t11);
         append(tr1, td2);
@@ -6704,7 +6775,7 @@
         set_input_value(
           input2,
           /*pertiS3*/
-          ctx[49]
+          ctx[50]
         );
         append(tbody, t12);
         append(tbody, tr2);
@@ -6715,7 +6786,7 @@
         set_input_value(
           input3,
           /*bidangIlmuS1*/
-          ctx[50]
+          ctx[51]
         );
         append(tr2, t15);
         append(tr2, td4);
@@ -6723,7 +6794,7 @@
         set_input_value(
           input4,
           /*bidangIlmuS2*/
-          ctx[51]
+          ctx[52]
         );
         append(tr2, t16);
         append(tr2, td5);
@@ -6731,7 +6802,7 @@
         set_input_value(
           input5,
           /*bidangIlmuS3*/
-          ctx[52]
+          ctx[53]
         );
         append(tbody, t17);
         append(tbody, tr3);
@@ -6742,7 +6813,7 @@
         set_input_value(
           input6,
           /*tahunMasukS1*/
-          ctx[53]
+          ctx[54]
         );
         append(tr3, t20);
         append(tr3, td7);
@@ -6750,7 +6821,7 @@
         set_input_value(
           input7,
           /*tahunMasukS2*/
-          ctx[54]
+          ctx[55]
         );
         append(tr3, t21);
         append(tr3, td8);
@@ -6758,7 +6829,7 @@
         set_input_value(
           input8,
           /*tahunMasukS3*/
-          ctx[55]
+          ctx[56]
         );
         append(tbody, t22);
         append(tbody, tr4);
@@ -6769,7 +6840,7 @@
         set_input_value(
           input9,
           /*tahunLulusS1*/
-          ctx[56]
+          ctx[57]
         );
         append(tr4, t25);
         append(tr4, td10);
@@ -6777,7 +6848,7 @@
         set_input_value(
           input10,
           /*tahunLulusS2*/
-          ctx[57]
+          ctx[58]
         );
         append(tr4, t26);
         append(tr4, td11);
@@ -6785,7 +6856,7 @@
         set_input_value(
           input11,
           /*tahunLulusS3*/
-          ctx[58]
+          ctx[59]
         );
         append(tbody, t27);
         append(tbody, tr5);
@@ -6796,7 +6867,7 @@
         set_input_value(
           textarea0,
           /*judulTugasAkhirS1*/
-          ctx[59]
+          ctx[60]
         );
         append(tr5, t30);
         append(tr5, td13);
@@ -6804,7 +6875,7 @@
         set_input_value(
           textarea1,
           /*judulTugasAkhirS2*/
-          ctx[60]
+          ctx[61]
         );
         append(tr5, t31);
         append(tr5, td14);
@@ -6812,7 +6883,7 @@
         set_input_value(
           textarea2,
           /*judulTugasAkhirS3*/
-          ctx[61]
+          ctx[62]
         );
         insert(target, t32, anchor);
         insert(target, div, anchor);
@@ -6824,97 +6895,97 @@
               input0,
               "input",
               /*input0_input_handler*/
-              ctx[109]
+              ctx[111]
             ),
             listen(
               input1,
               "input",
               /*input1_input_handler*/
-              ctx[110]
+              ctx[112]
             ),
             listen(
               input2,
               "input",
               /*input2_input_handler*/
-              ctx[111]
+              ctx[113]
             ),
             listen(
               input3,
               "input",
               /*input3_input_handler*/
-              ctx[112]
+              ctx[114]
             ),
             listen(
               input4,
               "input",
               /*input4_input_handler*/
-              ctx[113]
+              ctx[115]
             ),
             listen(
               input5,
               "input",
               /*input5_input_handler*/
-              ctx[114]
+              ctx[116]
             ),
             listen(
               input6,
               "input",
               /*input6_input_handler*/
-              ctx[115]
+              ctx[117]
             ),
             listen(
               input7,
               "input",
               /*input7_input_handler*/
-              ctx[116]
+              ctx[118]
             ),
             listen(
               input8,
               "input",
               /*input8_input_handler*/
-              ctx[117]
+              ctx[119]
             ),
             listen(
               input9,
               "input",
               /*input9_input_handler*/
-              ctx[118]
+              ctx[120]
             ),
             listen(
               input10,
               "input",
               /*input10_input_handler*/
-              ctx[119]
+              ctx[121]
             ),
             listen(
               input11,
               "input",
               /*input11_input_handler*/
-              ctx[120]
+              ctx[122]
             ),
             listen(
               textarea0,
               "input",
               /*textarea0_input_handler*/
-              ctx[121]
+              ctx[123]
             ),
             listen(
               textarea1,
               "input",
               /*textarea1_input_handler*/
-              ctx[122]
+              ctx[124]
             ),
             listen(
               textarea2,
               "input",
               /*textarea2_input_handler*/
-              ctx[123]
+              ctx[125]
             ),
             listen(
               button,
               "click",
               /*simpanRiwayatPendidikan*/
-              ctx[83]
+              ctx[84]
             )
           ];
           mounted = true;
@@ -6922,135 +6993,135 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*pertiS1*/
-        65536 && input0.value !== /*pertiS1*/
-        ctx2[47]) {
+        131072 && input0.value !== /*pertiS1*/
+        ctx2[48]) {
           set_input_value(
             input0,
             /*pertiS1*/
-            ctx2[47]
-          );
-        }
-        if (dirty[1] & /*pertiS2*/
-        131072 && input1.value !== /*pertiS2*/
-        ctx2[48]) {
-          set_input_value(
-            input1,
-            /*pertiS2*/
             ctx2[48]
           );
         }
-        if (dirty[1] & /*pertiS3*/
-        262144 && input2.value !== /*pertiS3*/
+        if (dirty[1] & /*pertiS2*/
+        262144 && input1.value !== /*pertiS2*/
         ctx2[49]) {
           set_input_value(
-            input2,
-            /*pertiS3*/
+            input1,
+            /*pertiS2*/
             ctx2[49]
           );
         }
-        if (dirty[1] & /*bidangIlmuS1*/
-        524288 && input3.value !== /*bidangIlmuS1*/
+        if (dirty[1] & /*pertiS3*/
+        524288 && input2.value !== /*pertiS3*/
         ctx2[50]) {
           set_input_value(
-            input3,
-            /*bidangIlmuS1*/
+            input2,
+            /*pertiS3*/
             ctx2[50]
           );
         }
-        if (dirty[1] & /*bidangIlmuS2*/
-        1048576 && input4.value !== /*bidangIlmuS2*/
+        if (dirty[1] & /*bidangIlmuS1*/
+        1048576 && input3.value !== /*bidangIlmuS1*/
         ctx2[51]) {
           set_input_value(
-            input4,
-            /*bidangIlmuS2*/
+            input3,
+            /*bidangIlmuS1*/
             ctx2[51]
           );
         }
-        if (dirty[1] & /*bidangIlmuS3*/
-        2097152 && input5.value !== /*bidangIlmuS3*/
+        if (dirty[1] & /*bidangIlmuS2*/
+        2097152 && input4.value !== /*bidangIlmuS2*/
         ctx2[52]) {
           set_input_value(
-            input5,
-            /*bidangIlmuS3*/
+            input4,
+            /*bidangIlmuS2*/
             ctx2[52]
           );
         }
-        if (dirty[1] & /*tahunMasukS1*/
-        4194304 && to_number(input6.value) !== /*tahunMasukS1*/
+        if (dirty[1] & /*bidangIlmuS3*/
+        4194304 && input5.value !== /*bidangIlmuS3*/
         ctx2[53]) {
           set_input_value(
-            input6,
-            /*tahunMasukS1*/
+            input5,
+            /*bidangIlmuS3*/
             ctx2[53]
           );
         }
-        if (dirty[1] & /*tahunMasukS2*/
-        8388608 && to_number(input7.value) !== /*tahunMasukS2*/
+        if (dirty[1] & /*tahunMasukS1*/
+        8388608 && to_number(input6.value) !== /*tahunMasukS1*/
         ctx2[54]) {
           set_input_value(
-            input7,
-            /*tahunMasukS2*/
+            input6,
+            /*tahunMasukS1*/
             ctx2[54]
           );
         }
-        if (dirty[1] & /*tahunMasukS3*/
-        16777216 && to_number(input8.value) !== /*tahunMasukS3*/
+        if (dirty[1] & /*tahunMasukS2*/
+        16777216 && to_number(input7.value) !== /*tahunMasukS2*/
         ctx2[55]) {
           set_input_value(
-            input8,
-            /*tahunMasukS3*/
+            input7,
+            /*tahunMasukS2*/
             ctx2[55]
           );
         }
-        if (dirty[1] & /*tahunLulusS1*/
-        33554432 && to_number(input9.value) !== /*tahunLulusS1*/
+        if (dirty[1] & /*tahunMasukS3*/
+        33554432 && to_number(input8.value) !== /*tahunMasukS3*/
         ctx2[56]) {
           set_input_value(
-            input9,
-            /*tahunLulusS1*/
+            input8,
+            /*tahunMasukS3*/
             ctx2[56]
           );
         }
-        if (dirty[1] & /*tahunLulusS2*/
-        67108864 && to_number(input10.value) !== /*tahunLulusS2*/
+        if (dirty[1] & /*tahunLulusS1*/
+        67108864 && to_number(input9.value) !== /*tahunLulusS1*/
         ctx2[57]) {
           set_input_value(
-            input10,
-            /*tahunLulusS2*/
+            input9,
+            /*tahunLulusS1*/
             ctx2[57]
           );
         }
-        if (dirty[1] & /*tahunLulusS3*/
-        134217728 && to_number(input11.value) !== /*tahunLulusS3*/
+        if (dirty[1] & /*tahunLulusS2*/
+        134217728 && to_number(input10.value) !== /*tahunLulusS2*/
         ctx2[58]) {
           set_input_value(
-            input11,
-            /*tahunLulusS3*/
+            input10,
+            /*tahunLulusS2*/
             ctx2[58]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS1*/
-        268435456) {
+        if (dirty[1] & /*tahunLulusS3*/
+        268435456 && to_number(input11.value) !== /*tahunLulusS3*/
+        ctx2[59]) {
           set_input_value(
-            textarea0,
-            /*judulTugasAkhirS1*/
+            input11,
+            /*tahunLulusS3*/
             ctx2[59]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS2*/
+        if (dirty[1] & /*judulTugasAkhirS1*/
         536870912) {
           set_input_value(
-            textarea1,
-            /*judulTugasAkhirS2*/
+            textarea0,
+            /*judulTugasAkhirS1*/
             ctx2[60]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS3*/
+        if (dirty[1] & /*judulTugasAkhirS2*/
         1073741824) {
+          set_input_value(
+            textarea1,
+            /*judulTugasAkhirS2*/
+            ctx2[61]
+          );
+        }
+        if (dirty[2] & /*judulTugasAkhirS3*/
+        1) {
           set_input_value(
             textarea2,
             /*judulTugasAkhirS3*/
-            ctx2[61]
+            ctx2[62]
           );
         }
       },
@@ -7200,7 +7271,7 @@
     let dispose;
     icon0 = new Icon_default({ props: { id: "orang", src: add } });
     function modal0_show_binding(value) {
-      ctx[130](value);
+      ctx[132](value);
     }
     let modal0_props = {
       $$slots: {
@@ -7211,10 +7282,10 @@
     };
     if (
       /*showModalPenelitian*/
-      ctx[62] !== void 0
+      ctx[63] !== void 0
     ) {
       modal0_props.show = /*showModalPenelitian*/
-      ctx[62];
+      ctx[63];
     }
     modal0 = new Modal_default({ props: modal0_props });
     binding_callbacks.push(() => bind(modal0, "show", modal0_show_binding));
@@ -7224,7 +7295,7 @@
     );
     icon1 = new Icon_default({ props: { id: "orang", src: add } });
     function modal1_show_binding(value) {
-      ctx[137](value);
+      ctx[139](value);
     }
     let modal1_props = {
       $$slots: {
@@ -7235,10 +7306,10 @@
     };
     if (
       /*showModalPengmas*/
-      ctx[63] !== void 0
+      ctx[64] !== void 0
     ) {
       modal1_props.show = /*showModalPengmas*/
-      ctx[63];
+      ctx[64];
     }
     modal1 = new Modal_default({ props: modal1_props });
     binding_callbacks.push(() => bind(modal1, "show", modal1_show_binding));
@@ -7248,7 +7319,7 @@
     );
     icon2 = new Icon_default({ props: { id: "orang", src: add } });
     function modal2_show_binding(value) {
-      ctx[142](value);
+      ctx[144](value);
     }
     let modal2_props = {
       $$slots: {
@@ -7259,10 +7330,10 @@
     };
     if (
       /*showModalDiseminasi*/
-      ctx[64] !== void 0
+      ctx[65] !== void 0
     ) {
       modal2_props.show = /*showModalDiseminasi*/
-      ctx[64];
+      ctx[65];
     }
     modal2 = new Modal_default({ props: modal2_props });
     binding_callbacks.push(() => bind(modal2, "show", modal2_show_binding));
@@ -7272,7 +7343,7 @@
     );
     icon3 = new Icon_default({ props: { id: "orang", src: add } });
     function modal3_show_binding(value) {
-      ctx[147](value);
+      ctx[149](value);
     }
     let modal3_props = {
       $$slots: {
@@ -7283,10 +7354,10 @@
     };
     if (
       /*showModalPublikasi*/
-      ctx[65] !== void 0
+      ctx[66] !== void 0
     ) {
       modal3_props.show = /*showModalPublikasi*/
-      ctx[65];
+      ctx[66];
     }
     modal3 = new Modal_default({ props: modal3_props });
     binding_callbacks.push(() => bind(modal3, "show", modal3_show_binding));
@@ -7296,7 +7367,7 @@
     );
     icon4 = new Icon_default({ props: { id: "orang", src: add } });
     function modal4_show_binding(value) {
-      ctx[153](value);
+      ctx[155](value);
     }
     let modal4_props = {
       $$slots: {
@@ -7307,10 +7378,10 @@
     };
     if (
       /*showModalPenulisanBuku*/
-      ctx[66] !== void 0
+      ctx[67] !== void 0
     ) {
       modal4_props.show = /*showModalPenulisanBuku*/
-      ctx[66];
+      ctx[67];
     }
     modal4 = new Modal_default({ props: modal4_props });
     binding_callbacks.push(() => bind(modal4, "show", modal4_show_binding));
@@ -7320,7 +7391,7 @@
     );
     icon5 = new Icon_default({ props: { id: "orang", src: add } });
     function modal5_show_binding(value) {
-      ctx[159](value);
+      ctx[161](value);
     }
     let modal5_props = {
       $$slots: {
@@ -7331,10 +7402,10 @@
     };
     if (
       /*showModalHKI*/
-      ctx[67] !== void 0
+      ctx[68] !== void 0
     ) {
       modal5_props.show = /*showModalHKI*/
-      ctx[67];
+      ctx[68];
     }
     modal5 = new Modal_default({ props: modal5_props });
     binding_callbacks.push(() => bind(modal5, "show", modal5_show_binding));
@@ -7475,7 +7546,7 @@
         t92 = space();
         nav5 = element("nav");
         div21 = element("div");
-        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual&quot;</h6></div>`;
+        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
         t94 = space();
         div23 = element("div");
         div22 = element("div");
@@ -7683,37 +7754,37 @@
               button0,
               "click",
               /*clickModalPenelitian*/
-              ctx[71]
+              ctx[72]
             ),
             listen(
               button1,
               "click",
               /*clickModalPengmas*/
-              ctx[72]
+              ctx[73]
             ),
             listen(
               button2,
               "click",
               /*clickModalDiseminasi*/
-              ctx[73]
+              ctx[74]
             ),
             listen(
               button3,
               "click",
               /*clickModalPublikasi*/
-              ctx[74]
+              ctx[75]
             ),
             listen(
               button4,
               "click",
               /*clickModalPenulisanBuku*/
-              ctx[75]
+              ctx[76]
             ),
             listen(
               button5,
               "click",
               /*clickModalHKI*/
-              ctx[76]
+              ctx[77]
             )
           ];
           mounted = true;
@@ -7723,14 +7794,14 @@
         const modal0_changes = {};
         if (dirty[0] & /*biayaPenelitian, sumberDanaPenelitian, rolePenelitian, judulPenelitian, tahunPenelitian*/
         3968 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty[2] & /*showModalPenelitian*/
-        1) {
+        2) {
           updating_show = true;
           modal0_changes.show = /*showModalPenelitian*/
-          ctx2[62];
+          ctx2[63];
           add_flush_callback(() => updating_show = false);
         }
         modal0.$set(modal0_changes);
@@ -7760,14 +7831,14 @@
         const modal1_changes = {};
         if (dirty[0] & /*biayaPengmas, sumberDanaPengmas, rolePengmas, judulPengmas, tahunPengmas*/
         126976 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_1 && dirty[2] & /*showModalPengmas*/
-        2) {
+        4) {
           updating_show_1 = true;
           modal1_changes.show = /*showModalPengmas*/
-          ctx2[63];
+          ctx2[64];
           add_flush_callback(() => updating_show_1 = false);
         }
         modal1.$set(modal1_changes);
@@ -7797,14 +7868,14 @@
         const modal2_changes = {};
         if (dirty[0] & /*namaPertemuanDiseminasi, namaPemakalahDiseminasi, judulDiseminasi, tahunDiseminasi*/
         1966080 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_2 && dirty[2] & /*showModalDiseminasi*/
-        4) {
+        8) {
           updating_show_2 = true;
           modal2_changes.show = /*showModalDiseminasi*/
-          ctx2[64];
+          ctx2[65];
           add_flush_callback(() => updating_show_2 = false);
         }
         modal2.$set(modal2_changes);
@@ -7834,14 +7905,14 @@
         const modal3_changes = {};
         if (dirty[0] & /*impactFactor, namaJurnal, judulPublikasi, tahunPublikasi*/
         31457280 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_3 && dirty[2] & /*showModalPublikasi*/
-        8) {
+        16) {
           updating_show_3 = true;
           modal3_changes.show = /*showModalPublikasi*/
-          ctx2[65];
+          ctx2[66];
           add_flush_callback(() => updating_show_3 = false);
         }
         modal3.$set(modal3_changes);
@@ -7871,14 +7942,14 @@
         const modal4_changes = {};
         if (dirty[0] & /*Isbn, PenerbitBuku, namaPenulisBuku, JudulBuku, tahunBuku*/
         1040187392 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_4 && dirty[2] & /*showModalPenulisanBuku*/
-        16) {
+        32) {
           updating_show_4 = true;
           modal4_changes.show = /*showModalPenulisanBuku*/
-          ctx2[66];
+          ctx2[67];
           add_flush_callback(() => updating_show_4 = false);
         }
         modal4.$set(modal4_changes);
@@ -7909,14 +7980,14 @@
         if (dirty[0] & /*tahunHKI*/
         1073741824 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI*/
         15 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           modal5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_5 && dirty[2] & /*showModalHKI*/
-        32) {
+        64) {
           updating_show_5 = true;
           modal5_changes.show = /*showModalHKI*/
-          ctx2[67];
+          ctx2[68];
           add_flush_callback(() => updating_show_5 = false);
         }
         modal5.$set(modal5_changes);
@@ -8082,8 +8153,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_12*/
-            ctx[124]
+            /*input_input_handler_13*/
+            ctx[126]
           );
           mounted = true;
         }
@@ -8129,8 +8200,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
-            ctx[125]
+            /*input_input_handler_14*/
+            ctx[127]
           );
           mounted = true;
         }
@@ -8188,7 +8259,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[126].call(select)
+            ctx[128].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -8209,7 +8280,7 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[126]
+            ctx[128]
           );
           mounted = true;
         }
@@ -8254,8 +8325,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
-            ctx[127]
+            /*input_input_handler_15*/
+            ctx[129]
           );
           mounted = true;
         }
@@ -8303,14 +8374,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_15*/
-              ctx[128]
+              /*input_input_handler_16*/
+              ctx[130]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[129]
+              ctx[131]
             )
           ];
           mounted = true;
@@ -8434,7 +8505,7 @@
             button,
             "click",
             /*simpanPP*/
-            ctx[80]
+            ctx[81]
           );
           mounted = true;
         }
@@ -8443,35 +8514,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPenelitian*/
         256 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPenelitian*/
         512 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*rolePenelitian*/
         1024 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*sumberDanaPenelitian*/
         2048 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -8568,7 +8639,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPP*/
         1 | dirty[2] & /*delrowPP*/
-        134217728) {
+        268435456) {
           each_value_5 = ensure_array_like(
             /*dataPP*/
             ctx2[0]
@@ -8627,35 +8698,35 @@
     let td1;
     let t1_value = (
       /*PP*/
-      ctx[189].tahun_penelitian + ""
+      ctx[190].tahun_penelitian + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PP*/
-      ctx[189].judul_penelitian + ""
+      ctx[190].judul_penelitian + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PP*/
-      ctx[189].role_penelitian + ""
+      ctx[190].role_penelitian + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PP*/
-      ctx[189].sumber_dana + ""
+      ctx[190].sumber_dana + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PP*/
-      ctx[189].jumlah + ""
+      ctx[190].jumlah + ""
     );
     let t9;
     let t10;
@@ -8689,7 +8760,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PP*/
-        ctx[189].id);
+        ctx[190].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -8719,7 +8790,7 @@
             button,
             "click",
             /*delrowPP*/
-            ctx[89]
+            ctx[90]
           );
           mounted = true;
         }
@@ -8727,28 +8798,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPP*/
         1 && button_pid_value !== (button_pid_value = /*PP*/
-        ctx2[189].id)) {
+        ctx2[190].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPP*/
         1) && t1_value !== (t1_value = /*PP*/
-        ctx2[189].tahun_penelitian + ""))
+        ctx2[190].tahun_penelitian + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t3_value !== (t3_value = /*PP*/
-        ctx2[189].judul_penelitian + ""))
+        ctx2[190].judul_penelitian + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t5_value !== (t5_value = /*PP*/
-        ctx2[189].role_penelitian + ""))
+        ctx2[190].role_penelitian + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t7_value !== (t7_value = /*PP*/
-        ctx2[189].sumber_dana + ""))
+        ctx2[190].sumber_dana + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t9_value !== (t9_value = /*PP*/
-        ctx2[189].jumlah + ""))
+        ctx2[190].jumlah + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -8792,8 +8863,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_16*/
-            ctx[131]
+            /*input_input_handler_17*/
+            ctx[133]
           );
           mounted = true;
         }
@@ -8839,8 +8910,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
-            ctx[132]
+            /*input_input_handler_18*/
+            ctx[134]
           );
           mounted = true;
         }
@@ -8898,7 +8969,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[133].call(select)
+            ctx[135].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -8919,7 +8990,7 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[133]
+            ctx[135]
           );
           mounted = true;
         }
@@ -8964,8 +9035,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
-            ctx[134]
+            /*input_input_handler_19*/
+            ctx[136]
           );
           mounted = true;
         }
@@ -9013,14 +9084,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_19*/
-              ctx[135]
+              /*input_input_handler_20*/
+              ctx[137]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler_1*/
-              ctx[136]
+              ctx[138]
             )
           ];
           mounted = true;
@@ -9144,7 +9215,7 @@
             button,
             "click",
             /*simpanPM*/
-            ctx[81]
+            ctx[82]
           );
           mounted = true;
         }
@@ -9153,35 +9224,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPengmas*/
         8192 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPengmas*/
         16384 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*rolePengmas*/
         32768 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*sumberDanaPengmas*/
         65536 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*biayaPengmas*/
         4096 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -9278,7 +9349,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPM*/
         2 | dirty[2] & /*delrowPM*/
-        268435456) {
+        536870912) {
           each_value_4 = ensure_array_like(
             /*dataPM*/
             ctx2[1]
@@ -9337,35 +9408,35 @@
     let td1;
     let t1_value = (
       /*PM*/
-      ctx[186].tahun_pengmas + ""
+      ctx[187].tahun_pengmas + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PM*/
-      ctx[186].judul_pengmas + ""
+      ctx[187].judul_pengmas + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PM*/
-      ctx[186].role_pengmas + ""
+      ctx[187].role_pengmas + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PM*/
-      ctx[186].sumber_dana + ""
+      ctx[187].sumber_dana + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PM*/
-      ctx[186].jumlah + ""
+      ctx[187].jumlah + ""
     );
     let t9;
     let t10;
@@ -9399,7 +9470,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PM*/
-        ctx[186].id);
+        ctx[187].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -9429,7 +9500,7 @@
             button,
             "click",
             /*delrowPM*/
-            ctx[90]
+            ctx[91]
           );
           mounted = true;
         }
@@ -9437,28 +9508,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPM*/
         2 && button_pid_value !== (button_pid_value = /*PM*/
-        ctx2[186].id)) {
+        ctx2[187].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPM*/
         2) && t1_value !== (t1_value = /*PM*/
-        ctx2[186].tahun_pengmas + ""))
+        ctx2[187].tahun_pengmas + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t3_value !== (t3_value = /*PM*/
-        ctx2[186].judul_pengmas + ""))
+        ctx2[187].judul_pengmas + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t5_value !== (t5_value = /*PM*/
-        ctx2[186].role_pengmas + ""))
+        ctx2[187].role_pengmas + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t7_value !== (t7_value = /*PM*/
-        ctx2[186].sumber_dana + ""))
+        ctx2[187].sumber_dana + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t9_value !== (t9_value = /*PM*/
-        ctx2[186].jumlah + ""))
+        ctx2[187].jumlah + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -9502,8 +9573,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_20*/
-            ctx[138]
+            /*input_input_handler_21*/
+            ctx[140]
           );
           mounted = true;
         }
@@ -9549,8 +9620,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
-            ctx[139]
+            /*input_input_handler_22*/
+            ctx[141]
           );
           mounted = true;
         }
@@ -9596,8 +9667,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
-            ctx[140]
+            /*input_input_handler_23*/
+            ctx[142]
           );
           mounted = true;
         }
@@ -9643,8 +9714,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
-            ctx[141]
+            /*input_input_handler_24*/
+            ctx[143]
           );
           mounted = true;
         }
@@ -9754,7 +9825,7 @@
             button,
             "click",
             /*simpanPD*/
-            ctx[82]
+            ctx[83]
           );
           mounted = true;
         }
@@ -9763,28 +9834,28 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunDiseminasi*/
         131072 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulDiseminasi*/
         262144 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaPemakalahDiseminasi*/
         524288 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*namaPertemuanDiseminasi*/
         1048576 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
@@ -9877,7 +9948,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPD*/
         4 | dirty[2] & /*delrowPD*/
-        536870912) {
+        1073741824) {
           each_value_3 = ensure_array_like(
             /*dataPD*/
             ctx2[2]
@@ -9936,28 +10007,28 @@
     let td1;
     let t1_value = (
       /*PD*/
-      ctx[183].tahun_diseminasi + ""
+      ctx[184].tahun_diseminasi + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PD*/
-      ctx[183].judul_artikel + ""
+      ctx[184].judul_artikel + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PD*/
-      ctx[183].nama_pemakalah + ""
+      ctx[184].nama_pemakalah + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PD*/
-      ctx[183].nama_pertemuan + ""
+      ctx[184].nama_pertemuan + ""
     );
     let t7;
     let t8;
@@ -9988,7 +10059,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PD*/
-        ctx[183].id);
+        ctx[184].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -10015,7 +10086,7 @@
             button,
             "click",
             /*delrowPD*/
-            ctx[91]
+            ctx[92]
           );
           mounted = true;
         }
@@ -10023,24 +10094,24 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPD*/
         4 && button_pid_value !== (button_pid_value = /*PD*/
-        ctx2[183].id)) {
+        ctx2[184].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPD*/
         4) && t1_value !== (t1_value = /*PD*/
-        ctx2[183].tahun_diseminasi + ""))
+        ctx2[184].tahun_diseminasi + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t3_value !== (t3_value = /*PD*/
-        ctx2[183].judul_artikel + ""))
+        ctx2[184].judul_artikel + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t5_value !== (t5_value = /*PD*/
-        ctx2[183].nama_pemakalah + ""))
+        ctx2[184].nama_pemakalah + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t7_value !== (t7_value = /*PD*/
-        ctx2[183].nama_pertemuan + ""))
+        ctx2[184].nama_pertemuan + ""))
           set_data(t7, t7_value);
       },
       i(local) {
@@ -10084,8 +10155,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
-            ctx[143]
+            /*input_input_handler_25*/
+            ctx[145]
           );
           mounted = true;
         }
@@ -10131,8 +10202,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
-            ctx[144]
+            /*input_input_handler_26*/
+            ctx[146]
           );
           mounted = true;
         }
@@ -10178,8 +10249,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
-            ctx[145]
+            /*input_input_handler_27*/
+            ctx[147]
           );
           mounted = true;
         }
@@ -10225,8 +10296,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
-            ctx[146]
+            /*input_input_handler_28*/
+            ctx[148]
           );
           mounted = true;
         }
@@ -10336,7 +10407,7 @@
             button,
             "click",
             /*simpanPPublikasi*/
-            ctx[79]
+            ctx[80]
           );
           mounted = true;
         }
@@ -10345,28 +10416,28 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPublikasi*/
         2097152 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPublikasi*/
         4194304 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaJurnal*/
         8388608 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*impactFactor*/
         16777216 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
@@ -10458,8 +10529,8 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPub*/
-        8 | dirty[2] & /*delrowPPub*/
-        1073741824) {
+        8 | dirty[3] & /*delrowPPub*/
+        1) {
           each_value_2 = ensure_array_like(
             /*dataPPub*/
             ctx2[3]
@@ -10518,28 +10589,28 @@
     let td1;
     let t1_value = (
       /*PPub*/
-      ctx[180].tahun_publikasi + ""
+      ctx[181].tahun_publikasi + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PPub*/
-      ctx[180].judul_artikel + ""
+      ctx[181].judul_artikel + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PPub*/
-      ctx[180].nama_jurnal + ""
+      ctx[181].nama_jurnal + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PPub*/
-      ctx[180].impact + ""
+      ctx[181].impact + ""
     );
     let t7;
     let t8;
@@ -10570,7 +10641,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PPub*/
-        ctx[180].id);
+        ctx[181].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -10597,7 +10668,7 @@
             button,
             "click",
             /*delrowPPub*/
-            ctx[92]
+            ctx[93]
           );
           mounted = true;
         }
@@ -10605,24 +10676,24 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPPub*/
         8 && button_pid_value !== (button_pid_value = /*PPub*/
-        ctx2[180].id)) {
+        ctx2[181].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t1_value !== (t1_value = /*PPub*/
-        ctx2[180].tahun_publikasi + ""))
+        ctx2[181].tahun_publikasi + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t3_value !== (t3_value = /*PPub*/
-        ctx2[180].judul_artikel + ""))
+        ctx2[181].judul_artikel + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t5_value !== (t5_value = /*PPub*/
-        ctx2[180].nama_jurnal + ""))
+        ctx2[181].nama_jurnal + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t7_value !== (t7_value = /*PPub*/
-        ctx2[180].impact + ""))
+        ctx2[181].impact + ""))
           set_data(t7, t7_value);
       },
       i(local) {
@@ -10666,8 +10737,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
-            ctx[148]
+            /*input_input_handler_29*/
+            ctx[150]
           );
           mounted = true;
         }
@@ -10713,8 +10784,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
-            ctx[149]
+            /*input_input_handler_30*/
+            ctx[151]
           );
           mounted = true;
         }
@@ -10760,8 +10831,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
-            ctx[150]
+            /*input_input_handler_31*/
+            ctx[152]
           );
           mounted = true;
         }
@@ -10807,8 +10878,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
-            ctx[151]
+            /*input_input_handler_32*/
+            ctx[153]
           );
           mounted = true;
         }
@@ -10854,8 +10925,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
-            ctx[152]
+            /*input_input_handler_33*/
+            ctx[154]
           );
           mounted = true;
         }
@@ -10978,7 +11049,7 @@
             button,
             "click",
             /*simpanPPB*/
-            ctx[78]
+            ctx[79]
           );
           mounted = true;
         }
@@ -10987,35 +11058,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunBuku*/
         33554432 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*JudulBuku*/
         67108864 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaPenulisBuku*/
         134217728 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*PenerbitBuku*/
         268435456 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*Isbn*/
         536870912 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -11112,7 +11183,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPB*/
         16 | dirty[3] & /*delrowPPB*/
-        1) {
+        2) {
           each_value_1 = ensure_array_like(
             /*dataPPB*/
             ctx2[4]
@@ -11171,35 +11242,35 @@
     let td1;
     let t1_value = (
       /*PPB*/
-      ctx[177].tahun_buku + ""
+      ctx[178].tahun_buku + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PPB*/
-      ctx[177].judul_buku + ""
+      ctx[178].judul_buku + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PPB*/
-      ctx[177].nama_penulis + ""
+      ctx[178].nama_penulis + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PPB*/
-      ctx[177].penerbit + ""
+      ctx[178].penerbit + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PPB*/
-      ctx[177].isbn + ""
+      ctx[178].isbn + ""
     );
     let t9;
     let t10;
@@ -11233,7 +11304,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PPB*/
-        ctx[177].id);
+        ctx[178].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -11263,7 +11334,7 @@
             button,
             "click",
             /*delrowPPB*/
-            ctx[93]
+            ctx[94]
           );
           mounted = true;
         }
@@ -11271,28 +11342,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPPB*/
         16 && button_pid_value !== (button_pid_value = /*PPB*/
-        ctx2[177].id)) {
+        ctx2[178].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t1_value !== (t1_value = /*PPB*/
-        ctx2[177].tahun_buku + ""))
+        ctx2[178].tahun_buku + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t3_value !== (t3_value = /*PPB*/
-        ctx2[177].judul_buku + ""))
+        ctx2[178].judul_buku + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t5_value !== (t5_value = /*PPB*/
-        ctx2[177].nama_penulis + ""))
+        ctx2[178].nama_penulis + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t7_value !== (t7_value = /*PPB*/
-        ctx2[177].penerbit + ""))
+        ctx2[178].penerbit + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t9_value !== (t9_value = /*PPB*/
-        ctx2[177].isbn + ""))
+        ctx2[178].isbn + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -11336,8 +11407,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
-            ctx[154]
+            /*input_input_handler_34*/
+            ctx[156]
           );
           mounted = true;
         }
@@ -11383,8 +11454,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
-            ctx[155]
+            /*input_input_handler_35*/
+            ctx[157]
           );
           mounted = true;
         }
@@ -11409,7 +11480,7 @@
       }
     };
   }
-  function create_default_slot_47(ctx) {
+  function create_default_slot_48(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11430,8 +11501,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
-            ctx[156]
+            /*input_input_handler_36*/
+            ctx[158]
           );
           mounted = true;
         }
@@ -11477,8 +11548,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
-            ctx[157]
+            /*input_input_handler_37*/
+            ctx[159]
           );
           mounted = true;
         }
@@ -11524,8 +11595,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
-            ctx[158]
+            /*input_input_handler_38*/
+            ctx[160]
           );
           mounted = true;
         }
@@ -11586,7 +11657,7 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_47] },
+        $$slots: { default: [create_default_slot_48] },
         $$scope: { ctx }
       }
     });
@@ -11648,7 +11719,7 @@
             button,
             "click",
             /*simpanPHKI*/
-            ctx[77]
+            ctx[78]
           );
           mounted = true;
         }
@@ -11657,35 +11728,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunHKI*/
         1073741824 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[1] & /*JudulHKI*/
         1 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[1] & /*namaPenulisHKI*/
         2 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[1] & /*jenisHKI*/
         4 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[1] & /*noHKI*/
         8 | dirty[6] & /*$$scope*/
-        512) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -11782,7 +11853,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPHKI*/
         32 | dirty[3] & /*delrowPHKI*/
-        2) {
+        4) {
           each_value = ensure_array_like(
             /*dataPHKI*/
             ctx2[5]
@@ -11841,35 +11912,35 @@
     let td1;
     let t1_value = (
       /*PHKI*/
-      ctx[174].tahun_hki + ""
+      ctx[175].tahun_hki + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PHKI*/
-      ctx[174].judul_hki + ""
+      ctx[175].judul_hki + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PHKI*/
-      ctx[174].nama_penulis + ""
+      ctx[175].nama_penulis + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PHKI*/
-      ctx[174].jenis_hki + ""
+      ctx[175].jenis_hki + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PHKI*/
-      ctx[174].no_hki + ""
+      ctx[175].no_hki + ""
     );
     let t9;
     let t10;
@@ -11903,7 +11974,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PHKI*/
-        ctx[174].id);
+        ctx[175].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -11933,7 +12004,7 @@
             button,
             "click",
             /*delrowPHKI*/
-            ctx[94]
+            ctx[95]
           );
           mounted = true;
         }
@@ -11941,28 +12012,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPHKI*/
         32 && button_pid_value !== (button_pid_value = /*PHKI*/
-        ctx2[174].id)) {
+        ctx2[175].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t1_value !== (t1_value = /*PHKI*/
-        ctx2[174].tahun_hki + ""))
+        ctx2[175].tahun_hki + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t3_value !== (t3_value = /*PHKI*/
-        ctx2[174].judul_hki + ""))
+        ctx2[175].judul_hki + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t5_value !== (t5_value = /*PHKI*/
-        ctx2[174].nama_penulis + ""))
+        ctx2[175].nama_penulis + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t7_value !== (t7_value = /*PHKI*/
-        ctx2[174].jenis_hki + ""))
+        ctx2[175].jenis_hki + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t9_value !== (t9_value = /*PHKI*/
-        ctx2[174].no_hki + ""))
+        ctx2[175].no_hki + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -12004,15 +12075,15 @@
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[68] === true && create_if_block_8(ctx)
+      ctx[69] === true && create_if_block_8(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[69] === true && create_if_block_7(ctx)
+      ctx[70] === true && create_if_block_7(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[70] === true && create_if_block2(ctx)
+      ctx[71] === true && create_if_block2(ctx)
     );
     return {
       c() {
@@ -12044,19 +12115,19 @@
           li0,
           "is-active",
           /*tab1*/
-          ctx[68]
+          ctx[69]
         );
         toggle_class(
           li1,
           "is-active",
           /*tab2*/
-          ctx[69]
+          ctx[70]
         );
         toggle_class(
           li2,
           "is-active",
           /*tab3*/
-          ctx[70]
+          ctx[71]
         );
         attr(div, "class", "tabs is-boxed");
       },
@@ -12087,19 +12158,19 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[85]
+              ctx[86]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[86]
+              ctx[87]
             ),
             listen(
               li2,
               "click",
               /*clicktab3*/
-              ctx[87]
+              ctx[88]
             )
           ];
           mounted = true;
@@ -12107,40 +12178,40 @@
       },
       p(ctx2, dirty) {
         if (!current || dirty[2] & /*tab1*/
-        64) {
+        128) {
           toggle_class(
             li0,
             "is-active",
             /*tab1*/
-            ctx2[68]
+            ctx2[69]
           );
         }
         if (!current || dirty[2] & /*tab2*/
-        128) {
+        256) {
           toggle_class(
             li1,
             "is-active",
             /*tab2*/
-            ctx2[69]
+            ctx2[70]
           );
         }
         if (!current || dirty[2] & /*tab3*/
-        256) {
+        512) {
           toggle_class(
             li2,
             "is-active",
             /*tab3*/
-            ctx2[70]
+            ctx2[71]
           );
         }
         if (
           /*tab1*/
-          ctx2[68] === true
+          ctx2[69] === true
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[2] & /*tab1*/
-            64) {
+            128) {
               transition_in(if_block0, 1);
             }
           } else {
@@ -12158,7 +12229,7 @@
         }
         if (
           /*tab2*/
-          ctx2[69] === true
+          ctx2[70] === true
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
@@ -12173,12 +12244,12 @@
         }
         if (
           /*tab3*/
-          ctx2[70] === true
+          ctx2[71] === true
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[2] & /*tab3*/
-            256) {
+            512) {
               transition_in(if_block2, 1);
             }
           } else {
@@ -12248,10 +12319,10 @@
       p(ctx2, dirty) {
         const article_changes = {};
         if (dirty[0] & /*dataPHKI, tahunHKI, dataPPB, Isbn, PenerbitBuku, namaPenulisBuku, JudulBuku, tahunBuku, dataPPub, impactFactor, namaJurnal, judulPublikasi, tahunPublikasi, dataPD, namaPertemuanDiseminasi, namaPemakalahDiseminasi, judulDiseminasi, tahunDiseminasi, dataPM, biayaPengmas, sumberDanaPengmas, rolePengmas, judulPengmas, tahunPengmas, dataPP, biayaPenelitian, sumberDanaPenelitian, rolePenelitian, judulPenelitian, tahunPenelitian, vmataKuliah*/
-        2147483647 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI, judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap*/
-        2147483647 | dirty[2] & /*showModalHKI, showModalPenulisanBuku, showModalPublikasi, showModalDiseminasi, showModalPengmas, showModalPenelitian, tab3, tab2, tab1*/
-        511 | dirty[6] & /*$$scope*/
-        512) {
+        2147483647 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap*/
+        2147483647 | dirty[2] & /*showModalHKI, showModalPenulisanBuku, showModalPublikasi, showModalDiseminasi, showModalPengmas, showModalPenelitian, tab3, judulTugasAkhirS3, tab2, tab1*/
+        1023 | dirty[6] & /*$$scope*/
+        1024) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -12283,8 +12354,8 @@
   function instance17($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(163, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(164, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(164, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(165, $route = $$value));
     let { params } = $$props;
     const id = params["1"];
     let data2, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
@@ -12304,22 +12375,22 @@
     let showModalPenulisanBuku = false;
     let showModalHKI = false;
     async function clickModalPenelitian() {
-      $$invalidate(62, showModalPenelitian = true);
+      $$invalidate(63, showModalPenelitian = true);
     }
     async function clickModalPengmas() {
-      $$invalidate(63, showModalPengmas = true);
+      $$invalidate(64, showModalPengmas = true);
     }
     async function clickModalDiseminasi() {
-      $$invalidate(64, showModalDiseminasi = true);
+      $$invalidate(65, showModalDiseminasi = true);
     }
     async function clickModalPublikasi() {
-      $$invalidate(65, showModalPublikasi = true);
+      $$invalidate(66, showModalPublikasi = true);
     }
     async function clickModalPenulisanBuku() {
-      $$invalidate(66, showModalPenulisanBuku = true);
+      $$invalidate(67, showModalPenulisanBuku = true);
     }
     async function clickModalHKI() {
-      $$invalidate(67, showModalHKI = true);
+      $$invalidate(68, showModalHKI = true);
     }
     const accessToken = localStorage.getItem("token");
     const headers = {
@@ -12338,33 +12409,33 @@
         $$invalidate(37, nip = data2.nip);
         $$invalidate(38, nidn = data2.nidn);
         $$invalidate(39, tempatLahir = data2.tempat_lahir);
-        tanggalLahir = data2.tanggal_lahir;
-        $$invalidate(40, alamatRumah = data2.alamat_rumah);
-        $$invalidate(41, telpFaxRumah = data2.telp_fax_rumah);
-        $$invalidate(42, nomorHandphone = data2.nomor_handphone);
-        $$invalidate(43, alamatKantor = data2.alamat_kantor);
-        $$invalidate(44, telpFaxKantor = data2.telp_fax_kantor);
-        $$invalidate(45, email = data2.email);
-        $$invalidate(46, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+        $$invalidate(40, tanggalLahir = data2.tanggal_lahir);
+        $$invalidate(41, alamatRumah = data2.alamat_rumah);
+        $$invalidate(42, telpFaxRumah = data2.telp_fax_rumah);
+        $$invalidate(43, nomorHandphone = data2.nomor_handphone);
+        $$invalidate(44, alamatKantor = data2.alamat_kantor);
+        $$invalidate(45, telpFaxKantor = data2.telp_fax_kantor);
+        $$invalidate(46, email = data2.email);
+        $$invalidate(47, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
       if (responseRP.ok) {
-        $$invalidate(47, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(48, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(49, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(50, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(51, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(52, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(53, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(54, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(55, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(56, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(57, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(58, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(59, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(60, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(61, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        $$invalidate(48, pertiS1 = dataRP.nama_perti_s1);
+        $$invalidate(49, pertiS2 = dataRP.nama_perti_s2);
+        $$invalidate(50, pertiS3 = dataRP.nama_perti_s3);
+        $$invalidate(51, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+        $$invalidate(52, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+        $$invalidate(53, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+        $$invalidate(54, tahunMasukS1 = dataRP.tahun_masuk_s1);
+        $$invalidate(55, tahunMasukS2 = dataRP.tahun_masuk_s2);
+        $$invalidate(56, tahunMasukS3 = dataRP.tahun_masuk_s3);
+        $$invalidate(57, tahunLulusS1 = dataRP.tahun_lulus_s1);
+        $$invalidate(58, tahunLulusS2 = dataRP.tahun_lulus_s2);
+        $$invalidate(59, tahunLulusS3 = dataRP.tahun_lulus_s3);
+        $$invalidate(60, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+        $$invalidate(61, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+        $$invalidate(62, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
       }
       getPengalamanPenelitian();
       getPengalamanPengmas();
@@ -12443,7 +12514,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(67, showModalHKI = false);
+        $$invalidate(68, showModalHKI = false);
         $$invalidate(30, tahunHKI = "");
         $$invalidate(31, JudulHKI = "");
         $$invalidate(32, namaPenulisHKI = "");
@@ -12470,7 +12541,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(66, showModalPenulisanBuku = false);
+        $$invalidate(67, showModalPenulisanBuku = false);
         $$invalidate(25, tahunBuku = "");
         $$invalidate(26, JudulBuku = "");
         $$invalidate(27, namaPenulisBuku = "");
@@ -12496,7 +12567,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(65, showModalPublikasi = false);
+        $$invalidate(66, showModalPublikasi = false);
         $$invalidate(21, tahunPublikasi = "");
         $$invalidate(22, judulPublikasi = "");
         $$invalidate(23, namaJurnal = "");
@@ -12522,7 +12593,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(62, showModalPenelitian = false);
+        $$invalidate(63, showModalPenelitian = false);
         $$invalidate(8, tahunPenelitian = "");
         $$invalidate(9, judulPenelitian = "");
         $$invalidate(10, rolePenelitian = "");
@@ -12549,7 +12620,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(63, showModalPengmas = false);
+        $$invalidate(64, showModalPengmas = false);
         $$invalidate(13, tahunPengmas = "");
         $$invalidate(14, judulPengmas = "");
         $$invalidate(15, rolePengmas = "");
@@ -12575,7 +12646,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(64, showModalDiseminasi = false);
+        $$invalidate(65, showModalDiseminasi = false);
         $$invalidate(17, tahunDiseminasi = "");
         $$invalidate(18, judulDiseminasi = "");
         $$invalidate(19, namaPemakalahDiseminasi = "");
@@ -12649,23 +12720,23 @@
     let tab2;
     let tab3;
     function clicktab1() {
-      $$invalidate(68, tab1 = true);
-      $$invalidate(69, tab2 = false);
-      $$invalidate(70, tab3 = false);
+      $$invalidate(69, tab1 = true);
+      $$invalidate(70, tab2 = false);
+      $$invalidate(71, tab3 = false);
     }
     function clicktab2() {
-      $$invalidate(68, tab1 = false);
-      $$invalidate(69, tab2 = true);
-      $$invalidate(70, tab3 = false);
+      $$invalidate(69, tab1 = false);
+      $$invalidate(70, tab2 = true);
+      $$invalidate(71, tab3 = false);
     }
     function clicktab3() {
-      $$invalidate(68, tab1 = false);
-      $$invalidate(69, tab2 = false);
-      $$invalidate(70, tab3 = true);
+      $$invalidate(69, tab1 = false);
+      $$invalidate(70, tab2 = false);
+      $$invalidate(71, tab3 = true);
     }
     function addMatkul() {
       let addVmatkul = { label: vmataKuliah };
-      $$invalidate(46, mataKuliah = [...mataKuliah, addVmatkul]);
+      $$invalidate(47, mataKuliah = [...mataKuliah, addVmatkul]);
       $$invalidate(6, vmataKuliah = "");
     }
     async function delrowPP(ev) {
@@ -12748,7 +12819,7 @@
     }
     function deleteMatkul(e) {
       let delMatkul = e.target.getAttribute("data-value");
-      $$invalidate(46, mataKuliah = mataKuliah.filter((matkul) => {
+      $$invalidate(47, mataKuliah = mataKuliah.filter((matkul) => {
         return matkul.label !== delMatkul;
       }));
     }
@@ -12773,98 +12844,102 @@
       $$invalidate(39, tempatLahir);
     }
     function input_input_handler_5() {
-      alamatRumah = this.value;
-      $$invalidate(40, alamatRumah);
+      tanggalLahir = this.value;
+      $$invalidate(40, tanggalLahir);
     }
     function input_input_handler_6() {
-      telpFaxRumah = to_number(this.value);
-      $$invalidate(41, telpFaxRumah);
+      alamatRumah = this.value;
+      $$invalidate(41, alamatRumah);
     }
     function input_input_handler_7() {
-      nomorHandphone = to_number(this.value);
-      $$invalidate(42, nomorHandphone);
+      telpFaxRumah = to_number(this.value);
+      $$invalidate(42, telpFaxRumah);
     }
     function input_input_handler_8() {
-      alamatKantor = this.value;
-      $$invalidate(43, alamatKantor);
+      nomorHandphone = to_number(this.value);
+      $$invalidate(43, nomorHandphone);
     }
     function input_input_handler_9() {
-      telpFaxKantor = to_number(this.value);
-      $$invalidate(44, telpFaxKantor);
+      alamatKantor = this.value;
+      $$invalidate(44, alamatKantor);
     }
     function input_input_handler_10() {
-      email = this.value;
-      $$invalidate(45, email);
+      telpFaxKantor = to_number(this.value);
+      $$invalidate(45, telpFaxKantor);
     }
     function input_input_handler_11() {
+      email = this.value;
+      $$invalidate(46, email);
+    }
+    function input_input_handler_12() {
       vmataKuliah = this.value;
       $$invalidate(6, vmataKuliah);
     }
     function input0_input_handler() {
       pertiS1 = this.value;
-      $$invalidate(47, pertiS1);
+      $$invalidate(48, pertiS1);
     }
     function input1_input_handler() {
       pertiS2 = this.value;
-      $$invalidate(48, pertiS2);
+      $$invalidate(49, pertiS2);
     }
     function input2_input_handler() {
       pertiS3 = this.value;
-      $$invalidate(49, pertiS3);
+      $$invalidate(50, pertiS3);
     }
     function input3_input_handler() {
       bidangIlmuS1 = this.value;
-      $$invalidate(50, bidangIlmuS1);
+      $$invalidate(51, bidangIlmuS1);
     }
     function input4_input_handler() {
       bidangIlmuS2 = this.value;
-      $$invalidate(51, bidangIlmuS2);
+      $$invalidate(52, bidangIlmuS2);
     }
     function input5_input_handler() {
       bidangIlmuS3 = this.value;
-      $$invalidate(52, bidangIlmuS3);
+      $$invalidate(53, bidangIlmuS3);
     }
     function input6_input_handler() {
       tahunMasukS1 = to_number(this.value);
-      $$invalidate(53, tahunMasukS1);
+      $$invalidate(54, tahunMasukS1);
     }
     function input7_input_handler() {
       tahunMasukS2 = to_number(this.value);
-      $$invalidate(54, tahunMasukS2);
+      $$invalidate(55, tahunMasukS2);
     }
     function input8_input_handler() {
       tahunMasukS3 = to_number(this.value);
-      $$invalidate(55, tahunMasukS3);
+      $$invalidate(56, tahunMasukS3);
     }
     function input9_input_handler() {
       tahunLulusS1 = to_number(this.value);
-      $$invalidate(56, tahunLulusS1);
+      $$invalidate(57, tahunLulusS1);
     }
     function input10_input_handler() {
       tahunLulusS2 = to_number(this.value);
-      $$invalidate(57, tahunLulusS2);
+      $$invalidate(58, tahunLulusS2);
     }
     function input11_input_handler() {
       tahunLulusS3 = to_number(this.value);
-      $$invalidate(58, tahunLulusS3);
+      $$invalidate(59, tahunLulusS3);
     }
     function textarea0_input_handler() {
       judulTugasAkhirS1 = this.value;
-      $$invalidate(59, judulTugasAkhirS1);
+      $$invalidate(60, judulTugasAkhirS1);
     }
     function textarea1_input_handler() {
       judulTugasAkhirS2 = this.value;
-      $$invalidate(60, judulTugasAkhirS2);
+      $$invalidate(61, judulTugasAkhirS2);
     }
     function textarea2_input_handler() {
       judulTugasAkhirS3 = this.value;
-      $$invalidate(61, judulTugasAkhirS3);
+      $$invalidate(62, judulTugasAkhirS3);
     }
-    function input_input_handler_12() {
+    function input_input_handler_13() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(8, tahunPenelitian);
     }
-    function input_input_handler_13() {
+    function input_input_handler_14() {
       judulPenelitian = this.value;
       $$invalidate(9, judulPenelitian);
     }
@@ -12872,24 +12947,24 @@
       rolePenelitian = select_value(this);
       $$invalidate(10, rolePenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_15() {
       sumberDanaPenelitian = this.value;
       $$invalidate(11, sumberDanaPenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_16() {
       biayaPenelitian = this.value;
       $$invalidate(7, biayaPenelitian);
     }
     const keyup_handler = () => $$invalidate(7, biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "));
     function modal0_show_binding(value) {
       showModalPenelitian = value;
-      $$invalidate(62, showModalPenelitian);
+      $$invalidate(63, showModalPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_17() {
       tahunPengmas = to_number(this.value);
       $$invalidate(13, tahunPengmas);
     }
-    function input_input_handler_17() {
+    function input_input_handler_18() {
       judulPengmas = this.value;
       $$invalidate(14, judulPengmas);
     }
@@ -12897,110 +12972,110 @@
       rolePengmas = select_value(this);
       $$invalidate(15, rolePengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_19() {
       sumberDanaPengmas = this.value;
       $$invalidate(16, sumberDanaPengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_20() {
       biayaPengmas = this.value;
       $$invalidate(12, biayaPengmas);
     }
     const keyup_handler_1 = () => $$invalidate(12, biayaPengmas = formatRupiah(biayaPengmas, "Rp. "));
     function modal1_show_binding(value) {
       showModalPengmas = value;
-      $$invalidate(63, showModalPengmas);
+      $$invalidate(64, showModalPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_21() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(17, tahunDiseminasi);
     }
-    function input_input_handler_21() {
+    function input_input_handler_22() {
       judulDiseminasi = this.value;
       $$invalidate(18, judulDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_23() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(19, namaPemakalahDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_24() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(20, namaPertemuanDiseminasi);
     }
     function modal2_show_binding(value) {
       showModalDiseminasi = value;
-      $$invalidate(64, showModalDiseminasi);
+      $$invalidate(65, showModalDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_25() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(21, tahunPublikasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_26() {
       judulPublikasi = this.value;
       $$invalidate(22, judulPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_27() {
       namaJurnal = this.value;
       $$invalidate(23, namaJurnal);
     }
-    function input_input_handler_27() {
+    function input_input_handler_28() {
       impactFactor = this.value;
       $$invalidate(24, impactFactor);
     }
     function modal3_show_binding(value) {
       showModalPublikasi = value;
-      $$invalidate(65, showModalPublikasi);
+      $$invalidate(66, showModalPublikasi);
     }
-    function input_input_handler_28() {
+    function input_input_handler_29() {
       tahunBuku = to_number(this.value);
       $$invalidate(25, tahunBuku);
     }
-    function input_input_handler_29() {
+    function input_input_handler_30() {
       JudulBuku = this.value;
       $$invalidate(26, JudulBuku);
     }
-    function input_input_handler_30() {
+    function input_input_handler_31() {
       namaPenulisBuku = this.value;
       $$invalidate(27, namaPenulisBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_32() {
       PenerbitBuku = this.value;
       $$invalidate(28, PenerbitBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_33() {
       Isbn = this.value;
       $$invalidate(29, Isbn);
     }
     function modal4_show_binding(value) {
       showModalPenulisanBuku = value;
-      $$invalidate(66, showModalPenulisanBuku);
+      $$invalidate(67, showModalPenulisanBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_34() {
       tahunHKI = to_number(this.value);
       $$invalidate(30, tahunHKI);
     }
-    function input_input_handler_34() {
+    function input_input_handler_35() {
       JudulHKI = this.value;
       $$invalidate(31, JudulHKI);
     }
-    function input_input_handler_35() {
+    function input_input_handler_36() {
       namaPenulisHKI = this.value;
       $$invalidate(32, namaPenulisHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_37() {
       jenisHKI = this.value;
       $$invalidate(33, jenisHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_38() {
       noHKI = this.value;
       $$invalidate(34, noHKI);
     }
     function modal5_show_binding(value) {
       showModalHKI = value;
-      $$invalidate(67, showModalHKI);
+      $$invalidate(68, showModalHKI);
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(96, params = $$props2.params);
+        $$invalidate(97, params = $$props2.params);
     };
     return [
       dataPP,
@@ -13043,6 +13118,7 @@
       nip,
       nidn,
       tempatLahir,
+      tanggalLahir,
       alamatRumah,
       telpFaxRumah,
       nomorHandphone,
@@ -13112,6 +13188,7 @@
       input_input_handler_9,
       input_input_handler_10,
       input_input_handler_11,
+      input_input_handler_12,
       input0_input_handler,
       input1_input_handler,
       input2_input_handler,
@@ -13127,48 +13204,48 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
-      input_input_handler_12,
       input_input_handler_13,
-      select_change_handler,
       input_input_handler_14,
+      select_change_handler,
       input_input_handler_15,
+      input_input_handler_16,
       keyup_handler,
       modal0_show_binding,
-      input_input_handler_16,
       input_input_handler_17,
-      select_change_handler_1,
       input_input_handler_18,
+      select_change_handler_1,
       input_input_handler_19,
+      input_input_handler_20,
       keyup_handler_1,
       modal1_show_binding,
-      input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
       input_input_handler_23,
-      modal2_show_binding,
       input_input_handler_24,
+      modal2_show_binding,
       input_input_handler_25,
       input_input_handler_26,
       input_input_handler_27,
-      modal3_show_binding,
       input_input_handler_28,
+      modal3_show_binding,
       input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
       input_input_handler_32,
-      modal4_show_binding,
       input_input_handler_33,
+      modal4_show_binding,
       input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
       input_input_handler_37,
+      input_input_handler_38,
       modal5_show_binding
     ];
   }
   var Profile = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance17, create_fragment24, safe_not_equal, { params: 96 }, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance17, create_fragment24, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default = Profile;
@@ -13857,14 +13934,49 @@
   var Select_default = Select;
 
   // src/pages/admin/proposal.svelte
-  function get_each_context_12(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[72] = list[i];
-    return child_ctx;
-  }
   function get_each_context5(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[72] = list[i];
+    child_ctx[113] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_12(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[116] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_22(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[119] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_32(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[122] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_42(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[125] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_52(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[128] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_62(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[131] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_8(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[134] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_7(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[134] = list[i];
     return child_ctx;
   }
   function create_if_block5(ctx) {
@@ -13886,8 +13998,10 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*tab5, tab4, kpkSelected, ka_pusat_kajian, reviewerSelected, reviewer, klppmSelected, ka_lppm, kdeptSelected, ka_departemen, tab3, data, tab2, status, comment, isi, abstrak, judul, anggotaTim, items, file, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal, view, tab1*/
-        2147221503 | dirty[2] & /*$$scope*/
+        if (dirty[0] & /*kpkSelected, ka_pusat_kajian, reviewerSelected, reviewer, klppmSelected, ka_lppm, kdeptSelected, ka_departemen, data, dataPHKI, dataPPB, dataPPub, dataPD, dataPM, dataPP, jabatanFungsional, namaLengkap, status, comment, isi, abstrak, judul, anggotaTim, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
+        2130706431 | dirty[1] & /*judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, uidProposal, items, file, view, tab1*/
+        2147483647 | dirty[2] & /*tab7, tab6, tab5, tab4, tab3, tab2*/
+        63 | dirty[4] & /*$$scope*/
         32768) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -13908,7 +14022,7 @@
       }
     };
   }
-  function create_if_block_53(ctx) {
+  function create_if_block_15(ctx) {
     let current_block_type_index;
     let if_block0;
     let t0;
@@ -13918,34 +14032,34 @@
     let t2;
     let t3;
     let current;
-    const if_block_creators = [create_if_block_93, create_else_block_1];
+    const if_block_creators = [create_if_block_19, create_else_block_2];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (!/*view*/
-      ctx2[25])
+      ctx2[60])
         return 0;
       return 1;
     }
-    current_block_type_index = select_block_type(ctx, [-1, -1, -1]);
+    current_block_type_index = select_block_type(ctx, [-1, -1, -1, -1, -1]);
     if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     let if_block1 = (
       /*status*/
-      (ctx[13] === 2 || /*status*/
-      ctx[13] === 4 || /*status*/
-      ctx[13] === 6 || /*status*/
-      ctx[13] === 8) && create_if_block_83(ctx)
+      (ctx[19] === 2 || /*status*/
+      ctx[19] === 4 || /*status*/
+      ctx[19] === 6 || /*status*/
+      ctx[19] === 8) && create_if_block_18(ctx)
     );
     let if_block2 = (
       /*status*/
-      ctx[13] === 10 && create_if_block_73(ctx)
+      ctx[19] === 10 && create_if_block_17(ctx)
     );
     let if_block3 = (
       /*status*/
-      (ctx[13] === 1 || /*status*/
-      ctx[13] === 3 || /*status*/
-      ctx[13] === 5 || /*status*/
-      ctx[13] === 7 || /*status*/
-      ctx[13] === 9) && create_if_block_63(ctx)
+      (ctx[19] === 1 || /*status*/
+      ctx[19] === 3 || /*status*/
+      ctx[19] === 5 || /*status*/
+      ctx[19] === 7 || /*status*/
+      ctx[19] === 9) && create_if_block_16(ctx)
     );
     return {
       c() {
@@ -14003,15 +14117,15 @@
         }
         if (
           /*status*/
-          ctx2[13] === 2 || /*status*/
-          ctx2[13] === 4 || /*status*/
-          ctx2[13] === 6 || /*status*/
-          ctx2[13] === 8
+          ctx2[19] === 2 || /*status*/
+          ctx2[19] === 4 || /*status*/
+          ctx2[19] === 6 || /*status*/
+          ctx2[19] === 8
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_83(ctx2);
+            if_block1 = create_if_block_18(ctx2);
             if_block1.c();
             if_block1.m(div, t2);
           }
@@ -14021,12 +14135,12 @@
         }
         if (
           /*status*/
-          ctx2[13] === 10
+          ctx2[19] === 10
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_73(ctx2);
+            if_block2 = create_if_block_17(ctx2);
             if_block2.c();
             if_block2.m(div, t3);
           }
@@ -14036,16 +14150,16 @@
         }
         if (
           /*status*/
-          ctx2[13] === 1 || /*status*/
-          ctx2[13] === 3 || /*status*/
-          ctx2[13] === 5 || /*status*/
-          ctx2[13] === 7 || /*status*/
-          ctx2[13] === 9
+          ctx2[19] === 1 || /*status*/
+          ctx2[19] === 3 || /*status*/
+          ctx2[19] === 5 || /*status*/
+          ctx2[19] === 7 || /*status*/
+          ctx2[19] === 9
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block_63(ctx2);
+            if_block3 = create_if_block_16(ctx2);
             if_block3.c();
             if_block3.m(div, null);
           }
@@ -14081,7 +14195,7 @@
       }
     };
   }
-  function create_else_block_1(ctx) {
+  function create_else_block_2(ctx) {
     let field0;
     let t0;
     let field1;
@@ -14124,95 +14238,95 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_262] },
+        $$slots: { default: [create_default_slot_422] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_252] },
+        $$slots: { default: [create_default_slot_412] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_242] },
+        $$slots: { default: [create_default_slot_402] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_233] },
+        $$slots: { default: [create_default_slot_392] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_223] },
+        $$slots: { default: [create_default_slot_382] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tahun Pelaksanaan",
-        $$slots: { default: [create_default_slot_212] },
+        $$slots: { default: [create_default_slot_372] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_202] },
+        $$slots: { default: [create_default_slot_362] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_192] },
+        $$slots: { default: [create_default_slot_352] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_182] },
+        $$slots: { default: [create_default_slot_342] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*anggotaTim*/
-      ctx[8].length > 0 && create_if_block_123(ctx)
+      ctx[14].length > 0 && create_if_block_222(ctx)
     );
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_172] },
+        $$slots: { default: [create_default_slot_332] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_162] },
+        $$slots: { default: [create_default_slot_323] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "isi",
-        $$slots: { default: [create_default_slot_152] },
+        $$slots: { default: [create_default_slot_312] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_142] },
+        $$slots: { default: [create_default_slot_302] },
         $$scope: { ctx }
       }
     });
@@ -14308,73 +14422,73 @@
       p(ctx2, dirty) {
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
-        2 | dirty[2] & /*$$scope*/
+        128 | dirty[4] & /*$$scope*/
         32768) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
-        4 | dirty[2] & /*$$scope*/
+        256 | dirty[4] & /*$$scope*/
         32768) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema*/
-        8 | dirty[2] & /*$$scope*/
+        512 | dirty[4] & /*$$scope*/
         32768) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
-        16 | dirty[2] & /*$$scope*/
+        1024 | dirty[4] & /*$$scope*/
         32768) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
-        32 | dirty[2] & /*$$scope*/
+        2048 | dirty[4] & /*$$scope*/
         32768) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (dirty[0] & /*tahunPelaksanaan*/
-        64 | dirty[2] & /*$$scope*/
+        4096 | dirty[4] & /*$$scope*/
         32768) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
-        128 | dirty[2] & /*$$scope*/
+        8192 | dirty[4] & /*$$scope*/
         32768) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[2] & /*$$scope*/
+        if (dirty[4] & /*$$scope*/
         32768) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[2] & /*$$scope*/
+        if (dirty[4] & /*$$scope*/
         32768) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         if (
           /*anggotaTim*/
-          ctx2[8].length > 0
+          ctx2[14].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_123(ctx2);
+            if_block = create_if_block_222(ctx2);
             if_block.c();
             if_block.m(tbody, null);
           }
@@ -14384,28 +14498,28 @@
         }
         const field9_changes = {};
         if (dirty[0] & /*data*/
-        1 | dirty[2] & /*$$scope*/
+        1 | dirty[4] & /*$$scope*/
         32768) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*data*/
-        1 | dirty[2] & /*$$scope*/
+        1 | dirty[4] & /*$$scope*/
         32768) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*data*/
-        1 | dirty[2] & /*$$scope*/
+        1 | dirty[4] & /*$$scope*/
         32768) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
         const field12_changes = {};
         if (dirty[0] & /*comment*/
-        4096 | dirty[2] & /*$$scope*/
+        262144 | dirty[4] & /*$$scope*/
         32768) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -14486,7 +14600,7 @@
       }
     };
   }
-  function create_if_block_93(ctx) {
+  function create_if_block_19(ctx) {
     let field0;
     let t0;
     let field1;
@@ -14530,40 +14644,40 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_133] },
+        $$slots: { default: [create_default_slot_292] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_123] },
+        $$slots: { default: [create_default_slot_282] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_112] },
+        $$slots: { default: [create_default_slot_272] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_102] },
+        $$slots: { default: [create_default_slot_262] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_92] },
+        $$slots: { default: [create_default_slot_252] },
         $$scope: { ctx }
       }
     });
     function field5_value_binding(value) {
-      ctx[49](value);
+      ctx[88](value);
     }
     let field5_props = {
       datepicker: true,
@@ -14571,63 +14685,63 @@
     };
     if (
       /*tahunPelaksanaan*/
-      ctx[6] !== void 0
+      ctx[12] !== void 0
     ) {
       field5_props.value = /*tahunPelaksanaan*/
-      ctx[6];
+      ctx[12];
     }
     field5 = new Field_default({ props: field5_props });
     binding_callbacks.push(() => bind(field5, "value", field5_value_binding));
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_82] },
+        $$slots: { default: [create_default_slot_242] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_72] },
+        $$slots: { default: [create_default_slot_233] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_62] },
+        $$slots: { default: [create_default_slot_223] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*anggotaTim*/
-      ctx[8].length > 0 && create_if_block_102(ctx)
+      ctx[14].length > 0 && create_if_block_20(ctx)
     );
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_53] },
+        $$slots: { default: [create_default_slot_212] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_48] },
+        $$slots: { default: [create_default_slot_202] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Isi Proposal",
-        $$slots: { default: [create_default_slot_311] },
+        $$slots: { default: [create_default_slot_192] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_211] },
+        $$slots: { default: [create_default_slot_182] },
         $$scope: { ctx }
       }
     });
@@ -14723,81 +14837,82 @@
       p(ctx2, dirty) {
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
-        2 | dirty[2] & /*$$scope*/
+        128 | dirty[4] & /*$$scope*/
         32768) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
-        4 | dirty[2] & /*$$scope*/
+        256 | dirty[4] & /*$$scope*/
         32768) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema, jenisKegiatan*/
-        12 | dirty[2] & /*$$scope*/
+        768 | dirty[4] & /*$$scope*/
         32768) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
-        16 | dirty[2] & /*$$scope*/
+        1024 | dirty[4] & /*$$scope*/
         32768) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
-        32 | dirty[2] & /*$$scope*/
+        2048 | dirty[4] & /*$$scope*/
         32768) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (!updating_value && dirty[0] & /*tahunPelaksanaan*/
-        64) {
+        4096) {
           updating_value = true;
           field5_changes.value = /*tahunPelaksanaan*/
-          ctx2[6];
+          ctx2[12];
           add_flush_callback(() => updating_value = false);
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
-        128 | dirty[2] & /*$$scope*/
+        8192 | dirty[4] & /*$$scope*/
         32768) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[0] & /*file*/
-        16777216 | dirty[2] & /*$$scope*/
+        if (dirty[1] & /*file*/
+        268435456 | dirty[4] & /*$$scope*/
         32768) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[0] & /*items, anggotaTim*/
-        8388864 | dirty[2] & /*$$scope*/
+        if (dirty[0] & /*anggotaTim*/
+        16384 | dirty[1] & /*items*/
+        134217728 | dirty[4] & /*$$scope*/
         32768) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         if (
           /*anggotaTim*/
-          ctx2[8].length > 0
+          ctx2[14].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
             if (dirty[0] & /*anggotaTim*/
-            256) {
+            16384) {
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_102(ctx2);
+            if_block = create_if_block_20(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(tbody, null);
@@ -14811,28 +14926,28 @@
         }
         const field9_changes = {};
         if (dirty[0] & /*judul*/
-        512 | dirty[2] & /*$$scope*/
+        32768 | dirty[4] & /*$$scope*/
         32768) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*abstrak*/
-        1024 | dirty[2] & /*$$scope*/
+        65536 | dirty[4] & /*$$scope*/
         32768) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*isi*/
-        2048 | dirty[2] & /*$$scope*/
+        131072 | dirty[4] & /*$$scope*/
         32768) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
         const field12_changes = {};
         if (dirty[0] & /*comment*/
-        4096 | dirty[2] & /*$$scope*/
+        262144 | dirty[4] & /*$$scope*/
         32768) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -14915,180 +15030,12 @@
       }
     };
   }
-  function create_default_slot_262(ctx) {
+  function create_default_slot_422(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*jenisProposal*/
-          ctx[1]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisProposal*/
-        2)
-          set_data(
-            t,
-            /*jenisProposal*/
-            ctx2[1]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_252(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jenisKegiatan*/
-          ctx[2]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisKegiatan*/
-        4)
-          set_data(
-            t,
-            /*jenisKegiatan*/
-            ctx2[2]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_242(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jenisSkema*/
-          ctx[3]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisSkema*/
-        8)
-          set_data(
-            t,
-            /*jenisSkema*/
-            ctx2[3]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_233(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*kelompokKeahlian*/
-          ctx[4]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*kelompokKeahlian*/
-        16)
-          set_data(
-            t,
-            /*kelompokKeahlian*/
-            ctx2[4]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_223(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*topik*/
-          ctx[5]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*topik*/
-        32)
-          set_data(
-            t,
-            /*topik*/
-            ctx2[5]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_212(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*tahunPelaksanaan*/
-          ctx[6]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tahunPelaksanaan*/
-        64)
-          set_data(
-            t,
-            /*tahunPelaksanaan*/
-            ctx2[6]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_202(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*biayaPenelitian*/
           ctx[7]
         );
       },
@@ -15096,11 +15043,11 @@
         insert(target, t, anchor);
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*biayaPenelitian*/
+        if (dirty[0] & /*jenisProposal*/
         128)
           set_data(
             t,
-            /*biayaPenelitian*/
+            /*jenisProposal*/
             ctx2[7]
           );
       },
@@ -15111,7 +15058,175 @@
       }
     };
   }
-  function create_default_slot_192(ctx) {
+  function create_default_slot_412(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jenisKegiatan*/
+          ctx[8]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisKegiatan*/
+        256)
+          set_data(
+            t,
+            /*jenisKegiatan*/
+            ctx2[8]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_402(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jenisSkema*/
+          ctx[9]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisSkema*/
+        512)
+          set_data(
+            t,
+            /*jenisSkema*/
+            ctx2[9]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_392(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*kelompokKeahlian*/
+          ctx[10]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*kelompokKeahlian*/
+        1024)
+          set_data(
+            t,
+            /*kelompokKeahlian*/
+            ctx2[10]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_382(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*topik*/
+          ctx[11]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*topik*/
+        2048)
+          set_data(
+            t,
+            /*topik*/
+            ctx2[11]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_372(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tahunPelaksanaan*/
+          ctx[12]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*tahunPelaksanaan*/
+        4096)
+          set_data(
+            t,
+            /*tahunPelaksanaan*/
+            ctx2[12]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_362(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*biayaPenelitian*/
+          ctx[13]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*biayaPenelitian*/
+        8192)
+          set_data(
+            t,
+            /*biayaPenelitian*/
+            ctx2[13]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_352(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -15128,7 +15243,7 @@
             button,
             "click",
             /*handleDownload*/
-            ctx[37]
+            ctx[74]
           );
           mounted = true;
         }
@@ -15143,7 +15258,7 @@
       }
     };
   }
-  function create_default_slot_182(ctx) {
+  function create_default_slot_342(ctx) {
     let span;
     return {
       c() {
@@ -15160,15 +15275,15 @@
       }
     };
   }
-  function create_if_block_123(ctx) {
+  function create_if_block_222(ctx) {
     let each_1_anchor;
-    let each_value_1 = ensure_array_like(
+    let each_value_8 = ensure_array_like(
       /*anggotaTim*/
-      ctx[8]
+      ctx[14]
     );
     let each_blocks = [];
-    for (let i = 0; i < each_value_1.length; i += 1) {
-      each_blocks[i] = create_each_block_12(get_each_context_12(ctx, each_value_1, i));
+    for (let i = 0; i < each_value_8.length; i += 1) {
+      each_blocks[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
     }
     return {
       c() {
@@ -15187,18 +15302,18 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
-        256) {
-          each_value_1 = ensure_array_like(
+        16384) {
+          each_value_8 = ensure_array_like(
             /*anggotaTim*/
-            ctx2[8]
+            ctx2[14]
           );
           let i;
-          for (i = 0; i < each_value_1.length; i += 1) {
-            const child_ctx = get_each_context_12(ctx2, each_value_1, i);
+          for (i = 0; i < each_value_8.length; i += 1) {
+            const child_ctx = get_each_context_8(ctx2, each_value_8, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
             } else {
-              each_blocks[i] = create_each_block_12(child_ctx);
+              each_blocks[i] = create_each_block_8(child_ctx);
               each_blocks[i].c();
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
             }
@@ -15206,7 +15321,7 @@
           for (; i < each_blocks.length; i += 1) {
             each_blocks[i].d(1);
           }
-          each_blocks.length = each_value_1.length;
+          each_blocks.length = each_value_8.length;
         }
       },
       d(detaching) {
@@ -15217,14 +15332,14 @@
       }
     };
   }
-  function create_each_block_12(ctx) {
+  function create_each_block_8(ctx) {
     let tr;
     let td0;
     let t1;
     let td1;
     let t2_value = (
       /*member*/
-      ctx[72].label + ""
+      ctx[134].label + ""
     );
     let t2;
     let t3;
@@ -15248,8 +15363,8 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
-        256 && t2_value !== (t2_value = /*member*/
-        ctx2[72].label + ""))
+        16384 && t2_value !== (t2_value = /*member*/
+        ctx2[134].label + ""))
           set_data(t2, t2_value);
       },
       d(detaching) {
@@ -15259,7 +15374,7 @@
       }
     };
   }
-  function create_default_slot_172(ctx) {
+  function create_default_slot_332(ctx) {
     let t_value = (
       /*data*/
       ctx[0].judul + ""
@@ -15285,7 +15400,7 @@
       }
     };
   }
-  function create_default_slot_162(ctx) {
+  function create_default_slot_323(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -15316,7 +15431,7 @@
       }
     };
   }
-  function create_default_slot_152(ctx) {
+  function create_default_slot_312(ctx) {
     let div;
     let raw_value = (
       /*data*/
@@ -15345,7 +15460,7 @@
       }
     };
   }
-  function create_default_slot_142(ctx) {
+  function create_default_slot_302(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -15359,25 +15474,25 @@
         set_input_value(
           textarea,
           /*comment*/
-          ctx[12]
+          ctx[18]
         );
         if (!mounted) {
           dispose = listen(
             textarea,
             "input",
             /*textarea_input_handler_1*/
-            ctx[56]
+            ctx[95]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*comment*/
-        4096) {
+        262144) {
           set_input_value(
             textarea,
             /*comment*/
-            ctx2[12]
+            ctx2[18]
           );
         }
       },
@@ -15390,7 +15505,7 @@
       }
     };
   }
-  function create_default_slot_133(ctx) {
+  function create_default_slot_292(ctx) {
     let div;
     let select;
     let option0;
@@ -15419,11 +15534,11 @@
         set_input_value(option2, option2.__value);
         if (
           /*jenisProposal*/
-          ctx[1] === void 0
+          ctx[7] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[44].call(select)
+            ctx[83].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -15436,7 +15551,7 @@
         select_option(
           select,
           /*jenisProposal*/
-          ctx[1],
+          ctx[7],
           true
         );
         if (!mounted) {
@@ -15444,18 +15559,18 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[44]
+            ctx[83]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisProposal*/
-        2) {
+        128) {
           select_option(
             select,
             /*jenisProposal*/
-            ctx2[1]
+            ctx2[7]
           );
         }
       },
@@ -15468,7 +15583,7 @@
       }
     };
   }
-  function create_default_slot_123(ctx) {
+  function create_default_slot_282(ctx) {
     let div;
     let select;
     let option0;
@@ -15497,11 +15612,11 @@
         set_input_value(option2, option2.__value);
         if (
           /*jenisKegiatan*/
-          ctx[2] === void 0
+          ctx[8] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[45].call(select)
+            ctx[84].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -15514,7 +15629,7 @@
         select_option(
           select,
           /*jenisKegiatan*/
-          ctx[2],
+          ctx[8],
           true
         );
         if (!mounted) {
@@ -15522,18 +15637,18 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[45]
+            ctx[84]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisKegiatan*/
-        4) {
+        256) {
           select_option(
             select,
             /*jenisKegiatan*/
-            ctx2[2]
+            ctx2[8]
           );
         }
       },
@@ -15546,7 +15661,7 @@
       }
     };
   }
-  function create_else_block2(ctx) {
+  function create_else_block_1(ctx) {
     let option0;
     let option1;
     let option2;
@@ -15586,7 +15701,7 @@
       }
     };
   }
-  function create_if_block_112(ctx) {
+  function create_if_block_21(ctx) {
     let option0;
     let option1;
     let option2;
@@ -15633,7 +15748,7 @@
       }
     };
   }
-  function create_default_slot_112(ctx) {
+  function create_default_slot_272(ctx) {
     let div;
     let select;
     let option;
@@ -15642,12 +15757,12 @@
     function select_block_type_1(ctx2, dirty) {
       if (
         /*jenisKegiatan*/
-        ctx2[2] === "Penelitian"
+        ctx2[8] === "Penelitian"
       )
-        return create_if_block_112;
-      return create_else_block2;
+        return create_if_block_21;
+      return create_else_block_1;
     }
-    let current_block_type = select_block_type_1(ctx, [-1, -1, -1]);
+    let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
     return {
       c() {
@@ -15663,11 +15778,11 @@
         option.hidden = true;
         if (
           /*jenisSkema*/
-          ctx[3] === void 0
+          ctx[9] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_2*/
-            ctx[46].call(select)
+            ctx[85].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -15679,7 +15794,7 @@
         select_option(
           select,
           /*jenisSkema*/
-          ctx[3],
+          ctx[9],
           true
         );
         if (!mounted) {
@@ -15687,7 +15802,7 @@
             select,
             "change",
             /*select_change_handler_2*/
-            ctx[46]
+            ctx[85]
           );
           mounted = true;
         }
@@ -15702,11 +15817,11 @@
           }
         }
         if (dirty[0] & /*jenisSkema*/
-        8) {
+        512) {
           select_option(
             select,
             /*jenisSkema*/
-            ctx2[3]
+            ctx2[9]
           );
         }
       },
@@ -15720,7 +15835,7 @@
       }
     };
   }
-  function create_default_slot_102(ctx) {
+  function create_default_slot_262(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15736,26 +15851,26 @@
         set_input_value(
           input,
           /*kelompokKeahlian*/
-          ctx[4]
+          ctx[10]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler*/
-            ctx[47]
+            ctx[86]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*kelompokKeahlian*/
-        16 && input.value !== /*kelompokKeahlian*/
-        ctx2[4]) {
+        1024 && input.value !== /*kelompokKeahlian*/
+        ctx2[10]) {
           set_input_value(
             input,
             /*kelompokKeahlian*/
-            ctx2[4]
+            ctx2[10]
           );
         }
       },
@@ -15768,7 +15883,7 @@
       }
     };
   }
-  function create_default_slot_92(ctx) {
+  function create_default_slot_252(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15784,26 +15899,26 @@
         set_input_value(
           input,
           /*topik*/
-          ctx[5]
+          ctx[11]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[48]
+            ctx[87]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*topik*/
-        32 && input.value !== /*topik*/
-        ctx2[5]) {
+        2048 && input.value !== /*topik*/
+        ctx2[11]) {
           set_input_value(
             input,
             /*topik*/
-            ctx2[5]
+            ctx2[11]
           );
         }
       },
@@ -15816,7 +15931,7 @@
       }
     };
   }
-  function create_default_slot_82(ctx) {
+  function create_default_slot_242(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15832,7 +15947,7 @@
         set_input_value(
           input,
           /*biayaPenelitian*/
-          ctx[7]
+          ctx[13]
         );
         if (!mounted) {
           dispose = [
@@ -15840,13 +15955,13 @@
               input,
               "input",
               /*input_input_handler_2*/
-              ctx[50]
+              ctx[89]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[51]
+              ctx[90]
             )
           ];
           mounted = true;
@@ -15854,12 +15969,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*biayaPenelitian*/
-        128 && input.value !== /*biayaPenelitian*/
-        ctx2[7]) {
+        8192 && input.value !== /*biayaPenelitian*/
+        ctx2[13]) {
           set_input_value(
             input,
             /*biayaPenelitian*/
-            ctx2[7]
+            ctx2[13]
           );
         }
       },
@@ -15872,7 +15987,7 @@
       }
     };
   }
-  function create_default_slot_72(ctx) {
+  function create_default_slot_233(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15890,7 +16005,7 @@
             input,
             "change",
             /*change_handler*/
-            ctx[52]
+            ctx[91]
           );
           mounted = true;
         }
@@ -15905,23 +16020,23 @@
       }
     };
   }
-  function create_default_slot_62(ctx) {
+  function create_default_slot_223(ctx) {
     let select;
     let updating_result;
     let current;
     function select_result_binding(value) {
-      ctx[53](value);
+      ctx[92](value);
     }
     let select_props = { start: "2", items: (
       /*items*/
-      ctx[23]
+      ctx[58]
     ) };
     if (
       /*anggotaTim*/
-      ctx[8] !== void 0
+      ctx[14] !== void 0
     ) {
       select_props.result = /*anggotaTim*/
-      ctx[8];
+      ctx[14];
     }
     select = new Select_default({ props: select_props });
     binding_callbacks.push(() => bind(select, "result", select_result_binding));
@@ -15935,15 +16050,15 @@
       },
       p(ctx2, dirty) {
         const select_changes = {};
-        if (dirty[0] & /*items*/
-        8388608)
+        if (dirty[1] & /*items*/
+        134217728)
           select_changes.items = /*items*/
-          ctx2[23];
+          ctx2[58];
         if (!updating_result && dirty[0] & /*anggotaTim*/
-        256) {
+        16384) {
           updating_result = true;
           select_changes.result = /*anggotaTim*/
-          ctx2[8];
+          ctx2[14];
           add_flush_callback(() => updating_result = false);
         }
         select.$set(select_changes);
@@ -15963,16 +16078,16 @@
       }
     };
   }
-  function create_if_block_102(ctx) {
+  function create_if_block_20(ctx) {
     let each_1_anchor;
     let current;
-    let each_value = ensure_array_like(
+    let each_value_7 = ensure_array_like(
       /*anggotaTim*/
-      ctx[8]
+      ctx[14]
     );
     let each_blocks = [];
-    for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block5(get_each_context5(ctx, each_value, i));
+    for (let i = 0; i < each_value_7.length; i += 1) {
+      each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -15995,27 +16110,27 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
-        256 | dirty[1] & /*deleteMember*/
-        32) {
-          each_value = ensure_array_like(
+        16384 | dirty[2] & /*deleteMember*/
+        2048) {
+          each_value_7 = ensure_array_like(
             /*anggotaTim*/
-            ctx2[8]
+            ctx2[14]
           );
           let i;
-          for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context5(ctx2, each_value, i);
+          for (i = 0; i < each_value_7.length; i += 1) {
+            const child_ctx = get_each_context_7(ctx2, each_value_7, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block5(child_ctx);
+              each_blocks[i] = create_each_block_7(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
             }
           }
           group_outros();
-          for (i = each_value.length; i < each_blocks.length; i += 1) {
+          for (i = each_value_7.length; i < each_blocks.length; i += 1) {
             out(i);
           }
           check_outros();
@@ -16024,7 +16139,7 @@
       i(local) {
         if (current)
           return;
-        for (let i = 0; i < each_value.length; i += 1) {
+        for (let i = 0; i < each_value_7.length; i += 1) {
           transition_in(each_blocks[i]);
         }
         current = true;
@@ -16044,7 +16159,7 @@
       }
     };
   }
-  function create_each_block5(ctx) {
+  function create_each_block_7(ctx) {
     let tr;
     let td0;
     let button;
@@ -16057,7 +16172,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[72].label + ""
+      ctx[134].label + ""
     );
     let t3;
     let t4;
@@ -16082,7 +16197,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[72].value);
+        ctx[134].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -16102,20 +16217,20 @@
             button,
             "click",
             /*deleteMember*/
-            ctx[36]
+            ctx[73]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*anggotaTim*/
-        256 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[72].value)) {
+        16384 && button_data_value_value !== (button_data_value_value = /*member*/
+        ctx2[134].value)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[0] & /*anggotaTim*/
-        256) && t3_value !== (t3_value = /*member*/
-        ctx2[72].label + ""))
+        16384) && t3_value !== (t3_value = /*member*/
+        ctx2[134].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -16138,7 +16253,7 @@
       }
     };
   }
-  function create_default_slot_53(ctx) {
+  function create_default_slot_212(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -16154,26 +16269,26 @@
         set_input_value(
           input,
           /*judul*/
-          ctx[9]
+          ctx[15]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[54]
+            ctx[93]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*judul*/
-        512 && input.value !== /*judul*/
-        ctx2[9]) {
+        32768 && input.value !== /*judul*/
+        ctx2[15]) {
           set_input_value(
             input,
             /*judul*/
-            ctx2[9]
+            ctx2[15]
           );
         }
       },
@@ -16186,7 +16301,7 @@
       }
     };
   }
-  function create_default_slot_48(ctx) {
+  function create_default_slot_202(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -16200,25 +16315,25 @@
         set_input_value(
           textarea,
           /*abstrak*/
-          ctx[10]
+          ctx[16]
         );
         if (!mounted) {
           dispose = listen(
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[55]
+            ctx[94]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*abstrak*/
-        1024) {
+        65536) {
           set_input_value(
             textarea,
             /*abstrak*/
-            ctx2[10]
+            ctx2[16]
           );
         }
       },
@@ -16231,13 +16346,13 @@
       }
     };
   }
-  function create_default_slot_311(ctx) {
+  function create_default_slot_192(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
       props: { id: "isi", content: (
         /*isi*/
-        ctx[11]
+        ctx[17]
       ) }
     });
     return {
@@ -16251,9 +16366,9 @@
       p(ctx2, dirty) {
         const wysiwyg_changes = {};
         if (dirty[0] & /*isi*/
-        2048)
+        131072)
           wysiwyg_changes.content = /*isi*/
-          ctx2[11];
+          ctx2[17];
         wysiwyg.$set(wysiwyg_changes);
       },
       i(local) {
@@ -16271,13 +16386,13 @@
       }
     };
   }
-  function create_default_slot_211(ctx) {
+  function create_default_slot_182(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*comment*/
-          ctx[12]
+          ctx[18]
         );
       },
       m(target, anchor) {
@@ -16285,11 +16400,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*comment*/
-        4096)
+        262144)
           set_data(
             t,
             /*comment*/
-            ctx2[12]
+            ctx2[18]
           );
       },
       d(detaching) {
@@ -16299,7 +16414,7 @@
       }
     };
   }
-  function create_if_block_83(ctx) {
+  function create_if_block_18(ctx) {
     let p0;
     let button0;
     let t1;
@@ -16333,13 +16448,13 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[32]
+              ctx[69]
             ),
             listen(
               button1,
               "click",
               /*handlePass*/
-              ctx[34]
+              ctx[71]
             )
           ];
           mounted = true;
@@ -16357,7 +16472,7 @@
       }
     };
   }
-  function create_if_block_73(ctx) {
+  function create_if_block_17(ctx) {
     let p0;
     let button0;
     let t1;
@@ -16403,19 +16518,19 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[32]
+              ctx[69]
             ),
             listen(
               button1,
               "click",
               /*handleDitolak*/
-              ctx[33]
+              ctx[70]
             ),
             listen(
               button2,
               "click",
               /*handlePass*/
-              ctx[34]
+              ctx[71]
             )
           ];
           mounted = true;
@@ -16435,7 +16550,7 @@
       }
     };
   }
-  function create_if_block_63(ctx) {
+  function create_if_block_16(ctx) {
     let p;
     let button;
     let mounted;
@@ -16456,7 +16571,7 @@
             button,
             "click",
             /*remediasi*/
-            ctx[31]
+            ctx[68]
           );
           mounted = true;
         }
@@ -16471,93 +16586,2673 @@
       }
     };
   }
-  function create_if_block_44(ctx) {
+  function create_if_block_63(ctx) {
+    let t0;
+    let field0;
+    let t1;
+    let field1;
+    let t2;
+    let field2;
+    let t3;
+    let field3;
+    let t4;
+    let field4;
+    let t5;
+    let field5;
+    let t6;
+    let field6;
+    let t7;
+    let field7;
+    let t8;
+    let field8;
+    let t9;
+    let field9;
+    let t10;
+    let field10;
+    let t11;
+    let field11;
+    let t12;
+    let field12;
+    let t13;
+    let br0;
+    let t14;
+    let div0;
+    let h60;
+    let t16;
+    let table0;
+    let thead0;
+    let t24;
+    let tbody0;
+    let tr1;
+    let th4;
+    let t26;
+    let td0;
+    let t27;
+    let t28;
+    let td1;
+    let t29;
+    let t30;
+    let td2;
+    let t31;
+    let t32;
+    let tr2;
+    let th5;
+    let t34;
+    let td3;
+    let t35;
+    let t36;
+    let td4;
+    let t37;
+    let t38;
+    let td5;
+    let t39;
+    let t40;
+    let tr3;
+    let th6;
+    let t42;
+    let td6;
+    let t43;
+    let t44;
+    let td7;
+    let t45;
+    let t46;
+    let td8;
+    let t47;
+    let t48;
+    let tr4;
+    let th7;
+    let t50;
+    let td9;
+    let t51;
+    let t52;
+    let td10;
+    let t53;
+    let t54;
+    let td11;
+    let t55;
+    let t56;
+    let tr5;
+    let th8;
+    let t58;
+    let td12;
+    let t59;
+    let t60;
+    let td13;
+    let t61;
+    let t62;
+    let td14;
+    let t63;
+    let t64;
+    let br1;
+    let t65;
+    let div1;
+    let h61;
+    let t67;
+    let table1;
+    let thead1;
+    let t77;
+    let tbody1;
+    let t78;
+    let br2;
+    let t79;
+    let div2;
+    let h62;
+    let t81;
+    let table2;
+    let thead2;
+    let t91;
+    let tbody2;
+    let t92;
+    let br3;
+    let t93;
+    let div3;
+    let h63;
+    let t95;
+    let table3;
+    let thead3;
+    let t103;
+    let tbody3;
+    let t104;
+    let br4;
+    let t105;
+    let div4;
+    let h64;
+    let t107;
+    let table4;
+    let thead4;
+    let t115;
+    let tbody4;
+    let t116;
+    let br5;
+    let t117;
+    let div5;
+    let h65;
+    let t119;
+    let table5;
+    let thead5;
+    let t129;
+    let tbody5;
+    let t130;
+    let br6;
+    let t131;
+    let div6;
+    let h66;
+    let t133;
+    let table6;
+    let thead6;
+    let t143;
+    let tbody6;
+    let current;
+    function select_block_type_2(ctx2, dirty) {
+      if (
+        /*status*/
+        ctx2[19] > 10
+      )
+        return create_if_block_142;
+      return create_else_block2;
+    }
+    let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1]);
+    let if_block0 = current_block_type(ctx);
+    field0 = new Field_default({
+      props: {
+        name: "Nama Lengkap",
+        $$slots: { default: [create_default_slot_172] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jabatan Fungsional",
+        $$slots: { default: [create_default_slot_162] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "NIP",
+        $$slots: { default: [create_default_slot_152] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "NIDN",
+        $$slots: { default: [create_default_slot_142] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Tempat Lahir",
+        $$slots: { default: [create_default_slot_133] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Tanggal Lahir",
+        $$slots: { default: [create_default_slot_123] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Alamat Rumah",
+        $$slots: { default: [create_default_slot_112] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Telp/Fax Rumah",
+        $$slots: { default: [create_default_slot_102] },
+        $$scope: { ctx }
+      }
+    });
+    field8 = new Field_default({
+      props: {
+        name: "Nomoh Handphone",
+        $$slots: { default: [create_default_slot_92] },
+        $$scope: { ctx }
+      }
+    });
+    field9 = new Field_default({
+      props: {
+        name: "Alamat Kantor",
+        $$slots: { default: [create_default_slot_82] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "Telp/Fax Kantor",
+        $$slots: { default: [create_default_slot_72] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "Email",
+        $$slots: { default: [create_default_slot_62] },
+        $$scope: { ctx }
+      }
+    });
+    field12 = new Field_default({
+      props: {
+        name: "Mata Kuliah",
+        $$slots: { default: [create_default_slot_53] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*dataPP*/
+      ctx[1] && create_if_block_123(ctx)
+    );
+    let if_block2 = (
+      /*dataPM*/
+      ctx[2] && create_if_block_112(ctx)
+    );
+    let if_block3 = (
+      /*dataPD*/
+      ctx[3] && create_if_block_102(ctx)
+    );
+    let if_block4 = (
+      /*dataPPub*/
+      ctx[4] && create_if_block_93(ctx)
+    );
+    let if_block5 = (
+      /*dataPPB*/
+      ctx[5] && create_if_block_83(ctx)
+    );
+    let if_block6 = (
+      /*dataPHKI*/
+      ctx[6] && create_if_block_73(ctx)
+    );
+    return {
+      c() {
+        if_block0.c();
+        t0 = space();
+        create_component(field0.$$.fragment);
+        t1 = space();
+        create_component(field1.$$.fragment);
+        t2 = space();
+        create_component(field2.$$.fragment);
+        t3 = space();
+        create_component(field3.$$.fragment);
+        t4 = space();
+        create_component(field4.$$.fragment);
+        t5 = space();
+        create_component(field5.$$.fragment);
+        t6 = space();
+        create_component(field6.$$.fragment);
+        t7 = space();
+        create_component(field7.$$.fragment);
+        t8 = space();
+        create_component(field8.$$.fragment);
+        t9 = space();
+        create_component(field9.$$.fragment);
+        t10 = space();
+        create_component(field10.$$.fragment);
+        t11 = space();
+        create_component(field11.$$.fragment);
+        t12 = space();
+        create_component(field12.$$.fragment);
+        t13 = space();
+        br0 = element("br");
+        t14 = space();
+        div0 = element("div");
+        h60 = element("h6");
+        h60.textContent = "Riwayat Pendidikan";
+        t16 = space();
+        table0 = element("table");
+        thead0 = element("thead");
+        thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
+        t24 = space();
+        tbody0 = element("tbody");
+        tr1 = element("tr");
+        th4 = element("th");
+        th4.textContent = "Nama Perguruan Tinggi";
+        t26 = space();
+        td0 = element("td");
+        t27 = text(
+          /*pertiS1*/
+          ctx[42]
+        );
+        t28 = space();
+        td1 = element("td");
+        t29 = text(
+          /*pertiS2*/
+          ctx[43]
+        );
+        t30 = space();
+        td2 = element("td");
+        t31 = text(
+          /*pertiS3*/
+          ctx[44]
+        );
+        t32 = space();
+        tr2 = element("tr");
+        th5 = element("th");
+        th5.textContent = "Bidang Ilmu";
+        t34 = space();
+        td3 = element("td");
+        t35 = text(
+          /*bidangIlmuS1*/
+          ctx[45]
+        );
+        t36 = space();
+        td4 = element("td");
+        t37 = text(
+          /*bidangIlmuS2*/
+          ctx[46]
+        );
+        t38 = space();
+        td5 = element("td");
+        t39 = text(
+          /*bidangIlmuS3*/
+          ctx[47]
+        );
+        t40 = space();
+        tr3 = element("tr");
+        th6 = element("th");
+        th6.textContent = "Tahun Masuk";
+        t42 = space();
+        td6 = element("td");
+        t43 = text(
+          /*tahunMasukS1*/
+          ctx[48]
+        );
+        t44 = space();
+        td7 = element("td");
+        t45 = text(
+          /*tahunMasukS2*/
+          ctx[49]
+        );
+        t46 = space();
+        td8 = element("td");
+        t47 = text(
+          /*tahunMasukS3*/
+          ctx[50]
+        );
+        t48 = space();
+        tr4 = element("tr");
+        th7 = element("th");
+        th7.textContent = "Tahun Lulus";
+        t50 = space();
+        td9 = element("td");
+        t51 = text(
+          /*tahunLulusS1*/
+          ctx[51]
+        );
+        t52 = space();
+        td10 = element("td");
+        t53 = text(
+          /*tahunLulusS2*/
+          ctx[52]
+        );
+        t54 = space();
+        td11 = element("td");
+        t55 = text(
+          /*tahunLulusS3*/
+          ctx[53]
+        );
+        t56 = space();
+        tr5 = element("tr");
+        th8 = element("th");
+        th8.textContent = "Judul Skripsi/Tesis/Disertasi";
+        t58 = space();
+        td12 = element("td");
+        t59 = text(
+          /*judulTugasAkhirS1*/
+          ctx[54]
+        );
+        t60 = space();
+        td13 = element("td");
+        t61 = text(
+          /*judulTugasAkhirS2*/
+          ctx[55]
+        );
+        t62 = space();
+        td14 = element("td");
+        t63 = text(
+          /*judulTugasAkhirS3*/
+          ctx[56]
+        );
+        t64 = space();
+        br1 = element("br");
+        t65 = space();
+        div1 = element("div");
+        h61 = element("h6");
+        h61.textContent = "Pengalaman Penelitian";
+        t67 = space();
+        table1 = element("table");
+        thead1 = element("thead");
+        thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t77 = space();
+        tbody1 = element("tbody");
+        if (if_block1)
+          if_block1.c();
+        t78 = space();
+        br2 = element("br");
+        t79 = space();
+        div2 = element("div");
+        h62 = element("h6");
+        h62.textContent = "Pengalaman Pengabdian Masyarakat";
+        t81 = space();
+        table2 = element("table");
+        thead2 = element("thead");
+        thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t91 = space();
+        tbody2 = element("tbody");
+        if (if_block2)
+          if_block2.c();
+        t92 = space();
+        br3 = element("br");
+        t93 = space();
+        div3 = element("div");
+        h63 = element("h6");
+        h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
+        t95 = space();
+        table3 = element("table");
+        thead3 = element("thead");
+        thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
+        t103 = space();
+        tbody3 = element("tbody");
+        if (if_block3)
+          if_block3.c();
+        t104 = space();
+        br4 = element("br");
+        t105 = space();
+        div4 = element("div");
+        h64 = element("h6");
+        h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
+        t107 = space();
+        table4 = element("table");
+        thead4 = element("thead");
+        thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
+        t115 = space();
+        tbody4 = element("tbody");
+        if (if_block4)
+          if_block4.c();
+        t116 = space();
+        br5 = element("br");
+        t117 = space();
+        div5 = element("div");
+        h65 = element("h6");
+        h65.textContent = "Pengalaman Penulisan Buku";
+        t119 = space();
+        table5 = element("table");
+        thead5 = element("thead");
+        thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
+        t129 = space();
+        tbody5 = element("tbody");
+        if (if_block5)
+          if_block5.c();
+        t130 = space();
+        br6 = element("br");
+        t131 = space();
+        div6 = element("div");
+        h66 = element("h6");
+        h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
+        t133 = space();
+        table6 = element("table");
+        thead6 = element("thead");
+        thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
+        t143 = space();
+        tbody6 = element("tbody");
+        if (if_block6)
+          if_block6.c();
+        attr(h60, "class", "title is-6");
+        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h61, "class", "title is-6");
+        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h62, "class", "title is-6");
+        attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h63, "class", "title is-6");
+        attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h64, "class", "title is-6");
+        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h65, "class", "title is-6");
+        attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h66, "class", "title is-6");
+        attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field0, target, anchor);
+        insert(target, t1, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t2, anchor);
+        mount_component(field2, target, anchor);
+        insert(target, t3, anchor);
+        mount_component(field3, target, anchor);
+        insert(target, t4, anchor);
+        mount_component(field4, target, anchor);
+        insert(target, t5, anchor);
+        mount_component(field5, target, anchor);
+        insert(target, t6, anchor);
+        mount_component(field6, target, anchor);
+        insert(target, t7, anchor);
+        mount_component(field7, target, anchor);
+        insert(target, t8, anchor);
+        mount_component(field8, target, anchor);
+        insert(target, t9, anchor);
+        mount_component(field9, target, anchor);
+        insert(target, t10, anchor);
+        mount_component(field10, target, anchor);
+        insert(target, t11, anchor);
+        mount_component(field11, target, anchor);
+        insert(target, t12, anchor);
+        mount_component(field12, target, anchor);
+        insert(target, t13, anchor);
+        insert(target, br0, anchor);
+        insert(target, t14, anchor);
+        insert(target, div0, anchor);
+        append(div0, h60);
+        append(div0, t16);
+        append(div0, table0);
+        append(table0, thead0);
+        append(table0, t24);
+        append(table0, tbody0);
+        append(tbody0, tr1);
+        append(tr1, th4);
+        append(tr1, t26);
+        append(tr1, td0);
+        append(td0, t27);
+        append(tr1, t28);
+        append(tr1, td1);
+        append(td1, t29);
+        append(tr1, t30);
+        append(tr1, td2);
+        append(td2, t31);
+        append(tbody0, t32);
+        append(tbody0, tr2);
+        append(tr2, th5);
+        append(tr2, t34);
+        append(tr2, td3);
+        append(td3, t35);
+        append(tr2, t36);
+        append(tr2, td4);
+        append(td4, t37);
+        append(tr2, t38);
+        append(tr2, td5);
+        append(td5, t39);
+        append(tbody0, t40);
+        append(tbody0, tr3);
+        append(tr3, th6);
+        append(tr3, t42);
+        append(tr3, td6);
+        append(td6, t43);
+        append(tr3, t44);
+        append(tr3, td7);
+        append(td7, t45);
+        append(tr3, t46);
+        append(tr3, td8);
+        append(td8, t47);
+        append(tbody0, t48);
+        append(tbody0, tr4);
+        append(tr4, th7);
+        append(tr4, t50);
+        append(tr4, td9);
+        append(td9, t51);
+        append(tr4, t52);
+        append(tr4, td10);
+        append(td10, t53);
+        append(tr4, t54);
+        append(tr4, td11);
+        append(td11, t55);
+        append(tbody0, t56);
+        append(tbody0, tr5);
+        append(tr5, th8);
+        append(tr5, t58);
+        append(tr5, td12);
+        append(td12, t59);
+        append(tr5, t60);
+        append(tr5, td13);
+        append(td13, t61);
+        append(tr5, t62);
+        append(tr5, td14);
+        append(td14, t63);
+        insert(target, t64, anchor);
+        insert(target, br1, anchor);
+        insert(target, t65, anchor);
+        insert(target, div1, anchor);
+        append(div1, h61);
+        append(div1, t67);
+        append(div1, table1);
+        append(table1, thead1);
+        append(table1, t77);
+        append(table1, tbody1);
+        if (if_block1)
+          if_block1.m(tbody1, null);
+        append(table1, t78);
+        append(table1, br2);
+        insert(target, t79, anchor);
+        insert(target, div2, anchor);
+        append(div2, h62);
+        append(div2, t81);
+        append(div2, table2);
+        append(table2, thead2);
+        append(table2, t91);
+        append(table2, tbody2);
+        if (if_block2)
+          if_block2.m(tbody2, null);
+        insert(target, t92, anchor);
+        insert(target, br3, anchor);
+        insert(target, t93, anchor);
+        insert(target, div3, anchor);
+        append(div3, h63);
+        append(div3, t95);
+        append(div3, table3);
+        append(table3, thead3);
+        append(table3, t103);
+        append(table3, tbody3);
+        if (if_block3)
+          if_block3.m(tbody3, null);
+        insert(target, t104, anchor);
+        insert(target, br4, anchor);
+        insert(target, t105, anchor);
+        insert(target, div4, anchor);
+        append(div4, h64);
+        append(div4, t107);
+        append(div4, table4);
+        append(table4, thead4);
+        append(table4, t115);
+        append(table4, tbody4);
+        if (if_block4)
+          if_block4.m(tbody4, null);
+        insert(target, t116, anchor);
+        insert(target, br5, anchor);
+        insert(target, t117, anchor);
+        insert(target, div5, anchor);
+        append(div5, h65);
+        append(div5, t119);
+        append(div5, table5);
+        append(table5, thead5);
+        append(table5, t129);
+        append(table5, tbody5);
+        if (if_block5)
+          if_block5.m(tbody5, null);
+        insert(target, t130, anchor);
+        insert(target, br6, anchor);
+        insert(target, t131, anchor);
+        insert(target, div6, anchor);
+        append(div6, h66);
+        append(div6, t133);
+        append(div6, table6);
+        append(table6, thead6);
+        append(table6, t143);
+        append(table6, tbody6);
+        if (if_block6)
+          if_block6.m(tbody6, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (current_block_type === (current_block_type = select_block_type_2(ctx2, dirty)) && if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0.d(1);
+          if_block0 = current_block_type(ctx2);
+          if (if_block0) {
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        }
+        const field0_changes = {};
+        if (dirty[0] & /*namaLengkap*/
+        536870912 | dirty[4] & /*$$scope*/
+        32768) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[0] & /*jabatanFungsional*/
+        1073741824 | dirty[4] & /*$$scope*/
+        32768) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[1] & /*nip*/
+        1 | dirty[4] & /*$$scope*/
+        32768) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[1] & /*nidn*/
+        2 | dirty[4] & /*$$scope*/
+        32768) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[1] & /*tempatLahir*/
+        4 | dirty[4] & /*$$scope*/
+        32768) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[1] & /*tanggalLahir*/
+        8 | dirty[4] & /*$$scope*/
+        32768) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[1] & /*alamatRumah*/
+        16 | dirty[4] & /*$$scope*/
+        32768) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[1] & /*telpFaxRumah*/
+        32 | dirty[4] & /*$$scope*/
+        32768) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        const field8_changes = {};
+        if (dirty[1] & /*nomorHandphone*/
+        64 | dirty[4] & /*$$scope*/
+        32768) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        const field9_changes = {};
+        if (dirty[1] & /*alamatKantor*/
+        128 | dirty[4] & /*$$scope*/
+        32768) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[1] & /*telpFaxKantor*/
+        256 | dirty[4] & /*$$scope*/
+        32768) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[1] & /*email*/
+        512 | dirty[4] & /*$$scope*/
+        32768) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+        const field12_changes = {};
+        if (dirty[1] & /*mataKuliah*/
+        1024 | dirty[4] & /*$$scope*/
+        32768) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
+        if (!current || dirty[1] & /*pertiS1*/
+        2048)
+          set_data(
+            t27,
+            /*pertiS1*/
+            ctx2[42]
+          );
+        if (!current || dirty[1] & /*pertiS2*/
+        4096)
+          set_data(
+            t29,
+            /*pertiS2*/
+            ctx2[43]
+          );
+        if (!current || dirty[1] & /*pertiS3*/
+        8192)
+          set_data(
+            t31,
+            /*pertiS3*/
+            ctx2[44]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS1*/
+        16384)
+          set_data(
+            t35,
+            /*bidangIlmuS1*/
+            ctx2[45]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS2*/
+        32768)
+          set_data(
+            t37,
+            /*bidangIlmuS2*/
+            ctx2[46]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS3*/
+        65536)
+          set_data(
+            t39,
+            /*bidangIlmuS3*/
+            ctx2[47]
+          );
+        if (!current || dirty[1] & /*tahunMasukS1*/
+        131072)
+          set_data(
+            t43,
+            /*tahunMasukS1*/
+            ctx2[48]
+          );
+        if (!current || dirty[1] & /*tahunMasukS2*/
+        262144)
+          set_data(
+            t45,
+            /*tahunMasukS2*/
+            ctx2[49]
+          );
+        if (!current || dirty[1] & /*tahunMasukS3*/
+        524288)
+          set_data(
+            t47,
+            /*tahunMasukS3*/
+            ctx2[50]
+          );
+        if (!current || dirty[1] & /*tahunLulusS1*/
+        1048576)
+          set_data(
+            t51,
+            /*tahunLulusS1*/
+            ctx2[51]
+          );
+        if (!current || dirty[1] & /*tahunLulusS2*/
+        2097152)
+          set_data(
+            t53,
+            /*tahunLulusS2*/
+            ctx2[52]
+          );
+        if (!current || dirty[1] & /*tahunLulusS3*/
+        4194304)
+          set_data(
+            t55,
+            /*tahunLulusS3*/
+            ctx2[53]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS1*/
+        8388608)
+          set_data(
+            t59,
+            /*judulTugasAkhirS1*/
+            ctx2[54]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS2*/
+        16777216)
+          set_data(
+            t61,
+            /*judulTugasAkhirS2*/
+            ctx2[55]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS3*/
+        33554432)
+          set_data(
+            t63,
+            /*judulTugasAkhirS3*/
+            ctx2[56]
+          );
+        if (
+          /*dataPP*/
+          ctx2[1]
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_123(ctx2);
+            if_block1.c();
+            if_block1.m(tbody1, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*dataPM*/
+          ctx2[2]
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_112(ctx2);
+            if_block2.c();
+            if_block2.m(tbody2, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*dataPD*/
+          ctx2[3]
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_102(ctx2);
+            if_block3.c();
+            if_block3.m(tbody3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (
+          /*dataPPub*/
+          ctx2[4]
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_93(ctx2);
+            if_block4.c();
+            if_block4.m(tbody4, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
+        }
+        if (
+          /*dataPPB*/
+          ctx2[5]
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block_83(ctx2);
+            if_block5.c();
+            if_block5.m(tbody5, null);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+        if (
+          /*dataPHKI*/
+          ctx2[6]
+        ) {
+          if (if_block6) {
+            if_block6.p(ctx2, dirty);
+          } else {
+            if_block6 = create_if_block_73(ctx2);
+            if_block6.c();
+            if_block6.m(tbody6, null);
+          }
+        } else if (if_block6) {
+          if_block6.d(1);
+          if_block6 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(field8.$$.fragment, local);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        transition_in(field12.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(field8.$$.fragment, local);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        transition_out(field12.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+          detach(t3);
+          detach(t4);
+          detach(t5);
+          detach(t6);
+          detach(t7);
+          detach(t8);
+          detach(t9);
+          detach(t10);
+          detach(t11);
+          detach(t12);
+          detach(t13);
+          detach(br0);
+          detach(t14);
+          detach(div0);
+          detach(t64);
+          detach(br1);
+          detach(t65);
+          detach(div1);
+          detach(t79);
+          detach(div2);
+          detach(t92);
+          detach(br3);
+          detach(t93);
+          detach(div3);
+          detach(t104);
+          detach(br4);
+          detach(t105);
+          detach(div4);
+          detach(t116);
+          detach(br5);
+          detach(t117);
+          detach(div5);
+          detach(t130);
+          detach(br6);
+          detach(t131);
+          detach(div6);
+        }
+        if_block0.d(detaching);
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        destroy_component(field2, detaching);
+        destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+        destroy_component(field5, detaching);
+        destroy_component(field6, detaching);
+        destroy_component(field7, detaching);
+        destroy_component(field8, detaching);
+        destroy_component(field9, detaching);
+        destroy_component(field10, detaching);
+        destroy_component(field11, detaching);
+        destroy_component(field12, detaching);
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+        if (if_block4)
+          if_block4.d();
+        if (if_block5)
+          if_block5.d();
+        if (if_block6)
+          if_block6.d();
+      }
+    };
+  }
+  function create_else_block2(ctx) {
+    let div1;
+    let div0;
+    let p;
+    let strong0;
+    let t1;
+    let a;
+    let strong1;
+    let a_href_value;
+    return {
+      c() {
+        div1 = element("div");
+        div0 = element("div");
+        p = element("p");
+        strong0 = element("strong");
+        strong0.textContent = "Biodata";
+        t1 = text(" sebagai salah satu syarat dalam\r\n                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan\r\n                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,\r\n                     peneliti sanggup menerima sanksinya. Jika ada perubahan,\r\n                     klik\r\n                     ");
+        a = element("a");
+        strong1 = element("strong");
+        strong1.textContent = "Disini!";
+        attr(a, "href", a_href_value = "/admin/profile/" + /*uidProposal*/
+        ctx[57]);
+        set_style(p, "text-align", "justify");
+        attr(div0, "class", "column");
+        attr(div1, "class", "columns notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+        append(div1, div0);
+        append(div0, p);
+        append(p, strong0);
+        append(p, t1);
+        append(p, a);
+        append(a, strong1);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*uidProposal*/
+        67108864 && a_href_value !== (a_href_value = "/admin/profile/" + /*uidProposal*/
+        ctx2[57])) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+        }
+      }
+    };
+  }
+  function create_if_block_142(ctx) {
+    let div1;
+    return {
+      c() {
+        div1 = element("div");
+        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                     sanksinya.</p></div>`;
+        attr(div1, "class", "columns notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+        }
+      }
+    };
+  }
+  function create_default_slot_172(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*namaLengkap*/
+          ctx[29]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*namaLengkap*/
+        536870912)
+          set_data(
+            t,
+            /*namaLengkap*/
+            ctx2[29]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_162(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jabatanFungsional*/
+          ctx[30]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jabatanFungsional*/
+        1073741824)
+          set_data(
+            t,
+            /*jabatanFungsional*/
+            ctx2[30]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_152(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nip*/
+          ctx[31]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nip*/
+        1)
+          set_data(
+            t,
+            /*nip*/
+            ctx2[31]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_142(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nidn*/
+          ctx[32]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nidn*/
+        2)
+          set_data(
+            t,
+            /*nidn*/
+            ctx2[32]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_133(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tempatLahir*/
+          ctx[33]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tempatLahir*/
+        4)
+          set_data(
+            t,
+            /*tempatLahir*/
+            ctx2[33]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_123(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tanggalLahir*/
+          ctx[34]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tanggalLahir*/
+        8)
+          set_data(
+            t,
+            /*tanggalLahir*/
+            ctx2[34]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_112(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatRumah*/
+          ctx[35]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatRumah*/
+        16)
+          set_data(
+            t,
+            /*alamatRumah*/
+            ctx2[35]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_102(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxRumah*/
+          ctx[36]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxRumah*/
+        32)
+          set_data(
+            t,
+            /*telpFaxRumah*/
+            ctx2[36]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_92(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nomorHandphone*/
+          ctx[37]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nomorHandphone*/
+        64)
+          set_data(
+            t,
+            /*nomorHandphone*/
+            ctx2[37]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_82(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatKantor*/
+          ctx[38]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatKantor*/
+        128)
+          set_data(
+            t,
+            /*alamatKantor*/
+            ctx2[38]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_72(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxKantor*/
+          ctx[39]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxKantor*/
+        256)
+          set_data(
+            t,
+            /*telpFaxKantor*/
+            ctx2[39]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_62(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*email*/
+          ctx[40]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*email*/
+        512)
+          set_data(
+            t,
+            /*email*/
+            ctx2[40]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_if_block_132(ctx) {
+    let each_1_anchor;
+    let each_value_6 = ensure_array_like(
+      /*mataKuliah*/
+      ctx[41]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_6.length; i += 1) {
+      each_blocks[i] = create_each_block_62(get_each_context_62(ctx, each_value_6, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        1024) {
+          each_value_6 = ensure_array_like(
+            /*mataKuliah*/
+            ctx2[41]
+          );
+          let i;
+          for (i = 0; i < each_value_6.length; i += 1) {
+            const child_ctx = get_each_context_62(ctx2, each_value_6, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_62(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_6.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_62(ctx) {
+    let tr;
+    let td;
+    let t0_value = (
+      /*matkul*/
+      ctx[131].label + ""
+    );
+    let t0;
+    let t1;
+    return {
+      c() {
+        tr = element("tr");
+        td = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td);
+        append(td, t0);
+        append(tr, t1);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        1024 && t0_value !== (t0_value = /*matkul*/
+        ctx2[131].label + ""))
+          set_data(t0, t0_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_53(ctx) {
     let table;
     let thead;
-    let t3;
+    let t1;
     let tbody;
-    let tr1;
+    let if_block = (
+      /*mataKuliah*/
+      ctx[41] && /*mataKuliah*/
+      ctx[41].length > 0 && create_if_block_132(ctx)
+    );
+    return {
+      c() {
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Mata Kuliah</th></tr>`;
+        t1 = space();
+        tbody = element("tbody");
+        if (if_block)
+          if_block.c();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t1);
+        append(table, tbody);
+        if (if_block)
+          if_block.m(tbody, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*mataKuliah*/
+          ctx2[41] && /*mataKuliah*/
+          ctx2[41].length > 0
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_132(ctx2);
+            if_block.c();
+            if_block.m(tbody, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(table);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_if_block_123(ctx) {
+    let each_1_anchor;
+    let each_value_5 = ensure_array_like(
+      /*dataPP*/
+      ctx[1]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_5.length; i += 1) {
+      each_blocks[i] = create_each_block_52(get_each_context_52(ctx, each_value_5, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        2) {
+          each_value_5 = ensure_array_like(
+            /*dataPP*/
+            ctx2[1]
+          );
+          let i;
+          for (i = 0; i < each_value_5.length; i += 1) {
+            const child_ctx = get_each_context_52(ctx2, each_value_5, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_52(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_5.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_52(ctx) {
+    let tr;
     let td0;
-    let status_1;
-    let t4;
+    let t0_value = (
+      /*PP*/
+      ctx[128].tahun_penelitian + ""
+    );
+    let t0;
+    let t1;
     let td1;
-    let div0;
-    let select;
-    let option0;
-    let option1;
-    let option2;
+    let t2_value = (
+      /*PP*/
+      ctx[128].judul_penelitian + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PP*/
+      ctx[128].role_penelitian + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PP*/
+      ctx[128].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PP*/
+      ctx[128].jumlah + ""
+    );
     let t8;
-    let div1;
-    let p;
-    let button;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        2 && t0_value !== (t0_value = /*PP*/
+        ctx2[128].tahun_penelitian + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t2_value !== (t2_value = /*PP*/
+        ctx2[128].judul_penelitian + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t4_value !== (t4_value = /*PP*/
+        ctx2[128].role_penelitian + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t6_value !== (t6_value = /*PP*/
+        ctx2[128].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t8_value !== (t8_value = /*PP*/
+        ctx2[128].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_112(ctx) {
+    let each_1_anchor;
+    let each_value_4 = ensure_array_like(
+      /*dataPM*/
+      ctx[2]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_4.length; i += 1) {
+      each_blocks[i] = create_each_block_42(get_each_context_42(ctx, each_value_4, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        4) {
+          each_value_4 = ensure_array_like(
+            /*dataPM*/
+            ctx2[2]
+          );
+          let i;
+          for (i = 0; i < each_value_4.length; i += 1) {
+            const child_ctx = get_each_context_42(ctx2, each_value_4, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_42(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_4.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_42(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PM*/
+      ctx[125].tahun_pengmas + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PM*/
+      ctx[125].judul_pengmas + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PM*/
+      ctx[125].role_pengmas + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PM*/
+      ctx[125].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PM*/
+      ctx[125].jumlah + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        4 && t0_value !== (t0_value = /*PM*/
+        ctx2[125].tahun_pengmas + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t2_value !== (t2_value = /*PM*/
+        ctx2[125].judul_pengmas + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t4_value !== (t4_value = /*PM*/
+        ctx2[125].role_pengmas + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t6_value !== (t6_value = /*PM*/
+        ctx2[125].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t8_value !== (t8_value = /*PM*/
+        ctx2[125].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_102(ctx) {
+    let each_1_anchor;
+    let each_value_3 = ensure_array_like(
+      /*dataPD*/
+      ctx[3]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_3.length; i += 1) {
+      each_blocks[i] = create_each_block_32(get_each_context_32(ctx, each_value_3, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        8) {
+          each_value_3 = ensure_array_like(
+            /*dataPD*/
+            ctx2[3]
+          );
+          let i;
+          for (i = 0; i < each_value_3.length; i += 1) {
+            const child_ctx = get_each_context_32(ctx2, each_value_3, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_32(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_3.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_32(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PD*/
+      ctx[122].tahun_diseminasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PD*/
+      ctx[122].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PD*/
+      ctx[122].nama_pemakalah + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PD*/
+      ctx[122].nama_pertemuan + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        8 && t0_value !== (t0_value = /*PD*/
+        ctx2[122].tahun_diseminasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t2_value !== (t2_value = /*PD*/
+        ctx2[122].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t4_value !== (t4_value = /*PD*/
+        ctx2[122].nama_pemakalah + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t6_value !== (t6_value = /*PD*/
+        ctx2[122].nama_pertemuan + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_93(ctx) {
+    let each_1_anchor;
+    let each_value_2 = ensure_array_like(
+      /*dataPPub*/
+      ctx[4]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_2.length; i += 1) {
+      each_blocks[i] = create_each_block_22(get_each_context_22(ctx, each_value_2, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        16) {
+          each_value_2 = ensure_array_like(
+            /*dataPPub*/
+            ctx2[4]
+          );
+          let i;
+          for (i = 0; i < each_value_2.length; i += 1) {
+            const child_ctx = get_each_context_22(ctx2, each_value_2, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_22(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_2.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_22(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPub*/
+      ctx[119].tahun_publikasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPub*/
+      ctx[119].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPub*/
+      ctx[119].nama_jurnal + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPub*/
+      ctx[119].impact + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        16 && t0_value !== (t0_value = /*PPub*/
+        ctx2[119].tahun_publikasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t2_value !== (t2_value = /*PPub*/
+        ctx2[119].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t4_value !== (t4_value = /*PPub*/
+        ctx2[119].nama_jurnal + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t6_value !== (t6_value = /*PPub*/
+        ctx2[119].impact + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_83(ctx) {
+    let each_1_anchor;
+    let each_value_1 = ensure_array_like(
+      /*dataPPB*/
+      ctx[5]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_1.length; i += 1) {
+      each_blocks[i] = create_each_block_12(get_each_context_12(ctx, each_value_1, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        32) {
+          each_value_1 = ensure_array_like(
+            /*dataPPB*/
+            ctx2[5]
+          );
+          let i;
+          for (i = 0; i < each_value_1.length; i += 1) {
+            const child_ctx = get_each_context_12(ctx2, each_value_1, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_12(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_1.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_12(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPB*/
+      ctx[116].tahun_buku + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPB*/
+      ctx[116].judul_buku + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPB*/
+      ctx[116].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPB*/
+      ctx[116].penerbit + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PPB*/
+      ctx[116].isbn + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        32 && t0_value !== (t0_value = /*PPB*/
+        ctx2[116].tahun_buku + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t2_value !== (t2_value = /*PPB*/
+        ctx2[116].judul_buku + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t4_value !== (t4_value = /*PPB*/
+        ctx2[116].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t6_value !== (t6_value = /*PPB*/
+        ctx2[116].penerbit + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t8_value !== (t8_value = /*PPB*/
+        ctx2[116].isbn + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_73(ctx) {
+    let each_1_anchor;
+    let each_value = ensure_array_like(
+      /*dataPHKI*/
+      ctx[6]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block5(get_each_context5(ctx, each_value, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        64) {
+          each_value = ensure_array_like(
+            /*dataPHKI*/
+            ctx2[6]
+          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context5(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block5(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block5(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PHKI*/
+      ctx[113].tahun_hki + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PHKI*/
+      ctx[113].judul_hki + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PHKI*/
+      ctx[113].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PHKI*/
+      ctx[113].jenis_hki + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PHKI*/
+      ctx[113].no_hki + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        64 && t0_value !== (t0_value = /*PHKI*/
+        ctx2[113].tahun_hki + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t2_value !== (t2_value = /*PHKI*/
+        ctx2[113].judul_hki + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t4_value !== (t4_value = /*PHKI*/
+        ctx2[113].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t6_value !== (t6_value = /*PHKI*/
+        ctx2[113].jenis_hki + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t8_value !== (t8_value = /*PHKI*/
+        ctx2[113].no_hki + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_53(ctx) {
+    let field0;
+    let t;
+    let field1;
     let current;
-    let mounted;
-    let dispose;
+    field0 = new Field_default({
+      props: {
+        name: "Status PPM",
+        $$slots: { default: [create_default_slot_49] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Status Pendanaan",
+        $$slots: { default: [create_default_slot_311] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field0.$$.fragment);
+        t = space();
+        create_component(field1.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(field0, target, anchor);
+        insert(target, t, anchor);
+        mount_component(field1, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty[0] & /*data*/
+        1 | dirty[4] & /*$$scope*/
+        32768) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[4] & /*$$scope*/
+        32768) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+      }
+    };
+  }
+  function create_default_slot_49(ctx) {
+    let status_1;
+    let current;
     status_1 = new Status_default({ props: { code: (
       /*data*/
       ctx[0].status
     ) } });
     return {
       c() {
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Status PPM</th> <th>Status Pendanaan</th></tr>`;
-        t3 = space();
-        tbody = element("tbody");
-        tr1 = element("tr");
-        td0 = element("td");
         create_component(status_1.$$.fragment);
-        t4 = space();
-        td1 = element("td");
-        div0 = element("div");
-        select = element("select");
-        option0 = element("option");
-        option0.textContent = "Dana belum dicairkan";
-        option1 = element("option");
-        option1.textContent = "50% dana sudah dicairkan";
-        option2 = element("option");
-        option2.textContent = "100% dana sudah dicairkan";
-        t8 = space();
-        div1 = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Simpan";
-        option0.__value = "Dana belum dicairkan";
-        set_input_value(option0, option0.__value);
-        option1.__value = "50% dana sudah dicairkan";
-        set_input_value(option1, option1.__value);
-        option2.__value = "100% dana sudah dicairkan";
-        set_input_value(option2, option2.__value);
-        attr(div0, "class", "select is-normal");
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div1, "class", "field is-grouped is-grouped-left");
       },
       m(target, anchor) {
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t3);
-        append(table, tbody);
-        append(tbody, tr1);
-        append(tr1, td0);
-        mount_component(status_1, td0, null);
-        append(tr1, t4);
-        append(tr1, td1);
-        append(td1, div0);
-        append(div0, select);
-        append(select, option0);
-        append(select, option1);
-        append(select, option2);
-        insert(target, t8, anchor);
-        insert(target, div1, anchor);
-        append(div1, p);
-        append(p, button);
+        mount_component(status_1, target, anchor);
         current = true;
-        if (!mounted) {
-          dispose = listen(button, "click", handleSubmitDana);
-          mounted = true;
-        }
       },
       p(ctx2, dirty) {
         const status_1_changes = {};
@@ -16578,18 +19273,67 @@
         current = false;
       },
       d(detaching) {
-        if (detaching) {
-          detach(table);
-          detach(t8);
-          detach(div1);
-        }
-        destroy_component(status_1);
-        mounted = false;
-        dispose();
+        destroy_component(status_1, detaching);
       }
     };
   }
-  function create_if_block_34(ctx) {
+  function create_default_slot_311(ctx) {
+    let div3;
+    let div1;
+    let div0;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let t3;
+    let div2;
+    return {
+      c() {
+        div3 = element("div");
+        div1 = element("div");
+        div0 = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Dana belum dicairkan";
+        option1 = element("option");
+        option1.textContent = "50% dana sudah dicairkan";
+        option2 = element("option");
+        option2.textContent = "100% dana sudah dicairkan";
+        t3 = space();
+        div2 = element("div");
+        div2.innerHTML = `<button type="submit" class="button is-info">Simpan</button>`;
+        option0.__value = "Dana belum dicairkan";
+        set_input_value(option0, option0.__value);
+        option1.__value = "50% dana sudah dicairkan";
+        set_input_value(option1, option1.__value);
+        option2.__value = "100% dana sudah dicairkan";
+        set_input_value(option2, option2.__value);
+        attr(select, "name", "country");
+        attr(div0, "class", "select");
+        attr(div1, "class", "control");
+        attr(div2, "class", "control");
+        attr(div3, "class", "field has-addons");
+      },
+      m(target, anchor) {
+        insert(target, div3, anchor);
+        append(div3, div1);
+        append(div1, div0);
+        append(div0, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(div3, t3);
+        append(div3, div2);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div3);
+        }
+      }
+    };
+  }
+  function create_if_block_44(ctx) {
     let field0;
     let updating_value;
     let updating_selected;
@@ -16614,17 +19358,13 @@
     let t6;
     let br3;
     let t7;
-    let div;
-    let p;
-    let button;
+    let field4;
     let current;
-    let mounted;
-    let dispose;
     function field0_value_binding(value) {
-      ctx[57](value);
+      ctx[96](value);
     }
     function field0_selected_binding(value) {
-      ctx[58](value);
+      ctx[97](value);
     }
     let field0_props = {
       name: "Ka. Departemen",
@@ -16632,31 +19372,31 @@
       view: true,
       userId: (
         /*kdeptSelected*/
-        ctx[19]
+        ctx[25]
       )
     };
     if (
       /*ka_departemen*/
-      ctx[14] !== void 0
+      ctx[20] !== void 0
     ) {
       field0_props.value = /*ka_departemen*/
-      ctx[14];
+      ctx[20];
     }
     if (
       /*kdeptSelected*/
-      ctx[19] !== void 0
+      ctx[25] !== void 0
     ) {
       field0_props.selected = /*kdeptSelected*/
-      ctx[19];
+      ctx[25];
     }
     field0 = new Field_default({ props: field0_props });
     binding_callbacks.push(() => bind(field0, "value", field0_value_binding));
     binding_callbacks.push(() => bind(field0, "selected", field0_selected_binding));
     function field1_value_binding(value) {
-      ctx[59](value);
+      ctx[98](value);
     }
     function field1_selected_binding(value) {
-      ctx[60](value);
+      ctx[99](value);
     }
     let field1_props = {
       name: "Ka. LPPM",
@@ -16664,31 +19404,31 @@
       view: true,
       userId: (
         /*klppmSelected*/
-        ctx[20]
+        ctx[26]
       )
     };
     if (
       /*ka_lppm*/
-      ctx[15] !== void 0
+      ctx[21] !== void 0
     ) {
       field1_props.value = /*ka_lppm*/
-      ctx[15];
+      ctx[21];
     }
     if (
       /*klppmSelected*/
-      ctx[20] !== void 0
+      ctx[26] !== void 0
     ) {
       field1_props.selected = /*klppmSelected*/
-      ctx[20];
+      ctx[26];
     }
     field1 = new Field_default({ props: field1_props });
     binding_callbacks.push(() => bind(field1, "value", field1_value_binding));
     binding_callbacks.push(() => bind(field1, "selected", field1_selected_binding));
     function field2_value_binding(value) {
-      ctx[61](value);
+      ctx[100](value);
     }
     function field2_selected_binding(value) {
-      ctx[62](value);
+      ctx[101](value);
     }
     let field2_props = {
       name: "Reviewer",
@@ -16696,31 +19436,31 @@
       view: true,
       userId: (
         /*reviewerSelected*/
-        ctx[22]
+        ctx[28]
       )
     };
     if (
       /*reviewer*/
-      ctx[16] !== void 0
+      ctx[22] !== void 0
     ) {
       field2_props.value = /*reviewer*/
-      ctx[16];
+      ctx[22];
     }
     if (
       /*reviewerSelected*/
-      ctx[22] !== void 0
+      ctx[28] !== void 0
     ) {
       field2_props.selected = /*reviewerSelected*/
-      ctx[22];
+      ctx[28];
     }
     field2 = new Field_default({ props: field2_props });
     binding_callbacks.push(() => bind(field2, "value", field2_value_binding));
     binding_callbacks.push(() => bind(field2, "selected", field2_selected_binding));
     function field3_value_binding(value) {
-      ctx[63](value);
+      ctx[102](value);
     }
     function field3_selected_binding(value) {
-      ctx[64](value);
+      ctx[103](value);
     }
     let field3_props = {
       name: "Ka. Pusat Kajian",
@@ -16728,26 +19468,32 @@
       view: true,
       userId: (
         /*kpkSelected*/
-        ctx[21]
+        ctx[27]
       )
     };
     if (
       /*ka_pusat_kajian*/
-      ctx[17] !== void 0
+      ctx[23] !== void 0
     ) {
       field3_props.value = /*ka_pusat_kajian*/
-      ctx[17];
+      ctx[23];
     }
     if (
       /*kpkSelected*/
-      ctx[21] !== void 0
+      ctx[27] !== void 0
     ) {
       field3_props.selected = /*kpkSelected*/
-      ctx[21];
+      ctx[27];
     }
     field3 = new Field_default({ props: field3_props });
     binding_callbacks.push(() => bind(field3, "value", field3_value_binding));
     binding_callbacks.push(() => bind(field3, "selected", field3_selected_binding));
+    field4 = new Field_default({
+      props: {
+        $$slots: { default: [create_default_slot_211] },
+        $$scope: { ctx }
+      }
+    });
     return {
       c() {
         create_component(field0.$$.fragment);
@@ -16766,13 +19512,7 @@
         t6 = space();
         br3 = element("br");
         t7 = space();
-        div = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Submit";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-left");
+        create_component(field4.$$.fragment);
       },
       m(target, anchor) {
         mount_component(field0, target, anchor);
@@ -16791,101 +19531,96 @@
         insert(target, t6, anchor);
         insert(target, br3, anchor);
         insert(target, t7, anchor);
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, button);
+        mount_component(field4, target, anchor);
         current = true;
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*handleSubmitReviewer*/
-            ctx[35]
-          );
-          mounted = true;
-        }
       },
       p(ctx2, dirty) {
         const field0_changes = {};
         if (dirty[0] & /*kdeptSelected*/
-        524288)
+        33554432)
           field0_changes.userId = /*kdeptSelected*/
-          ctx2[19];
+          ctx2[25];
         if (!updating_value && dirty[0] & /*ka_departemen*/
-        16384) {
+        1048576) {
           updating_value = true;
           field0_changes.value = /*ka_departemen*/
-          ctx2[14];
+          ctx2[20];
           add_flush_callback(() => updating_value = false);
         }
         if (!updating_selected && dirty[0] & /*kdeptSelected*/
-        524288) {
+        33554432) {
           updating_selected = true;
           field0_changes.selected = /*kdeptSelected*/
-          ctx2[19];
+          ctx2[25];
           add_flush_callback(() => updating_selected = false);
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*klppmSelected*/
-        1048576)
+        67108864)
           field1_changes.userId = /*klppmSelected*/
-          ctx2[20];
+          ctx2[26];
         if (!updating_value_1 && dirty[0] & /*ka_lppm*/
-        32768) {
+        2097152) {
           updating_value_1 = true;
           field1_changes.value = /*ka_lppm*/
-          ctx2[15];
+          ctx2[21];
           add_flush_callback(() => updating_value_1 = false);
         }
         if (!updating_selected_1 && dirty[0] & /*klppmSelected*/
-        1048576) {
+        67108864) {
           updating_selected_1 = true;
           field1_changes.selected = /*klppmSelected*/
-          ctx2[20];
+          ctx2[26];
           add_flush_callback(() => updating_selected_1 = false);
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*reviewerSelected*/
-        4194304)
+        268435456)
           field2_changes.userId = /*reviewerSelected*/
-          ctx2[22];
+          ctx2[28];
         if (!updating_value_2 && dirty[0] & /*reviewer*/
-        65536) {
+        4194304) {
           updating_value_2 = true;
           field2_changes.value = /*reviewer*/
-          ctx2[16];
+          ctx2[22];
           add_flush_callback(() => updating_value_2 = false);
         }
         if (!updating_selected_2 && dirty[0] & /*reviewerSelected*/
-        4194304) {
+        268435456) {
           updating_selected_2 = true;
           field2_changes.selected = /*reviewerSelected*/
-          ctx2[22];
+          ctx2[28];
           add_flush_callback(() => updating_selected_2 = false);
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kpkSelected*/
-        2097152)
+        134217728)
           field3_changes.userId = /*kpkSelected*/
-          ctx2[21];
+          ctx2[27];
         if (!updating_value_3 && dirty[0] & /*ka_pusat_kajian*/
-        131072) {
+        8388608) {
           updating_value_3 = true;
           field3_changes.value = /*ka_pusat_kajian*/
-          ctx2[17];
+          ctx2[23];
           add_flush_callback(() => updating_value_3 = false);
         }
         if (!updating_selected_3 && dirty[0] & /*kpkSelected*/
-        2097152) {
+        134217728) {
           updating_selected_3 = true;
           field3_changes.selected = /*kpkSelected*/
-          ctx2[21];
+          ctx2[27];
           add_flush_callback(() => updating_selected_3 = false);
         }
         field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[4] & /*$$scope*/
+        32768) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
       },
       i(local) {
         if (current)
@@ -16894,6 +19629,7 @@
         transition_in(field1.$$.fragment, local);
         transition_in(field2.$$.fragment, local);
         transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -16901,6 +19637,7 @@
         transition_out(field1.$$.fragment, local);
         transition_out(field2.$$.fragment, local);
         transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -16917,56 +19654,86 @@
           detach(t6);
           detach(br3);
           detach(t7);
-          detach(div);
         }
         destroy_component(field0, detaching);
         destroy_component(field1, detaching);
         destroy_component(field2, detaching);
         destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+      }
+    };
+  }
+  function create_default_slot_211(ctx) {
+    let button;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        button = element("button");
+        button.textContent = "Submit";
+        attr(button, "class", "button is-info");
+      },
+      m(target, anchor) {
+        insert(target, button, anchor);
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*handleSubmitReviewer*/
+            ctx[72]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(button);
+        }
         mounted = false;
         dispose();
       }
     };
   }
-  function create_if_block_24(ctx) {
+  function create_if_block_34(ctx) {
     let div1;
-    let t3;
-    let br;
-    let t4;
-    let div3;
     return {
       c() {
         div1 = element("div");
         div1.innerHTML = `<div class="column"><p>Lorem ipsum <strong>LogBook</strong> sit amet consectetur adipisicing
                   elit. Totam suscipit placeat amet.</p></div>`;
-        t3 = space();
-        br = element("br");
-        t4 = space();
-        div3 = element("div");
-        div3.innerHTML = `<div class="column"><p>Lorem ipsum <strong>Monev</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.</p></div>`;
         attr(div1, "class", "columns notification is-info is-light");
-        attr(div3, "class", "columns notification is-success is-light");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
-        insert(target, t3, anchor);
-        insert(target, br, anchor);
-        insert(target, t4, anchor);
-        insert(target, div3, anchor);
       },
       d(detaching) {
         if (detaching) {
           detach(div1);
-          detach(t3);
-          detach(br);
-          detach(t4);
-          detach(div3);
         }
       }
     };
   }
-  function create_if_block_15(ctx) {
+  function create_if_block_24(ctx) {
+    let div1;
+    return {
+      c() {
+        div1 = element("div");
+        div1.innerHTML = `<div class="column"><p>Lorem ipsum <strong>Monev</strong> sit amet consectetur adipisicing
+                  elit. Totam suscipit placeat amet.</p></div>`;
+        attr(div1, "class", "columns notification is-success is-light");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+        }
+      }
+    };
+  }
+  function create_if_block_110(ctx) {
     let div1;
     return {
       c() {
@@ -17000,33 +19767,47 @@
     let t9;
     let li4;
     let t11;
-    let t12;
+    let li5;
     let t13;
-    let t14;
+    let li6;
     let t15;
-    let if_block4_anchor;
+    let t16;
+    let t17;
+    let t18;
+    let t19;
+    let t20;
+    let t21;
+    let if_block6_anchor;
     let current;
     let mounted;
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[26] === true && create_if_block_53(ctx)
+      ctx[61] === true && create_if_block_15(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[27] === true && create_if_block_44(ctx)
+      ctx[62] === true && create_if_block_63(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[28] === true && create_if_block_34(ctx)
+      ctx[63] === true && create_if_block_53(ctx)
     );
     let if_block3 = (
       /*tab4*/
-      ctx[29] === true && create_if_block_24(ctx)
+      ctx[64] === true && create_if_block_44(ctx)
     );
     let if_block4 = (
       /*tab5*/
-      ctx[30] === true && create_if_block_15(ctx)
+      ctx[65] === true && create_if_block_34(ctx)
+    );
+    let if_block5 = (
+      /*tab6*/
+      ctx[66] === true && create_if_block_24(ctx)
+    );
+    let if_block6 = (
+      /*tab7*/
+      ctx[67] === true && create_if_block_110(ctx)
     );
     return {
       c() {
@@ -17039,62 +19820,86 @@
         li0.innerHTML = `<a><span>Identitas PPM</span></a>`;
         t3 = space();
         li1 = element("li");
-        li1.innerHTML = `<a><span>Status</span></a>`;
+        li1.innerHTML = `<a><span>Biodata Peneliti</span></a>`;
         t5 = space();
         li2 = element("li");
-        li2.innerHTML = `<a><span>Reviewer</span></a>`;
+        li2.innerHTML = `<a><span>Status</span></a>`;
         t7 = space();
         li3 = element("li");
-        li3.innerHTML = `<a><span>Logbook / Monev</span></a>`;
+        li3.innerHTML = `<a><span>Reviewer</span></a>`;
         t9 = space();
         li4 = element("li");
-        li4.innerHTML = `<a><span>Laporan</span></a>`;
+        li4.innerHTML = `<a><span>Logbook</span></a>`;
         t11 = space();
+        li5 = element("li");
+        li5.innerHTML = `<a><span>Monev</span></a>`;
+        t13 = space();
+        li6 = element("li");
+        li6.innerHTML = `<a><span>Laporan</span></a>`;
+        t15 = space();
         if (if_block0)
           if_block0.c();
-        t12 = space();
+        t16 = space();
         if (if_block1)
           if_block1.c();
-        t13 = space();
+        t17 = space();
         if (if_block2)
           if_block2.c();
-        t14 = space();
+        t18 = space();
         if (if_block3)
           if_block3.c();
-        t15 = space();
+        t19 = space();
         if (if_block4)
           if_block4.c();
-        if_block4_anchor = empty();
+        t20 = space();
+        if (if_block5)
+          if_block5.c();
+        t21 = space();
+        if (if_block6)
+          if_block6.c();
+        if_block6_anchor = empty();
         attr(h1, "class", "title is-1");
         toggle_class(
           li0,
           "is-active",
           /*tab1*/
-          ctx[26]
+          ctx[61]
         );
         toggle_class(
           li1,
           "is-active",
           /*tab2*/
-          ctx[27]
+          ctx[62]
         );
         toggle_class(
           li2,
           "is-active",
           /*tab3*/
-          ctx[28]
+          ctx[63]
         );
         toggle_class(
           li3,
           "is-active",
           /*tab4*/
-          ctx[29]
+          ctx[64]
         );
         toggle_class(
           li4,
           "is-active",
           /*tab5*/
-          ctx[30]
+          ctx[65]
+        );
+        toggle_class(
+          li5,
+          "is-active",
+          /*tab6*/
+          ctx[66]
+        );
+        toggle_class(
+          li6,
+          "is-active",
+          /*tab7*/
+          ctx[67]
         );
         attr(div, "class", "tabs is-boxed");
       },
@@ -17112,22 +19917,32 @@
         append(ul, li3);
         append(ul, t9);
         append(ul, li4);
-        insert(target, t11, anchor);
+        append(ul, t11);
+        append(ul, li5);
+        append(ul, t13);
+        append(ul, li6);
+        insert(target, t15, anchor);
         if (if_block0)
           if_block0.m(target, anchor);
-        insert(target, t12, anchor);
+        insert(target, t16, anchor);
         if (if_block1)
           if_block1.m(target, anchor);
-        insert(target, t13, anchor);
+        insert(target, t17, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
-        insert(target, t14, anchor);
+        insert(target, t18, anchor);
         if (if_block3)
           if_block3.m(target, anchor);
-        insert(target, t15, anchor);
+        insert(target, t19, anchor);
         if (if_block4)
           if_block4.m(target, anchor);
-        insert(target, if_block4_anchor, anchor);
+        insert(target, t20, anchor);
+        if (if_block5)
+          if_block5.m(target, anchor);
+        insert(target, t21, anchor);
+        if (if_block6)
+          if_block6.m(target, anchor);
+        insert(target, if_block6_anchor, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -17135,97 +19950,127 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[38]
+              ctx[75]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[39]
+              ctx[76]
             ),
             listen(
               li2,
               "click",
               /*clicktab3*/
-              ctx[40]
+              ctx[77]
             ),
             listen(
               li3,
               "click",
               /*clicktab4*/
-              ctx[41]
+              ctx[78]
             ),
             listen(
               li4,
               "click",
               /*clicktab5*/
-              ctx[42]
+              ctx[79]
+            ),
+            listen(
+              li5,
+              "click",
+              /*clicktab6*/
+              ctx[80]
+            ),
+            listen(
+              li6,
+              "click",
+              /*clicktab7*/
+              ctx[81]
             )
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (!current || dirty[0] & /*tab1*/
-        67108864) {
+        if (!current || dirty[1] & /*tab1*/
+        1073741824) {
           toggle_class(
             li0,
             "is-active",
             /*tab1*/
-            ctx2[26]
+            ctx2[61]
           );
         }
-        if (!current || dirty[0] & /*tab2*/
-        134217728) {
+        if (!current || dirty[2] & /*tab2*/
+        1) {
           toggle_class(
             li1,
             "is-active",
             /*tab2*/
-            ctx2[27]
+            ctx2[62]
           );
         }
-        if (!current || dirty[0] & /*tab3*/
-        268435456) {
+        if (!current || dirty[2] & /*tab3*/
+        2) {
           toggle_class(
             li2,
             "is-active",
             /*tab3*/
-            ctx2[28]
+            ctx2[63]
           );
         }
-        if (!current || dirty[0] & /*tab4*/
-        536870912) {
+        if (!current || dirty[2] & /*tab4*/
+        4) {
           toggle_class(
             li3,
             "is-active",
             /*tab4*/
-            ctx2[29]
+            ctx2[64]
           );
         }
-        if (!current || dirty[0] & /*tab5*/
-        1073741824) {
+        if (!current || dirty[2] & /*tab5*/
+        8) {
           toggle_class(
             li4,
             "is-active",
             /*tab5*/
-            ctx2[30]
+            ctx2[65]
+          );
+        }
+        if (!current || dirty[2] & /*tab6*/
+        16) {
+          toggle_class(
+            li5,
+            "is-active",
+            /*tab6*/
+            ctx2[66]
+          );
+        }
+        if (!current || dirty[2] & /*tab7*/
+        32) {
+          toggle_class(
+            li6,
+            "is-active",
+            /*tab7*/
+            ctx2[67]
           );
         }
         if (
           /*tab1*/
-          ctx2[26] === true
+          ctx2[61] === true
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
-            if (dirty[0] & /*tab1*/
-            67108864) {
+            if (dirty[1] & /*tab1*/
+            1073741824) {
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_53(ctx2);
+            if_block0 = create_if_block_15(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
-            if_block0.m(t12.parentNode, t12);
+            if_block0.m(t16.parentNode, t16);
           }
         } else if (if_block0) {
           group_outros();
@@ -17236,19 +20081,19 @@
         }
         if (
           /*tab2*/
-          ctx2[27] === true
+          ctx2[62] === true
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*tab2*/
-            134217728) {
+            if (dirty[2] & /*tab2*/
+            1) {
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_44(ctx2);
+            if_block1 = create_if_block_63(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
-            if_block1.m(t13.parentNode, t13);
+            if_block1.m(t17.parentNode, t17);
           }
         } else if (if_block1) {
           group_outros();
@@ -17259,19 +20104,19 @@
         }
         if (
           /*tab3*/
-          ctx2[28] === true
+          ctx2[63] === true
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
-            if (dirty[0] & /*tab3*/
-            268435456) {
+            if (dirty[2] & /*tab3*/
+            2) {
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_34(ctx2);
+            if_block2 = create_if_block_53(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
-            if_block2.m(t14.parentNode, t14);
+            if_block2.m(t18.parentNode, t18);
           }
         } else if (if_block2) {
           group_outros();
@@ -17282,31 +20127,68 @@
         }
         if (
           /*tab4*/
-          ctx2[29] === true
+          ctx2[64] === true
         ) {
           if (if_block3) {
+            if_block3.p(ctx2, dirty);
+            if (dirty[2] & /*tab4*/
+            4) {
+              transition_in(if_block3, 1);
+            }
           } else {
-            if_block3 = create_if_block_24(ctx2);
+            if_block3 = create_if_block_44(ctx2);
             if_block3.c();
-            if_block3.m(t15.parentNode, t15);
+            transition_in(if_block3, 1);
+            if_block3.m(t19.parentNode, t19);
           }
         } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
+          group_outros();
+          transition_out(if_block3, 1, 1, () => {
+            if_block3 = null;
+          });
+          check_outros();
         }
         if (
           /*tab5*/
-          ctx2[30] === true
+          ctx2[65] === true
         ) {
           if (if_block4) {
           } else {
-            if_block4 = create_if_block_15(ctx2);
+            if_block4 = create_if_block_34(ctx2);
             if_block4.c();
-            if_block4.m(if_block4_anchor.parentNode, if_block4_anchor);
+            if_block4.m(t20.parentNode, t20);
           }
         } else if (if_block4) {
           if_block4.d(1);
           if_block4 = null;
+        }
+        if (
+          /*tab6*/
+          ctx2[66] === true
+        ) {
+          if (if_block5) {
+          } else {
+            if_block5 = create_if_block_24(ctx2);
+            if_block5.c();
+            if_block5.m(t21.parentNode, t21);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+        if (
+          /*tab7*/
+          ctx2[67] === true
+        ) {
+          if (if_block6) {
+          } else {
+            if_block6 = create_if_block_110(ctx2);
+            if_block6.c();
+            if_block6.m(if_block6_anchor.parentNode, if_block6_anchor);
+          }
+        } else if (if_block6) {
+          if_block6.d(1);
+          if_block6 = null;
         }
       },
       i(local) {
@@ -17315,12 +20197,14 @@
         transition_in(if_block0);
         transition_in(if_block1);
         transition_in(if_block2);
+        transition_in(if_block3);
         current = true;
       },
       o(local) {
         transition_out(if_block0);
         transition_out(if_block1);
         transition_out(if_block2);
+        transition_out(if_block3);
         current = false;
       },
       d(detaching) {
@@ -17328,12 +20212,14 @@
           detach(h1);
           detach(t1);
           detach(div);
-          detach(t11);
-          detach(t12);
-          detach(t13);
-          detach(t14);
           detach(t15);
-          detach(if_block4_anchor);
+          detach(t16);
+          detach(t17);
+          detach(t18);
+          detach(t19);
+          detach(t20);
+          detach(t21);
+          detach(if_block6_anchor);
         }
         if (if_block0)
           if_block0.d(detaching);
@@ -17345,6 +20231,10 @@
           if_block3.d(detaching);
         if (if_block4)
           if_block4.d(detaching);
+        if (if_block5)
+          if_block5.d(detaching);
+        if (if_block6)
+          if_block6.d(detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -17397,7 +20287,7 @@
       ctx[0] && create_if_block5(ctx)
     );
     function modal_show_binding(value) {
-      ctx[65](value);
+      ctx[104](value);
     }
     let modal_props = {
       $$slots: {
@@ -17408,10 +20298,10 @@
     };
     if (
       /*showModal*/
-      ctx[18] !== void 0
+      ctx[24] !== void 0
     ) {
       modal_props.show = /*showModal*/
-      ctx[18];
+      ctx[24];
     }
     modal = new Modal_default({ props: modal_props });
     binding_callbacks.push(() => bind(modal, "show", modal_show_binding));
@@ -17454,15 +20344,15 @@
           check_outros();
         }
         const modal_changes = {};
-        if (dirty[2] & /*$$scope*/
+        if (dirty[4] & /*$$scope*/
         32768) {
           modal_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty[0] & /*showModal*/
-        262144) {
+        16777216) {
           updating_show = true;
           modal_changes.show = /*showModal*/
-          ctx2[18];
+          ctx2[24];
           add_flush_callback(() => updating_show = false);
         }
         modal.$set(modal_changes);
@@ -17493,8 +20383,6 @@
     const edit = [0, 1, 3, 5, 7, 9];
     return edit.some((x) => x === code);
   }
-  async function handleSubmitDana() {
-  }
   function formatRupiah2(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
     if (ribuan) {
@@ -17507,11 +20395,11 @@
   function instance20($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(67, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(68, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(108, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(109, $route = $$value));
     let { params } = $$props;
     const id = params["1"];
-    let data2;
+    let data2, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
     let jenisProposal;
     let jenisKegiatan;
     let jenisSkema;
@@ -17534,6 +20422,9 @@
     let klppmSelected2;
     let kpkSelected2;
     let reviewerSelected2;
+    let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email, mataKuliah = [];
+    let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
+    let uidProposal;
     let items = [];
     let file;
     let view;
@@ -17543,41 +20434,123 @@
         Authorization: `${accessToken}`,
         "Content-Type": "application/json"
       };
-      $$invalidate(14, ka_departemen = await findRole(11));
-      $$invalidate(15, ka_lppm = await findRole(12));
-      $$invalidate(17, ka_pusat_kajian = await findRole(13));
-      $$invalidate(16, reviewer = await findRole(10));
+      $$invalidate(20, ka_departemen = await findRole(11));
+      $$invalidate(21, ka_lppm = await findRole(12));
+      $$invalidate(23, ka_pusat_kajian = await findRole(13));
+      $$invalidate(22, reviewer = await findRole(10));
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
-      $$invalidate(25, view = !isEdit(result.status));
+      $$invalidate(60, view = !isEdit(result.status));
       if (response.ok) {
         $$invalidate(0, data2 = result);
-        $$invalidate(1, jenisProposal = data2.jenis_proposal);
-        $$invalidate(2, jenisKegiatan = data2.jenis_kegiatan);
-        $$invalidate(3, jenisSkema = data2.jenis_skema);
-        $$invalidate(4, kelompokKeahlian = data2.kelompok_keahlian);
-        $$invalidate(5, topik = data2.topik);
-        $$invalidate(6, tahunPelaksanaan = data2.tahun_pelaksanaan);
-        $$invalidate(7, biayaPenelitian = data2.biaya_penelitian);
-        $$invalidate(8, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+        $$invalidate(57, uidProposal = data2.uid);
+        $$invalidate(7, jenisProposal = data2.jenis_proposal);
+        $$invalidate(8, jenisKegiatan = data2.jenis_kegiatan);
+        $$invalidate(9, jenisSkema = data2.jenis_skema);
+        $$invalidate(10, kelompokKeahlian = data2.kelompok_keahlian);
+        $$invalidate(11, topik = data2.topik);
+        $$invalidate(12, tahunPelaksanaan = data2.tahun_pelaksanaan);
+        $$invalidate(13, biayaPenelitian = data2.biaya_penelitian);
+        $$invalidate(14, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
         rab = data2.rab;
-        $$invalidate(9, judul = data2.judul);
-        $$invalidate(10, abstrak = data2.abstrak);
-        $$invalidate(11, isi = data2.isi);
-        $$invalidate(12, comment = data2.comment);
-        $$invalidate(13, status = data2.status);
-        $$invalidate(19, kdeptSelected2 = data2.uid_kdept);
-        $$invalidate(20, klppmSelected2 = data2.uid_klppm);
-        $$invalidate(21, kpkSelected2 = data2.uid_kpk);
-        $$invalidate(22, reviewerSelected2 = data2.uid_reviewer);
+        $$invalidate(15, judul = data2.judul);
+        $$invalidate(16, abstrak = data2.abstrak);
+        $$invalidate(17, isi = data2.isi);
+        $$invalidate(18, comment = data2.comment);
+        $$invalidate(19, status = data2.status);
+        $$invalidate(25, kdeptSelected2 = data2.uid_kdept);
+        $$invalidate(26, klppmSelected2 = data2.uid_klppm);
+        $$invalidate(27, kpkSelected2 = data2.uid_kpk);
+        $$invalidate(28, reviewerSelected2 = data2.uid_reviewer);
         randomFileName = data2.random_file_name;
+      }
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
+      const resultGP = await responseGP.json();
+      if (responseGP.ok) {
+        dataGP = resultGP;
+        idProfile = dataGP.id;
+        idUser = dataGP.uid;
+        $$invalidate(29, namaLengkap = dataGP.nama_lengkap);
+        $$invalidate(30, jabatanFungsional = dataGP.jabatan_fungsional);
+        $$invalidate(31, nip = dataGP.nip);
+        $$invalidate(32, nidn = dataGP.nidn);
+        $$invalidate(33, tempatLahir = dataGP.tempat_lahir);
+        $$invalidate(34, tanggalLahir = dataGP.tanggal_lahir);
+        $$invalidate(35, alamatRumah = dataGP.alamat_rumah);
+        $$invalidate(36, telpFaxRumah = dataGP.telp_fax_rumah);
+        $$invalidate(37, nomorHandphone = dataGP.nomor_handphone);
+        $$invalidate(38, alamatKantor = dataGP.alamat_kantor);
+        $$invalidate(39, telpFaxKantor = dataGP.telp_fax_kantor);
+        $$invalidate(40, email = dataGP.email);
+        $$invalidate(41, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
+      }
+      const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
+      const dataRP = await responseRP.json();
+      if (responseRP.ok) {
+        $$invalidate(42, pertiS1 = dataRP.nama_perti_s1);
+        $$invalidate(43, pertiS2 = dataRP.nama_perti_s2);
+        $$invalidate(44, pertiS3 = dataRP.nama_perti_s3);
+        $$invalidate(45, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+        $$invalidate(46, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+        $$invalidate(47, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+        $$invalidate(48, tahunMasukS1 = dataRP.tahun_masuk_s1);
+        $$invalidate(49, tahunMasukS2 = dataRP.tahun_masuk_s2);
+        $$invalidate(50, tahunMasukS3 = dataRP.tahun_masuk_s3);
+        $$invalidate(51, tahunLulusS1 = dataRP.tahun_lulus_s1);
+        $$invalidate(52, tahunLulusS2 = dataRP.tahun_lulus_s2);
+        $$invalidate(53, tahunLulusS3 = dataRP.tahun_lulus_s3);
+        $$invalidate(54, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+        $$invalidate(55, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+        $$invalidate(56, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+      }
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
+      const resultPP = await responsePP.json();
+      if (responsePP.ok) {
+        $$invalidate(1, dataPP = resultPP.dbData);
+      } else {
+        console.log(responsePP);
+      }
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
+      const resultPM = await responsePM.json();
+      if (responsePM.ok) {
+        $$invalidate(2, dataPM = resultPM.dbData);
+      } else {
+        console.log(responsePM);
+      }
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
+      const resultPD = await responsePD.json();
+      if (responsePD.ok) {
+        $$invalidate(3, dataPD = resultPD.dbData);
+      } else {
+        console.log(responsePD);
+      }
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
+      const resultPPub = await responsePPub.json();
+      if (responsePPub.ok) {
+        $$invalidate(4, dataPPub = resultPPub.dbData);
+      } else {
+        console.log(responsePPub);
+      }
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
+      const resultPPB = await responsePPB.json();
+      if (responsePPB.ok) {
+        $$invalidate(5, dataPPB = resultPPB.dbData);
+      } else {
+        console.log(responsePPB);
+      }
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
+      const resultPHKI = await responsePHKI.json();
+      if (responsePHKI.ok) {
+        $$invalidate(6, dataPHKI = resultPHKI.dbData);
+      } else {
+        console.log(responsePHKI);
       }
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
       if (responsee.ok) {
         listUser = results;
         for (const [key, value] of Object.entries(listUser)) {
-          $$invalidate(23, items = [
+          $$invalidate(58, items = [
             ...items,
             {
               value: value.uid,
@@ -17591,7 +20564,7 @@
     });
     async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(11, isi = tinymce.get("isi").getContent());
+      $$invalidate(17, isi = tinymce.get("isi").getContent());
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
@@ -17775,7 +20748,7 @@
     }
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
-      $$invalidate(8, anggotaTim = anggotaTim.filter((member) => {
+      $$invalidate(14, anggotaTim = anggotaTim.filter((member) => {
         return member.value !== uid;
       }));
     }
@@ -17801,7 +20774,7 @@
       const response = await fetch($apiURL + "/user");
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(18, showModal = true);
+        $$invalidate(24, showModal = true);
       }
     }
     let options;
@@ -17820,129 +20793,163 @@
     let tab3;
     let tab4;
     let tab5;
+    let tab6;
+    let tab7;
     function clicktab1() {
-      $$invalidate(26, tab1 = true);
-      $$invalidate(27, tab2 = false);
-      $$invalidate(28, tab3 = false);
-      $$invalidate(29, tab4 = false);
-      $$invalidate(30, tab5 = false);
+      $$invalidate(61, tab1 = true);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = false);
+      $$invalidate(66, tab6 = false);
+      $$invalidate(67, tab7 = false);
     }
     function clicktab2() {
-      $$invalidate(26, tab1 = false);
-      $$invalidate(27, tab2 = true);
-      $$invalidate(28, tab3 = false);
-      $$invalidate(29, tab4 = false);
-      $$invalidate(30, tab5 = false);
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = true);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = false);
+      $$invalidate(66, tab6 = false);
+      $$invalidate(67, tab7 = false);
     }
     function clicktab3() {
-      $$invalidate(26, tab1 = false);
-      $$invalidate(27, tab2 = false);
-      $$invalidate(28, tab3 = true);
-      $$invalidate(29, tab4 = false);
-      $$invalidate(30, tab5 = false);
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = true);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = false);
+      $$invalidate(66, tab6 = false);
+      $$invalidate(67, tab7 = false);
     }
     function clicktab4() {
-      $$invalidate(26, tab1 = false);
-      $$invalidate(27, tab2 = false);
-      $$invalidate(28, tab3 = false);
-      $$invalidate(29, tab4 = true);
-      $$invalidate(30, tab5 = false);
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = true);
+      $$invalidate(65, tab5 = false);
     }
     function clicktab5() {
-      $$invalidate(26, tab1 = false);
-      $$invalidate(27, tab2 = false);
-      $$invalidate(28, tab3 = false);
-      $$invalidate(29, tab4 = false);
-      $$invalidate(30, tab5 = true);
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = true);
+      $$invalidate(66, tab6 = false);
+      $$invalidate(67, tab7 = false);
+    }
+    function clicktab6() {
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = false);
+      $$invalidate(66, tab6 = true);
+      $$invalidate(67, tab7 = false);
+    }
+    function clicktab7() {
+      $$invalidate(61, tab1 = false);
+      $$invalidate(62, tab2 = false);
+      $$invalidate(63, tab3 = false);
+      $$invalidate(64, tab4 = false);
+      $$invalidate(65, tab5 = false);
+      $$invalidate(66, tab6 = false);
+      $$invalidate(67, tab7 = true);
     }
     function select_change_handler() {
       jenisProposal = select_value(this);
-      $$invalidate(1, jenisProposal);
+      $$invalidate(7, jenisProposal);
     }
     function select_change_handler_1() {
       jenisKegiatan = select_value(this);
-      $$invalidate(2, jenisKegiatan);
+      $$invalidate(8, jenisKegiatan);
     }
     function select_change_handler_2() {
       jenisSkema = select_value(this);
-      $$invalidate(3, jenisSkema);
+      $$invalidate(9, jenisSkema);
     }
     function input_input_handler() {
       kelompokKeahlian = this.value;
-      $$invalidate(4, kelompokKeahlian);
+      $$invalidate(10, kelompokKeahlian);
     }
     function input_input_handler_1() {
       topik = this.value;
-      $$invalidate(5, topik);
+      $$invalidate(11, topik);
     }
     function field5_value_binding(value) {
       tahunPelaksanaan = value;
-      $$invalidate(6, tahunPelaksanaan);
+      $$invalidate(12, tahunPelaksanaan);
     }
     function input_input_handler_2() {
       biayaPenelitian = this.value;
-      $$invalidate(7, biayaPenelitian);
+      $$invalidate(13, biayaPenelitian);
     }
-    const keyup_handler = () => $$invalidate(7, biayaPenelitian = formatRupiah2(biayaPenelitian, "Rp. "));
-    const change_handler = (e) => $$invalidate(24, file = e.target.files[0]);
+    const keyup_handler = () => $$invalidate(13, biayaPenelitian = formatRupiah2(biayaPenelitian, "Rp. "));
+    const change_handler = (e) => $$invalidate(59, file = e.target.files[0]);
     function select_result_binding(value) {
       anggotaTim = value;
-      $$invalidate(8, anggotaTim);
+      $$invalidate(14, anggotaTim);
     }
     function input_input_handler_3() {
       judul = this.value;
-      $$invalidate(9, judul);
+      $$invalidate(15, judul);
     }
     function textarea_input_handler() {
       abstrak = this.value;
-      $$invalidate(10, abstrak);
+      $$invalidate(16, abstrak);
     }
     function textarea_input_handler_1() {
       comment = this.value;
-      $$invalidate(12, comment);
+      $$invalidate(18, comment);
     }
     function field0_value_binding(value) {
       ka_departemen = value;
-      $$invalidate(14, ka_departemen);
+      $$invalidate(20, ka_departemen);
     }
     function field0_selected_binding(value) {
       kdeptSelected2 = value;
-      $$invalidate(19, kdeptSelected2);
+      $$invalidate(25, kdeptSelected2);
     }
     function field1_value_binding(value) {
       ka_lppm = value;
-      $$invalidate(15, ka_lppm);
+      $$invalidate(21, ka_lppm);
     }
     function field1_selected_binding(value) {
       klppmSelected2 = value;
-      $$invalidate(20, klppmSelected2);
+      $$invalidate(26, klppmSelected2);
     }
     function field2_value_binding(value) {
       reviewer = value;
-      $$invalidate(16, reviewer);
+      $$invalidate(22, reviewer);
     }
     function field2_selected_binding(value) {
       reviewerSelected2 = value;
-      $$invalidate(22, reviewerSelected2);
+      $$invalidate(28, reviewerSelected2);
     }
     function field3_value_binding(value) {
       ka_pusat_kajian = value;
-      $$invalidate(17, ka_pusat_kajian);
+      $$invalidate(23, ka_pusat_kajian);
     }
     function field3_selected_binding(value) {
       kpkSelected2 = value;
-      $$invalidate(21, kpkSelected2);
+      $$invalidate(27, kpkSelected2);
     }
     function modal_show_binding(value) {
       showModal = value;
-      $$invalidate(18, showModal);
+      $$invalidate(24, showModal);
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(43, params = $$props2.params);
+        $$invalidate(82, params = $$props2.params);
     };
     return [
       data2,
+      dataPP,
+      dataPM,
+      dataPD,
+      dataPPub,
+      dataPPB,
+      dataPHKI,
       jenisProposal,
       jenisKegiatan,
       jenisSkema,
@@ -17965,6 +20972,35 @@
       klppmSelected2,
       kpkSelected2,
       reviewerSelected2,
+      namaLengkap,
+      jabatanFungsional,
+      nip,
+      nidn,
+      tempatLahir,
+      tanggalLahir,
+      alamatRumah,
+      telpFaxRumah,
+      nomorHandphone,
+      alamatKantor,
+      telpFaxKantor,
+      email,
+      mataKuliah,
+      pertiS1,
+      pertiS2,
+      pertiS3,
+      bidangIlmuS1,
+      bidangIlmuS2,
+      bidangIlmuS3,
+      tahunMasukS1,
+      tahunMasukS2,
+      tahunMasukS3,
+      tahunLulusS1,
+      tahunLulusS2,
+      tahunLulusS3,
+      judulTugasAkhirS1,
+      judulTugasAkhirS2,
+      judulTugasAkhirS3,
+      uidProposal,
       items,
       file,
       view,
@@ -17973,6 +21009,8 @@
       tab3,
       tab4,
       tab5,
+      tab6,
+      tab7,
       remediasi,
       handleRevisi,
       handleDitolak,
@@ -17985,6 +21023,8 @@
       clicktab3,
       clicktab4,
       clicktab5,
+      clicktab6,
+      clicktab7,
       params,
       select_change_handler,
       select_change_handler_1,
@@ -18013,7 +21053,7 @@
   var Proposal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance20, create_fragment27, safe_not_equal, { params: 43 }, null, [-1, -1, -1]);
+      init(this, options, instance20, create_fragment27, safe_not_equal, { params: 82 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var proposal_default = Proposal;
@@ -19092,7 +22132,7 @@
       }
     };
   }
-  function create_if_block_16(ctx) {
+  function create_if_block_111(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -19251,7 +22291,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block8, create_if_block_16, create_else_block3];
+    const if_block_creators = [create_if_block8, create_if_block_111, create_else_block3];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -19378,7 +22418,7 @@
       }
     };
   }
-  function create_if_block_17(ctx) {
+  function create_if_block_113(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -19483,7 +22523,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block9, create_if_block_17, create_else_block4];
+    const if_block_creators = [create_if_block9, create_if_block_113, create_else_block4];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -19626,12 +22666,12 @@
     child_ctx[6] = list[i];
     return child_ctx;
   }
-  function get_each_context_22(ctx, list, i) {
+  function get_each_context_23(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[6] = list[i];
     return child_ctx;
   }
-  function get_each_context_32(ctx, list, i) {
+  function get_each_context_33(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[6] = list[i];
     return child_ctx;
@@ -19685,7 +22725,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_3.length; i += 1) {
-      each_blocks[i] = create_each_block_32(get_each_context_32(ctx, each_value_3, i));
+      each_blocks[i] = create_each_block_33(get_each_context_33(ctx, each_value_3, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -19715,12 +22755,12 @@
           );
           let i;
           for (i = 0; i < each_value_3.length; i += 1) {
-            const child_ctx = get_each_context_32(ctx2, each_value_3, i);
+            const child_ctx = get_each_context_33(ctx2, each_value_3, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_32(child_ctx);
+              each_blocks[i] = create_each_block_33(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -19915,7 +22955,7 @@
       }
     };
   }
-  function create_each_block_32(ctx) {
+  function create_each_block_33(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -19987,7 +23027,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_2.length; i += 1) {
-      each_blocks[i] = create_each_block_22(get_each_context_22(ctx, each_value_2, i));
+      each_blocks[i] = create_each_block_23(get_each_context_23(ctx, each_value_2, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -20017,12 +23057,12 @@
           );
           let i;
           for (i = 0; i < each_value_2.length; i += 1) {
-            const child_ctx = get_each_context_22(ctx2, each_value_2, i);
+            const child_ctx = get_each_context_23(ctx2, each_value_2, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_22(child_ctx);
+              each_blocks[i] = create_each_block_23(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -20217,7 +23257,7 @@
       }
     };
   }
-  function create_each_block_22(ctx) {
+  function create_each_block_23(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -20582,7 +23622,7 @@
       }
     };
   }
-  function create_if_block_18(ctx) {
+  function create_if_block_114(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -20913,7 +23953,7 @@
     );
     let if_block3 = (
       /*role*/
-      ctx[1] === "Ka.Departemen" && create_if_block_18(ctx)
+      ctx[1] === "Ka.Departemen" && create_if_block_114(ctx)
     );
     return {
       c() {
@@ -21286,19 +24326,19 @@
     });
     let if_block0 = (
       /*anggotaTim*/
-      ctx[8].length > 0 && create_if_block_132(ctx)
+      ctx[8].length > 0 && create_if_block_133(ctx)
     );
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_49] },
+        $$slots: { default: [create_default_slot_410] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_312] },
+        $$slots: { default: [create_default_slot_313] },
         $$scope: { ctx }
       }
     });
@@ -21318,7 +24358,7 @@
     });
     let if_block1 = (
       /*role*/
-      ctx[15] === "Ka.Departemen" && create_if_block_113(ctx)
+      ctx[15] === "Ka.Departemen" && create_if_block_115(ctx)
     );
     let if_block2 = (
       /*role*/
@@ -21520,7 +24560,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_132(ctx2);
+            if_block0 = create_if_block_133(ctx2);
             if_block0.c();
             if_block0.m(tbody, null);
           }
@@ -21912,7 +24952,7 @@
       }
     };
   }
-  function create_if_block_132(ctx) {
+  function create_if_block_133(ctx) {
     let each_1_anchor;
     let each_value = ensure_array_like(
       /*anggotaTim*/
@@ -22011,7 +25051,7 @@
       }
     };
   }
-  function create_default_slot_49(ctx) {
+  function create_default_slot_410(ctx) {
     let t_value = (
       /*data*/
       ctx[0].judul + ""
@@ -22037,7 +25077,7 @@
       }
     };
   }
-  function create_default_slot_312(ctx) {
+  function create_default_slot_313(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -22142,7 +25182,7 @@
       }
     };
   }
-  function create_if_block_113(ctx) {
+  function create_if_block_115(ctx) {
     let if_block_anchor;
     let if_block = (
       /*status*/
@@ -22638,7 +25678,7 @@
       }
     };
   }
-  function create_if_block_19(ctx) {
+  function create_if_block_116(ctx) {
     let h3;
     return {
       c() {
@@ -22690,7 +25730,7 @@
     );
     let if_block3 = (
       /*tab4*/
-      ctx[14] === true && create_if_block_19(ctx)
+      ctx[14] === true && create_if_block_116(ctx)
     );
     return {
       c() {
@@ -22909,7 +25949,7 @@
         ) {
           if (if_block3) {
           } else {
-            if_block3 = create_if_block_19(ctx2);
+            if_block3 = create_if_block_116(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -23732,37 +26772,37 @@
   init_define_process();
   function get_each_context11(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[173] = list[i];
+    child_ctx[174] = list[i];
     return child_ctx;
   }
   function get_each_context_14(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[176] = list[i];
+    child_ctx[177] = list[i];
     return child_ctx;
   }
-  function get_each_context_23(ctx, list, i) {
+  function get_each_context_24(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[179] = list[i];
+    child_ctx[180] = list[i];
     return child_ctx;
   }
-  function get_each_context_33(ctx, list, i) {
+  function get_each_context_34(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[182] = list[i];
+    child_ctx[183] = list[i];
     return child_ctx;
   }
-  function get_each_context_42(ctx, list, i) {
+  function get_each_context_43(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[185] = list[i];
+    child_ctx[186] = list[i];
     return child_ctx;
   }
-  function get_each_context_52(ctx, list, i) {
+  function get_each_context_53(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[188] = list[i];
+    child_ctx[189] = list[i];
     return child_ctx;
   }
-  function get_each_context_62(ctx, list, i) {
+  function get_each_context_63(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[191] = list[i];
+    child_ctx[192] = list[i];
     return child_ctx;
   }
   function create_if_block_86(ctx) {
@@ -23790,15 +26830,17 @@
     let t10;
     let field11;
     let t11;
-    let br;
+    let field12;
     let t12;
+    let br;
+    let t13;
     let table;
     let thead;
-    let t15;
-    let tbody;
     let t16;
-    let hr;
+    let tbody;
     let t17;
+    let hr;
+    let t18;
     let div;
     let p;
     let button;
@@ -23808,92 +26850,99 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_462] },
+        $$slots: { default: [create_default_slot_472] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_452] },
+        $$slots: { default: [create_default_slot_462] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_442] },
+        $$slots: { default: [create_default_slot_452] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_432] },
+        $$slots: { default: [create_default_slot_442] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_422] },
+        $$slots: { default: [create_default_slot_432] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
-        name: "Alamat Rumah",
-        $$slots: { default: [create_default_slot_412] },
+        name: "Tanggal Lahir",
+        $$slots: { default: [create_default_slot_423] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
-        name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_402] },
+        name: "Alamat Rumah",
+        $$slots: { default: [create_default_slot_413] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
-        name: "Nomor Handphone",
-        $$slots: { default: [create_default_slot_392] },
+        name: "Telp/Fax Rumah",
+        $$slots: { default: [create_default_slot_403] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
-        name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_382] },
+        name: "Nomor Handphone",
+        $$slots: { default: [create_default_slot_393] },
         $$scope: { ctx }
       }
     });
     field9 = new Field_default({
       props: {
-        name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_372] },
+        name: "Alamat Kantor",
+        $$slots: { default: [create_default_slot_383] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
-        class: "input",
-        name: "Email",
-        $$slots: { default: [create_default_slot_362] },
+        name: "Telp/Fax Kantor",
+        $$slots: { default: [create_default_slot_373] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
+        class: "input",
+        name: "Email",
+        $$slots: { default: [create_default_slot_363] },
+        $$scope: { ctx }
+      }
+    });
+    field12 = new Field_default({
+      props: {
         name: "Mata Kuliah",
-        $$slots: { default: [create_default_slot_352] },
+        $$slots: { default: [create_default_slot_353] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*mataKuliah*/
-      ctx[46] && /*mataKuliah*/
-      ctx[46].length > 0 && create_if_block_95(ctx)
+      ctx[47] && /*mataKuliah*/
+      ctx[47].length > 0 && create_if_block_95(ctx)
     );
     return {
       c() {
@@ -23921,18 +26970,20 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        br = element("br");
+        create_component(field12.$$.fragment);
         t12 = space();
+        br = element("br");
+        t13 = space();
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow"></th> <th>Mata Kuliah</th></tr>`;
-        t15 = space();
+        t16 = space();
         tbody = element("tbody");
         if (if_block)
           if_block.c();
-        t16 = space();
-        hr = element("hr");
         t17 = space();
+        hr = element("hr");
+        t18 = space();
         div = element("div");
         p = element("p");
         button = element("button");
@@ -23967,17 +27018,19 @@
         insert(target, t10, anchor);
         mount_component(field11, target, anchor);
         insert(target, t11, anchor);
-        insert(target, br, anchor);
+        mount_component(field12, target, anchor);
         insert(target, t12, anchor);
+        insert(target, br, anchor);
+        insert(target, t13, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t15);
+        append(table, t16);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t16, anchor);
-        insert(target, hr, anchor);
         insert(target, t17, anchor);
+        insert(target, hr, anchor);
+        insert(target, t18, anchor);
         insert(target, div, anchor);
         append(div, p);
         append(p, button);
@@ -23987,7 +27040,7 @@
             button,
             "click",
             /*simpanIdentitas*/
-            ctx[84]
+            ctx[85]
           );
           mounted = true;
         }
@@ -23996,96 +27049,103 @@
         const field0_changes = {};
         if (dirty[1] & /*namaLengkap*/
         16 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[1] & /*jabatanFungsional*/
         32 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[1] & /*nip*/
         64 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[1] & /*nidn*/
         128 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[1] & /*tempatLahir*/
         256 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*alamatRumah*/
+        if (dirty[1] & /*tanggalLahir*/
         512 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
+        if (dirty[1] & /*alamatRumah*/
         1024 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
+        if (dirty[1] & /*telpFaxRumah*/
         2048 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*alamatKantor*/
+        if (dirty[1] & /*nomorHandphone*/
         4096 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
+        if (dirty[1] & /*alamatKantor*/
         8192 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*email*/
+        if (dirty[1] & /*telpFaxKantor*/
         16384 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*vmataKuliah*/
-        64 | dirty[6] & /*$$scope*/
-        256) {
+        if (dirty[1] & /*email*/
+        32768 | dirty[6] & /*$$scope*/
+        512) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
+        const field12_changes = {};
+        if (dirty[0] & /*vmataKuliah*/
+        64 | dirty[6] & /*$$scope*/
+        512) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
         if (
           /*mataKuliah*/
-          ctx2[46] && /*mataKuliah*/
-          ctx2[46].length > 0
+          ctx2[47] && /*mataKuliah*/
+          ctx2[47].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
             if (dirty[1] & /*mataKuliah*/
-            32768) {
+            65536) {
               transition_in(if_block, 1);
             }
           } else {
@@ -24117,6 +27177,7 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
+        transition_in(field12.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
@@ -24133,6 +27194,7 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
+        transition_out(field12.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -24150,12 +27212,13 @@
           detach(t9);
           detach(t10);
           detach(t11);
-          detach(br);
           detach(t12);
+          detach(br);
+          detach(t13);
           detach(table);
-          detach(t16);
-          detach(hr);
           detach(t17);
+          detach(hr);
+          detach(t18);
           detach(div);
         }
         destroy_component(field0, detaching);
@@ -24170,6 +27233,7 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
+        destroy_component(field12, detaching);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -24177,7 +27241,7 @@
       }
     };
   }
-  function create_default_slot_462(ctx) {
+  function create_default_slot_472(ctx) {
     let input;
     let t0;
     let p;
@@ -24207,7 +27271,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[96]
+            ctx[97]
           );
           mounted = true;
         }
@@ -24234,7 +27298,7 @@
       }
     };
   }
-  function create_default_slot_452(ctx) {
+  function create_default_slot_462(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24256,7 +27320,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[97]
+            ctx[98]
           );
           mounted = true;
         }
@@ -24269,6 +27333,53 @@
             input,
             /*jabatanFungsional*/
             ctx2[36]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_452(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "number");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*nip*/
+          ctx[37]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_2*/
+            ctx[99]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nip*/
+        64 && to_number(input.value) !== /*nip*/
+        ctx2[37]) {
+          set_input_value(
+            input,
+            /*nip*/
+            ctx2[37]
           );
         }
       },
@@ -24295,53 +27406,6 @@
         insert(target, input, anchor);
         set_input_value(
           input,
-          /*nip*/
-          ctx[37]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_2*/
-            ctx[98]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*nip*/
-        64 && to_number(input.value) !== /*nip*/
-        ctx2[37]) {
-          set_input_value(
-            input,
-            /*nip*/
-            ctx2[37]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_432(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "number");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
           /*nidn*/
           ctx[38]
         );
@@ -24350,7 +27414,7 @@
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[99]
+            ctx[100]
           );
           mounted = true;
         }
@@ -24375,7 +27439,7 @@
       }
     };
   }
-  function create_default_slot_422(ctx) {
+  function create_default_slot_432(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24397,7 +27461,7 @@
             input,
             "input",
             /*input_input_handler_4*/
-            ctx[100]
+            ctx[101]
           );
           mounted = true;
         }
@@ -24422,7 +27486,54 @@
       }
     };
   }
-  function create_default_slot_412(ctx) {
+  function create_default_slot_423(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*tanggalLahir*/
+          ctx[40]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_5*/
+            ctx[102]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tanggalLahir*/
+        512 && input.value !== /*tanggalLahir*/
+        ctx2[40]) {
+          set_input_value(
+            input,
+            /*tanggalLahir*/
+            ctx2[40]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_413(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24437,26 +27548,26 @@
         set_input_value(
           input,
           /*alamatRumah*/
-          ctx[40]
+          ctx[41]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_5*/
-            ctx[101]
+            /*input_input_handler_6*/
+            ctx[103]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*alamatRumah*/
-        512 && input.value !== /*alamatRumah*/
-        ctx2[40]) {
+        1024 && input.value !== /*alamatRumah*/
+        ctx2[41]) {
           set_input_value(
             input,
             /*alamatRumah*/
-            ctx2[40]
+            ctx2[41]
           );
         }
       },
@@ -24469,7 +27580,7 @@
       }
     };
   }
-  function create_default_slot_402(ctx) {
+  function create_default_slot_403(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24484,26 +27595,26 @@
         set_input_value(
           input,
           /*telpFaxRumah*/
-          ctx[41]
+          ctx[42]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
-            ctx[102]
+            /*input_input_handler_7*/
+            ctx[104]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*telpFaxRumah*/
-        1024 && to_number(input.value) !== /*telpFaxRumah*/
-        ctx2[41]) {
+        2048 && to_number(input.value) !== /*telpFaxRumah*/
+        ctx2[42]) {
           set_input_value(
             input,
             /*telpFaxRumah*/
-            ctx2[41]
+            ctx2[42]
           );
         }
       },
@@ -24516,7 +27627,7 @@
       }
     };
   }
-  function create_default_slot_392(ctx) {
+  function create_default_slot_393(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24531,26 +27642,26 @@
         set_input_value(
           input,
           /*nomorHandphone*/
-          ctx[42]
+          ctx[43]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
-            ctx[103]
+            /*input_input_handler_8*/
+            ctx[105]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*nomorHandphone*/
-        2048 && to_number(input.value) !== /*nomorHandphone*/
-        ctx2[42]) {
+        4096 && to_number(input.value) !== /*nomorHandphone*/
+        ctx2[43]) {
           set_input_value(
             input,
             /*nomorHandphone*/
-            ctx2[42]
+            ctx2[43]
           );
         }
       },
@@ -24563,7 +27674,7 @@
       }
     };
   }
-  function create_default_slot_382(ctx) {
+  function create_default_slot_383(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24578,26 +27689,26 @@
         set_input_value(
           input,
           /*alamatKantor*/
-          ctx[43]
+          ctx[44]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
-            ctx[104]
+            /*input_input_handler_9*/
+            ctx[106]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*alamatKantor*/
-        4096 && input.value !== /*alamatKantor*/
-        ctx2[43]) {
+        8192 && input.value !== /*alamatKantor*/
+        ctx2[44]) {
           set_input_value(
             input,
             /*alamatKantor*/
-            ctx2[43]
+            ctx2[44]
           );
         }
       },
@@ -24610,7 +27721,7 @@
       }
     };
   }
-  function create_default_slot_372(ctx) {
+  function create_default_slot_373(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24625,26 +27736,26 @@
         set_input_value(
           input,
           /*telpFaxKantor*/
-          ctx[44]
+          ctx[45]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
-            ctx[105]
+            /*input_input_handler_10*/
+            ctx[107]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*telpFaxKantor*/
-        8192 && to_number(input.value) !== /*telpFaxKantor*/
-        ctx2[44]) {
+        16384 && to_number(input.value) !== /*telpFaxKantor*/
+        ctx2[45]) {
           set_input_value(
             input,
             /*telpFaxKantor*/
-            ctx2[44]
+            ctx2[45]
           );
         }
       },
@@ -24657,7 +27768,7 @@
       }
     };
   }
-  function create_default_slot_362(ctx) {
+  function create_default_slot_363(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -24672,26 +27783,26 @@
         set_input_value(
           input,
           /*email*/
-          ctx[45]
+          ctx[46]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
-            ctx[106]
+            /*input_input_handler_11*/
+            ctx[108]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*email*/
-        16384 && input.value !== /*email*/
-        ctx2[45]) {
+        32768 && input.value !== /*email*/
+        ctx2[46]) {
           set_input_value(
             input,
             /*email*/
-            ctx2[45]
+            ctx2[46]
           );
         }
       },
@@ -24704,7 +27815,7 @@
       }
     };
   }
-  function create_default_slot_352(ctx) {
+  function create_default_slot_353(ctx) {
     let div;
     let p0;
     let input;
@@ -24766,14 +27877,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_11*/
-              ctx[107]
+              /*input_input_handler_12*/
+              ctx[109]
             ),
             listen(
               button,
               "click",
               /*addMatkul*/
-              ctx[88]
+              ctx[89]
             )
           ];
           mounted = true;
@@ -24820,11 +27931,11 @@
     let current;
     let each_value_6 = ensure_array_like(
       /*mataKuliah*/
-      ctx[46]
+      ctx[47]
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_6.length; i += 1) {
-      each_blocks[i] = create_each_block_62(get_each_context_62(ctx, each_value_6, i));
+      each_blocks[i] = create_each_block_63(get_each_context_63(ctx, each_value_6, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -24847,20 +27958,20 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*mataKuliah*/
-        32768 | dirty[3] & /*deleteMatkul*/
-        4) {
+        65536 | dirty[3] & /*deleteMatkul*/
+        8) {
           each_value_6 = ensure_array_like(
             /*mataKuliah*/
-            ctx2[46]
+            ctx2[47]
           );
           let i;
           for (i = 0; i < each_value_6.length; i += 1) {
-            const child_ctx = get_each_context_62(ctx2, each_value_6, i);
+            const child_ctx = get_each_context_63(ctx2, each_value_6, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_62(child_ctx);
+              each_blocks[i] = create_each_block_63(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -24896,7 +28007,7 @@
       }
     };
   }
-  function create_each_block_62(ctx) {
+  function create_each_block_63(ctx) {
     let tr;
     let td0;
     let button;
@@ -24907,7 +28018,7 @@
     let td1;
     let t1_value = (
       /*matkul*/
-      ctx[191].label + ""
+      ctx[192].label + ""
     );
     let t1;
     let t2;
@@ -24929,7 +28040,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "data-value", button_data_value_value = /*matkul*/
-        ctx[191].label);
+        ctx[192].label);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -24947,20 +28058,20 @@
             button,
             "click",
             /*deleteMatkul*/
-            ctx[95]
+            ctx[96]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (!current || dirty[1] & /*mataKuliah*/
-        32768 && button_data_value_value !== (button_data_value_value = /*matkul*/
-        ctx2[191].label)) {
+        65536 && button_data_value_value !== (button_data_value_value = /*matkul*/
+        ctx2[192].label)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[1] & /*mataKuliah*/
-        32768) && t1_value !== (t1_value = /*matkul*/
-        ctx2[191].label + ""))
+        65536) && t1_value !== (t1_value = /*matkul*/
+        ctx2[192].label + ""))
           set_data(t1, t1_value);
       },
       i(local) {
@@ -25174,7 +28285,7 @@
         set_input_value(
           input0,
           /*pertiS1*/
-          ctx[47]
+          ctx[48]
         );
         append(tr1, t10);
         append(tr1, td1);
@@ -25182,7 +28293,7 @@
         set_input_value(
           input1,
           /*pertiS2*/
-          ctx[48]
+          ctx[49]
         );
         append(tr1, t11);
         append(tr1, td2);
@@ -25190,7 +28301,7 @@
         set_input_value(
           input2,
           /*pertiS3*/
-          ctx[49]
+          ctx[50]
         );
         append(tbody, t12);
         append(tbody, tr2);
@@ -25201,7 +28312,7 @@
         set_input_value(
           input3,
           /*bidangIlmuS1*/
-          ctx[50]
+          ctx[51]
         );
         append(tr2, t15);
         append(tr2, td4);
@@ -25209,7 +28320,7 @@
         set_input_value(
           input4,
           /*bidangIlmuS2*/
-          ctx[51]
+          ctx[52]
         );
         append(tr2, t16);
         append(tr2, td5);
@@ -25217,7 +28328,7 @@
         set_input_value(
           input5,
           /*bidangIlmuS3*/
-          ctx[52]
+          ctx[53]
         );
         append(tbody, t17);
         append(tbody, tr3);
@@ -25228,7 +28339,7 @@
         set_input_value(
           input6,
           /*tahunMasukS1*/
-          ctx[53]
+          ctx[54]
         );
         append(tr3, t20);
         append(tr3, td7);
@@ -25236,7 +28347,7 @@
         set_input_value(
           input7,
           /*tahunMasukS2*/
-          ctx[54]
+          ctx[55]
         );
         append(tr3, t21);
         append(tr3, td8);
@@ -25244,7 +28355,7 @@
         set_input_value(
           input8,
           /*tahunMasukS3*/
-          ctx[55]
+          ctx[56]
         );
         append(tbody, t22);
         append(tbody, tr4);
@@ -25255,7 +28366,7 @@
         set_input_value(
           input9,
           /*tahunLulusS1*/
-          ctx[56]
+          ctx[57]
         );
         append(tr4, t25);
         append(tr4, td10);
@@ -25263,7 +28374,7 @@
         set_input_value(
           input10,
           /*tahunLulusS2*/
-          ctx[57]
+          ctx[58]
         );
         append(tr4, t26);
         append(tr4, td11);
@@ -25271,7 +28382,7 @@
         set_input_value(
           input11,
           /*tahunLulusS3*/
-          ctx[58]
+          ctx[59]
         );
         append(tbody, t27);
         append(tbody, tr5);
@@ -25282,7 +28393,7 @@
         set_input_value(
           textarea0,
           /*judulTugasAkhirS1*/
-          ctx[59]
+          ctx[60]
         );
         append(tr5, t30);
         append(tr5, td13);
@@ -25290,7 +28401,7 @@
         set_input_value(
           textarea1,
           /*judulTugasAkhirS2*/
-          ctx[60]
+          ctx[61]
         );
         append(tr5, t31);
         append(tr5, td14);
@@ -25298,7 +28409,7 @@
         set_input_value(
           textarea2,
           /*judulTugasAkhirS3*/
-          ctx[61]
+          ctx[62]
         );
         insert(target, t32, anchor);
         insert(target, div, anchor);
@@ -25310,97 +28421,97 @@
               input0,
               "input",
               /*input0_input_handler*/
-              ctx[108]
+              ctx[110]
             ),
             listen(
               input1,
               "input",
               /*input1_input_handler*/
-              ctx[109]
+              ctx[111]
             ),
             listen(
               input2,
               "input",
               /*input2_input_handler*/
-              ctx[110]
+              ctx[112]
             ),
             listen(
               input3,
               "input",
               /*input3_input_handler*/
-              ctx[111]
+              ctx[113]
             ),
             listen(
               input4,
               "input",
               /*input4_input_handler*/
-              ctx[112]
+              ctx[114]
             ),
             listen(
               input5,
               "input",
               /*input5_input_handler*/
-              ctx[113]
+              ctx[115]
             ),
             listen(
               input6,
               "input",
               /*input6_input_handler*/
-              ctx[114]
+              ctx[116]
             ),
             listen(
               input7,
               "input",
               /*input7_input_handler*/
-              ctx[115]
+              ctx[117]
             ),
             listen(
               input8,
               "input",
               /*input8_input_handler*/
-              ctx[116]
+              ctx[118]
             ),
             listen(
               input9,
               "input",
               /*input9_input_handler*/
-              ctx[117]
+              ctx[119]
             ),
             listen(
               input10,
               "input",
               /*input10_input_handler*/
-              ctx[118]
+              ctx[120]
             ),
             listen(
               input11,
               "input",
               /*input11_input_handler*/
-              ctx[119]
+              ctx[121]
             ),
             listen(
               textarea0,
               "input",
               /*textarea0_input_handler*/
-              ctx[120]
+              ctx[122]
             ),
             listen(
               textarea1,
               "input",
               /*textarea1_input_handler*/
-              ctx[121]
+              ctx[123]
             ),
             listen(
               textarea2,
               "input",
               /*textarea2_input_handler*/
-              ctx[122]
+              ctx[124]
             ),
             listen(
               button,
               "click",
               /*simpanRiwayatPendidikan*/
-              ctx[83]
+              ctx[84]
             )
           ];
           mounted = true;
@@ -25408,135 +28519,135 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*pertiS1*/
-        65536 && input0.value !== /*pertiS1*/
-        ctx2[47]) {
+        131072 && input0.value !== /*pertiS1*/
+        ctx2[48]) {
           set_input_value(
             input0,
             /*pertiS1*/
-            ctx2[47]
-          );
-        }
-        if (dirty[1] & /*pertiS2*/
-        131072 && input1.value !== /*pertiS2*/
-        ctx2[48]) {
-          set_input_value(
-            input1,
-            /*pertiS2*/
             ctx2[48]
           );
         }
-        if (dirty[1] & /*pertiS3*/
-        262144 && input2.value !== /*pertiS3*/
+        if (dirty[1] & /*pertiS2*/
+        262144 && input1.value !== /*pertiS2*/
         ctx2[49]) {
           set_input_value(
-            input2,
-            /*pertiS3*/
+            input1,
+            /*pertiS2*/
             ctx2[49]
           );
         }
-        if (dirty[1] & /*bidangIlmuS1*/
-        524288 && input3.value !== /*bidangIlmuS1*/
+        if (dirty[1] & /*pertiS3*/
+        524288 && input2.value !== /*pertiS3*/
         ctx2[50]) {
           set_input_value(
-            input3,
-            /*bidangIlmuS1*/
+            input2,
+            /*pertiS3*/
             ctx2[50]
           );
         }
-        if (dirty[1] & /*bidangIlmuS2*/
-        1048576 && input4.value !== /*bidangIlmuS2*/
+        if (dirty[1] & /*bidangIlmuS1*/
+        1048576 && input3.value !== /*bidangIlmuS1*/
         ctx2[51]) {
           set_input_value(
-            input4,
-            /*bidangIlmuS2*/
+            input3,
+            /*bidangIlmuS1*/
             ctx2[51]
           );
         }
-        if (dirty[1] & /*bidangIlmuS3*/
-        2097152 && input5.value !== /*bidangIlmuS3*/
+        if (dirty[1] & /*bidangIlmuS2*/
+        2097152 && input4.value !== /*bidangIlmuS2*/
         ctx2[52]) {
           set_input_value(
-            input5,
-            /*bidangIlmuS3*/
+            input4,
+            /*bidangIlmuS2*/
             ctx2[52]
           );
         }
-        if (dirty[1] & /*tahunMasukS1*/
-        4194304 && to_number(input6.value) !== /*tahunMasukS1*/
+        if (dirty[1] & /*bidangIlmuS3*/
+        4194304 && input5.value !== /*bidangIlmuS3*/
         ctx2[53]) {
           set_input_value(
-            input6,
-            /*tahunMasukS1*/
+            input5,
+            /*bidangIlmuS3*/
             ctx2[53]
           );
         }
-        if (dirty[1] & /*tahunMasukS2*/
-        8388608 && to_number(input7.value) !== /*tahunMasukS2*/
+        if (dirty[1] & /*tahunMasukS1*/
+        8388608 && to_number(input6.value) !== /*tahunMasukS1*/
         ctx2[54]) {
           set_input_value(
-            input7,
-            /*tahunMasukS2*/
+            input6,
+            /*tahunMasukS1*/
             ctx2[54]
           );
         }
-        if (dirty[1] & /*tahunMasukS3*/
-        16777216 && to_number(input8.value) !== /*tahunMasukS3*/
+        if (dirty[1] & /*tahunMasukS2*/
+        16777216 && to_number(input7.value) !== /*tahunMasukS2*/
         ctx2[55]) {
           set_input_value(
-            input8,
-            /*tahunMasukS3*/
+            input7,
+            /*tahunMasukS2*/
             ctx2[55]
           );
         }
-        if (dirty[1] & /*tahunLulusS1*/
-        33554432 && to_number(input9.value) !== /*tahunLulusS1*/
+        if (dirty[1] & /*tahunMasukS3*/
+        33554432 && to_number(input8.value) !== /*tahunMasukS3*/
         ctx2[56]) {
           set_input_value(
-            input9,
-            /*tahunLulusS1*/
+            input8,
+            /*tahunMasukS3*/
             ctx2[56]
           );
         }
-        if (dirty[1] & /*tahunLulusS2*/
-        67108864 && to_number(input10.value) !== /*tahunLulusS2*/
+        if (dirty[1] & /*tahunLulusS1*/
+        67108864 && to_number(input9.value) !== /*tahunLulusS1*/
         ctx2[57]) {
           set_input_value(
-            input10,
-            /*tahunLulusS2*/
+            input9,
+            /*tahunLulusS1*/
             ctx2[57]
           );
         }
-        if (dirty[1] & /*tahunLulusS3*/
-        134217728 && to_number(input11.value) !== /*tahunLulusS3*/
+        if (dirty[1] & /*tahunLulusS2*/
+        134217728 && to_number(input10.value) !== /*tahunLulusS2*/
         ctx2[58]) {
           set_input_value(
-            input11,
-            /*tahunLulusS3*/
+            input10,
+            /*tahunLulusS2*/
             ctx2[58]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS1*/
-        268435456) {
+        if (dirty[1] & /*tahunLulusS3*/
+        268435456 && to_number(input11.value) !== /*tahunLulusS3*/
+        ctx2[59]) {
           set_input_value(
-            textarea0,
-            /*judulTugasAkhirS1*/
+            input11,
+            /*tahunLulusS3*/
             ctx2[59]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS2*/
+        if (dirty[1] & /*judulTugasAkhirS1*/
         536870912) {
           set_input_value(
-            textarea1,
-            /*judulTugasAkhirS2*/
+            textarea0,
+            /*judulTugasAkhirS1*/
             ctx2[60]
           );
         }
-        if (dirty[1] & /*judulTugasAkhirS3*/
+        if (dirty[1] & /*judulTugasAkhirS2*/
         1073741824) {
+          set_input_value(
+            textarea1,
+            /*judulTugasAkhirS2*/
+            ctx2[61]
+          );
+        }
+        if (dirty[2] & /*judulTugasAkhirS3*/
+        1) {
           set_input_value(
             textarea2,
             /*judulTugasAkhirS3*/
-            ctx2[61]
+            ctx2[62]
           );
         }
       },
@@ -25686,21 +28797,21 @@
     let dispose;
     icon0 = new Icon_default({ props: { id: "orang", src: add } });
     function modal0_show_binding(value) {
-      ctx[129](value);
+      ctx[131](value);
     }
     let modal0_props = {
       $$slots: {
         header: [create_header_slot_52],
-        default: [create_default_slot_292]
+        default: [create_default_slot_293]
       },
       $$scope: { ctx }
     };
     if (
       /*showModalPenelitian*/
-      ctx[62] !== void 0
+      ctx[63] !== void 0
     ) {
       modal0_props.show = /*showModalPenelitian*/
-      ctx[62];
+      ctx[63];
     }
     modal0 = new Modal_default({ props: modal0_props });
     binding_callbacks.push(() => bind(modal0, "show", modal0_show_binding));
@@ -25710,7 +28821,7 @@
     );
     icon1 = new Icon_default({ props: { id: "orang", src: add } });
     function modal1_show_binding(value) {
-      ctx[136](value);
+      ctx[138](value);
     }
     let modal1_props = {
       $$slots: {
@@ -25721,10 +28832,10 @@
     };
     if (
       /*showModalPengmas*/
-      ctx[63] !== void 0
+      ctx[64] !== void 0
     ) {
       modal1_props.show = /*showModalPengmas*/
-      ctx[63];
+      ctx[64];
     }
     modal1 = new Modal_default({ props: modal1_props });
     binding_callbacks.push(() => bind(modal1, "show", modal1_show_binding));
@@ -25734,7 +28845,7 @@
     );
     icon2 = new Icon_default({ props: { id: "orang", src: add } });
     function modal2_show_binding(value) {
-      ctx[141](value);
+      ctx[143](value);
     }
     let modal2_props = {
       $$slots: {
@@ -25745,10 +28856,10 @@
     };
     if (
       /*showModalDiseminasi*/
-      ctx[64] !== void 0
+      ctx[65] !== void 0
     ) {
       modal2_props.show = /*showModalDiseminasi*/
-      ctx[64];
+      ctx[65];
     }
     modal2 = new Modal_default({ props: modal2_props });
     binding_callbacks.push(() => bind(modal2, "show", modal2_show_binding));
@@ -25758,7 +28869,7 @@
     );
     icon3 = new Icon_default({ props: { id: "orang", src: add } });
     function modal3_show_binding(value) {
-      ctx[146](value);
+      ctx[148](value);
     }
     let modal3_props = {
       $$slots: {
@@ -25769,10 +28880,10 @@
     };
     if (
       /*showModalPublikasi*/
-      ctx[65] !== void 0
+      ctx[66] !== void 0
     ) {
       modal3_props.show = /*showModalPublikasi*/
-      ctx[65];
+      ctx[66];
     }
     modal3 = new Modal_default({ props: modal3_props });
     binding_callbacks.push(() => bind(modal3, "show", modal3_show_binding));
@@ -25782,7 +28893,7 @@
     );
     icon4 = new Icon_default({ props: { id: "orang", src: add } });
     function modal4_show_binding(value) {
-      ctx[152](value);
+      ctx[154](value);
     }
     let modal4_props = {
       $$slots: {
@@ -25793,10 +28904,10 @@
     };
     if (
       /*showModalPenulisanBuku*/
-      ctx[66] !== void 0
+      ctx[67] !== void 0
     ) {
       modal4_props.show = /*showModalPenulisanBuku*/
-      ctx[66];
+      ctx[67];
     }
     modal4 = new Modal_default({ props: modal4_props });
     binding_callbacks.push(() => bind(modal4, "show", modal4_show_binding));
@@ -25806,7 +28917,7 @@
     );
     icon5 = new Icon_default({ props: { id: "orang", src: add } });
     function modal5_show_binding(value) {
-      ctx[158](value);
+      ctx[160](value);
     }
     let modal5_props = {
       $$slots: {
@@ -25817,16 +28928,16 @@
     };
     if (
       /*showModalHKI*/
-      ctx[67] !== void 0
+      ctx[68] !== void 0
     ) {
       modal5_props.show = /*showModalHKI*/
-      ctx[67];
+      ctx[68];
     }
     modal5 = new Modal_default({ props: modal5_props });
     binding_callbacks.push(() => bind(modal5, "show", modal5_show_binding));
     let if_block5 = (
       /*dataPHKI*/
-      ctx[5] && create_if_block_110(ctx)
+      ctx[5] && create_if_block_117(ctx)
     );
     return {
       c() {
@@ -26169,37 +29280,37 @@
               button0,
               "click",
               /*clickModalPenelitian*/
-              ctx[71]
+              ctx[72]
             ),
             listen(
               button1,
               "click",
               /*clickModalPengmas*/
-              ctx[72]
+              ctx[73]
             ),
             listen(
               button2,
               "click",
               /*clickModalDiseminasi*/
-              ctx[73]
+              ctx[74]
             ),
             listen(
               button3,
               "click",
               /*clickModalPublikasi*/
-              ctx[74]
+              ctx[75]
             ),
             listen(
               button4,
               "click",
               /*clickModalPenulisanBuku*/
-              ctx[75]
+              ctx[76]
             ),
             listen(
               button5,
               "click",
               /*clickModalHKI*/
-              ctx[76]
+              ctx[77]
             )
           ];
           mounted = true;
@@ -26209,14 +29320,14 @@
         const modal0_changes = {};
         if (dirty[0] & /*biayaPenelitian, sumberDanaPenelitian, rolePenelitian, judulPenelitian, tahunPenelitian*/
         3968 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty[2] & /*showModalPenelitian*/
-        1) {
+        2) {
           updating_show = true;
           modal0_changes.show = /*showModalPenelitian*/
-          ctx2[62];
+          ctx2[63];
           add_flush_callback(() => updating_show = false);
         }
         modal0.$set(modal0_changes);
@@ -26246,14 +29357,14 @@
         const modal1_changes = {};
         if (dirty[0] & /*biayaPengmas, sumberDanaPengmas, rolePengmas, judulPengmas, tahunPengmas*/
         126976 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_1 && dirty[2] & /*showModalPengmas*/
-        2) {
+        4) {
           updating_show_1 = true;
           modal1_changes.show = /*showModalPengmas*/
-          ctx2[63];
+          ctx2[64];
           add_flush_callback(() => updating_show_1 = false);
         }
         modal1.$set(modal1_changes);
@@ -26283,14 +29394,14 @@
         const modal2_changes = {};
         if (dirty[0] & /*namaPertemuanDiseminasi, namaPemakalahDiseminasi, judulDiseminasi, tahunDiseminasi*/
         1966080 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_2 && dirty[2] & /*showModalDiseminasi*/
-        4) {
+        8) {
           updating_show_2 = true;
           modal2_changes.show = /*showModalDiseminasi*/
-          ctx2[64];
+          ctx2[65];
           add_flush_callback(() => updating_show_2 = false);
         }
         modal2.$set(modal2_changes);
@@ -26320,14 +29431,14 @@
         const modal3_changes = {};
         if (dirty[0] & /*impactFactor, namaJurnal, judulPublikasi, tahunPublikasi*/
         31457280 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_3 && dirty[2] & /*showModalPublikasi*/
-        8) {
+        16) {
           updating_show_3 = true;
           modal3_changes.show = /*showModalPublikasi*/
-          ctx2[65];
+          ctx2[66];
           add_flush_callback(() => updating_show_3 = false);
         }
         modal3.$set(modal3_changes);
@@ -26357,14 +29468,14 @@
         const modal4_changes = {};
         if (dirty[0] & /*Isbn, PenerbitBuku, namaPenulisBuku, JudulBuku, tahunBuku*/
         1040187392 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_4 && dirty[2] & /*showModalPenulisanBuku*/
-        16) {
+        32) {
           updating_show_4 = true;
           modal4_changes.show = /*showModalPenulisanBuku*/
-          ctx2[66];
+          ctx2[67];
           add_flush_callback(() => updating_show_4 = false);
         }
         modal4.$set(modal4_changes);
@@ -26395,14 +29506,14 @@
         if (dirty[0] & /*tahunHKI*/
         1073741824 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI*/
         15 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           modal5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show_5 && dirty[2] & /*showModalHKI*/
-        32) {
+        64) {
           updating_show_5 = true;
           modal5_changes.show = /*showModalHKI*/
-          ctx2[67];
+          ctx2[68];
           add_flush_callback(() => updating_show_5 = false);
         }
         modal5.$set(modal5_changes);
@@ -26417,7 +29528,7 @@
               transition_in(if_block5, 1);
             }
           } else {
-            if_block5 = create_if_block_110(ctx2);
+            if_block5 = create_if_block_117(ctx2);
             if_block5.c();
             transition_in(if_block5, 1);
             if_block5.m(tbody5, null);
@@ -26547,7 +29658,7 @@
       }
     };
   }
-  function create_default_slot_342(ctx) {
+  function create_default_slot_343(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -26568,8 +29679,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_12*/
-            ctx[123]
+            /*input_input_handler_13*/
+            ctx[125]
           );
           mounted = true;
         }
@@ -26594,7 +29705,7 @@
       }
     };
   }
-  function create_default_slot_332(ctx) {
+  function create_default_slot_333(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -26615,8 +29726,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
-            ctx[124]
+            /*input_input_handler_14*/
+            ctx[126]
           );
           mounted = true;
         }
@@ -26641,7 +29752,7 @@
       }
     };
   }
-  function create_default_slot_323(ctx) {
+  function create_default_slot_324(ctx) {
     let div;
     let select;
     let option0;
@@ -26674,7 +29785,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[125].call(select)
+            ctx[127].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -26695,7 +29806,7 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[125]
+            ctx[127]
           );
           mounted = true;
         }
@@ -26719,7 +29830,7 @@
       }
     };
   }
-  function create_default_slot_313(ctx) {
+  function create_default_slot_314(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -26740,8 +29851,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
-            ctx[126]
+            /*input_input_handler_15*/
+            ctx[128]
           );
           mounted = true;
         }
@@ -26766,7 +29877,7 @@
       }
     };
   }
-  function create_default_slot_302(ctx) {
+  function create_default_slot_303(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -26789,14 +29900,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_15*/
-              ctx[127]
+              /*input_input_handler_16*/
+              ctx[129]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[128]
+              ctx[130]
             )
           ];
           mounted = true;
@@ -26822,7 +29933,7 @@
       }
     };
   }
-  function create_default_slot_292(ctx) {
+  function create_default_slot_293(ctx) {
     let field0;
     let t0;
     let field1;
@@ -26844,35 +29955,35 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_342] },
+        $$slots: { default: [create_default_slot_343] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Penelitian",
-        $$slots: { default: [create_default_slot_332] },
+        $$slots: { default: [create_default_slot_333] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Ketua/Anggota",
-        $$slots: { default: [create_default_slot_323] },
+        $$slots: { default: [create_default_slot_324] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Sumber Dana",
-        $$slots: { default: [create_default_slot_313] },
+        $$slots: { default: [create_default_slot_314] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Jumlah Rp.",
-        $$slots: { default: [create_default_slot_302] },
+        $$slots: { default: [create_default_slot_303] },
         $$scope: { ctx }
       }
     });
@@ -26920,7 +30031,7 @@
             button,
             "click",
             /*simpanPP*/
-            ctx[80]
+            ctx[81]
           );
           mounted = true;
         }
@@ -26929,35 +30040,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPenelitian*/
         256 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPenelitian*/
         512 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*rolePenelitian*/
         1024 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*sumberDanaPenelitian*/
         2048 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -27030,7 +30141,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_5.length; i += 1) {
-      each_blocks[i] = create_each_block_52(get_each_context_52(ctx, each_value_5, i));
+      each_blocks[i] = create_each_block_53(get_each_context_53(ctx, each_value_5, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -27054,19 +30165,19 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPP*/
         1 | dirty[2] & /*delrowPP*/
-        134217728) {
+        268435456) {
           each_value_5 = ensure_array_like(
             /*dataPP*/
             ctx2[0]
           );
           let i;
           for (i = 0; i < each_value_5.length; i += 1) {
-            const child_ctx = get_each_context_52(ctx2, each_value_5, i);
+            const child_ctx = get_each_context_53(ctx2, each_value_5, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_52(child_ctx);
+              each_blocks[i] = create_each_block_53(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -27102,7 +30213,7 @@
       }
     };
   }
-  function create_each_block_52(ctx) {
+  function create_each_block_53(ctx) {
     let tr;
     let td0;
     let button;
@@ -27113,35 +30224,35 @@
     let td1;
     let t1_value = (
       /*PP*/
-      ctx[188].tahun_penelitian + ""
+      ctx[189].tahun_penelitian + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PP*/
-      ctx[188].judul_penelitian + ""
+      ctx[189].judul_penelitian + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PP*/
-      ctx[188].role_penelitian + ""
+      ctx[189].role_penelitian + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PP*/
-      ctx[188].sumber_dana + ""
+      ctx[189].sumber_dana + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PP*/
-      ctx[188].jumlah + ""
+      ctx[189].jumlah + ""
     );
     let t9;
     let t10;
@@ -27175,7 +30286,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PP*/
-        ctx[188].id);
+        ctx[189].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -27205,7 +30316,7 @@
             button,
             "click",
             /*delrowPP*/
-            ctx[89]
+            ctx[90]
           );
           mounted = true;
         }
@@ -27213,28 +30324,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPP*/
         1 && button_pid_value !== (button_pid_value = /*PP*/
-        ctx2[188].id)) {
+        ctx2[189].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPP*/
         1) && t1_value !== (t1_value = /*PP*/
-        ctx2[188].tahun_penelitian + ""))
+        ctx2[189].tahun_penelitian + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t3_value !== (t3_value = /*PP*/
-        ctx2[188].judul_penelitian + ""))
+        ctx2[189].judul_penelitian + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t5_value !== (t5_value = /*PP*/
-        ctx2[188].role_penelitian + ""))
+        ctx2[189].role_penelitian + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t7_value !== (t7_value = /*PP*/
-        ctx2[188].sumber_dana + ""))
+        ctx2[189].sumber_dana + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPP*/
         1) && t9_value !== (t9_value = /*PP*/
-        ctx2[188].jumlah + ""))
+        ctx2[189].jumlah + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -27257,7 +30368,7 @@
       }
     };
   }
-  function create_default_slot_282(ctx) {
+  function create_default_slot_283(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -27278,8 +30389,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_16*/
-            ctx[130]
+            /*input_input_handler_17*/
+            ctx[132]
           );
           mounted = true;
         }
@@ -27304,7 +30415,7 @@
       }
     };
   }
-  function create_default_slot_272(ctx) {
+  function create_default_slot_273(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -27325,8 +30436,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
-            ctx[131]
+            /*input_input_handler_18*/
+            ctx[133]
           );
           mounted = true;
         }
@@ -27384,7 +30495,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[132].call(select)
+            ctx[134].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -27405,7 +30516,7 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[132]
+            ctx[134]
           );
           mounted = true;
         }
@@ -27450,8 +30561,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
-            ctx[133]
+            /*input_input_handler_19*/
+            ctx[135]
           );
           mounted = true;
         }
@@ -27499,14 +30610,14 @@
             listen(
               input,
               "input",
-              /*input_input_handler_19*/
-              ctx[134]
+              /*input_input_handler_20*/
+              ctx[136]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler_1*/
-              ctx[135]
+              ctx[137]
             )
           ];
           mounted = true;
@@ -27554,14 +30665,14 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_282] },
+        $$slots: { default: [create_default_slot_283] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Pengmas",
-        $$slots: { default: [create_default_slot_272] },
+        $$slots: { default: [create_default_slot_273] },
         $$scope: { ctx }
       }
     });
@@ -27630,7 +30741,7 @@
             button,
             "click",
             /*simpanPM*/
-            ctx[81]
+            ctx[82]
           );
           mounted = true;
         }
@@ -27639,35 +30750,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPengmas*/
         8192 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPengmas*/
         16384 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*rolePengmas*/
         32768 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*sumberDanaPengmas*/
         65536 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*biayaPengmas*/
         4096 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -27740,7 +30851,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_4.length; i += 1) {
-      each_blocks[i] = create_each_block_42(get_each_context_42(ctx, each_value_4, i));
+      each_blocks[i] = create_each_block_43(get_each_context_43(ctx, each_value_4, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -27764,19 +30875,19 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPM*/
         2 | dirty[2] & /*delrowPM*/
-        268435456) {
+        536870912) {
           each_value_4 = ensure_array_like(
             /*dataPM*/
             ctx2[1]
           );
           let i;
           for (i = 0; i < each_value_4.length; i += 1) {
-            const child_ctx = get_each_context_42(ctx2, each_value_4, i);
+            const child_ctx = get_each_context_43(ctx2, each_value_4, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_42(child_ctx);
+              each_blocks[i] = create_each_block_43(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -27812,7 +30923,7 @@
       }
     };
   }
-  function create_each_block_42(ctx) {
+  function create_each_block_43(ctx) {
     let tr;
     let td0;
     let button;
@@ -27823,35 +30934,35 @@
     let td1;
     let t1_value = (
       /*PM*/
-      ctx[185].tahun_pengmas + ""
+      ctx[186].tahun_pengmas + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PM*/
-      ctx[185].judul_pengmas + ""
+      ctx[186].judul_pengmas + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PM*/
-      ctx[185].role_pengmas + ""
+      ctx[186].role_pengmas + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PM*/
-      ctx[185].sumber_dana + ""
+      ctx[186].sumber_dana + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PM*/
-      ctx[185].jumlah + ""
+      ctx[186].jumlah + ""
     );
     let t9;
     let t10;
@@ -27885,7 +30996,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PM*/
-        ctx[185].id);
+        ctx[186].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -27915,7 +31026,7 @@
             button,
             "click",
             /*delrowPM*/
-            ctx[90]
+            ctx[91]
           );
           mounted = true;
         }
@@ -27923,28 +31034,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPM*/
         2 && button_pid_value !== (button_pid_value = /*PM*/
-        ctx2[185].id)) {
+        ctx2[186].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPM*/
         2) && t1_value !== (t1_value = /*PM*/
-        ctx2[185].tahun_pengmas + ""))
+        ctx2[186].tahun_pengmas + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t3_value !== (t3_value = /*PM*/
-        ctx2[185].judul_pengmas + ""))
+        ctx2[186].judul_pengmas + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t5_value !== (t5_value = /*PM*/
-        ctx2[185].role_pengmas + ""))
+        ctx2[186].role_pengmas + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t7_value !== (t7_value = /*PM*/
-        ctx2[185].sumber_dana + ""))
+        ctx2[186].sumber_dana + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPM*/
         2) && t9_value !== (t9_value = /*PM*/
-        ctx2[185].jumlah + ""))
+        ctx2[186].jumlah + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -27988,8 +31099,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_20*/
-            ctx[137]
+            /*input_input_handler_21*/
+            ctx[139]
           );
           mounted = true;
         }
@@ -28035,8 +31146,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
-            ctx[138]
+            /*input_input_handler_22*/
+            ctx[140]
           );
           mounted = true;
         }
@@ -28082,8 +31193,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
-            ctx[139]
+            /*input_input_handler_23*/
+            ctx[141]
           );
           mounted = true;
         }
@@ -28129,8 +31240,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
-            ctx[140]
+            /*input_input_handler_24*/
+            ctx[142]
           );
           mounted = true;
         }
@@ -28240,7 +31351,7 @@
             button,
             "click",
             /*simpanPD*/
-            ctx[82]
+            ctx[83]
           );
           mounted = true;
         }
@@ -28249,28 +31360,28 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunDiseminasi*/
         131072 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulDiseminasi*/
         262144 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaPemakalahDiseminasi*/
         524288 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*namaPertemuanDiseminasi*/
         1048576 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
@@ -28339,7 +31450,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_3.length; i += 1) {
-      each_blocks[i] = create_each_block_33(get_each_context_33(ctx, each_value_3, i));
+      each_blocks[i] = create_each_block_34(get_each_context_34(ctx, each_value_3, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -28363,19 +31474,19 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPD*/
         4 | dirty[2] & /*delrowPD*/
-        536870912) {
+        1073741824) {
           each_value_3 = ensure_array_like(
             /*dataPD*/
             ctx2[2]
           );
           let i;
           for (i = 0; i < each_value_3.length; i += 1) {
-            const child_ctx = get_each_context_33(ctx2, each_value_3, i);
+            const child_ctx = get_each_context_34(ctx2, each_value_3, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_33(child_ctx);
+              each_blocks[i] = create_each_block_34(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -28411,7 +31522,7 @@
       }
     };
   }
-  function create_each_block_33(ctx) {
+  function create_each_block_34(ctx) {
     let tr;
     let td0;
     let button;
@@ -28422,28 +31533,28 @@
     let td1;
     let t1_value = (
       /*PD*/
-      ctx[182].tahun_diseminasi + ""
+      ctx[183].tahun_diseminasi + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PD*/
-      ctx[182].judul_artikel + ""
+      ctx[183].judul_artikel + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PD*/
-      ctx[182].nama_pemakalah + ""
+      ctx[183].nama_pemakalah + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PD*/
-      ctx[182].nama_pertemuan + ""
+      ctx[183].nama_pertemuan + ""
     );
     let t7;
     let t8;
@@ -28474,7 +31585,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PD*/
-        ctx[182].id);
+        ctx[183].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -28501,7 +31612,7 @@
             button,
             "click",
             /*delrowPD*/
-            ctx[91]
+            ctx[92]
           );
           mounted = true;
         }
@@ -28509,24 +31620,24 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPD*/
         4 && button_pid_value !== (button_pid_value = /*PD*/
-        ctx2[182].id)) {
+        ctx2[183].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPD*/
         4) && t1_value !== (t1_value = /*PD*/
-        ctx2[182].tahun_diseminasi + ""))
+        ctx2[183].tahun_diseminasi + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t3_value !== (t3_value = /*PD*/
-        ctx2[182].judul_artikel + ""))
+        ctx2[183].judul_artikel + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t5_value !== (t5_value = /*PD*/
-        ctx2[182].nama_pemakalah + ""))
+        ctx2[183].nama_pemakalah + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPD*/
         4) && t7_value !== (t7_value = /*PD*/
-        ctx2[182].nama_pertemuan + ""))
+        ctx2[183].nama_pertemuan + ""))
           set_data(t7, t7_value);
       },
       i(local) {
@@ -28570,8 +31681,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
-            ctx[142]
+            /*input_input_handler_25*/
+            ctx[144]
           );
           mounted = true;
         }
@@ -28617,8 +31728,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
-            ctx[143]
+            /*input_input_handler_26*/
+            ctx[145]
           );
           mounted = true;
         }
@@ -28664,8 +31775,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
-            ctx[144]
+            /*input_input_handler_27*/
+            ctx[146]
           );
           mounted = true;
         }
@@ -28711,8 +31822,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
-            ctx[145]
+            /*input_input_handler_28*/
+            ctx[147]
           );
           mounted = true;
         }
@@ -28822,7 +31933,7 @@
             button,
             "click",
             /*simpanPPublikasi*/
-            ctx[79]
+            ctx[80]
           );
           mounted = true;
         }
@@ -28831,28 +31942,28 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunPublikasi*/
         2097152 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*judulPublikasi*/
         4194304 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaJurnal*/
         8388608 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*impactFactor*/
         16777216 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
@@ -28921,7 +32032,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_2.length; i += 1) {
-      each_blocks[i] = create_each_block_23(get_each_context_23(ctx, each_value_2, i));
+      each_blocks[i] = create_each_block_24(get_each_context_24(ctx, each_value_2, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -28944,20 +32055,20 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPub*/
-        8 | dirty[2] & /*delrowPPub*/
-        1073741824) {
+        8 | dirty[3] & /*delrowPPub*/
+        1) {
           each_value_2 = ensure_array_like(
             /*dataPPub*/
             ctx2[3]
           );
           let i;
           for (i = 0; i < each_value_2.length; i += 1) {
-            const child_ctx = get_each_context_23(ctx2, each_value_2, i);
+            const child_ctx = get_each_context_24(ctx2, each_value_2, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_23(child_ctx);
+              each_blocks[i] = create_each_block_24(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -28993,7 +32104,7 @@
       }
     };
   }
-  function create_each_block_23(ctx) {
+  function create_each_block_24(ctx) {
     let tr;
     let td0;
     let button;
@@ -29004,28 +32115,28 @@
     let td1;
     let t1_value = (
       /*PPub*/
-      ctx[179].tahun_publikasi + ""
+      ctx[180].tahun_publikasi + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PPub*/
-      ctx[179].judul_artikel + ""
+      ctx[180].judul_artikel + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PPub*/
-      ctx[179].nama_jurnal + ""
+      ctx[180].nama_jurnal + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PPub*/
-      ctx[179].impact + ""
+      ctx[180].impact + ""
     );
     let t7;
     let t8;
@@ -29056,7 +32167,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PPub*/
-        ctx[179].id);
+        ctx[180].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -29083,7 +32194,7 @@
             button,
             "click",
             /*delrowPPub*/
-            ctx[92]
+            ctx[93]
           );
           mounted = true;
         }
@@ -29091,24 +32202,24 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPPub*/
         8 && button_pid_value !== (button_pid_value = /*PPub*/
-        ctx2[179].id)) {
+        ctx2[180].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t1_value !== (t1_value = /*PPub*/
-        ctx2[179].tahun_publikasi + ""))
+        ctx2[180].tahun_publikasi + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t3_value !== (t3_value = /*PPub*/
-        ctx2[179].judul_artikel + ""))
+        ctx2[180].judul_artikel + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t5_value !== (t5_value = /*PPub*/
-        ctx2[179].nama_jurnal + ""))
+        ctx2[180].nama_jurnal + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPPub*/
         8) && t7_value !== (t7_value = /*PPub*/
-        ctx2[179].impact + ""))
+        ctx2[180].impact + ""))
           set_data(t7, t7_value);
       },
       i(local) {
@@ -29152,8 +32263,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
-            ctx[147]
+            /*input_input_handler_29*/
+            ctx[149]
           );
           mounted = true;
         }
@@ -29199,8 +32310,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
-            ctx[148]
+            /*input_input_handler_30*/
+            ctx[150]
           );
           mounted = true;
         }
@@ -29246,8 +32357,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
-            ctx[149]
+            /*input_input_handler_31*/
+            ctx[151]
           );
           mounted = true;
         }
@@ -29293,8 +32404,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
-            ctx[150]
+            /*input_input_handler_32*/
+            ctx[152]
           );
           mounted = true;
         }
@@ -29340,8 +32451,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
-            ctx[151]
+            /*input_input_handler_33*/
+            ctx[153]
           );
           mounted = true;
         }
@@ -29464,7 +32575,7 @@
             button,
             "click",
             /*simpanPPB*/
-            ctx[78]
+            ctx[79]
           );
           mounted = true;
         }
@@ -29473,35 +32584,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunBuku*/
         33554432 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*JudulBuku*/
         67108864 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*namaPenulisBuku*/
         134217728 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*PenerbitBuku*/
         268435456 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*Isbn*/
         536870912 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -29598,7 +32709,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPB*/
         16 | dirty[3] & /*delrowPPB*/
-        1) {
+        2) {
           each_value_1 = ensure_array_like(
             /*dataPPB*/
             ctx2[4]
@@ -29657,35 +32768,35 @@
     let td1;
     let t1_value = (
       /*PPB*/
-      ctx[176].tahun_buku + ""
+      ctx[177].tahun_buku + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PPB*/
-      ctx[176].judul_buku + ""
+      ctx[177].judul_buku + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PPB*/
-      ctx[176].nama_penulis + ""
+      ctx[177].nama_penulis + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PPB*/
-      ctx[176].penerbit + ""
+      ctx[177].penerbit + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PPB*/
-      ctx[176].isbn + ""
+      ctx[177].isbn + ""
     );
     let t9;
     let t10;
@@ -29719,7 +32830,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PPB*/
-        ctx[176].id);
+        ctx[177].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -29749,7 +32860,7 @@
             button,
             "click",
             /*delrowPPB*/
-            ctx[93]
+            ctx[94]
           );
           mounted = true;
         }
@@ -29757,28 +32868,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPPB*/
         16 && button_pid_value !== (button_pid_value = /*PPB*/
-        ctx2[176].id)) {
+        ctx2[177].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t1_value !== (t1_value = /*PPB*/
-        ctx2[176].tahun_buku + ""))
+        ctx2[177].tahun_buku + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t3_value !== (t3_value = /*PPB*/
-        ctx2[176].judul_buku + ""))
+        ctx2[177].judul_buku + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t5_value !== (t5_value = /*PPB*/
-        ctx2[176].nama_penulis + ""))
+        ctx2[177].nama_penulis + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t7_value !== (t7_value = /*PPB*/
-        ctx2[176].penerbit + ""))
+        ctx2[177].penerbit + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPPB*/
         16) && t9_value !== (t9_value = /*PPB*/
-        ctx2[176].isbn + ""))
+        ctx2[177].isbn + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -29822,8 +32933,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
-            ctx[153]
+            /*input_input_handler_34*/
+            ctx[155]
           );
           mounted = true;
         }
@@ -29869,8 +32980,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
-            ctx[154]
+            /*input_input_handler_35*/
+            ctx[156]
           );
           mounted = true;
         }
@@ -29895,7 +33006,7 @@
       }
     };
   }
-  function create_default_slot_410(ctx) {
+  function create_default_slot_411(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -29916,8 +33027,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
-            ctx[155]
+            /*input_input_handler_36*/
+            ctx[157]
           );
           mounted = true;
         }
@@ -29942,7 +33053,7 @@
       }
     };
   }
-  function create_default_slot_314(ctx) {
+  function create_default_slot_315(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -29963,8 +33074,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
-            ctx[156]
+            /*input_input_handler_37*/
+            ctx[158]
           );
           mounted = true;
         }
@@ -30010,8 +33121,8 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
-            ctx[157]
+            /*input_input_handler_38*/
+            ctx[159]
           );
           mounted = true;
         }
@@ -30072,14 +33183,14 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_410] },
+        $$slots: { default: [create_default_slot_411] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Penerbit",
-        $$slots: { default: [create_default_slot_314] },
+        $$slots: { default: [create_default_slot_315] },
         $$scope: { ctx }
       }
     });
@@ -30134,7 +33245,7 @@
             button,
             "click",
             /*simpanPHKI*/
-            ctx[77]
+            ctx[78]
           );
           mounted = true;
         }
@@ -30143,35 +33254,35 @@
         const field0_changes = {};
         if (dirty[0] & /*tahunHKI*/
         1073741824 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[1] & /*JudulHKI*/
         1 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[1] & /*namaPenulisHKI*/
         2 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[1] & /*jenisHKI*/
         4 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[1] & /*noHKI*/
         8 | dirty[6] & /*$$scope*/
-        256) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -30235,7 +33346,7 @@
       }
     };
   }
-  function create_if_block_110(ctx) {
+  function create_if_block_117(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -30268,7 +33379,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPHKI*/
         32 | dirty[3] & /*delrowPHKI*/
-        2) {
+        4) {
           each_value = ensure_array_like(
             /*dataPHKI*/
             ctx2[5]
@@ -30327,35 +33438,35 @@
     let td1;
     let t1_value = (
       /*PHKI*/
-      ctx[173].tahun_hki + ""
+      ctx[174].tahun_hki + ""
     );
     let t1;
     let t2;
     let td2;
     let t3_value = (
       /*PHKI*/
-      ctx[173].judul_hki + ""
+      ctx[174].judul_hki + ""
     );
     let t3;
     let t4;
     let td3;
     let t5_value = (
       /*PHKI*/
-      ctx[173].nama_penulis + ""
+      ctx[174].nama_penulis + ""
     );
     let t5;
     let t6;
     let td4;
     let t7_value = (
       /*PHKI*/
-      ctx[173].jenis_hki + ""
+      ctx[174].jenis_hki + ""
     );
     let t7;
     let t8;
     let td5;
     let t9_value = (
       /*PHKI*/
-      ctx[173].no_hki + ""
+      ctx[174].no_hki + ""
     );
     let t9;
     let t10;
@@ -30389,7 +33500,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "pid", button_pid_value = /*PHKI*/
-        ctx[173].id);
+        ctx[174].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -30419,7 +33530,7 @@
             button,
             "click",
             /*delrowPHKI*/
-            ctx[94]
+            ctx[95]
           );
           mounted = true;
         }
@@ -30427,28 +33538,28 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*dataPHKI*/
         32 && button_pid_value !== (button_pid_value = /*PHKI*/
-        ctx2[173].id)) {
+        ctx2[174].id)) {
           attr(button, "pid", button_pid_value);
         }
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t1_value !== (t1_value = /*PHKI*/
-        ctx2[173].tahun_hki + ""))
+        ctx2[174].tahun_hki + ""))
           set_data(t1, t1_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t3_value !== (t3_value = /*PHKI*/
-        ctx2[173].judul_hki + ""))
+        ctx2[174].judul_hki + ""))
           set_data(t3, t3_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t5_value !== (t5_value = /*PHKI*/
-        ctx2[173].nama_penulis + ""))
+        ctx2[174].nama_penulis + ""))
           set_data(t5, t5_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t7_value !== (t7_value = /*PHKI*/
-        ctx2[173].jenis_hki + ""))
+        ctx2[174].jenis_hki + ""))
           set_data(t7, t7_value);
         if ((!current || dirty[0] & /*dataPHKI*/
         32) && t9_value !== (t9_value = /*PHKI*/
-        ctx2[173].no_hki + ""))
+        ctx2[174].no_hki + ""))
           set_data(t9, t9_value);
       },
       i(local) {
@@ -30490,15 +33601,15 @@
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[68] === true && create_if_block_86(ctx)
+      ctx[69] === true && create_if_block_86(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[69] === true && create_if_block_76(ctx)
+      ctx[70] === true && create_if_block_76(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[70] === true && create_if_block13(ctx)
+      ctx[71] === true && create_if_block13(ctx)
     );
     return {
       c() {
@@ -30530,19 +33641,19 @@
           li0,
           "is-active",
           /*tab1*/
-          ctx[68]
+          ctx[69]
         );
         toggle_class(
           li1,
           "is-active",
           /*tab2*/
-          ctx[69]
+          ctx[70]
         );
         toggle_class(
           li2,
           "is-active",
           /*tab3*/
-          ctx[70]
+          ctx[71]
         );
         attr(div, "class", "tabs is-boxed");
       },
@@ -30573,19 +33684,19 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[85]
+              ctx[86]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[86]
+              ctx[87]
             ),
             listen(
               li2,
               "click",
               /*clicktab3*/
-              ctx[87]
+              ctx[88]
             )
           ];
           mounted = true;
@@ -30593,40 +33704,40 @@
       },
       p(ctx2, dirty) {
         if (!current || dirty[2] & /*tab1*/
-        64) {
+        128) {
           toggle_class(
             li0,
             "is-active",
             /*tab1*/
-            ctx2[68]
+            ctx2[69]
           );
         }
         if (!current || dirty[2] & /*tab2*/
-        128) {
+        256) {
           toggle_class(
             li1,
             "is-active",
             /*tab2*/
-            ctx2[69]
+            ctx2[70]
           );
         }
         if (!current || dirty[2] & /*tab3*/
-        256) {
+        512) {
           toggle_class(
             li2,
             "is-active",
             /*tab3*/
-            ctx2[70]
+            ctx2[71]
           );
         }
         if (
           /*tab1*/
-          ctx2[68] === true
+          ctx2[69] === true
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[2] & /*tab1*/
-            64) {
+            128) {
               transition_in(if_block0, 1);
             }
           } else {
@@ -30644,7 +33755,7 @@
         }
         if (
           /*tab2*/
-          ctx2[69] === true
+          ctx2[70] === true
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
@@ -30659,12 +33770,12 @@
         }
         if (
           /*tab3*/
-          ctx2[70] === true
+          ctx2[71] === true
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[2] & /*tab3*/
-            256) {
+            512) {
               transition_in(if_block2, 1);
             }
           } else {
@@ -30734,10 +33845,10 @@
       p(ctx2, dirty) {
         const article_changes = {};
         if (dirty[0] & /*dataPHKI, tahunHKI, dataPPB, Isbn, PenerbitBuku, namaPenulisBuku, JudulBuku, tahunBuku, dataPPub, impactFactor, namaJurnal, judulPublikasi, tahunPublikasi, dataPD, namaPertemuanDiseminasi, namaPemakalahDiseminasi, judulDiseminasi, tahunDiseminasi, dataPM, biayaPengmas, sumberDanaPengmas, rolePengmas, judulPengmas, tahunPengmas, dataPP, biayaPenelitian, sumberDanaPenelitian, rolePenelitian, judulPenelitian, tahunPenelitian, vmataKuliah*/
-        2147483647 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI, judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap*/
-        2147483647 | dirty[2] & /*showModalHKI, showModalPenulisanBuku, showModalPublikasi, showModalDiseminasi, showModalPengmas, showModalPenelitian, tab3, tab2, tab1*/
-        511 | dirty[6] & /*$$scope*/
-        256) {
+        2147483647 | dirty[1] & /*noHKI, jenisHKI, namaPenulisHKI, JudulHKI, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap*/
+        2147483647 | dirty[2] & /*showModalHKI, showModalPenulisanBuku, showModalPublikasi, showModalDiseminasi, showModalPengmas, showModalPenelitian, tab3, judulTugasAkhirS3, tab2, tab1*/
+        1023 | dirty[6] & /*$$scope*/
+        512) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -30769,8 +33880,8 @@
   function instance28($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(162, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(163, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(163, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(164, $route = $$value));
     const id = localStorage.getItem("id");
     let data2, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
     let vmataKuliah;
@@ -30789,22 +33900,22 @@
     let showModalPenulisanBuku = false;
     let showModalHKI = false;
     async function clickModalPenelitian() {
-      $$invalidate(62, showModalPenelitian = true);
+      $$invalidate(63, showModalPenelitian = true);
     }
     async function clickModalPengmas() {
-      $$invalidate(63, showModalPengmas = true);
+      $$invalidate(64, showModalPengmas = true);
     }
     async function clickModalDiseminasi() {
-      $$invalidate(64, showModalDiseminasi = true);
+      $$invalidate(65, showModalDiseminasi = true);
     }
     async function clickModalPublikasi() {
-      $$invalidate(65, showModalPublikasi = true);
+      $$invalidate(66, showModalPublikasi = true);
     }
     async function clickModalPenulisanBuku() {
-      $$invalidate(66, showModalPenulisanBuku = true);
+      $$invalidate(67, showModalPenulisanBuku = true);
     }
     async function clickModalHKI() {
-      $$invalidate(67, showModalHKI = true);
+      $$invalidate(68, showModalHKI = true);
     }
     const accessToken = localStorage.getItem("token");
     const headers = {
@@ -30823,33 +33934,33 @@
         $$invalidate(37, nip = data2.nip);
         $$invalidate(38, nidn = data2.nidn);
         $$invalidate(39, tempatLahir = data2.tempat_lahir);
-        tanggalLahir = data2.tanggal_lahir;
-        $$invalidate(40, alamatRumah = data2.alamat_rumah);
-        $$invalidate(41, telpFaxRumah = data2.telp_fax_rumah);
-        $$invalidate(42, nomorHandphone = data2.nomor_handphone);
-        $$invalidate(43, alamatKantor = data2.alamat_kantor);
-        $$invalidate(44, telpFaxKantor = data2.telp_fax_kantor);
-        $$invalidate(45, email = data2.email);
-        $$invalidate(46, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+        $$invalidate(40, tanggalLahir = data2.tanggal_lahir);
+        $$invalidate(41, alamatRumah = data2.alamat_rumah);
+        $$invalidate(42, telpFaxRumah = data2.telp_fax_rumah);
+        $$invalidate(43, nomorHandphone = data2.nomor_handphone);
+        $$invalidate(44, alamatKantor = data2.alamat_kantor);
+        $$invalidate(45, telpFaxKantor = data2.telp_fax_kantor);
+        $$invalidate(46, email = data2.email);
+        $$invalidate(47, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
       if (responseRP.ok) {
-        $$invalidate(47, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(48, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(49, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(50, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(51, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(52, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(53, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(54, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(55, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(56, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(57, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(58, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(59, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(60, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(61, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        $$invalidate(48, pertiS1 = dataRP.nama_perti_s1);
+        $$invalidate(49, pertiS2 = dataRP.nama_perti_s2);
+        $$invalidate(50, pertiS3 = dataRP.nama_perti_s3);
+        $$invalidate(51, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+        $$invalidate(52, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+        $$invalidate(53, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+        $$invalidate(54, tahunMasukS1 = dataRP.tahun_masuk_s1);
+        $$invalidate(55, tahunMasukS2 = dataRP.tahun_masuk_s2);
+        $$invalidate(56, tahunMasukS3 = dataRP.tahun_masuk_s3);
+        $$invalidate(57, tahunLulusS1 = dataRP.tahun_lulus_s1);
+        $$invalidate(58, tahunLulusS2 = dataRP.tahun_lulus_s2);
+        $$invalidate(59, tahunLulusS3 = dataRP.tahun_lulus_s3);
+        $$invalidate(60, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+        $$invalidate(61, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+        $$invalidate(62, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
       }
       getPengalamanPenelitian();
       getPengalamanPengmas();
@@ -30928,7 +34039,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(67, showModalHKI = false);
+        $$invalidate(68, showModalHKI = false);
         $$invalidate(30, tahunHKI = "");
         $$invalidate(31, JudulHKI = "");
         $$invalidate(32, namaPenulisHKI = "");
@@ -30955,7 +34066,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(66, showModalPenulisanBuku = false);
+        $$invalidate(67, showModalPenulisanBuku = false);
         $$invalidate(25, tahunBuku = "");
         $$invalidate(26, JudulBuku = "");
         $$invalidate(27, namaPenulisBuku = "");
@@ -30981,7 +34092,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(65, showModalPublikasi = false);
+        $$invalidate(66, showModalPublikasi = false);
         $$invalidate(21, tahunPublikasi = "");
         $$invalidate(22, judulPublikasi = "");
         $$invalidate(23, namaJurnal = "");
@@ -31007,7 +34118,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(62, showModalPenelitian = false);
+        $$invalidate(63, showModalPenelitian = false);
         $$invalidate(8, tahunPenelitian = "");
         $$invalidate(9, judulPenelitian = "");
         $$invalidate(10, rolePenelitian = "");
@@ -31034,7 +34145,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(63, showModalPengmas = false);
+        $$invalidate(64, showModalPengmas = false);
         $$invalidate(13, tahunPengmas = "");
         $$invalidate(14, judulPengmas = "");
         $$invalidate(15, rolePengmas = "");
@@ -31060,7 +34171,7 @@
       });
       const result = await response.json();
       if (response.ok) {
-        $$invalidate(64, showModalDiseminasi = false);
+        $$invalidate(65, showModalDiseminasi = false);
         $$invalidate(17, tahunDiseminasi = "");
         $$invalidate(18, judulDiseminasi = "");
         $$invalidate(19, namaPemakalahDiseminasi = "");
@@ -31134,23 +34245,23 @@
     let tab2;
     let tab3;
     function clicktab1() {
-      $$invalidate(68, tab1 = true);
-      $$invalidate(69, tab2 = false);
-      $$invalidate(70, tab3 = false);
+      $$invalidate(69, tab1 = true);
+      $$invalidate(70, tab2 = false);
+      $$invalidate(71, tab3 = false);
     }
     function clicktab2() {
-      $$invalidate(68, tab1 = false);
-      $$invalidate(69, tab2 = true);
-      $$invalidate(70, tab3 = false);
+      $$invalidate(69, tab1 = false);
+      $$invalidate(70, tab2 = true);
+      $$invalidate(71, tab3 = false);
     }
     function clicktab3() {
-      $$invalidate(68, tab1 = false);
-      $$invalidate(69, tab2 = false);
-      $$invalidate(70, tab3 = true);
+      $$invalidate(69, tab1 = false);
+      $$invalidate(70, tab2 = false);
+      $$invalidate(71, tab3 = true);
     }
     function addMatkul() {
       let addVmatkul = { label: vmataKuliah };
-      $$invalidate(46, mataKuliah = [...mataKuliah, addVmatkul]);
+      $$invalidate(47, mataKuliah = [...mataKuliah, addVmatkul]);
       $$invalidate(6, vmataKuliah = "");
     }
     async function delrowPP(ev) {
@@ -31233,7 +34344,7 @@
     }
     function deleteMatkul(e) {
       let delMatkul = e.target.getAttribute("data-value");
-      $$invalidate(46, mataKuliah = mataKuliah.filter((matkul) => {
+      $$invalidate(47, mataKuliah = mataKuliah.filter((matkul) => {
         return matkul.label !== delMatkul;
       }));
     }
@@ -31258,98 +34369,102 @@
       $$invalidate(39, tempatLahir);
     }
     function input_input_handler_5() {
-      alamatRumah = this.value;
-      $$invalidate(40, alamatRumah);
+      tanggalLahir = this.value;
+      $$invalidate(40, tanggalLahir);
     }
     function input_input_handler_6() {
-      telpFaxRumah = to_number(this.value);
-      $$invalidate(41, telpFaxRumah);
+      alamatRumah = this.value;
+      $$invalidate(41, alamatRumah);
     }
     function input_input_handler_7() {
-      nomorHandphone = to_number(this.value);
-      $$invalidate(42, nomorHandphone);
+      telpFaxRumah = to_number(this.value);
+      $$invalidate(42, telpFaxRumah);
     }
     function input_input_handler_8() {
-      alamatKantor = this.value;
-      $$invalidate(43, alamatKantor);
+      nomorHandphone = to_number(this.value);
+      $$invalidate(43, nomorHandphone);
     }
     function input_input_handler_9() {
-      telpFaxKantor = to_number(this.value);
-      $$invalidate(44, telpFaxKantor);
+      alamatKantor = this.value;
+      $$invalidate(44, alamatKantor);
     }
     function input_input_handler_10() {
-      email = this.value;
-      $$invalidate(45, email);
+      telpFaxKantor = to_number(this.value);
+      $$invalidate(45, telpFaxKantor);
     }
     function input_input_handler_11() {
+      email = this.value;
+      $$invalidate(46, email);
+    }
+    function input_input_handler_12() {
       vmataKuliah = this.value;
       $$invalidate(6, vmataKuliah);
     }
     function input0_input_handler() {
       pertiS1 = this.value;
-      $$invalidate(47, pertiS1);
+      $$invalidate(48, pertiS1);
     }
     function input1_input_handler() {
       pertiS2 = this.value;
-      $$invalidate(48, pertiS2);
+      $$invalidate(49, pertiS2);
     }
     function input2_input_handler() {
       pertiS3 = this.value;
-      $$invalidate(49, pertiS3);
+      $$invalidate(50, pertiS3);
     }
     function input3_input_handler() {
       bidangIlmuS1 = this.value;
-      $$invalidate(50, bidangIlmuS1);
+      $$invalidate(51, bidangIlmuS1);
     }
     function input4_input_handler() {
       bidangIlmuS2 = this.value;
-      $$invalidate(51, bidangIlmuS2);
+      $$invalidate(52, bidangIlmuS2);
     }
     function input5_input_handler() {
       bidangIlmuS3 = this.value;
-      $$invalidate(52, bidangIlmuS3);
+      $$invalidate(53, bidangIlmuS3);
     }
     function input6_input_handler() {
       tahunMasukS1 = to_number(this.value);
-      $$invalidate(53, tahunMasukS1);
+      $$invalidate(54, tahunMasukS1);
     }
     function input7_input_handler() {
       tahunMasukS2 = to_number(this.value);
-      $$invalidate(54, tahunMasukS2);
+      $$invalidate(55, tahunMasukS2);
     }
     function input8_input_handler() {
       tahunMasukS3 = to_number(this.value);
-      $$invalidate(55, tahunMasukS3);
+      $$invalidate(56, tahunMasukS3);
     }
     function input9_input_handler() {
       tahunLulusS1 = to_number(this.value);
-      $$invalidate(56, tahunLulusS1);
+      $$invalidate(57, tahunLulusS1);
     }
     function input10_input_handler() {
       tahunLulusS2 = to_number(this.value);
-      $$invalidate(57, tahunLulusS2);
+      $$invalidate(58, tahunLulusS2);
     }
     function input11_input_handler() {
       tahunLulusS3 = to_number(this.value);
-      $$invalidate(58, tahunLulusS3);
+      $$invalidate(59, tahunLulusS3);
     }
     function textarea0_input_handler() {
       judulTugasAkhirS1 = this.value;
-      $$invalidate(59, judulTugasAkhirS1);
+      $$invalidate(60, judulTugasAkhirS1);
     }
     function textarea1_input_handler() {
       judulTugasAkhirS2 = this.value;
-      $$invalidate(60, judulTugasAkhirS2);
+      $$invalidate(61, judulTugasAkhirS2);
     }
     function textarea2_input_handler() {
       judulTugasAkhirS3 = this.value;
-      $$invalidate(61, judulTugasAkhirS3);
+      $$invalidate(62, judulTugasAkhirS3);
     }
-    function input_input_handler_12() {
+    function input_input_handler_13() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(8, tahunPenelitian);
     }
-    function input_input_handler_13() {
+    function input_input_handler_14() {
       judulPenelitian = this.value;
       $$invalidate(9, judulPenelitian);
     }
@@ -31357,24 +34472,24 @@
       rolePenelitian = select_value(this);
       $$invalidate(10, rolePenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_15() {
       sumberDanaPenelitian = this.value;
       $$invalidate(11, sumberDanaPenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_16() {
       biayaPenelitian = this.value;
       $$invalidate(7, biayaPenelitian);
     }
     const keyup_handler = () => $$invalidate(7, biayaPenelitian = formatRupiah3(biayaPenelitian, "Rp. "));
     function modal0_show_binding(value) {
       showModalPenelitian = value;
-      $$invalidate(62, showModalPenelitian);
+      $$invalidate(63, showModalPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_17() {
       tahunPengmas = to_number(this.value);
       $$invalidate(13, tahunPengmas);
     }
-    function input_input_handler_17() {
+    function input_input_handler_18() {
       judulPengmas = this.value;
       $$invalidate(14, judulPengmas);
     }
@@ -31382,106 +34497,106 @@
       rolePengmas = select_value(this);
       $$invalidate(15, rolePengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_19() {
       sumberDanaPengmas = this.value;
       $$invalidate(16, sumberDanaPengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_20() {
       biayaPengmas = this.value;
       $$invalidate(12, biayaPengmas);
     }
     const keyup_handler_1 = () => $$invalidate(12, biayaPengmas = formatRupiah3(biayaPengmas, "Rp. "));
     function modal1_show_binding(value) {
       showModalPengmas = value;
-      $$invalidate(63, showModalPengmas);
+      $$invalidate(64, showModalPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_21() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(17, tahunDiseminasi);
     }
-    function input_input_handler_21() {
+    function input_input_handler_22() {
       judulDiseminasi = this.value;
       $$invalidate(18, judulDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_23() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(19, namaPemakalahDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_24() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(20, namaPertemuanDiseminasi);
     }
     function modal2_show_binding(value) {
       showModalDiseminasi = value;
-      $$invalidate(64, showModalDiseminasi);
+      $$invalidate(65, showModalDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_25() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(21, tahunPublikasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_26() {
       judulPublikasi = this.value;
       $$invalidate(22, judulPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_27() {
       namaJurnal = this.value;
       $$invalidate(23, namaJurnal);
     }
-    function input_input_handler_27() {
+    function input_input_handler_28() {
       impactFactor = this.value;
       $$invalidate(24, impactFactor);
     }
     function modal3_show_binding(value) {
       showModalPublikasi = value;
-      $$invalidate(65, showModalPublikasi);
+      $$invalidate(66, showModalPublikasi);
     }
-    function input_input_handler_28() {
+    function input_input_handler_29() {
       tahunBuku = to_number(this.value);
       $$invalidate(25, tahunBuku);
     }
-    function input_input_handler_29() {
+    function input_input_handler_30() {
       JudulBuku = this.value;
       $$invalidate(26, JudulBuku);
     }
-    function input_input_handler_30() {
+    function input_input_handler_31() {
       namaPenulisBuku = this.value;
       $$invalidate(27, namaPenulisBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_32() {
       PenerbitBuku = this.value;
       $$invalidate(28, PenerbitBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_33() {
       Isbn = this.value;
       $$invalidate(29, Isbn);
     }
     function modal4_show_binding(value) {
       showModalPenulisanBuku = value;
-      $$invalidate(66, showModalPenulisanBuku);
+      $$invalidate(67, showModalPenulisanBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_34() {
       tahunHKI = to_number(this.value);
       $$invalidate(30, tahunHKI);
     }
-    function input_input_handler_34() {
+    function input_input_handler_35() {
       JudulHKI = this.value;
       $$invalidate(31, JudulHKI);
     }
-    function input_input_handler_35() {
+    function input_input_handler_36() {
       namaPenulisHKI = this.value;
       $$invalidate(32, namaPenulisHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_37() {
       jenisHKI = this.value;
       $$invalidate(33, jenisHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_38() {
       noHKI = this.value;
       $$invalidate(34, noHKI);
     }
     function modal5_show_binding(value) {
       showModalHKI = value;
-      $$invalidate(67, showModalHKI);
+      $$invalidate(68, showModalHKI);
     }
     return [
       dataPP,
@@ -31524,6 +34639,7 @@
       nip,
       nidn,
       tempatLahir,
+      tanggalLahir,
       alamatRumah,
       telpFaxRumah,
       nomorHandphone,
@@ -31592,6 +34708,7 @@
       input_input_handler_9,
       input_input_handler_10,
       input_input_handler_11,
+      input_input_handler_12,
       input0_input_handler,
       input1_input_handler,
       input2_input_handler,
@@ -31607,41 +34724,41 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
-      input_input_handler_12,
       input_input_handler_13,
-      select_change_handler,
       input_input_handler_14,
+      select_change_handler,
       input_input_handler_15,
+      input_input_handler_16,
       keyup_handler,
       modal0_show_binding,
-      input_input_handler_16,
       input_input_handler_17,
-      select_change_handler_1,
       input_input_handler_18,
+      select_change_handler_1,
       input_input_handler_19,
+      input_input_handler_20,
       keyup_handler_1,
       modal1_show_binding,
-      input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
       input_input_handler_23,
-      modal2_show_binding,
       input_input_handler_24,
+      modal2_show_binding,
       input_input_handler_25,
       input_input_handler_26,
       input_input_handler_27,
-      modal3_show_binding,
       input_input_handler_28,
+      modal3_show_binding,
       input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
       input_input_handler_32,
-      modal4_show_binding,
       input_input_handler_33,
+      modal4_show_binding,
       input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
       input_input_handler_37,
+      input_input_handler_38,
       modal5_show_binding
     ];
   }
@@ -31856,7 +34973,7 @@
       }
     };
   }
-  function create_if_block_111(ctx) {
+  function create_if_block_118(ctx) {
     let option0;
     let option1;
     let option2;
@@ -31914,7 +35031,7 @@
         /*jenisKegiatan*/
         ctx2[0] === "Penelitian"
       )
-        return create_if_block_111;
+        return create_if_block_118;
       return create_else_block5;
     }
     let current_block_type = select_block_type(ctx, [-1, -1]);
@@ -31999,7 +35116,7 @@
         input = element("input");
         attr(input, "class", "input");
         attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Kelompok Keahlian");
+        attr(input, "placeholder", "Masukkan kelompok keahlian");
       },
       m(target, anchor) {
         insert(target, input, anchor);
@@ -32047,7 +35164,7 @@
         input = element("input");
         attr(input, "class", "input");
         attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Topik");
+        attr(input, "placeholder", "Masukkan topik");
       },
       m(target, anchor) {
         insert(target, input, anchor);
@@ -32095,7 +35212,7 @@
         input = element("input");
         attr(input, "class", "input");
         attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Biaya Penelitian");
+        attr(input, "placeholder", "Masukkan biaya penelitian");
       },
       m(target, anchor) {
         insert(target, input, anchor);
@@ -32175,7 +35292,7 @@
       }
     };
   }
-  function create_default_slot_411(ctx) {
+  function create_default_slot_414(ctx) {
     let select;
     let updating_result;
     let current;
@@ -32407,7 +35524,7 @@
       }
     };
   }
-  function create_default_slot_315(ctx) {
+  function create_default_slot_316(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -32416,7 +35533,7 @@
         input = element("input");
         attr(input, "class", "input");
         attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Judul");
+        attr(input, "placeholder", "Masukkan judul");
       },
       m(target, anchor) {
         insert(target, input, anchor);
@@ -32463,6 +35580,7 @@
       c() {
         textarea = element("textarea");
         attr(textarea, "class", "textarea");
+        attr(textarea, "placeholder", "Masukkan abstrak");
       },
       m(target, anchor) {
         insert(target, textarea, anchor);
@@ -32660,7 +35778,7 @@
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_411] },
+        $$slots: { default: [create_default_slot_414] },
         $$scope: { ctx }
       }
     });
@@ -32671,7 +35789,7 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_315] },
+        $$slots: { default: [create_default_slot_316] },
         $$scope: { ctx }
       }
     });
@@ -33326,14 +36444,49 @@
 
   // src/pages/dosen/proposals.svelte
   init_define_process();
-  function get_each_context_15(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[48] = list[i];
-    return child_ctx;
-  }
   function get_each_context13(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[48] = list[i];
+    child_ctx[87] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_15(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[90] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_25(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[93] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_35(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[96] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_44(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[99] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_54(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[102] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_64(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[105] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_82(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[108] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_72(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[108] = list[i];
     return child_ctx;
   }
   function create_if_block15(ctx) {
@@ -33355,9 +36508,10 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*tab4, tab3, data, tab2, status, view, comment, isi, abstrak, judul, anggotaTim, items, file, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal, tab1*/
-        2097151 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[0] & /*data, dataPHKI, dataPPB, dataPPub, dataPD, dataPM, dataPP, judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, view, items, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
+        2147483647 | dirty[1] & /*tab6, tab5, tab4, tab3, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap, status, tab2, comment, isi, abstrak, judul, anggotaTim, file, tab1*/
+        67108863 | dirty[3] & /*$$scope*/
+        1048576) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -33377,7 +36531,7 @@
       }
     };
   }
-  function create_if_block_48(ctx) {
+  function create_if_block_143(ctx) {
     let div1;
     let current_block_type_index;
     let if_block0;
@@ -33386,7 +36540,7 @@
     let t1;
     let div0;
     let current;
-    const if_block_creators = [create_if_block_77, create_else_block_2];
+    const if_block_creators = [create_if_block_172, create_else_block_3];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (!/*view*/
@@ -33394,10 +36548,10 @@
         return 0;
       return 1;
     }
-    current_block_type_index = select_block_type(ctx, [-1, -1]);
+    current_block_type_index = select_block_type(ctx, [-1, -1, -1, -1]);
     if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     let if_block1 = !/*view*/
-    ctx[1] && create_if_block_57(ctx);
+    ctx[1] && create_if_block_152(ctx);
     return {
       c() {
         div1 = element("div");
@@ -33448,7 +36602,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_57(ctx2);
+            if_block1 = create_if_block_152(ctx2);
             if_block1.c();
             if_block1.m(div0, null);
           }
@@ -33477,7 +36631,7 @@
       }
     };
   }
-  function create_else_block_2(ctx) {
+  function create_else_block_3(ctx) {
     let field0;
     let t0;
     let field1;
@@ -33516,88 +36670,88 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_244] },
+        $$slots: { default: [create_default_slot_394] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_235] },
+        $$slots: { default: [create_default_slot_384] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_225] },
+        $$slots: { default: [create_default_slot_374] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_217] },
+        $$slots: { default: [create_default_slot_364] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_204] },
+        $$slots: { default: [create_default_slot_354] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tahun Pelaksanaan",
-        $$slots: { default: [create_default_slot_194] },
+        $$slots: { default: [create_default_slot_344] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_184] },
+        $$slots: { default: [create_default_slot_334] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_174] },
+        $$slots: { default: [create_default_slot_325] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_164] },
+        $$slots: { default: [create_default_slot_317] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*anggotaTim*/
-      ctx[10].length > 0 && create_if_block_104(ctx)
+      ctx[31].length > 0 && create_if_block_202(ctx)
     );
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_154] },
+        $$slots: { default: [create_default_slot_304] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_144] },
+        $$slots: { default: [create_default_slot_294] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "isi",
-        $$slots: { default: [create_default_slot_136] },
+        $$slots: { default: [create_default_slot_284] },
         $$scope: { ctx }
       }
     });
@@ -33685,73 +36839,73 @@
       p(ctx2, dirty) {
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
-        8 | dirty[1] & /*$$scope*/
-        4194304) {
+        16777216 | dirty[3] & /*$$scope*/
+        1048576) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
-        16 | dirty[1] & /*$$scope*/
-        4194304) {
+        33554432 | dirty[3] & /*$$scope*/
+        1048576) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema*/
-        32 | dirty[1] & /*$$scope*/
-        4194304) {
+        67108864 | dirty[3] & /*$$scope*/
+        1048576) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
-        64 | dirty[1] & /*$$scope*/
-        4194304) {
+        134217728 | dirty[3] & /*$$scope*/
+        1048576) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
-        128 | dirty[1] & /*$$scope*/
-        4194304) {
+        268435456 | dirty[3] & /*$$scope*/
+        1048576) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (dirty[0] & /*tahunPelaksanaan*/
-        256 | dirty[1] & /*$$scope*/
-        4194304) {
+        536870912 | dirty[3] & /*$$scope*/
+        1048576) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
-        512 | dirty[1] & /*$$scope*/
-        4194304) {
+        1073741824 | dirty[3] & /*$$scope*/
+        1048576) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[3] & /*$$scope*/
+        1048576) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[3] & /*$$scope*/
+        1048576) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         if (
           /*anggotaTim*/
-          ctx2[10].length > 0
+          ctx2[31].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_104(ctx2);
+            if_block = create_if_block_202(ctx2);
             if_block.c();
             if_block.m(tbody, null);
           }
@@ -33761,22 +36915,22 @@
         }
         const field9_changes = {};
         if (dirty[0] & /*data*/
-        4 | dirty[1] & /*$$scope*/
-        4194304) {
+        4 | dirty[3] & /*$$scope*/
+        1048576) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*data*/
-        4 | dirty[1] & /*$$scope*/
-        4194304) {
+        4 | dirty[3] & /*$$scope*/
+        1048576) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*data*/
-        4 | dirty[1] & /*$$scope*/
-        4194304) {
+        4 | dirty[3] & /*$$scope*/
+        1048576) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
@@ -33850,7 +37004,7 @@
       }
     };
   }
-  function create_if_block_77(ctx) {
+  function create_if_block_172(ctx) {
     let field0;
     let t0;
     let field1;
@@ -33897,40 +37051,40 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_126] },
+        $$slots: { default: [create_default_slot_274] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_119] },
+        $$slots: { default: [create_default_slot_264] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_106] },
+        $$slots: { default: [create_default_slot_254] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_96] },
+        $$slots: { default: [create_default_slot_244] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_86] },
+        $$slots: { default: [create_default_slot_235] },
         $$scope: { ctx }
       }
     });
     function field5_value_binding(value) {
-      ctx[36](value);
+      ctx[74](value);
     }
     let field5_props = {
       datepicker: true,
@@ -33938,63 +37092,63 @@
     };
     if (
       /*tahunPelaksanaan*/
-      ctx[8] !== void 0
+      ctx[29] !== void 0
     ) {
       field5_props.value = /*tahunPelaksanaan*/
-      ctx[8];
+      ctx[29];
     }
     field5 = new Field_default({ props: field5_props });
     binding_callbacks.push(() => bind(field5, "value", field5_value_binding));
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_76] },
+        $$slots: { default: [create_default_slot_225] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_66] },
+        $$slots: { default: [create_default_slot_217] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_57] },
+        $$slots: { default: [create_default_slot_204] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*anggotaTim*/
-      ctx[10].length > 0 && create_if_block_87(ctx)
+      ctx[31].length > 0 && create_if_block_182(ctx)
     );
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_413] },
+        $$slots: { default: [create_default_slot_194] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_316] },
+        $$slots: { default: [create_default_slot_184] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Isi Proposal",
-        $$slots: { default: [create_default_slot_218] },
+        $$slots: { default: [create_default_slot_174] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_120] },
+        $$slots: { default: [create_default_slot_164] },
         $$scope: { ctx }
       }
     });
@@ -34096,81 +37250,82 @@
       p(ctx2, dirty) {
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
-        8 | dirty[1] & /*$$scope*/
-        4194304) {
+        16777216 | dirty[3] & /*$$scope*/
+        1048576) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
-        16 | dirty[1] & /*$$scope*/
-        4194304) {
+        33554432 | dirty[3] & /*$$scope*/
+        1048576) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema, jenisKegiatan*/
-        48 | dirty[1] & /*$$scope*/
-        4194304) {
+        100663296 | dirty[3] & /*$$scope*/
+        1048576) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
-        64 | dirty[1] & /*$$scope*/
-        4194304) {
+        134217728 | dirty[3] & /*$$scope*/
+        1048576) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
-        128 | dirty[1] & /*$$scope*/
-        4194304) {
+        268435456 | dirty[3] & /*$$scope*/
+        1048576) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (!updating_value && dirty[0] & /*tahunPelaksanaan*/
-        256) {
+        536870912) {
           updating_value = true;
           field5_changes.value = /*tahunPelaksanaan*/
-          ctx2[8];
+          ctx2[29];
           add_flush_callback(() => updating_value = false);
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
-        512 | dirty[1] & /*$$scope*/
-        4194304) {
+        1073741824 | dirty[3] & /*$$scope*/
+        1048576) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[0] & /*file*/
-        65536 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[1] & /*file*/
+        524288 | dirty[3] & /*$$scope*/
+        1048576) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[0] & /*items, anggotaTim*/
-        1025 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[0] & /*items*/
+        1 | dirty[1] & /*anggotaTim*/
+        1 | dirty[3] & /*$$scope*/
+        1048576) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         if (
           /*anggotaTim*/
-          ctx2[10].length > 0
+          ctx2[31].length > 0
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
-            if (dirty[0] & /*anggotaTim*/
-            1024) {
+            if (dirty[1] & /*anggotaTim*/
+            1) {
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_87(ctx2);
+            if_block = create_if_block_182(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(tbody, null);
@@ -34183,30 +37338,30 @@
           check_outros();
         }
         const field9_changes = {};
-        if (dirty[0] & /*judul*/
-        2048 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[1] & /*judul*/
+        2 | dirty[3] & /*$$scope*/
+        1048576) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[0] & /*abstrak*/
-        4096 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[1] & /*abstrak*/
+        4 | dirty[3] & /*$$scope*/
+        1048576) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*isi*/
-        8192 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[1] & /*isi*/
+        8 | dirty[3] & /*$$scope*/
+        1048576) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
         const field12_changes = {};
-        if (dirty[0] & /*comment*/
-        16384 | dirty[1] & /*$$scope*/
-        4194304) {
+        if (dirty[1] & /*comment*/
+        16 | dirty[3] & /*$$scope*/
+        1048576) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field12.$set(field12_changes);
@@ -34291,13 +37446,13 @@
       }
     };
   }
-  function create_default_slot_244(ctx) {
+  function create_default_slot_394(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*jenisProposal*/
-          ctx[3]
+          ctx[24]
         );
       },
       m(target, anchor) {
@@ -34305,11 +37460,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisProposal*/
-        8)
+        16777216)
           set_data(
             t,
             /*jenisProposal*/
-            ctx2[3]
+            ctx2[24]
           );
       },
       d(detaching) {
@@ -34319,13 +37474,13 @@
       }
     };
   }
-  function create_default_slot_235(ctx) {
+  function create_default_slot_384(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*jenisKegiatan*/
-          ctx[4]
+          ctx[25]
         );
       },
       m(target, anchor) {
@@ -34333,11 +37488,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisKegiatan*/
-        16)
+        33554432)
           set_data(
             t,
             /*jenisKegiatan*/
-            ctx2[4]
+            ctx2[25]
           );
       },
       d(detaching) {
@@ -34347,13 +37502,13 @@
       }
     };
   }
-  function create_default_slot_225(ctx) {
+  function create_default_slot_374(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*jenisSkema*/
-          ctx[5]
+          ctx[26]
         );
       },
       m(target, anchor) {
@@ -34361,11 +37516,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisSkema*/
-        32)
+        67108864)
           set_data(
             t,
             /*jenisSkema*/
-            ctx2[5]
+            ctx2[26]
           );
       },
       d(detaching) {
@@ -34375,13 +37530,13 @@
       }
     };
   }
-  function create_default_slot_217(ctx) {
+  function create_default_slot_364(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*kelompokKeahlian*/
-          ctx[6]
+          ctx[27]
         );
       },
       m(target, anchor) {
@@ -34389,11 +37544,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*kelompokKeahlian*/
-        64)
+        134217728)
           set_data(
             t,
             /*kelompokKeahlian*/
-            ctx2[6]
+            ctx2[27]
           );
       },
       d(detaching) {
@@ -34403,13 +37558,13 @@
       }
     };
   }
-  function create_default_slot_204(ctx) {
+  function create_default_slot_354(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*topik*/
-          ctx[7]
+          ctx[28]
         );
       },
       m(target, anchor) {
@@ -34417,11 +37572,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*topik*/
-        128)
+        268435456)
           set_data(
             t,
             /*topik*/
-            ctx2[7]
+            ctx2[28]
           );
       },
       d(detaching) {
@@ -34431,13 +37586,13 @@
       }
     };
   }
-  function create_default_slot_194(ctx) {
+  function create_default_slot_344(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*tahunPelaksanaan*/
-          ctx[8]
+          ctx[29]
         );
       },
       m(target, anchor) {
@@ -34445,11 +37600,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*tahunPelaksanaan*/
-        256)
+        536870912)
           set_data(
             t,
             /*tahunPelaksanaan*/
-            ctx2[8]
+            ctx2[29]
           );
       },
       d(detaching) {
@@ -34459,13 +37614,13 @@
       }
     };
   }
-  function create_default_slot_184(ctx) {
+  function create_default_slot_334(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*biayaPenelitian*/
-          ctx[9]
+          ctx[30]
         );
       },
       m(target, anchor) {
@@ -34473,11 +37628,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*biayaPenelitian*/
-        512)
+        1073741824)
           set_data(
             t,
             /*biayaPenelitian*/
-            ctx2[9]
+            ctx2[30]
           );
       },
       d(detaching) {
@@ -34487,7 +37642,7 @@
       }
     };
   }
-  function create_default_slot_174(ctx) {
+  function create_default_slot_325(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -34504,7 +37659,7 @@
             button,
             "click",
             /*handleDownload*/
-            ctx[21]
+            ctx[57]
           );
           mounted = true;
         }
@@ -34519,7 +37674,7 @@
       }
     };
   }
-  function create_default_slot_164(ctx) {
+  function create_default_slot_317(ctx) {
     let span;
     return {
       c() {
@@ -34536,15 +37691,15 @@
       }
     };
   }
-  function create_if_block_104(ctx) {
+  function create_if_block_202(ctx) {
     let each_1_anchor;
-    let each_value_1 = ensure_array_like(
+    let each_value_8 = ensure_array_like(
       /*anggotaTim*/
-      ctx[10]
+      ctx[31]
     );
     let each_blocks = [];
-    for (let i = 0; i < each_value_1.length; i += 1) {
-      each_blocks[i] = create_each_block_15(get_each_context_15(ctx, each_value_1, i));
+    for (let i = 0; i < each_value_8.length; i += 1) {
+      each_blocks[i] = create_each_block_82(get_each_context_82(ctx, each_value_8, i));
     }
     return {
       c() {
@@ -34562,19 +37717,19 @@
         insert(target, each_1_anchor, anchor);
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim*/
-        1024) {
-          each_value_1 = ensure_array_like(
+        if (dirty[1] & /*anggotaTim*/
+        1) {
+          each_value_8 = ensure_array_like(
             /*anggotaTim*/
-            ctx2[10]
+            ctx2[31]
           );
           let i;
-          for (i = 0; i < each_value_1.length; i += 1) {
-            const child_ctx = get_each_context_15(ctx2, each_value_1, i);
+          for (i = 0; i < each_value_8.length; i += 1) {
+            const child_ctx = get_each_context_82(ctx2, each_value_8, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
             } else {
-              each_blocks[i] = create_each_block_15(child_ctx);
+              each_blocks[i] = create_each_block_82(child_ctx);
               each_blocks[i].c();
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
             }
@@ -34582,7 +37737,7 @@
           for (; i < each_blocks.length; i += 1) {
             each_blocks[i].d(1);
           }
-          each_blocks.length = each_value_1.length;
+          each_blocks.length = each_value_8.length;
         }
       },
       d(detaching) {
@@ -34593,14 +37748,14 @@
       }
     };
   }
-  function create_each_block_15(ctx) {
+  function create_each_block_82(ctx) {
     let tr;
     let td0;
     let t1;
     let td1;
     let t2_value = (
       /*member*/
-      ctx[48].label + ""
+      ctx[108].label + ""
     );
     let t2;
     let t3;
@@ -34623,9 +37778,9 @@
         append(tr, t3);
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim*/
-        1024 && t2_value !== (t2_value = /*member*/
-        ctx2[48].label + ""))
+        if (dirty[1] & /*anggotaTim*/
+        1 && t2_value !== (t2_value = /*member*/
+        ctx2[108].label + ""))
           set_data(t2, t2_value);
       },
       d(detaching) {
@@ -34635,7 +37790,7 @@
       }
     };
   }
-  function create_default_slot_154(ctx) {
+  function create_default_slot_304(ctx) {
     let t_value = (
       /*data*/
       ctx[2].judul + ""
@@ -34661,7 +37816,7 @@
       }
     };
   }
-  function create_default_slot_144(ctx) {
+  function create_default_slot_294(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -34692,7 +37847,7 @@
       }
     };
   }
-  function create_default_slot_136(ctx) {
+  function create_default_slot_284(ctx) {
     let div;
     let raw_value = (
       /*data*/
@@ -34721,7 +37876,7 @@
       }
     };
   }
-  function create_default_slot_126(ctx) {
+  function create_default_slot_274(ctx) {
     let div;
     let select;
     let option0;
@@ -34751,11 +37906,11 @@
         set_input_value(option2, option2.__value);
         if (
           /*jenisProposal*/
-          ctx[3] === void 0
+          ctx[24] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[31].call(select)
+            ctx[69].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -34768,7 +37923,7 @@
         select_option(
           select,
           /*jenisProposal*/
-          ctx[3],
+          ctx[24],
           true
         );
         if (!mounted) {
@@ -34776,18 +37931,18 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[31]
+            ctx[69]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisProposal*/
-        8) {
+        16777216) {
           select_option(
             select,
             /*jenisProposal*/
-            ctx2[3]
+            ctx2[24]
           );
         }
       },
@@ -34800,7 +37955,7 @@
       }
     };
   }
-  function create_default_slot_119(ctx) {
+  function create_default_slot_264(ctx) {
     let div;
     let select;
     let option0;
@@ -34829,11 +37984,11 @@
         set_input_value(option2, option2.__value);
         if (
           /*jenisKegiatan*/
-          ctx[4] === void 0
+          ctx[25] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[32].call(select)
+            ctx[70].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -34846,7 +38001,7 @@
         select_option(
           select,
           /*jenisKegiatan*/
-          ctx[4],
+          ctx[25],
           true
         );
         if (!mounted) {
@@ -34854,18 +38009,18 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[32]
+            ctx[70]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*jenisKegiatan*/
-        16) {
+        33554432) {
           select_option(
             select,
             /*jenisKegiatan*/
-            ctx2[4]
+            ctx2[25]
           );
         }
       },
@@ -34878,7 +38033,7 @@
       }
     };
   }
-  function create_else_block_12(ctx) {
+  function create_else_block_22(ctx) {
     let option0;
     let option1;
     let option2;
@@ -34918,7 +38073,7 @@
       }
     };
   }
-  function create_if_block_96(ctx) {
+  function create_if_block_192(ctx) {
     let option0;
     let option1;
     let option2;
@@ -34965,7 +38120,7 @@
       }
     };
   }
-  function create_default_slot_106(ctx) {
+  function create_default_slot_254(ctx) {
     let div;
     let select;
     let option;
@@ -34974,12 +38129,12 @@
     function select_block_type_1(ctx2, dirty) {
       if (
         /*jenisKegiatan*/
-        ctx2[4] === "Penelitian"
+        ctx2[25] === "Penelitian"
       )
-        return create_if_block_96;
-      return create_else_block_12;
+        return create_if_block_192;
+      return create_else_block_22;
     }
-    let current_block_type = select_block_type_1(ctx, [-1, -1]);
+    let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
     return {
       c() {
@@ -34995,11 +38150,11 @@
         option.hidden = true;
         if (
           /*jenisSkema*/
-          ctx[5] === void 0
+          ctx[26] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_2*/
-            ctx[33].call(select)
+            ctx[71].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -35011,7 +38166,7 @@
         select_option(
           select,
           /*jenisSkema*/
-          ctx[5],
+          ctx[26],
           true
         );
         if (!mounted) {
@@ -35019,7 +38174,7 @@
             select,
             "change",
             /*select_change_handler_2*/
-            ctx[33]
+            ctx[71]
           );
           mounted = true;
         }
@@ -35034,11 +38189,11 @@
           }
         }
         if (dirty[0] & /*jenisSkema*/
-        32) {
+        67108864) {
           select_option(
             select,
             /*jenisSkema*/
-            ctx2[5]
+            ctx2[26]
           );
         }
       },
@@ -35052,7 +38207,7 @@
       }
     };
   }
-  function create_default_slot_96(ctx) {
+  function create_default_slot_244(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35068,26 +38223,26 @@
         set_input_value(
           input,
           /*kelompokKeahlian*/
-          ctx[6]
+          ctx[27]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler*/
-            ctx[34]
+            ctx[72]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*kelompokKeahlian*/
-        64 && input.value !== /*kelompokKeahlian*/
-        ctx2[6]) {
+        134217728 && input.value !== /*kelompokKeahlian*/
+        ctx2[27]) {
           set_input_value(
             input,
             /*kelompokKeahlian*/
-            ctx2[6]
+            ctx2[27]
           );
         }
       },
@@ -35100,7 +38255,7 @@
       }
     };
   }
-  function create_default_slot_86(ctx) {
+  function create_default_slot_235(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35116,26 +38271,26 @@
         set_input_value(
           input,
           /*topik*/
-          ctx[7]
+          ctx[28]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[35]
+            ctx[73]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*topik*/
-        128 && input.value !== /*topik*/
-        ctx2[7]) {
+        268435456 && input.value !== /*topik*/
+        ctx2[28]) {
           set_input_value(
             input,
             /*topik*/
-            ctx2[7]
+            ctx2[28]
           );
         }
       },
@@ -35148,7 +38303,7 @@
       }
     };
   }
-  function create_default_slot_76(ctx) {
+  function create_default_slot_225(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35164,7 +38319,7 @@
         set_input_value(
           input,
           /*biayaPenelitian*/
-          ctx[9]
+          ctx[30]
         );
         if (!mounted) {
           dispose = [
@@ -35172,13 +38327,13 @@
               input,
               "input",
               /*input_input_handler_2*/
-              ctx[37]
+              ctx[75]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[38]
+              ctx[76]
             )
           ];
           mounted = true;
@@ -35186,12 +38341,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*biayaPenelitian*/
-        512 && input.value !== /*biayaPenelitian*/
-        ctx2[9]) {
+        1073741824 && input.value !== /*biayaPenelitian*/
+        ctx2[30]) {
           set_input_value(
             input,
             /*biayaPenelitian*/
-            ctx2[9]
+            ctx2[30]
           );
         }
       },
@@ -35204,7 +38359,7 @@
       }
     };
   }
-  function create_default_slot_66(ctx) {
+  function create_default_slot_217(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35222,7 +38377,7 @@
             input,
             "change",
             /*change_handler*/
-            ctx[39]
+            ctx[77]
           );
           mounted = true;
         }
@@ -35237,12 +38392,12 @@
       }
     };
   }
-  function create_default_slot_57(ctx) {
+  function create_default_slot_204(ctx) {
     let select;
     let updating_result;
     let current;
     function select_result_binding(value) {
-      ctx[40](value);
+      ctx[78](value);
     }
     let select_props = { start: "2", items: (
       /*items*/
@@ -35250,10 +38405,10 @@
     ) };
     if (
       /*anggotaTim*/
-      ctx[10] !== void 0
+      ctx[31] !== void 0
     ) {
       select_props.result = /*anggotaTim*/
-      ctx[10];
+      ctx[31];
     }
     select = new Select_default({ props: select_props });
     binding_callbacks.push(() => bind(select, "result", select_result_binding));
@@ -35271,11 +38426,11 @@
         1)
           select_changes.items = /*items*/
           ctx2[0];
-        if (!updating_result && dirty[0] & /*anggotaTim*/
-        1024) {
+        if (!updating_result && dirty[1] & /*anggotaTim*/
+        1) {
           updating_result = true;
           select_changes.result = /*anggotaTim*/
-          ctx2[10];
+          ctx2[31];
           add_flush_callback(() => updating_result = false);
         }
         select.$set(select_changes);
@@ -35295,16 +38450,16 @@
       }
     };
   }
-  function create_if_block_87(ctx) {
+  function create_if_block_182(ctx) {
     let each_1_anchor;
     let current;
-    let each_value = ensure_array_like(
+    let each_value_7 = ensure_array_like(
       /*anggotaTim*/
-      ctx[10]
+      ctx[31]
     );
     let each_blocks = [];
-    for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block13(get_each_context13(ctx, each_value, i));
+    for (let i = 0; i < each_value_7.length; i += 1) {
+      each_blocks[i] = create_each_block_72(get_each_context_72(ctx, each_value_7, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -35326,27 +38481,28 @@
         current = true;
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim, deleteMember*/
-        536871936) {
-          each_value = ensure_array_like(
+        if (dirty[1] & /*anggotaTim*/
+        1 | dirty[2] & /*deleteMember*/
+        32) {
+          each_value_7 = ensure_array_like(
             /*anggotaTim*/
-            ctx2[10]
+            ctx2[31]
           );
           let i;
-          for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context13(ctx2, each_value, i);
+          for (i = 0; i < each_value_7.length; i += 1) {
+            const child_ctx = get_each_context_72(ctx2, each_value_7, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block13(child_ctx);
+              each_blocks[i] = create_each_block_72(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
             }
           }
           group_outros();
-          for (i = each_value.length; i < each_blocks.length; i += 1) {
+          for (i = each_value_7.length; i < each_blocks.length; i += 1) {
             out(i);
           }
           check_outros();
@@ -35355,7 +38511,7 @@
       i(local) {
         if (current)
           return;
-        for (let i = 0; i < each_value.length; i += 1) {
+        for (let i = 0; i < each_value_7.length; i += 1) {
           transition_in(each_blocks[i]);
         }
         current = true;
@@ -35375,7 +38531,7 @@
       }
     };
   }
-  function create_each_block13(ctx) {
+  function create_each_block_72(ctx) {
     let tr;
     let td0;
     let button;
@@ -35388,7 +38544,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[48].label + ""
+      ctx[108].label + ""
     );
     let t3;
     let t4;
@@ -35413,7 +38569,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-rounded is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[48].value);
+        ctx[108].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -35433,20 +38589,20 @@
             button,
             "click",
             /*deleteMember*/
-            ctx[29]
+            ctx[67]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (!current || dirty[0] & /*anggotaTim*/
-        1024 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[48].value)) {
+        if (!current || dirty[1] & /*anggotaTim*/
+        1 && button_data_value_value !== (button_data_value_value = /*member*/
+        ctx2[108].value)) {
           attr(button, "data-value", button_data_value_value);
         }
-        if ((!current || dirty[0] & /*anggotaTim*/
-        1024) && t3_value !== (t3_value = /*member*/
-        ctx2[48].label + ""))
+        if ((!current || dirty[1] & /*anggotaTim*/
+        1) && t3_value !== (t3_value = /*member*/
+        ctx2[108].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -35469,7 +38625,7 @@
       }
     };
   }
-  function create_default_slot_413(ctx) {
+  function create_default_slot_194(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35485,26 +38641,26 @@
         set_input_value(
           input,
           /*judul*/
-          ctx[11]
+          ctx[32]
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[41]
+            ctx[79]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*judul*/
-        2048 && input.value !== /*judul*/
-        ctx2[11]) {
+        if (dirty[1] & /*judul*/
+        2 && input.value !== /*judul*/
+        ctx2[32]) {
           set_input_value(
             input,
             /*judul*/
-            ctx2[11]
+            ctx2[32]
           );
         }
       },
@@ -35517,7 +38673,7 @@
       }
     };
   }
-  function create_default_slot_316(ctx) {
+  function create_default_slot_184(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -35531,25 +38687,25 @@
         set_input_value(
           textarea,
           /*abstrak*/
-          ctx[12]
+          ctx[33]
         );
         if (!mounted) {
           dispose = listen(
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[42]
+            ctx[80]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*abstrak*/
-        4096) {
+        if (dirty[1] & /*abstrak*/
+        4) {
           set_input_value(
             textarea,
             /*abstrak*/
-            ctx2[12]
+            ctx2[33]
           );
         }
       },
@@ -35562,13 +38718,13 @@
       }
     };
   }
-  function create_default_slot_218(ctx) {
+  function create_default_slot_174(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
       props: { id: "isi", content: (
         /*isi*/
-        ctx[13]
+        ctx[34]
       ) }
     });
     return {
@@ -35581,10 +38737,10 @@
       },
       p(ctx2, dirty) {
         const wysiwyg_changes = {};
-        if (dirty[0] & /*isi*/
-        8192)
+        if (dirty[1] & /*isi*/
+        8)
           wysiwyg_changes.content = /*isi*/
-          ctx2[13];
+          ctx2[34];
         wysiwyg.$set(wysiwyg_changes);
       },
       i(local) {
@@ -35602,25 +38758,25 @@
       }
     };
   }
-  function create_default_slot_120(ctx) {
+  function create_default_slot_164(ctx) {
     let t;
     return {
       c() {
         t = text(
           /*comment*/
-          ctx[14]
+          ctx[35]
         );
       },
       m(target, anchor) {
         insert(target, t, anchor);
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*comment*/
-        16384)
+        if (dirty[1] & /*comment*/
+        16)
           set_data(
             t,
             /*comment*/
-            ctx2[14]
+            ctx2[35]
           );
       },
       d(detaching) {
@@ -35630,17 +38786,17 @@
       }
     };
   }
-  function create_if_block_57(ctx) {
+  function create_if_block_152(ctx) {
     let if_block_anchor;
     function select_block_type_2(ctx2, dirty) {
       if (
         /*status*/
-        ctx2[15] === 0
+        ctx2[36] === 0
       )
-        return create_if_block_67;
-      return create_else_block6;
+        return create_if_block_162;
+      return create_else_block_12;
     }
-    let current_block_type = select_block_type_2(ctx, [-1, -1]);
+    let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
     return {
       c() {
@@ -35671,7 +38827,7 @@
       }
     };
   }
-  function create_else_block6(ctx) {
+  function create_else_block_12(ctx) {
     let p;
     let button;
     let mounted;
@@ -35692,7 +38848,7 @@
             button,
             "click",
             /*remediasi*/
-            ctx[22]
+            ctx[58]
           );
           mounted = true;
         }
@@ -35707,7 +38863,7 @@
       }
     };
   }
-  function create_if_block_67(ctx) {
+  function create_if_block_162(ctx) {
     let p0;
     let button0;
     let t1;
@@ -35741,13 +38897,13 @@
               button0,
               "click",
               /*simpanProposal*/
-              ctx[24]
+              ctx[60]
             ),
             listen(
               button1,
               "click",
               /*submitProposal*/
-              ctx[23]
+              ctx[59]
             )
           ];
           mounted = true;
@@ -35765,17 +38921,2636 @@
       }
     };
   }
-  function create_if_block_38(ctx) {
-    let div;
+  function create_if_block_57(ctx) {
+    let t0;
+    let field0;
+    let t1;
+    let field1;
+    let t2;
+    let field2;
+    let t3;
+    let field3;
+    let t4;
+    let field4;
+    let t5;
+    let field5;
+    let t6;
+    let field6;
+    let t7;
+    let field7;
+    let t8;
+    let field8;
+    let t9;
+    let field9;
+    let t10;
+    let field10;
+    let t11;
+    let field11;
+    let t12;
+    let field12;
+    let t13;
+    let br0;
+    let t14;
+    let div0;
+    let h60;
+    let t16;
+    let table0;
+    let thead0;
+    let t24;
+    let tbody0;
+    let tr1;
+    let th4;
+    let t26;
+    let td0;
+    let t27;
+    let t28;
+    let td1;
+    let t29;
+    let t30;
+    let td2;
+    let t31;
+    let t32;
+    let tr2;
+    let th5;
+    let t34;
+    let td3;
+    let t35;
+    let t36;
+    let td4;
+    let t37;
+    let t38;
+    let td5;
+    let t39;
+    let t40;
+    let tr3;
+    let th6;
+    let t42;
+    let td6;
+    let t43;
+    let t44;
+    let td7;
+    let t45;
+    let t46;
+    let td8;
+    let t47;
+    let t48;
+    let tr4;
+    let th7;
+    let t50;
+    let td9;
+    let t51;
+    let t52;
+    let td10;
+    let t53;
+    let t54;
+    let td11;
+    let t55;
+    let t56;
+    let tr5;
+    let th8;
+    let t58;
+    let td12;
+    let t59;
+    let t60;
+    let td13;
+    let t61;
+    let t62;
+    let td14;
+    let t63;
+    let t64;
+    let br1;
+    let t65;
+    let div1;
+    let h61;
+    let t67;
+    let table1;
+    let thead1;
+    let t77;
+    let tbody1;
+    let t78;
+    let br2;
+    let t79;
+    let div2;
+    let h62;
+    let t81;
+    let table2;
+    let thead2;
+    let t91;
+    let tbody2;
+    let t92;
+    let br3;
+    let t93;
+    let div3;
+    let h63;
+    let t95;
+    let table3;
+    let thead3;
+    let t103;
+    let tbody3;
+    let t104;
+    let br4;
+    let t105;
+    let div4;
+    let h64;
+    let t107;
+    let table4;
+    let thead4;
+    let t115;
+    let tbody4;
+    let t116;
+    let br5;
+    let t117;
+    let div5;
+    let h65;
+    let t119;
+    let table5;
+    let thead5;
+    let t129;
+    let tbody5;
+    let t130;
+    let br6;
+    let t131;
+    let div6;
+    let h66;
+    let t133;
+    let table6;
+    let thead6;
+    let t143;
+    let tbody6;
+    let current;
+    function select_block_type_3(ctx2, dirty) {
+      if (
+        /*status*/
+        ctx2[36] > 10
+      )
+        return create_if_block_134;
+      return create_else_block6;
+    }
+    let current_block_type = select_block_type_3(ctx, [-1, -1, -1, -1]);
+    let if_block0 = current_block_type(ctx);
+    field0 = new Field_default({
+      props: {
+        name: "Nama Lengkap",
+        $$slots: { default: [create_default_slot_154] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jabatan Fungsional",
+        $$slots: { default: [create_default_slot_144] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "NIP",
+        $$slots: { default: [create_default_slot_136] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "NIDN",
+        $$slots: { default: [create_default_slot_126] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Tempat Lahir",
+        $$slots: { default: [create_default_slot_119] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Tanggal Lahir",
+        $$slots: { default: [create_default_slot_106] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Alamat Rumah",
+        $$slots: { default: [create_default_slot_96] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Telp/Fax Rumah",
+        $$slots: { default: [create_default_slot_86] },
+        $$scope: { ctx }
+      }
+    });
+    field8 = new Field_default({
+      props: {
+        name: "Nomoh Handphone",
+        $$slots: { default: [create_default_slot_76] },
+        $$scope: { ctx }
+      }
+    });
+    field9 = new Field_default({
+      props: {
+        name: "Alamat Kantor",
+        $$slots: { default: [create_default_slot_66] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "Telp/Fax Kantor",
+        $$slots: { default: [create_default_slot_57] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "Email",
+        $$slots: { default: [create_default_slot_415] },
+        $$scope: { ctx }
+      }
+    });
+    field12 = new Field_default({
+      props: {
+        name: "Mata Kuliah",
+        $$slots: { default: [create_default_slot_318] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*dataPP*/
+      ctx[3] && create_if_block_119(ctx)
+    );
+    let if_block2 = (
+      /*dataPM*/
+      ctx[4] && create_if_block_104(ctx)
+    );
+    let if_block3 = (
+      /*dataPD*/
+      ctx[5] && create_if_block_96(ctx)
+    );
+    let if_block4 = (
+      /*dataPPub*/
+      ctx[6] && create_if_block_87(ctx)
+    );
+    let if_block5 = (
+      /*dataPPB*/
+      ctx[7] && create_if_block_77(ctx)
+    );
+    let if_block6 = (
+      /*dataPHKI*/
+      ctx[8] && create_if_block_67(ctx)
+    );
+    return {
+      c() {
+        if_block0.c();
+        t0 = space();
+        create_component(field0.$$.fragment);
+        t1 = space();
+        create_component(field1.$$.fragment);
+        t2 = space();
+        create_component(field2.$$.fragment);
+        t3 = space();
+        create_component(field3.$$.fragment);
+        t4 = space();
+        create_component(field4.$$.fragment);
+        t5 = space();
+        create_component(field5.$$.fragment);
+        t6 = space();
+        create_component(field6.$$.fragment);
+        t7 = space();
+        create_component(field7.$$.fragment);
+        t8 = space();
+        create_component(field8.$$.fragment);
+        t9 = space();
+        create_component(field9.$$.fragment);
+        t10 = space();
+        create_component(field10.$$.fragment);
+        t11 = space();
+        create_component(field11.$$.fragment);
+        t12 = space();
+        create_component(field12.$$.fragment);
+        t13 = space();
+        br0 = element("br");
+        t14 = space();
+        div0 = element("div");
+        h60 = element("h6");
+        h60.textContent = "Riwayat Pendidikan";
+        t16 = space();
+        table0 = element("table");
+        thead0 = element("thead");
+        thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
+        t24 = space();
+        tbody0 = element("tbody");
+        tr1 = element("tr");
+        th4 = element("th");
+        th4.textContent = "Nama Perguruan Tinggi";
+        t26 = space();
+        td0 = element("td");
+        t27 = text(
+          /*pertiS1*/
+          ctx[9]
+        );
+        t28 = space();
+        td1 = element("td");
+        t29 = text(
+          /*pertiS2*/
+          ctx[10]
+        );
+        t30 = space();
+        td2 = element("td");
+        t31 = text(
+          /*pertiS3*/
+          ctx[11]
+        );
+        t32 = space();
+        tr2 = element("tr");
+        th5 = element("th");
+        th5.textContent = "Bidang Ilmu";
+        t34 = space();
+        td3 = element("td");
+        t35 = text(
+          /*bidangIlmuS1*/
+          ctx[12]
+        );
+        t36 = space();
+        td4 = element("td");
+        t37 = text(
+          /*bidangIlmuS2*/
+          ctx[13]
+        );
+        t38 = space();
+        td5 = element("td");
+        t39 = text(
+          /*bidangIlmuS3*/
+          ctx[14]
+        );
+        t40 = space();
+        tr3 = element("tr");
+        th6 = element("th");
+        th6.textContent = "Tahun Masuk";
+        t42 = space();
+        td6 = element("td");
+        t43 = text(
+          /*tahunMasukS1*/
+          ctx[15]
+        );
+        t44 = space();
+        td7 = element("td");
+        t45 = text(
+          /*tahunMasukS2*/
+          ctx[16]
+        );
+        t46 = space();
+        td8 = element("td");
+        t47 = text(
+          /*tahunMasukS3*/
+          ctx[17]
+        );
+        t48 = space();
+        tr4 = element("tr");
+        th7 = element("th");
+        th7.textContent = "Tahun Lulus";
+        t50 = space();
+        td9 = element("td");
+        t51 = text(
+          /*tahunLulusS1*/
+          ctx[18]
+        );
+        t52 = space();
+        td10 = element("td");
+        t53 = text(
+          /*tahunLulusS2*/
+          ctx[19]
+        );
+        t54 = space();
+        td11 = element("td");
+        t55 = text(
+          /*tahunLulusS3*/
+          ctx[20]
+        );
+        t56 = space();
+        tr5 = element("tr");
+        th8 = element("th");
+        th8.textContent = "Judul Skripsi/Tesis/Disertasi";
+        t58 = space();
+        td12 = element("td");
+        t59 = text(
+          /*judulTugasAkhirS1*/
+          ctx[21]
+        );
+        t60 = space();
+        td13 = element("td");
+        t61 = text(
+          /*judulTugasAkhirS2*/
+          ctx[22]
+        );
+        t62 = space();
+        td14 = element("td");
+        t63 = text(
+          /*judulTugasAkhirS3*/
+          ctx[23]
+        );
+        t64 = space();
+        br1 = element("br");
+        t65 = space();
+        div1 = element("div");
+        h61 = element("h6");
+        h61.textContent = "Pengalaman Penelitian";
+        t67 = space();
+        table1 = element("table");
+        thead1 = element("thead");
+        thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t77 = space();
+        tbody1 = element("tbody");
+        if (if_block1)
+          if_block1.c();
+        t78 = space();
+        br2 = element("br");
+        t79 = space();
+        div2 = element("div");
+        h62 = element("h6");
+        h62.textContent = "Pengalaman Pengabdian Masyarakat";
+        t81 = space();
+        table2 = element("table");
+        thead2 = element("thead");
+        thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t91 = space();
+        tbody2 = element("tbody");
+        if (if_block2)
+          if_block2.c();
+        t92 = space();
+        br3 = element("br");
+        t93 = space();
+        div3 = element("div");
+        h63 = element("h6");
+        h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
+        t95 = space();
+        table3 = element("table");
+        thead3 = element("thead");
+        thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
+        t103 = space();
+        tbody3 = element("tbody");
+        if (if_block3)
+          if_block3.c();
+        t104 = space();
+        br4 = element("br");
+        t105 = space();
+        div4 = element("div");
+        h64 = element("h6");
+        h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
+        t107 = space();
+        table4 = element("table");
+        thead4 = element("thead");
+        thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
+        t115 = space();
+        tbody4 = element("tbody");
+        if (if_block4)
+          if_block4.c();
+        t116 = space();
+        br5 = element("br");
+        t117 = space();
+        div5 = element("div");
+        h65 = element("h6");
+        h65.textContent = "Pengalaman Penulisan Buku";
+        t119 = space();
+        table5 = element("table");
+        thead5 = element("thead");
+        thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
+        t129 = space();
+        tbody5 = element("tbody");
+        if (if_block5)
+          if_block5.c();
+        t130 = space();
+        br6 = element("br");
+        t131 = space();
+        div6 = element("div");
+        h66 = element("h6");
+        h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
+        t133 = space();
+        table6 = element("table");
+        thead6 = element("thead");
+        thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
+        t143 = space();
+        tbody6 = element("tbody");
+        if (if_block6)
+          if_block6.c();
+        attr(h60, "class", "title is-6");
+        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h61, "class", "title is-6");
+        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h62, "class", "title is-6");
+        attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h63, "class", "title is-6");
+        attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h64, "class", "title is-6");
+        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h65, "class", "title is-6");
+        attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(h66, "class", "title is-6");
+        attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field0, target, anchor);
+        insert(target, t1, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t2, anchor);
+        mount_component(field2, target, anchor);
+        insert(target, t3, anchor);
+        mount_component(field3, target, anchor);
+        insert(target, t4, anchor);
+        mount_component(field4, target, anchor);
+        insert(target, t5, anchor);
+        mount_component(field5, target, anchor);
+        insert(target, t6, anchor);
+        mount_component(field6, target, anchor);
+        insert(target, t7, anchor);
+        mount_component(field7, target, anchor);
+        insert(target, t8, anchor);
+        mount_component(field8, target, anchor);
+        insert(target, t9, anchor);
+        mount_component(field9, target, anchor);
+        insert(target, t10, anchor);
+        mount_component(field10, target, anchor);
+        insert(target, t11, anchor);
+        mount_component(field11, target, anchor);
+        insert(target, t12, anchor);
+        mount_component(field12, target, anchor);
+        insert(target, t13, anchor);
+        insert(target, br0, anchor);
+        insert(target, t14, anchor);
+        insert(target, div0, anchor);
+        append(div0, h60);
+        append(div0, t16);
+        append(div0, table0);
+        append(table0, thead0);
+        append(table0, t24);
+        append(table0, tbody0);
+        append(tbody0, tr1);
+        append(tr1, th4);
+        append(tr1, t26);
+        append(tr1, td0);
+        append(td0, t27);
+        append(tr1, t28);
+        append(tr1, td1);
+        append(td1, t29);
+        append(tr1, t30);
+        append(tr1, td2);
+        append(td2, t31);
+        append(tbody0, t32);
+        append(tbody0, tr2);
+        append(tr2, th5);
+        append(tr2, t34);
+        append(tr2, td3);
+        append(td3, t35);
+        append(tr2, t36);
+        append(tr2, td4);
+        append(td4, t37);
+        append(tr2, t38);
+        append(tr2, td5);
+        append(td5, t39);
+        append(tbody0, t40);
+        append(tbody0, tr3);
+        append(tr3, th6);
+        append(tr3, t42);
+        append(tr3, td6);
+        append(td6, t43);
+        append(tr3, t44);
+        append(tr3, td7);
+        append(td7, t45);
+        append(tr3, t46);
+        append(tr3, td8);
+        append(td8, t47);
+        append(tbody0, t48);
+        append(tbody0, tr4);
+        append(tr4, th7);
+        append(tr4, t50);
+        append(tr4, td9);
+        append(td9, t51);
+        append(tr4, t52);
+        append(tr4, td10);
+        append(td10, t53);
+        append(tr4, t54);
+        append(tr4, td11);
+        append(td11, t55);
+        append(tbody0, t56);
+        append(tbody0, tr5);
+        append(tr5, th8);
+        append(tr5, t58);
+        append(tr5, td12);
+        append(td12, t59);
+        append(tr5, t60);
+        append(tr5, td13);
+        append(td13, t61);
+        append(tr5, t62);
+        append(tr5, td14);
+        append(td14, t63);
+        insert(target, t64, anchor);
+        insert(target, br1, anchor);
+        insert(target, t65, anchor);
+        insert(target, div1, anchor);
+        append(div1, h61);
+        append(div1, t67);
+        append(div1, table1);
+        append(table1, thead1);
+        append(table1, t77);
+        append(table1, tbody1);
+        if (if_block1)
+          if_block1.m(tbody1, null);
+        append(table1, t78);
+        append(table1, br2);
+        insert(target, t79, anchor);
+        insert(target, div2, anchor);
+        append(div2, h62);
+        append(div2, t81);
+        append(div2, table2);
+        append(table2, thead2);
+        append(table2, t91);
+        append(table2, tbody2);
+        if (if_block2)
+          if_block2.m(tbody2, null);
+        insert(target, t92, anchor);
+        insert(target, br3, anchor);
+        insert(target, t93, anchor);
+        insert(target, div3, anchor);
+        append(div3, h63);
+        append(div3, t95);
+        append(div3, table3);
+        append(table3, thead3);
+        append(table3, t103);
+        append(table3, tbody3);
+        if (if_block3)
+          if_block3.m(tbody3, null);
+        insert(target, t104, anchor);
+        insert(target, br4, anchor);
+        insert(target, t105, anchor);
+        insert(target, div4, anchor);
+        append(div4, h64);
+        append(div4, t107);
+        append(div4, table4);
+        append(table4, thead4);
+        append(table4, t115);
+        append(table4, tbody4);
+        if (if_block4)
+          if_block4.m(tbody4, null);
+        insert(target, t116, anchor);
+        insert(target, br5, anchor);
+        insert(target, t117, anchor);
+        insert(target, div5, anchor);
+        append(div5, h65);
+        append(div5, t119);
+        append(div5, table5);
+        append(table5, thead5);
+        append(table5, t129);
+        append(table5, tbody5);
+        if (if_block5)
+          if_block5.m(tbody5, null);
+        insert(target, t130, anchor);
+        insert(target, br6, anchor);
+        insert(target, t131, anchor);
+        insert(target, div6, anchor);
+        append(div6, h66);
+        append(div6, t133);
+        append(div6, table6);
+        append(table6, thead6);
+        append(table6, t143);
+        append(table6, tbody6);
+        if (if_block6)
+          if_block6.m(tbody6, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (current_block_type !== (current_block_type = select_block_type_3(ctx2, dirty))) {
+          if_block0.d(1);
+          if_block0 = current_block_type(ctx2);
+          if (if_block0) {
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        }
+        const field0_changes = {};
+        if (dirty[1] & /*namaLengkap*/
+        64 | dirty[3] & /*$$scope*/
+        1048576) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[1] & /*jabatanFungsional*/
+        128 | dirty[3] & /*$$scope*/
+        1048576) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[1] & /*nip*/
+        256 | dirty[3] & /*$$scope*/
+        1048576) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[1] & /*nidn*/
+        512 | dirty[3] & /*$$scope*/
+        1048576) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[1] & /*tempatLahir*/
+        1024 | dirty[3] & /*$$scope*/
+        1048576) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[1] & /*tanggalLahir*/
+        2048 | dirty[3] & /*$$scope*/
+        1048576) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[1] & /*alamatRumah*/
+        4096 | dirty[3] & /*$$scope*/
+        1048576) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[1] & /*telpFaxRumah*/
+        8192 | dirty[3] & /*$$scope*/
+        1048576) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        const field8_changes = {};
+        if (dirty[1] & /*nomorHandphone*/
+        16384 | dirty[3] & /*$$scope*/
+        1048576) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        const field9_changes = {};
+        if (dirty[1] & /*alamatKantor*/
+        32768 | dirty[3] & /*$$scope*/
+        1048576) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[1] & /*telpFaxKantor*/
+        65536 | dirty[3] & /*$$scope*/
+        1048576) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[1] & /*email*/
+        131072 | dirty[3] & /*$$scope*/
+        1048576) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+        const field12_changes = {};
+        if (dirty[1] & /*mataKuliah*/
+        262144 | dirty[3] & /*$$scope*/
+        1048576) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
+        if (!current || dirty[0] & /*pertiS1*/
+        512)
+          set_data(
+            t27,
+            /*pertiS1*/
+            ctx2[9]
+          );
+        if (!current || dirty[0] & /*pertiS2*/
+        1024)
+          set_data(
+            t29,
+            /*pertiS2*/
+            ctx2[10]
+          );
+        if (!current || dirty[0] & /*pertiS3*/
+        2048)
+          set_data(
+            t31,
+            /*pertiS3*/
+            ctx2[11]
+          );
+        if (!current || dirty[0] & /*bidangIlmuS1*/
+        4096)
+          set_data(
+            t35,
+            /*bidangIlmuS1*/
+            ctx2[12]
+          );
+        if (!current || dirty[0] & /*bidangIlmuS2*/
+        8192)
+          set_data(
+            t37,
+            /*bidangIlmuS2*/
+            ctx2[13]
+          );
+        if (!current || dirty[0] & /*bidangIlmuS3*/
+        16384)
+          set_data(
+            t39,
+            /*bidangIlmuS3*/
+            ctx2[14]
+          );
+        if (!current || dirty[0] & /*tahunMasukS1*/
+        32768)
+          set_data(
+            t43,
+            /*tahunMasukS1*/
+            ctx2[15]
+          );
+        if (!current || dirty[0] & /*tahunMasukS2*/
+        65536)
+          set_data(
+            t45,
+            /*tahunMasukS2*/
+            ctx2[16]
+          );
+        if (!current || dirty[0] & /*tahunMasukS3*/
+        131072)
+          set_data(
+            t47,
+            /*tahunMasukS3*/
+            ctx2[17]
+          );
+        if (!current || dirty[0] & /*tahunLulusS1*/
+        262144)
+          set_data(
+            t51,
+            /*tahunLulusS1*/
+            ctx2[18]
+          );
+        if (!current || dirty[0] & /*tahunLulusS2*/
+        524288)
+          set_data(
+            t53,
+            /*tahunLulusS2*/
+            ctx2[19]
+          );
+        if (!current || dirty[0] & /*tahunLulusS3*/
+        1048576)
+          set_data(
+            t55,
+            /*tahunLulusS3*/
+            ctx2[20]
+          );
+        if (!current || dirty[0] & /*judulTugasAkhirS1*/
+        2097152)
+          set_data(
+            t59,
+            /*judulTugasAkhirS1*/
+            ctx2[21]
+          );
+        if (!current || dirty[0] & /*judulTugasAkhirS2*/
+        4194304)
+          set_data(
+            t61,
+            /*judulTugasAkhirS2*/
+            ctx2[22]
+          );
+        if (!current || dirty[0] & /*judulTugasAkhirS3*/
+        8388608)
+          set_data(
+            t63,
+            /*judulTugasAkhirS3*/
+            ctx2[23]
+          );
+        if (
+          /*dataPP*/
+          ctx2[3]
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_119(ctx2);
+            if_block1.c();
+            if_block1.m(tbody1, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*dataPM*/
+          ctx2[4]
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_104(ctx2);
+            if_block2.c();
+            if_block2.m(tbody2, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*dataPD*/
+          ctx2[5]
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_96(ctx2);
+            if_block3.c();
+            if_block3.m(tbody3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (
+          /*dataPPub*/
+          ctx2[6]
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_87(ctx2);
+            if_block4.c();
+            if_block4.m(tbody4, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
+        }
+        if (
+          /*dataPPB*/
+          ctx2[7]
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block_77(ctx2);
+            if_block5.c();
+            if_block5.m(tbody5, null);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+        if (
+          /*dataPHKI*/
+          ctx2[8]
+        ) {
+          if (if_block6) {
+            if_block6.p(ctx2, dirty);
+          } else {
+            if_block6 = create_if_block_67(ctx2);
+            if_block6.c();
+            if_block6.m(tbody6, null);
+          }
+        } else if (if_block6) {
+          if_block6.d(1);
+          if_block6 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(field8.$$.fragment, local);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        transition_in(field12.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(field8.$$.fragment, local);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        transition_out(field12.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+          detach(t3);
+          detach(t4);
+          detach(t5);
+          detach(t6);
+          detach(t7);
+          detach(t8);
+          detach(t9);
+          detach(t10);
+          detach(t11);
+          detach(t12);
+          detach(t13);
+          detach(br0);
+          detach(t14);
+          detach(div0);
+          detach(t64);
+          detach(br1);
+          detach(t65);
+          detach(div1);
+          detach(t79);
+          detach(div2);
+          detach(t92);
+          detach(br3);
+          detach(t93);
+          detach(div3);
+          detach(t104);
+          detach(br4);
+          detach(t105);
+          detach(div4);
+          detach(t116);
+          detach(br5);
+          detach(t117);
+          detach(div5);
+          detach(t130);
+          detach(br6);
+          detach(t131);
+          detach(div6);
+        }
+        if_block0.d(detaching);
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        destroy_component(field2, detaching);
+        destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+        destroy_component(field5, detaching);
+        destroy_component(field6, detaching);
+        destroy_component(field7, detaching);
+        destroy_component(field8, detaching);
+        destroy_component(field9, detaching);
+        destroy_component(field10, detaching);
+        destroy_component(field11, detaching);
+        destroy_component(field12, detaching);
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+        if (if_block4)
+          if_block4.d();
+        if (if_block5)
+          if_block5.d();
+        if (if_block6)
+          if_block6.d();
+      }
+    };
+  }
+  function create_else_block6(ctx) {
+    let div1;
+    return {
+      c() {
+        div1 = element("div");
+        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam
+                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                     peneliti sanggup menerima sanksinya. Jika ada perubahan,
+                     klik
+                     <a href="${"/dosen/profile"}"><strong>Disini!</strong></a></p></div>`;
+        attr(div1, "class", "columns notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+        }
+      }
+    };
+  }
+  function create_if_block_134(ctx) {
+    let div1;
+    return {
+      c() {
+        div1 = element("div");
+        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                     sanksinya.</p></div>`;
+        attr(div1, "class", "columns notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+        }
+      }
+    };
+  }
+  function create_default_slot_154(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*namaLengkap*/
+          ctx[37]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*namaLengkap*/
+        64)
+          set_data(
+            t,
+            /*namaLengkap*/
+            ctx2[37]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_144(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jabatanFungsional*/
+          ctx[38]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*jabatanFungsional*/
+        128)
+          set_data(
+            t,
+            /*jabatanFungsional*/
+            ctx2[38]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_136(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nip*/
+          ctx[39]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nip*/
+        256)
+          set_data(
+            t,
+            /*nip*/
+            ctx2[39]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_126(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nidn*/
+          ctx[40]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nidn*/
+        512)
+          set_data(
+            t,
+            /*nidn*/
+            ctx2[40]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_119(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tempatLahir*/
+          ctx[41]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tempatLahir*/
+        1024)
+          set_data(
+            t,
+            /*tempatLahir*/
+            ctx2[41]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_106(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tanggalLahir*/
+          ctx[42]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tanggalLahir*/
+        2048)
+          set_data(
+            t,
+            /*tanggalLahir*/
+            ctx2[42]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_96(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatRumah*/
+          ctx[43]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatRumah*/
+        4096)
+          set_data(
+            t,
+            /*alamatRumah*/
+            ctx2[43]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_86(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxRumah*/
+          ctx[44]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxRumah*/
+        8192)
+          set_data(
+            t,
+            /*telpFaxRumah*/
+            ctx2[44]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_76(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nomorHandphone*/
+          ctx[45]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nomorHandphone*/
+        16384)
+          set_data(
+            t,
+            /*nomorHandphone*/
+            ctx2[45]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_66(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatKantor*/
+          ctx[46]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatKantor*/
+        32768)
+          set_data(
+            t,
+            /*alamatKantor*/
+            ctx2[46]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_57(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxKantor*/
+          ctx[47]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxKantor*/
+        65536)
+          set_data(
+            t,
+            /*telpFaxKantor*/
+            ctx2[47]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_415(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*email*/
+          ctx[48]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*email*/
+        131072)
+          set_data(
+            t,
+            /*email*/
+            ctx2[48]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_if_block_125(ctx) {
+    let each_1_anchor;
+    let each_value_6 = ensure_array_like(
+      /*mataKuliah*/
+      ctx[49]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_6.length; i += 1) {
+      each_blocks[i] = create_each_block_64(get_each_context_64(ctx, each_value_6, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        262144) {
+          each_value_6 = ensure_array_like(
+            /*mataKuliah*/
+            ctx2[49]
+          );
+          let i;
+          for (i = 0; i < each_value_6.length; i += 1) {
+            const child_ctx = get_each_context_64(ctx2, each_value_6, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_64(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_6.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_64(ctx) {
+    let tr;
+    let td;
+    let t0_value = (
+      /*matkul*/
+      ctx[105].label + ""
+    );
+    let t0;
+    let t1;
+    return {
+      c() {
+        tr = element("tr");
+        td = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td);
+        append(td, t0);
+        append(tr, t1);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        262144 && t0_value !== (t0_value = /*matkul*/
+        ctx2[105].label + ""))
+          set_data(t0, t0_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_318(ctx) {
     let table;
     let thead;
-    let t3;
+    let t1;
     let tbody;
-    let tr1;
+    let if_block = (
+      /*mataKuliah*/
+      ctx[49] && /*mataKuliah*/
+      ctx[49].length > 0 && create_if_block_125(ctx)
+    );
+    return {
+      c() {
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Mata Kuliah</th></tr>`;
+        t1 = space();
+        tbody = element("tbody");
+        if (if_block)
+          if_block.c();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t1);
+        append(table, tbody);
+        if (if_block)
+          if_block.m(tbody, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*mataKuliah*/
+          ctx2[49] && /*mataKuliah*/
+          ctx2[49].length > 0
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_125(ctx2);
+            if_block.c();
+            if_block.m(tbody, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(table);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_if_block_119(ctx) {
+    let each_1_anchor;
+    let each_value_5 = ensure_array_like(
+      /*dataPP*/
+      ctx[3]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_5.length; i += 1) {
+      each_blocks[i] = create_each_block_54(get_each_context_54(ctx, each_value_5, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        8) {
+          each_value_5 = ensure_array_like(
+            /*dataPP*/
+            ctx2[3]
+          );
+          let i;
+          for (i = 0; i < each_value_5.length; i += 1) {
+            const child_ctx = get_each_context_54(ctx2, each_value_5, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_54(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_5.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_54(ctx) {
+    let tr;
     let td0;
-    let status_1;
-    let t4;
+    let t0_value = (
+      /*PP*/
+      ctx[102].tahun_penelitian + ""
+    );
+    let t0;
+    let t1;
     let td1;
+    let t2_value = (
+      /*PP*/
+      ctx[102].judul_penelitian + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PP*/
+      ctx[102].role_penelitian + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PP*/
+      ctx[102].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PP*/
+      ctx[102].jumlah + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        8 && t0_value !== (t0_value = /*PP*/
+        ctx2[102].tahun_penelitian + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPP*/
+        8 && t2_value !== (t2_value = /*PP*/
+        ctx2[102].judul_penelitian + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPP*/
+        8 && t4_value !== (t4_value = /*PP*/
+        ctx2[102].role_penelitian + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPP*/
+        8 && t6_value !== (t6_value = /*PP*/
+        ctx2[102].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPP*/
+        8 && t8_value !== (t8_value = /*PP*/
+        ctx2[102].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_104(ctx) {
+    let each_1_anchor;
+    let each_value_4 = ensure_array_like(
+      /*dataPM*/
+      ctx[4]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_4.length; i += 1) {
+      each_blocks[i] = create_each_block_44(get_each_context_44(ctx, each_value_4, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        16) {
+          each_value_4 = ensure_array_like(
+            /*dataPM*/
+            ctx2[4]
+          );
+          let i;
+          for (i = 0; i < each_value_4.length; i += 1) {
+            const child_ctx = get_each_context_44(ctx2, each_value_4, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_44(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_4.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_44(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PM*/
+      ctx[99].tahun_pengmas + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PM*/
+      ctx[99].judul_pengmas + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PM*/
+      ctx[99].role_pengmas + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PM*/
+      ctx[99].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PM*/
+      ctx[99].jumlah + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        16 && t0_value !== (t0_value = /*PM*/
+        ctx2[99].tahun_pengmas + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPM*/
+        16 && t2_value !== (t2_value = /*PM*/
+        ctx2[99].judul_pengmas + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPM*/
+        16 && t4_value !== (t4_value = /*PM*/
+        ctx2[99].role_pengmas + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPM*/
+        16 && t6_value !== (t6_value = /*PM*/
+        ctx2[99].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPM*/
+        16 && t8_value !== (t8_value = /*PM*/
+        ctx2[99].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_96(ctx) {
+    let each_1_anchor;
+    let each_value_3 = ensure_array_like(
+      /*dataPD*/
+      ctx[5]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_3.length; i += 1) {
+      each_blocks[i] = create_each_block_35(get_each_context_35(ctx, each_value_3, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        32) {
+          each_value_3 = ensure_array_like(
+            /*dataPD*/
+            ctx2[5]
+          );
+          let i;
+          for (i = 0; i < each_value_3.length; i += 1) {
+            const child_ctx = get_each_context_35(ctx2, each_value_3, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_35(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_3.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_35(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PD*/
+      ctx[96].tahun_diseminasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PD*/
+      ctx[96].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PD*/
+      ctx[96].nama_pemakalah + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PD*/
+      ctx[96].nama_pertemuan + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        32 && t0_value !== (t0_value = /*PD*/
+        ctx2[96].tahun_diseminasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPD*/
+        32 && t2_value !== (t2_value = /*PD*/
+        ctx2[96].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPD*/
+        32 && t4_value !== (t4_value = /*PD*/
+        ctx2[96].nama_pemakalah + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPD*/
+        32 && t6_value !== (t6_value = /*PD*/
+        ctx2[96].nama_pertemuan + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_87(ctx) {
+    let each_1_anchor;
+    let each_value_2 = ensure_array_like(
+      /*dataPPub*/
+      ctx[6]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_2.length; i += 1) {
+      each_blocks[i] = create_each_block_25(get_each_context_25(ctx, each_value_2, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        64) {
+          each_value_2 = ensure_array_like(
+            /*dataPPub*/
+            ctx2[6]
+          );
+          let i;
+          for (i = 0; i < each_value_2.length; i += 1) {
+            const child_ctx = get_each_context_25(ctx2, each_value_2, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_25(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_2.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_25(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPub*/
+      ctx[93].tahun_publikasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPub*/
+      ctx[93].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPub*/
+      ctx[93].nama_jurnal + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPub*/
+      ctx[93].impact + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        64 && t0_value !== (t0_value = /*PPub*/
+        ctx2[93].tahun_publikasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPub*/
+        64 && t2_value !== (t2_value = /*PPub*/
+        ctx2[93].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPub*/
+        64 && t4_value !== (t4_value = /*PPub*/
+        ctx2[93].nama_jurnal + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPub*/
+        64 && t6_value !== (t6_value = /*PPub*/
+        ctx2[93].impact + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_77(ctx) {
+    let each_1_anchor;
+    let each_value_1 = ensure_array_like(
+      /*dataPPB*/
+      ctx[7]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_1.length; i += 1) {
+      each_blocks[i] = create_each_block_15(get_each_context_15(ctx, each_value_1, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        128) {
+          each_value_1 = ensure_array_like(
+            /*dataPPB*/
+            ctx2[7]
+          );
+          let i;
+          for (i = 0; i < each_value_1.length; i += 1) {
+            const child_ctx = get_each_context_15(ctx2, each_value_1, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_15(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_1.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_15(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPB*/
+      ctx[90].tahun_buku + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPB*/
+      ctx[90].judul_buku + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPB*/
+      ctx[90].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPB*/
+      ctx[90].penerbit + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PPB*/
+      ctx[90].isbn + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        128 && t0_value !== (t0_value = /*PPB*/
+        ctx2[90].tahun_buku + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPB*/
+        128 && t2_value !== (t2_value = /*PPB*/
+        ctx2[90].judul_buku + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPB*/
+        128 && t4_value !== (t4_value = /*PPB*/
+        ctx2[90].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPB*/
+        128 && t6_value !== (t6_value = /*PPB*/
+        ctx2[90].penerbit + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPPB*/
+        128 && t8_value !== (t8_value = /*PPB*/
+        ctx2[90].isbn + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_67(ctx) {
+    let each_1_anchor;
+    let each_value = ensure_array_like(
+      /*dataPHKI*/
+      ctx[8]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block13(get_each_context13(ctx, each_value, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        256) {
+          each_value = ensure_array_like(
+            /*dataPHKI*/
+            ctx2[8]
+          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context13(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block13(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block13(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PHKI*/
+      ctx[87].tahun_hki + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PHKI*/
+      ctx[87].judul_hki + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PHKI*/
+      ctx[87].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PHKI*/
+      ctx[87].jenis_hki + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PHKI*/
+      ctx[87].no_hki + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        256 && t0_value !== (t0_value = /*PHKI*/
+        ctx2[87].tahun_hki + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPHKI*/
+        256 && t2_value !== (t2_value = /*PHKI*/
+        ctx2[87].judul_hki + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPHKI*/
+        256 && t4_value !== (t4_value = /*PHKI*/
+        ctx2[87].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPHKI*/
+        256 && t6_value !== (t6_value = /*PHKI*/
+        ctx2[87].jenis_hki + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPHKI*/
+        256 && t8_value !== (t8_value = /*PHKI*/
+        ctx2[87].no_hki + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_48(ctx) {
+    let div;
+    let field0;
+    let t;
+    let field1;
+    let current;
+    field0 = new Field_default({
+      props: {
+        name: "Status PPM",
+        $$slots: { default: [create_default_slot_218] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Status Pendanaan",
+        $$slots: { default: [create_default_slot_120] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        div = element("div");
+        create_component(field0.$$.fragment);
+        t = space();
+        create_component(field1.$$.fragment);
+        attr(div, "id", "tab3");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        mount_component(field0, div, null);
+        append(div, t);
+        mount_component(field1, div, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty[0] & /*data*/
+        4 | dirty[3] & /*$$scope*/
+        1048576) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[3] & /*$$scope*/
+        1048576) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        destroy_component(field0);
+        destroy_component(field1);
+      }
+    };
+  }
+  function create_default_slot_218(ctx) {
+    let status_1;
     let current;
     status_1 = new Status_default({ props: { code: (
       /*data*/
@@ -35783,32 +41558,10 @@
     ) } });
     return {
       c() {
-        div = element("div");
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Status PPM</th> <th>Status Pendanaan</th></tr>`;
-        t3 = space();
-        tbody = element("tbody");
-        tr1 = element("tr");
-        td0 = element("td");
         create_component(status_1.$$.fragment);
-        t4 = space();
-        td1 = element("td");
-        td1.textContent = "Coming Soon";
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div, "id", "tab2");
       },
       m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, table);
-        append(table, thead);
-        append(table, t3);
-        append(table, tbody);
-        append(tbody, tr1);
-        append(tr1, td0);
-        mount_component(status_1, td0, null);
-        append(tr1, t4);
-        append(tr1, td1);
+        mount_component(status_1, target, anchor);
         current = true;
       },
       p(ctx2, dirty) {
@@ -35830,114 +41583,79 @@
         current = false;
       },
       d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        destroy_component(status_1);
+        destroy_component(status_1, detaching);
       }
     };
   }
-  function create_if_block_28(ctx) {
-    let div6;
+  function create_default_slot_120(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(". . .");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_if_block_38(ctx) {
+    let div3;
     let div2;
     let div0;
     let t1;
     let div1;
-    let button0;
+    let button;
     let span0;
-    let icon0;
+    let icon;
     let t2;
     let span1;
-    let t4;
-    let hr;
-    let t5;
-    let div5;
-    let div3;
-    let t7;
-    let div4;
-    let button1;
-    let span2;
-    let icon1;
-    let t8;
-    let span3;
     let current;
     let mounted;
     let dispose;
-    icon0 = new Icon_default({
+    icon = new Icon_default({
       props: { id: "logbook", src: addProposal }
     });
-    icon1 = new Icon_default({ props: { id: "monev", src: addProposal } });
     return {
       c() {
-        div6 = element("div");
+        div3 = element("div");
         div2 = element("div");
         div0 = element("div");
         div0.innerHTML = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                      Totam suscipit placeat amet.</p>`;
         t1 = space();
         div1 = element("div");
-        button0 = element("button");
+        button = element("button");
         span0 = element("span");
-        create_component(icon0.$$.fragment);
+        create_component(icon.$$.fragment);
         t2 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Create Logbook</a>`;
-        t4 = space();
-        hr = element("hr");
-        t5 = space();
-        div5 = element("div");
-        div3 = element("div");
-        div3.innerHTML = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Totam suscipit placeat amet.</p>`;
-        t7 = space();
-        div4 = element("div");
-        button1 = element("button");
-        span2 = element("span");
-        create_component(icon1.$$.fragment);
-        t8 = space();
-        span3 = element("span");
-        span3.innerHTML = `<a>Create Monev</a>`;
         attr(div0, "class", "column is-4");
         attr(span0, "class", "icon");
-        attr(button0, "class", "button is-info");
+        attr(button, "class", "button is-info");
         attr(div1, "class", "column");
         attr(div2, "class", "columns notification is-info is-light");
-        attr(div3, "class", "column is-4");
-        attr(span2, "class", "icon");
-        attr(button1, "class", "button is-success");
-        attr(div4, "class", "column");
-        attr(div5, "class", "columns notification is-success is-light");
-        attr(div6, "id", "tab3");
+        attr(div3, "id", "tab4");
       },
       m(target, anchor) {
-        insert(target, div6, anchor);
-        append(div6, div2);
+        insert(target, div3, anchor);
+        append(div3, div2);
         append(div2, div0);
         append(div2, t1);
         append(div2, div1);
-        append(div1, button0);
-        append(button0, span0);
-        mount_component(icon0, span0, null);
-        append(button0, t2);
-        append(button0, span1);
-        append(div6, t4);
-        append(div6, hr);
-        append(div6, t5);
-        append(div6, div5);
-        append(div5, div3);
-        append(div5, t7);
-        append(div5, div4);
-        append(div4, button1);
-        append(button1, span2);
-        mount_component(icon1, span2, null);
-        append(button1, t8);
-        append(button1, span3);
+        append(div1, button);
+        append(button, span0);
+        mount_component(icon, span0, null);
+        append(button, t2);
+        append(button, span1);
         current = true;
         if (!mounted) {
-          dispose = [
-            listen(button0, "click", addLogbook),
-            listen(button1, "click", addLogbook)
-          ];
+          dispose = listen(button, "click", addLogbook);
           mounted = true;
         }
       },
@@ -35945,27 +41663,99 @@
       i(local) {
         if (current)
           return;
-        transition_in(icon0.$$.fragment, local);
-        transition_in(icon1.$$.fragment, local);
+        transition_in(icon.$$.fragment, local);
         current = true;
       },
       o(local) {
-        transition_out(icon0.$$.fragment, local);
-        transition_out(icon1.$$.fragment, local);
+        transition_out(icon.$$.fragment, local);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(div6);
+          detach(div3);
         }
-        destroy_component(icon0);
-        destroy_component(icon1);
+        destroy_component(icon);
         mounted = false;
-        run_all(dispose);
+        dispose();
       }
     };
   }
-  function create_if_block_114(ctx) {
+  function create_if_block_28(ctx) {
+    let div3;
+    let div2;
+    let div0;
+    let t1;
+    let div1;
+    let button;
+    let span0;
+    let icon;
+    let t2;
+    let span1;
+    let current;
+    let mounted;
+    let dispose;
+    icon = new Icon_default({ props: { id: "monev", src: addProposal } });
+    return {
+      c() {
+        div3 = element("div");
+        div2 = element("div");
+        div0 = element("div");
+        div0.innerHTML = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Totam suscipit placeat amet.</p>`;
+        t1 = space();
+        div1 = element("div");
+        button = element("button");
+        span0 = element("span");
+        create_component(icon.$$.fragment);
+        t2 = space();
+        span1 = element("span");
+        span1.innerHTML = `<a>Create Monev</a>`;
+        attr(div0, "class", "column is-4");
+        attr(span0, "class", "icon");
+        attr(button, "class", "button is-success");
+        attr(div1, "class", "column");
+        attr(div2, "class", "columns notification is-success is-light");
+        attr(div3, "id", "tab5");
+      },
+      m(target, anchor) {
+        insert(target, div3, anchor);
+        append(div3, div2);
+        append(div2, div0);
+        append(div2, t1);
+        append(div2, div1);
+        append(div1, button);
+        append(button, span0);
+        mount_component(icon, span0, null);
+        append(button, t2);
+        append(button, span1);
+        current = true;
+        if (!mounted) {
+          dispose = listen(button, "click", addLogbook);
+          mounted = true;
+        }
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div3);
+        }
+        destroy_component(icon);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_120(ctx) {
     let div3;
     let div2;
     let div0;
@@ -36002,7 +41792,7 @@
         attr(button, "class", "button is-info");
         attr(div1, "class", "column");
         attr(div2, "class", "columns notification is-info is-light");
-        attr(div3, "id", "tab4");
+        attr(div3, "id", "tab6");
       },
       m(target, anchor) {
         insert(target, div3, anchor);
@@ -36055,28 +41845,42 @@
     let t7;
     let li3;
     let t9;
-    let t10;
+    let li4;
     let t11;
-    let t12;
-    let if_block3_anchor;
+    let li5;
+    let t13;
+    let t14;
+    let t15;
+    let t16;
+    let t17;
+    let t18;
+    let if_block5_anchor;
     let current;
     let mounted;
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[17] === true && create_if_block_48(ctx)
+      ctx[51] === true && create_if_block_143(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[18] === true && create_if_block_38(ctx)
+      ctx[52] === true && create_if_block_57(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[19] === true && create_if_block_28(ctx)
+      ctx[53] === true && create_if_block_48(ctx)
     );
     let if_block3 = (
       /*tab4*/
-      ctx[20] === true && create_if_block_114(ctx)
+      ctx[54] === true && create_if_block_38(ctx)
+    );
+    let if_block4 = (
+      /*tab5*/
+      ctx[55] === true && create_if_block_28(ctx)
+    );
+    let if_block5 = (
+      /*tab6*/
+      ctx[56] === true && create_if_block_120(ctx)
     );
     return {
       c() {
@@ -36089,50 +41893,74 @@
         li0.innerHTML = `<a><span>Identitas PPM</span></a>`;
         t3 = space();
         li1 = element("li");
-        li1.innerHTML = `<a><span>Status</span></a>`;
+        li1.innerHTML = `<a><span>Biodata Peneliti</span></a>`;
         t5 = space();
         li2 = element("li");
-        li2.innerHTML = `<a><span>Logbook / Monev</span></a>`;
+        li2.innerHTML = `<a><span>Status</span></a>`;
         t7 = space();
         li3 = element("li");
-        li3.innerHTML = `<a><span>Laporan</span></a>`;
+        li3.innerHTML = `<a><span>Logbook</span></a>`;
         t9 = space();
+        li4 = element("li");
+        li4.innerHTML = `<a><span>Monev</span></a>`;
+        t11 = space();
+        li5 = element("li");
+        li5.innerHTML = `<a><span>Laporan</span></a>`;
+        t13 = space();
         if (if_block0)
           if_block0.c();
-        t10 = space();
+        t14 = space();
         if (if_block1)
           if_block1.c();
-        t11 = space();
+        t15 = space();
         if (if_block2)
           if_block2.c();
-        t12 = space();
+        t16 = space();
         if (if_block3)
           if_block3.c();
-        if_block3_anchor = empty();
+        t17 = space();
+        if (if_block4)
+          if_block4.c();
+        t18 = space();
+        if (if_block5)
+          if_block5.c();
+        if_block5_anchor = empty();
         attr(h1, "class", "title is-1");
         toggle_class(
           li0,
           "is-active",
           /*tab1*/
-          ctx[17]
+          ctx[51]
         );
         toggle_class(
           li1,
           "is-active",
           /*tab2*/
-          ctx[18]
+          ctx[52]
         );
         toggle_class(
           li2,
           "is-active",
           /*tab3*/
-          ctx[19]
+          ctx[53]
         );
         toggle_class(
           li3,
           "is-active",
           /*tab4*/
-          ctx[20]
+          ctx[54]
+        );
+        toggle_class(
+          li4,
+          "is-active",
+          /*tab5*/
+          ctx[55]
+        );
+        toggle_class(
+          li5,
+          "is-active",
+          /*tab6*/
+          ctx[56]
         );
         attr(div, "class", "tabs is-boxed");
       },
@@ -36148,19 +41976,29 @@
         append(ul, li2);
         append(ul, t7);
         append(ul, li3);
-        insert(target, t9, anchor);
+        append(ul, t9);
+        append(ul, li4);
+        append(ul, t11);
+        append(ul, li5);
+        insert(target, t13, anchor);
         if (if_block0)
           if_block0.m(target, anchor);
-        insert(target, t10, anchor);
+        insert(target, t14, anchor);
         if (if_block1)
           if_block1.m(target, anchor);
-        insert(target, t11, anchor);
+        insert(target, t15, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
-        insert(target, t12, anchor);
+        insert(target, t16, anchor);
         if (if_block3)
           if_block3.m(target, anchor);
-        insert(target, if_block3_anchor, anchor);
+        insert(target, t17, anchor);
+        if (if_block4)
+          if_block4.m(target, anchor);
+        insert(target, t18, anchor);
+        if (if_block5)
+          if_block5.m(target, anchor);
+        insert(target, if_block5_anchor, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -36168,82 +42006,112 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[25]
+              ctx[61]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[26]
+              ctx[62]
             ),
             listen(
               li2,
               "click",
               /*clicktab3*/
-              ctx[27]
+              ctx[63]
             ),
             listen(
               li3,
               "click",
               /*clicktab4*/
-              ctx[28]
+              ctx[64]
+            ),
+            listen(
+              li4,
+              "click",
+              /*clicktab5*/
+              ctx[65]
+            ),
+            listen(
+              li5,
+              "click",
+              /*clicktab6*/
+              ctx[66]
             )
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (!current || dirty[0] & /*tab1*/
-        131072) {
+        if (!current || dirty[1] & /*tab1*/
+        1048576) {
           toggle_class(
             li0,
             "is-active",
             /*tab1*/
-            ctx2[17]
+            ctx2[51]
           );
         }
-        if (!current || dirty[0] & /*tab2*/
-        262144) {
+        if (!current || dirty[1] & /*tab2*/
+        2097152) {
           toggle_class(
             li1,
             "is-active",
             /*tab2*/
-            ctx2[18]
+            ctx2[52]
           );
         }
-        if (!current || dirty[0] & /*tab3*/
-        524288) {
+        if (!current || dirty[1] & /*tab3*/
+        4194304) {
           toggle_class(
             li2,
             "is-active",
             /*tab3*/
-            ctx2[19]
+            ctx2[53]
           );
         }
-        if (!current || dirty[0] & /*tab4*/
-        1048576) {
+        if (!current || dirty[1] & /*tab4*/
+        8388608) {
           toggle_class(
             li3,
             "is-active",
             /*tab4*/
-            ctx2[20]
+            ctx2[54]
+          );
+        }
+        if (!current || dirty[1] & /*tab5*/
+        16777216) {
+          toggle_class(
+            li4,
+            "is-active",
+            /*tab5*/
+            ctx2[55]
+          );
+        }
+        if (!current || dirty[1] & /*tab6*/
+        33554432) {
+          toggle_class(
+            li5,
+            "is-active",
+            /*tab6*/
+            ctx2[56]
           );
         }
         if (
           /*tab1*/
-          ctx2[17] === true
+          ctx2[51] === true
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
-            if (dirty[0] & /*tab1*/
-            131072) {
+            if (dirty[1] & /*tab1*/
+            1048576) {
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_48(ctx2);
+            if_block0 = create_if_block_143(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
-            if_block0.m(t10.parentNode, t10);
+            if_block0.m(t14.parentNode, t14);
           }
         } else if (if_block0) {
           group_outros();
@@ -36254,19 +42122,19 @@
         }
         if (
           /*tab2*/
-          ctx2[18] === true
+          ctx2[52] === true
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*tab2*/
-            262144) {
+            if (dirty[1] & /*tab2*/
+            2097152) {
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_38(ctx2);
+            if_block1 = create_if_block_57(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
-            if_block1.m(t11.parentNode, t11);
+            if_block1.m(t15.parentNode, t15);
           }
         } else if (if_block1) {
           group_outros();
@@ -36277,19 +42145,19 @@
         }
         if (
           /*tab3*/
-          ctx2[19] === true
+          ctx2[53] === true
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
-            if (dirty[0] & /*tab3*/
-            524288) {
+            if (dirty[1] & /*tab3*/
+            4194304) {
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_28(ctx2);
+            if_block2 = create_if_block_48(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
-            if_block2.m(t12.parentNode, t12);
+            if_block2.m(t16.parentNode, t16);
           }
         } else if (if_block2) {
           group_outros();
@@ -36300,24 +42168,70 @@
         }
         if (
           /*tab4*/
-          ctx2[20] === true
+          ctx2[54] === true
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
-            if (dirty[0] & /*tab4*/
-            1048576) {
+            if (dirty[1] & /*tab4*/
+            8388608) {
               transition_in(if_block3, 1);
             }
           } else {
-            if_block3 = create_if_block_114(ctx2);
+            if_block3 = create_if_block_38(ctx2);
             if_block3.c();
             transition_in(if_block3, 1);
-            if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
+            if_block3.m(t17.parentNode, t17);
           }
         } else if (if_block3) {
           group_outros();
           transition_out(if_block3, 1, 1, () => {
             if_block3 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*tab5*/
+          ctx2[55] === true
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+            if (dirty[1] & /*tab5*/
+            16777216) {
+              transition_in(if_block4, 1);
+            }
+          } else {
+            if_block4 = create_if_block_28(ctx2);
+            if_block4.c();
+            transition_in(if_block4, 1);
+            if_block4.m(t18.parentNode, t18);
+          }
+        } else if (if_block4) {
+          group_outros();
+          transition_out(if_block4, 1, 1, () => {
+            if_block4 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*tab6*/
+          ctx2[56] === true
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+            if (dirty[1] & /*tab6*/
+            33554432) {
+              transition_in(if_block5, 1);
+            }
+          } else {
+            if_block5 = create_if_block_120(ctx2);
+            if_block5.c();
+            transition_in(if_block5, 1);
+            if_block5.m(if_block5_anchor.parentNode, if_block5_anchor);
+          }
+        } else if (if_block5) {
+          group_outros();
+          transition_out(if_block5, 1, 1, () => {
+            if_block5 = null;
           });
           check_outros();
         }
@@ -36329,6 +42243,8 @@
         transition_in(if_block1);
         transition_in(if_block2);
         transition_in(if_block3);
+        transition_in(if_block4);
+        transition_in(if_block5);
         current = true;
       },
       o(local) {
@@ -36336,6 +42252,8 @@
         transition_out(if_block1);
         transition_out(if_block2);
         transition_out(if_block3);
+        transition_out(if_block4);
+        transition_out(if_block5);
         current = false;
       },
       d(detaching) {
@@ -36343,11 +42261,13 @@
           detach(h1);
           detach(t1);
           detach(div);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(t12);
-          detach(if_block3_anchor);
+          detach(t13);
+          detach(t14);
+          detach(t15);
+          detach(t16);
+          detach(t17);
+          detach(t18);
+          detach(if_block5_anchor);
         }
         if (if_block0)
           if_block0.d(detaching);
@@ -36357,6 +42277,10 @@
           if_block2.d(detaching);
         if (if_block3)
           if_block3.d(detaching);
+        if (if_block4)
+          if_block4.d(detaching);
+        if (if_block5)
+          if_block5.d(detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -36445,27 +42369,15 @@
   function instance30($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(44, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(45, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(84, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(85, $apiURL = $$value));
     let { params } = $$props;
     let items = [];
     let view;
-    let data2;
-    let statusProposal;
-    let jenisProposal;
-    let jenisKegiatan;
-    let jenisSkema;
-    let kelompokKeahlian;
-    let topik;
-    let tahunPelaksanaan;
-    let biayaPenelitian;
-    let anggotaTim = [];
-    let rab2;
-    let judul;
-    let abstrak;
-    let isi;
-    let comment;
-    let status;
+    let data2, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
+    let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
+    let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tahunPelaksanaan, biayaPenelitian, anggotaTim = [], judul, abstrak, isi, comment, status;
+    let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email, mataKuliah = [];
     const id = params["1"];
     let file;
     onMount(async () => {
@@ -36479,20 +42391,20 @@
       $$invalidate(1, view = !isEdit2(result.status));
       if (response.ok) {
         $$invalidate(2, data2 = result);
-        $$invalidate(3, jenisProposal = data2.jenis_proposal);
-        $$invalidate(4, jenisKegiatan = data2.jenis_kegiatan);
-        $$invalidate(5, jenisSkema = data2.jenis_skema);
-        $$invalidate(6, kelompokKeahlian = data2.kelompok_keahlian);
-        $$invalidate(7, topik = data2.topik);
-        $$invalidate(8, tahunPelaksanaan = data2.tahun_pelaksanaan);
-        $$invalidate(9, biayaPenelitian = data2.biaya_penelitian);
-        $$invalidate(10, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
-        rab2 = data2.rab;
-        $$invalidate(11, judul = data2.judul);
-        $$invalidate(12, abstrak = data2.abstrak);
-        $$invalidate(13, isi = data2.isi);
-        $$invalidate(14, comment = data2.comment);
-        $$invalidate(15, status = data2.status);
+        uidProposal = data2.uid;
+        $$invalidate(24, jenisProposal = data2.jenis_proposal);
+        $$invalidate(25, jenisKegiatan = data2.jenis_kegiatan);
+        $$invalidate(26, jenisSkema = data2.jenis_skema);
+        $$invalidate(27, kelompokKeahlian = data2.kelompok_keahlian);
+        $$invalidate(28, topik = data2.topik);
+        $$invalidate(29, tahunPelaksanaan = data2.tahun_pelaksanaan);
+        $$invalidate(30, biayaPenelitian = data2.biaya_penelitian);
+        $$invalidate(31, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+        $$invalidate(32, judul = data2.judul);
+        $$invalidate(33, abstrak = data2.abstrak);
+        $$invalidate(34, isi = data2.isi);
+        $$invalidate(35, comment = data2.comment);
+        $$invalidate(36, status = data2.status);
         kdeptSelected = data2.uid_kdept;
         klppmSelected = data2.uid_klppm;
         kpkSelected = data2.uid_kpk;
@@ -36500,6 +42412,87 @@
         randomFileName = data2.random_file_name;
       } else {
         console.log(response);
+      }
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
+      const resultGP = await responseGP.json();
+      if (responseGP.ok) {
+        dataGP = resultGP;
+        idProfile = dataGP.id;
+        idUser = dataGP.uid;
+        $$invalidate(37, namaLengkap = dataGP.nama_lengkap);
+        $$invalidate(38, jabatanFungsional = dataGP.jabatan_fungsional);
+        $$invalidate(39, nip = dataGP.nip);
+        $$invalidate(40, nidn = dataGP.nidn);
+        $$invalidate(41, tempatLahir = dataGP.tempat_lahir);
+        $$invalidate(42, tanggalLahir = dataGP.tanggal_lahir);
+        $$invalidate(43, alamatRumah = dataGP.alamat_rumah);
+        $$invalidate(44, telpFaxRumah = dataGP.telp_fax_rumah);
+        $$invalidate(45, nomorHandphone = dataGP.nomor_handphone);
+        $$invalidate(46, alamatKantor = dataGP.alamat_kantor);
+        $$invalidate(47, telpFaxKantor = dataGP.telp_fax_kantor);
+        $$invalidate(48, email = dataGP.email);
+        $$invalidate(49, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
+      }
+      const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
+      const dataRP = await responseRP.json();
+      if (responseRP.ok) {
+        $$invalidate(9, pertiS1 = dataRP.nama_perti_s1);
+        $$invalidate(10, pertiS2 = dataRP.nama_perti_s2);
+        $$invalidate(11, pertiS3 = dataRP.nama_perti_s3);
+        $$invalidate(12, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+        $$invalidate(13, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+        $$invalidate(14, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+        $$invalidate(15, tahunMasukS1 = dataRP.tahun_masuk_s1);
+        $$invalidate(16, tahunMasukS2 = dataRP.tahun_masuk_s2);
+        $$invalidate(17, tahunMasukS3 = dataRP.tahun_masuk_s3);
+        $$invalidate(18, tahunLulusS1 = dataRP.tahun_lulus_s1);
+        $$invalidate(19, tahunLulusS2 = dataRP.tahun_lulus_s2);
+        $$invalidate(20, tahunLulusS3 = dataRP.tahun_lulus_s3);
+        $$invalidate(21, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+        $$invalidate(22, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+        $$invalidate(23, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+      }
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
+      const resultPP = await responsePP.json();
+      if (responsePP.ok) {
+        $$invalidate(3, dataPP = resultPP.dbData);
+      } else {
+        console.log(responsePP);
+      }
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
+      const resultPM = await responsePM.json();
+      if (responsePM.ok) {
+        $$invalidate(4, dataPM = resultPM.dbData);
+      } else {
+        console.log(responsePM);
+      }
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
+      const resultPD = await responsePD.json();
+      if (responsePD.ok) {
+        $$invalidate(5, dataPD = resultPD.dbData);
+      } else {
+        console.log(responsePD);
+      }
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
+      const resultPPub = await responsePPub.json();
+      if (responsePPub.ok) {
+        $$invalidate(6, dataPPub = resultPPub.dbData);
+      } else {
+        console.log(responsePPub);
+      }
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
+      const resultPPB = await responsePPB.json();
+      if (responsePPB.ok) {
+        $$invalidate(7, dataPPB = resultPPB.dbData);
+      } else {
+        console.log(responsePPB);
+      }
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
+      const resultPHKI = await responsePHKI.json();
+      if (responsePHKI.ok) {
+        $$invalidate(8, dataPHKI = resultPHKI.dbData);
+      } else {
+        console.log(responsePHKI);
       }
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
@@ -36538,7 +42531,7 @@
     }
     async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(13, isi = tinymce.get("isi").getContent());
+      $$invalidate(34, isi = tinymce.get("isi").getContent());
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
@@ -36601,7 +42594,7 @@
     }
     async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(13, isi = tinymce.get("isi").getContent());
+      $$invalidate(34, isi = tinymce.get("isi").getContent());
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
@@ -36663,7 +42656,7 @@
     }
     async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(13, isi = tinymce.get("isi").getContent());
+      $$invalidate(34, isi = tinymce.get("isi").getContent());
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
@@ -36727,86 +42720,133 @@
     let tab2;
     let tab3;
     let tab4;
+    let tab5;
+    let tab6;
     function clicktab1() {
-      $$invalidate(17, tab1 = true);
-      $$invalidate(18, tab2 = false);
-      $$invalidate(19, tab3 = false);
-      $$invalidate(20, tab4 = false);
+      $$invalidate(51, tab1 = true);
+      $$invalidate(52, tab2 = false);
+      $$invalidate(53, tab3 = false);
+      $$invalidate(54, tab4 = false);
+      $$invalidate(55, tab5 = false);
+      $$invalidate(56, tab6 = false);
     }
     function clicktab2() {
-      $$invalidate(17, tab1 = false);
-      $$invalidate(18, tab2 = true);
-      $$invalidate(19, tab3 = false);
-      $$invalidate(20, tab4 = false);
+      $$invalidate(51, tab1 = false);
+      $$invalidate(52, tab2 = true);
+      $$invalidate(53, tab3 = false);
+      $$invalidate(54, tab4 = false);
+      $$invalidate(55, tab5 = false);
+      $$invalidate(56, tab6 = false);
     }
     function clicktab3() {
-      $$invalidate(17, tab1 = false);
-      $$invalidate(18, tab2 = false);
-      $$invalidate(19, tab3 = true);
-      $$invalidate(20, tab4 = false);
+      $$invalidate(51, tab1 = false);
+      $$invalidate(52, tab2 = false);
+      $$invalidate(53, tab3 = true);
+      $$invalidate(54, tab4 = false);
+      $$invalidate(55, tab5 = false);
+      $$invalidate(56, tab6 = false);
     }
     function clicktab4() {
-      $$invalidate(17, tab1 = false);
-      $$invalidate(18, tab2 = false);
-      $$invalidate(19, tab3 = false);
-      $$invalidate(20, tab4 = true);
+      $$invalidate(51, tab1 = false);
+      $$invalidate(52, tab2 = false);
+      $$invalidate(53, tab3 = false);
+      $$invalidate(54, tab4 = true);
+      $$invalidate(55, tab5 = false);
+      $$invalidate(56, tab6 = false);
+    }
+    function clicktab5() {
+      $$invalidate(51, tab1 = false);
+      $$invalidate(52, tab2 = false);
+      $$invalidate(53, tab3 = false);
+      $$invalidate(54, tab4 = false);
+      $$invalidate(55, tab5 = true);
+      $$invalidate(56, tab6 = false);
+    }
+    function clicktab6() {
+      $$invalidate(51, tab1 = false);
+      $$invalidate(52, tab2 = false);
+      $$invalidate(53, tab3 = false);
+      $$invalidate(54, tab4 = false);
+      $$invalidate(55, tab5 = false);
+      $$invalidate(56, tab6 = true);
     }
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
-      $$invalidate(10, anggotaTim = anggotaTim.filter((member) => {
+      $$invalidate(31, anggotaTim = anggotaTim.filter((member) => {
         return member.value !== uid;
       }));
     }
     function select_change_handler() {
       jenisProposal = select_value(this);
-      $$invalidate(3, jenisProposal);
+      $$invalidate(24, jenisProposal);
     }
     function select_change_handler_1() {
       jenisKegiatan = select_value(this);
-      $$invalidate(4, jenisKegiatan);
+      $$invalidate(25, jenisKegiatan);
     }
     function select_change_handler_2() {
       jenisSkema = select_value(this);
-      $$invalidate(5, jenisSkema);
+      $$invalidate(26, jenisSkema);
     }
     function input_input_handler() {
       kelompokKeahlian = this.value;
-      $$invalidate(6, kelompokKeahlian);
+      $$invalidate(27, kelompokKeahlian);
     }
     function input_input_handler_1() {
       topik = this.value;
-      $$invalidate(7, topik);
+      $$invalidate(28, topik);
     }
     function field5_value_binding(value) {
       tahunPelaksanaan = value;
-      $$invalidate(8, tahunPelaksanaan);
+      $$invalidate(29, tahunPelaksanaan);
     }
     function input_input_handler_2() {
       biayaPenelitian = this.value;
-      $$invalidate(9, biayaPenelitian);
+      $$invalidate(30, biayaPenelitian);
     }
-    const keyup_handler = () => $$invalidate(9, biayaPenelitian = formatRupiah5(biayaPenelitian, "Rp. "));
-    const change_handler = (e) => $$invalidate(16, file = e.target.files[0]);
+    const keyup_handler = () => $$invalidate(30, biayaPenelitian = formatRupiah5(biayaPenelitian, "Rp. "));
+    const change_handler = (e) => $$invalidate(50, file = e.target.files[0]);
     function select_result_binding(value) {
       anggotaTim = value;
-      $$invalidate(10, anggotaTim);
+      $$invalidate(31, anggotaTim);
     }
     function input_input_handler_3() {
       judul = this.value;
-      $$invalidate(11, judul);
+      $$invalidate(32, judul);
     }
     function textarea_input_handler() {
       abstrak = this.value;
-      $$invalidate(12, abstrak);
+      $$invalidate(33, abstrak);
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(30, params = $$props2.params);
+        $$invalidate(68, params = $$props2.params);
     };
     return [
       items,
       view,
       data2,
+      dataPP,
+      dataPM,
+      dataPD,
+      dataPPub,
+      dataPPB,
+      dataPHKI,
+      pertiS1,
+      pertiS2,
+      pertiS3,
+      bidangIlmuS1,
+      bidangIlmuS2,
+      bidangIlmuS3,
+      tahunMasukS1,
+      tahunMasukS2,
+      tahunMasukS3,
+      tahunLulusS1,
+      tahunLulusS2,
+      tahunLulusS3,
+      judulTugasAkhirS1,
+      judulTugasAkhirS2,
+      judulTugasAkhirS3,
       jenisProposal,
       jenisKegiatan,
       jenisSkema,
@@ -36820,11 +42860,26 @@
       isi,
       comment,
       status,
+      namaLengkap,
+      jabatanFungsional,
+      nip,
+      nidn,
+      tempatLahir,
+      tanggalLahir,
+      alamatRumah,
+      telpFaxRumah,
+      nomorHandphone,
+      alamatKantor,
+      telpFaxKantor,
+      email,
+      mataKuliah,
       file,
       tab1,
       tab2,
       tab3,
       tab4,
+      tab5,
+      tab6,
       handleDownload2,
       remediasi,
       submitProposal,
@@ -36833,6 +42888,8 @@
       clicktab2,
       clicktab3,
       clicktab4,
+      clicktab5,
+      clicktab6,
       deleteMember,
       params,
       select_change_handler,
@@ -36852,7 +42909,7 @@
   var Proposals2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance30, create_fragment38, safe_not_equal, { params: 30 }, null, [-1, -1]);
+      init(this, options, instance30, create_fragment38, safe_not_equal, { params: 68 }, null, [-1, -1, -1, -1]);
     }
   };
   var proposals_default2 = Proposals2;
@@ -37090,7 +43147,7 @@
       }
     };
   }
-  function create_if_block_115(ctx) {
+  function create_if_block_121(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -37249,7 +43306,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block16, create_if_block_115, create_else_block7];
+    const if_block_creators = [create_if_block16, create_if_block_121, create_else_block7];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -37787,7 +43844,7 @@
   var Navbarmenu_default = Navbarmenu;
 
   // src/App.svelte
-  function create_if_block_116(ctx) {
+  function create_if_block_126(ctx) {
     let sidebar;
     let current;
     sidebar = new Sidebar_default({});
@@ -37902,7 +43959,7 @@
     navbarmenu = new Navbarmenu_default({});
     let if_block0 = (
       /*token*/
-      ctx[2] && create_if_block_116(ctx)
+      ctx[2] && create_if_block_126(ctx)
     );
     let if_block1 = (
       /*cmp*/
@@ -37941,7 +43998,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_116(ctx2);
+            if_block0 = create_if_block_126(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t1.parentNode, t1);

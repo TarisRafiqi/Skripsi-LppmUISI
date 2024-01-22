@@ -2,7 +2,6 @@
    import { onMount } from "svelte";
    import { route, apiURL } from "../../store";
    import Article from "../../libs/Article.svelte";
-   import Modal from "../../libs/Modal.svelte";
    import Field from "../../libs/Field.svelte";
    import Status from "../../modules/Status.svelte";
 
