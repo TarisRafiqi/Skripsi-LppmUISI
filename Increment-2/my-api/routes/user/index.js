@@ -33,7 +33,13 @@ module.exports = async function (fastify, opts) {
                msg: "gagal terkoneksi ke db profile",
             });
          }
-      } else if (roleFromToken === "admin") {
+      } else if (
+         roleFromToken === "admin" ||
+         roleFromToken === "Ka.Departemen" ||
+         roleFromToken === "reviewer" ||
+         roleFromToken === "Ka.LPPM" ||
+         roleFromToken === "Ka.PusatKajian"
+      ) {
          const sql = "SELECT * FROM profile WHERE uid = ?";
 
          try {

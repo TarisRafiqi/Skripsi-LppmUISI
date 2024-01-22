@@ -800,6 +800,7 @@
 
       <Field name="Tanggal Lahir">
          <input class="input" type="text" bind:value={tanggalLahir} />
+         <input type="date" />
       </Field>
 
       <Field name="Alamat Rumah">

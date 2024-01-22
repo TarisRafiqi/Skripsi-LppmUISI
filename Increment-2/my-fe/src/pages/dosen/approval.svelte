@@ -8,7 +8,6 @@
 
    const id = localStorage.id;
    let role = localStorage.role;
-   console.log(role);
    let items;
 
    onMount(async () => {
@@ -16,7 +15,6 @@
       const result = await response.json();
       if (response.ok) {
          items = result.dbData;
-         console.log(items);
       } else {
          console.log(response);
       }

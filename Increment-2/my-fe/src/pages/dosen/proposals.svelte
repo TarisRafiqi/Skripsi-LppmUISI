@@ -715,300 +715,290 @@
 
       <!-- Tab Identitas PPM -->
       {#if tab1 === true}
-         <div id="tab1">
-            {#if !view}
-               <Field name="Jenis Proposal">
-                  <div class="select is-fullwidth">
-                     <select bind:value={jenisProposal}>
-                        <option value="" selected disabled hidden
-                           >Pilih Jenis Proposal</option
-                        >
-                        <option selected value="Proposal Awal"
-                           >Proposal Awal</option
-                        >
-                        <option value="Proposal Lanjutan"
-                           >Proposal Lanjutan</option
-                        >
-                     </select>
-                  </div>
-               </Field>
+         {#if !view}
+            <Field name="Jenis Proposal">
+               <div class="select is-fullwidth">
+                  <select bind:value={jenisProposal}>
+                     <option value="" selected disabled hidden
+                        >Pilih Jenis Proposal</option
+                     >
+                     <option selected value="Proposal Awal"
+                        >Proposal Awal</option
+                     >
+                     <option value="Proposal Lanjutan">Proposal Lanjutan</option
+                     >
+                  </select>
+               </div>
+            </Field>
 
-               <Field name="Jenis Kegiatan">
-                  <div class="select is-fullwidth">
-                     <select bind:value={jenisKegiatan}>
-                        <option value="" selected disabled hidden
-                           >Pilih Jenis Kegiatan</option
+            <Field name="Jenis Kegiatan">
+               <div class="select is-fullwidth">
+                  <select bind:value={jenisKegiatan}>
+                     <option value="" selected disabled hidden
+                        >Pilih Jenis Kegiatan</option
+                     >
+                     <option value="Penelitian">Penelitian</option>
+                     <option value="Pengabdian Masyarakat"
+                        >Pengabdian Masyarakat</option
+                     >
+                  </select>
+               </div>
+            </Field>
+
+            <Field name="Jenis Skema">
+               <div class="select is-fullwidth">
+                  <select bind:value={jenisSkema}>
+                     <option value="" selected disabled hidden
+                        >Pilih Jenis Skema
+                     </option>
+                     {#if jenisKegiatan === "Penelitian"}
+                        <!-- <optgroup label="Skema Penelitian"> -->
+                        <option value="Riset Kelompok Keahlian"
+                           >Riset Kelompok Keahlian</option
                         >
-                        <option value="Penelitian">Penelitian</option>
-                        <option value="Pengabdian Masyarakat"
-                           >Pengabdian Masyarakat</option
+                        <option value="Riset Terapan">Riset Terapan</option>
+                        <option value="Riset Kerjasama">Riset Kerjasama</option>
+                        <option value="Riset Mandiri">Riset Mandiri</option>
+                        <option value="Riset Eksternal">Riset Eksternal</option>
+                        <!-- </optgroup> -->
+                     {:else}
+                        <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
+                        <option value="Pengabdian Masyarakat Desa Binaan"
+                           >Pengabdian Masyarakat Desa Binaan</option
                         >
-                     </select>
-                  </div>
-               </Field>
+                        <option value="Pengabdian Masyarakat UMKM Binaan"
+                           >Pengabdian Masyarakat UMKM Binaan</option
+                        >
+                        <option value="Pengabdian Masyarakat Mandiri"
+                           >Pengabdian Masyarakat Mandiri</option
+                        >
+                        <option value="Pengabdian Masyarakat Hibah Eksternal"
+                           >Pengabdian Masyarakat Hibah Eksternal</option
+                        >
+                        <!-- </optgroup> -->
+                     {/if}
+                  </select>
+               </div>
+            </Field>
 
-               <Field name="Jenis Skema">
-                  <div class="select is-fullwidth">
-                     <select bind:value={jenisSkema}>
-                        <option value="" selected disabled hidden
-                           >Pilih Jenis Skema
-                        </option>
-                        {#if jenisKegiatan === "Penelitian"}
-                           <!-- <optgroup label="Skema Penelitian"> -->
-                           <option value="Riset Kelompok Keahlian"
-                              >Riset Kelompok Keahlian</option
-                           >
-                           <option value="Riset Terapan">Riset Terapan</option>
-                           <option value="Riset Kerjasama"
-                              >Riset Kerjasama</option
-                           >
-                           <option value="Riset Mandiri">Riset Mandiri</option>
-                           <option value="Riset Eksternal"
-                              >Riset Eksternal</option
-                           >
-                           <!-- </optgroup> -->
-                        {:else}
-                           <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
-                           <option value="Pengabdian Masyarakat Desa Binaan"
-                              >Pengabdian Masyarakat Desa Binaan</option
-                           >
-                           <option value="Pengabdian Masyarakat UMKM Binaan"
-                              >Pengabdian Masyarakat UMKM Binaan</option
-                           >
-                           <option value="Pengabdian Masyarakat Mandiri"
-                              >Pengabdian Masyarakat Mandiri</option
-                           >
-                           <option value="Pengabdian Masyarakat Hibah Eksternal"
-                              >Pengabdian Masyarakat Hibah Eksternal</option
-                           >
-                           <!-- </optgroup> -->
-                        {/if}
-                     </select>
-                  </div>
-               </Field>
-
-               <Field name="Kelompok Keahlian">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Kelompok Keahlian"
-                     bind:value={kelompokKeahlian}
-                  />
-               </Field>
-
-               <Field name="Topik">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Topik"
-                     bind:value={topik}
-                  />
-               </Field>
-
-               <Field
-                  datepicker
-                  name="Tahun Pelaksanaan"
-                  bind:value={tahunPelaksanaan}
+            <Field name="Kelompok Keahlian">
+               <input
+                  class="input"
+                  type="text"
+                  placeholder="Masukkan Kelompok Keahlian"
+                  bind:value={kelompokKeahlian}
                />
+            </Field>
 
-               <Field name="Biaya Penelitian">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Biaya Penelitian"
-                     bind:value={biayaPenelitian}
-                     on:keyup={() =>
-                        (biayaPenelitian = formatRupiah(
-                           biayaPenelitian,
-                           "Rp. "
-                        ))}
-                  />
-               </Field>
+            <Field name="Topik">
+               <input
+                  class="input"
+                  type="text"
+                  placeholder="Masukkan Topik"
+                  bind:value={topik}
+               />
+            </Field>
 
-               <Field name="Rencana Anggaran Biaya">
-                  <input
-                     class="input"
-                     accept=".xlsx"
-                     type="file"
-                     on:change={(e) => (file = e.target.files[0])}
-                  />
-               </Field>
+            <Field
+               datepicker
+               name="Tahun Pelaksanaan"
+               bind:value={tahunPelaksanaan}
+            />
 
-               <Field name="Anggota Tim">
-                  <Select start="2" {items} bind:result={anggotaTim} />
-               </Field>
+            <Field name="Biaya Penelitian">
+               <input
+                  class="input"
+                  type="text"
+                  placeholder="Masukkan Biaya Penelitian"
+                  bind:value={biayaPenelitian}
+                  on:keyup={() =>
+                     (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
+               />
+            </Field>
 
-               <br />
+            <Field name="Rencana Anggaran Biaya">
+               <input
+                  class="input"
+                  accept=".xlsx"
+                  type="file"
+                  on:change={(e) => (file = e.target.files[0])}
+               />
+            </Field>
 
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th class="is-narrow">Action</th>
-                        <th class="is-narrow">Status</th>
-                        <th>Nama</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td></td>
-                        <td>Ketua</td>
-                        <td>...</td>
-                     </tr>
-                     {#if anggotaTim.length > 0}
-                        {#each anggotaTim as member}
-                           <tr>
-                              <td
-                                 ><button
-                                    class="button is-danger is-rounded is-small"
-                                    data-value={member.value}
-                                    on:click={deleteMember}
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td>Anggota</td>
-                              <td>{member.label}</td>
-                           </tr>
-                        {/each}
-                     {/if}
-                  </tbody>
-               </table>
+            <Field name="Anggota Tim">
+               <Select start="2" {items} bind:result={anggotaTim} />
+            </Field>
 
-               <hr />
+            <br />
 
-               <Field name="Judul">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Judul"
-                     bind:value={judul}
-                  />
-               </Field>
-
-               <Field name="Abstrak">
-                  <textarea class="textarea" bind:value={abstrak}></textarea>
-               </Field>
-
-               <Field name="Isi Proposal">
-                  <Wysiwyg id="isi" content={isi} />
-               </Field>
-
-               <br /><br />
-               <hr />
-
-               <Field name="Catatan Revisi">
-                  {comment}
-               </Field>
-            {:else}
-               <Field name="Jenis Proposal">
-                  {jenisProposal}
-               </Field>
-
-               <Field name="Jenis Kegiatan">
-                  {jenisKegiatan}
-               </Field>
-
-               <Field name="Jenis Skema">
-                  {jenisSkema}
-               </Field>
-
-               <Field name="Kelompok Keahlian">
-                  {kelompokKeahlian}
-               </Field>
-
-               <Field name="Topik">
-                  {topik}
-               </Field>
-
-               <Field name="Tahun Pelaksanaan">
-                  {tahunPelaksanaan}
-               </Field>
-
-               <Field name="Biaya Penelitian">
-                  {biayaPenelitian}
-               </Field>
-
-               <Field name="Rencana Anggaran Biaya">
-                  <button
-                     class="button is-link is-rounded button is-small"
-                     on:click={handleDownload}>Download RAB</button
-                  >
-               </Field>
-
-               <Field name="Anggota Tim">
-                  <span></span>
-               </Field>
-               <br />
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th class="is-narrow">Status</th>
-                        <th>Nama</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>Ketua</td>
-                        <td>...</td>
-                     </tr>
-                     {#if anggotaTim.length > 0}
-                        {#each anggotaTim as member}
-                           <tr>
-                              <td>Anggota</td>
-                              <td>{member.label}</td>
-                           </tr>
-                        {/each}
-                     {/if}
-                  </tbody>
-               </table>
-
-               <hr />
-
-               <Field name="Judul">
-                  {data.judul}
-               </Field>
-
-               <Field name="abstrak">
-                  {@html data.abstrak}
-               </Field>
-
-               <Field name="isi">
-                  <div class="box box-padding">
-                     {@html data.isi}
-                  </div>
-               </Field>
-            {/if}
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Action</th>
+                     <th class="is-narrow">Status</th>
+                     <th>Nama</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td></td>
+                     <td>Ketua</td>
+                     <td>...</td>
+                  </tr>
+                  {#if anggotaTim.length > 0}
+                     {#each anggotaTim as member}
+                        <tr>
+                           <td
+                              ><button
+                                 class="button is-danger is-rounded is-small"
+                                 data-value={member.value}
+                                 on:click={deleteMember}
+                                 ><span class="icon">
+                                    <Icon id="delete" src={deleteIcon} />
+                                 </span></button
+                              ></td
+                           >
+                           <td>Anggota</td>
+                           <td>{member.label}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
 
             <hr />
 
-            <div class="field is-grouped is-grouped-right">
-               {#if !view}
-                  {#if status === 0}
-                     <p class="control">
-                        <button
-                           class="button is-info is-light"
-                           on:click={simpanProposal}>Simpan</button
-                        >
-                     </p>
-                     <p class="control">
-                        <button class="button is-info" on:click={submitProposal}
-                           >Submit</button
-                        >
-                     </p>
-                  {:else}
-                     <p class="control">
-                        <button class="button is-info" on:click={remediasi}
-                           >Remediasi</button
-                        >
-                     </p>
+            <Field name="Judul">
+               <input
+                  class="input"
+                  type="text"
+                  placeholder="Masukkan Judul"
+                  bind:value={judul}
+               />
+            </Field>
+
+            <Field name="Abstrak">
+               <textarea class="textarea" bind:value={abstrak}></textarea>
+            </Field>
+
+            <Field name="Isi Proposal">
+               <Wysiwyg id="isi" content={isi} />
+            </Field>
+
+            <br /><br />
+            <hr />
+
+            <Field name="Catatan Revisi">
+               {comment}
+            </Field>
+         {:else}
+            <Field name="Jenis Proposal">
+               {jenisProposal}
+            </Field>
+
+            <Field name="Jenis Kegiatan">
+               {jenisKegiatan}
+            </Field>
+
+            <Field name="Jenis Skema">
+               {jenisSkema}
+            </Field>
+
+            <Field name="Kelompok Keahlian">
+               {kelompokKeahlian}
+            </Field>
+
+            <Field name="Topik">
+               {topik}
+            </Field>
+
+            <Field name="Tahun Pelaksanaan">
+               {tahunPelaksanaan}
+            </Field>
+
+            <Field name="Biaya Penelitian">
+               {biayaPenelitian}
+            </Field>
+
+            <Field name="Rencana Anggaran Biaya">
+               <button
+                  class="button is-link is-rounded button is-small"
+                  on:click={handleDownload}>Download RAB</button
+               >
+            </Field>
+
+            <Field name="Anggota Tim">
+               <span></span>
+            </Field>
+            <br />
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Status</th>
+                     <th>Nama</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Ketua</td>
+                     <td>...</td>
+                  </tr>
+                  {#if anggotaTim.length > 0}
+                     {#each anggotaTim as member}
+                        <tr>
+                           <td>Anggota</td>
+                           <td>{member.label}</td>
+                        </tr>
+                     {/each}
                   {/if}
+               </tbody>
+            </table>
+
+            <hr />
+
+            <Field name="Judul">
+               {data.judul}
+            </Field>
+
+            <Field name="abstrak">
+               {@html data.abstrak}
+            </Field>
+
+            <Field name="isi">
+               <div class="box box-padding">
+                  {@html data.isi}
+               </div>
+            </Field>
+         {/if}
+
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            {#if !view}
+               {#if status === 0}
+                  <p class="control">
+                     <button
+                        class="button is-info is-light"
+                        on:click={simpanProposal}>Simpan</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button class="button is-info" on:click={submitProposal}
+                        >Submit</button
+                     >
+                  </p>
+               {:else}
+                  <p class="control">
+                     <button class="button is-info" on:click={remediasi}
+                        >Remediasi</button
+                     >
+                  </p>
                {/if}
-            </div>
+            {/if}
          </div>
       {/if}
 
@@ -1326,83 +1316,75 @@
 
       <!-- Tab Status -->
       {#if tab3 === true}
-         <div id="tab3">
-            <Field name="Status PPM">
-               <Status code={data.status} />
-            </Field>
+         <Field name="Status PPM">
+            <Status code={data.status} />
+         </Field>
 
-            <Field name="Status Pendanaan">. . .</Field>
-         </div>
+         <Field name="Status Pendanaan">. . .</Field>
       {/if}
 
       <!-- Tab Logbook -->
       {#if tab4 === true}
-         <div id="tab4">
-            <div class="columns notification is-info is-light">
-               <div class="column is-4">
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Totam suscipit placeat amet.
-                  </p>
-               </div>
+         <div class="columns notification is-info is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
 
-               <div class="column">
-                  <button class="button is-info" on:click={addLogbook}>
-                     <span class="icon">
-                        <Icon id="logbook" src={addProposal} />
-                     </span>
-                     <!-- svelte-ignore a11y-missing-attribute -->
-                     <span><a>Create Logbook</a></span>
-                  </button>
-               </div>
+            <div class="column">
+               <button class="button is-info" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="logbook" src={addProposal} />
+                  </span>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <span><a>Create Logbook</a></span>
+               </button>
             </div>
          </div>
       {/if}
 
       <!-- Tab Monev -->
       {#if tab5 === true}
-         <div id="tab5">
-            <div class="columns notification is-success is-light">
-               <div class="column is-4">
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Totam suscipit placeat amet.
-                  </p>
-               </div>
+         <div class="columns notification is-success is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
 
-               <div class="column">
-                  <button class="button is-success" on:click={addLogbook}>
-                     <span class="icon">
-                        <Icon id="monev" src={addProposal} />
-                     </span>
-                     <!-- svelte-ignore a11y-missing-attribute -->
-                     <span><a>Create Monev</a></span>
-                  </button>
-               </div>
+            <div class="column">
+               <button class="button is-success" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="monev" src={addProposal} />
+                  </span>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <span><a>Create Monev</a></span>
+               </button>
             </div>
          </div>
       {/if}
 
       <!-- Tab Laporan -->
       {#if tab6 === true}
-         <div id="tab6">
-            <div class="columns notification is-info is-light">
-               <div class="column is-4">
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Totam suscipit placeat amet.
-                  </p>
-               </div>
+         <div class="columns notification is-info is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
 
-               <div class="column">
-                  <button class="button is-info" on:click={addLogbook}>
-                     <span class="icon">
-                        <Icon id="laporan" src={addProposal} />
-                     </span>
-                     <!-- svelte-ignore a11y-missing-attribute -->
-                     <span><a>Create Laporan</a></span>
-                  </button>
-               </div>
+            <div class="column">
+               <button class="button is-info" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="laporan" src={addProposal} />
+                  </span>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <span><a>Create Laporan</a></span>
+               </button>
             </div>
          </div>
       {/if}
