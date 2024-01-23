@@ -1135,8 +1135,9 @@
          <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
          <Field name="NIP">{nip}</Field>
          <Field name="NIDN">{nidn}</Field>
-         <Field name="Tempat Lahir">{tempatLahir}</Field>
-         <Field name="Tanggal Lahir">{tanggalLahir}</Field>
+         <Field name="Tempat / Tanggal Lahir"
+            >{tempatLahir} / {tanggalLahir}</Field
+         >
          <Field name="Alamat Rumah">{alamatRumah}</Field>
          <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
          <Field name="Nomoh Handphone">{nomorHandphone}</Field>

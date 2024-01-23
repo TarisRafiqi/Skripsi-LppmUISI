@@ -794,13 +794,15 @@
          <input class="input" type="number" bind:value={nidn} /></Field
       >
 
-      <Field name="Tempat Lahir">
-         <input class="input" type="text" bind:value={tempatLahir} />
-      </Field>
-
-      <Field name="Tanggal Lahir">
-         <input class="input" type="text" bind:value={tanggalLahir} />
-         <input type="date" />
+      <Field name="Tempat / Tanggal Lahir">
+         <div class="field-body">
+            <div class="field">
+               <input class="input" type="text" bind:value={tempatLahir} />
+            </div>
+            <div class="field">
+               <input class="input" type="date" bind:value={tanggalLahir} />
+            </div>
+         </div>
       </Field>
 
       <Field name="Alamat Rumah">

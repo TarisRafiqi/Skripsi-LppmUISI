@@ -5304,17 +5304,15 @@
     let t10;
     let field11;
     let t11;
-    let field12;
-    let t12;
     let br;
-    let t13;
+    let t12;
     let table;
     let thead;
-    let t16;
+    let t15;
     let tbody;
-    let t17;
+    let t16;
     let hr;
-    let t18;
+    let t17;
     let div;
     let p;
     let button;
@@ -5324,81 +5322,74 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_47] },
+        $$slots: { default: [create_default_slot_46] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_46] },
+        $$slots: { default: [create_default_slot_45] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_45] },
+        $$slots: { default: [create_default_slot_44] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_44] },
+        $$slots: { default: [create_default_slot_43] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
-        name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_43] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Lahir",
+        name: "Tempat / Tanggal Lahir",
         $$slots: { default: [create_default_slot_42] },
         $$scope: { ctx }
       }
     });
-    field6 = new Field_default({
+    field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_41] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_40] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Nomor Handphone",
         $$slots: { default: [create_default_slot_39] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_38] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_37] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         class: "input",
         name: "Email",
@@ -5406,7 +5397,7 @@
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_35] },
@@ -5444,20 +5435,18 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        create_component(field12.$$.fragment);
-        t12 = space();
         br = element("br");
-        t13 = space();
+        t12 = space();
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow"></th> <th>Mata Kuliah</th></tr>`;
-        t16 = space();
+        t15 = space();
         tbody = element("tbody");
         if (if_block)
           if_block.c();
-        t17 = space();
+        t16 = space();
         hr = element("hr");
-        t18 = space();
+        t17 = space();
         div = element("div");
         p = element("p");
         button = element("button");
@@ -5492,19 +5481,17 @@
         insert(target, t10, anchor);
         mount_component(field11, target, anchor);
         insert(target, t11, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t12, anchor);
         insert(target, br, anchor);
-        insert(target, t13, anchor);
+        insert(target, t12, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t16);
+        append(table, t15);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t17, anchor);
+        insert(target, t16, anchor);
         insert(target, hr, anchor);
-        insert(target, t18, anchor);
+        insert(target, t17, anchor);
         insert(target, div, anchor);
         append(div, p);
         append(p, button);
@@ -5549,68 +5536,61 @@
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[1] & /*tempatLahir*/
-        256 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        768 | dirty[6] & /*$$scope*/
         1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*tanggalLahir*/
-        512 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*alamatRumah*/
+        1024 | dirty[6] & /*$$scope*/
         1024) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*alamatRumah*/
-        1024 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*telpFaxRumah*/
+        2048 | dirty[6] & /*$$scope*/
         1024) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
-        2048 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*nomorHandphone*/
+        4096 | dirty[6] & /*$$scope*/
         1024) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
-        4096 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*alamatKantor*/
+        8192 | dirty[6] & /*$$scope*/
         1024) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        8192 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*telpFaxKantor*/
+        16384 | dirty[6] & /*$$scope*/
         1024) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        16384 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*email*/
+        32768 | dirty[6] & /*$$scope*/
         1024) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[1] & /*email*/
-        32768 | dirty[6] & /*$$scope*/
+        if (dirty[0] & /*vmataKuliah*/
+        64 | dirty[6] & /*$$scope*/
         1024) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[0] & /*vmataKuliah*/
-        64 | dirty[6] & /*$$scope*/
-        1024) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
         if (
           /*mataKuliah*/
           ctx2[47] && /*mataKuliah*/
@@ -5651,7 +5631,6 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
@@ -5668,7 +5647,6 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -5686,13 +5664,12 @@
           detach(t9);
           detach(t10);
           detach(t11);
-          detach(t12);
           detach(br);
-          detach(t13);
+          detach(t12);
           detach(table);
-          detach(t17);
+          detach(t16);
           detach(hr);
-          detach(t18);
+          detach(t17);
           detach(div);
         }
         destroy_component(field0, detaching);
@@ -5707,7 +5684,6 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -5715,7 +5691,7 @@
       }
     };
   }
-  function create_default_slot_47(ctx) {
+  function create_default_slot_46(ctx) {
     let input;
     let t0;
     let p;
@@ -5772,7 +5748,7 @@
       }
     };
   }
-  function create_default_slot_46(ctx) {
+  function create_default_slot_45(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -5819,7 +5795,7 @@
       }
     };
   }
-  function create_default_slot_45(ctx) {
+  function create_default_slot_44(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -5866,7 +5842,7 @@
       }
     };
   }
-  function create_default_slot_44(ctx) {
+  function create_default_slot_43(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -5913,86 +5889,80 @@
       }
     };
   }
-  function create_default_slot_43(ctx) {
-    let input;
+  function create_default_slot_42(ctx) {
+    let div2;
+    let div0;
+    let input0;
+    let t;
+    let div1;
+    let input1;
     let mounted;
     let dispose;
     return {
       c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
+        div2 = element("div");
+        div0 = element("div");
+        input0 = element("input");
+        t = space();
+        div1 = element("div");
+        input1 = element("input");
+        attr(input0, "class", "input");
+        attr(input0, "type", "text");
+        attr(div0, "class", "field");
+        attr(input1, "class", "input");
+        attr(input1, "type", "date");
+        attr(div1, "class", "field");
+        attr(div2, "class", "field-body");
       },
       m(target, anchor) {
-        insert(target, input, anchor);
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, input0);
         set_input_value(
-          input,
+          input0,
           /*tempatLahir*/
           ctx[39]
         );
+        append(div2, t);
+        append(div2, div1);
+        append(div1, input1);
+        set_input_value(
+          input1,
+          /*tanggalLahir*/
+          ctx[40]
+        );
         if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_4*/
-            ctx[102]
-          );
+          dispose = [
+            listen(
+              input0,
+              "input",
+              /*input0_input_handler*/
+              ctx[102]
+            ),
+            listen(
+              input1,
+              "input",
+              /*input1_input_handler*/
+              ctx[103]
+            )
+          ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*tempatLahir*/
-        256 && input.value !== /*tempatLahir*/
+        256 && input0.value !== /*tempatLahir*/
         ctx2[39]) {
           set_input_value(
-            input,
+            input0,
             /*tempatLahir*/
             ctx2[39]
           );
         }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_42(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*tanggalLahir*/
-          ctx[40]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_5*/
-            ctx[103]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
         if (dirty[1] & /*tanggalLahir*/
-        512 && input.value !== /*tanggalLahir*/
-        ctx2[40]) {
+        512) {
           set_input_value(
-            input,
+            input1,
             /*tanggalLahir*/
             ctx2[40]
           );
@@ -6000,10 +5970,10 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(input);
+          detach(div2);
         }
         mounted = false;
-        dispose();
+        run_all(dispose);
       }
     };
   }
@@ -6028,7 +5998,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
+            /*input_input_handler_4*/
             ctx[104]
           );
           mounted = true;
@@ -6075,7 +6045,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
+            /*input_input_handler_5*/
             ctx[105]
           );
           mounted = true;
@@ -6122,7 +6092,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
+            /*input_input_handler_6*/
             ctx[106]
           );
           mounted = true;
@@ -6169,7 +6139,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
+            /*input_input_handler_7*/
             ctx[107]
           );
           mounted = true;
@@ -6216,7 +6186,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
+            /*input_input_handler_8*/
             ctx[108]
           );
           mounted = true;
@@ -6263,7 +6233,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_11*/
+            /*input_input_handler_9*/
             ctx[109]
           );
           mounted = true;
@@ -6351,7 +6321,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_12*/
+              /*input_input_handler_10*/
               ctx[110]
             ),
             listen(
@@ -6894,13 +6864,13 @@
             listen(
               input0,
               "input",
-              /*input0_input_handler*/
+              /*input0_input_handler_1*/
               ctx[111]
             ),
             listen(
               input1,
               "input",
-              /*input1_input_handler*/
+              /*input1_input_handler_1*/
               ctx[112]
             ),
             listen(
@@ -8153,7 +8123,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
+            /*input_input_handler_11*/
             ctx[126]
           );
           mounted = true;
@@ -8200,7 +8170,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
+            /*input_input_handler_12*/
             ctx[127]
           );
           mounted = true;
@@ -8325,7 +8295,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_15*/
+            /*input_input_handler_13*/
             ctx[129]
           );
           mounted = true;
@@ -8374,7 +8344,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_16*/
+              /*input_input_handler_14*/
               ctx[130]
             ),
             listen(
@@ -8863,7 +8833,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
+            /*input_input_handler_15*/
             ctx[133]
           );
           mounted = true;
@@ -8910,7 +8880,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
+            /*input_input_handler_16*/
             ctx[134]
           );
           mounted = true;
@@ -9035,7 +9005,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_19*/
+            /*input_input_handler_17*/
             ctx[136]
           );
           mounted = true;
@@ -9084,7 +9054,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_20*/
+              /*input_input_handler_18*/
               ctx[137]
             ),
             listen(
@@ -9573,7 +9543,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
+            /*input_input_handler_19*/
             ctx[140]
           );
           mounted = true;
@@ -9620,7 +9590,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
+            /*input_input_handler_20*/
             ctx[141]
           );
           mounted = true;
@@ -9667,7 +9637,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
+            /*input_input_handler_21*/
             ctx[142]
           );
           mounted = true;
@@ -9714,7 +9684,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
+            /*input_input_handler_22*/
             ctx[143]
           );
           mounted = true;
@@ -10155,7 +10125,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
+            /*input_input_handler_23*/
             ctx[145]
           );
           mounted = true;
@@ -10202,7 +10172,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
+            /*input_input_handler_24*/
             ctx[146]
           );
           mounted = true;
@@ -10249,7 +10219,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
+            /*input_input_handler_25*/
             ctx[147]
           );
           mounted = true;
@@ -10296,7 +10266,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
+            /*input_input_handler_26*/
             ctx[148]
           );
           mounted = true;
@@ -10737,7 +10707,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
+            /*input_input_handler_27*/
             ctx[150]
           );
           mounted = true;
@@ -10784,7 +10754,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
+            /*input_input_handler_28*/
             ctx[151]
           );
           mounted = true;
@@ -10831,7 +10801,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
+            /*input_input_handler_29*/
             ctx[152]
           );
           mounted = true;
@@ -10878,7 +10848,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
+            /*input_input_handler_30*/
             ctx[153]
           );
           mounted = true;
@@ -10925,7 +10895,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
+            /*input_input_handler_31*/
             ctx[154]
           );
           mounted = true;
@@ -11407,7 +11377,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
+            /*input_input_handler_32*/
             ctx[156]
           );
           mounted = true;
@@ -11454,7 +11424,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
+            /*input_input_handler_33*/
             ctx[157]
           );
           mounted = true;
@@ -11480,7 +11450,7 @@
       }
     };
   }
-  function create_default_slot_48(ctx) {
+  function create_default_slot_47(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11501,7 +11471,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
+            /*input_input_handler_34*/
             ctx[158]
           );
           mounted = true;
@@ -11548,7 +11518,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
+            /*input_input_handler_35*/
             ctx[159]
           );
           mounted = true;
@@ -11595,7 +11565,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_38*/
+            /*input_input_handler_36*/
             ctx[160]
           );
           mounted = true;
@@ -11657,7 +11627,7 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_48] },
+        $$slots: { default: [create_default_slot_47] },
         $$scope: { ctx }
       }
     });
@@ -12839,47 +12809,47 @@
       nidn = to_number(this.value);
       $$invalidate(38, nidn);
     }
-    function input_input_handler_4() {
+    function input0_input_handler() {
       tempatLahir = this.value;
       $$invalidate(39, tempatLahir);
     }
-    function input_input_handler_5() {
+    function input1_input_handler() {
       tanggalLahir = this.value;
       $$invalidate(40, tanggalLahir);
     }
-    function input_input_handler_6() {
+    function input_input_handler_4() {
       alamatRumah = this.value;
       $$invalidate(41, alamatRumah);
     }
-    function input_input_handler_7() {
+    function input_input_handler_5() {
       telpFaxRumah = to_number(this.value);
       $$invalidate(42, telpFaxRumah);
     }
-    function input_input_handler_8() {
+    function input_input_handler_6() {
       nomorHandphone = to_number(this.value);
       $$invalidate(43, nomorHandphone);
     }
-    function input_input_handler_9() {
+    function input_input_handler_7() {
       alamatKantor = this.value;
       $$invalidate(44, alamatKantor);
     }
-    function input_input_handler_10() {
+    function input_input_handler_8() {
       telpFaxKantor = to_number(this.value);
       $$invalidate(45, telpFaxKantor);
     }
-    function input_input_handler_11() {
+    function input_input_handler_9() {
       email = this.value;
       $$invalidate(46, email);
     }
-    function input_input_handler_12() {
+    function input_input_handler_10() {
       vmataKuliah = this.value;
       $$invalidate(6, vmataKuliah);
     }
-    function input0_input_handler() {
+    function input0_input_handler_1() {
       pertiS1 = this.value;
       $$invalidate(48, pertiS1);
     }
-    function input1_input_handler() {
+    function input1_input_handler_1() {
       pertiS2 = this.value;
       $$invalidate(49, pertiS2);
     }
@@ -12935,11 +12905,11 @@
       judulTugasAkhirS3 = this.value;
       $$invalidate(62, judulTugasAkhirS3);
     }
-    function input_input_handler_13() {
+    function input_input_handler_11() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(8, tahunPenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_12() {
       judulPenelitian = this.value;
       $$invalidate(9, judulPenelitian);
     }
@@ -12947,11 +12917,11 @@
       rolePenelitian = select_value(this);
       $$invalidate(10, rolePenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_13() {
       sumberDanaPenelitian = this.value;
       $$invalidate(11, sumberDanaPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_14() {
       biayaPenelitian = this.value;
       $$invalidate(7, biayaPenelitian);
     }
@@ -12960,11 +12930,11 @@
       showModalPenelitian = value;
       $$invalidate(63, showModalPenelitian);
     }
-    function input_input_handler_17() {
+    function input_input_handler_15() {
       tahunPengmas = to_number(this.value);
       $$invalidate(13, tahunPengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_16() {
       judulPengmas = this.value;
       $$invalidate(14, judulPengmas);
     }
@@ -12972,11 +12942,11 @@
       rolePengmas = select_value(this);
       $$invalidate(15, rolePengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_17() {
       sumberDanaPengmas = this.value;
       $$invalidate(16, sumberDanaPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_18() {
       biayaPengmas = this.value;
       $$invalidate(12, biayaPengmas);
     }
@@ -12985,19 +12955,19 @@
       showModalPengmas = value;
       $$invalidate(64, showModalPengmas);
     }
-    function input_input_handler_21() {
+    function input_input_handler_19() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(17, tahunDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_20() {
       judulDiseminasi = this.value;
       $$invalidate(18, judulDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_21() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(19, namaPemakalahDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_22() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(20, namaPertemuanDiseminasi);
     }
@@ -13005,19 +12975,19 @@
       showModalDiseminasi = value;
       $$invalidate(65, showModalDiseminasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_23() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(21, tahunPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_24() {
       judulPublikasi = this.value;
       $$invalidate(22, judulPublikasi);
     }
-    function input_input_handler_27() {
+    function input_input_handler_25() {
       namaJurnal = this.value;
       $$invalidate(23, namaJurnal);
     }
-    function input_input_handler_28() {
+    function input_input_handler_26() {
       impactFactor = this.value;
       $$invalidate(24, impactFactor);
     }
@@ -13025,23 +12995,23 @@
       showModalPublikasi = value;
       $$invalidate(66, showModalPublikasi);
     }
-    function input_input_handler_29() {
+    function input_input_handler_27() {
       tahunBuku = to_number(this.value);
       $$invalidate(25, tahunBuku);
     }
-    function input_input_handler_30() {
+    function input_input_handler_28() {
       JudulBuku = this.value;
       $$invalidate(26, JudulBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_29() {
       namaPenulisBuku = this.value;
       $$invalidate(27, namaPenulisBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_30() {
       PenerbitBuku = this.value;
       $$invalidate(28, PenerbitBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_31() {
       Isbn = this.value;
       $$invalidate(29, Isbn);
     }
@@ -13049,23 +13019,23 @@
       showModalPenulisanBuku = value;
       $$invalidate(67, showModalPenulisanBuku);
     }
-    function input_input_handler_34() {
+    function input_input_handler_32() {
       tahunHKI = to_number(this.value);
       $$invalidate(30, tahunHKI);
     }
-    function input_input_handler_35() {
+    function input_input_handler_33() {
       JudulHKI = this.value;
       $$invalidate(31, JudulHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_34() {
       namaPenulisHKI = this.value;
       $$invalidate(32, namaPenulisHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_35() {
       jenisHKI = this.value;
       $$invalidate(33, jenisHKI);
     }
-    function input_input_handler_38() {
+    function input_input_handler_36() {
       noHKI = this.value;
       $$invalidate(34, noHKI);
     }
@@ -13180,6 +13150,8 @@
       input_input_handler_1,
       input_input_handler_2,
       input_input_handler_3,
+      input0_input_handler,
+      input1_input_handler,
       input_input_handler_4,
       input_input_handler_5,
       input_input_handler_6,
@@ -13187,10 +13159,8 @@
       input_input_handler_8,
       input_input_handler_9,
       input_input_handler_10,
-      input_input_handler_11,
-      input_input_handler_12,
-      input0_input_handler,
-      input1_input_handler,
+      input0_input_handler_1,
+      input1_input_handler_1,
       input2_input_handler,
       input3_input_handler,
       input4_input_handler,
@@ -13204,41 +13174,41 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
+      input_input_handler_11,
+      input_input_handler_12,
+      select_change_handler,
       input_input_handler_13,
       input_input_handler_14,
-      select_change_handler,
-      input_input_handler_15,
-      input_input_handler_16,
       keyup_handler,
       modal0_show_binding,
+      input_input_handler_15,
+      input_input_handler_16,
+      select_change_handler_1,
       input_input_handler_17,
       input_input_handler_18,
-      select_change_handler_1,
-      input_input_handler_19,
-      input_input_handler_20,
       keyup_handler_1,
       modal1_show_binding,
+      input_input_handler_19,
+      input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
+      modal2_show_binding,
       input_input_handler_23,
       input_input_handler_24,
-      modal2_show_binding,
       input_input_handler_25,
       input_input_handler_26,
+      modal3_show_binding,
       input_input_handler_27,
       input_input_handler_28,
-      modal3_show_binding,
       input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
+      modal4_show_binding,
       input_input_handler_32,
       input_input_handler_33,
-      modal4_show_binding,
       input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
-      input_input_handler_37,
-      input_input_handler_38,
       modal5_show_binding
     ];
   }
@@ -14238,63 +14208,63 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_422] },
+        $$slots: { default: [create_default_slot_412] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_412] },
+        $$slots: { default: [create_default_slot_402] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_402] },
+        $$slots: { default: [create_default_slot_392] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_392] },
+        $$slots: { default: [create_default_slot_382] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_382] },
+        $$slots: { default: [create_default_slot_372] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tahun Pelaksanaan",
-        $$slots: { default: [create_default_slot_372] },
+        $$slots: { default: [create_default_slot_362] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_362] },
+        $$slots: { default: [create_default_slot_352] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_352] },
+        $$slots: { default: [create_default_slot_342] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_342] },
+        $$slots: { default: [create_default_slot_332] },
         $$scope: { ctx }
       }
     });
@@ -14305,28 +14275,28 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_332] },
+        $$slots: { default: [create_default_slot_323] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_323] },
+        $$slots: { default: [create_default_slot_312] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "isi",
-        $$slots: { default: [create_default_slot_312] },
+        $$slots: { default: [create_default_slot_302] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_302] },
+        $$slots: { default: [create_default_slot_292] },
         $$scope: { ctx }
       }
     });
@@ -14644,35 +14614,35 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_292] },
+        $$slots: { default: [create_default_slot_282] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_282] },
+        $$slots: { default: [create_default_slot_272] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_272] },
+        $$slots: { default: [create_default_slot_262] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_262] },
+        $$slots: { default: [create_default_slot_252] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_252] },
+        $$slots: { default: [create_default_slot_242] },
         $$scope: { ctx }
       }
     });
@@ -14695,21 +14665,21 @@
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_242] },
+        $$slots: { default: [create_default_slot_233] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_233] },
+        $$slots: { default: [create_default_slot_223] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_223] },
+        $$slots: { default: [create_default_slot_212] },
         $$scope: { ctx }
       }
     });
@@ -14720,28 +14690,28 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_212] },
+        $$slots: { default: [create_default_slot_202] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_202] },
+        $$slots: { default: [create_default_slot_192] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Isi Proposal",
-        $$slots: { default: [create_default_slot_192] },
+        $$slots: { default: [create_default_slot_182] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_182] },
+        $$slots: { default: [create_default_slot_172] },
         $$scope: { ctx }
       }
     });
@@ -15030,7 +15000,7 @@
       }
     };
   }
-  function create_default_slot_422(ctx) {
+  function create_default_slot_412(ctx) {
     let t;
     return {
       c() {
@@ -15058,7 +15028,7 @@
       }
     };
   }
-  function create_default_slot_412(ctx) {
+  function create_default_slot_402(ctx) {
     let t;
     return {
       c() {
@@ -15086,7 +15056,7 @@
       }
     };
   }
-  function create_default_slot_402(ctx) {
+  function create_default_slot_392(ctx) {
     let t;
     return {
       c() {
@@ -15114,7 +15084,7 @@
       }
     };
   }
-  function create_default_slot_392(ctx) {
+  function create_default_slot_382(ctx) {
     let t;
     return {
       c() {
@@ -15142,7 +15112,7 @@
       }
     };
   }
-  function create_default_slot_382(ctx) {
+  function create_default_slot_372(ctx) {
     let t;
     return {
       c() {
@@ -15170,7 +15140,7 @@
       }
     };
   }
-  function create_default_slot_372(ctx) {
+  function create_default_slot_362(ctx) {
     let t;
     return {
       c() {
@@ -15198,7 +15168,7 @@
       }
     };
   }
-  function create_default_slot_362(ctx) {
+  function create_default_slot_352(ctx) {
     let t;
     return {
       c() {
@@ -15226,7 +15196,7 @@
       }
     };
   }
-  function create_default_slot_352(ctx) {
+  function create_default_slot_342(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -15258,7 +15228,7 @@
       }
     };
   }
-  function create_default_slot_342(ctx) {
+  function create_default_slot_332(ctx) {
     let span;
     return {
       c() {
@@ -15374,7 +15344,7 @@
       }
     };
   }
-  function create_default_slot_332(ctx) {
+  function create_default_slot_323(ctx) {
     let t_value = (
       /*data*/
       ctx[0].judul + ""
@@ -15400,7 +15370,7 @@
       }
     };
   }
-  function create_default_slot_323(ctx) {
+  function create_default_slot_312(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -15431,7 +15401,7 @@
       }
     };
   }
-  function create_default_slot_312(ctx) {
+  function create_default_slot_302(ctx) {
     let div;
     let raw_value = (
       /*data*/
@@ -15460,7 +15430,7 @@
       }
     };
   }
-  function create_default_slot_302(ctx) {
+  function create_default_slot_292(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -15505,7 +15475,7 @@
       }
     };
   }
-  function create_default_slot_292(ctx) {
+  function create_default_slot_282(ctx) {
     let div;
     let select;
     let option0;
@@ -15583,7 +15553,7 @@
       }
     };
   }
-  function create_default_slot_282(ctx) {
+  function create_default_slot_272(ctx) {
     let div;
     let select;
     let option0;
@@ -15748,7 +15718,7 @@
       }
     };
   }
-  function create_default_slot_272(ctx) {
+  function create_default_slot_262(ctx) {
     let div;
     let select;
     let option;
@@ -15835,7 +15805,7 @@
       }
     };
   }
-  function create_default_slot_262(ctx) {
+  function create_default_slot_252(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15883,7 +15853,7 @@
       }
     };
   }
-  function create_default_slot_252(ctx) {
+  function create_default_slot_242(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15931,7 +15901,7 @@
       }
     };
   }
-  function create_default_slot_242(ctx) {
+  function create_default_slot_233(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -15987,7 +15957,7 @@
       }
     };
   }
-  function create_default_slot_233(ctx) {
+  function create_default_slot_223(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -16020,7 +15990,7 @@
       }
     };
   }
-  function create_default_slot_223(ctx) {
+  function create_default_slot_212(ctx) {
     let select;
     let updating_result;
     let current;
@@ -16253,7 +16223,7 @@
       }
     };
   }
-  function create_default_slot_212(ctx) {
+  function create_default_slot_202(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -16301,7 +16271,7 @@
       }
     };
   }
-  function create_default_slot_202(ctx) {
+  function create_default_slot_192(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -16346,7 +16316,7 @@
       }
     };
   }
-  function create_default_slot_192(ctx) {
+  function create_default_slot_182(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
@@ -16386,7 +16356,7 @@
       }
     };
   }
-  function create_default_slot_182(ctx) {
+  function create_default_slot_172(ctx) {
     let t;
     return {
       c() {
@@ -16612,135 +16582,133 @@
     let t11;
     let field11;
     let t12;
-    let field12;
-    let t13;
     let br0;
-    let t14;
+    let t13;
     let div0;
     let h60;
-    let t16;
+    let t15;
     let table0;
     let thead0;
-    let t24;
+    let t23;
     let tbody0;
     let tr1;
     let th4;
-    let t26;
+    let t25;
     let td0;
+    let t26;
     let t27;
-    let t28;
     let td1;
+    let t28;
     let t29;
-    let t30;
     let td2;
+    let t30;
     let t31;
-    let t32;
     let tr2;
     let th5;
-    let t34;
+    let t33;
     let td3;
+    let t34;
     let t35;
-    let t36;
     let td4;
+    let t36;
     let t37;
-    let t38;
     let td5;
+    let t38;
     let t39;
-    let t40;
     let tr3;
     let th6;
-    let t42;
+    let t41;
     let td6;
+    let t42;
     let t43;
-    let t44;
     let td7;
+    let t44;
     let t45;
-    let t46;
     let td8;
+    let t46;
     let t47;
-    let t48;
     let tr4;
     let th7;
-    let t50;
+    let t49;
     let td9;
+    let t50;
     let t51;
-    let t52;
     let td10;
+    let t52;
     let t53;
-    let t54;
     let td11;
+    let t54;
     let t55;
-    let t56;
     let tr5;
     let th8;
-    let t58;
+    let t57;
     let td12;
+    let t58;
     let t59;
-    let t60;
     let td13;
+    let t60;
     let t61;
-    let t62;
     let td14;
+    let t62;
     let t63;
-    let t64;
     let br1;
-    let t65;
+    let t64;
     let div1;
     let h61;
-    let t67;
+    let t66;
     let table1;
     let thead1;
-    let t77;
+    let t76;
     let tbody1;
-    let t78;
+    let t77;
     let br2;
-    let t79;
+    let t78;
     let div2;
     let h62;
-    let t81;
+    let t80;
     let table2;
     let thead2;
-    let t91;
+    let t90;
     let tbody2;
-    let t92;
+    let t91;
     let br3;
-    let t93;
+    let t92;
     let div3;
     let h63;
-    let t95;
+    let t94;
     let table3;
     let thead3;
-    let t103;
+    let t102;
     let tbody3;
-    let t104;
+    let t103;
     let br4;
-    let t105;
+    let t104;
     let div4;
     let h64;
-    let t107;
+    let t106;
     let table4;
     let thead4;
-    let t115;
+    let t114;
     let tbody4;
-    let t116;
+    let t115;
     let br5;
-    let t117;
+    let t116;
     let div5;
     let h65;
-    let t119;
+    let t118;
     let table5;
     let thead5;
-    let t129;
+    let t128;
     let tbody5;
-    let t130;
+    let t129;
     let br6;
-    let t131;
+    let t130;
     let div6;
     let h66;
-    let t133;
+    let t132;
     let table6;
     let thead6;
-    let t143;
+    let t142;
     let tbody6;
     let current;
     function select_block_type_2(ctx2, dirty) {
@@ -16756,88 +16724,81 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_172] },
+        $$slots: { default: [create_default_slot_162] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_162] },
+        $$slots: { default: [create_default_slot_152] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_152] },
+        $$slots: { default: [create_default_slot_142] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_142] },
+        $$slots: { default: [create_default_slot_133] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
-        name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_133] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Lahir",
+        name: "Tempat / Tanggal Lahir",
         $$slots: { default: [create_default_slot_123] },
         $$scope: { ctx }
       }
     });
-    field6 = new Field_default({
+    field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_112] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_102] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
         $$slots: { default: [create_default_slot_92] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_82] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_72] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         name: "Email",
         $$slots: { default: [create_default_slot_62] },
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_53] },
@@ -16896,209 +16857,207 @@
         t11 = space();
         create_component(field11.$$.fragment);
         t12 = space();
-        create_component(field12.$$.fragment);
-        t13 = space();
         br0 = element("br");
-        t14 = space();
+        t13 = space();
         div0 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t16 = space();
+        t15 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t24 = space();
+        t23 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t26 = space();
+        t25 = space();
         td0 = element("td");
-        t27 = text(
+        t26 = text(
           /*pertiS1*/
           ctx[42]
         );
-        t28 = space();
+        t27 = space();
         td1 = element("td");
-        t29 = text(
+        t28 = text(
           /*pertiS2*/
           ctx[43]
         );
-        t30 = space();
+        t29 = space();
         td2 = element("td");
-        t31 = text(
+        t30 = text(
           /*pertiS3*/
           ctx[44]
         );
-        t32 = space();
+        t31 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t34 = space();
+        t33 = space();
         td3 = element("td");
-        t35 = text(
+        t34 = text(
           /*bidangIlmuS1*/
           ctx[45]
         );
-        t36 = space();
+        t35 = space();
         td4 = element("td");
-        t37 = text(
+        t36 = text(
           /*bidangIlmuS2*/
           ctx[46]
         );
-        t38 = space();
+        t37 = space();
         td5 = element("td");
-        t39 = text(
+        t38 = text(
           /*bidangIlmuS3*/
           ctx[47]
         );
-        t40 = space();
+        t39 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t42 = space();
+        t41 = space();
         td6 = element("td");
-        t43 = text(
+        t42 = text(
           /*tahunMasukS1*/
           ctx[48]
         );
-        t44 = space();
+        t43 = space();
         td7 = element("td");
-        t45 = text(
+        t44 = text(
           /*tahunMasukS2*/
           ctx[49]
         );
-        t46 = space();
+        t45 = space();
         td8 = element("td");
-        t47 = text(
+        t46 = text(
           /*tahunMasukS3*/
           ctx[50]
         );
-        t48 = space();
+        t47 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t50 = space();
+        t49 = space();
         td9 = element("td");
-        t51 = text(
+        t50 = text(
           /*tahunLulusS1*/
           ctx[51]
         );
-        t52 = space();
+        t51 = space();
         td10 = element("td");
-        t53 = text(
+        t52 = text(
           /*tahunLulusS2*/
           ctx[52]
         );
-        t54 = space();
+        t53 = space();
         td11 = element("td");
-        t55 = text(
+        t54 = text(
           /*tahunLulusS3*/
           ctx[53]
         );
-        t56 = space();
+        t55 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t58 = space();
+        t57 = space();
         td12 = element("td");
-        t59 = text(
+        t58 = text(
           /*judulTugasAkhirS1*/
           ctx[54]
         );
-        t60 = space();
+        t59 = space();
         td13 = element("td");
-        t61 = text(
+        t60 = text(
           /*judulTugasAkhirS2*/
           ctx[55]
         );
-        t62 = space();
+        t61 = space();
         td14 = element("td");
-        t63 = text(
+        t62 = text(
           /*judulTugasAkhirS3*/
           ctx[56]
         );
-        t64 = space();
+        t63 = space();
         br1 = element("br");
-        t65 = space();
+        t64 = space();
         div1 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t67 = space();
+        t66 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t77 = space();
+        t76 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t78 = space();
+        t77 = space();
         br2 = element("br");
-        t79 = space();
+        t78 = space();
         div2 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t81 = space();
+        t80 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t91 = space();
+        t90 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t92 = space();
+        t91 = space();
         br3 = element("br");
-        t93 = space();
+        t92 = space();
         div3 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t95 = space();
+        t94 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t103 = space();
+        t102 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t104 = space();
+        t103 = space();
         br4 = element("br");
-        t105 = space();
+        t104 = space();
         div4 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t107 = space();
+        t106 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t115 = space();
+        t114 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t116 = space();
+        t115 = space();
         br5 = element("br");
-        t117 = space();
+        t116 = space();
         div5 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t119 = space();
+        t118 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t129 = space();
+        t128 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t130 = space();
+        t129 = space();
         br6 = element("br");
-        t131 = space();
+        t130 = space();
         div6 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t133 = space();
+        t132 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t143 = space();
+        t142 = space();
         tbody6 = element("tbody");
         if (if_block6)
           if_block6.c();
@@ -17144,145 +17103,143 @@
         insert(target, t11, anchor);
         mount_component(field11, target, anchor);
         insert(target, t12, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t13, anchor);
         insert(target, br0, anchor);
-        insert(target, t14, anchor);
+        insert(target, t13, anchor);
         insert(target, div0, anchor);
         append(div0, h60);
-        append(div0, t16);
+        append(div0, t15);
         append(div0, table0);
         append(table0, thead0);
-        append(table0, t24);
+        append(table0, t23);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t26);
+        append(tr1, t25);
         append(tr1, td0);
-        append(td0, t27);
-        append(tr1, t28);
+        append(td0, t26);
+        append(tr1, t27);
         append(tr1, td1);
-        append(td1, t29);
-        append(tr1, t30);
+        append(td1, t28);
+        append(tr1, t29);
         append(tr1, td2);
-        append(td2, t31);
-        append(tbody0, t32);
+        append(td2, t30);
+        append(tbody0, t31);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t34);
+        append(tr2, t33);
         append(tr2, td3);
-        append(td3, t35);
-        append(tr2, t36);
+        append(td3, t34);
+        append(tr2, t35);
         append(tr2, td4);
-        append(td4, t37);
-        append(tr2, t38);
+        append(td4, t36);
+        append(tr2, t37);
         append(tr2, td5);
-        append(td5, t39);
-        append(tbody0, t40);
+        append(td5, t38);
+        append(tbody0, t39);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t42);
+        append(tr3, t41);
         append(tr3, td6);
-        append(td6, t43);
-        append(tr3, t44);
+        append(td6, t42);
+        append(tr3, t43);
         append(tr3, td7);
-        append(td7, t45);
-        append(tr3, t46);
+        append(td7, t44);
+        append(tr3, t45);
         append(tr3, td8);
-        append(td8, t47);
-        append(tbody0, t48);
+        append(td8, t46);
+        append(tbody0, t47);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t50);
+        append(tr4, t49);
         append(tr4, td9);
-        append(td9, t51);
-        append(tr4, t52);
+        append(td9, t50);
+        append(tr4, t51);
         append(tr4, td10);
-        append(td10, t53);
-        append(tr4, t54);
+        append(td10, t52);
+        append(tr4, t53);
         append(tr4, td11);
-        append(td11, t55);
-        append(tbody0, t56);
+        append(td11, t54);
+        append(tbody0, t55);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t58);
+        append(tr5, t57);
         append(tr5, td12);
-        append(td12, t59);
-        append(tr5, t60);
+        append(td12, t58);
+        append(tr5, t59);
         append(tr5, td13);
-        append(td13, t61);
-        append(tr5, t62);
+        append(td13, t60);
+        append(tr5, t61);
         append(tr5, td14);
-        append(td14, t63);
-        insert(target, t64, anchor);
+        append(td14, t62);
+        insert(target, t63, anchor);
         insert(target, br1, anchor);
-        insert(target, t65, anchor);
+        insert(target, t64, anchor);
         insert(target, div1, anchor);
         append(div1, h61);
-        append(div1, t67);
+        append(div1, t66);
         append(div1, table1);
         append(table1, thead1);
-        append(table1, t77);
+        append(table1, t76);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t78);
+        append(table1, t77);
         append(table1, br2);
-        insert(target, t79, anchor);
+        insert(target, t78, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
-        append(div2, t81);
+        append(div2, t80);
         append(div2, table2);
         append(table2, thead2);
-        append(table2, t91);
+        append(table2, t90);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t92, anchor);
+        insert(target, t91, anchor);
         insert(target, br3, anchor);
-        insert(target, t93, anchor);
+        insert(target, t92, anchor);
         insert(target, div3, anchor);
         append(div3, h63);
-        append(div3, t95);
+        append(div3, t94);
         append(div3, table3);
         append(table3, thead3);
-        append(table3, t103);
+        append(table3, t102);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t104, anchor);
+        insert(target, t103, anchor);
         insert(target, br4, anchor);
-        insert(target, t105, anchor);
+        insert(target, t104, anchor);
         insert(target, div4, anchor);
         append(div4, h64);
-        append(div4, t107);
+        append(div4, t106);
         append(div4, table4);
         append(table4, thead4);
-        append(table4, t115);
+        append(table4, t114);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t116, anchor);
+        insert(target, t115, anchor);
         insert(target, br5, anchor);
-        insert(target, t117, anchor);
+        insert(target, t116, anchor);
         insert(target, div5, anchor);
         append(div5, h65);
-        append(div5, t119);
+        append(div5, t118);
         append(div5, table5);
         append(table5, thead5);
-        append(table5, t129);
+        append(table5, t128);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t130, anchor);
+        insert(target, t129, anchor);
         insert(target, br6, anchor);
-        insert(target, t131, anchor);
+        insert(target, t130, anchor);
         insert(target, div6, anchor);
         append(div6, h66);
-        append(div6, t133);
+        append(div6, t132);
         append(div6, table6);
         append(table6, thead6);
-        append(table6, t143);
+        append(table6, t142);
         append(table6, tbody6);
         if (if_block6)
           if_block6.m(tbody6, null);
@@ -17328,170 +17285,163 @@
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[1] & /*tempatLahir*/
-        4 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        12 | dirty[4] & /*$$scope*/
         32768) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*tanggalLahir*/
-        8 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*alamatRumah*/
+        16 | dirty[4] & /*$$scope*/
         32768) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*alamatRumah*/
-        16 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*telpFaxRumah*/
+        32 | dirty[4] & /*$$scope*/
         32768) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
-        32 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*nomorHandphone*/
+        64 | dirty[4] & /*$$scope*/
         32768) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
-        64 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*alamatKantor*/
+        128 | dirty[4] & /*$$scope*/
         32768) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        128 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*telpFaxKantor*/
+        256 | dirty[4] & /*$$scope*/
         32768) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        256 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*email*/
+        512 | dirty[4] & /*$$scope*/
         32768) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[1] & /*email*/
-        512 | dirty[4] & /*$$scope*/
+        if (dirty[1] & /*mataKuliah*/
+        1024 | dirty[4] & /*$$scope*/
         32768) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[1] & /*mataKuliah*/
-        1024 | dirty[4] & /*$$scope*/
-        32768) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
         if (!current || dirty[1] & /*pertiS1*/
         2048)
           set_data(
-            t27,
+            t26,
             /*pertiS1*/
             ctx2[42]
           );
         if (!current || dirty[1] & /*pertiS2*/
         4096)
           set_data(
-            t29,
+            t28,
             /*pertiS2*/
             ctx2[43]
           );
         if (!current || dirty[1] & /*pertiS3*/
         8192)
           set_data(
-            t31,
+            t30,
             /*pertiS3*/
             ctx2[44]
           );
         if (!current || dirty[1] & /*bidangIlmuS1*/
         16384)
           set_data(
-            t35,
+            t34,
             /*bidangIlmuS1*/
             ctx2[45]
           );
         if (!current || dirty[1] & /*bidangIlmuS2*/
         32768)
           set_data(
-            t37,
+            t36,
             /*bidangIlmuS2*/
             ctx2[46]
           );
         if (!current || dirty[1] & /*bidangIlmuS3*/
         65536)
           set_data(
-            t39,
+            t38,
             /*bidangIlmuS3*/
             ctx2[47]
           );
         if (!current || dirty[1] & /*tahunMasukS1*/
         131072)
           set_data(
-            t43,
+            t42,
             /*tahunMasukS1*/
             ctx2[48]
           );
         if (!current || dirty[1] & /*tahunMasukS2*/
         262144)
           set_data(
-            t45,
+            t44,
             /*tahunMasukS2*/
             ctx2[49]
           );
         if (!current || dirty[1] & /*tahunMasukS3*/
         524288)
           set_data(
-            t47,
+            t46,
             /*tahunMasukS3*/
             ctx2[50]
           );
         if (!current || dirty[1] & /*tahunLulusS1*/
         1048576)
           set_data(
-            t51,
+            t50,
             /*tahunLulusS1*/
             ctx2[51]
           );
         if (!current || dirty[1] & /*tahunLulusS2*/
         2097152)
           set_data(
-            t53,
+            t52,
             /*tahunLulusS2*/
             ctx2[52]
           );
         if (!current || dirty[1] & /*tahunLulusS3*/
         4194304)
           set_data(
-            t55,
+            t54,
             /*tahunLulusS3*/
             ctx2[53]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS1*/
         8388608)
           set_data(
-            t59,
+            t58,
             /*judulTugasAkhirS1*/
             ctx2[54]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS2*/
         16777216)
           set_data(
-            t61,
+            t60,
             /*judulTugasAkhirS2*/
             ctx2[55]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS3*/
         33554432)
           set_data(
-            t63,
+            t62,
             /*judulTugasAkhirS3*/
             ctx2[56]
           );
@@ -17601,7 +17551,6 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -17617,7 +17566,6 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -17635,31 +17583,30 @@
           detach(t10);
           detach(t11);
           detach(t12);
-          detach(t13);
           detach(br0);
-          detach(t14);
+          detach(t13);
           detach(div0);
-          detach(t64);
+          detach(t63);
           detach(br1);
-          detach(t65);
+          detach(t64);
           detach(div1);
-          detach(t79);
+          detach(t78);
           detach(div2);
-          detach(t92);
+          detach(t91);
           detach(br3);
-          detach(t93);
+          detach(t92);
           detach(div3);
-          detach(t104);
+          detach(t103);
           detach(br4);
-          detach(t105);
+          detach(t104);
           detach(div4);
-          detach(t116);
+          detach(t115);
           detach(br5);
-          detach(t117);
+          detach(t116);
           detach(div5);
-          detach(t130);
+          detach(t129);
           detach(br6);
-          detach(t131);
+          detach(t130);
           detach(div6);
         }
         if_block0.d(detaching);
@@ -17675,7 +17622,6 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
         if (if_block1)
           if_block1.d();
         if (if_block2)
@@ -17762,7 +17708,7 @@
       }
     };
   }
-  function create_default_slot_172(ctx) {
+  function create_default_slot_162(ctx) {
     let t;
     return {
       c() {
@@ -17790,7 +17736,7 @@
       }
     };
   }
-  function create_default_slot_162(ctx) {
+  function create_default_slot_152(ctx) {
     let t;
     return {
       c() {
@@ -17818,7 +17764,7 @@
       }
     };
   }
-  function create_default_slot_152(ctx) {
+  function create_default_slot_142(ctx) {
     let t;
     return {
       c() {
@@ -17846,7 +17792,7 @@
       }
     };
   }
-  function create_default_slot_142(ctx) {
+  function create_default_slot_133(ctx) {
     let t;
     return {
       c() {
@@ -17874,58 +17820,48 @@
       }
     };
   }
-  function create_default_slot_133(ctx) {
-    let t;
+  function create_default_slot_123(ctx) {
+    let t0;
+    let t1;
+    let t2;
     return {
       c() {
-        t = text(
+        t0 = text(
           /*tempatLahir*/
           ctx[33]
         );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*tempatLahir*/
-        4)
-          set_data(
-            t,
-            /*tempatLahir*/
-            ctx2[33]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_123(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
+        t1 = text(" / ");
+        t2 = text(
           /*tanggalLahir*/
           ctx[34]
         );
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, t0, anchor);
+        insert(target, t1, anchor);
+        insert(target, t2, anchor);
       },
       p(ctx2, dirty) {
+        if (dirty[1] & /*tempatLahir*/
+        4)
+          set_data(
+            t0,
+            /*tempatLahir*/
+            ctx2[33]
+          );
         if (dirty[1] & /*tanggalLahir*/
         8)
           set_data(
-            t,
+            t2,
             /*tanggalLahir*/
             ctx2[34]
           );
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(t0);
+          detach(t1);
+          detach(t2);
         }
       }
     };
@@ -19180,7 +19116,7 @@
     field0 = new Field_default({
       props: {
         name: "Status PPM",
-        $$slots: { default: [create_default_slot_49] },
+        $$slots: { default: [create_default_slot_48] },
         $$scope: { ctx }
       }
     });
@@ -19239,7 +19175,7 @@
       }
     };
   }
-  function create_default_slot_49(ctx) {
+  function create_default_slot_48(ctx) {
     let status_1;
     let current;
     status_1 = new Status_default({ props: { code: (
@@ -24298,63 +24234,63 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_283] },
+        $$slots: { default: [create_default_slot_273] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_273] },
+        $$slots: { default: [create_default_slot_263] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_263] },
+        $$slots: { default: [create_default_slot_253] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_253] },
+        $$slots: { default: [create_default_slot_243] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_243] },
+        $$slots: { default: [create_default_slot_234] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tahun Pelaksanaan",
-        $$slots: { default: [create_default_slot_234] },
+        $$slots: { default: [create_default_slot_224] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_224] },
+        $$slots: { default: [create_default_slot_213] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_213] },
+        $$slots: { default: [create_default_slot_203] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_203] },
+        $$slots: { default: [create_default_slot_193] },
         $$scope: { ctx }
       }
     });
@@ -24365,28 +24301,28 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_193] },
+        $$slots: { default: [create_default_slot_183] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_183] },
+        $$slots: { default: [create_default_slot_173] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "isi",
-        $$slots: { default: [create_default_slot_173] },
+        $$slots: { default: [create_default_slot_163] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_163] },
+        $$slots: { default: [create_default_slot_153] },
         $$scope: { ctx }
       }
     });
@@ -24741,7 +24677,7 @@
       }
     };
   }
-  function create_default_slot_283(ctx) {
+  function create_default_slot_273(ctx) {
     let t;
     return {
       c() {
@@ -24769,7 +24705,7 @@
       }
     };
   }
-  function create_default_slot_273(ctx) {
+  function create_default_slot_263(ctx) {
     let t;
     return {
       c() {
@@ -24797,7 +24733,7 @@
       }
     };
   }
-  function create_default_slot_263(ctx) {
+  function create_default_slot_253(ctx) {
     let t;
     return {
       c() {
@@ -24825,7 +24761,7 @@
       }
     };
   }
-  function create_default_slot_253(ctx) {
+  function create_default_slot_243(ctx) {
     let t;
     return {
       c() {
@@ -24853,7 +24789,7 @@
       }
     };
   }
-  function create_default_slot_243(ctx) {
+  function create_default_slot_234(ctx) {
     let t;
     return {
       c() {
@@ -24881,7 +24817,7 @@
       }
     };
   }
-  function create_default_slot_234(ctx) {
+  function create_default_slot_224(ctx) {
     let t;
     return {
       c() {
@@ -24909,7 +24845,7 @@
       }
     };
   }
-  function create_default_slot_224(ctx) {
+  function create_default_slot_213(ctx) {
     let t;
     return {
       c() {
@@ -24937,7 +24873,7 @@
       }
     };
   }
-  function create_default_slot_213(ctx) {
+  function create_default_slot_203(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -24969,7 +24905,7 @@
       }
     };
   }
-  function create_default_slot_203(ctx) {
+  function create_default_slot_193(ctx) {
     let span;
     return {
       c() {
@@ -25085,7 +25021,7 @@
       }
     };
   }
-  function create_default_slot_193(ctx) {
+  function create_default_slot_183(ctx) {
     let t_value = (
       /*data*/
       ctx[0].judul + ""
@@ -25111,7 +25047,7 @@
       }
     };
   }
-  function create_default_slot_183(ctx) {
+  function create_default_slot_173(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -25142,7 +25078,7 @@
       }
     };
   }
-  function create_default_slot_173(ctx) {
+  function create_default_slot_163(ctx) {
     let div;
     let raw_value = (
       /*data*/
@@ -25171,7 +25107,7 @@
       }
     };
   }
-  function create_default_slot_163(ctx) {
+  function create_default_slot_153(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -25651,222 +25587,213 @@
     let t10;
     let field11;
     let t11;
-    let field12;
-    let t12;
     let br0;
-    let t13;
+    let t12;
     let div0;
     let h60;
-    let t15;
+    let t14;
     let table0;
     let thead0;
-    let t23;
+    let t22;
     let tbody0;
     let tr1;
     let th4;
-    let t25;
+    let t24;
     let td0;
+    let t25;
     let t26;
-    let t27;
     let td1;
+    let t27;
     let t28;
-    let t29;
     let td2;
+    let t29;
     let t30;
-    let t31;
     let tr2;
     let th5;
-    let t33;
+    let t32;
     let td3;
+    let t33;
     let t34;
-    let t35;
     let td4;
+    let t35;
     let t36;
-    let t37;
     let td5;
+    let t37;
     let t38;
-    let t39;
     let tr3;
     let th6;
-    let t41;
+    let t40;
     let td6;
+    let t41;
     let t42;
-    let t43;
     let td7;
+    let t43;
     let t44;
-    let t45;
     let td8;
+    let t45;
     let t46;
-    let t47;
     let tr4;
     let th7;
-    let t49;
+    let t48;
     let td9;
+    let t49;
     let t50;
-    let t51;
     let td10;
+    let t51;
     let t52;
-    let t53;
     let td11;
+    let t53;
     let t54;
-    let t55;
     let tr5;
     let th8;
-    let t57;
+    let t56;
     let td12;
+    let t57;
     let t58;
-    let t59;
     let td13;
+    let t59;
     let t60;
-    let t61;
     let td14;
+    let t61;
     let t62;
-    let t63;
     let br1;
-    let t64;
+    let t63;
     let div1;
     let h61;
-    let t66;
+    let t65;
     let table1;
     let thead1;
-    let t76;
+    let t75;
     let tbody1;
-    let t77;
+    let t76;
     let br2;
-    let t78;
+    let t77;
     let div2;
     let h62;
-    let t80;
+    let t79;
     let table2;
     let thead2;
-    let t90;
+    let t89;
     let tbody2;
-    let t91;
+    let t90;
     let br3;
-    let t92;
+    let t91;
     let div3;
     let h63;
-    let t94;
+    let t93;
     let table3;
     let thead3;
-    let t102;
+    let t101;
     let tbody3;
-    let t103;
+    let t102;
     let br4;
-    let t104;
+    let t103;
     let div4;
     let h64;
-    let t106;
+    let t105;
     let table4;
     let thead4;
-    let t114;
+    let t113;
     let tbody4;
-    let t115;
+    let t114;
     let br5;
-    let t116;
+    let t115;
     let div5;
     let h65;
-    let t118;
+    let t117;
     let table5;
     let thead5;
-    let t128;
+    let t127;
     let tbody5;
-    let t129;
+    let t128;
     let br6;
-    let t130;
+    let t129;
     let div6;
     let h66;
-    let t132;
+    let t131;
     let table6;
     let thead6;
-    let t142;
+    let t141;
     let tbody6;
     let current;
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_153] },
+        $$slots: { default: [create_default_slot_143] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_143] },
+        $$slots: { default: [create_default_slot_134] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_134] },
+        $$slots: { default: [create_default_slot_124] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_124] },
+        $$slots: { default: [create_default_slot_113] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
-        name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_113] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Lahir",
+        name: "Tempat / Tanggal Lahir",
         $$slots: { default: [create_default_slot_103] },
         $$scope: { ctx }
       }
     });
-    field6 = new Field_default({
+    field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_93] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_83] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
         $$slots: { default: [create_default_slot_73] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_63] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_54] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         name: "Email",
-        $$slots: { default: [create_default_slot_410] },
+        $$slots: { default: [create_default_slot_49] },
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_313] },
@@ -25923,209 +25850,207 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        create_component(field12.$$.fragment);
-        t12 = space();
         br0 = element("br");
-        t13 = space();
+        t12 = space();
         div0 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t15 = space();
+        t14 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t23 = space();
+        t22 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t25 = space();
+        t24 = space();
         td0 = element("td");
-        t26 = text(
+        t25 = text(
           /*pertiS1*/
           ctx[7]
         );
-        t27 = space();
+        t26 = space();
         td1 = element("td");
-        t28 = text(
+        t27 = text(
           /*pertiS2*/
           ctx[8]
         );
-        t29 = space();
+        t28 = space();
         td2 = element("td");
-        t30 = text(
+        t29 = text(
           /*pertiS3*/
           ctx[9]
         );
-        t31 = space();
+        t30 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t33 = space();
+        t32 = space();
         td3 = element("td");
-        t34 = text(
+        t33 = text(
           /*bidangIlmuS1*/
           ctx[10]
         );
-        t35 = space();
+        t34 = space();
         td4 = element("td");
-        t36 = text(
+        t35 = text(
           /*bidangIlmuS2*/
           ctx[11]
         );
-        t37 = space();
+        t36 = space();
         td5 = element("td");
-        t38 = text(
+        t37 = text(
           /*bidangIlmuS3*/
           ctx[12]
         );
-        t39 = space();
+        t38 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t41 = space();
+        t40 = space();
         td6 = element("td");
-        t42 = text(
+        t41 = text(
           /*tahunMasukS1*/
           ctx[13]
         );
-        t43 = space();
+        t42 = space();
         td7 = element("td");
-        t44 = text(
+        t43 = text(
           /*tahunMasukS2*/
           ctx[14]
         );
-        t45 = space();
+        t44 = space();
         td8 = element("td");
-        t46 = text(
+        t45 = text(
           /*tahunMasukS3*/
           ctx[15]
         );
-        t47 = space();
+        t46 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t49 = space();
+        t48 = space();
         td9 = element("td");
-        t50 = text(
+        t49 = text(
           /*tahunLulusS1*/
           ctx[16]
         );
-        t51 = space();
+        t50 = space();
         td10 = element("td");
-        t52 = text(
+        t51 = text(
           /*tahunLulusS2*/
           ctx[17]
         );
-        t53 = space();
+        t52 = space();
         td11 = element("td");
-        t54 = text(
+        t53 = text(
           /*tahunLulusS3*/
           ctx[18]
         );
-        t55 = space();
+        t54 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t57 = space();
+        t56 = space();
         td12 = element("td");
-        t58 = text(
+        t57 = text(
           /*judulTugasAkhirS1*/
           ctx[19]
         );
-        t59 = space();
+        t58 = space();
         td13 = element("td");
-        t60 = text(
+        t59 = text(
           /*judulTugasAkhirS2*/
           ctx[20]
         );
-        t61 = space();
+        t60 = space();
         td14 = element("td");
-        t62 = text(
+        t61 = text(
           /*judulTugasAkhirS3*/
           ctx[21]
         );
-        t63 = space();
+        t62 = space();
         br1 = element("br");
-        t64 = space();
+        t63 = space();
         div1 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t66 = space();
+        t65 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t76 = space();
+        t75 = space();
         tbody1 = element("tbody");
         if (if_block0)
           if_block0.c();
-        t77 = space();
+        t76 = space();
         br2 = element("br");
-        t78 = space();
+        t77 = space();
         div2 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t80 = space();
+        t79 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t90 = space();
+        t89 = space();
         tbody2 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t91 = space();
+        t90 = space();
         br3 = element("br");
-        t92 = space();
+        t91 = space();
         div3 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t94 = space();
+        t93 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t102 = space();
+        t101 = space();
         tbody3 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t103 = space();
+        t102 = space();
         br4 = element("br");
-        t104 = space();
+        t103 = space();
         div4 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t106 = space();
+        t105 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t114 = space();
+        t113 = space();
         tbody4 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t115 = space();
+        t114 = space();
         br5 = element("br");
-        t116 = space();
+        t115 = space();
         div5 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t118 = space();
+        t117 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t128 = space();
+        t127 = space();
         tbody5 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t129 = space();
+        t128 = space();
         br6 = element("br");
-        t130 = space();
+        t129 = space();
         div6 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t132 = space();
+        t131 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t142 = space();
+        t141 = space();
         tbody6 = element("tbody");
         if (if_block5)
           if_block5.c();
@@ -26169,145 +26094,143 @@
         insert(target, t10, anchor);
         mount_component(field11, target, anchor);
         insert(target, t11, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t12, anchor);
         insert(target, br0, anchor);
-        insert(target, t13, anchor);
+        insert(target, t12, anchor);
         insert(target, div0, anchor);
         append(div0, h60);
-        append(div0, t15);
+        append(div0, t14);
         append(div0, table0);
         append(table0, thead0);
-        append(table0, t23);
+        append(table0, t22);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t25);
+        append(tr1, t24);
         append(tr1, td0);
-        append(td0, t26);
-        append(tr1, t27);
+        append(td0, t25);
+        append(tr1, t26);
         append(tr1, td1);
-        append(td1, t28);
-        append(tr1, t29);
+        append(td1, t27);
+        append(tr1, t28);
         append(tr1, td2);
-        append(td2, t30);
-        append(tbody0, t31);
+        append(td2, t29);
+        append(tbody0, t30);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t33);
+        append(tr2, t32);
         append(tr2, td3);
-        append(td3, t34);
-        append(tr2, t35);
+        append(td3, t33);
+        append(tr2, t34);
         append(tr2, td4);
-        append(td4, t36);
-        append(tr2, t37);
+        append(td4, t35);
+        append(tr2, t36);
         append(tr2, td5);
-        append(td5, t38);
-        append(tbody0, t39);
+        append(td5, t37);
+        append(tbody0, t38);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t41);
+        append(tr3, t40);
         append(tr3, td6);
-        append(td6, t42);
-        append(tr3, t43);
+        append(td6, t41);
+        append(tr3, t42);
         append(tr3, td7);
-        append(td7, t44);
-        append(tr3, t45);
+        append(td7, t43);
+        append(tr3, t44);
         append(tr3, td8);
-        append(td8, t46);
-        append(tbody0, t47);
+        append(td8, t45);
+        append(tbody0, t46);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t49);
+        append(tr4, t48);
         append(tr4, td9);
-        append(td9, t50);
-        append(tr4, t51);
+        append(td9, t49);
+        append(tr4, t50);
         append(tr4, td10);
-        append(td10, t52);
-        append(tr4, t53);
+        append(td10, t51);
+        append(tr4, t52);
         append(tr4, td11);
-        append(td11, t54);
-        append(tbody0, t55);
+        append(td11, t53);
+        append(tbody0, t54);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t57);
+        append(tr5, t56);
         append(tr5, td12);
-        append(td12, t58);
-        append(tr5, t59);
+        append(td12, t57);
+        append(tr5, t58);
         append(tr5, td13);
-        append(td13, t60);
-        append(tr5, t61);
+        append(td13, t59);
+        append(tr5, t60);
         append(tr5, td14);
-        append(td14, t62);
-        insert(target, t63, anchor);
+        append(td14, t61);
+        insert(target, t62, anchor);
         insert(target, br1, anchor);
-        insert(target, t64, anchor);
+        insert(target, t63, anchor);
         insert(target, div1, anchor);
         append(div1, h61);
-        append(div1, t66);
+        append(div1, t65);
         append(div1, table1);
         append(table1, thead1);
-        append(table1, t76);
+        append(table1, t75);
         append(table1, tbody1);
         if (if_block0)
           if_block0.m(tbody1, null);
-        append(table1, t77);
+        append(table1, t76);
         append(table1, br2);
-        insert(target, t78, anchor);
+        insert(target, t77, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
-        append(div2, t80);
+        append(div2, t79);
         append(div2, table2);
         append(table2, thead2);
-        append(table2, t90);
+        append(table2, t89);
         append(table2, tbody2);
         if (if_block1)
           if_block1.m(tbody2, null);
-        insert(target, t91, anchor);
+        insert(target, t90, anchor);
         insert(target, br3, anchor);
-        insert(target, t92, anchor);
+        insert(target, t91, anchor);
         insert(target, div3, anchor);
         append(div3, h63);
-        append(div3, t94);
+        append(div3, t93);
         append(div3, table3);
         append(table3, thead3);
-        append(table3, t102);
+        append(table3, t101);
         append(table3, tbody3);
         if (if_block2)
           if_block2.m(tbody3, null);
-        insert(target, t103, anchor);
+        insert(target, t102, anchor);
         insert(target, br4, anchor);
-        insert(target, t104, anchor);
+        insert(target, t103, anchor);
         insert(target, div4, anchor);
         append(div4, h64);
-        append(div4, t106);
+        append(div4, t105);
         append(div4, table4);
         append(table4, thead4);
-        append(table4, t114);
+        append(table4, t113);
         append(table4, tbody4);
         if (if_block3)
           if_block3.m(tbody4, null);
-        insert(target, t115, anchor);
+        insert(target, t114, anchor);
         insert(target, br5, anchor);
-        insert(target, t116, anchor);
+        insert(target, t115, anchor);
         insert(target, div5, anchor);
         append(div5, h65);
-        append(div5, t118);
+        append(div5, t117);
         append(div5, table5);
         append(table5, thead5);
-        append(table5, t128);
+        append(table5, t127);
         append(table5, tbody5);
         if (if_block4)
           if_block4.m(tbody5, null);
-        insert(target, t129, anchor);
+        insert(target, t128, anchor);
         insert(target, br6, anchor);
-        insert(target, t130, anchor);
+        insert(target, t129, anchor);
         insert(target, div6, anchor);
         append(div6, h66);
-        append(div6, t132);
+        append(div6, t131);
         append(div6, table6);
         append(table6, thead6);
-        append(table6, t142);
+        append(table6, t141);
         append(table6, tbody6);
         if (if_block5)
           if_block5.m(tbody6, null);
@@ -26343,170 +26266,163 @@
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[0] & /*tempatLahir*/
-        67108864 | dirty[3] & /*$$scope*/
+        if (dirty[0] & /*tanggalLahir, tempatLahir*/
+        201326592 | dirty[3] & /*$$scope*/
         131072) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[0] & /*tanggalLahir*/
-        134217728 | dirty[3] & /*$$scope*/
+        if (dirty[0] & /*alamatRumah*/
+        268435456 | dirty[3] & /*$$scope*/
         131072) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[0] & /*alamatRumah*/
-        268435456 | dirty[3] & /*$$scope*/
+        if (dirty[0] & /*telpFaxRumah*/
+        536870912 | dirty[3] & /*$$scope*/
         131072) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[0] & /*telpFaxRumah*/
-        536870912 | dirty[3] & /*$$scope*/
+        if (dirty[0] & /*nomorHandphone*/
+        1073741824 | dirty[3] & /*$$scope*/
         131072) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[0] & /*nomorHandphone*/
-        1073741824 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*alamatKantor*/
+        1 | dirty[3] & /*$$scope*/
         131072) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        1 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*telpFaxKantor*/
+        2 | dirty[3] & /*$$scope*/
         131072) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        2 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*email*/
+        4 | dirty[3] & /*$$scope*/
         131072) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[1] & /*email*/
-        4 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*mataKuliah*/
+        8 | dirty[3] & /*$$scope*/
         131072) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[1] & /*mataKuliah*/
-        8 | dirty[3] & /*$$scope*/
-        131072) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
         if (!current || dirty[0] & /*pertiS1*/
         128)
           set_data(
-            t26,
+            t25,
             /*pertiS1*/
             ctx2[7]
           );
         if (!current || dirty[0] & /*pertiS2*/
         256)
           set_data(
-            t28,
+            t27,
             /*pertiS2*/
             ctx2[8]
           );
         if (!current || dirty[0] & /*pertiS3*/
         512)
           set_data(
-            t30,
+            t29,
             /*pertiS3*/
             ctx2[9]
           );
         if (!current || dirty[0] & /*bidangIlmuS1*/
         1024)
           set_data(
-            t34,
+            t33,
             /*bidangIlmuS1*/
             ctx2[10]
           );
         if (!current || dirty[0] & /*bidangIlmuS2*/
         2048)
           set_data(
-            t36,
+            t35,
             /*bidangIlmuS2*/
             ctx2[11]
           );
         if (!current || dirty[0] & /*bidangIlmuS3*/
         4096)
           set_data(
-            t38,
+            t37,
             /*bidangIlmuS3*/
             ctx2[12]
           );
         if (!current || dirty[0] & /*tahunMasukS1*/
         8192)
           set_data(
-            t42,
+            t41,
             /*tahunMasukS1*/
             ctx2[13]
           );
         if (!current || dirty[0] & /*tahunMasukS2*/
         16384)
           set_data(
-            t44,
+            t43,
             /*tahunMasukS2*/
             ctx2[14]
           );
         if (!current || dirty[0] & /*tahunMasukS3*/
         32768)
           set_data(
-            t46,
+            t45,
             /*tahunMasukS3*/
             ctx2[15]
           );
         if (!current || dirty[0] & /*tahunLulusS1*/
         65536)
           set_data(
-            t50,
+            t49,
             /*tahunLulusS1*/
             ctx2[16]
           );
         if (!current || dirty[0] & /*tahunLulusS2*/
         131072)
           set_data(
-            t52,
+            t51,
             /*tahunLulusS2*/
             ctx2[17]
           );
         if (!current || dirty[0] & /*tahunLulusS3*/
         262144)
           set_data(
-            t54,
+            t53,
             /*tahunLulusS3*/
             ctx2[18]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS1*/
         524288)
           set_data(
-            t58,
+            t57,
             /*judulTugasAkhirS1*/
             ctx2[19]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS2*/
         1048576)
           set_data(
-            t60,
+            t59,
             /*judulTugasAkhirS2*/
             ctx2[20]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS3*/
         2097152)
           set_data(
-            t62,
+            t61,
             /*judulTugasAkhirS3*/
             ctx2[21]
           );
@@ -26616,7 +26532,6 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -26632,7 +26547,6 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -26649,31 +26563,30 @@
           detach(t9);
           detach(t10);
           detach(t11);
-          detach(t12);
           detach(br0);
-          detach(t13);
+          detach(t12);
           detach(div0);
-          detach(t63);
+          detach(t62);
           detach(br1);
-          detach(t64);
+          detach(t63);
           detach(div1);
-          detach(t78);
+          detach(t77);
           detach(div2);
-          detach(t91);
+          detach(t90);
           detach(br3);
-          detach(t92);
+          detach(t91);
           detach(div3);
-          detach(t103);
+          detach(t102);
           detach(br4);
-          detach(t104);
+          detach(t103);
           detach(div4);
-          detach(t115);
+          detach(t114);
           detach(br5);
-          detach(t116);
+          detach(t115);
           detach(div5);
-          detach(t129);
+          detach(t128);
           detach(br6);
-          detach(t130);
+          detach(t129);
           detach(div6);
         }
         destroy_component(field0, detaching);
@@ -26688,7 +26601,6 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
         if (if_block0)
           if_block0.d();
         if (if_block1)
@@ -26704,7 +26616,7 @@
       }
     };
   }
-  function create_default_slot_153(ctx) {
+  function create_default_slot_143(ctx) {
     let t;
     return {
       c() {
@@ -26732,7 +26644,7 @@
       }
     };
   }
-  function create_default_slot_143(ctx) {
+  function create_default_slot_134(ctx) {
     let t;
     return {
       c() {
@@ -26760,7 +26672,7 @@
       }
     };
   }
-  function create_default_slot_134(ctx) {
+  function create_default_slot_124(ctx) {
     let t;
     return {
       c() {
@@ -26788,7 +26700,7 @@
       }
     };
   }
-  function create_default_slot_124(ctx) {
+  function create_default_slot_113(ctx) {
     let t;
     return {
       c() {
@@ -26816,58 +26728,48 @@
       }
     };
   }
-  function create_default_slot_113(ctx) {
-    let t;
+  function create_default_slot_103(ctx) {
+    let t0;
+    let t1;
+    let t2;
     return {
       c() {
-        t = text(
+        t0 = text(
           /*tempatLahir*/
           ctx[26]
         );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tempatLahir*/
-        67108864)
-          set_data(
-            t,
-            /*tempatLahir*/
-            ctx2[26]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_103(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
+        t1 = text(" / ");
+        t2 = text(
           /*tanggalLahir*/
           ctx[27]
         );
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, t0, anchor);
+        insert(target, t1, anchor);
+        insert(target, t2, anchor);
       },
       p(ctx2, dirty) {
+        if (dirty[0] & /*tempatLahir*/
+        67108864)
+          set_data(
+            t0,
+            /*tempatLahir*/
+            ctx2[26]
+          );
         if (dirty[0] & /*tanggalLahir*/
         134217728)
           set_data(
-            t,
+            t2,
             /*tanggalLahir*/
             ctx2[27]
           );
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(t0);
+          detach(t1);
+          detach(t2);
         }
       }
     };
@@ -27012,7 +26914,7 @@
       }
     };
   }
-  function create_default_slot_410(ctx) {
+  function create_default_slot_49(ctx) {
     let t;
     return {
       c() {
@@ -29695,17 +29597,15 @@
     let t10;
     let field11;
     let t11;
-    let field12;
-    let t12;
     let br;
-    let t13;
+    let t12;
     let table;
     let thead;
-    let t16;
+    let t15;
     let tbody;
-    let t17;
+    let t16;
     let hr;
-    let t18;
+    let t17;
     let div;
     let p;
     let button;
@@ -29715,81 +29615,74 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_472] },
+        $$slots: { default: [create_default_slot_462] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_462] },
+        $$slots: { default: [create_default_slot_452] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_452] },
+        $$slots: { default: [create_default_slot_442] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_442] },
+        $$slots: { default: [create_default_slot_432] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
-        name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_432] },
+        name: "Tempat / Tanggal Lahir",
+        $$slots: { default: [create_default_slot_422] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
-      props: {
-        name: "Tanggal Lahir",
-        $$slots: { default: [create_default_slot_423] },
-        $$scope: { ctx }
-      }
-    });
-    field6 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_413] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_403] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Nomor Handphone",
         $$slots: { default: [create_default_slot_393] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_383] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_373] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         class: "input",
         name: "Email",
@@ -29797,7 +29690,7 @@
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_353] },
@@ -29835,20 +29728,18 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        create_component(field12.$$.fragment);
-        t12 = space();
         br = element("br");
-        t13 = space();
+        t12 = space();
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow"></th> <th>Mata Kuliah</th></tr>`;
-        t16 = space();
+        t15 = space();
         tbody = element("tbody");
         if (if_block)
           if_block.c();
-        t17 = space();
+        t16 = space();
         hr = element("hr");
-        t18 = space();
+        t17 = space();
         div = element("div");
         p = element("p");
         button = element("button");
@@ -29883,19 +29774,17 @@
         insert(target, t10, anchor);
         mount_component(field11, target, anchor);
         insert(target, t11, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t12, anchor);
         insert(target, br, anchor);
-        insert(target, t13, anchor);
+        insert(target, t12, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t16);
+        append(table, t15);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t17, anchor);
+        insert(target, t16, anchor);
         insert(target, hr, anchor);
-        insert(target, t18, anchor);
+        insert(target, t17, anchor);
         insert(target, div, anchor);
         append(div, p);
         append(p, button);
@@ -29940,68 +29829,61 @@
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[1] & /*tempatLahir*/
-        256 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        768 | dirty[6] & /*$$scope*/
         512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*tanggalLahir*/
-        512 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*alamatRumah*/
+        1024 | dirty[6] & /*$$scope*/
         512) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*alamatRumah*/
-        1024 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*telpFaxRumah*/
+        2048 | dirty[6] & /*$$scope*/
         512) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
-        2048 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*nomorHandphone*/
+        4096 | dirty[6] & /*$$scope*/
         512) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
-        4096 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*alamatKantor*/
+        8192 | dirty[6] & /*$$scope*/
         512) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        8192 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*telpFaxKantor*/
+        16384 | dirty[6] & /*$$scope*/
         512) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        16384 | dirty[6] & /*$$scope*/
+        if (dirty[1] & /*email*/
+        32768 | dirty[6] & /*$$scope*/
         512) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[1] & /*email*/
-        32768 | dirty[6] & /*$$scope*/
+        if (dirty[0] & /*vmataKuliah*/
+        64 | dirty[6] & /*$$scope*/
         512) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[0] & /*vmataKuliah*/
-        64 | dirty[6] & /*$$scope*/
-        512) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
         if (
           /*mataKuliah*/
           ctx2[47] && /*mataKuliah*/
@@ -30042,7 +29924,6 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
@@ -30059,7 +29940,6 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -30077,13 +29957,12 @@
           detach(t9);
           detach(t10);
           detach(t11);
-          detach(t12);
           detach(br);
-          detach(t13);
+          detach(t12);
           detach(table);
-          detach(t17);
+          detach(t16);
           detach(hr);
-          detach(t18);
+          detach(t17);
           detach(div);
         }
         destroy_component(field0, detaching);
@@ -30098,7 +29977,6 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -30106,7 +29984,7 @@
       }
     };
   }
-  function create_default_slot_472(ctx) {
+  function create_default_slot_462(ctx) {
     let input;
     let t0;
     let p;
@@ -30163,7 +30041,7 @@
       }
     };
   }
-  function create_default_slot_462(ctx) {
+  function create_default_slot_452(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -30210,7 +30088,7 @@
       }
     };
   }
-  function create_default_slot_452(ctx) {
+  function create_default_slot_442(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -30257,7 +30135,7 @@
       }
     };
   }
-  function create_default_slot_442(ctx) {
+  function create_default_slot_432(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -30304,93 +30182,80 @@
       }
     };
   }
-  function create_default_slot_432(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*tempatLahir*/
-          ctx[39]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_4*/
-            ctx[101]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*tempatLahir*/
-        256 && input.value !== /*tempatLahir*/
-        ctx2[39]) {
-          set_input_value(
-            input,
-            /*tempatLahir*/
-            ctx2[39]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_423(ctx) {
+  function create_default_slot_422(ctx) {
+    let div2;
+    let div0;
     let input0;
     let t;
+    let div1;
     let input1;
     let mounted;
     let dispose;
     return {
       c() {
+        div2 = element("div");
+        div0 = element("div");
         input0 = element("input");
         t = space();
+        div1 = element("div");
         input1 = element("input");
         attr(input0, "class", "input");
         attr(input0, "type", "text");
+        attr(div0, "class", "field");
+        attr(input1, "class", "input");
         attr(input1, "type", "date");
+        attr(div1, "class", "field");
+        attr(div2, "class", "field-body");
       },
       m(target, anchor) {
-        insert(target, input0, anchor);
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, input0);
         set_input_value(
           input0,
+          /*tempatLahir*/
+          ctx[39]
+        );
+        append(div2, t);
+        append(div2, div1);
+        append(div1, input1);
+        set_input_value(
+          input1,
           /*tanggalLahir*/
           ctx[40]
         );
-        insert(target, t, anchor);
-        insert(target, input1, anchor);
         if (!mounted) {
-          dispose = listen(
-            input0,
-            "input",
-            /*input0_input_handler*/
-            ctx[102]
-          );
+          dispose = [
+            listen(
+              input0,
+              "input",
+              /*input0_input_handler*/
+              ctx[101]
+            ),
+            listen(
+              input1,
+              "input",
+              /*input1_input_handler*/
+              ctx[102]
+            )
+          ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[1] & /*tanggalLahir*/
-        512 && input0.value !== /*tanggalLahir*/
-        ctx2[40]) {
+        if (dirty[1] & /*tempatLahir*/
+        256 && input0.value !== /*tempatLahir*/
+        ctx2[39]) {
           set_input_value(
             input0,
+            /*tempatLahir*/
+            ctx2[39]
+          );
+        }
+        if (dirty[1] & /*tanggalLahir*/
+        512) {
+          set_input_value(
+            input1,
             /*tanggalLahir*/
             ctx2[40]
           );
@@ -30398,12 +30263,10 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(input0);
-          detach(t);
-          detach(input1);
+          detach(div2);
         }
         mounted = false;
-        dispose();
+        run_all(dispose);
       }
     };
   }
@@ -30428,7 +30291,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_5*/
+            /*input_input_handler_4*/
             ctx[103]
           );
           mounted = true;
@@ -30475,7 +30338,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
+            /*input_input_handler_5*/
             ctx[104]
           );
           mounted = true;
@@ -30522,7 +30385,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
+            /*input_input_handler_6*/
             ctx[105]
           );
           mounted = true;
@@ -30569,7 +30432,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
+            /*input_input_handler_7*/
             ctx[106]
           );
           mounted = true;
@@ -30616,7 +30479,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
+            /*input_input_handler_8*/
             ctx[107]
           );
           mounted = true;
@@ -30663,7 +30526,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
+            /*input_input_handler_9*/
             ctx[108]
           );
           mounted = true;
@@ -30751,7 +30614,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_11*/
+              /*input_input_handler_10*/
               ctx[109]
             ),
             listen(
@@ -31300,7 +31163,7 @@
             listen(
               input1,
               "input",
-              /*input1_input_handler*/
+              /*input1_input_handler_1*/
               ctx[111]
             ),
             listen(
@@ -32553,7 +32416,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_12*/
+            /*input_input_handler_11*/
             ctx[125]
           );
           mounted = true;
@@ -32600,7 +32463,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
+            /*input_input_handler_12*/
             ctx[126]
           );
           mounted = true;
@@ -32725,7 +32588,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
+            /*input_input_handler_13*/
             ctx[128]
           );
           mounted = true;
@@ -32774,7 +32637,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_15*/
+              /*input_input_handler_14*/
               ctx[129]
             ),
             listen(
@@ -33242,7 +33105,7 @@
       }
     };
   }
-  function create_default_slot_284(ctx) {
+  function create_default_slot_283(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -33263,7 +33126,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_16*/
+            /*input_input_handler_15*/
             ctx[132]
           );
           mounted = true;
@@ -33310,7 +33173,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
+            /*input_input_handler_16*/
             ctx[133]
           );
           mounted = true;
@@ -33435,7 +33298,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
+            /*input_input_handler_17*/
             ctx[135]
           );
           mounted = true;
@@ -33484,7 +33347,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_19*/
+              /*input_input_handler_18*/
               ctx[136]
             ),
             listen(
@@ -33539,7 +33402,7 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_284] },
+        $$slots: { default: [create_default_slot_283] },
         $$scope: { ctx }
       }
     });
@@ -33973,7 +33836,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_20*/
+            /*input_input_handler_19*/
             ctx[139]
           );
           mounted = true;
@@ -34020,7 +33883,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
+            /*input_input_handler_20*/
             ctx[140]
           );
           mounted = true;
@@ -34067,7 +33930,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
+            /*input_input_handler_21*/
             ctx[141]
           );
           mounted = true;
@@ -34114,7 +33977,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
+            /*input_input_handler_22*/
             ctx[142]
           );
           mounted = true;
@@ -34555,7 +34418,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
+            /*input_input_handler_23*/
             ctx[144]
           );
           mounted = true;
@@ -34602,7 +34465,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
+            /*input_input_handler_24*/
             ctx[145]
           );
           mounted = true;
@@ -34649,7 +34512,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
+            /*input_input_handler_25*/
             ctx[146]
           );
           mounted = true;
@@ -34696,7 +34559,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
+            /*input_input_handler_26*/
             ctx[147]
           );
           mounted = true;
@@ -35137,7 +35000,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
+            /*input_input_handler_27*/
             ctx[149]
           );
           mounted = true;
@@ -35184,7 +35047,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
+            /*input_input_handler_28*/
             ctx[150]
           );
           mounted = true;
@@ -35231,7 +35094,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
+            /*input_input_handler_29*/
             ctx[151]
           );
           mounted = true;
@@ -35278,7 +35141,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
+            /*input_input_handler_30*/
             ctx[152]
           );
           mounted = true;
@@ -35325,7 +35188,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
+            /*input_input_handler_31*/
             ctx[153]
           );
           mounted = true;
@@ -35807,7 +35670,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
+            /*input_input_handler_32*/
             ctx[155]
           );
           mounted = true;
@@ -35854,7 +35717,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
+            /*input_input_handler_33*/
             ctx[156]
           );
           mounted = true;
@@ -35880,7 +35743,7 @@
       }
     };
   }
-  function create_default_slot_411(ctx) {
+  function create_default_slot_410(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -35901,7 +35764,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
+            /*input_input_handler_34*/
             ctx[157]
           );
           mounted = true;
@@ -35948,7 +35811,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
+            /*input_input_handler_35*/
             ctx[158]
           );
           mounted = true;
@@ -35995,7 +35858,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
+            /*input_input_handler_36*/
             ctx[159]
           );
           mounted = true;
@@ -36057,7 +35920,7 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_411] },
+        $$slots: { default: [create_default_slot_410] },
         $$scope: { ctx }
       }
     });
@@ -37238,39 +37101,39 @@
       nidn = to_number(this.value);
       $$invalidate(38, nidn);
     }
-    function input_input_handler_4() {
+    function input0_input_handler() {
       tempatLahir = this.value;
       $$invalidate(39, tempatLahir);
     }
-    function input0_input_handler() {
+    function input1_input_handler() {
       tanggalLahir = this.value;
       $$invalidate(40, tanggalLahir);
     }
-    function input_input_handler_5() {
+    function input_input_handler_4() {
       alamatRumah = this.value;
       $$invalidate(41, alamatRumah);
     }
-    function input_input_handler_6() {
+    function input_input_handler_5() {
       telpFaxRumah = to_number(this.value);
       $$invalidate(42, telpFaxRumah);
     }
-    function input_input_handler_7() {
+    function input_input_handler_6() {
       nomorHandphone = to_number(this.value);
       $$invalidate(43, nomorHandphone);
     }
-    function input_input_handler_8() {
+    function input_input_handler_7() {
       alamatKantor = this.value;
       $$invalidate(44, alamatKantor);
     }
-    function input_input_handler_9() {
+    function input_input_handler_8() {
       telpFaxKantor = to_number(this.value);
       $$invalidate(45, telpFaxKantor);
     }
-    function input_input_handler_10() {
+    function input_input_handler_9() {
       email = this.value;
       $$invalidate(46, email);
     }
-    function input_input_handler_11() {
+    function input_input_handler_10() {
       vmataKuliah = this.value;
       $$invalidate(6, vmataKuliah);
     }
@@ -37278,7 +37141,7 @@
       pertiS1 = this.value;
       $$invalidate(48, pertiS1);
     }
-    function input1_input_handler() {
+    function input1_input_handler_1() {
       pertiS2 = this.value;
       $$invalidate(49, pertiS2);
     }
@@ -37334,11 +37197,11 @@
       judulTugasAkhirS3 = this.value;
       $$invalidate(62, judulTugasAkhirS3);
     }
-    function input_input_handler_12() {
+    function input_input_handler_11() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(8, tahunPenelitian);
     }
-    function input_input_handler_13() {
+    function input_input_handler_12() {
       judulPenelitian = this.value;
       $$invalidate(9, judulPenelitian);
     }
@@ -37346,11 +37209,11 @@
       rolePenelitian = select_value(this);
       $$invalidate(10, rolePenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_13() {
       sumberDanaPenelitian = this.value;
       $$invalidate(11, sumberDanaPenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_14() {
       biayaPenelitian = this.value;
       $$invalidate(7, biayaPenelitian);
     }
@@ -37359,11 +37222,11 @@
       showModalPenelitian = value;
       $$invalidate(63, showModalPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_15() {
       tahunPengmas = to_number(this.value);
       $$invalidate(13, tahunPengmas);
     }
-    function input_input_handler_17() {
+    function input_input_handler_16() {
       judulPengmas = this.value;
       $$invalidate(14, judulPengmas);
     }
@@ -37371,11 +37234,11 @@
       rolePengmas = select_value(this);
       $$invalidate(15, rolePengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_17() {
       sumberDanaPengmas = this.value;
       $$invalidate(16, sumberDanaPengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_18() {
       biayaPengmas = this.value;
       $$invalidate(12, biayaPengmas);
     }
@@ -37384,19 +37247,19 @@
       showModalPengmas = value;
       $$invalidate(64, showModalPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_19() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(17, tahunDiseminasi);
     }
-    function input_input_handler_21() {
+    function input_input_handler_20() {
       judulDiseminasi = this.value;
       $$invalidate(18, judulDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_21() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(19, namaPemakalahDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_22() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(20, namaPertemuanDiseminasi);
     }
@@ -37404,19 +37267,19 @@
       showModalDiseminasi = value;
       $$invalidate(65, showModalDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_23() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(21, tahunPublikasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_24() {
       judulPublikasi = this.value;
       $$invalidate(22, judulPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_25() {
       namaJurnal = this.value;
       $$invalidate(23, namaJurnal);
     }
-    function input_input_handler_27() {
+    function input_input_handler_26() {
       impactFactor = this.value;
       $$invalidate(24, impactFactor);
     }
@@ -37424,23 +37287,23 @@
       showModalPublikasi = value;
       $$invalidate(66, showModalPublikasi);
     }
-    function input_input_handler_28() {
+    function input_input_handler_27() {
       tahunBuku = to_number(this.value);
       $$invalidate(25, tahunBuku);
     }
-    function input_input_handler_29() {
+    function input_input_handler_28() {
       JudulBuku = this.value;
       $$invalidate(26, JudulBuku);
     }
-    function input_input_handler_30() {
+    function input_input_handler_29() {
       namaPenulisBuku = this.value;
       $$invalidate(27, namaPenulisBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_30() {
       PenerbitBuku = this.value;
       $$invalidate(28, PenerbitBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_31() {
       Isbn = this.value;
       $$invalidate(29, Isbn);
     }
@@ -37448,23 +37311,23 @@
       showModalPenulisanBuku = value;
       $$invalidate(67, showModalPenulisanBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_32() {
       tahunHKI = to_number(this.value);
       $$invalidate(30, tahunHKI);
     }
-    function input_input_handler_34() {
+    function input_input_handler_33() {
       JudulHKI = this.value;
       $$invalidate(31, JudulHKI);
     }
-    function input_input_handler_35() {
+    function input_input_handler_34() {
       namaPenulisHKI = this.value;
       $$invalidate(32, namaPenulisHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_35() {
       jenisHKI = this.value;
       $$invalidate(33, jenisHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_36() {
       noHKI = this.value;
       $$invalidate(34, noHKI);
     }
@@ -37574,17 +37437,17 @@
       input_input_handler_1,
       input_input_handler_2,
       input_input_handler_3,
-      input_input_handler_4,
       input0_input_handler,
+      input1_input_handler,
+      input_input_handler_4,
       input_input_handler_5,
       input_input_handler_6,
       input_input_handler_7,
       input_input_handler_8,
       input_input_handler_9,
       input_input_handler_10,
-      input_input_handler_11,
       input0_input_handler_1,
-      input1_input_handler,
+      input1_input_handler_1,
       input2_input_handler,
       input3_input_handler,
       input4_input_handler,
@@ -37598,41 +37461,41 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
+      input_input_handler_11,
       input_input_handler_12,
-      input_input_handler_13,
       select_change_handler,
+      input_input_handler_13,
       input_input_handler_14,
-      input_input_handler_15,
       keyup_handler,
       modal0_show_binding,
+      input_input_handler_15,
       input_input_handler_16,
-      input_input_handler_17,
       select_change_handler_1,
+      input_input_handler_17,
       input_input_handler_18,
-      input_input_handler_19,
       keyup_handler_1,
       modal1_show_binding,
+      input_input_handler_19,
       input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
-      input_input_handler_23,
       modal2_show_binding,
+      input_input_handler_23,
       input_input_handler_24,
       input_input_handler_25,
       input_input_handler_26,
-      input_input_handler_27,
       modal3_show_binding,
+      input_input_handler_27,
       input_input_handler_28,
       input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
-      input_input_handler_32,
       modal4_show_binding,
+      input_input_handler_32,
       input_input_handler_33,
       input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
-      input_input_handler_37,
       modal5_show_binding
     ];
   }
@@ -38166,7 +38029,7 @@
       }
     };
   }
-  function create_default_slot_414(ctx) {
+  function create_default_slot_411(ctx) {
     let select;
     let updating_result;
     let current;
@@ -38652,7 +38515,7 @@
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_414] },
+        $$slots: { default: [create_default_slot_411] },
         $$scope: { ctx }
       }
     });
@@ -39543,63 +39406,63 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_394] },
+        $$slots: { default: [create_default_slot_384] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_384] },
+        $$slots: { default: [create_default_slot_374] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_374] },
+        $$slots: { default: [create_default_slot_364] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_364] },
+        $$slots: { default: [create_default_slot_354] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_354] },
+        $$slots: { default: [create_default_slot_344] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tahun Pelaksanaan",
-        $$slots: { default: [create_default_slot_344] },
+        $$slots: { default: [create_default_slot_334] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_334] },
+        $$slots: { default: [create_default_slot_325] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_325] },
+        $$slots: { default: [create_default_slot_317] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_317] },
+        $$slots: { default: [create_default_slot_304] },
         $$scope: { ctx }
       }
     });
@@ -39610,21 +39473,21 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_304] },
+        $$slots: { default: [create_default_slot_294] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_294] },
+        $$slots: { default: [create_default_slot_284] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "isi",
-        $$slots: { default: [create_default_slot_285] },
+        $$slots: { default: [create_default_slot_275] },
         $$scope: { ctx }
       }
     });
@@ -39924,35 +39787,35 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_275] },
+        $$slots: { default: [create_default_slot_265] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_265] },
+        $$slots: { default: [create_default_slot_255] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_255] },
+        $$slots: { default: [create_default_slot_245] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_245] },
+        $$slots: { default: [create_default_slot_236] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_236] },
+        $$slots: { default: [create_default_slot_226] },
         $$scope: { ctx }
       }
     });
@@ -39975,21 +39838,21 @@
     field6 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_226] },
+        $$slots: { default: [create_default_slot_218] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_218] },
+        $$slots: { default: [create_default_slot_205] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_205] },
+        $$slots: { default: [create_default_slot_195] },
         $$scope: { ctx }
       }
     });
@@ -40000,28 +39863,28 @@
     field9 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_195] },
+        $$slots: { default: [create_default_slot_185] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_185] },
+        $$slots: { default: [create_default_slot_175] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Isi Proposal",
-        $$slots: { default: [create_default_slot_175] },
+        $$slots: { default: [create_default_slot_165] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_165] },
+        $$slots: { default: [create_default_slot_155] },
         $$scope: { ctx }
       }
     });
@@ -40319,7 +40182,7 @@
       }
     };
   }
-  function create_default_slot_394(ctx) {
+  function create_default_slot_384(ctx) {
     let t;
     return {
       c() {
@@ -40347,7 +40210,7 @@
       }
     };
   }
-  function create_default_slot_384(ctx) {
+  function create_default_slot_374(ctx) {
     let t;
     return {
       c() {
@@ -40375,7 +40238,7 @@
       }
     };
   }
-  function create_default_slot_374(ctx) {
+  function create_default_slot_364(ctx) {
     let t;
     return {
       c() {
@@ -40403,7 +40266,7 @@
       }
     };
   }
-  function create_default_slot_364(ctx) {
+  function create_default_slot_354(ctx) {
     let t;
     return {
       c() {
@@ -40431,7 +40294,7 @@
       }
     };
   }
-  function create_default_slot_354(ctx) {
+  function create_default_slot_344(ctx) {
     let t;
     return {
       c() {
@@ -40459,7 +40322,7 @@
       }
     };
   }
-  function create_default_slot_344(ctx) {
+  function create_default_slot_334(ctx) {
     let t;
     return {
       c() {
@@ -40487,7 +40350,7 @@
       }
     };
   }
-  function create_default_slot_334(ctx) {
+  function create_default_slot_325(ctx) {
     let t;
     return {
       c() {
@@ -40515,7 +40378,7 @@
       }
     };
   }
-  function create_default_slot_325(ctx) {
+  function create_default_slot_317(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -40547,7 +40410,7 @@
       }
     };
   }
-  function create_default_slot_317(ctx) {
+  function create_default_slot_304(ctx) {
     let span;
     return {
       c() {
@@ -40663,7 +40526,7 @@
       }
     };
   }
-  function create_default_slot_304(ctx) {
+  function create_default_slot_294(ctx) {
     let t_value = (
       /*data*/
       ctx[2].judul + ""
@@ -40689,7 +40552,7 @@
       }
     };
   }
-  function create_default_slot_294(ctx) {
+  function create_default_slot_284(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -40720,7 +40583,7 @@
       }
     };
   }
-  function create_default_slot_285(ctx) {
+  function create_default_slot_275(ctx) {
     let div;
     let raw_value = (
       /*data*/
@@ -40749,7 +40612,7 @@
       }
     };
   }
-  function create_default_slot_275(ctx) {
+  function create_default_slot_265(ctx) {
     let div;
     let select;
     let option0;
@@ -40828,7 +40691,7 @@
       }
     };
   }
-  function create_default_slot_265(ctx) {
+  function create_default_slot_255(ctx) {
     let div;
     let select;
     let option0;
@@ -40993,7 +40856,7 @@
       }
     };
   }
-  function create_default_slot_255(ctx) {
+  function create_default_slot_245(ctx) {
     let div;
     let select;
     let option;
@@ -41080,7 +40943,7 @@
       }
     };
   }
-  function create_default_slot_245(ctx) {
+  function create_default_slot_236(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -41128,7 +40991,7 @@
       }
     };
   }
-  function create_default_slot_236(ctx) {
+  function create_default_slot_226(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -41176,7 +41039,7 @@
       }
     };
   }
-  function create_default_slot_226(ctx) {
+  function create_default_slot_218(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -41232,7 +41095,7 @@
       }
     };
   }
-  function create_default_slot_218(ctx) {
+  function create_default_slot_205(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -41265,7 +41128,7 @@
       }
     };
   }
-  function create_default_slot_205(ctx) {
+  function create_default_slot_195(ctx) {
     let select;
     let updating_result;
     let current;
@@ -41498,7 +41361,7 @@
       }
     };
   }
-  function create_default_slot_195(ctx) {
+  function create_default_slot_185(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -41546,7 +41409,7 @@
       }
     };
   }
-  function create_default_slot_185(ctx) {
+  function create_default_slot_175(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -41591,7 +41454,7 @@
       }
     };
   }
-  function create_default_slot_175(ctx) {
+  function create_default_slot_165(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
@@ -41631,7 +41494,7 @@
       }
     };
   }
-  function create_default_slot_165(ctx) {
+  function create_default_slot_155(ctx) {
     let t;
     return {
       c() {
@@ -41820,135 +41683,133 @@
     let t11;
     let field11;
     let t12;
-    let field12;
-    let t13;
     let br0;
-    let t14;
+    let t13;
     let div0;
     let h60;
-    let t16;
+    let t15;
     let table0;
     let thead0;
-    let t24;
+    let t23;
     let tbody0;
     let tr1;
     let th4;
-    let t26;
+    let t25;
     let td0;
+    let t26;
     let t27;
-    let t28;
     let td1;
+    let t28;
     let t29;
-    let t30;
     let td2;
+    let t30;
     let t31;
-    let t32;
     let tr2;
     let th5;
-    let t34;
+    let t33;
     let td3;
+    let t34;
     let t35;
-    let t36;
     let td4;
+    let t36;
     let t37;
-    let t38;
     let td5;
+    let t38;
     let t39;
-    let t40;
     let tr3;
     let th6;
-    let t42;
+    let t41;
     let td6;
+    let t42;
     let t43;
-    let t44;
     let td7;
+    let t44;
     let t45;
-    let t46;
     let td8;
+    let t46;
     let t47;
-    let t48;
     let tr4;
     let th7;
-    let t50;
+    let t49;
     let td9;
+    let t50;
     let t51;
-    let t52;
     let td10;
+    let t52;
     let t53;
-    let t54;
     let td11;
+    let t54;
     let t55;
-    let t56;
     let tr5;
     let th8;
-    let t58;
+    let t57;
     let td12;
+    let t58;
     let t59;
-    let t60;
     let td13;
+    let t60;
     let t61;
-    let t62;
     let td14;
+    let t62;
     let t63;
-    let t64;
     let br1;
-    let t65;
+    let t64;
     let div1;
     let h61;
-    let t67;
+    let t66;
     let table1;
     let thead1;
-    let t77;
+    let t76;
     let tbody1;
-    let t78;
+    let t77;
     let br2;
-    let t79;
+    let t78;
     let div2;
     let h62;
-    let t81;
+    let t80;
     let table2;
     let thead2;
-    let t91;
+    let t90;
     let tbody2;
-    let t92;
+    let t91;
     let br3;
-    let t93;
+    let t92;
     let div3;
     let h63;
-    let t95;
+    let t94;
     let table3;
     let thead3;
-    let t103;
+    let t102;
     let tbody3;
-    let t104;
+    let t103;
     let br4;
-    let t105;
+    let t104;
     let div4;
     let h64;
-    let t107;
+    let t106;
     let table4;
     let thead4;
-    let t115;
+    let t114;
     let tbody4;
-    let t116;
+    let t115;
     let br5;
-    let t117;
+    let t116;
     let div5;
     let h65;
-    let t119;
+    let t118;
     let table5;
     let thead5;
-    let t129;
+    let t128;
     let tbody5;
-    let t130;
+    let t129;
     let br6;
-    let t131;
+    let t130;
     let div6;
     let h66;
-    let t133;
+    let t132;
     let table6;
     let thead6;
-    let t143;
+    let t142;
     let tbody6;
     let current;
     function select_block_type_3(ctx2, dirty) {
@@ -41964,88 +41825,81 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_155] },
+        $$slots: { default: [create_default_slot_145] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_145] },
+        $$slots: { default: [create_default_slot_136] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_136] },
+        $$slots: { default: [create_default_slot_126] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_126] },
+        $$slots: { default: [create_default_slot_119] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
-        name: "Tempat Lahir",
-        $$slots: { default: [create_default_slot_119] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Lahir",
+        name: "Tempat / Tanggal Lahir",
         $$slots: { default: [create_default_slot_106] },
         $$scope: { ctx }
       }
     });
-    field6 = new Field_default({
+    field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
         $$slots: { default: [create_default_slot_96] },
         $$scope: { ctx }
       }
     });
-    field7 = new Field_default({
+    field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
         $$slots: { default: [create_default_slot_86] },
         $$scope: { ctx }
       }
     });
-    field8 = new Field_default({
+    field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
         $$slots: { default: [create_default_slot_76] },
         $$scope: { ctx }
       }
     });
-    field9 = new Field_default({
+    field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
         $$slots: { default: [create_default_slot_66] },
         $$scope: { ctx }
       }
     });
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
         $$slots: { default: [create_default_slot_57] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         name: "Email",
-        $$slots: { default: [create_default_slot_415] },
+        $$slots: { default: [create_default_slot_414] },
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
         $$slots: { default: [create_default_slot_318] },
@@ -42104,209 +41958,207 @@
         t11 = space();
         create_component(field11.$$.fragment);
         t12 = space();
-        create_component(field12.$$.fragment);
-        t13 = space();
         br0 = element("br");
-        t14 = space();
+        t13 = space();
         div0 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t16 = space();
+        t15 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t24 = space();
+        t23 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t26 = space();
+        t25 = space();
         td0 = element("td");
-        t27 = text(
+        t26 = text(
           /*pertiS1*/
           ctx[9]
         );
-        t28 = space();
+        t27 = space();
         td1 = element("td");
-        t29 = text(
+        t28 = text(
           /*pertiS2*/
           ctx[10]
         );
-        t30 = space();
+        t29 = space();
         td2 = element("td");
-        t31 = text(
+        t30 = text(
           /*pertiS3*/
           ctx[11]
         );
-        t32 = space();
+        t31 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t34 = space();
+        t33 = space();
         td3 = element("td");
-        t35 = text(
+        t34 = text(
           /*bidangIlmuS1*/
           ctx[12]
         );
-        t36 = space();
+        t35 = space();
         td4 = element("td");
-        t37 = text(
+        t36 = text(
           /*bidangIlmuS2*/
           ctx[13]
         );
-        t38 = space();
+        t37 = space();
         td5 = element("td");
-        t39 = text(
+        t38 = text(
           /*bidangIlmuS3*/
           ctx[14]
         );
-        t40 = space();
+        t39 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t42 = space();
+        t41 = space();
         td6 = element("td");
-        t43 = text(
+        t42 = text(
           /*tahunMasukS1*/
           ctx[15]
         );
-        t44 = space();
+        t43 = space();
         td7 = element("td");
-        t45 = text(
+        t44 = text(
           /*tahunMasukS2*/
           ctx[16]
         );
-        t46 = space();
+        t45 = space();
         td8 = element("td");
-        t47 = text(
+        t46 = text(
           /*tahunMasukS3*/
           ctx[17]
         );
-        t48 = space();
+        t47 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t50 = space();
+        t49 = space();
         td9 = element("td");
-        t51 = text(
+        t50 = text(
           /*tahunLulusS1*/
           ctx[18]
         );
-        t52 = space();
+        t51 = space();
         td10 = element("td");
-        t53 = text(
+        t52 = text(
           /*tahunLulusS2*/
           ctx[19]
         );
-        t54 = space();
+        t53 = space();
         td11 = element("td");
-        t55 = text(
+        t54 = text(
           /*tahunLulusS3*/
           ctx[20]
         );
-        t56 = space();
+        t55 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t58 = space();
+        t57 = space();
         td12 = element("td");
-        t59 = text(
+        t58 = text(
           /*judulTugasAkhirS1*/
           ctx[21]
         );
-        t60 = space();
+        t59 = space();
         td13 = element("td");
-        t61 = text(
+        t60 = text(
           /*judulTugasAkhirS2*/
           ctx[22]
         );
-        t62 = space();
+        t61 = space();
         td14 = element("td");
-        t63 = text(
+        t62 = text(
           /*judulTugasAkhirS3*/
           ctx[23]
         );
-        t64 = space();
+        t63 = space();
         br1 = element("br");
-        t65 = space();
+        t64 = space();
         div1 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t67 = space();
+        t66 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t77 = space();
+        t76 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t78 = space();
+        t77 = space();
         br2 = element("br");
-        t79 = space();
+        t78 = space();
         div2 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t81 = space();
+        t80 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t91 = space();
+        t90 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t92 = space();
+        t91 = space();
         br3 = element("br");
-        t93 = space();
+        t92 = space();
         div3 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t95 = space();
+        t94 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t103 = space();
+        t102 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t104 = space();
+        t103 = space();
         br4 = element("br");
-        t105 = space();
+        t104 = space();
         div4 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t107 = space();
+        t106 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t115 = space();
+        t114 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t116 = space();
+        t115 = space();
         br5 = element("br");
-        t117 = space();
+        t116 = space();
         div5 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t119 = space();
+        t118 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t129 = space();
+        t128 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t130 = space();
+        t129 = space();
         br6 = element("br");
-        t131 = space();
+        t130 = space();
         div6 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t133 = space();
+        t132 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t143 = space();
+        t142 = space();
         tbody6 = element("tbody");
         if (if_block6)
           if_block6.c();
@@ -42352,145 +42204,143 @@
         insert(target, t11, anchor);
         mount_component(field11, target, anchor);
         insert(target, t12, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t13, anchor);
         insert(target, br0, anchor);
-        insert(target, t14, anchor);
+        insert(target, t13, anchor);
         insert(target, div0, anchor);
         append(div0, h60);
-        append(div0, t16);
+        append(div0, t15);
         append(div0, table0);
         append(table0, thead0);
-        append(table0, t24);
+        append(table0, t23);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t26);
+        append(tr1, t25);
         append(tr1, td0);
-        append(td0, t27);
-        append(tr1, t28);
+        append(td0, t26);
+        append(tr1, t27);
         append(tr1, td1);
-        append(td1, t29);
-        append(tr1, t30);
+        append(td1, t28);
+        append(tr1, t29);
         append(tr1, td2);
-        append(td2, t31);
-        append(tbody0, t32);
+        append(td2, t30);
+        append(tbody0, t31);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t34);
+        append(tr2, t33);
         append(tr2, td3);
-        append(td3, t35);
-        append(tr2, t36);
+        append(td3, t34);
+        append(tr2, t35);
         append(tr2, td4);
-        append(td4, t37);
-        append(tr2, t38);
+        append(td4, t36);
+        append(tr2, t37);
         append(tr2, td5);
-        append(td5, t39);
-        append(tbody0, t40);
+        append(td5, t38);
+        append(tbody0, t39);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t42);
+        append(tr3, t41);
         append(tr3, td6);
-        append(td6, t43);
-        append(tr3, t44);
+        append(td6, t42);
+        append(tr3, t43);
         append(tr3, td7);
-        append(td7, t45);
-        append(tr3, t46);
+        append(td7, t44);
+        append(tr3, t45);
         append(tr3, td8);
-        append(td8, t47);
-        append(tbody0, t48);
+        append(td8, t46);
+        append(tbody0, t47);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t50);
+        append(tr4, t49);
         append(tr4, td9);
-        append(td9, t51);
-        append(tr4, t52);
+        append(td9, t50);
+        append(tr4, t51);
         append(tr4, td10);
-        append(td10, t53);
-        append(tr4, t54);
+        append(td10, t52);
+        append(tr4, t53);
         append(tr4, td11);
-        append(td11, t55);
-        append(tbody0, t56);
+        append(td11, t54);
+        append(tbody0, t55);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t58);
+        append(tr5, t57);
         append(tr5, td12);
-        append(td12, t59);
-        append(tr5, t60);
+        append(td12, t58);
+        append(tr5, t59);
         append(tr5, td13);
-        append(td13, t61);
-        append(tr5, t62);
+        append(td13, t60);
+        append(tr5, t61);
         append(tr5, td14);
-        append(td14, t63);
-        insert(target, t64, anchor);
+        append(td14, t62);
+        insert(target, t63, anchor);
         insert(target, br1, anchor);
-        insert(target, t65, anchor);
+        insert(target, t64, anchor);
         insert(target, div1, anchor);
         append(div1, h61);
-        append(div1, t67);
+        append(div1, t66);
         append(div1, table1);
         append(table1, thead1);
-        append(table1, t77);
+        append(table1, t76);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t78);
+        append(table1, t77);
         append(table1, br2);
-        insert(target, t79, anchor);
+        insert(target, t78, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
-        append(div2, t81);
+        append(div2, t80);
         append(div2, table2);
         append(table2, thead2);
-        append(table2, t91);
+        append(table2, t90);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t92, anchor);
+        insert(target, t91, anchor);
         insert(target, br3, anchor);
-        insert(target, t93, anchor);
+        insert(target, t92, anchor);
         insert(target, div3, anchor);
         append(div3, h63);
-        append(div3, t95);
+        append(div3, t94);
         append(div3, table3);
         append(table3, thead3);
-        append(table3, t103);
+        append(table3, t102);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t104, anchor);
+        insert(target, t103, anchor);
         insert(target, br4, anchor);
-        insert(target, t105, anchor);
+        insert(target, t104, anchor);
         insert(target, div4, anchor);
         append(div4, h64);
-        append(div4, t107);
+        append(div4, t106);
         append(div4, table4);
         append(table4, thead4);
-        append(table4, t115);
+        append(table4, t114);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t116, anchor);
+        insert(target, t115, anchor);
         insert(target, br5, anchor);
-        insert(target, t117, anchor);
+        insert(target, t116, anchor);
         insert(target, div5, anchor);
         append(div5, h65);
-        append(div5, t119);
+        append(div5, t118);
         append(div5, table5);
         append(table5, thead5);
-        append(table5, t129);
+        append(table5, t128);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t130, anchor);
+        insert(target, t129, anchor);
         insert(target, br6, anchor);
-        insert(target, t131, anchor);
+        insert(target, t130, anchor);
         insert(target, div6, anchor);
         append(div6, h66);
-        append(div6, t133);
+        append(div6, t132);
         append(div6, table6);
         append(table6, thead6);
-        append(table6, t143);
+        append(table6, t142);
         append(table6, tbody6);
         if (if_block6)
           if_block6.m(tbody6, null);
@@ -42534,170 +42384,163 @@
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[1] & /*tempatLahir*/
-        1024 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        3072 | dirty[3] & /*$$scope*/
         1048576) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*tanggalLahir*/
-        2048 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*alamatRumah*/
+        4096 | dirty[3] & /*$$scope*/
         1048576) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*alamatRumah*/
-        4096 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*telpFaxRumah*/
+        8192 | dirty[3] & /*$$scope*/
         1048576) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
-        8192 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*nomorHandphone*/
+        16384 | dirty[3] & /*$$scope*/
         1048576) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
-        16384 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*alamatKantor*/
+        32768 | dirty[3] & /*$$scope*/
         1048576) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        32768 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*telpFaxKantor*/
+        65536 | dirty[3] & /*$$scope*/
         1048576) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        65536 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*email*/
+        131072 | dirty[3] & /*$$scope*/
         1048576) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[1] & /*email*/
-        131072 | dirty[3] & /*$$scope*/
+        if (dirty[1] & /*mataKuliah*/
+        262144 | dirty[3] & /*$$scope*/
         1048576) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[1] & /*mataKuliah*/
-        262144 | dirty[3] & /*$$scope*/
-        1048576) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
         if (!current || dirty[0] & /*pertiS1*/
         512)
           set_data(
-            t27,
+            t26,
             /*pertiS1*/
             ctx2[9]
           );
         if (!current || dirty[0] & /*pertiS2*/
         1024)
           set_data(
-            t29,
+            t28,
             /*pertiS2*/
             ctx2[10]
           );
         if (!current || dirty[0] & /*pertiS3*/
         2048)
           set_data(
-            t31,
+            t30,
             /*pertiS3*/
             ctx2[11]
           );
         if (!current || dirty[0] & /*bidangIlmuS1*/
         4096)
           set_data(
-            t35,
+            t34,
             /*bidangIlmuS1*/
             ctx2[12]
           );
         if (!current || dirty[0] & /*bidangIlmuS2*/
         8192)
           set_data(
-            t37,
+            t36,
             /*bidangIlmuS2*/
             ctx2[13]
           );
         if (!current || dirty[0] & /*bidangIlmuS3*/
         16384)
           set_data(
-            t39,
+            t38,
             /*bidangIlmuS3*/
             ctx2[14]
           );
         if (!current || dirty[0] & /*tahunMasukS1*/
         32768)
           set_data(
-            t43,
+            t42,
             /*tahunMasukS1*/
             ctx2[15]
           );
         if (!current || dirty[0] & /*tahunMasukS2*/
         65536)
           set_data(
-            t45,
+            t44,
             /*tahunMasukS2*/
             ctx2[16]
           );
         if (!current || dirty[0] & /*tahunMasukS3*/
         131072)
           set_data(
-            t47,
+            t46,
             /*tahunMasukS3*/
             ctx2[17]
           );
         if (!current || dirty[0] & /*tahunLulusS1*/
         262144)
           set_data(
-            t51,
+            t50,
             /*tahunLulusS1*/
             ctx2[18]
           );
         if (!current || dirty[0] & /*tahunLulusS2*/
         524288)
           set_data(
-            t53,
+            t52,
             /*tahunLulusS2*/
             ctx2[19]
           );
         if (!current || dirty[0] & /*tahunLulusS3*/
         1048576)
           set_data(
-            t55,
+            t54,
             /*tahunLulusS3*/
             ctx2[20]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS1*/
         2097152)
           set_data(
-            t59,
+            t58,
             /*judulTugasAkhirS1*/
             ctx2[21]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS2*/
         4194304)
           set_data(
-            t61,
+            t60,
             /*judulTugasAkhirS2*/
             ctx2[22]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS3*/
         8388608)
           set_data(
-            t63,
+            t62,
             /*judulTugasAkhirS3*/
             ctx2[23]
           );
@@ -42807,7 +42650,6 @@
         transition_in(field9.$$.fragment, local);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -42823,7 +42665,6 @@
         transition_out(field9.$$.fragment, local);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -42841,31 +42682,30 @@
           detach(t10);
           detach(t11);
           detach(t12);
-          detach(t13);
           detach(br0);
-          detach(t14);
+          detach(t13);
           detach(div0);
-          detach(t64);
+          detach(t63);
           detach(br1);
-          detach(t65);
+          detach(t64);
           detach(div1);
-          detach(t79);
+          detach(t78);
           detach(div2);
-          detach(t92);
+          detach(t91);
           detach(br3);
-          detach(t93);
+          detach(t92);
           detach(div3);
-          detach(t104);
+          detach(t103);
           detach(br4);
-          detach(t105);
+          detach(t104);
           detach(div4);
-          detach(t116);
+          detach(t115);
           detach(br5);
-          detach(t117);
+          detach(t116);
           detach(div5);
-          detach(t130);
+          detach(t129);
           detach(br6);
-          detach(t131);
+          detach(t130);
           detach(div6);
         }
         if_block0.d(detaching);
@@ -42881,7 +42721,6 @@
         destroy_component(field9, detaching);
         destroy_component(field10, detaching);
         destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
         if (if_block1)
           if_block1.d();
         if (if_block2)
@@ -42941,7 +42780,7 @@
       }
     };
   }
-  function create_default_slot_155(ctx) {
+  function create_default_slot_145(ctx) {
     let t;
     return {
       c() {
@@ -42969,7 +42808,7 @@
       }
     };
   }
-  function create_default_slot_145(ctx) {
+  function create_default_slot_136(ctx) {
     let t;
     return {
       c() {
@@ -42997,7 +42836,7 @@
       }
     };
   }
-  function create_default_slot_136(ctx) {
+  function create_default_slot_126(ctx) {
     let t;
     return {
       c() {
@@ -43025,7 +42864,7 @@
       }
     };
   }
-  function create_default_slot_126(ctx) {
+  function create_default_slot_119(ctx) {
     let t;
     return {
       c() {
@@ -43053,58 +42892,48 @@
       }
     };
   }
-  function create_default_slot_119(ctx) {
-    let t;
+  function create_default_slot_106(ctx) {
+    let t0;
+    let t1;
+    let t2;
     return {
       c() {
-        t = text(
+        t0 = text(
           /*tempatLahir*/
           ctx[41]
         );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*tempatLahir*/
-        1024)
-          set_data(
-            t,
-            /*tempatLahir*/
-            ctx2[41]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_106(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
+        t1 = text(" / ");
+        t2 = text(
           /*tanggalLahir*/
           ctx[42]
         );
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, t0, anchor);
+        insert(target, t1, anchor);
+        insert(target, t2, anchor);
       },
       p(ctx2, dirty) {
+        if (dirty[1] & /*tempatLahir*/
+        1024)
+          set_data(
+            t0,
+            /*tempatLahir*/
+            ctx2[41]
+          );
         if (dirty[1] & /*tanggalLahir*/
         2048)
           set_data(
-            t,
+            t2,
             /*tanggalLahir*/
             ctx2[42]
           );
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(t0);
+          detach(t1);
+          detach(t2);
         }
       }
     };
@@ -43249,7 +43078,7 @@
       }
     };
   }
-  function create_default_slot_415(ctx) {
+  function create_default_slot_414(ctx) {
     let t;
     return {
       c() {
