@@ -6,6 +6,7 @@
    import Field from "../../libs/Field.svelte";
    import { deleteIcon } from "../../store/icons";
    import Select from "../../libs/Select.svelte";
+   import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    let value;
    let label;
@@ -57,8 +58,9 @@
          console.log(response);
       }
 
-      //_______________________________________________________________________
+      //------------------------------------------------------------
       // Generate Random Character
+      //------------------------------------------------------------
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultxx = "";
@@ -69,22 +71,6 @@
       }
 
       randomFileName = resultxx;
-   });
-
-   onMount(() => {
-      tinymce.init({
-         selector: "textarea",
-         plugins:
-            "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
-         toolbar:
-            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
-         tinycomments_mode: "embedded",
-         tinycomments_author: "Author name",
-         mergetags_list: [
-            { value: "First.Name", title: "First Name" },
-            { value: "Email", title: "Email" },
-         ],
-      });
    });
 
    function formatRupiah(angka, prefix) {
@@ -105,7 +91,7 @@
 
    async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-      myAbstract = tinymce.get("abstract").getContent();
+      // myAbstract = tinymce.get("abstract").getContent();
       myIsi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -131,7 +117,6 @@
                body: JSON.stringify(payloadfile),
             });
             const result = await response.json();
-            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -176,7 +161,7 @@
 
    async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      myAbstract = tinymce.get("abstract").getContent();
+      // myAbstract = tinymce.get("abstract").getContent();
       myIsi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -202,7 +187,7 @@
                body: JSON.stringify(payloadfile),
             });
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -252,7 +237,6 @@
    function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
       anggotaTim = anggotaTim.filter((member) => {
-         console.log(member.value, uid);
          return member.value !== uid;
       });
    }
@@ -268,7 +252,7 @@
             <option value="" selected disabled hidden
                >Pilih Jenis Proposal</option
             >
-            <option selected value="Proposal Awal">Proposal Awal</option>
+            <option value="Proposal Awal">Proposal Awal</option>
             <option value="Proposal Lanjutan">Proposal Lanjutan</option>
          </select>
       </div>
@@ -326,7 +310,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Kelompok Keahlian"
+         placeholder="Masukkan kelompok keahlian"
          bind:value={kelompokKeahlian}
       />
    </Field>
@@ -335,7 +319,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Topik"
+         placeholder="Masukkan topik"
          bind:value={topik}
       />
    </Field>
@@ -346,7 +330,7 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Biaya Penelitian"
+         placeholder="Masukkan biaya penelitian"
          bind:value={biayaPenelitian}
          on:keyup={() =>
             (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
@@ -409,20 +393,44 @@
       <input
          class="input"
          type="text"
-         placeholder="Masukkan Judul"
+         placeholder="Masukkan judul"
          bind:value={judul}
       />
    </Field>
 
-   <Field id="abstract" textarea name="Abstrak" />
-   <Field id="isi" textarea name="Isi Proposal" />
+   <Field name="Abstrak">
+      <textarea
+         class="textarea"
+         bind:value={myAbstract}
+         placeholder="Masukkan abstrak"
+      ></textarea>
+   </Field>
 
-   <br />
+   <Field name="Isi Proposal">
+      <Wysiwyg id="isi" content={myIsi} />
+   </Field>
 
-   <Field>
+   <!-- <Field id="abstract" textarea name="Abstrak" />
+   <Field id="isi" textarea name="Isi Proposal" /> -->
+
+   <hr />
+
+   <!-- <Field>
       <button class="button is-info is-light" on:click={simpanProposal}
          >Simpan</button
       >
       <button class="button is-info" on:click={submitProposal}>Submit</button>
-   </Field>
+   </Field> -->
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info is-light" on:click={simpanProposal}
+            >Simpan</button
+         >
+      </p>
+      <p class="control">
+         <button class="button is-info" on:click={submitProposal}>Submit</button
+         >
+      </p>
+   </div>
 </Article>

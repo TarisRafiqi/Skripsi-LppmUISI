@@ -80,7 +80,7 @@
                         pid={item.id}
                         on:click={detail}
                         ><span class="icon">
-                           <Icon id="orang" src={infoOutline} />
+                           <Icon id="info" src={infoOutline} />
                         </span></button
                      ></td
                   >

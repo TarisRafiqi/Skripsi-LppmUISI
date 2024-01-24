@@ -12,7 +12,7 @@
 
    export let params;
    const id = params["1"];
-   let data;
+   let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
    let jenisProposal;
    let jenisKegiatan;
@@ -37,6 +37,39 @@
    let klppmSelected;
    let kpkSelected;
    let reviewerSelected;
+
+   let idProfile,
+      namaLengkap,
+      jabatanFungsional,
+      nip,
+      nidn,
+      tempatLahir,
+      tanggalLahir,
+      alamatRumah,
+      telpFaxRumah,
+      nomorHandphone,
+      alamatKantor,
+      telpFaxKantor,
+      email,
+      mataKuliah = [];
+
+   let pertiS1,
+      pertiS2,
+      pertiS3,
+      bidangIlmuS1,
+      bidangIlmuS2,
+      bidangIlmuS3,
+      tahunMasukS1,
+      tahunMasukS2,
+      tahunMasukS3,
+      tahunLulusS1,
+      tahunLulusS2,
+      tahunLulusS3,
+      judulTugasAkhirS1,
+      judulTugasAkhirS2,
+      judulTugasAkhirS3;
+
+   let uidProposal;
 
    let items = [];
    let file;
@@ -66,6 +99,7 @@
       if (response.ok) {
          data = result;
 
+         uidProposal = data.uid;
          jenisProposal = data.jenis_proposal;
          jenisKegiatan = data.jenis_kegiatan;
          jenisSkema = data.jenis_skema;
@@ -91,7 +125,192 @@
       }
 
       // -----------------------------------------------------------------------------//
+      // Get Profile
+      // -----------------------------------------------------------------------------//
+
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultGP = await responseGP.json();
+
+      if (responseGP.ok) {
+         dataGP = resultGP;
+
+         idProfile = dataGP.id;
+         idUser = dataGP.uid;
+         namaLengkap = dataGP.nama_lengkap;
+         jabatanFungsional = dataGP.jabatan_fungsional;
+         nip = dataGP.nip;
+         nidn = dataGP.nidn;
+         tempatLahir = dataGP.tempat_lahir;
+         tanggalLahir = dataGP.tanggal_lahir;
+         alamatRumah = dataGP.alamat_rumah;
+         telpFaxRumah = dataGP.telp_fax_rumah;
+         nomorHandphone = dataGP.nomor_handphone;
+         alamatKantor = dataGP.alamat_kantor;
+         telpFaxKantor = dataGP.telp_fax_kantor;
+         email = dataGP.email;
+         mataKuliah =
+            typeof dataGP.mata_kuliah === "string"
+               ? JSON.parse(dataGP.mata_kuliah)
+               : dataGP.mata_kuliah || [];
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Riwayat Pendidikan
+      // -----------------------------------------------------------------------------//
+
+      const responseRP = await fetch(
+         $apiURL + "/riwayatpendidikan/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataRP = await responseRP.json();
+
+      if (responseRP.ok) {
+         pertiS1 = dataRP.nama_perti_s1;
+         pertiS2 = dataRP.nama_perti_s2;
+         pertiS3 = dataRP.nama_perti_s3;
+
+         bidangIlmuS1 = dataRP.bidang_ilmu_s1;
+         bidangIlmuS2 = dataRP.bidang_ilmu_s2;
+         bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+
+         tahunMasukS1 = dataRP.tahun_masuk_s1;
+         tahunMasukS2 = dataRP.tahun_masuk_s2;
+         tahunMasukS3 = dataRP.tahun_masuk_s3;
+
+         tahunLulusS1 = dataRP.tahun_lulus_s1;
+         tahunLulusS2 = dataRP.tahun_lulus_s2;
+         tahunLulusS3 = dataRP.tahun_lulus_s3;
+
+         judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
+         judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
+         judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Penelitian
+      // -----------------------------------------------------------------------------//
+      const responsePP = await fetch(
+         $apiURL + "/pengalamanPenelitian/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPP = await responsePP.json();
+
+      if (responsePP.ok) {
+         dataPP = resultPP.dbData;
+      } else {
+         console.log(responsePP);
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Pengmas
+      // -----------------------------------------------------------------------------//
+      const responsePM = await fetch(
+         $apiURL + "/pengalamanPengmas/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPM = await responsePM.json();
+
+      if (responsePM.ok) {
+         dataPM = resultPM.dbData;
+      } else {
+         console.log(responsePM);
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Diseminasi
+      // -----------------------------------------------------------------------------//
+      const responsePD = await fetch(
+         $apiURL + "/pengalamanDiseminasi/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPD = await responsePD.json();
+
+      if (responsePD.ok) {
+         dataPD = resultPD.dbData;
+      } else {
+         console.log(responsePD);
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Publikasi
+      // -----------------------------------------------------------------------------//
+      const responsePPub = await fetch(
+         $apiURL + "/pengalamanPublikasi/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPPub = await responsePPub.json();
+
+      if (responsePPub.ok) {
+         dataPPub = resultPPub.dbData;
+      } else {
+         console.log(responsePPub);
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Penulisan Buku
+      // -----------------------------------------------------------------------------//
+      const responsePPB = await fetch(
+         $apiURL + "/pengalamanPenulisanBuku/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPPB = await responsePPB.json();
+
+      if (responsePPB.ok) {
+         dataPPB = resultPPB.dbData;
+      } else {
+         console.log(responsePPB);
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Pengalaman Hak Kekayaan Intelektual
+      // -----------------------------------------------------------------------------//
+      const responsePHKI = await fetch(
+         $apiURL + "/pengalamanHKI/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultPHKI = await responsePHKI.json();
+
+      if (responsePHKI.ok) {
+         dataPHKI = resultPHKI.dbData;
+      } else {
+         console.log(responsePHKI);
+      }
+
+      // -----------------------------------------------------------------------------//
       // Mengisi list Select Anggota Tim
+      // -----------------------------------------------------------------------------//
       const responsee = await fetch($apiURL + "/pilihUser", {
          method: "GET",
          headers: headers,
@@ -122,7 +341,7 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      abstrak = tinymce.get("abstract").getContent();
+      // abstrak = tinymce.get("abstract").getContent();
       isi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
@@ -209,8 +428,48 @@
          judul,
          abstrak,
          isi,
-         comment: "",
+         comment,
          status: Number(data.status) - 1,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomFileName,
+      };
+
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         $route("/admin/proposals");
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function handleDitolak() {
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tahunPelaksanaan,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         isi,
+         comment: "",
+         status: Number(data.status) + 1,
          kdeptSelected,
          klppmSelected,
          kpkSelected,
@@ -296,7 +555,6 @@
       const result = await response.json();
 
       if (response.ok) {
-         // $route("/admin/proposals");
       } else {
          console.log(response);
       }
@@ -379,6 +637,8 @@
    let tab3;
    let tab4;
    let tab5;
+   let tab6;
+   let tab7;
 
    function clicktab1() {
       tab1 = true;
@@ -386,6 +646,8 @@
       tab3 = false;
       tab4 = false;
       tab5 = false;
+      tab6 = false;
+      tab7 = false;
    }
 
    function clicktab2() {
@@ -394,6 +656,8 @@
       tab3 = false;
       tab4 = false;
       tab5 = false;
+      tab6 = false;
+      tab7 = false;
    }
 
    function clicktab3() {
@@ -402,6 +666,8 @@
       tab3 = true;
       tab4 = false;
       tab5 = false;
+      tab6 = false;
+      tab7 = false;
    }
 
    function clicktab4() {
@@ -417,6 +683,26 @@
       tab3 = false;
       tab4 = false;
       tab5 = true;
+      tab6 = false;
+      tab7 = false;
+   }
+   function clicktab6() {
+      tab1 = false;
+      tab2 = false;
+      tab3 = false;
+      tab4 = false;
+      tab5 = false;
+      tab6 = true;
+      tab7 = false;
+   }
+   function clicktab7() {
+      tab1 = false;
+      tab2 = false;
+      tab3 = false;
+      tab4 = false;
+      tab5 = false;
+      tab6 = false;
+      tab7 = true;
    }
 </script>
 
@@ -439,7 +725,7 @@
             <li on:click={clicktab2} class:is-active={tab2}>
                <!-- svelte-ignore a11y-missing-attribute -->
                <a>
-                  <span>Status</span>
+                  <span>Biodata Peneliti</span>
                </a>
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -447,7 +733,7 @@
             <li on:click={clicktab3} class:is-active={tab3}>
                <!-- svelte-ignore a11y-missing-attribute -->
                <a>
-                  <span>Reviewer</span>
+                  <span>Status</span>
                </a>
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -455,12 +741,28 @@
             <li on:click={clicktab4} class:is-active={tab4}>
                <!-- svelte-ignore a11y-missing-attribute -->
                <a>
-                  <span>Logbook / Monev</span>
+                  <span>Reviewer</span>
                </a>
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <li on:click={clicktab5} class:is-active={tab5}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Logbook</span>
+               </a>
+            </li>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab6} class:is-active={tab6}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Monev</span>
+               </a>
+            </li>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab7} class:is-active={tab7}>
                <!-- svelte-ignore a11y-missing-attribute -->
                <a>
                   <span>Laporan</span>
@@ -478,9 +780,7 @@
                      <option value="" selected disabled hidden
                         >Pilih Jenis Proposal</option
                      >
-                     <option selected value="Proposal Awal"
-                        >Proposal Awal</option
-                     >
+                     <option value="Proposal Awal">Proposal Awal</option>
                      <option value="Proposal Lanjutan">Proposal Lanjutan</option
                      >
                   </select>
@@ -636,14 +936,16 @@
             </Field>
 
             <Field name="Abstrak">
-               <Wysiwyg id="abstract" content={abstrak} />
+               <textarea class="textarea" bind:value={abstrak}></textarea>
             </Field>
 
             <Field name="Isi Proposal">
                <Wysiwyg id="isi" content={isi} />
             </Field>
 
-            <Field name="Comment">
+            <hr />
+
+            <Field name="Catatan Revisi">
                {comment}
             </Field>
          {:else}
@@ -726,60 +1028,424 @@
                   {@html data.isi}
                </div>
             </Field>
+
+            <hr />
+
+            <Field name="Catatan Revisi">
+               <textarea class="textarea" bind:value={comment}></textarea>
+            </Field>
          {/if}
 
-         {#if view}
-            <Field>
-               <button class="button is-warning" on:click={handleRevisi}
-                  >Revisi</button
-               >
-               <button class="button is-info" on:click={handlePass}
-                  >Proses</button
-               >
-            </Field>
+         <hr />
+
+         <div class="field is-grouped is-grouped-right">
+            <!-- {#if view}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {:else}
+               <p class="control">
+                  <button class="button is-info" on:click={remediasi}
+                     >Remediasi</button
+                  >
+               </p>
+            {/if} -->
+            {#if status === 2 || status === 4 || status === 6 || status === 8}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 10}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button
+                     class="button is-danger is-light is-outlined"
+                     on:click={handleDitolak}>Ditolak</button
+                  >
+               </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 1 || status === 3 || status === 5 || status === 7 || status === 9}
+               <p class="control">
+                  <button class="button is-info" on:click={remediasi}
+                     >Remediasi</button
+                  >
+               </p>
+            {/if}
+         </div>
+      {/if}
+
+      {#if tab2 === true}
+         {#if status > 10}
+            <div class="columns notification is-danger is-light">
+               <div class="column">
+                  <p style="text-align: justify;">
+                     <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                     sanksinya.
+                  </p>
+               </div>
+            </div>
          {:else}
-            <Field>
-               <button class="button is-info" on:click={remediasi}
-                  >Remediasi</button
-               >
-            </Field>
+            <div class="columns notification is-danger is-light">
+               <div class="column">
+                  <p style="text-align: justify;">
+                     <strong>Biodata</strong> sebagai salah satu syarat dalam
+                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                     peneliti sanggup menerima sanksinya. Jika ada perubahan,
+                     klik
+                     <a href={"/admin/profile/" + uidProposal}>
+                        <strong>Disini!</strong>
+                     </a>
+                  </p>
+               </div>
+            </div>
          {/if}
+
+         <Field name="Nama Lengkap">{namaLengkap}</Field>
+         <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
+         <Field name="NIP">{nip}</Field>
+         <Field name="NIDN">{nidn}</Field>
+         <Field name="Tempat / Tanggal Lahir"
+            >{tempatLahir} / {tanggalLahir}</Field
+         >
+         <Field name="Alamat Rumah">{alamatRumah}</Field>
+         <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
+         <Field name="Nomoh Handphone">{nomorHandphone}</Field>
+         <Field name="Alamat Kantor">{alamatKantor}</Field>
+         <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
+         <Field name="Email">{email}</Field>
+         <Field name="Mata Kuliah">
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th>Mata Kuliah</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if mataKuliah && mataKuliah.length > 0}
+                     {#each mataKuliah as matkul}
+                        <tr>
+                           <td>{matkul.label}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </Field>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">Riwayat Pendidikan</h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Program</th>
+                     <th class="is-narrow">S1</th>
+                     <th class="is-narrow">S2</th>
+                     <th class="is-narrow">S3</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <th>Nama Perguruan Tinggi</th>
+                     <td>{pertiS1}</td>
+                     <td>{pertiS2}</td>
+                     <td>{pertiS3}</td>
+                  </tr>
+                  <tr>
+                     <th>Bidang Ilmu</th>
+                     <td>{bidangIlmuS1}</td>
+                     <td>{bidangIlmuS2}</td>
+                     <td>{bidangIlmuS3}</td>
+                  </tr>
+                  <tr>
+                     <th>Tahun Masuk</th>
+                     <td>{tahunMasukS1}</td>
+                     <td>{tahunMasukS2}</td>
+                     <td>{tahunMasukS3}</td>
+                  </tr>
+                  <tr>
+                     <th>Tahun Lulus</th>
+                     <td>{tahunLulusS1}</td>
+                     <td>{tahunLulusS2}</td>
+                     <td>{tahunLulusS3}</td>
+                  </tr>
+                  <tr>
+                     <th>Judul Skripsi/Tesis/Disertasi</th>
+                     <td>{judulTugasAkhirS1}</td>
+                     <td>{judulTugasAkhirS2}</td>
+                     <td>{judulTugasAkhirS3}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">Pengalaman Penelitian</h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul Penelitian</th>
+                     <th class="is-narrow">Ketua / Anggota</th>
+                     <th class="is-narrow">Sumber Dana</th>
+                     <th class="is-narrow">Jumlah Rp.</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPP}
+                     {#each dataPP as PP}
+                        <tr>
+                           <td>{PP.tahun_penelitian}</td>
+                           <td>{PP.judul_penelitian}</td>
+                           <td>{PP.role_penelitian}</td>
+                           <td>{PP.sumber_dana}</td>
+                           <td>{PP.jumlah}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+               <br />
+            </table>
+         </div>
+
+         <div>
+            <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul Pengabdian Masyarakat</th>
+                     <th class="is-narrow">Ketua / Anggota</th>
+                     <th class="is-narrow">Sumber Dana</th>
+                     <th class="is-narrow">Jumlah Rp.</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPM}
+                     {#each dataPM as PM}
+                        <tr>
+                           <td>{PM.tahun_pengmas}</td>
+                           <td>{PM.judul_pengmas}</td>
+                           <td>{PM.role_pengmas}</td>
+                           <td>{PM.sumber_dana}</td>
+                           <td>{PM.jumlah}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">
+               Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
+            </h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul Artikel</th>
+                     <th>Nama Pemakalah</th>
+                     <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPD}
+                     {#each dataPD as PD}
+                        <tr>
+                           <td>{PD.tahun_diseminasi}</td>
+                           <td>{PD.judul_artikel}</td>
+                           <td>{PD.nama_pemakalah}</td>
+                           <td>{PD.nama_pertemuan}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">
+               Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
+            </h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul Artikel</th>
+                     <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th>
+                     <th>Impact Factor/Scopus Quarter/Akreditasi</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPPub}
+                     {#each dataPPub as PPub}
+                        <tr>
+                           <td>{PPub.tahun_publikasi}</td>
+                           <td>{PPub.judul_artikel}</td>
+                           <td>{PPub.nama_jurnal}</td>
+                           <td>{PPub.impact}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul Buku</th>
+                     <th>Nama Penulis</th>
+                     <th>Penerbit</th>
+                     <th>ISBN</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPPB}
+                     {#each dataPPB as PPB}
+                        <tr>
+                           <td>{PPB.tahun_buku}</td>
+                           <td>{PPB.judul_buku}</td>
+                           <td>{PPB.nama_penulis}</td>
+                           <td>{PPB.penerbit}</td>
+                           <td>{PPB.isbn}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
+
+         <br />
+
+         <div>
+            <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow">Tahun</th>
+                     <th>Judul HKI</th>
+                     <th>Nama Penulis</th>
+                     <th>Jenis HKI</th>
+                     <th>No HKI</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if dataPHKI}
+                     {#each dataPHKI as PHKI}
+                        <tr>
+                           <td>{PHKI.tahun_hki}</td>
+                           <td>{PHKI.judul_hki}</td>
+                           <td>{PHKI.nama_penulis}</td>
+                           <td>{PHKI.jenis_hki}</td>
+                           <td>{PHKI.no_hki}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
       {/if}
 
       <!-- Tab Status -->
-      {#if tab2 === true}
-         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-            <thead>
-               <tr>
-                  <th>Status PPM</th>
-                  <th>Status Pendanaan</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>
-                     <Status code={data.status} />
-                  </td>
-                  <td
-                     ><div class="select is-normal">
-                        <select>
-                           <option>Dana belum dicairkan</option>
-                           <option>50% dana sudah dicairkan</option>
-                           <option>100% dana sudah dicairkan</option>
-                        </select>
-                     </div></td
-                  >
-               </tr>
-            </tbody>
-         </table>
+      {#if tab3 === true}
+         <Field name="Status PPM">
+            <Status code={data.status} />
+         </Field>
 
-         <button class="button is-info" on:click={handleSubmitDana}
-            >Submit</button
+         <Field name="Status Pendanaan">
+            <div class="field has-addons">
+               <div class="control">
+                  <div class="select">
+                     <select name="country">
+                        <option value="Dana belum dicairkan"
+                           >Dana belum dicairkan</option
+                        >
+                        <option value="50% dana sudah dicairkan"
+                           >50% dana sudah dicairkan</option
+                        >
+                        <option value="100% dana sudah dicairkan"
+                           >100% dana sudah dicairkan</option
+                        >
+                     </select>
+                  </div>
+               </div>
+               <div class="control">
+                  <button type="submit" class="button is-info">Simpan</button>
+               </div>
+            </div></Field
          >
       {/if}
 
       <!-- Tab Reviewer -->
-      {#if tab3 === true}
+      {#if tab4 === true}
          <Field
             name="Ka. Departemen"
             bind:value={ka_departemen}
@@ -816,6 +1482,7 @@
             userId={kpkSelected}
          />
          <br />
+
          <Field>
             <button class="button is-info" on:click={handleSubmitReviewer}
                >Submit</button
@@ -823,8 +1490,8 @@
          </Field>
       {/if}
 
-      <!-- Tab Logbook / Monev -->
-      {#if tab4 === true}
+      <!-- Tab Logbook -->
+      {#if tab5 === true}
          <div class="columns notification is-info is-light">
             <div class="column">
                <p>
@@ -833,9 +1500,10 @@
                </p>
             </div>
          </div>
+      {/if}
 
-         <br />
-
+      <!-- Tab Monev -->
+      {#if tab6 === true}
          <div class="columns notification is-success is-light">
             <div class="column">
                <p>
@@ -847,7 +1515,7 @@
       {/if}
 
       <!-- Tab Laporan -->
-      {#if tab5 === true}
+      {#if tab7 === true}
          <div class="columns notification is-info is-light">
             <div class="column">
                <p>

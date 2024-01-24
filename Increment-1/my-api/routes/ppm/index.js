@@ -131,6 +131,7 @@ module.exports = async function (fastify, opts) {
       const roleFromToken = decodedToken.role;
       // const idFromToken = decodedToken.id;
 
+      let connection;
       let data = request.body;
 
       // reply.send({
@@ -140,7 +141,6 @@ module.exports = async function (fastify, opts) {
 
       const sql =
          "INSERT INTO ppm (uid, judul, abstrak, isi, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, tahun_pelaksanaan, random_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      let connection;
 
       if (
          roleFromToken === "admin" ||

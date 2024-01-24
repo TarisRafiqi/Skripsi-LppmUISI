@@ -12,9 +12,3 @@
       <p>Coming Soon</p>
    </div>
 </Article>
-
-<style>
-   :global(#orang) {
-      color: #b8b8b8;
-   }
-</style>

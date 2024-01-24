@@ -1,14 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const http = require("http");
-const { WebSocketServer } = require("ws");
-const chokidar = require("chokidar");
 
+const chokidar = require("chokidar");
 const esbuild = require("esbuild");
 const { sassPlugin } = require("esbuild-sass-plugin");
 const sveltePlugin = require("esbuild-svelte");
 const sveltePreprocess = require("svelte-preprocess");
-
 const {
    reloadScript,
    redColor,
@@ -18,64 +15,84 @@ const {
    contentType,
    indexOfHome,
    indexOfPage,
-   unregisterSW,
-   registerSW,
+   serviceWorker,
 } = require("./libs.js");
 
-const dev = process.argv.includes("-w");
 const cwd = process.cwd();
-const port = 3000;
-const outdir = "public";
+const dev = process.argv.includes("-w");
+const serv = process.argv.includes("-s");
+const cfgfile = path.join(cwd, "config.js");
+const config = (fs.existsSync(cfgfile) && require(cfgfile)) || [];
+
+const port = dev ? config.port || 3000 : 80;
+const outdir = config.outdir || "public";
+const sw = config.sw || false;
+const cssVersion = config.cssver || 1;
+const esbuildconfig = config.esbuild || [];
+const env = config.env || [];
 
 // index.html
-const indexContent = fs.readFileSync(path.join(cwd, outdir, "index.html"), "utf8");
-const index = indexContent.replace("</head>", dev ? reloadScript(port) : "" + "</head>");
-const pageFiles = fs.readdirSync("src/pages");
+let indexContent = fs.readFileSync(
+   path.join(cwd, outdir, "index.html"),
+   "utf8"
+);
+let index = indexContent.replace(
+   "</head>",
+   dev ? reloadScript(port) : "" + "</head>"
+);
 
-let ready = false,
-   routes = [];
+let routes = [],
+   reroute;
 
 compile();
 
-const server = http.createServer(function (req, res) {
-   const url = req.url.replace(/\?.*/, "");
-   const ext = path.extname(url) || ".html";
-   const filePath = path.join(outdir, url.endsWith("/") ? "index.html" : url);
+if (dev || serv) {
+   const server = require("http").createServer(function (req, res) {
+      let url = req.url.replace(/\?.*/, "");
+      let ext = path.extname(url) || ".html";
+      let filePath = path.join(outdir, url.endsWith("/") ? "index.html" : url);
 
-   let content = "",
-      code = 200;
+      let content = "",
+         code = 200;
 
-   if (fs.existsSync(filePath)) {
-      content = ext === ".html" ? index : fs.readFileSync(filePath);
-   } else {
-      if (ext !== ".html") code = 404;
-      content = index;
-   }
-
-   res.writeHead(code, { "Content-Type": contentType(ext) });
-   res.end(content);
-
-   console.log(greenColor + getTime(), code, url, code === 200 ? greenColor + "✔" : redColor + "✘", whiteColor);
-});
-
-if (dev) {
-   pageFiles.forEach((pageFile) => {
-      if (pageFile.endsWith(".svelte") && !pageFile.endsWith("ndex.svelte") && !routes.includes(pageFile)) {
-         routes.push(path.join("src/pages", pageFile));
+      if (fs.existsSync(filePath)) {
+         content = ext === ".html" ? index : fs.readFileSync(filePath);
+      } else {
+         if (ext !== ".html") code = 404;
+         content = index;
       }
+
+      res.writeHead(code, { "Content-Type": contentType(ext) });
+      res.end(content);
+
+      console.log(
+         greenColor + getTime(),
+         code,
+         url,
+         code === 200 ? greenColor + "✔" : redColor + "✘",
+         whiteColor
+      );
    });
+
    server.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
+
+      if (serv) return;
+
+      createRoute();
+
+      const { WebSocketServer } = require("ws");
       new WebSocketServer({ server }).on("connection", watch);
    });
 }
 
 async function compile() {
-   if (dev) {
-      fs.writeFileSync("public/sw.js", unregisterSW());
-   } else fs.writeFileSync("public/sw.js", registerSW());
+   if (serv) return;
+
+   // if (!dev && sw) fs.writeFileSync(sw, serviceWorker(cssVersion));
+   // else if (fs.existsSync(sw)) fs.unlinkSync(sw);
+
    const ctx = await esbuild.context({
-      // entryPoints: dev ? ["src/dev.js"] : ["src/prod.js"],
       entryPoints: ["src/main.js"],
       bundle: true,
       minify: !dev,
@@ -86,137 +103,135 @@ async function compile() {
          }),
          sassPlugin(),
       ],
+      define: {
+         process: JSON.stringify({
+            ENV: {
+               production: !dev,
+               sw: serv && sw,
+            },
+            ...env,
+         }),
+      },
+      ...esbuildconfig,
    });
+
+   console.log("Compiling done!");
 
    await ctx.watch();
    if (!dev) await ctx.dispose();
-   console.log("Compiling done!");
 }
 
-function watch(ws) {
-   const publicChange = () => {
-      ws.send("reload");
-   };
-
-   // Monitor src folder
-   chokidar
-      .watch("src/pages", { ignored: /(^|[\/\\])\../, persistent: true })
-      .on("change", (fpath) => {
-         //
-      })
-      .on("add", (fpath) => {
-         fpath = fpath.replaceAll("\\", "/");
-         if (!ready || !fpath.endsWith(".svelte") || fpath.endsWith("ndex.svelte")) return;
-         if (fpath.split("/").length > 2) {
-            const title = fpath.replace(/^.*[\\/]/, "");
-            const isEmpty = fs.readFileSync(fpath, "utf8");
-            if (isEmpty === "") {
-               fs.writeFileSync(fpath, indexOfHome(title.replace(".svelte", "")));
-            }
-            if (fpath.split("/").length === 3) {
-               fpath = fpath.replaceAll("/", "\\");
-               if (!routes.includes(fpath)) {
-                  routes.unshift(fpath);
-               }
-               return createRoute();
-            }
-            fpath = fpath.replace(title, "");
-            let files = fs.readdirSync(fpath);
-            files = files.filter((file) => {
-               return file.endsWith(".svelte") && !file.includes("ndex");
-            });
-            let content = "";
-            files.map((file) => {
-               content += `export { default as ${file.replace(".svelte", "")}} from "./${file}";\n`;
-            });
-            fs.writeFileSync(path.join(fpath, "index.js"), content);
-         }
-      })
-      .on("unlink", (fpath) => {
-         fpath = fpath.replaceAll("\\", "/");
-         if (!ready || !fpath.endsWith(".svelte")) return;
-         if (fpath.split("/").length > 3) {
-            const title = fpath.replace(/^.*[\\/]/, "");
-            fpath = fpath.replace(title, "");
-            if (fs.existsSync(fpath)) {
-               try {
-                  let files = fs.readdirSync(fpath);
-                  files = files.filter((file) => {
-                     return file.endsWith(".svelte") && !file.includes("ndex");
-                  });
-                  let content = "";
-                  files.map((file) => {
-                     content += `export { default as ${file.replace(".svelte", "")}} from "./${file}";\n`;
-                  });
-                  fs.writeFileSync(path.join(fpath, "index.js"), content);
-                  createRoute();
-               } catch (error) {
-                  console.log(error);
-               }
-            }
-         }
-      })
-      .on("addDir", (fpath) => {
-         fpath = fpath.replaceAll("\\", "/");
-         if (!ready) return;
-         if (fpath.split("/").length > 2) {
-            let indexSvelte = path.join(fpath, "Index.svelte");
-            let indexJs = path.join(fpath, "index.js");
-            if (!fs.existsSync(indexJs)) {
-               fs.writeFileSync(indexJs, "");
-            }
-            if (!fs.existsSync(indexSvelte)) {
-               fs.writeFileSync(indexSvelte, indexOfPage);
-            }
-            if (!routes.includes(indexSvelte)) {
-               routes.push(indexSvelte);
-            }
-            createRoute();
-         }
-      })
-      .on("unlinkDir", (fpath) => {
-         if (!ready) return;
-         const indexSvelte = path.join(fpath, "Index.svelte");
-         routes = routes.filter((route) => {
-            return route !== indexSvelte;
-         });
-         createRoute();
-      })
-      .on("ready", () => {
-         setTimeout(() => {
-            ready = true;
-         }, 300);
-      });
-
-   // Monitor public folder
-   chokidar.watch(outdir, { ignored: /(^|[\/\\])\../, persistent: true }).on("change", publicChange);
+function createReIndex(filename) {
+   let otherfiles = fs.readdirSync(filename);
+   let reIndex = "";
+   otherfiles.map((ofile) => {
+      let ofilename = `${filename}/${ofile}`;
+      if (ofile.endsWith("Index.svelte")) {
+         routes.push(ofilename);
+      } else if (ofile.endsWith(".svelte") && /^[a-z]/.test(ofile)) {
+         reIndex += `export { default as ${ofile.replace(
+            ".svelte",
+            ""
+         )} } from "./${ofile}";\n`;
+      }
+   });
+   fs.writeFileSync(filename + "/index.js", reIndex);
 }
 
 function createRoute() {
-   let routesPage = 'import Home from "./pages/Index.svelte";\n';
-   let routesExport = `\nexport default [\n\t{ path: "/", page: Home },\n`;
-   routes.forEach((route) => {
-      route = route.replace(/\\/g, "/").replace("src/", "");
-      let cmp,
-         cmpRoute = route.split("/");
-      if (cmpRoute.length === 2 && !route.includes("ndex.svelte")) {
-         cmp = route.replace("pages/", "").replace(".svelte", "");
-         cmp = cmp[0].toUpperCase() + cmp.slice(1);
-         routesPage += `import ${cmp} from "./${route}";\n`;
-         routesExport += `\t{ path: "/${cmp.toLowerCase()}", page: ${cmp} },\n`;
+   reroute = true;
+   routes = [];
+   let files = fs.readdirSync("src/pages");
+   files.sort();
+   files.map((file) => {
+      let filename = "src/pages/" + file;
+      if (file.endsWith(".svelte")) {
+         routes.push(filename);
       }
-      cmpRoute.pop();
-      if (cmpRoute.length > 1) {
-         // cmp = cmpRoute[1][0].toUpperCase() + cmpRoute[1].slice(1);
-         cmp = cmpRoute[1].toLowerCase() + "Index";
-         routesPage += `import ${cmp} from "./${route}";\n`;
-         routesExport += `\t{ path: "/${cmpRoute[1]}/:0", page: ${cmp} },\n`;
+      if (fs.lstatSync(filename).isDirectory()) {
+         createReIndex(filename);
       }
    });
-   const content = routesPage + routesExport + "]";
-   try {
-      fs.writeFileSync(path.join(cwd, "src/routes.js"), content);
-   } catch (error) {
-      console.log(error);
-   }
+   let conImp = "";
+   let conExp = "\nexport default [\n";
+   routes.map((filepath) => {
+      let cmp = filepath.split("/").pop().replace(".svelte", "");
+      if (cmp === "Index") {
+         cmp = filepath.split("/")[2] + "Index";
+      }
+      cmp = cmp
+         .replace(".svelte", "")
+         .replace("src", ".")
+         .replace("IndexIndex", "Home");
+      conImp += `import ${cmp} from "${filepath.replace("src", ".")}";\n`;
+      conExp += `\t{ path: "/${cmp
+         .toLowerCase()
+         .replace("index", "/:0")
+         .replace("home", "")}", page: ${cmp} },\n`;
+   });
+   conExp += "]";
+   fs.writeFileSync(path.join("src/routes.js"), conImp + conExp);
+   reroute = false;
+}
+
+function watch(ws) {
+   let ready;
+
+   // Monitor src folder
+
+   const pages = chokidar.watch("src/pages", {
+      ignored: /(^|[\/\\])\../,
+      persistent: true,
+   });
+
+   pages
+      .on("add", (fpath) => {
+         if (!ready) return;
+         if (!fpath.endsWith(".svelte")) return;
+         if (reroute) return;
+         fpath = fpath.replace(/\\/g, "/");
+         let title = fpath.replace(/^.*[\\/]/, "");
+         let dirname = fpath.substring(0, fpath.lastIndexOf("/"));
+         if (fs.readFileSync(fpath, "utf8") === "") {
+            fs.writeFileSync(fpath, indexOfHome(title.replace(".svelte", "")));
+         }
+         createReIndex(dirname);
+      })
+      .on("unlink", (fpath) => {
+         if (!ready) return;
+         if (!fpath.endsWith(".svelte")) return;
+         if (reroute) return;
+         fpath = fpath.replace(/\\/g, "/");
+         let dirname = fpath.substring(0, fpath.lastIndexOf("/"));
+         if (dirname.split("/").length > 2 && fs.existsSync(dirname))
+            createReIndex(dirname);
+      })
+      .on("addDir", (fpath) => {
+         if (!ready) return;
+         if (reroute) return;
+         fpath = fpath.replace(/\\/g, "/");
+         fs.writeFileSync(path.join(fpath, "index.js"), "");
+         fs.writeFileSync(path.join(fpath, "Index.svelte"), indexOfPage);
+         createRoute();
+      })
+      .on("unlinkDir", () => {
+         if (!ready) return;
+         if (reroute) return;
+         createRoute();
+      })
+      .on("ready", () => {
+         ready = true;
+      });
+
+   // Monitor public folder
+
+   const public = chokidar.watch(outdir, {
+      ignored: /(^|[\/\\])\../,
+      persistent: true,
+   });
+
+   public.on("change", (fpath) => {
+      if (!ready) return;
+      ws.send("reload");
+   });
 }

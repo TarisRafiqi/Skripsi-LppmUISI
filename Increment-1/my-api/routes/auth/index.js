@@ -1,5 +1,7 @@
 "use strict";
 
+const dev = process.env.DEV;
+
 const groupMap = {
    0: "dosen",
    9: "admin",
@@ -13,7 +15,9 @@ const clientId =
    "6224320891-rv1khlf2774a4qrqdci4aju61nlvgdsa.apps.googleusercontent.com";
 const clientSecret = "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";
 // const redirectUrl = "http://localhost:3000/auth/google/callback";
-const redirectUrl = "http://localhost:10443/auth/google/callback";
+const redirectUrl = dev
+   ? "http://localhost:10443/auth/google/callback"
+   : "https://lppmuisiapi.dififa.com/auth/google/callback";
 
 const { google } = require("googleapis");
 const oauth2Client = new google.auth.OAuth2(
@@ -116,7 +120,9 @@ module.exports = async function (fastify, opts) {
       });
 
       reply.redirect(
-         `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
+         dev
+            ? `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
+            : `https://lppmuisi.dififa.com/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
       );
 
       // return;

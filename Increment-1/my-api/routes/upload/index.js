@@ -10,22 +10,10 @@ module.exports = async function (fastify, opts) {
       const decodedToken = fastify.jwt.decode(token);
 
       const randomFileName = request.params.randomFileName;
-      console.log(randomFileName);
-      // let arr = judul.split(" ");
-      // const username = decodedToken.username;
-      // const filename =
-      //    "rab-" +
-      //    username +
-      //    "_" +
-      //    arr
-      //       .map((str) => str.charAt(0))
-      //       .join("")
-      //       .toLowerCase() +
-      //    ".xlsx";
 
       const filepath = path.join(
          __dirname,
-         "../../../upload",
+         "../../upload",
          randomFileName + ".xlsx"
       );
 
@@ -45,19 +33,10 @@ module.exports = async function (fastify, opts) {
 
       const fileData = request.body.file;
       const randomFileName = request.body.randomFileName;
-      // console.log(randomFileName);
-
-      // const username = decodedToken.username;
-      // let arr = judul.split(" ");
-      // let filename =
-      //    "rab-" +
-      //    username +
-      //    "_" +
-      //    arr
-      //       .map((str) => str.charAt(0))
-      //       .join("")
-      //       .toLowerCase() +
-      //    ".xlsx";
+      // reply.send({
+      //    fileData,
+      //    randomFileName,
+      // });
 
       const filepath = "./upload/" + randomFileName + ".xlsx";
 
@@ -72,37 +51,5 @@ module.exports = async function (fastify, opts) {
             .status(500)
             .send({ success: false, message: "Internal Server Error" });
       }
-
-      // const data = await request.file();
-      // let title =
-      //    "Metode penelitian menggunakan angka dan statistik dalam pengumpulan serta analisis data yang dapat diukur";
-      // let arr = title.split(" ");
-      // let namafile =
-      //    "rab-" +
-      //    username +
-      //    "-" +
-      //    arr
-      //       .map((str) => str.charAt(0))
-      //       .join("")
-      //       .toLowerCase() +
-      //    ".xlsx";
-
-      // // const namafile = "test";
-      // try {
-      //    const buffer = await data.toBuffer();
-      //    // const filepath = "./upload/rab-" + namafile + ".xlsx";
-      //    const filepath = "./upload/" + namafile;
-      //    fs.writeFileSync(filepath, buffer);
-      //    reply.code(200);
-      //    reply.send({
-      //       msg: "Sukses",
-      //    });
-      // } catch (error) {
-      //    console.log(error);
-      //    reply.code(404);
-      //    reply.send({
-      //       error,
-      //    });
-      // }
    });
 };

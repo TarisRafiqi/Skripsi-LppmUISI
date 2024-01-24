@@ -7,25 +7,25 @@ module.exports = async function (fastify, opts) {
       let data = request.body;
 
       const sql =
-         "UPDATE profile SET nama_lengkap = ?, uid = ?, nip = ?, nidn = ?, tempat_lahir = ?, tanggal_lahir = ?, alamat_rumah = ?, alamat_kantor = ?, nomor_handphone = ?, nomor_whatsapp = ?, perguruan_tinggi_asal = ?, program_studi = ?, jabatan_fungsional = ?, pangkat_golongan = ? WHERE id = ?";
+         "UPDATE profile SET nama_lengkap = ?, jabatan_fungsional = ?, nip = ?, nidn = ?, tempat_lahir = ?, tanggal_lahir = ?, alamat_rumah = ?, telp_fax_rumah = ?, nomor_handphone = ?, alamat_kantor = ?, telp_fax_kantor = ?, email = ?, mata_kuliah = ? WHERE id = ?";
+
       try {
          connection = await fastify.mysql.getConnection();
          const [rows] = await connection.query(sql, [
-            data.nama_lengkap,
-            data.uid,
+            data.namaLengkap,
+            data.jabatanFungsional,
             data.nip,
             data.nidn,
-            data.tempat_lahir,
-            data.tanggal_lahir,
-            data.alamat_rumah,
-            data.alamat_kantor,
-            data.nomor_handphone,
-            data.nomor_whatsapp,
-            data.perguruan_tinggi_asal,
-            data.program_studi,
-            data.jabatan_fungsional,
-            data.pangkat_golongan,
-            data.id,
+            data.tempatLahir,
+            data.tanggalLahir,
+            data.alamatRumah,
+            data.telpFaxRumah,
+            data.nomorHandphone,
+            data.alamatKantor,
+            data.telpFaxKantor,
+            data.email,
+            JSON.stringify(data.mataKuliah),
+            data.idProfile,
          ]);
          dbData = rows;
          connection.release();

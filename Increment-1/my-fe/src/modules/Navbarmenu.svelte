@@ -26,7 +26,12 @@
    <nav class="navbar is-dark">
       <div class="navbar-brand">
          <a class="navbar-item" href="/">
-            <img src="http://pmb.uisi.ac.id/img/logos/logo-uisi-negatif.png" width="112" height="28" alt="Logo UISI" />
+            <img
+               src="/img/logo-uisi-negatif.png"
+               width="112"
+               height="28"
+               alt="Logo UISI"
+            />
          </a>
 
          <!-- svelte-ignore a11y-missing-attribute -->
@@ -49,9 +54,15 @@
                <a class="navbar-link"> Penelitian </a>
 
                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/penelitian"> Penelitian Internal </a>
-                  <a class="navbar-item" href="/penelitian"> Penelitian Eksternal </a>
-                  <a class="navbar-item" href="/penelitian"> Penelitian Mandiri </a>
+                  <a class="navbar-item" href="/penelitian">
+                     Penelitian Internal
+                  </a>
+                  <a class="navbar-item" href="/penelitian">
+                     Penelitian Eksternal
+                  </a>
+                  <a class="navbar-item" href="/penelitian">
+                     Penelitian Mandiri
+                  </a>
                </div>
             </div>
 
@@ -60,18 +71,28 @@
                <a class="navbar-link"> Pengabdian Masyarakat </a>
 
                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/abdimas"> Pengabdian Masyarakat Internal </a>
-                  <a class="navbar-item" href="/abdimas"> Pengabdian Masyarakat Eksternal </a>
-                  <a class="navbar-item" href="/abdimas"> Pengabdian Masyarakat Mandiri </a>
+                  <a class="navbar-item" href="/abdimas">
+                     Pengabdian Masyarakat Internal
+                  </a>
+                  <a class="navbar-item" href="/abdimas">
+                     Pengabdian Masyarakat Eksternal
+                  </a>
+                  <a class="navbar-item" href="/abdimas">
+                     Pengabdian Masyarakat Mandiri
+                  </a>
                </div>
             </div>
 
             <div class="navbar-item">
                <div class="buttons">
                   {#if $isLogin || token}
-                     <a class="button is-white is-outlined is-rounded" href="/logout"> Logout </a>
+                     <a class="button is-info is-fullwidth" href="/logout">
+                        Logout
+                     </a>
                   {:else}
-                     <a class="button is-white is-outlined is-rounded" href="/login"> Login </a>
+                     <a class="button is-info is-fullwidth" href="/login">
+                        Login
+                     </a>
                   {/if}
                </div>
             </div>

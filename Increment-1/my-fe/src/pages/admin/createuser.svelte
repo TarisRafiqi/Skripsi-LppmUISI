@@ -1,57 +1,101 @@
 <script>
    import Article from "../../libs/Article.svelte";
    import { route, apiURL } from "../../store";
+   import Field from "../../libs/Field.svelte";
+   import Modalerror from "../../libs/Modalerror.svelte";
 
-   function addUser() {
+   let createUsername, createPassword, createEmail, createRole;
+   let showModalError = false;
+
+   function kembali() {
       $route("/admin/users");
    }
+
+   async function HandleCreateUser() {
+      const accessToken = localStorage.getItem("token");
+
+      let payload = {
+         createUsername,
+         createPassword,
+         createEmail,
+      };
+
+      try {
+         const response = await fetch($apiURL + "/createUser", {
+            method: "POST",
+            headers: {
+               Authorization: `${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+         if (response.ok) {
+            $route("/admin/users");
+         } else {
+            showModalError = true;
+         }
+      } catch (error) {
+         console.error("Error", error);
+      }
+   }
+   $: console.log(showModalError);
 </script>
 
 <Article>
+   <Modalerror bind:show={showModalError}>
+      <p>
+         Username yang anda gunakan telah terdaftar, silahkan gunakan username
+         lain
+      </p>
+   </Modalerror>
+
    <h1 class="title is-1">Create User</h1>
 
    <hr />
 
-   <div class="field">
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <label class="label">Username</label>
-      <div class="control">
-         <input class="input" type="text" placeholder="Username..." />
-      </div>
-   </div>
+   <Field name="Username">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan username"
+         bind:value={createUsername}
+      />
+   </Field>
 
-   <div class="field">
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <label class="label">Password</label>
-      <div class="control">
-         <input class="input" type="text" placeholder="Password..." />
-      </div>
-   </div>
+   <Field name="Password">
+      <input
+         class="input"
+         type="password"
+         placeholder="Masukkan password"
+         bind:value={createPassword}
+      />
+   </Field>
 
-   <div class="field">
-      <!-- svelte-ignore a11y-label-has-associated-control -->
-      <label class="label">Role</label>
-      <div class="control">
-         <div class="select">
-            <select>
-               <option>Ka.Departemen</option>
-               <option>Ka.LPPM</option>
-               <option>Ka.PusatKajian</option>
-               <option>Reviewer</option>
-               <option>Dosen</option>
-            </select>
-         </div>
-      </div>
-   </div>
+   <Field name="Email">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan email"
+         bind:value={createEmail}
+      />
+   </Field>
 
    <br />
 
-   <div class="field is-grouped">
-      <div class="control">
-         <button class="button is-info is-light">Kembali</button>
+   <Field>
+      <div class="field is-grouped">
+         <div class="control">
+            <button class="button is-info is-light" on:click={kembali}
+               >Kembali</button
+            >
+         </div>
+         <div class="control">
+            <button class="button is-info" on:click={HandleCreateUser}
+               >Create</button
+            >
+         </div>
       </div>
-      <div class="control">
-         <button class="button is-info">Create</button>
-      </div>
-   </div>
+   </Field>
 </Article>

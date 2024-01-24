@@ -1,12 +1,21 @@
+<script>
+   let dev = !process.ENV.production;
+   let urlImage = dev
+      ? "url(http://localhost:3000/img/vector-gradient.jpg"
+      : "url(https://lppmuisi.dififa.com/img/vector-gradient.jpg";
+</script>
+
 <section class="hero is-medium">
-   <div class="hero-body">
+   <div class="hero-body" style:--url={urlImage}>
       <p class="title">LPPM Universitas Internasional Semen Indonesia</p>
       <p class="subtitle">
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-         laborum.
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+         mollit anim id est laborum.
       </p>
    </div>
 </section>
@@ -48,7 +57,7 @@
       margin-left: 1.5rem;
       margin-right: 1.5rem;
       border-radius: 20px;
-      background-image: url("http://localhost:3000/img/vector-gradient.jpg");
+      background-image: var(--url);
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: 100% 100%;

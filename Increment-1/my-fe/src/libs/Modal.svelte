@@ -1,8 +1,13 @@
 <script>
    export let show = false;
 
-   function handleClick() {
-      console.log(show);
+   function handleClick(e) {
+      if (e.target === e.currentTarget) {
+         show = false;
+      }
+   }
+
+   function clickX() {
       show = false;
    }
 </script>
@@ -11,8 +16,10 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <b class:show on:click={handleClick}>
    <div>
-      <span class="close">&times;</span>
-      <slot name="header" />
+      <span>
+         <span class="close" on:click={clickX}>&times;</span>
+         <slot name="header" />
+      </span>
       <hr />
       <slot />
    </div>
@@ -48,14 +55,14 @@
    }
 
    b.show {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.5);
       visibility: visible;
    }
 
    div {
       padding: 1em 1.5em;
       /* max-width: 32em; */
-      width: 35em;
+      width: 40em;
       background: white;
       border-radius: 0.5em;
    }

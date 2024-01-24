@@ -1,87 +1,87 @@
-*,
-::before,
-::after {
-   box-sizing: border-box;
-}
+// *,
+// ::before,
+// ::after {
+//    box-sizing: border-box;
+// }
 
-* {
-   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-   -moz-user-focus: none;
-}
+// * {
+//    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+//    -moz-user-focus: none;
+// }
 
-* {
-   margin: 0;
-}
+// * {
+//    margin: 0;
+// }
 
-html,
-body {
-   height: 100vh;
-}
+// html,
+// body {
+//    height: 100vh;
+// }
 
-body {
-   font-family: var(--fonts);
-   text-rendering: optimizeLegibility;
-   line-height: 1.5;
-   -webkit-font-smoothing: antialiased;
-   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-   -webkit-tap-highlight-color: transparent;
-}
+// body {
+//    font-family: var(--fonts);
+//    text-rendering: optimizeLegibility;
+//    line-height: 1.5;
+//    -webkit-font-smoothing: antialiased;
+//    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+//    -webkit-tap-highlight-color: transparent;
+// }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   line-height: 1.125;
-   font-weight: 700;
-   margin: 0 0 1rem 0;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//    line-height: 1.125;
+//    font-weight: 700;
+//    margin: 0 0 1rem 0;
+// }
 
-h1 {
-   font-size: 2.5em;
-   font-weight: 600;
-}
+// h1 {
+//    font-size: 2.5em;
+//    font-weight: 600;
+// }
 
-h2 {
-   font-size: 2em;
-   font-weight: 600;
-}
+// h2 {
+//    font-size: 2em;
+//    font-weight: 600;
+// }
 
-h3 {
-   font-size: 1.5em;
-}
+// h3 {
+//    font-size: 1.5em;
+// }
 
-h4 {
-   font-size: 1.17em;
-}
+// h4 {
+//    font-size: 1.17em;
+// }
 
-h5 {
-   font-size: 1em;
-}
+// h5 {
+//    font-size: 1em;
+// }
 
-h6 {
-   font-size: 0.83em;
-}
+// h6 {
+//    font-size: 0.83em;
+// }
 
 :not(p) > a {
    text-decoration: none;
    color: inherit;
 }
 
-p {
-   margin-bottom: 1rem;
-}
+// p {
+//    margin-bottom: 1rem;
+// }
 
-a[href] * {
-   pointer-events: none;
-}
+// a[href] * {
+//    pointer-events: none;
+// }
 
-hr {
-   border: 0;
-   border-top: 1px solid #dadce0;
-   margin: 1rem 0 1.5rem;
-}
+// hr {
+//    border: 0;
+//    border-top: 1px solid #dadce0;
+//    margin: 1rem 0 1.5rem;
+// }
 
 article {
    padding-top: 1em;

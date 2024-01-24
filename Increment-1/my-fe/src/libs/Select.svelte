@@ -21,11 +21,7 @@
          });
       } else {
          el.classList.add("selected");
-         // result = [...result, el.getAttribute("data-value")];
-         // result.push({
-         //    value: el.getAttribute("data-value"),
-         //    label: el.innerText,
-         // });
+
          result = [
             ...result,
             {
@@ -34,7 +30,6 @@
             },
          ];
       }
-      console.log(result);
    }
 
    function doFilter() {
@@ -89,7 +84,7 @@
       display: inline-flex;
    }
    span {
-      /* z-index: 100; */
+      z-index: 10;
       position: absolute;
       display: none;
       right: 0;
