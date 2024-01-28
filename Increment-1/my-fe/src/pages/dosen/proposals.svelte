@@ -1147,9 +1147,10 @@
                      {/each}
                   {/if}
                </tbody>
-               <br />
             </table>
          </div>
+
+         <br />
 
          <div>
             <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>

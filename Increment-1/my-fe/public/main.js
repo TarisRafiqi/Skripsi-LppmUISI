@@ -4651,106 +4651,9 @@
   // src/pages/admin/home.svelte
   init_define_process();
 
-  // src/store/icons.js
-  init_define_process();
-  var accountAdd = "M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z";
-  var infoOutline = "M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z";
-  var addProposal = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95H5Zm0-3v1V5v6.075V11v7Zm2-1h4.075q.075-.525.238-1.025t.362-.975H7v2Zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7v2Zm0-4h10V7H7v2Zm11 14q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23Zm-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5V21Z";
-  var add = "M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z";
-  var deleteIcon = "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
-
-  // src/pages/admin/home.svelte
-  function create_default_slot4(ctx) {
-    let h1;
-    let t1;
-    let hr;
-    let t2;
-    let div;
-    return {
-      c() {
-        h1 = element("h1");
-        h1.textContent = "Dashboard";
-        t1 = space();
-        hr = element("hr");
-        t2 = space();
-        div = element("div");
-        div.innerHTML = `<p>Coming Soon</p>`;
-        attr(h1, "class", "title is-1");
-        attr(div, "class", "columns notification is-info is-light");
-      },
-      m(target, anchor) {
-        insert(target, h1, anchor);
-        insert(target, t1, anchor);
-        insert(target, hr, anchor);
-        insert(target, t2, anchor);
-        insert(target, div, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(h1);
-          detach(t1);
-          detach(hr);
-          detach(t2);
-          detach(div);
-        }
-      }
-    };
-  }
-  function create_fragment20(ctx) {
-    let article;
-    let current;
-    article = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot4] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(article.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(article, target, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
-        const article_changes = {};
-        if (dirty & /*$$scope*/
-        1) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        article.$set(article_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(article.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(article.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(article, detaching);
-      }
-    };
-  }
-  var Home = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, null, create_fragment20, safe_not_equal, {});
-    }
-  };
-  var home_default = Home;
-
-  // src/pages/admin/pengumuman.svelte
-  init_define_process();
-
   // src/libs/Icon.svelte
   init_define_process();
-  function create_fragment21(ctx) {
+  function create_fragment20(ctx) {
     let svg;
     let path;
     return {
@@ -4837,12 +4740,245 @@
   var Icon = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance15, create_fragment21, safe_not_equal, { id: 0, src: 1, size: 4 });
+      init(this, options, instance15, create_fragment20, safe_not_equal, { id: 0, src: 1, size: 4 });
     }
   };
   var Icon_default = Icon;
 
+  // src/store/icons.js
+  init_define_process();
+  var accountAdd = "M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z";
+  var infoOutline = "M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z";
+  var addProposal = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95H5Zm0-3v1V5v6.075V11v7Zm2-1h4.075q.075-.525.238-1.025t.362-.975H7v2Zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7v2Zm0-4h10V7H7v2Zm11 14q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23Zm-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5V21Z";
+  var add = "M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z";
+  var deleteIcon = "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
+  var penelitian = "M15.5 12c2.5 0 4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5m0 2a2.5 2.5 0 0 0-2.5 2.5a2.5 2.5 0 0 0 2.5 2.5a2.5 2.5 0 0 0 2.5-2.5a2.5 2.5 0 0 0-2.5-2.5M5 3h14c1.11 0 2 .89 2 2v8.03c-.5-.8-1.19-1.49-2-2.03V5H5v14h4.5c.31.75.76 1.42 1.31 2H5c-1.11 0-2-.89-2-2V5c0-1.11.89-2 2-2m2 4h10v2H7zm0 4h5.03c-.8.5-1.49 1.19-2.03 2H7zm0 4h2.17c-.11.5-.17 1-.17 1.5v.5H7z";
+  var pengmas = "M16.5 13c-1.2 0-3.07.34-4.5 1c-1.43-.67-3.3-1-4.5-1C5.33 13 1 14.08 1 16.25V19h22v-2.75c0-2.17-4.33-3.25-6.5-3.25m-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75zm9 0H14v-1.25c0-.46-.2-.86-.52-1.22c.88-.3 1.96-.53 3.02-.53c2.44 0 5 1.21 5 1.75zM7.5 12c1.93 0 3.5-1.57 3.5-3.5S9.43 5 7.5 5S4 6.57 4 8.5S5.57 12 7.5 12m0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m9 5.5c1.93 0 3.5-1.57 3.5-3.5S18.43 5 16.5 5S13 6.57 13 8.5s1.57 3.5 3.5 3.5m0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2";
+  var jurnal = "M12.04 6.017a4.75 4.75 0 1 0 .335-.012h-.01a1.35 1.35 0 0 0-.326.012m-1.622 1.835c-.226.677-.368 1.506-.407 2.398h-1.1a3.5 3.5 0 0 1 1.507-2.398m-.374 3.898a8.43 8.43 0 0 0 .379 1.91a3.507 3.507 0 0 1-1.405-1.91zm3.966 2.1l.003-.008c.22-.587.373-1.306.443-2.092h1.276a3.51 3.51 0 0 1-1.722 2.1m-1.061-2.1a6.556 6.556 0 0 1-.34 1.565c-.118.313-.24.514-.336.623a.914.914 0 0 1-.023.025a.914.914 0 0 1-.023-.025c-.097-.11-.218-.31-.335-.623c-.154-.41-.276-.947-.341-1.565zm.039-1.5h-1.476c.042-.828.185-1.547.38-2.065c.117-.313.238-.514.335-.623a.79.79 0 0 1 .023-.025a.79.79 0 0 1 .023.025c.097.11.218.31.335.623c.195.518.338 1.237.38 2.065m1.501 0c-.043-.978-.21-1.88-.475-2.588a3.503 3.503 0 0 1 1.825 2.588zm-2.182-2.76l-.004.002zm-.113 0l.003.002a.014.014 0 0 0-.004-.003zM6.5 2A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h13.25a.75.75 0 0 0 0-1.5H6.5a1 1 0 0 1-1-1h14.25a.75.75 0 0 0 .75-.75V4.5A2.5 2.5 0 0 0 18 2zM19 4.5V18H5.5V4.5a1 1 0 0 1 1-1H18a1 1 0 0 1 1 1m-6.697 9.509a.019.019 0 0 1 .004.002Z";
+  var copyright = "M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m11-9c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11M9.525 9.526a3.5 3.5 0 0 0 4.95 4.95l.707-.708l1.414 1.415l-.707.707a5.5 5.5 0 1 1 0-7.778l.707.707l-1.414 1.414l-.707-.707a3.5 3.5 0 0 0-4.95 0";
+
+  // src/pages/admin/home.svelte
+  function create_default_slot4(ctx) {
+    let h1;
+    let t1;
+    let hr;
+    let t2;
+    let div16;
+    let div3;
+    let div2;
+    let div0;
+    let icon0;
+    let t3;
+    let div1;
+    let t7;
+    let div7;
+    let div6;
+    let div4;
+    let icon1;
+    let t8;
+    let div5;
+    let t12;
+    let div11;
+    let div10;
+    let div8;
+    let icon2;
+    let t13;
+    let div9;
+    let t17;
+    let div15;
+    let div14;
+    let div12;
+    let icon3;
+    let t18;
+    let div13;
+    let current;
+    icon0 = new Icon_default({
+      props: { id: "logo", src: penelitian, size: "2" }
+    });
+    icon1 = new Icon_default({
+      props: { id: "logo", src: pengmas, size: "2" }
+    });
+    icon2 = new Icon_default({
+      props: { id: "logo", src: jurnal, size: "2" }
+    });
+    icon3 = new Icon_default({
+      props: { id: "logo", src: copyright, size: "2" }
+    });
+    return {
+      c() {
+        h1 = element("h1");
+        h1.textContent = "Dashboard";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div16 = element("div");
+        div3 = element("div");
+        div2 = element("div");
+        div0 = element("div");
+        create_component(icon0.$$.fragment);
+        t3 = space();
+        div1 = element("div");
+        div1.innerHTML = `<p class="heading">Penelitian</p> <p class="title">132</p>`;
+        t7 = space();
+        div7 = element("div");
+        div6 = element("div");
+        div4 = element("div");
+        create_component(icon1.$$.fragment);
+        t8 = space();
+        div5 = element("div");
+        div5.innerHTML = `<p class="heading">Pengmas</p> <p class="title">87</p>`;
+        t12 = space();
+        div11 = element("div");
+        div10 = element("div");
+        div8 = element("div");
+        create_component(icon2.$$.fragment);
+        t13 = space();
+        div9 = element("div");
+        div9.innerHTML = `<p class="heading">Jurnal</p> <p class="title">121</p>`;
+        t17 = space();
+        div15 = element("div");
+        div14 = element("div");
+        div12 = element("div");
+        create_component(icon3.$$.fragment);
+        t18 = space();
+        div13 = element("div");
+        div13.innerHTML = `<p class="heading">HKI</p> <p class="title">54</p>`;
+        attr(h1, "class", "title is-1");
+        attr(div0, "class", "flex-item-left svelte-lfygnb");
+        attr(div1, "class", "flex-item-right has-text-centered svelte-lfygnb");
+        attr(div2, "class", "box svelte-lfygnb");
+        attr(div3, "class", "column");
+        attr(div4, "class", "flex-item-left svelte-lfygnb");
+        attr(div5, "class", "flex-item-right has-text-centered svelte-lfygnb");
+        attr(div6, "class", "box svelte-lfygnb");
+        attr(div7, "class", "column");
+        attr(div8, "class", "flex-item-left svelte-lfygnb");
+        attr(div9, "class", "flex-item-right has-text-centered svelte-lfygnb");
+        attr(div10, "class", "box svelte-lfygnb");
+        attr(div11, "class", "column");
+        attr(div12, "class", "flex-item-left svelte-lfygnb");
+        attr(div13, "class", "flex-item-right has-text-centered svelte-lfygnb");
+        attr(div14, "class", "box svelte-lfygnb");
+        attr(div15, "class", "column");
+        attr(div16, "class", "columns");
+      },
+      m(target, anchor) {
+        insert(target, h1, anchor);
+        insert(target, t1, anchor);
+        insert(target, hr, anchor);
+        insert(target, t2, anchor);
+        insert(target, div16, anchor);
+        append(div16, div3);
+        append(div3, div2);
+        append(div2, div0);
+        mount_component(icon0, div0, null);
+        append(div2, t3);
+        append(div2, div1);
+        append(div16, t7);
+        append(div16, div7);
+        append(div7, div6);
+        append(div6, div4);
+        mount_component(icon1, div4, null);
+        append(div6, t8);
+        append(div6, div5);
+        append(div16, t12);
+        append(div16, div11);
+        append(div11, div10);
+        append(div10, div8);
+        mount_component(icon2, div8, null);
+        append(div10, t13);
+        append(div10, div9);
+        append(div16, t17);
+        append(div16, div15);
+        append(div15, div14);
+        append(div14, div12);
+        mount_component(icon3, div12, null);
+        append(div14, t18);
+        append(div14, div13);
+        current = true;
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h1);
+          detach(t1);
+          detach(hr);
+          detach(t2);
+          detach(div16);
+        }
+        destroy_component(icon0);
+        destroy_component(icon1);
+        destroy_component(icon2);
+        destroy_component(icon3);
+      }
+    };
+  }
+  function create_fragment21(ctx) {
+    let article;
+    let current;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot4] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(article.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope*/
+        1) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(article, detaching);
+      }
+    };
+  }
+  var Home = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment21, safe_not_equal, {});
+    }
+  };
+  var home_default = Home;
+
   // src/pages/admin/pengumuman.svelte
+  init_define_process();
   function create_default_slot5(ctx) {
     let h1;
     let t1;
@@ -7128,114 +7264,110 @@
     let t17;
     let br0;
     let t18;
-    let br1;
-    let t19;
     let nav1;
     let div5;
-    let t21;
+    let t20;
     let div7;
     let div6;
     let button1;
     let span2;
     let icon1;
-    let t22;
+    let t21;
     let span3;
-    let t24;
+    let t23;
     let modal1;
     let updating_show_1;
-    let t25;
+    let t24;
     let table1;
     let thead1;
-    let t36;
+    let t35;
     let tbody1;
+    let t36;
+    let br1;
     let t37;
-    let br2;
-    let t38;
-    let br3;
-    let t39;
     let nav2;
     let div9;
-    let t41;
+    let t39;
     let div11;
     let div10;
     let button2;
     let span4;
     let icon2;
-    let t42;
+    let t40;
     let span5;
-    let t44;
+    let t42;
     let modal2;
     let updating_show_2;
-    let t45;
+    let t43;
     let table2;
     let thead2;
-    let t54;
+    let t52;
     let tbody2;
-    let t55;
-    let br4;
-    let t56;
+    let t53;
+    let br2;
+    let t54;
     let nav3;
     let div13;
-    let t58;
+    let t56;
     let div15;
     let div14;
     let button3;
     let span6;
     let icon3;
-    let t59;
+    let t57;
     let span7;
-    let t61;
+    let t59;
     let modal3;
     let updating_show_3;
-    let t62;
+    let t60;
     let table3;
     let thead3;
-    let t71;
+    let t69;
     let tbody3;
-    let t72;
-    let br5;
-    let t73;
+    let t70;
+    let br3;
+    let t71;
     let nav4;
     let div17;
-    let t75;
+    let t73;
     let div19;
     let div18;
     let button4;
     let span8;
     let icon4;
-    let t76;
+    let t74;
     let span9;
-    let t78;
+    let t76;
     let modal4;
     let updating_show_4;
-    let t79;
+    let t77;
     let table4;
     let thead4;
-    let t90;
+    let t88;
     let tbody4;
-    let t91;
-    let br6;
-    let t92;
+    let t89;
+    let br4;
+    let t90;
     let nav5;
     let div21;
-    let t94;
+    let t92;
     let div23;
     let div22;
     let button5;
     let span10;
     let icon5;
-    let t95;
+    let t93;
     let span11;
-    let t97;
+    let t95;
     let modal5;
     let updating_show_5;
-    let t98;
+    let t96;
     let table5;
     let thead5;
-    let t109;
+    let t107;
     let tbody5;
-    let t110;
-    let br7;
+    let t108;
+    let br5;
     let current;
     let mounted;
     let dispose;
@@ -7410,134 +7542,130 @@
         t17 = space();
         br0 = element("br");
         t18 = space();
-        br1 = element("br");
-        t19 = space();
         nav1 = element("nav");
         div5 = element("div");
         div5.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
-        t21 = space();
+        t20 = space();
         div7 = element("div");
         div6 = element("div");
         button1 = element("button");
         span2 = element("span");
         create_component(icon1.$$.fragment);
-        t22 = space();
+        t21 = space();
         span3 = element("span");
         span3.innerHTML = `<a>Tambah</a>`;
-        t24 = space();
+        t23 = space();
         create_component(modal1.$$.fragment);
-        t25 = space();
+        t24 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th>Jumlah Rp.</th></tr>`;
-        t36 = space();
+        t35 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
+        t36 = space();
+        br1 = element("br");
         t37 = space();
-        br2 = element("br");
-        t38 = space();
-        br3 = element("br");
-        t39 = space();
         nav2 = element("nav");
         div9 = element("div");
         div9.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
-        t41 = space();
+        t39 = space();
         div11 = element("div");
         div10 = element("div");
         button2 = element("button");
         span4 = element("span");
         create_component(icon2.$$.fragment);
-        t42 = space();
+        t40 = space();
         span5 = element("span");
         span5.innerHTML = `<a>Tambah</a>`;
-        t44 = space();
+        t42 = space();
         create_component(modal2.$$.fragment);
-        t45 = space();
+        t43 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t54 = space();
+        t52 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t55 = space();
-        br4 = element("br");
-        t56 = space();
+        t53 = space();
+        br2 = element("br");
+        t54 = space();
         nav3 = element("nav");
         div13 = element("div");
         div13.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
-        t58 = space();
+        t56 = space();
         div15 = element("div");
         div14 = element("div");
         button3 = element("button");
         span6 = element("span");
         create_component(icon3.$$.fragment);
-        t59 = space();
+        t57 = space();
         span7 = element("span");
         span7.innerHTML = `<a>Tambah</a>`;
-        t61 = space();
+        t59 = space();
         create_component(modal3.$$.fragment);
-        t62 = space();
+        t60 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t71 = space();
+        t69 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t72 = space();
-        br5 = element("br");
-        t73 = space();
+        t70 = space();
+        br3 = element("br");
+        t71 = space();
         nav4 = element("nav");
         div17 = element("div");
         div17.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
-        t75 = space();
+        t73 = space();
         div19 = element("div");
         div18 = element("div");
         button4 = element("button");
         span8 = element("span");
         create_component(icon4.$$.fragment);
-        t76 = space();
+        t74 = space();
         span9 = element("span");
         span9.innerHTML = `<a>Tambah</a>`;
-        t78 = space();
+        t76 = space();
         create_component(modal4.$$.fragment);
-        t79 = space();
+        t77 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t90 = space();
+        t88 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t91 = space();
-        br6 = element("br");
-        t92 = space();
+        t89 = space();
+        br4 = element("br");
+        t90 = space();
         nav5 = element("nav");
         div21 = element("div");
         div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
-        t94 = space();
+        t92 = space();
         div23 = element("div");
         div22 = element("div");
         button5 = element("button");
         span10 = element("span");
         create_component(icon5.$$.fragment);
-        t95 = space();
+        t93 = space();
         span11 = element("span");
         span11.innerHTML = `<a>Tambah</a>`;
-        t97 = space();
+        t95 = space();
         create_component(modal5.$$.fragment);
-        t98 = space();
+        t96 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t109 = space();
+        t107 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t110 = space();
-        br7 = element("br");
+        t108 = space();
+        br5 = element("br");
         attr(div1, "class", "level-left");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
@@ -7601,122 +7729,118 @@
         append(table0, tbody0);
         if (if_block0)
           if_block0.m(tbody0, null);
-        append(table0, t17);
-        append(table0, br0);
+        insert(target, t17, anchor);
+        insert(target, br0, anchor);
         insert(target, t18, anchor);
-        insert(target, br1, anchor);
-        insert(target, t19, anchor);
         insert(target, nav1, anchor);
         append(nav1, div5);
-        append(nav1, t21);
+        append(nav1, t20);
         append(nav1, div7);
         append(div7, div6);
         append(div6, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
-        append(button1, t22);
+        append(button1, t21);
         append(button1, span3);
-        insert(target, t24, anchor);
+        insert(target, t23, anchor);
         mount_component(modal1, target, anchor);
-        insert(target, t25, anchor);
+        insert(target, t24, anchor);
         insert(target, table1, anchor);
         append(table1, thead1);
-        append(table1, t36);
+        append(table1, t35);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t37);
-        append(table1, br2);
-        insert(target, t38, anchor);
-        insert(target, br3, anchor);
-        insert(target, t39, anchor);
+        insert(target, t36, anchor);
+        insert(target, br1, anchor);
+        insert(target, t37, anchor);
         insert(target, nav2, anchor);
         append(nav2, div9);
-        append(nav2, t41);
+        append(nav2, t39);
         append(nav2, div11);
         append(div11, div10);
         append(div10, button2);
         append(button2, span4);
         mount_component(icon2, span4, null);
-        append(button2, t42);
+        append(button2, t40);
         append(button2, span5);
-        insert(target, t44, anchor);
+        insert(target, t42, anchor);
         mount_component(modal2, target, anchor);
-        insert(target, t45, anchor);
+        insert(target, t43, anchor);
         insert(target, table2, anchor);
         append(table2, thead2);
-        append(table2, t54);
+        append(table2, t52);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t55, anchor);
-        insert(target, br4, anchor);
-        insert(target, t56, anchor);
+        insert(target, t53, anchor);
+        insert(target, br2, anchor);
+        insert(target, t54, anchor);
         insert(target, nav3, anchor);
         append(nav3, div13);
-        append(nav3, t58);
+        append(nav3, t56);
         append(nav3, div15);
         append(div15, div14);
         append(div14, button3);
         append(button3, span6);
         mount_component(icon3, span6, null);
-        append(button3, t59);
+        append(button3, t57);
         append(button3, span7);
-        insert(target, t61, anchor);
+        insert(target, t59, anchor);
         mount_component(modal3, target, anchor);
-        insert(target, t62, anchor);
+        insert(target, t60, anchor);
         insert(target, table3, anchor);
         append(table3, thead3);
-        append(table3, t71);
+        append(table3, t69);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t72, anchor);
-        insert(target, br5, anchor);
-        insert(target, t73, anchor);
+        insert(target, t70, anchor);
+        insert(target, br3, anchor);
+        insert(target, t71, anchor);
         insert(target, nav4, anchor);
         append(nav4, div17);
-        append(nav4, t75);
+        append(nav4, t73);
         append(nav4, div19);
         append(div19, div18);
         append(div18, button4);
         append(button4, span8);
         mount_component(icon4, span8, null);
-        append(button4, t76);
+        append(button4, t74);
         append(button4, span9);
-        insert(target, t78, anchor);
+        insert(target, t76, anchor);
         mount_component(modal4, target, anchor);
-        insert(target, t79, anchor);
+        insert(target, t77, anchor);
         insert(target, table4, anchor);
         append(table4, thead4);
-        append(table4, t90);
+        append(table4, t88);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t91, anchor);
-        insert(target, br6, anchor);
-        insert(target, t92, anchor);
+        insert(target, t89, anchor);
+        insert(target, br4, anchor);
+        insert(target, t90, anchor);
         insert(target, nav5, anchor);
         append(nav5, div21);
-        append(nav5, t94);
+        append(nav5, t92);
         append(nav5, div23);
         append(div23, div22);
         append(div22, button5);
         append(button5, span10);
         mount_component(icon5, span10, null);
-        append(button5, t95);
+        append(button5, t93);
         append(button5, span11);
-        insert(target, t97, anchor);
+        insert(target, t95, anchor);
         mount_component(modal5, target, anchor);
-        insert(target, t98, anchor);
+        insert(target, t96, anchor);
         insert(target, table5, anchor);
         append(table5, thead5);
-        append(table5, t109);
+        append(table5, t107);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t110, anchor);
-        insert(target, br7, anchor);
+        insert(target, t108, anchor);
+        insert(target, br5, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -8035,43 +8159,43 @@
           detach(t4);
           detach(t5);
           detach(table0);
+          detach(t17);
+          detach(br0);
           detach(t18);
-          detach(br1);
-          detach(t19);
           detach(nav1);
+          detach(t23);
           detach(t24);
-          detach(t25);
           detach(table1);
-          detach(t38);
-          detach(br3);
-          detach(t39);
+          detach(t36);
+          detach(br1);
+          detach(t37);
           detach(nav2);
-          detach(t44);
-          detach(t45);
+          detach(t42);
+          detach(t43);
           detach(table2);
-          detach(t55);
-          detach(br4);
-          detach(t56);
+          detach(t53);
+          detach(br2);
+          detach(t54);
           detach(nav3);
-          detach(t61);
-          detach(t62);
+          detach(t59);
+          detach(t60);
           detach(table3);
-          detach(t72);
-          detach(br5);
-          detach(t73);
+          detach(t70);
+          detach(br3);
+          detach(t71);
           detach(nav4);
-          detach(t78);
-          detach(t79);
+          detach(t76);
+          detach(t77);
           detach(table4);
-          detach(t91);
-          detach(br6);
-          detach(t92);
+          detach(t89);
+          detach(br4);
+          detach(t90);
           detach(nav5);
-          detach(t97);
-          detach(t98);
+          detach(t95);
+          detach(t96);
           detach(table5);
-          detach(t110);
-          detach(br7);
+          detach(t108);
+          detach(br5);
         }
         destroy_component(icon0);
         destroy_component(modal0, detaching);
@@ -17183,8 +17307,8 @@
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t77);
-        append(table1, br2);
+        insert(target, t77, anchor);
+        insert(target, br2, anchor);
         insert(target, t78, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
@@ -17590,6 +17714,8 @@
           detach(br1);
           detach(t64);
           detach(div1);
+          detach(t77);
+          detach(br2);
           detach(t78);
           detach(div2);
           detach(t91);
@@ -26174,8 +26300,8 @@
         append(table1, tbody1);
         if (if_block0)
           if_block0.m(tbody1, null);
-        append(table1, t76);
-        append(table1, br2);
+        insert(target, t76, anchor);
+        insert(target, br2, anchor);
         insert(target, t77, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
@@ -26570,6 +26696,8 @@
           detach(br1);
           detach(t63);
           detach(div1);
+          detach(t76);
+          detach(br2);
           detach(t77);
           detach(div2);
           detach(t90);
@@ -31421,114 +31549,110 @@
     let t17;
     let br0;
     let t18;
-    let br1;
-    let t19;
     let nav1;
     let div5;
-    let t21;
+    let t20;
     let div7;
     let div6;
     let button1;
     let span2;
     let icon1;
-    let t22;
+    let t21;
     let span3;
-    let t24;
+    let t23;
     let modal1;
     let updating_show_1;
-    let t25;
+    let t24;
     let table1;
     let thead1;
-    let t36;
+    let t35;
     let tbody1;
+    let t36;
+    let br1;
     let t37;
-    let br2;
-    let t38;
-    let br3;
-    let t39;
     let nav2;
     let div9;
-    let t41;
+    let t39;
     let div11;
     let div10;
     let button2;
     let span4;
     let icon2;
-    let t42;
+    let t40;
     let span5;
-    let t44;
+    let t42;
     let modal2;
     let updating_show_2;
-    let t45;
+    let t43;
     let table2;
     let thead2;
-    let t54;
+    let t52;
     let tbody2;
-    let t55;
-    let br4;
-    let t56;
+    let t53;
+    let br2;
+    let t54;
     let nav3;
     let div13;
-    let t58;
+    let t56;
     let div15;
     let div14;
     let button3;
     let span6;
     let icon3;
-    let t59;
+    let t57;
     let span7;
-    let t61;
+    let t59;
     let modal3;
     let updating_show_3;
-    let t62;
+    let t60;
     let table3;
     let thead3;
-    let t71;
+    let t69;
     let tbody3;
-    let t72;
-    let br5;
-    let t73;
+    let t70;
+    let br3;
+    let t71;
     let nav4;
     let div17;
-    let t75;
+    let t73;
     let div19;
     let div18;
     let button4;
     let span8;
     let icon4;
-    let t76;
+    let t74;
     let span9;
-    let t78;
+    let t76;
     let modal4;
     let updating_show_4;
-    let t79;
+    let t77;
     let table4;
     let thead4;
-    let t90;
+    let t88;
     let tbody4;
-    let t91;
-    let br6;
-    let t92;
+    let t89;
+    let br4;
+    let t90;
     let nav5;
     let div21;
-    let t94;
+    let t92;
     let div23;
     let div22;
     let button5;
     let span10;
     let icon5;
-    let t95;
+    let t93;
     let span11;
-    let t97;
+    let t95;
     let modal5;
     let updating_show_5;
-    let t98;
+    let t96;
     let table5;
     let thead5;
-    let t109;
+    let t107;
     let tbody5;
-    let t110;
-    let br7;
+    let t108;
+    let br5;
     let current;
     let mounted;
     let dispose;
@@ -31703,134 +31827,130 @@
         t17 = space();
         br0 = element("br");
         t18 = space();
-        br1 = element("br");
-        t19 = space();
         nav1 = element("nav");
         div5 = element("div");
         div5.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
-        t21 = space();
+        t20 = space();
         div7 = element("div");
         div6 = element("div");
         button1 = element("button");
         span2 = element("span");
         create_component(icon1.$$.fragment);
-        t22 = space();
+        t21 = space();
         span3 = element("span");
         span3.innerHTML = `<a>Tambah</a>`;
-        t24 = space();
+        t23 = space();
         create_component(modal1.$$.fragment);
-        t25 = space();
+        t24 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th>Jumlah Rp.</th></tr>`;
-        t36 = space();
+        t35 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
+        t36 = space();
+        br1 = element("br");
         t37 = space();
-        br2 = element("br");
-        t38 = space();
-        br3 = element("br");
-        t39 = space();
         nav2 = element("nav");
         div9 = element("div");
         div9.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
-        t41 = space();
+        t39 = space();
         div11 = element("div");
         div10 = element("div");
         button2 = element("button");
         span4 = element("span");
         create_component(icon2.$$.fragment);
-        t42 = space();
+        t40 = space();
         span5 = element("span");
         span5.innerHTML = `<a>Tambah</a>`;
-        t44 = space();
+        t42 = space();
         create_component(modal2.$$.fragment);
-        t45 = space();
+        t43 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t54 = space();
+        t52 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t55 = space();
-        br4 = element("br");
-        t56 = space();
+        t53 = space();
+        br2 = element("br");
+        t54 = space();
         nav3 = element("nav");
         div13 = element("div");
         div13.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
-        t58 = space();
+        t56 = space();
         div15 = element("div");
         div14 = element("div");
         button3 = element("button");
         span6 = element("span");
         create_component(icon3.$$.fragment);
-        t59 = space();
+        t57 = space();
         span7 = element("span");
         span7.innerHTML = `<a>Tambah</a>`;
-        t61 = space();
+        t59 = space();
         create_component(modal3.$$.fragment);
-        t62 = space();
+        t60 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t71 = space();
+        t69 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t72 = space();
-        br5 = element("br");
-        t73 = space();
+        t70 = space();
+        br3 = element("br");
+        t71 = space();
         nav4 = element("nav");
         div17 = element("div");
         div17.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
-        t75 = space();
+        t73 = space();
         div19 = element("div");
         div18 = element("div");
         button4 = element("button");
         span8 = element("span");
         create_component(icon4.$$.fragment);
-        t76 = space();
+        t74 = space();
         span9 = element("span");
         span9.innerHTML = `<a>Tambah</a>`;
-        t78 = space();
+        t76 = space();
         create_component(modal4.$$.fragment);
-        t79 = space();
+        t77 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t90 = space();
+        t88 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t91 = space();
-        br6 = element("br");
-        t92 = space();
+        t89 = space();
+        br4 = element("br");
+        t90 = space();
         nav5 = element("nav");
         div21 = element("div");
         div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
-        t94 = space();
+        t92 = space();
         div23 = element("div");
         div22 = element("div");
         button5 = element("button");
         span10 = element("span");
         create_component(icon5.$$.fragment);
-        t95 = space();
+        t93 = space();
         span11 = element("span");
         span11.innerHTML = `<a>Tambah</a>`;
-        t97 = space();
+        t95 = space();
         create_component(modal5.$$.fragment);
-        t98 = space();
+        t96 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t109 = space();
+        t107 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t110 = space();
-        br7 = element("br");
+        t108 = space();
+        br5 = element("br");
         attr(div1, "class", "level-left");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
@@ -31894,122 +32014,118 @@
         append(table0, tbody0);
         if (if_block0)
           if_block0.m(tbody0, null);
-        append(table0, t17);
-        append(table0, br0);
+        insert(target, t17, anchor);
+        insert(target, br0, anchor);
         insert(target, t18, anchor);
-        insert(target, br1, anchor);
-        insert(target, t19, anchor);
         insert(target, nav1, anchor);
         append(nav1, div5);
-        append(nav1, t21);
+        append(nav1, t20);
         append(nav1, div7);
         append(div7, div6);
         append(div6, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
-        append(button1, t22);
+        append(button1, t21);
         append(button1, span3);
-        insert(target, t24, anchor);
+        insert(target, t23, anchor);
         mount_component(modal1, target, anchor);
-        insert(target, t25, anchor);
+        insert(target, t24, anchor);
         insert(target, table1, anchor);
         append(table1, thead1);
-        append(table1, t36);
+        append(table1, t35);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t37);
-        append(table1, br2);
-        insert(target, t38, anchor);
-        insert(target, br3, anchor);
-        insert(target, t39, anchor);
+        insert(target, t36, anchor);
+        insert(target, br1, anchor);
+        insert(target, t37, anchor);
         insert(target, nav2, anchor);
         append(nav2, div9);
-        append(nav2, t41);
+        append(nav2, t39);
         append(nav2, div11);
         append(div11, div10);
         append(div10, button2);
         append(button2, span4);
         mount_component(icon2, span4, null);
-        append(button2, t42);
+        append(button2, t40);
         append(button2, span5);
-        insert(target, t44, anchor);
+        insert(target, t42, anchor);
         mount_component(modal2, target, anchor);
-        insert(target, t45, anchor);
+        insert(target, t43, anchor);
         insert(target, table2, anchor);
         append(table2, thead2);
-        append(table2, t54);
+        append(table2, t52);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t55, anchor);
-        insert(target, br4, anchor);
-        insert(target, t56, anchor);
+        insert(target, t53, anchor);
+        insert(target, br2, anchor);
+        insert(target, t54, anchor);
         insert(target, nav3, anchor);
         append(nav3, div13);
-        append(nav3, t58);
+        append(nav3, t56);
         append(nav3, div15);
         append(div15, div14);
         append(div14, button3);
         append(button3, span6);
         mount_component(icon3, span6, null);
-        append(button3, t59);
+        append(button3, t57);
         append(button3, span7);
-        insert(target, t61, anchor);
+        insert(target, t59, anchor);
         mount_component(modal3, target, anchor);
-        insert(target, t62, anchor);
+        insert(target, t60, anchor);
         insert(target, table3, anchor);
         append(table3, thead3);
-        append(table3, t71);
+        append(table3, t69);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t72, anchor);
-        insert(target, br5, anchor);
-        insert(target, t73, anchor);
+        insert(target, t70, anchor);
+        insert(target, br3, anchor);
+        insert(target, t71, anchor);
         insert(target, nav4, anchor);
         append(nav4, div17);
-        append(nav4, t75);
+        append(nav4, t73);
         append(nav4, div19);
         append(div19, div18);
         append(div18, button4);
         append(button4, span8);
         mount_component(icon4, span8, null);
-        append(button4, t76);
+        append(button4, t74);
         append(button4, span9);
-        insert(target, t78, anchor);
+        insert(target, t76, anchor);
         mount_component(modal4, target, anchor);
-        insert(target, t79, anchor);
+        insert(target, t77, anchor);
         insert(target, table4, anchor);
         append(table4, thead4);
-        append(table4, t90);
+        append(table4, t88);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t91, anchor);
-        insert(target, br6, anchor);
-        insert(target, t92, anchor);
+        insert(target, t89, anchor);
+        insert(target, br4, anchor);
+        insert(target, t90, anchor);
         insert(target, nav5, anchor);
         append(nav5, div21);
-        append(nav5, t94);
+        append(nav5, t92);
         append(nav5, div23);
         append(div23, div22);
         append(div22, button5);
         append(button5, span10);
         mount_component(icon5, span10, null);
-        append(button5, t95);
+        append(button5, t93);
         append(button5, span11);
-        insert(target, t97, anchor);
+        insert(target, t95, anchor);
         mount_component(modal5, target, anchor);
-        insert(target, t98, anchor);
+        insert(target, t96, anchor);
         insert(target, table5, anchor);
         append(table5, thead5);
-        append(table5, t109);
+        append(table5, t107);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t110, anchor);
-        insert(target, br7, anchor);
+        insert(target, t108, anchor);
+        insert(target, br5, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -32328,43 +32444,43 @@
           detach(t4);
           detach(t5);
           detach(table0);
+          detach(t17);
+          detach(br0);
           detach(t18);
-          detach(br1);
-          detach(t19);
           detach(nav1);
+          detach(t23);
           detach(t24);
-          detach(t25);
           detach(table1);
-          detach(t38);
-          detach(br3);
-          detach(t39);
+          detach(t36);
+          detach(br1);
+          detach(t37);
           detach(nav2);
-          detach(t44);
-          detach(t45);
+          detach(t42);
+          detach(t43);
           detach(table2);
-          detach(t55);
-          detach(br4);
-          detach(t56);
+          detach(t53);
+          detach(br2);
+          detach(t54);
           detach(nav3);
-          detach(t61);
-          detach(t62);
+          detach(t59);
+          detach(t60);
           detach(table3);
-          detach(t72);
-          detach(br5);
-          detach(t73);
+          detach(t70);
+          detach(br3);
+          detach(t71);
           detach(nav4);
-          detach(t78);
-          detach(t79);
+          detach(t76);
+          detach(t77);
           detach(table4);
-          detach(t91);
-          detach(br6);
-          detach(t92);
+          detach(t89);
+          detach(br4);
+          detach(t90);
           detach(nav5);
-          detach(t97);
-          detach(t98);
+          detach(t95);
+          detach(t96);
           detach(table5);
-          detach(t110);
-          detach(br7);
+          detach(t108);
+          detach(br5);
         }
         destroy_component(icon0);
         destroy_component(modal0, detaching);
@@ -42284,8 +42400,8 @@
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        append(table1, t77);
-        append(table1, br2);
+        insert(target, t77, anchor);
+        insert(target, br2, anchor);
         insert(target, t78, anchor);
         insert(target, div2, anchor);
         append(div2, h62);
@@ -42689,6 +42805,8 @@
           detach(br1);
           detach(t64);
           detach(div1);
+          detach(t77);
+          detach(br2);
           detach(t78);
           detach(div2);
           detach(t91);

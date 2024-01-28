@@ -1125,7 +1125,6 @@
                {/each}
             {/if}
          </tbody>
-         <br />
       </table>
       <br />
 
@@ -1238,7 +1237,6 @@
                {/each}
             {/if}
          </tbody>
-         <br />
       </table>
       <br />
 
