@@ -141,7 +141,7 @@
                <th>Username</th>
                <th>Email</th>
                <th class="is-narrow">Role</th>
-               <th>Active</th>
+               <th class="is-narrow">Active</th>
             </tr>
          </thead>
 

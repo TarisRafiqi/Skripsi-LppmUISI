@@ -4,6 +4,12 @@
    let username = "";
    let password = "";
 
+   document.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+         handleSubmit();
+      }
+   });
+
    async function handleSubmit(ev) {
       const payload = {
          method: "post",

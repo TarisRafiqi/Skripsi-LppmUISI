@@ -609,6 +609,17 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
+.box.svelte-lfygnb {
+  display: flex;
+}
+.flex-item-left.svelte-lfygnb {
+  flex: 50%;
+}
+.flex-item-right.svelte-lfygnb {
+  flex: 50%;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/ppmmanagement.esbuild-svelte-fake-css */
 p.svelte-4z2166 {
   text-align: justify;
 }

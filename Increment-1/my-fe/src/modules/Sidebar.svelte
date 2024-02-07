@@ -51,6 +51,8 @@
          <li><a href="/admin/pengumuman">Pengumuman</a></li>
          <!-- svelte-ignore a11y-missing-attribute -->
          <li><a href="/admin/aboutuisi">About UISI</a></li>
+         <!-- svelte-ignore a11y-missing-attribute -->
+         <li><a href="/admin/template">Template</a></li>
       </ul>
    {/if}
 </aside>

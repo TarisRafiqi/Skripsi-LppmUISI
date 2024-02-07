@@ -4,6 +4,8 @@
    import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    let judulPengumuman, isiPengumuman;
+
+   function simpanPengumuman() {}
 </script>
 
 <Article>
@@ -22,4 +24,14 @@
    <Field name="Isi Pengumuman">
       <Wysiwyg id="isi" content={isiPengumuman} />
    </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPengumuman}
+            >Simpan</button
+         >
+      </p>
+   </div>
 </Article>

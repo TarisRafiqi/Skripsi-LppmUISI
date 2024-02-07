@@ -19,8 +19,12 @@ const admin = [
 
 const dosen = [
    {
-      title: "PPM Management",
+      title: "Dashboard",
       href: "/dosen",
+   },
+   {
+      title: "PPM Management",
+      href: "/dosen/ppmmanagement",
    },
    {
       title: "Approval Management",

@@ -428,7 +428,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen");
+         $route("/dosen/ppmmanagement");
       } else {
          console.log(response);
       }
@@ -503,7 +503,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen");
+         $route("/dosen/ppmmanagement");
       } else {
          console.log(response);
       }
@@ -576,7 +576,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen");
+         $route("/dosen/ppmmanagement");
       } else {
          console.log(response);
       }
