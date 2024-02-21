@@ -14,6 +14,7 @@
    let items = [];
    let view;
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
+   let itemsRCR;
    let pertiS1,
       pertiS2,
       pertiS3,
@@ -82,6 +83,7 @@
       if (response.ok) {
          data = result;
 
+         ppmId = data.id;
          uidProposal = data.uid;
          jenisProposal = data.jenis_proposal;
          jenisKegiatan = data.jenis_kegiatan;
@@ -108,6 +110,22 @@
          console.log(response);
       }
 
+      // -----------------------------------------------------------------------------//
+      // Get Riwayat Catatan Revisi
+      // -----------------------------------------------------------------------------//
+      const responseRCR = await fetch(
+         $apiURL + "/riwayatCatatanRevisi/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataRCR = await responseRCR.json();
+
+      if (responseRCR.ok) {
+         itemsRCR = dataRCR.dbData;
+      }
       // -----------------------------------------------------------------------------//
       // Get Profile
       // -----------------------------------------------------------------------------//
@@ -883,15 +901,52 @@
                <textarea class="textarea" bind:value={abstrak}></textarea>
             </Field>
 
-            <Field name="Isi Proposal">
+            <Field name="Isi">
                <Wysiwyg id="isi" content={isi} />
             </Field>
 
             <br /><br />
+
             <hr />
 
+            <div class="columns notification is-danger is-light">
+               <div class="column">
+                  <p style="text-align: justify;">
+                     <strong>Perhatikan</strong> catatan revisi dari evalutor untuk
+                     detail yang akan direvisi!
+                  </p>
+               </div>
+            </div>
+
             <Field name="Catatan Revisi">
-               {comment}
+               <div class="box">
+                  {comment}
+               </div>
+            </Field>
+
+            <Field name="Riwayat Revisi">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Catatan Revisi</th>
+                        <th>Evalutor</th>
+                        <th class="is-narrow">Waktu</th>
+                     </tr>
+                  </thead>
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
             </Field>
          {:else}
             <Field name="Jenis Proposal">
@@ -964,11 +1019,11 @@
                {data.judul}
             </Field>
 
-            <Field name="abstrak">
+            <Field name="Abstrak">
                {@html data.abstrak}
             </Field>
 
-            <Field name="isi">
+            <Field name="Isi">
                <div class="box box-padding">
                   {@html data.isi}
                </div>

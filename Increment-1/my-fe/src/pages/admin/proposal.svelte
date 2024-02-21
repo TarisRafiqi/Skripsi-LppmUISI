@@ -4,6 +4,7 @@
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Modal from "../../libs/Modal.svelte";
+   import Modalerror from "../../libs/Modalerror.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Status from "../../modules/Status.svelte";
    import Wysiwyg from "../../libs/Wysiwyg.svelte";
@@ -12,7 +13,10 @@
 
    export let params;
    const id = params["1"];
+
+   const idEvaluator = localStorage.getItem("id");
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
+   let showModalError = false;
 
    let jenisProposal;
    let jenisKegiatan;
@@ -27,6 +31,7 @@
    let isi;
    let comment;
    let status;
+   let itemsRCR;
 
    let ka_departemen;
    let ka_lppm;
@@ -99,6 +104,7 @@
       if (response.ok) {
          data = result;
 
+         ppmId = data.id;
          uidProposal = data.uid;
          jenisProposal = data.jenis_proposal;
          jenisKegiatan = data.jenis_kegiatan;
@@ -122,6 +128,38 @@
          kpkSelected = data.uid_kpk;
          reviewerSelected = data.uid_reviewer;
          randomFileName = data.random_file_name;
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Nama Lengkap Evaluator
+      // -----------------------------------------------------------------------------//
+      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultEvl = await responseEvl.json();
+
+      if (responseEvl.ok) {
+         dataEvl = resultEvl;
+         namaLengkapEvl = dataEvl.nama_lengkap;
+      }
+
+      // -----------------------------------------------------------------------------//
+      // Get Riwayat Catatan Revisi
+      // -----------------------------------------------------------------------------//
+      const responseRCR = await fetch(
+         $apiURL + "/riwayatCatatanRevisi/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataRCR = await responseRCR.json();
+
+      if (responseRCR.ok) {
+         itemsRCR = dataRCR.dbData;
       }
 
       // -----------------------------------------------------------------------------//
@@ -415,42 +453,71 @@
    }
 
    async function handleRevisi() {
-      const payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tahunPelaksanaan,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
-         isi,
+      const komentar = document.getElementById("komentar");
+      // -------------------------
+      //    API RiwayatCttnRevisi
+      // -------------------------
+
+      const payloadCttnRevisi = {
+         ppmId,
          comment,
-         status: Number(data.status) - 1,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomFileName,
+         namaLengkapEvl,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-         $route("/admin/proposals");
+      if (komentar.value === "" || komentar.value == null) {
+         showModalError = true;
       } else {
-         console.log(response);
+         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloadCttnRevisi),
+         });
+
+         const resultRev = await responseRev.json();
+
+         // -----------------------------
+         //          API PPM
+         // -----------------------------
+
+         const payload = {
+            jenisProposal,
+            jenisKegiatan,
+            jenisSkema,
+            kelompokKeahlian,
+            topik,
+            tahunPelaksanaan,
+            biayaPenelitian,
+            anggotaTim,
+            id,
+            judul,
+            abstrak,
+            isi,
+            comment,
+            status: Number(data.status) - 1,
+            kdeptSelected,
+            klppmSelected,
+            kpkSelected,
+            reviewerSelected,
+            randomFileName,
+         };
+
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.ok) {
+            $route("/admin/proposals");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -708,6 +775,13 @@
 
 {#if data}
    <Article>
+      <Modalerror bind:show={showModalError}>
+         <p>
+            <b>Catatan Revisi</b> masih kosong! <br /> Isi catatan revisi sebagai
+            acuan peneliti untuk memperbaiki kesalahan!
+         </p>
+      </Modalerror>
+
       <h1 class="title is-1">Detail PPM</h1>
 
       <div class="tabs is-boxed">
@@ -946,7 +1020,35 @@
             <hr />
 
             <Field name="Catatan Revisi">
-               {comment}
+               <div class="box">
+                  {comment}
+               </div>
+            </Field>
+
+            <Field name="Riwayat Revisi">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Catatan Revisi</th>
+                        <th>Evalutor</th>
+                        <th class="is-narrow">Waktu</th>
+                     </tr>
+                  </thead>
+
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
             </Field>
          {:else}
             <Field name="Jenis Proposal">
@@ -1032,7 +1134,38 @@
             <hr />
 
             <Field name="Catatan Revisi">
-               <textarea class="textarea" bind:value={comment}></textarea>
+               <textarea
+                  class="textarea"
+                  bind:value={comment}
+                  name="komentar"
+                  id="komentar"
+               ></textarea>
+            </Field>
+
+            <Field name="Riwayat Revisi">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Catatan Revisi</th>
+                        <th>Evalutor</th>
+                        <th class="is-narrow">Waktu</th>
+                     </tr>
+                  </thead>
+
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
             </Field>
          {/if}
 
