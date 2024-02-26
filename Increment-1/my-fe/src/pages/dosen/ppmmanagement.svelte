@@ -26,6 +26,7 @@
 
       if (response.ok) {
          items = result.dbData;
+         console.log(items);
       } else {
          console.log(response);
       }
@@ -41,30 +42,30 @@
    }
 </script>
 
-{#if items}
-   <Article>
-      <h1 class="title is-1">PPM Management</h1>
-      <hr />
+<Article>
+   <h1 class="title is-1">PPM Management</h1>
+   <hr />
 
-      <button class="button is-info" on:click={addProposal}>
-         <span class="icon">
-            <Icon id="orang" src={accountAdd} />
-         </span>
-         <!-- svelte-ignore a11y-missing-attribute -->
-         <span><a>Buat Proposal</a></span>
-      </button>
+   <button class="button is-info" on:click={addProposal}>
+      <span class="icon">
+         <Icon id="orang" src={accountAdd} />
+      </span>
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <span><a>Buat Proposal</a></span>
+   </button>
 
-      <table class="table is-fullwidth is-striped is-hoverable">
-         <thead>
-            <tr>
-               <th>Judul</th>
-               <th class="is-narrow">Jenis Kegiatan</th>
-               <th class="is-narrow">Jenis Skema</th>
-               <th>Status</th>
-               <th colspan="2">Action</th>
-            </tr>
-         </thead>
+   <table class="table is-fullwidth is-striped is-hoverable">
+      <thead>
+         <tr>
+            <th>Judul</th>
+            <th class="is-narrow">Jenis Kegiatan</th>
+            <th class="is-narrow">Jenis Skema</th>
+            <th>Status</th>
+            <th colspan="2">Action</th>
+         </tr>
+      </thead>
 
+      {#if items}
          <tbody>
             {#each items as item}
                <tr>
@@ -87,9 +88,9 @@
                </tr>
             {/each}
          </tbody>
-      </table>
-   </Article>
-{/if}
+      {/if}
+   </table>
+</Article>
 
 <style>
    p {

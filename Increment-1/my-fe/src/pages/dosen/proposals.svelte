@@ -96,6 +96,13 @@
             typeof data.anggota_tim === "string"
                ? JSON.parse(data.anggota_tim)
                : data.anggota_tim;
+
+         // console.log(anggotaTim);
+         // let ccx = anggotaTim.map(function (obj) {
+         //    return obj.value;
+         // });
+         // console.log(ccx);
+
          judul = data.judul;
          abstrak = data.abstrak;
          isi = data.isi;

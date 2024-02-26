@@ -31218,42 +31218,82 @@
     return child_ctx;
   }
   function create_if_block13(ctx) {
-    let article;
+    let tbody;
     let current;
-    article = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot14] },
-        $$scope: { ctx }
-      }
+    let each_value = ensure_array_like(
+      /*items*/
+      ctx[0]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
+    }
+    const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
+      each_blocks[i] = null;
     });
     return {
       c() {
-        create_component(article.$$.fragment);
+        tbody = element("tbody");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
       },
       m(target, anchor) {
-        mount_component(article, target, anchor);
+        insert(target, tbody, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(tbody, null);
+          }
+        }
         current = true;
       },
       p(ctx2, dirty) {
-        const article_changes = {};
-        if (dirty & /*$$scope, items*/
-        65) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
+        if (dirty & /*items, detail*/
+        1) {
+          each_value = ensure_array_like(
+            /*items*/
+            ctx2[0]
+          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context10(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+              transition_in(each_blocks[i], 1);
+            } else {
+              each_blocks[i] = create_each_block10(child_ctx);
+              each_blocks[i].c();
+              transition_in(each_blocks[i], 1);
+              each_blocks[i].m(tbody, null);
+            }
+          }
+          group_outros();
+          for (i = each_value.length; i < each_blocks.length; i += 1) {
+            out(i);
+          }
+          check_outros();
         }
-        article.$set(article_changes);
       },
       i(local) {
         if (current)
           return;
-        transition_in(article.$$.fragment, local);
+        for (let i = 0; i < each_value.length; i += 1) {
+          transition_in(each_blocks[i]);
+        }
         current = true;
       },
       o(local) {
-        transition_out(article.$$.fragment, local);
+        each_blocks = each_blocks.filter(Boolean);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          transition_out(each_blocks[i]);
+        }
         current = false;
       },
       d(detaching) {
-        destroy_component(article, detaching);
+        if (detaching) {
+          detach(tbody);
+        }
+        destroy_each(each_blocks, detaching);
       }
     };
   }
@@ -31431,22 +31471,14 @@
     let table;
     let thead;
     let t15;
-    let tbody;
     let current;
     let mounted;
     let dispose;
     icon = new Icon_default({ props: { id: "orang", src: accountAdd } });
-    let each_value = ensure_array_like(
+    let if_block = (
       /*items*/
-      ctx[0]
+      ctx[0] && create_if_block13(ctx)
     );
-    let each_blocks = [];
-    for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
-    }
-    const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
-      each_blocks[i] = null;
-    });
     return {
       c() {
         h1 = element("h1");
@@ -31465,10 +31497,8 @@
         thead = element("thead");
         thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow">Jenis Kegiatan</th> <th class="is-narrow">Jenis Skema</th> <th>Status</th> <th colspan="2">Action</th></tr>`;
         t15 = space();
-        tbody = element("tbody");
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
+        if (if_block)
+          if_block.c();
         attr(h1, "class", "title is-1");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
@@ -31488,12 +31518,8 @@
         insert(target, table, anchor);
         append(table, thead);
         append(table, t15);
-        append(table, tbody);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(tbody, null);
-          }
-        }
+        if (if_block)
+          if_block.m(table, null);
         current = true;
         if (!mounted) {
           dispose = listen(button, "click", addProposal2);
@@ -31501,86 +31527,6 @@
         }
       },
       p(ctx2, dirty) {
-        if (dirty & /*items, detail*/
-        1) {
-          each_value = ensure_array_like(
-            /*items*/
-            ctx2[0]
-          );
-          let i;
-          for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context10(ctx2, each_value, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-              transition_in(each_blocks[i], 1);
-            } else {
-              each_blocks[i] = create_each_block10(child_ctx);
-              each_blocks[i].c();
-              transition_in(each_blocks[i], 1);
-              each_blocks[i].m(tbody, null);
-            }
-          }
-          group_outros();
-          for (i = each_value.length; i < each_blocks.length; i += 1) {
-            out(i);
-          }
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(icon.$$.fragment, local);
-        for (let i = 0; i < each_value.length; i += 1) {
-          transition_in(each_blocks[i]);
-        }
-        current = true;
-      },
-      o(local) {
-        transition_out(icon.$$.fragment, local);
-        each_blocks = each_blocks.filter(Boolean);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          transition_out(each_blocks[i]);
-        }
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(h1);
-          detach(t1);
-          detach(hr);
-          detach(t2);
-          detach(button);
-          detach(t5);
-          detach(table);
-        }
-        destroy_component(icon);
-        destroy_each(each_blocks, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_fragment37(ctx) {
-    let if_block_anchor;
-    let current;
-    let if_block = (
-      /*items*/
-      ctx[0] && create_if_block13(ctx)
-    );
-    return {
-      c() {
-        if (if_block)
-          if_block.c();
-        if_block_anchor = empty();
-      },
-      m(target, anchor) {
-        if (if_block)
-          if_block.m(target, anchor);
-        insert(target, if_block_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
         if (
           /*items*/
           ctx2[0]
@@ -31595,7 +31541,7 @@
             if_block = create_if_block13(ctx2);
             if_block.c();
             transition_in(if_block, 1);
-            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+            if_block.m(table, null);
           }
         } else if (if_block) {
           group_outros();
@@ -31608,19 +31554,70 @@
       i(local) {
         if (current)
           return;
+        transition_in(icon.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
       o(local) {
+        transition_out(icon.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(if_block_anchor);
+          detach(h1);
+          detach(t1);
+          detach(hr);
+          detach(t2);
+          detach(button);
+          detach(t5);
+          detach(table);
         }
+        destroy_component(icon);
         if (if_block)
-          if_block.d(detaching);
+          if_block.d();
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_fragment37(ctx) {
+    let article;
+    let current;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot14] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(article.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope, items*/
+        65) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(article, detaching);
       }
     };
   }
@@ -31646,6 +31643,7 @@
       const result = await response.json();
       if (response.ok) {
         $$invalidate(0, items = result.dbData);
+        console.log(items);
       } else {
         console.log(response);
       }

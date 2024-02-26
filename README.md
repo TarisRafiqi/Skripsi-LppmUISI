@@ -2,6 +2,4 @@
 
 Link Website LPPM UISI: https://www.lppmuisi.dififa.com/
 
--  Increment 1 = Login, User Managament
--  Increment 2 = Pendaftaran Proposal, PPM Management, Approval Management
--  Increment 3 = User Profile
+-  Increment 1 = Login, User Managament, Pendaftaran Proposal, PPM Management, Approval Management, User Profile.

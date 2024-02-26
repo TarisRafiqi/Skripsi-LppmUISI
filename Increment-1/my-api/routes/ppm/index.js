@@ -63,7 +63,8 @@ module.exports = async function (fastify, opts) {
       let connection;
 
       if (idFromToken === uid) {
-         const sql = "SELECT * FROM ppm WHERE uid = ?";
+         // const sql = "SELECT * FROM ppm WHERE uid = ?";
+         const sql = `SELECT * FROM ppm where JSON_CONTAINS(anggota_tim, '{"value": "${uid}" }') or uid = ?;`;
          try {
             connection = await fastify.mysql.getConnection();
             const [rows] = await connection.query(sql, [uid]);
