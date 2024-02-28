@@ -21,7 +21,8 @@
    let biayaPenelitian = "";
    let anggotaTim = [];
    let rab = "";
-   let randomFileName = "";
+   let randomRabFileName = "";
+   let randomPpmFileName = "";
 
    let myAbstract;
    let myIsi;
@@ -29,6 +30,8 @@
    const id = Number(localStorage.getItem("id"));
    let items = [];
    let file;
+   let fileRab;
+   let filePpm;
 
    onMount(async () => {
       const accessToken = localStorage.getItem("token");
@@ -52,6 +55,7 @@
             items.push({
                value: value.uid,
                label: value.nama_lengkap,
+               // role: "Anggota",
             });
          }
       } else {
@@ -59,20 +63,35 @@
       }
 
       //------------------------------------------------------------
-      // Generate Random Character
+      // Generate RAB Random Character
       //------------------------------------------------------------
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultxx = "";
+      let resultRabChar = "";
 
       for (let i = 0; i < 30; i++) {
          const randomIndex = Math.floor(Math.random() * characters.length);
-         resultxx += characters.charAt(randomIndex);
+         resultRabChar += characters.charAt(randomIndex);
       }
 
-      randomFileName = resultxx;
+      randomRabFileName = resultRabChar;
+
+      //------------------------------------------------------------
+      // Generate PPM Random Character
+      //------------------------------------------------------------
+      let resultPpmChar = "";
+
+      for (let i = 0; i < 30; i++) {
+         const randomIndex = Math.floor(Math.random() * characters.length);
+         resultPpmChar += characters.charAt(randomIndex);
+      }
+
+      randomPpmFileName = resultPpmChar;
    });
 
+   //------------------------------------------------------------
+   // Format Rupiah
+   //------------------------------------------------------------
    function formatRupiah(angka, prefix) {
       var number_string = angka.replace(/[^,\d]/g, "").toString(),
          split = number_string.split(","),
@@ -90,6 +109,12 @@
    }
 
    async function simpanProposal() {
+      console.log(fileRab);
+      console.log(fileRab.name);
+      console.log(fileRab.type);
+      console.log(randomRabFileName);
+      console.log(randomPpmFileName);
+
       const accessToken = localStorage.getItem("token");
       // myAbstract = tinymce.get("abstract").getContent();
       myIsi = tinymce.get("isi").getContent();
@@ -99,13 +124,14 @@
       reader.onloadend = async () => {
          const base64Data = reader.result.split(",")[1];
          const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
                data: base64Data,
             },
-            randomFileName,
+            randomRabFileName,
          };
+         return;
 
          try {
             const response = await fetch($apiURL + "/upload", {
@@ -121,9 +147,9 @@
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
       // -----------------------------------------------------------------------------//
-
+      return;
       let payload = {
          id,
          jenisProposal,
@@ -138,7 +164,7 @@
          myAbstract,
          myIsi,
          status: 0,
-         randomFileName,
+         randomRabFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -169,12 +195,12 @@
       reader.onloadend = async () => {
          const base64Data = reader.result.split(",")[1];
          const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
                data: base64Data,
             },
-            randomFileName,
+            randomRabFileName,
          };
 
          try {
@@ -192,7 +218,7 @@
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
       // -----------------------------------------------------------------------------//
 
       let payload = {
@@ -209,7 +235,7 @@
          myAbstract,
          myIsi,
          status: 2,
-         randomFileName,
+         randomRabFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -326,6 +352,18 @@
 
    <Field datepicker name="Tahun Pelaksanaan" bind:value={tahunPelaksanaan} />
 
+   <!-- <Field name="Tanggal Mulai">
+      <div class="field">
+         <input class="input" type="date" bind:value={tanggalMulai} />
+      </div>
+   </Field>
+
+   <Field name="Tanggal Selesai">
+      <div class="field">
+         <input class="input" type="date" bind:value={tanggalSelesai} />
+      </div>
+   </Field> -->
+
    <Field name="Biaya Penelitian">
       <input
          class="input"
@@ -342,8 +380,9 @@
          class="input"
          accept=".xlsx"
          type="file"
-         on:change={(e) => (file = e.target.files[0])}
+         on:change={(e) => (fileRab = e.target.files[0])}
       />
+      <p class="help is-info">File Type: xlsx</p>
    </Field>
 
    <Field name="Anggota Tim">
@@ -355,9 +394,9 @@
    <table class="table is-fullwidth is-striped is-hoverable is-bordered">
       <thead>
          <tr>
-            <th class="is-narrow">Action</th>
-            <th class="is-narrow">Status</th>
-            <th>Nama</th>
+            <th class="is-narrow" style="width:55px"></th>
+            <th class="is-narrow" style="width:86px">Role</th>
+            <th> </th>
          </tr>
       </thead>
       <tbody>
@@ -371,7 +410,7 @@
                <tr>
                   <td
                      ><button
-                        class="button is-danger is-rounded is-small"
+                        class="button is-danger is-small"
                         data-value={member.value}
                         on:click={deleteMember}
                         ><span class="icon">
@@ -406,9 +445,19 @@
       ></textarea>
    </Field>
 
-   <Field name="Isi Proposal">
-      <Wysiwyg id="isi" content={myIsi} />
+   <Field name="Proposal">
+      <input
+         class="input"
+         accept="application/pdf"
+         type="file"
+         on:change={(e) => (filePpm = e.target.files[0])}
+      />
+      <p class="help is-info">File Type: pdf</p>
    </Field>
+
+   <!-- <Field name="Isi Proposal">
+      <Wysiwyg id="isi" content={myIsi} />
+   </Field> -->
 
    <!-- <Field id="abstract" textarea name="Abstrak" />
    <Field id="isi" textarea name="Isi Proposal" /> -->

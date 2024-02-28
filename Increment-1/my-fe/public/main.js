@@ -14221,7 +14221,7 @@
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
         }
-        attr(span, "class", "svelte-z10axy");
+        attr(span, "class", "svelte-zkhzei");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -14279,7 +14279,7 @@
         t = text(t_value);
         attr(a, "data-value", a_data_value_value = /*item*/
         ctx[11].value);
-        attr(a, "class", "svelte-z10axy");
+        attr(a, "class", "svelte-zkhzei");
       },
       m(target, anchor) {
         insert(target, a, anchor);
@@ -14331,7 +14331,7 @@
         t = space();
         if (if_block)
           if_block.c();
-        attr(input, "class", "input svelte-z10axy");
+        attr(input, "class", "input svelte-zkhzei");
         attr(input, "placeholder", "Cari user (min 2 huruf)");
         toggle_class(
           input,
@@ -14339,7 +14339,7 @@
           /*focused*/
           ctx[1]
         );
-        attr(div, "class", "select svelte-z10axy");
+        attr(div, "class", "select svelte-zkhzei");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -14957,7 +14957,7 @@
         t9 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Status</th> <th>Nama</th></tr>`;
+        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
         t13 = space();
         tbody = element("tbody");
         tr1 = element("tr");
@@ -15242,23 +15242,23 @@
     let t9;
     let table;
     let thead;
-    let t15;
+    let t14;
     let tbody;
     let tr1;
+    let t19;
     let t20;
-    let t21;
     let hr0;
-    let t22;
+    let t21;
     let field9;
-    let t23;
+    let t22;
     let field10;
-    let t24;
+    let t23;
     let field11;
-    let t25;
+    let t24;
     let hr1;
-    let t26;
+    let t25;
     let field12;
-    let t27;
+    let t26;
     let field13;
     let current;
     field0 = new Field_default({
@@ -15396,27 +15396,27 @@
         t9 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Action</th> <th class="is-narrow">Status</th> <th>Nama</th></tr>`;
-        t15 = space();
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:65px"></th> <th class="is-narrow">Role</th> <th>Nama</th></tr>`;
+        t14 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
-        t20 = space();
+        t19 = space();
         if (if_block)
           if_block.c();
-        t21 = space();
+        t20 = space();
         hr0 = element("hr");
-        t22 = space();
+        t21 = space();
         create_component(field9.$$.fragment);
-        t23 = space();
+        t22 = space();
         create_component(field10.$$.fragment);
-        t24 = space();
+        t23 = space();
         create_component(field11.$$.fragment);
-        t25 = space();
+        t24 = space();
         hr1 = element("hr");
-        t26 = space();
+        t25 = space();
         create_component(field12.$$.fragment);
-        t27 = space();
+        t26 = space();
         create_component(field13.$$.fragment);
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
       },
@@ -15443,25 +15443,25 @@
         insert(target, t9, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t15);
+        append(table, t14);
         append(table, tbody);
         append(tbody, tr1);
-        append(tbody, t20);
+        append(tbody, t19);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t21, anchor);
+        insert(target, t20, anchor);
         insert(target, hr0, anchor);
-        insert(target, t22, anchor);
+        insert(target, t21, anchor);
         mount_component(field9, target, anchor);
-        insert(target, t23, anchor);
+        insert(target, t22, anchor);
         mount_component(field10, target, anchor);
-        insert(target, t24, anchor);
+        insert(target, t23, anchor);
         mount_component(field11, target, anchor);
-        insert(target, t25, anchor);
+        insert(target, t24, anchor);
         insert(target, hr1, anchor);
-        insert(target, t26, anchor);
+        insert(target, t25, anchor);
         mount_component(field12, target, anchor);
-        insert(target, t27, anchor);
+        insert(target, t26, anchor);
         mount_component(field13, target, anchor);
         current = true;
       },
@@ -15643,15 +15643,15 @@
           detach(br);
           detach(t9);
           detach(table);
-          detach(t21);
+          detach(t20);
           detach(hr0);
+          detach(t21);
           detach(t22);
           detach(t23);
           detach(t24);
-          detach(t25);
           detach(hr1);
+          detach(t25);
           detach(t26);
-          detach(t27);
         }
         destroy_component(field0, detaching);
         destroy_component(field1, detaching);
@@ -26000,7 +26000,7 @@
         t9 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Status</th> <th>Nama</th></tr>`;
+        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
         t13 = space();
         tbody = element("tbody");
         tr1 = element("tr");
@@ -31643,7 +31643,6 @@
       const result = await response.json();
       if (response.ok) {
         $$invalidate(0, items = result.dbData);
-        console.log(items);
       } else {
         console.log(response);
       }
@@ -39622,7 +39621,7 @@
   init_define_process();
   function get_each_context12(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[34] = list[i];
+    child_ctx[38] = list[i];
     return child_ctx;
   }
   function create_default_slot_118(ctx) {
@@ -40109,17 +40108,25 @@
   }
   function create_default_slot_56(ctx) {
     let input;
+    let t0;
+    let p;
     let mounted;
     let dispose;
     return {
       c() {
         input = element("input");
+        t0 = space();
+        p = element("p");
+        p.textContent = "File Type: xlsx";
         attr(input, "class", "input");
         attr(input, "accept", ".xlsx");
         attr(input, "type", "file");
+        attr(p, "class", "help is-info");
       },
       m(target, anchor) {
         insert(target, input, anchor);
+        insert(target, t0, anchor);
+        insert(target, p, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -40134,6 +40141,8 @@
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t0);
+          detach(p);
         }
         mounted = false;
         dispose();
@@ -40149,7 +40158,7 @@
     }
     let select_props = { start: "2", items: (
       /*items*/
-      ctx[11]
+      ctx[10]
     ) };
     if (
       /*anggotaTim*/
@@ -40171,9 +40180,9 @@
       p(ctx2, dirty) {
         const select_changes = {};
         if (dirty[0] & /*items*/
-        2048)
+        1024)
           select_changes.items = /*items*/
-          ctx2[11];
+          ctx2[10];
         if (!updating_result && dirty[0] & /*anggotaTim*/
         256) {
           updating_result = true;
@@ -40291,7 +40300,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[34].label + ""
+      ctx[38].label + ""
     );
     let t3;
     let t4;
@@ -40314,9 +40323,9 @@
         t3 = text(t3_value);
         t4 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[34].value);
+        ctx[38].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -40344,12 +40353,12 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*anggotaTim*/
         256 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[34].value)) {
+        ctx2[38].value)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[0] & /*anggotaTim*/
         256) && t3_value !== (t3_value = /*member*/
-        ctx2[34].label + ""))
+        ctx2[38].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -40467,42 +40476,45 @@
     };
   }
   function create_default_slot_119(ctx) {
-    let wysiwyg;
-    let current;
-    wysiwyg = new Wysiwyg_default({
-      props: { id: "isi", content: (
-        /*myIsi*/
-        ctx[10]
-      ) }
-    });
+    let input;
+    let t0;
+    let p;
+    let mounted;
+    let dispose;
     return {
       c() {
-        create_component(wysiwyg.$$.fragment);
+        input = element("input");
+        t0 = space();
+        p = element("p");
+        p.textContent = "File Type: pdf";
+        attr(input, "class", "input");
+        attr(input, "accept", "application/pdf");
+        attr(input, "type", "file");
+        attr(p, "class", "help is-info");
       },
       m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        current = true;
+        insert(target, input, anchor);
+        insert(target, t0, anchor);
+        insert(target, p, anchor);
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "change",
+            /*change_handler_1*/
+            ctx[28]
+          );
+          mounted = true;
+        }
       },
-      p(ctx2, dirty) {
-        const wysiwyg_changes = {};
-        if (dirty[0] & /*myIsi*/
-        1024)
-          wysiwyg_changes.content = /*myIsi*/
-          ctx2[10];
-        wysiwyg.$set(wysiwyg_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
-      },
+      p: noop,
       d(detaching) {
-        destroy_component(wysiwyg, detaching);
+        if (detaching) {
+          detach(input);
+          detach(t0);
+          detach(p);
+        }
+        mounted = false;
+        dispose();
       }
     };
   }
@@ -40534,25 +40546,25 @@
     let t12;
     let table;
     let thead;
-    let t18;
+    let t16;
     let tbody;
     let tr1;
-    let t23;
-    let t24;
+    let t21;
+    let t22;
     let hr1;
-    let t25;
+    let t23;
     let field9;
-    let t26;
+    let t24;
     let field10;
-    let t27;
+    let t25;
     let field11;
-    let t28;
+    let t26;
     let hr2;
-    let t29;
+    let t27;
     let div;
     let p0;
     let button0;
-    let t31;
+    let t29;
     let p1;
     let button1;
     let current;
@@ -40650,7 +40662,7 @@
     });
     field11 = new Field_default({
       props: {
-        name: "Isi Proposal",
+        name: "Proposal",
         $$slots: { default: [create_default_slot_119] },
         $$scope: { ctx }
       }
@@ -40684,30 +40696,30 @@
         t12 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Action</th> <th class="is-narrow">Status</th> <th>Nama</th></tr>`;
-        t18 = space();
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:55px"></th> <th class="is-narrow" style="width:86px">Role</th> <th></th></tr>`;
+        t16 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
-        t23 = space();
+        t21 = space();
         if (if_block)
           if_block.c();
-        t24 = space();
+        t22 = space();
         hr1 = element("hr");
-        t25 = space();
+        t23 = space();
         create_component(field9.$$.fragment);
-        t26 = space();
+        t24 = space();
         create_component(field10.$$.fragment);
-        t27 = space();
+        t25 = space();
         create_component(field11.$$.fragment);
-        t28 = space();
+        t26 = space();
         hr2 = element("hr");
-        t29 = space();
+        t27 = space();
         div = element("div");
         p0 = element("p");
         button0 = element("button");
         button0.textContent = "Simpan";
-        t31 = space();
+        t29 = space();
         p1 = element("p");
         button1 = element("button");
         button1.textContent = "Submit";
@@ -40746,27 +40758,27 @@
         insert(target, t12, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t18);
+        append(table, t16);
         append(table, tbody);
         append(tbody, tr1);
-        append(tbody, t23);
+        append(tbody, t21);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t24, anchor);
+        insert(target, t22, anchor);
         insert(target, hr1, anchor);
-        insert(target, t25, anchor);
+        insert(target, t23, anchor);
         mount_component(field9, target, anchor);
-        insert(target, t26, anchor);
+        insert(target, t24, anchor);
         mount_component(field10, target, anchor);
-        insert(target, t27, anchor);
+        insert(target, t25, anchor);
         mount_component(field11, target, anchor);
-        insert(target, t28, anchor);
+        insert(target, t26, anchor);
         insert(target, hr2, anchor);
-        insert(target, t29, anchor);
+        insert(target, t27, anchor);
         insert(target, div, anchor);
         append(div, p0);
         append(p0, button0);
-        append(div, t31);
+        append(div, t29);
         append(div, p1);
         append(p1, button1);
         current = true;
@@ -40792,35 +40804,35 @@
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
         2 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
         1 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema, jenisKegiatan*/
         5 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
         8 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
         64 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -40836,21 +40848,21 @@
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[0] & /*file*/
-        4096 | dirty[1] & /*$$scope*/
-        64) {
+        if (dirty[0] & /*fileRab*/
+        2048 | dirty[1] & /*$$scope*/
+        1024) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[0] & /*items, anggotaTim*/
-        2304 | dirty[1] & /*$$scope*/
-        64) {
+        1280 | dirty[1] & /*$$scope*/
+        1024) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
@@ -40880,21 +40892,21 @@
         const field9_changes = {};
         if (dirty[0] & /*judul*/
         16 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*myAbstract*/
         512 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*myIsi*/
-        1024 | dirty[1] & /*$$scope*/
-        64) {
+        if (dirty[0] & /*filePpm*/
+        4096 | dirty[1] & /*$$scope*/
+        1024) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
@@ -40951,14 +40963,14 @@
           detach(br);
           detach(t12);
           detach(table);
-          detach(t24);
+          detach(t22);
           detach(hr1);
+          detach(t23);
+          detach(t24);
           detach(t25);
           detach(t26);
-          detach(t27);
-          detach(t28);
           detach(hr2);
-          detach(t29);
+          detach(t27);
           detach(div);
         }
         destroy_component(field0, detaching);
@@ -40999,9 +41011,9 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*myIsi, myAbstract, judul, anggotaTim, items, file, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
+        if (dirty[0] & /*filePpm, myAbstract, judul, anggotaTim, items, fileRab, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
         8191 | dirty[1] & /*$$scope*/
-        64) {
+        1024) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -41033,8 +41045,8 @@
   function instance30($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(29, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(30, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(32, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(33, $apiURL = $$value));
     let value;
     let label;
     let jenisKegiatan = "";
@@ -41046,12 +41058,15 @@
     let topik = "";
     let biayaPenelitian = "";
     let anggotaTim = [];
-    let randomFileName2 = "";
+    let randomRabFileName = "";
+    let randomPpmFileName = "";
     let myAbstract;
     let myIsi;
     const id = Number(localStorage.getItem("id"));
     let items = [];
     let file;
+    let fileRab;
+    let filePpm;
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
@@ -41062,7 +41077,7 @@
       const result = await response.json();
       if (response.ok) {
         listUser = result;
-        $$invalidate(11, items = []);
+        $$invalidate(10, items = []);
         for (const [key, value2] of Object.entries(listUser)) {
           items.push({
             value: value2.uid,
@@ -41073,27 +41088,39 @@
         console.log(response);
       }
       const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultxx = "";
+      let resultRabChar = "";
       for (let i = 0; i < 30; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
-        resultxx += characters.charAt(randomIndex);
+        resultRabChar += characters.charAt(randomIndex);
       }
-      randomFileName2 = resultxx;
+      randomRabFileName = resultRabChar;
+      let resultPpmChar = "";
+      for (let i = 0; i < 30; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        resultPpmChar += characters.charAt(randomIndex);
+      }
+      randomPpmFileName = resultPpmChar;
     });
     async function simpanProposal() {
+      console.log(fileRab);
+      console.log(fileRab.name);
+      console.log(fileRab.type);
+      console.log(randomRabFileName);
+      console.log(randomPpmFileName);
       const accessToken = localStorage.getItem("token");
-      $$invalidate(10, myIsi = tinymce.get("isi").getContent());
+      myIsi = tinymce.get("isi").getContent();
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
         const payloadfile = {
-          file: {
-            name: file.name,
-            type: file.type,
+          fileRab: {
+            name: fileRab.name,
+            type: fileRab.type,
             data: base64Data
           },
-          randomFileName: randomFileName2
+          randomRabFileName
         };
+        return;
         try {
           const response2 = await fetch($apiURL + "/upload", {
             method: "POST",
@@ -41108,7 +41135,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
+      return;
       let payload = {
         id,
         jenisProposal,
@@ -41123,7 +41151,7 @@
         myAbstract,
         myIsi,
         status: 0,
-        randomFileName: randomFileName2
+        randomRabFileName
       };
       const response = await fetch($apiURL + "/ppm", {
         method: "POST",
@@ -41142,17 +41170,17 @@
     }
     async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      $$invalidate(10, myIsi = tinymce.get("isi").getContent());
+      myIsi = tinymce.get("isi").getContent();
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
         const payloadfile = {
-          file: {
-            name: file.name,
-            type: file.type,
+          fileRab: {
+            name: fileRab.name,
+            type: fileRab.type,
             data: base64Data
           },
-          randomFileName: randomFileName2
+          randomRabFileName
         };
         try {
           const response2 = await fetch($apiURL + "/upload", {
@@ -41171,7 +41199,7 @@
           );
         }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
       let payload = {
         id,
         jenisProposal,
@@ -41186,7 +41214,7 @@
         myAbstract,
         myIsi,
         status: 2,
-        randomFileName: randomFileName2
+        randomRabFileName
       };
       const response = await fetch($apiURL + "/ppm", {
         method: "POST",
@@ -41238,7 +41266,7 @@
       $$invalidate(7, biayaPenelitian);
     }
     const keyup_handler = () => $$invalidate(7, biayaPenelitian = formatRupiah4(biayaPenelitian, "Rp. "));
-    const change_handler = (e) => $$invalidate(12, file = e.target.files[0]);
+    const change_handler = (e) => $$invalidate(11, fileRab = e.target.files[0]);
     function select_result_binding(value2) {
       anggotaTim = value2;
       $$invalidate(8, anggotaTim);
@@ -41251,6 +41279,7 @@
       myAbstract = this.value;
       $$invalidate(9, myAbstract);
     }
+    const change_handler_1 = (e) => $$invalidate(12, filePpm = e.target.files[0]);
     return [
       jenisKegiatan,
       jenisProposal,
@@ -41262,9 +41291,9 @@
       biayaPenelitian,
       anggotaTim,
       myAbstract,
-      myIsi,
       items,
-      file,
+      fileRab,
+      filePpm,
       simpanProposal,
       submitProposal,
       deleteMember,
@@ -41279,7 +41308,8 @@
       change_handler,
       select_result_binding,
       input_input_handler_3,
-      textarea_input_handler
+      textarea_input_handler,
+      change_handler_1
     ];
   }
   var Proposal2 = class extends SvelteComponent {
@@ -41631,7 +41661,7 @@
         t9 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Status</th> <th>Nama</th></tr>`;
+        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
         t13 = space();
         tbody = element("tbody");
         tr1 = element("tr");
@@ -41880,28 +41910,28 @@
     let t9;
     let table;
     let thead;
-    let t15;
+    let t14;
     let tbody;
     let tr1;
+    let t19;
     let t20;
-    let t21;
     let hr0;
-    let t22;
+    let t21;
     let field9;
-    let t23;
+    let t22;
     let field10;
-    let t24;
+    let t23;
     let field11;
-    let t25;
+    let t24;
     let br1;
     let br2;
-    let t26;
+    let t25;
     let hr1;
-    let t27;
+    let t26;
     let div1;
-    let t30;
+    let t29;
     let field12;
-    let t31;
+    let t30;
     let field13;
     let current;
     field0 = new Field_default({
@@ -42039,34 +42069,34 @@
         t9 = space();
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Action</th> <th class="is-narrow">Status</th> <th>Nama</th></tr>`;
-        t15 = space();
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:65px"></th> <th class="is-narrow">Role</th> <th>Nama</th></tr>`;
+        t14 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
-        t20 = space();
+        t19 = space();
         if (if_block)
           if_block.c();
-        t21 = space();
+        t20 = space();
         hr0 = element("hr");
-        t22 = space();
+        t21 = space();
         create_component(field9.$$.fragment);
-        t23 = space();
+        t22 = space();
         create_component(field10.$$.fragment);
-        t24 = space();
+        t23 = space();
         create_component(field11.$$.fragment);
-        t25 = space();
+        t24 = space();
         br1 = element("br");
         br2 = element("br");
-        t26 = space();
+        t25 = space();
         hr1 = element("hr");
-        t27 = space();
+        t26 = space();
         div1 = element("div");
         div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Perhatikan</strong> catatan revisi dari evalutor untuk
                      detail yang akan direvisi!</p></div>`;
-        t30 = space();
+        t29 = space();
         create_component(field12.$$.fragment);
-        t31 = space();
+        t30 = space();
         create_component(field13.$$.fragment);
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
         attr(div1, "class", "columns notification is-danger is-light");
@@ -42094,30 +42124,30 @@
         insert(target, t9, anchor);
         insert(target, table, anchor);
         append(table, thead);
-        append(table, t15);
+        append(table, t14);
         append(table, tbody);
         append(tbody, tr1);
-        append(tbody, t20);
+        append(tbody, t19);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t21, anchor);
+        insert(target, t20, anchor);
         insert(target, hr0, anchor);
-        insert(target, t22, anchor);
+        insert(target, t21, anchor);
         mount_component(field9, target, anchor);
-        insert(target, t23, anchor);
+        insert(target, t22, anchor);
         mount_component(field10, target, anchor);
-        insert(target, t24, anchor);
+        insert(target, t23, anchor);
         mount_component(field11, target, anchor);
-        insert(target, t25, anchor);
+        insert(target, t24, anchor);
         insert(target, br1, anchor);
         insert(target, br2, anchor);
-        insert(target, t26, anchor);
+        insert(target, t25, anchor);
         insert(target, hr1, anchor);
-        insert(target, t27, anchor);
+        insert(target, t26, anchor);
         insert(target, div1, anchor);
-        insert(target, t30, anchor);
+        insert(target, t29, anchor);
         mount_component(field12, target, anchor);
-        insert(target, t31, anchor);
+        insert(target, t30, anchor);
         mount_component(field13, target, anchor);
         current = true;
       },
@@ -42299,20 +42329,20 @@
           detach(br0);
           detach(t9);
           detach(table);
-          detach(t21);
+          detach(t20);
           detach(hr0);
+          detach(t21);
           detach(t22);
           detach(t23);
           detach(t24);
-          detach(t25);
           detach(br1);
           detach(br2);
-          detach(t26);
+          detach(t25);
           detach(hr1);
-          detach(t27);
+          detach(t26);
           detach(div1);
+          detach(t29);
           detach(t30);
-          detach(t31);
         }
         destroy_component(field0, detaching);
         destroy_component(field1, detaching);

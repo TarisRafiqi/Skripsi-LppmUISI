@@ -966,8 +966,8 @@
             >
                <thead>
                   <tr>
-                     <th class="is-narrow">Action</th>
-                     <th class="is-narrow">Status</th>
+                     <th class="is-narrow" style="width:65px"></th>
+                     <th class="is-narrow">Role</th>
                      <th>Nama</th>
                   </tr>
                </thead>
@@ -1095,7 +1095,7 @@
             >
                <thead>
                   <tr>
-                     <th class="is-narrow">Status</th>
+                     <th class="is-narrow">Role</th>
                      <th>Nama</th>
                   </tr>
                </thead>

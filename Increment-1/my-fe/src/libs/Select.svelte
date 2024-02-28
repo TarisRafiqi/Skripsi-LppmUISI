@@ -82,6 +82,7 @@
    div {
       position: relative;
       display: inline-flex;
+      width: 100%;
    }
    span {
       z-index: 10;
@@ -94,9 +95,6 @@
       border: 1px solid #ccc;
       cursor: pointer;
    }
-   /* input {
-       height: 32px; 
-   } */
    a {
       position: relative;
       display: block;

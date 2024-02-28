@@ -694,7 +694,7 @@
          <table class="table is-fullwidth is-striped is-hoverable is-bordered">
             <thead>
                <tr>
-                  <th class="is-narrow">Status</th>
+                  <th class="is-narrow">Role</th>
                   <th>Nama</th>
                </tr>
             </thead>
