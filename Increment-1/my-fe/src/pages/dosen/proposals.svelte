@@ -370,10 +370,13 @@
       };
       let filename = "rab.xlsx";
       try {
-         const response = await fetch($apiURL + `/upload/${randomFileName}`, {
-            method: "GET",
-            headers: headers,
-         });
+         const response = await fetch(
+            $apiURL + `/uploadRab/${randomFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
          const blob = await response.blob();
          const link = document.createElement("a");
          link.href = window.URL.createObjectURL(blob);
@@ -402,7 +405,7 @@
          };
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,
@@ -477,7 +480,7 @@
          };
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,
@@ -552,7 +555,7 @@
          };
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,

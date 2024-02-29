@@ -21602,7 +21602,7 @@
           randomFileName
         };
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
@@ -39621,7 +39621,7 @@
   init_define_process();
   function get_each_context12(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[38] = list[i];
+    child_ctx[37] = list[i];
     return child_ctx;
   }
   function create_default_slot_118(ctx) {
@@ -40300,7 +40300,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[38].label + ""
+      ctx[37].label + ""
     );
     let t3;
     let t4;
@@ -40325,7 +40325,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[38].value);
+        ctx[37].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -40353,12 +40353,12 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*anggotaTim*/
         256 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[38].value)) {
+        ctx2[37].value)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[0] & /*anggotaTim*/
         256) && t3_value !== (t3_value = /*member*/
-        ctx2[38].label + ""))
+        ctx2[37].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -40804,35 +40804,35 @@
         const field0_changes = {};
         if (dirty[0] & /*jenisProposal*/
         2 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jenisKegiatan*/
         1 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*jenisSkema, jenisKegiatan*/
         5 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*kelompokKeahlian*/
         8 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*topik*/
         64 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
@@ -40848,21 +40848,21 @@
         const field6_changes = {};
         if (dirty[0] & /*biayaPenelitian*/
         128 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
         if (dirty[0] & /*fileRab*/
         2048 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[0] & /*items, anggotaTim*/
         1280 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
@@ -40892,21 +40892,21 @@
         const field9_changes = {};
         if (dirty[0] & /*judul*/
         16 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*myAbstract*/
         512 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[0] & /*filePpm*/
         4096 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
@@ -41013,7 +41013,7 @@
         const article_changes = {};
         if (dirty[0] & /*filePpm, myAbstract, judul, anggotaTim, items, fileRab, biayaPenelitian, tahunPelaksanaan, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
         8191 | dirty[1] & /*$$scope*/
-        1024) {
+        512) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -41045,8 +41045,8 @@
   function instance30($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(32, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(33, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(31, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(32, $apiURL = $$value));
     let value;
     let label;
     let jenisKegiatan = "";
@@ -41064,7 +41064,6 @@
     let myIsi;
     const id = Number(localStorage.getItem("id"));
     let items = [];
-    let file;
     let fileRab;
     let filePpm;
     onMount(async () => {
@@ -41102,17 +41101,12 @@
       randomPpmFileName = resultPpmChar;
     });
     async function simpanProposal() {
-      console.log(fileRab);
-      console.log(fileRab.name);
-      console.log(fileRab.type);
-      console.log(randomRabFileName);
-      console.log(randomPpmFileName);
       const accessToken = localStorage.getItem("token");
-      myIsi = tinymce.get("isi").getContent();
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const base64Data = reader.result.split(",")[1];
-        const payloadfile = {
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      readerRab.onloadend = async () => {
+        const base64Data = readerRab.result.split(",")[1];
+        const payloadRabFile = {
           fileRab: {
             name: fileRab.name,
             type: fileRab.type,
@@ -41120,22 +41114,48 @@
           },
           randomRabFileName
         };
-        return;
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(payloadfile)
+            body: JSON.stringify(payloadRabFile)
           });
           const result2 = await response2.json();
+          console.log(result2);
         } catch (error) {
           console.error("Error uploading file:", error);
         }
       };
-      reader.readAsDataURL(fileRab);
+      readerRab.readAsDataURL(fileRab);
+      readerPpm.onloadend = async () => {
+        const base64Data = readerPpm.result.split(",")[1];
+        const payloadPpmFile = {
+          filePpm: {
+            name: filePpm.name,
+            type: filePpm.type,
+            data: base64Data
+          },
+          randomPpmFileName
+        };
+        try {
+          const response2 = await fetch($apiURL + "/uploadPpm", {
+            method: "POST",
+            headers: {
+              Authorization: `${accessToken}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payloadPpmFile)
+          });
+          const result2 = await response2.json();
+          console.log(result2);
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      };
+      readerPpm.readAsDataURL(filePpm);
       return;
       let payload = {
         id,
@@ -41169,12 +41189,15 @@
       }
     }
     async function submitProposal() {
+      console.log(fileRab);
+      console.log(fileRab.name);
+      console.log(fileRab.type);
+      console.log(randomRabFileName);
       const accessToken = localStorage.getItem("token");
-      myIsi = tinymce.get("isi").getContent();
       const reader = new FileReader();
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
-        const payloadfile = {
+        const payloadRabFile = {
           fileRab: {
             name: fileRab.name,
             type: fileRab.type,
@@ -41183,23 +41206,22 @@
           randomRabFileName
         };
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(payloadfile)
+            body: JSON.stringify(payloadRabFile)
           });
           const result2 = await response2.json();
+          console.log(result2);
         } catch (error) {
-          console.error(
-            "Error uploading file:",
-            error
-          );
+          console.error("Error uploading file:", error);
         }
       };
       reader.readAsDataURL(fileRab);
+      return;
       let payload = {
         id,
         jenisProposal,
@@ -47576,7 +47598,7 @@
       };
       let filename = "rab.xlsx";
       try {
-        const response = await fetch($apiURL + `/upload/${randomFileName}`, { method: "GET", headers });
+        const response = await fetch($apiURL + `/uploadRab/${randomFileName}`, { method: "GET", headers });
         const blob = await response.blob();
         const link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
@@ -47601,7 +47623,7 @@
           randomFileName
         };
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
@@ -47664,7 +47686,7 @@
           randomFileName
         };
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
@@ -47726,7 +47748,7 @@
           randomFileName
         };
         try {
-          const response2 = await fetch($apiURL + "/upload", {
+          const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,
@@ -48150,7 +48172,7 @@
           randomFileName
         };
         try {
-          const response = await fetch($apiURL + "/upload", {
+          const response = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
               Authorization: `${accessToken}`,

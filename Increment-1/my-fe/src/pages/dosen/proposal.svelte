@@ -29,7 +29,6 @@
 
    const id = Number(localStorage.getItem("id"));
    let items = [];
-   let file;
    let fileRab;
    let filePpm;
 
@@ -109,21 +108,18 @@
    }
 
    async function simpanProposal() {
-      console.log(fileRab);
-      console.log(fileRab.name);
-      console.log(fileRab.type);
-      console.log(randomRabFileName);
-      console.log(randomPpmFileName);
+      // myAbstract = tinymce.get("abstract").getContent();
+      // myIsi = tinymce.get("isi").getContent();
 
       const accessToken = localStorage.getItem("token");
-      // myAbstract = tinymce.get("abstract").getContent();
-      myIsi = tinymce.get("isi").getContent();
-
-      // -----------------------------------------------------------------------------//
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
+         const payloadRabFile = {
             fileRab: {
                name: fileRab.name,
                type: fileRab.type,
@@ -131,23 +127,57 @@
             },
             randomRabFileName,
          };
-         return;
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,
                   "Content-Type": "application/json",
                },
-               body: JSON.stringify(payloadfile),
+               body: JSON.stringify(payloadRabFile),
             });
+
             const result = await response.json();
+            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(fileRab);
+      readerRab.readAsDataURL(fileRab);
+
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+            console.log(result);
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
       return;
       let payload = {
@@ -186,15 +216,21 @@
    }
 
    async function submitProposal() {
+      console.log(fileRab);
+      console.log(fileRab.name);
+      console.log(fileRab.type);
+      console.log(randomRabFileName);
+      // console.log(randomPpmFileName);
+
       const accessToken = localStorage.getItem("token");
       // myAbstract = tinymce.get("abstract").getContent();
-      myIsi = tinymce.get("isi").getContent();
+      // myIsi = tinymce.get("isi").getContent();
 
       // -----------------------------------------------------------------------------//
       const reader = new FileReader();
       reader.onloadend = async () => {
          const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
+         const payloadRabFile = {
             fileRab: {
                name: fileRab.name,
                type: fileRab.type,
@@ -204,23 +240,23 @@
          };
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,
                   "Content-Type": "application/json",
                },
-               body: JSON.stringify(payloadfile),
+               body: JSON.stringify(payloadRabFile),
             });
             const result = await response.json();
-            // console.log(result);
+            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
       reader.readAsDataURL(fileRab);
       // -----------------------------------------------------------------------------//
-
+      return;
       let payload = {
          id,
          jenisProposal,

@@ -43,7 +43,7 @@
          };
 
          try {
-            const response = await fetch($apiURL + "/upload", {
+            const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
                   Authorization: `${accessToken}`,
