@@ -512,7 +512,7 @@
       ></textarea>
    </Field>
 
-   <Field name="Isi Proposal">
+   <Field name="Proposal">
       <input
          class="input"
          accept="application/pdf"

@@ -530,12 +530,14 @@
 
    async function submitProposal() {
       const accessToken = localStorage.getItem("token");
-      // abstrak = tinymce.get("abstract").getContent();
-      isi = tinymce.get("isi").getContent();
 
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
          const payloadRabFile = {
             fileRab: {
                name: fileRab.name,
@@ -560,8 +562,38 @@
             console.error("Error uploading file:", error);
          }
       };
-      //
-      reader.readAsDataURL(fileRab);
+
+      readerRab.readAsDataURL(fileRab);
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+      readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
 
       const payload = {
@@ -607,12 +639,14 @@
 
    async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-      // abstrak = tinymce.get("abstract").getContent();
-      isi = tinymce.get("isi").getContent();
 
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
          const payloadRabFile = {
             fileRab: {
                name: fileRab.name,
@@ -631,12 +665,44 @@
                },
                body: JSON.stringify(payloadRabFile),
             });
+
             const result = await response.json();
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(fileRab);
+
+      readerRab.readAsDataURL(fileRab);
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+      readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
 
       const payload = {
@@ -995,7 +1061,7 @@
                <Wysiwyg id="isi" content={isi} />
             </Field> -->
 
-            <Field name="Isi Proposal">
+            <Field name="Proposal">
                <input
                   class="input"
                   accept="application/pdf"
@@ -1132,7 +1198,7 @@
                </div>
             </Field> -->
 
-            <Field name="Isi">
+            <Field name="Proposal">
                <button
                   class="button is-link is-rounded button is-small"
                   on:click={handleDownloadPpm}>Download Proposal</button
