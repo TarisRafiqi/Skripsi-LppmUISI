@@ -55,7 +55,8 @@
       jenisSkema,
       kelompokKeahlian,
       topik,
-      tahunPelaksanaan,
+      tanggalMulai,
+      tanggalSelesai,
       biayaPenelitian,
       anggotaTim,
       rab,
@@ -91,7 +92,6 @@
 
       if (response.ok) {
          data = result;
-         console.log(data);
 
          ppmId = data.id;
          uidProposal = data.uid;
@@ -100,7 +100,8 @@
          jenisSkema = data.jenis_skema;
          kelompokKeahlian = data.kelompok_keahlian;
          topik = data.topik;
-         tahunPelaksanaan = data.tahun_pelaksanaan;
+         tanggalMulai = data.tanggal_mulai;
+         tanggalSelesai = data.tanggal_selesai;
          biayaPenelitian = data.biaya_penelitian;
          anggotaTim =
             typeof data.anggota_tim === "string"
@@ -116,7 +117,8 @@
          klppmSelected = data.uid_klppm;
          kpkSelected = data.uid_kpk;
          reviewerSelected = data.uid_reviewer;
-         randomFileName = data.random_file_name;
+         randomRabFileName = data.random_rab_file_name;
+         randomPpmFileName = data.random_ppm_file_name;
       }
       // -----------------------------------------------------------------------------//
       // Get Nama Lengkap Evaluator
@@ -366,7 +368,8 @@
             jenisSkema,
             kelompokKeahlian,
             topik,
-            tahunPelaksanaan,
+            tanggalMulai,
+            tanggalSelesai,
             biayaPenelitian,
             anggotaTim,
             id,
@@ -379,7 +382,8 @@
             klppmSelected,
             kpkSelected,
             reviewerSelected,
-            randomFileName,
+            randomRabFileName,
+            randomPpmFileName,
          };
 
          const response = await fetch($apiURL + "/ppm", {
@@ -407,20 +411,22 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          id,
          judul,
          abstrak,
          isi,
-         comment: "",
+         comment,
          status: Number(data.status) + 1,
          kdeptSelected,
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomFileName,
+         randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -447,7 +453,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          id,
@@ -460,7 +467,8 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomFileName,
+         randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -503,7 +511,7 @@
       }
    }
 
-   async function handleDownload(e) {
+   async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
          Authorization: `${accessToken}`,
@@ -511,10 +519,38 @@
       };
       let filename = "rab.xlsx";
       try {
-         const response = await fetch(`${$apiURL}/upload/${randomFileName}`, {
-            method: "GET",
-            headers: headers,
-         });
+         const response = await fetch(
+            $apiURL + `/uploadRab/${randomRabFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+         const blob = await response.blob();
+         const link = document.createElement("a");
+         link.href = window.URL.createObjectURL(blob);
+         link.download = filename;
+         link.click();
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadPpm(e) {
+      const accessToken = localStorage.getItem("token");
+      const headers = {
+         Authorization: `${accessToken}`,
+         "Content-Type": "application/json",
+      };
+      let filename = "proposal.pdf";
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPpm/${randomPpmFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
          const blob = await response.blob();
          const link = document.createElement("a");
          link.href = window.URL.createObjectURL(blob);
@@ -672,8 +708,12 @@
             {topik}
          </Field>
 
-         <Field name="Tahun Pelaksanaan">
-            {tahunPelaksanaan}
+         <Field name="Tanggal Mulai">
+            {tanggalMulai}
+         </Field>
+
+         <Field name="Tanggal Selesai">
+            {tanggalSelesai}
          </Field>
 
          <Field name="Biaya Penelitian">
@@ -683,7 +723,7 @@
          <Field name="Rencana Anggaran Biaya">
             <button
                class="button is-link is-rounded button is-small"
-               on:click={handleDownload}>Download RAB</button
+               on:click={handleDownloadRab}>Download RAB</button
             >
          </Field>
 
@@ -724,10 +764,16 @@
             {@html data.abstrak}
          </Field>
 
-         <Field name="isi">
+         <!-- <Field name="isi">
             <div class="box box-padding">
                {@html data.isi}
             </div>
+         </Field> -->
+         <Field name="Proposal">
+            <button
+               class="button is-link is-rounded button is-small"
+               on:click={handleDownloadPpm}>Download Proposal</button
+            >
          </Field>
 
          <hr />
@@ -1173,7 +1219,9 @@
 {/if}
 
 <style>
+   /*
    .box-padding {
       padding: 4.724rem;
    }
+   */
 </style>
