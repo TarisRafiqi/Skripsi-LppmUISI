@@ -37,7 +37,8 @@
       jenisSkema,
       kelompokKeahlian,
       topik,
-      tahunPelaksanaan,
+      tanggalMulai,
+      tanggalSelesai,
       biayaPenelitian,
       anggotaTim = [],
       judul,
@@ -63,6 +64,8 @@
 
    const id = params["1"];
    let file;
+   let fileRab;
+   let filePpm;
 
    onMount(async () => {
       const accessToken = localStorage.getItem("token");
@@ -90,7 +93,8 @@
          jenisSkema = data.jenis_skema;
          kelompokKeahlian = data.kelompok_keahlian;
          topik = data.topik;
-         tahunPelaksanaan = data.tahun_pelaksanaan;
+         tanggalMulai = data.tanggal_mulai;
+         tanggalSelesai = data.tanggal_selesai;
          biayaPenelitian = data.biaya_penelitian;
          anggotaTim =
             typeof data.anggota_tim === "string"
@@ -112,7 +116,8 @@
          klppmSelected = data.uid_klppm;
          kpkSelected = data.uid_kpk;
          reviewerSelected = data.uid_reviewer;
-         randomFileName = data.random_file_name;
+         randomRabFileName = data.random_rab_file_name;
+         randomPpmFileName = data.random_ppm_file_name;
       } else {
          console.log(response);
       }
@@ -362,7 +367,7 @@
       return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 
-   async function handleDownload(e) {
+   async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
          Authorization: `${accessToken}`,
@@ -371,7 +376,32 @@
       let filename = "rab.xlsx";
       try {
          const response = await fetch(
-            $apiURL + `/uploadRab/${randomFileName}`,
+            $apiURL + `/uploadRab/${randomRabFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+         const blob = await response.blob();
+         const link = document.createElement("a");
+         link.href = window.URL.createObjectURL(blob);
+         link.download = filename;
+         link.click();
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadPpm(e) {
+      const accessToken = localStorage.getItem("token");
+      const headers = {
+         Authorization: `${accessToken}`,
+         "Content-Type": "application/json",
+      };
+      let filename = "proposal.pdf";
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPpm/${randomPpmFileName}`,
             {
                method: "GET",
                headers: headers,
@@ -389,19 +419,21 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      // abstrak = tinymce.get("abstract").getContent();
-      isi = tinymce.get("isi").getContent();
 
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
                data: base64Data,
             },
-            randomFileName,
+            randomRabFileName,
          };
 
          try {
@@ -411,7 +443,7 @@
                   Authorization: `${accessToken}`,
                   "Content-Type": "application/json",
                },
-               body: JSON.stringify(payloadfile),
+               body: JSON.stringify(payloadRabFile),
             });
 
             const result = await response.json();
@@ -419,8 +451,40 @@
             console.error("Error uploading file:", error);
          }
       };
-      //
-      if (file) reader.readAsDataURL(file);
+
+      if (fileRab) readerRab.readAsDataURL(fileRab);
+
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      if (filePpm) readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
 
       const payload = {
@@ -429,7 +493,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          id,
@@ -442,7 +507,8 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomFileName,
+         randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -470,13 +536,13 @@
       const reader = new FileReader();
       reader.onloadend = async () => {
          const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
                data: base64Data,
             },
-            randomFileName,
+            randomRabFileName,
          };
 
          try {
@@ -486,7 +552,7 @@
                   Authorization: `${accessToken}`,
                   "Content-Type": "application/json",
                },
-               body: JSON.stringify(payloadfile),
+               body: JSON.stringify(payloadRabFile),
             });
 
             const result = await response.json();
@@ -495,7 +561,7 @@
          }
       };
       //
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
       // -----------------------------------------------------------------------------//
 
       const payload = {
@@ -504,7 +570,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          id,
@@ -517,7 +584,8 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomFileName,
+         randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -545,13 +613,13 @@
       const reader = new FileReader();
       reader.onloadend = async () => {
          const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
                data: base64Data,
             },
-            randomFileName,
+            randomRabFileName,
          };
 
          try {
@@ -561,14 +629,14 @@
                   Authorization: `${accessToken}`,
                   "Content-Type": "application/json",
                },
-               body: JSON.stringify(payloadfile),
+               body: JSON.stringify(payloadRabFile),
             });
             const result = await response.json();
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileRab);
       // -----------------------------------------------------------------------------//
 
       const payload = {
@@ -577,7 +645,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          id,
@@ -590,7 +659,8 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomFileName,
+         randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -827,11 +897,21 @@
                />
             </Field>
 
-            <Field
-               datepicker
-               name="Tahun Pelaksanaan"
-               bind:value={tahunPelaksanaan}
-            />
+            <Field name="Tanggal Mulai">
+               <div class="field">
+                  <input class="input" type="date" bind:value={tanggalMulai} />
+               </div>
+            </Field>
+
+            <Field name="Tanggal Selesai">
+               <div class="field">
+                  <input
+                     class="input"
+                     type="date"
+                     bind:value={tanggalSelesai}
+                  />
+               </div>
+            </Field>
 
             <Field name="Biaya Penelitian">
                <input
@@ -849,7 +929,7 @@
                   class="input"
                   accept=".xlsx"
                   type="file"
-                  on:change={(e) => (file = e.target.files[0])}
+                  on:change={(e) => (fileRab = e.target.files[0])}
                />
             </Field>
 
@@ -911,8 +991,17 @@
                <textarea class="textarea" bind:value={abstrak}></textarea>
             </Field>
 
-            <Field name="Isi">
+            <!-- <Field name="Isi">
                <Wysiwyg id="isi" content={isi} />
+            </Field> -->
+
+            <Field name="Isi Proposal">
+               <input
+                  class="input"
+                  accept="application/pdf"
+                  type="file"
+                  on:change={(e) => (filePpm = e.target.files[0])}
+               />
             </Field>
 
             <br /><br />
@@ -979,8 +1068,12 @@
                {topik}
             </Field>
 
-            <Field name="Tahun Pelaksanaan">
-               {tahunPelaksanaan}
+            <Field name="Tanggal Mulai">
+               {tanggalMulai}
+            </Field>
+
+            <Field name="Tanggal Selesai">
+               {tanggalSelesai}
             </Field>
 
             <Field name="Biaya Penelitian">
@@ -990,7 +1083,7 @@
             <Field name="Rencana Anggaran Biaya">
                <button
                   class="button is-link is-rounded button is-small"
-                  on:click={handleDownload}>Download RAB</button
+                  on:click={handleDownloadRab}>Download RAB</button
                >
             </Field>
 
@@ -1033,10 +1126,17 @@
                {@html data.abstrak}
             </Field>
 
-            <Field name="Isi">
+            <!-- <Field name="Isi">
                <div class="box box-padding">
                   {@html data.isi}
                </div>
+            </Field> -->
+
+            <Field name="Isi">
+               <button
+                  class="button is-link is-rounded button is-small"
+                  on:click={handleDownloadPpm}>Download Proposal</button
+               >
             </Field>
          {/if}
 
@@ -1459,7 +1559,8 @@
 {/if}
 
 <style>
-   .box-padding {
+   /* .box-padding { 
       padding: 4.724rem;
    }
+   */
 </style>

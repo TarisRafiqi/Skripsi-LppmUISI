@@ -16,7 +16,9 @@
    let jenisSkema = "";
    let kelompokKeahlian = "";
    let judul = "";
-   let tahunPelaksanaan = "";
+   // let tahunPelaksanaan = "";
+   let tanggalMulai = "";
+   let tanggalSelesai = "";
    let topik = "";
    let biayaPenelitian = "";
    let anggotaTim = [];
@@ -139,7 +141,6 @@
             });
 
             const result = await response.json();
-            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -171,7 +172,6 @@
             });
 
             const result = await response.json();
-            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -179,7 +179,6 @@
 
       readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
-      return;
       let payload = {
          id,
          jenisProposal,
@@ -187,7 +186,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          judul,
@@ -195,6 +195,7 @@
          myIsi,
          status: 0,
          randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -216,20 +217,17 @@
    }
 
    async function submitProposal() {
-      console.log(fileRab);
-      console.log(fileRab.name);
-      console.log(fileRab.type);
-      console.log(randomRabFileName);
-      // console.log(randomPpmFileName);
-
-      const accessToken = localStorage.getItem("token");
       // myAbstract = tinymce.get("abstract").getContent();
       // myIsi = tinymce.get("isi").getContent();
 
-      // -----------------------------------------------------------------------------//
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
+      const accessToken = localStorage.getItem("token");
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
          const payloadRabFile = {
             fileRab: {
                name: fileRab.name,
@@ -248,15 +246,46 @@
                },
                body: JSON.stringify(payloadRabFile),
             });
+
             const result = await response.json();
-            console.log(result);
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
-      reader.readAsDataURL(fileRab);
+      readerRab.readAsDataURL(fileRab);
+
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
-      return;
       let payload = {
          id,
          jenisProposal,
@@ -264,7 +293,8 @@
          jenisSkema,
          kelompokKeahlian,
          topik,
-         tahunPelaksanaan,
+         tanggalMulai,
+         tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
          judul,
@@ -272,6 +302,7 @@
          myIsi,
          status: 2,
          randomRabFileName,
+         randomPpmFileName,
       };
 
       const response = await fetch($apiURL + "/ppm", {
@@ -386,9 +417,9 @@
       />
    </Field>
 
-   <Field datepicker name="Tahun Pelaksanaan" bind:value={tahunPelaksanaan} />
+   <!-- <Field datepicker name="Tahun Pelaksanaan" bind:value={tahunPelaksanaan} /> -->
 
-   <!-- <Field name="Tanggal Mulai">
+   <Field name="Tanggal Mulai">
       <div class="field">
          <input class="input" type="date" bind:value={tanggalMulai} />
       </div>
@@ -398,7 +429,7 @@
       <div class="field">
          <input class="input" type="date" bind:value={tanggalSelesai} />
       </div>
-   </Field> -->
+   </Field>
 
    <Field name="Biaya Penelitian">
       <input
@@ -481,7 +512,7 @@
       ></textarea>
    </Field>
 
-   <Field name="Proposal">
+   <Field name="Isi Proposal">
       <input
          class="input"
          accept="application/pdf"
