@@ -1,11 +1,14 @@
 <script>
    import { route, isLogin } from "../store";
    import Article from "../libs/Article.svelte";
-   import Icon from "../libs/Icon.svelte";
    import { menu } from "../store/icons";
    import { onMount } from "svelte";
 
+   import Icon from "../libs/Icon.svelte";
+   import { accountRounded } from "../store/icons";
+
    let token = localStorage.getItem("token");
+   let username = localStorage.getItem("username");
    let navbarMenu;
    // console.log($isLogin, token);
 
@@ -83,19 +86,40 @@
                </div>
             </div>
 
-            <div class="navbar-item">
-               <div class="buttons">
-                  {#if $isLogin || token}
-                     <a class="button is-info is-fullwidth" href="/logout">
-                        Logout
-                     </a>
-                  {:else}
+            {#if $isLogin || token}
+               <!-- <a class="navbar-item" href="/">
+                  <h6 class="title is-6" style="color: White;">
+                     {username}
+                  </h6></a
+               > -->
+
+               <div class="navbar-item has-dropdown is-hoverable">
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a class="navbar-link">
+                     <Icon src={accountRounded} />
+                     &nbsp;
+                     {username}
+                  </a>
+
+                  <div class="navbar-dropdown">
+                     <a class="navbar-item" href="/">Dashboard</a>
+
+                     <hr class="navbar-divider" />
+
+                     <a class="navbar-item has-text-danger" href="/logout"
+                        >Logout</a
+                     >
+                  </div>
+               </div>
+            {:else}
+               <div class="navbar-item">
+                  <div class="buttons">
                      <a class="button is-info is-fullwidth" href="/login">
                         Login
                      </a>
-                  {/if}
+                  </div>
                </div>
-            </div>
+            {/if}
          </div>
       </div>
    </nav>

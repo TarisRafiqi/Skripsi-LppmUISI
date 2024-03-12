@@ -55,6 +55,14 @@
          <li><a href="/admin/template">Template</a></li>
       </ul>
    {/if}
+
+   <br />
+
+   <ul class="menu-list">
+      <!-- svelte-ignore a11y-missing-attribute -->
+      <button class="button is-light is-fullwidth" href="/logout">Logout</button
+      >
+   </ul>
 </aside>
 
 <style>

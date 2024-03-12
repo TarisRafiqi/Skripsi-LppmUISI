@@ -1881,6 +1881,7 @@
 
   // src/store/icons.js
   init_define_process();
+  var accountRounded = "M12 19.2c-2.5 0-4.71-1.28-6-3.2c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.232 7.232 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10";
   var accountAdd = "M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z";
   var infoOutline = "M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z";
   var addProposal = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95H5Zm0-3v1V5v6.075V11v7Zm2-1h4.075q.075-.525.238-1.025t.362-.975H7v2Zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7v2Zm0-4h10V7H7v2Zm11 14q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23Zm-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5V21Z";
@@ -49591,10 +49592,6 @@
     {
       title: "PPM Management",
       href: "/admin/proposals"
-    },
-    {
-      title: "Logout",
-      href: "/logout"
     }
   ];
   var dosen = [
@@ -49613,10 +49610,6 @@
     {
       title: "Profile",
       href: "/dosen/profile"
-    },
-    {
-      title: "Logout",
-      href: "/logout"
     }
   ];
   var menu_default = {
@@ -49708,6 +49701,10 @@
     let p;
     let t1;
     let t2;
+    let t3;
+    let br;
+    let t4;
+    let ul;
     let each_value = ensure_array_like(
       /*items*/
       ctx[0]
@@ -49732,7 +49729,13 @@
         t2 = space();
         if (if_block)
           if_block.c();
+        t3 = space();
+        br = element("br");
+        t4 = space();
+        ul = element("ul");
+        ul.innerHTML = `<button class="button is-light is-fullwidth" href="/logout">Logout</button>`;
         attr(p, "class", "menu-label svelte-1lfjw54");
+        attr(ul, "class", "menu-list");
         attr(aside, "class", "menu svelte-1lfjw54");
       },
       m(target, anchor) {
@@ -49747,6 +49750,10 @@
         append(aside, t2);
         if (if_block)
           if_block.m(aside, null);
+        append(aside, t3);
+        append(aside, br);
+        append(aside, t4);
+        append(aside, ul);
       },
       p(ctx2, [dirty]) {
         if (dirty & /*items*/
@@ -49804,40 +49811,79 @@
   // src/modules/Navbarmenu.svelte
   init_define_process();
   function create_else_block8(ctx) {
-    let a;
+    let div1;
     return {
       c() {
-        a = element("a");
-        a.textContent = "Login";
-        attr(a, "class", "button is-info is-fullwidth");
-        attr(a, "href", "/login");
+        div1 = element("div");
+        div1.innerHTML = `<div class="buttons"><a class="button is-info is-fullwidth" href="/login">Login</a></div>`;
+        attr(div1, "class", "navbar-item");
       },
       m(target, anchor) {
-        insert(target, a, anchor);
+        insert(target, div1, anchor);
       },
+      p: noop,
+      i: noop,
+      o: noop,
       d(detaching) {
         if (detaching) {
-          detach(a);
+          detach(div1);
         }
       }
     };
   }
   function create_if_block20(ctx) {
-    let a;
+    let div1;
+    let a0;
+    let icon;
+    let t0;
+    let t1;
+    let t2;
+    let div0;
+    let current;
+    icon = new Icon_default({ props: { src: accountRounded } });
     return {
       c() {
-        a = element("a");
-        a.textContent = "Logout";
-        attr(a, "class", "button is-info is-fullwidth");
-        attr(a, "href", "/logout");
+        div1 = element("div");
+        a0 = element("a");
+        create_component(icon.$$.fragment);
+        t0 = text("\r\n                     \xA0\r\n                     ");
+        t1 = text(
+          /*username*/
+          ctx[3]
+        );
+        t2 = space();
+        div0 = element("div");
+        div0.innerHTML = `<a class="navbar-item" href="/">Dashboard</a> <hr class="navbar-divider"/> <a class="navbar-item has-text-danger" href="/logout">Logout</a>`;
+        attr(a0, "class", "navbar-link");
+        attr(div0, "class", "navbar-dropdown");
+        attr(div1, "class", "navbar-item has-dropdown is-hoverable");
       },
       m(target, anchor) {
-        insert(target, a, anchor);
+        insert(target, div1, anchor);
+        append(div1, a0);
+        mount_component(icon, a0, null);
+        append(a0, t0);
+        append(a0, t1);
+        append(div1, t2);
+        append(div1, div0);
+        current = true;
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(a);
+          detach(div1);
         }
+        destroy_component(icon);
       }
     };
   }
@@ -49849,8 +49895,8 @@
     let t0;
     let a1;
     let t3;
-    let div8;
-    let div7;
+    let div6;
+    let div5;
     let a2;
     let t5;
     let a3;
@@ -49859,21 +49905,24 @@
     let t15;
     let div4;
     let t23;
-    let div6;
-    let div5;
+    let current_block_type_index;
+    let if_block;
+    let current;
     let mounted;
     let dispose;
+    const if_block_creators = [create_if_block20, create_else_block8];
+    const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
         /*$isLogin*/
         ctx2[1] || /*token*/
         ctx2[2]
       )
-        return create_if_block20;
-      return create_else_block8;
+        return 0;
+      return 1;
     }
-    let current_block_type = select_block_type(ctx, -1);
-    let if_block = current_block_type(ctx);
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     return {
       c() {
         header = element("header");
@@ -49885,8 +49934,8 @@
         a1 = element("a");
         a1.innerHTML = `<span></span> <span></span> <span></span>`;
         t3 = space();
-        div8 = element("div");
-        div7 = element("div");
+        div6 = element("div");
+        div5 = element("div");
         a2 = element("a");
         a2.textContent = "Beranda";
         t5 = space();
@@ -49899,8 +49948,6 @@
         div4 = element("div");
         div4.innerHTML = `<a class="navbar-link">Pengabdian Masyarakat</a> <div class="navbar-dropdown"><a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Internal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Eksternal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Mandiri</a></div>`;
         t23 = space();
-        div6 = element("div");
-        div5 = element("div");
         if_block.c();
         attr(a0, "class", "navbar-item");
         attr(a0, "href", "/");
@@ -49913,11 +49960,9 @@
         attr(a3, "href", "/about");
         attr(div2, "class", "navbar-item has-dropdown is-hoverable");
         attr(div4, "class", "navbar-item has-dropdown is-hoverable");
-        attr(div5, "class", "buttons");
-        attr(div6, "class", "navbar-item");
-        attr(div7, "class", "navbar-end");
-        attr(div8, "class", "navbar-menu");
-        attr(div8, "id", "nav-links");
+        attr(div5, "class", "navbar-end");
+        attr(div6, "class", "navbar-menu");
+        attr(div6, "id", "nav-links");
         attr(nav, "class", "navbar is-dark svelte-gab4e");
         attr(header, "class", "svelte-gab4e");
       },
@@ -49929,48 +49974,67 @@
         append(div0, t0);
         append(div0, a1);
         append(nav, t3);
-        append(nav, div8);
-        append(div8, div7);
-        append(div7, a2);
-        append(div7, t5);
-        append(div7, a3);
-        append(div7, t7);
-        append(div7, div2);
-        append(div7, t15);
-        append(div7, div4);
-        append(div7, t23);
-        append(div7, div6);
+        append(nav, div6);
         append(div6, div5);
-        if_block.m(div5, null);
-        ctx[4](div8);
+        append(div5, a2);
+        append(div5, t5);
+        append(div5, a3);
+        append(div5, t7);
+        append(div5, div2);
+        append(div5, t15);
+        append(div5, div4);
+        append(div5, t23);
+        if_blocks[current_block_type_index].m(div5, null);
+        ctx[5](div6);
+        current = true;
         if (!mounted) {
           dispose = listen(
             a1,
             "click",
             /*test*/
-            ctx[3]
+            ctx[4]
           );
           mounted = true;
         }
       },
       p(ctx2, [dirty]) {
-        if (current_block_type !== (current_block_type = select_block_type(ctx2, dirty))) {
-          if_block.d(1);
-          if_block = current_block_type(ctx2);
-          if (if_block) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          group_outros();
+          transition_out(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          check_outros();
+          if_block = if_blocks[current_block_type_index];
+          if (!if_block) {
+            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
             if_block.c();
-            if_block.m(div5, null);
+          } else {
+            if_block.p(ctx2, dirty);
           }
+          transition_in(if_block, 1);
+          if_block.m(div5, null);
         }
       },
-      i: noop,
-      o: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
           detach(header);
         }
-        if_block.d();
-        ctx[4](null);
+        if_blocks[current_block_type_index].d();
+        ctx[5](null);
         mounted = false;
         dispose();
       }
@@ -49980,17 +50044,18 @@
     let $isLogin;
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(1, $isLogin = $$value));
     let token = localStorage.getItem("token");
+    let username = localStorage.getItem("username");
     let navbarMenu;
     function test() {
       navbarMenu.classList.toggle("is-active");
     }
-    function div8_binding($$value) {
+    function div6_binding($$value) {
       binding_callbacks[$$value ? "unshift" : "push"](() => {
         navbarMenu = $$value;
         $$invalidate(0, navbarMenu);
       });
     }
-    return [navbarMenu, $isLogin, token, test, div8_binding];
+    return [navbarMenu, $isLogin, token, username, test, div6_binding];
   }
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {
