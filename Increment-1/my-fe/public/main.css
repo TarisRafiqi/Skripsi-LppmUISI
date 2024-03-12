@@ -212,120 +212,29 @@ strong.svelte-1h60z37 {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/Login.esbuild-svelte-fake-css */
-.gsi-material-button.svelte-t9pr81.svelte-t9pr81 {
-  background-color: #ffffff;
-  background-image: none;
-  border: 1.5px solid var(--border, #dadce0);
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #1f1f1f;
-  cursor: pointer;
-  font-family:
-    "Roboto",
-    arial,
-    sans-serif;
-  font-size: 14px;
-  height: 40px;
-  letter-spacing: 0.25px;
-  outline: none;
-  overflow: hidden;
-  padding: 0 12px;
-  position: relative;
-  text-align: center;
-  -webkit-transition:
-    background-color 0.218s,
-    border-color 0.218s,
-    box-shadow 0.218s;
-  transition:
-    background-color 0.218s,
-    border-color 0.218s,
-    box-shadow 0.218s;
-  vertical-align: middle;
-  white-space: nowrap;
+#errorLoginHandler.svelte-62xoz.svelte-62xoz {
+  display: none;
 }
-.gsi-material-button.svelte-t9pr81 .gsi-material-button-icon.svelte-t9pr81 {
-  height: 20px;
-  margin-right: 12px;
-  min-width: 20px;
-  width: 20px;
-}
-.gsi-material-button.svelte-t9pr81 .gsi-material-button-content-wrapper.svelte-t9pr81 {
-  -webkit-align-items: center;
-  align-items: center;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  height: 100%;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-.gsi-material-button.svelte-t9pr81 .gsi-material-button-contents.svelte-t9pr81 {
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  font-family:
-    "Roboto",
-    arial,
-    sans-serif;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: top;
-}
-.gsi-material-button.svelte-t9pr81 .gsi-material-button-state.svelte-t9pr81 {
-  -webkit-transition: opacity 0.218s;
-  transition: opacity 0.218s;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.gsi-material-button.svelte-t9pr81.svelte-t9pr81:disabled {
-  cursor: default;
-  background-color: #ffffff61;
-}
-.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-state.svelte-t9pr81 {
-  background-color: #1f1f1f1f;
-}
-.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-contents.svelte-t9pr81 {
-  opacity: 38%;
-}
-.gsi-material-button.svelte-t9pr81:disabled .gsi-material-button-icon.svelte-t9pr81 {
-  opacity: 38%;
-}
-.gsi-material-button.svelte-t9pr81:not(:disabled):active .gsi-material-button-state.svelte-t9pr81,
-.gsi-material-button.svelte-t9pr81:not(:disabled):focus .gsi-material-button-state.svelte-t9pr81 {
-  background-color: #001d35;
-  opacity: 12%;
-}
-.gsi-material-button.svelte-t9pr81.svelte-t9pr81:not(:disabled):hover {
-  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-}
-.gsi-material-button.svelte-t9pr81:not(:disabled):hover .gsi-material-button-state.svelte-t9pr81 {
-  background-color: #001d35;
-  opacity: 8%;
-}
-article.container.svelte-t9pr81.svelte-t9pr81 {
+article.container.svelte-62xoz.svelte-62xoz {
   padding-top: 10rem;
   text-align: center;
 }
-div.box.svelte-t9pr81.svelte-t9pr81 {
+div.box.svelte-62xoz.svelte-62xoz {
   display: inline-flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 300px;
 }
-div.box.svelte-t9pr81 div.svelte-t9pr81 {
+div.box.svelte-62xoz div.svelte-62xoz {
   text-align: left;
 }
-button.svelte-t9pr81.svelte-t9pr81 {
+button.svelte-62xoz.svelte-62xoz {
   width: 100%;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Article.esbuild-svelte-fake-css */
+article.svelte-h8uanz {
+  margin-top: 3.5rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/Logout.esbuild-svelte-fake-css */
@@ -372,11 +281,6 @@ div.box.svelte-f1u2iy div.svelte-f1u2iy {
 }
 button.svelte-f1u2iy.svelte-f1u2iy {
   width: 100%;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Article.esbuild-svelte-fake-css */
-article.svelte-h8uanz {
-  margin-top: 3.5rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Field.esbuild-svelte-fake-css */
@@ -600,13 +504,23 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
-.box.svelte-lfygnb {
+.parent.svelte-gz7kfg {
+  height: 500px;
+  overflow: hidden;
+}
+.child.svelte-gz7kfg {
+  height: 100%;
+  margin-right: -50px;
+  padding-right: 50px;
+  overflow-y: scroll;
+}
+.box.svelte-gz7kfg {
   display: flex;
 }
-.flex-item-left.svelte-lfygnb {
+.flex-item-left.svelte-gz7kfg {
   flex: 50%;
 }
-.flex-item-right.svelte-lfygnb {
+.flex-item-right.svelte-gz7kfg {
   flex: 50%;
 }
 

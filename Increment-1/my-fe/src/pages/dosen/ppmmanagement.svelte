@@ -9,6 +9,26 @@
    const id = localStorage.id;
    let items;
 
+   function daysUntil(targetDate) {
+      const today = new Date();
+      const target = new Date(targetDate);
+      const difference = target.getTime() - today.getTime();
+      const positiveDifference = Math.abs(difference);
+      // const days = Math.ceil(difference / (1000 * 3600 * 24));
+      const days = Math.floor(positiveDifference / (1000 * 3600 * 24));
+
+      // Convert the difference from milliseconds to days, weeks, and months
+      const weeks = Math.floor(days / 7);
+      const months = Math.floor(days / 30);
+      const remainingWeeks = weeks % 4;
+      const remainingDays = days % 30;
+      return {
+         months,
+         remainingWeeks,
+         remainingDays,
+      };
+   }
+
    onMount(async () => {
       const accessToken = localStorage.getItem("token");
 
@@ -24,8 +44,27 @@
 
       const result = await response.json();
 
+      const reminder = [];
+
       if (response.ok) {
          items = result.dbData;
+         // console.log(items);
+         for (const item of items) {
+            // console.log(item);
+            reminder.push({
+               judul: item.judul,
+               selesai: item.tanggal_selesai,
+               tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari.`,
+               // tersisa:
+               //    daysUntil(item.tanggal_selesai).months +
+               //    " bulan, " +
+               //    daysUntil(item.tanggal_selesai).remainingWeeks +
+               //    " minggu. " +
+               //    daysUntil(item.tanggal_selesai).remainingDays +
+               //    " hari.",
+            });
+         }
+         // console.log(reminder);
       } else {
          console.log(response);
       }

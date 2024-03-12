@@ -880,6 +880,10 @@
       <!-- Tab Identitas PPM -->
       {#if tab1 === true}
          {#if !view}
+            <p id="days"></p>
+            <p id="hours"></p>
+            <p id="mins"></p>
+            <p id="secs"></p>
             <Field name="Jenis Proposal">
                <div class="select is-fullwidth">
                   <select bind:value={jenisProposal}>
