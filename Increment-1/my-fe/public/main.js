@@ -1891,7 +1891,6 @@
   var jurnal = "M12.04 6.017a4.75 4.75 0 1 0 .335-.012h-.01a1.35 1.35 0 0 0-.326.012m-1.622 1.835c-.226.677-.368 1.506-.407 2.398h-1.1a3.5 3.5 0 0 1 1.507-2.398m-.374 3.898a8.43 8.43 0 0 0 .379 1.91a3.507 3.507 0 0 1-1.405-1.91zm3.966 2.1l.003-.008c.22-.587.373-1.306.443-2.092h1.276a3.51 3.51 0 0 1-1.722 2.1m-1.061-2.1a6.556 6.556 0 0 1-.34 1.565c-.118.313-.24.514-.336.623a.914.914 0 0 1-.023.025a.914.914 0 0 1-.023-.025c-.097-.11-.218-.31-.335-.623c-.154-.41-.276-.947-.341-1.565zm.039-1.5h-1.476c.042-.828.185-1.547.38-2.065c.117-.313.238-.514.335-.623a.79.79 0 0 1 .023-.025a.79.79 0 0 1 .023.025c.097.11.218.31.335.623c.195.518.338 1.237.38 2.065m1.501 0c-.043-.978-.21-1.88-.475-2.588a3.503 3.503 0 0 1 1.825 2.588zm-2.182-2.76l-.004.002zm-.113 0l.003.002a.014.014 0 0 0-.004-.003zM6.5 2A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h13.25a.75.75 0 0 0 0-1.5H6.5a1 1 0 0 1-1-1h14.25a.75.75 0 0 0 .75-.75V4.5A2.5 2.5 0 0 0 18 2zM19 4.5V18H5.5V4.5a1 1 0 0 1 1-1H18a1 1 0 0 1 1 1m-6.697 9.509a.019.019 0 0 1 .004.002Z";
   var copyright = "M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m11-9c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11M9.525 9.526a3.5 3.5 0 0 0 4.95 4.95l.707-.708l1.414 1.415l-.707.707a5.5 5.5 0 1 1 0-7.778l.707.707l-1.414 1.414l-.707-.707a3.5 3.5 0 0 0-4.95 0";
   var edit = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z";
-  var googleIcon = "M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27c3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10c5.35 0 9.25-3.67 9.25-9.09c0-1.15-.15-1.81-.15-1.81";
 
   // src/pages/Login.svelte
   function create_fragment9(ctx) {
@@ -1916,17 +1915,10 @@
     let t10;
     let div5;
     let button1;
-    let span1;
-    let span0;
-    let icon;
-    let t11;
-    let span2;
     let t13;
     let p;
-    let current;
     let mounted;
     let dispose;
-    icon = new Icon_default({ props: { id: "orang", src: googleIcon } });
     return {
       c() {
         article = element("article");
@@ -1954,12 +1946,7 @@
         t10 = space();
         div5 = element("div");
         button1 = element("button");
-        span1 = element("span");
-        span0 = element("span");
-        create_component(icon.$$.fragment);
-        t11 = space();
-        span2 = element("span");
-        span2.innerHTML = `<h6 class="subtitle is-6">Sign in with Google</h6>`;
+        button1.innerHTML = `<span class="icon"><span class="icon"><img src="/img/iconGoogle.svg" alt="" width="20"/></span></span> <span><h6 class="subtitle is-6">Sign in with Google</h6></span>`;
         t13 = space();
         p = element("p");
         p.textContent = "Maaf, username atau password anda salah. Silahkan cek kembali.";
@@ -1974,8 +1961,6 @@
         attr(div3, "class", "svelte-62xoz");
         attr(button0, "class", "button is-info svelte-62xoz");
         attr(div4, "class", "svelte-62xoz");
-        attr(span0, "class", "icon");
-        attr(span1, "class", "icon");
         attr(button1, "class", "button svelte-62xoz");
         attr(div5, "class", "svelte-62xoz");
         attr(p, "id", "errorLoginHandler");
@@ -2015,14 +2000,8 @@
         append(div6, t10);
         append(div6, div5);
         append(div5, button1);
-        append(button1, span1);
-        append(span1, span0);
-        mount_component(icon, span0, null);
-        append(button1, t11);
-        append(button1, span2);
         append(div6, t13);
         append(div6, p);
-        current = true;
         if (!mounted) {
           dispose = [
             listen(
@@ -2073,21 +2052,12 @@
           );
         }
       },
-      i(local) {
-        if (current)
-          return;
-        transition_in(icon.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(icon.$$.fragment, local);
-        current = false;
-      },
+      i: noop,
+      o: noop,
       d(detaching) {
         if (detaching) {
           detach(article);
         }
-        destroy_component(icon);
         mounted = false;
         run_all(dispose);
       }
@@ -2129,7 +2099,6 @@
           $route("/dosen");
       } else {
         paragraph.style.display = "block";
-        console.log("Username atau password salah");
       }
     }
     async function signGoogle() {
@@ -2351,7 +2320,7 @@
       () => {
         location.pathname = "/";
       },
-      1e3
+      500
     );
     return [];
   }
@@ -50147,7 +50116,8 @@
     navbarmenu = new Navbarmenu_default({});
     let if_block0 = (
       /*token*/
-      ctx[2] && create_if_block_126(ctx)
+      ctx[2] && !/*inBeranda*/
+      ctx[3] && create_if_block_126(ctx)
     );
     let if_block1 = (
       /*cmp*/
@@ -50178,11 +50148,12 @@
       p(ctx2, [dirty]) {
         if (
           /*token*/
-          ctx2[2]
+          ctx2[2] && !/*inBeranda*/
+          ctx2[3]
         ) {
           if (if_block0) {
-            if (dirty & /*token*/
-            4) {
+            if (dirty & /*token, inBeranda*/
+            12) {
               transition_in(if_block0, 1);
             }
           } else {
@@ -50252,36 +50223,33 @@
   }
   function instance37($$self, $$props, $$invalidate) {
     let $route;
-    component_subscribe($$self, route, ($$value) => $$invalidate(4, $route = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(5, $route = $$value));
     let cmp, params;
-    let token, role;
+    let token, inBeranda, role;
     const router2 = router_default(routes_default, E404_default, (route2) => {
       $$invalidate(0, cmp = route2.page);
       $$invalidate(1, params = route2.params);
       auth = localStorage.getItem("auth");
       $$invalidate(2, token = localStorage.getItem("token"));
       role = localStorage.getItem("role");
+      const paths = ["/", "/about"];
+      $$invalidate(3, inBeranda = paths.some((path) => path === location.pathname));
     });
     set_store_value(route, $route = router2.route, $route);
     $route(location.pathname + location.search);
     router2.listen();
     onDestroy(router2.unlisten);
     if (location.pathname === "/") {
-      if (!token)
+      if (!token) {
         $route("/");
-      else {
+      } else {
         if (role === "admin")
           $route("/admin");
         else
           $route("/dosen");
       }
     }
-    $:
-      location.pathname, () => {
-        if (location.pathname === "/") {
-        }
-      };
-    return [cmp, params, token];
+    return [cmp, params, token, inBeranda];
   }
   var App = class extends SvelteComponent {
     constructor(options) {

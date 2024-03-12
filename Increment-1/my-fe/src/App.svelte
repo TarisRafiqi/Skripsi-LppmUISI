@@ -10,7 +10,7 @@
    import Navbarmenu from "./modules/Navbarmenu.svelte";
 
    let cmp, params;
-   let token, role;
+   let token, inBeranda, role;
 
    const router = Router(routes, E404, (route) => {
       cmp = route.page;
@@ -19,6 +19,10 @@
       auth = localStorage.getItem("auth");
       token = localStorage.getItem("token");
       role = localStorage.getItem("role");
+
+      const paths = ["/", "/about"];
+      inBeranda = paths.some((path) => path === location.pathname);
+      // console.log(inBeranda);
    });
 
    $route = router.route;
@@ -31,22 +35,17 @@
    // $: auth = localStorage.getItem("auth");
 
    if (location.pathname === "/") {
-      if (!token) $route("/");
-      else {
+      if (!token) {
+         $route("/");
+      } else {
          if (role === "admin") $route("/admin");
          else $route("/dosen");
       }
    }
-
-   $: location.pathname,
-      () => {
-         if (location.pathname === "/") {
-         }
-      };
 </script>
 
 <Navbarmenu />
-{#if token}
+{#if token && !inBeranda}
    <Sidebar />
 {/if}
 

@@ -41,7 +41,7 @@
          else $route("/dosen");
       } else {
          paragraph.style.display = "block";
-         console.log("Username atau password salah");
+         // console.log("Username atau password salah");
       }
    }
 
@@ -76,7 +76,7 @@
          <button class="button" on:click={signGoogle}>
             <span class="icon">
                <span class="icon">
-                  <Icon id="orang" src={googleIcon} />
+                  <img src="/img/iconGoogle.svg" alt="" width="20" />
                </span>
             </span>
             <span><h6 class="subtitle is-6">Sign in with Google</h6> </span>

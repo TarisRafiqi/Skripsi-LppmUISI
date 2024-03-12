@@ -7,7 +7,7 @@
 
    setTimeout(() => {
       location.pathname = "/";
-   }, 1000);
+   }, 500);
 </script>
 
 <Article>
