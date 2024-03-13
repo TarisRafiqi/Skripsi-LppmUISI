@@ -43,39 +43,41 @@
       <h1 class="title is-1">PPM Management</h1>
       <hr />
 
-      <table class="table is-fullwidth is-striped is-hoverable">
-         <thead>
-            <tr>
-               <th>Judul</th>
-               <th class="is-narrow">Jenis Kegiatan</th>
-               <th class="is-narrow">Jenis Skema</th>
-               <th>Status</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-
-         <tbody>
-            {#each items as item}
+      <div class="box">
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
                <tr>
-                  <td><p>{item.judul}</p> </td>
-                  <td><p>{item.jenis_kegiatan}</p></td>
-                  <td><p>{item.jenis_skema}</p></td>
-                  <td class="status"><Status code={item.status} /></td>
-                  <td class="review"
-                     ><button
-                        class="button is-info is-rounded is-small"
-                        uid={item.id}
-                        on:click={handleReview}
-                     >
-                        <span class="icon">
-                           <Icon id="orang" src={infoOutline} />
-                        </span></button
-                     ></td
-                  >
+                  <th>Judul</th>
+                  <th class="is-narrow">Jenis Kegiatan</th>
+                  <th class="is-narrow">Jenis Skema</th>
+                  <th>Status</th>
+                  <th>Action</th>
                </tr>
-            {/each}
-         </tbody>
-      </table>
+            </thead>
+
+            <tbody>
+               {#each items as item}
+                  <tr>
+                     <td><p>{item.judul}</p> </td>
+                     <td><p>{item.jenis_kegiatan}</p></td>
+                     <td><p>{item.jenis_skema}</p></td>
+                     <td class="status"><Status code={item.status} /></td>
+                     <td class="review"
+                        ><button
+                           class="button is-info is-rounded is-small"
+                           uid={item.id}
+                           on:click={handleReview}
+                        >
+                           <span class="icon">
+                              <Icon id="orang" src={infoOutline} />
+                           </span></button
+                        ></td
+                     >
+                  </tr>
+               {/each}
+            </tbody>
+         </table>
+      </div>
    </Article>
 {/if}
 

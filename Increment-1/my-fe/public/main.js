@@ -873,7 +873,7 @@
     }
     component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
   }
-  function init(component, options, instance38, create_fragment46, not_equal, props, append_styles = null, dirty = [-1]) {
+  function init(component, options, instance39, create_fragment46, not_equal, props, append_styles = null, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $$ = component.$$ = {
@@ -899,7 +899,7 @@
     };
     append_styles && append_styles($$.root);
     let ready = false;
-    $$.ctx = instance38 ? instance38(component, options.props || {}, (i, ret, ...rest) => {
+    $$.ctx = instance39 ? instance39(component, options.props || {}, (i, ret, ...rest) => {
       const value = rest.length ? rest[0] : ret;
       if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
         if (!$$.skip_bound && $$.bound[i])
@@ -5284,6 +5284,10 @@
     let icon0;
     let t3;
     let div1;
+    let p0;
+    let t5;
+    let p1;
+    let t6;
     let t7;
     let div7;
     let div6;
@@ -5291,6 +5295,10 @@
     let icon1;
     let t8;
     let div5;
+    let p2;
+    let t10;
+    let p3;
+    let t11;
     let t12;
     let div11;
     let div10;
@@ -5332,7 +5340,14 @@
         create_component(icon0.$$.fragment);
         t3 = space();
         div1 = element("div");
-        div1.innerHTML = `<p class="heading">Penelitian</p> <p class="title">132</p>`;
+        p0 = element("p");
+        p0.textContent = "Penelitian";
+        t5 = space();
+        p1 = element("p");
+        t6 = text(
+          /*penelitianCounter*/
+          ctx[0]
+        );
         t7 = space();
         div7 = element("div");
         div6 = element("div");
@@ -5340,7 +5355,14 @@
         create_component(icon1.$$.fragment);
         t8 = space();
         div5 = element("div");
-        div5.innerHTML = `<p class="heading">Pengmas</p> <p class="title">87</p>`;
+        p2 = element("p");
+        p2.textContent = "Pengmas";
+        t10 = space();
+        p3 = element("p");
+        t11 = text(
+          /*pengmasCounter*/
+          ctx[1]
+        );
         t12 = space();
         div11 = element("div");
         div10 = element("div");
@@ -5348,7 +5370,7 @@
         create_component(icon2.$$.fragment);
         t13 = space();
         div9 = element("div");
-        div9.innerHTML = `<p class="heading">Jurnal</p> <p class="title">121</p>`;
+        div9.innerHTML = `<p class="heading">Jurnal</p> <p class="title">...</p>`;
         t17 = space();
         div15 = element("div");
         div14 = element("div");
@@ -5356,13 +5378,17 @@
         create_component(icon3.$$.fragment);
         t18 = space();
         div13 = element("div");
-        div13.innerHTML = `<p class="heading">HKI</p> <p class="title">54</p>`;
+        div13.innerHTML = `<p class="heading">HKI</p> <p class="title">...</p>`;
         attr(h1, "class", "title is-1");
         attr(div0, "class", "flex-item-left svelte-lfygnb");
+        attr(p0, "class", "heading");
+        attr(p1, "class", "title");
         attr(div1, "class", "flex-item-right has-text-centered svelte-lfygnb");
         attr(div2, "class", "box svelte-lfygnb");
         attr(div3, "class", "column");
         attr(div4, "class", "flex-item-left svelte-lfygnb");
+        attr(p2, "class", "heading");
+        attr(p3, "class", "title");
         attr(div5, "class", "flex-item-right has-text-centered svelte-lfygnb");
         attr(div6, "class", "box svelte-lfygnb");
         attr(div7, "class", "column");
@@ -5388,6 +5414,10 @@
         mount_component(icon0, div0, null);
         append(div2, t3);
         append(div2, div1);
+        append(div1, p0);
+        append(div1, t5);
+        append(div1, p1);
+        append(p1, t6);
         append(div16, t7);
         append(div16, div7);
         append(div7, div6);
@@ -5395,6 +5425,10 @@
         mount_component(icon1, div4, null);
         append(div6, t8);
         append(div6, div5);
+        append(div5, p2);
+        append(div5, t10);
+        append(div5, p3);
+        append(p3, t11);
         append(div16, t12);
         append(div16, div11);
         append(div11, div10);
@@ -5411,7 +5445,22 @@
         append(div14, div13);
         current = true;
       },
-      p: noop,
+      p(ctx2, dirty) {
+        if (!current || dirty & /*penelitianCounter*/
+        1)
+          set_data(
+            t6,
+            /*penelitianCounter*/
+            ctx2[0]
+          );
+        if (!current || dirty & /*pengmasCounter*/
+        2)
+          set_data(
+            t11,
+            /*pengmasCounter*/
+            ctx2[1]
+          );
+      },
       i(local) {
         if (current)
           return;
@@ -5462,8 +5511,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope*/
-        1) {
+        if (dirty & /*$$scope, pengmasCounter, penelitianCounter*/
+        11) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -5483,10 +5532,41 @@
       }
     };
   }
+  function instance16($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
+    let penelitianCounter, pengmasCounter;
+    onMount(async () => {
+      const accessToken = localStorage.getItem("token");
+      const headers = {
+        Authorization: `${accessToken}`,
+        "Content-Type": "application/json"
+      };
+      const responseCP = await fetch($apiURL + "/counterPenelitian", { method: "GET", headers });
+      const resultCP = await responseCP.json();
+      if (responseCP.ok) {
+        $$invalidate(0, penelitianCounter = resultCP.penelitianCounter);
+      } else {
+        console.log(
+          responseCP
+        );
+      }
+      const responseCPM = await fetch($apiURL + "/counterPengmas", { method: "GET", headers });
+      const resultCPM = await responseCPM.json();
+      if (responseCPM.ok) {
+        $$invalidate(1, pengmasCounter = resultCPM.pengmasCounter);
+      } else {
+        console.log(
+          responseCPM
+        );
+      }
+    });
+    return [penelitianCounter, pengmasCounter];
+  }
   var Home = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment21, safe_not_equal, {});
+      init(this, options, instance16, create_fragment21, safe_not_equal, {});
     }
   };
   var home_default = Home;
@@ -5875,7 +5955,7 @@
       }
     };
   }
-  function instance16($$self, $$props, $$invalidate) {
+  function instance17($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { show = false } = $$props;
     function handleClick(e) {
@@ -5897,7 +5977,7 @@
   var Modal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance16, create_fragment23, safe_not_equal, { show: 0 });
+      init(this, options, instance17, create_fragment23, safe_not_equal, { show: 0 });
     }
   };
   var Modal_default = Modal;
@@ -12968,7 +13048,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance17($$self, $$props, $$invalidate) {
+  function instance18($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(164, $apiURL = $$value));
@@ -13862,7 +13942,7 @@
   var Profile = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance17, create_fragment24, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance18, create_fragment24, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default = Profile;
@@ -14234,7 +14314,7 @@
       }
     };
   }
-  function instance18($$self, $$props, $$invalidate) {
+  function instance19($$self, $$props, $$invalidate) {
     let { code } = $$props;
     $$self.$$set = ($$props2) => {
       if ("code" in $$props2)
@@ -14245,7 +14325,7 @@
   var Status = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance18, create_fragment25, safe_not_equal, { code: 0 });
+      init(this, options, instance19, create_fragment25, safe_not_equal, { code: 0 });
     }
   };
   var Status_default = Status;
@@ -14462,7 +14542,7 @@
       }
     };
   }
-  function instance19($$self, $$props, $$invalidate) {
+  function instance20($$self, $$props, $$invalidate) {
     let { items } = $$props;
     let { start = 1 } = $$props;
     let { result = [] } = $$props;
@@ -14545,7 +14625,7 @@
   var Select = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance19, create_fragment26, safe_not_equal, { items: 5, start: 6, result: 4 });
+      init(this, options, instance20, create_fragment26, safe_not_equal, { items: 5, start: 6, result: 4 });
     }
   };
   var Select_default = Select;
@@ -21613,7 +21693,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance20($$self, $$props, $$invalidate) {
+  function instance21($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(116, $apiURL = $$value));
@@ -22373,7 +22453,7 @@
   var Proposal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance20, create_fragment27, safe_not_equal, { params: 86 }, null, [-1, -1, -1, -1, -1]);
+      init(this, options, instance21, create_fragment27, safe_not_equal, { params: 86 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var proposal_default = Proposal;
@@ -22587,6 +22667,7 @@
     let t1;
     let hr;
     let t2;
+    let div;
     let table;
     let thead;
     let t12;
@@ -22610,6 +22691,7 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
+        div = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="svelte-1fo15t">Judul</th> <th class="is-narrow svelte-1fo15t">Jenis Kegiatan</th> <th class="is-narrow svelte-1fo15t">Jenis Skema</th> <th class="svelte-1fo15t">Status</th> <th class="svelte-1fo15t">Action</th></tr>`;
@@ -22620,13 +22702,15 @@
         }
         attr(h1, "class", "title is-1");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, table, anchor);
+        insert(target, div, anchor);
+        append(div, table);
         append(table, thead);
         append(table, t12);
         append(table, tbody);
@@ -22685,7 +22769,7 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(table);
+          detach(div);
         }
         destroy_each(each_blocks, detaching);
       }
@@ -22754,7 +22838,7 @@
       }
     };
   }
-  function instance21($$self, $$props, $$invalidate) {
+  function instance22($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(2, $route = $$value));
@@ -22781,7 +22865,7 @@
   var Proposals = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance21, create_fragment28, safe_not_equal, {});
+      init(this, options, instance22, create_fragment28, safe_not_equal, {});
     }
   };
   var proposals_default = Proposals;
@@ -23244,7 +23328,7 @@
   }
   function handleDownloadTemplate() {
   }
-  function instance22($$self, $$props, $$invalidate) {
+  function instance23($$self, $$props, $$invalidate) {
     let namaTemplate;
     let file;
     let showModalTambahTemplate = false;
@@ -23273,7 +23357,7 @@
   var Template = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance22, create_fragment29, safe_not_equal, {});
+      init(this, options, instance23, create_fragment29, safe_not_equal, {});
     }
   };
   var template_default = Template;
@@ -23778,7 +23862,7 @@
       }
     };
   }
-  function instance23($$self, $$props, $$invalidate) {
+  function instance24($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(6, $route = $$value));
@@ -23879,7 +23963,7 @@
   var Users = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance23, create_fragment30, safe_not_equal, { params: 4 });
+      init(this, options, instance24, create_fragment30, safe_not_equal, { params: 4 });
     }
   };
   var users_default = Users;
@@ -24175,7 +24259,7 @@
       }
     };
   }
-  function instance24($$self, $$props, $$invalidate) {
+  function instance25($$self, $$props, $$invalidate) {
     let { params = {} } = $$props;
     let cmp;
     $$self.$$set = ($$props2) => {
@@ -24194,7 +24278,7 @@
   var Index2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance24, create_fragment32, safe_not_equal, { params: 0 });
+      init(this, options, instance25, create_fragment32, safe_not_equal, { params: 0 });
     }
   };
   var Index_default2 = Index2;
@@ -24407,7 +24491,7 @@
       }
     };
   }
-  function instance25($$self, $$props, $$invalidate) {
+  function instance26($$self, $$props, $$invalidate) {
     let $route;
     let $isLogin;
     component_subscribe($$self, route, ($$value) => $$invalidate(2, $route = $$value));
@@ -24445,7 +24529,7 @@
   var Index3 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance25, create_fragment33, safe_not_equal, { params: 0 });
+      init(this, options, instance26, create_fragment33, safe_not_equal, { params: 0 });
     }
   };
   var Index_default3 = Index3;
@@ -25742,8 +25826,9 @@
     let t1;
     let hr;
     let t2;
-    let div;
+    let div0;
     let t6;
+    let div1;
     let table;
     let thead;
     let t16;
@@ -25775,11 +25860,12 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        div = element("div");
-        div.innerHTML = `<p>Berikut adalah list <strong>Penelitian / Pengabdian Masyarakat</strong>
-            yang diberikan kepada anda untuk mendapatkan persetujuan. Cek PPM dengan
-            teliti sebelum memberikan persetujuan!</p>`;
+        div0 = element("div");
+        div0.innerHTML = `<p>Berikut adalah list <strong>Penelitian / Pengabdian Masyarakat</strong>
+            yang diberikan kepada anda untuk mendapatkan approval. Cek PPM dengan
+            teliti sebelum memberikan approval!</p>`;
         t6 = space();
+        div1 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow">Jenis Kegiatan</th> <th class="is-narrow">Jenis Skema</th> <th>Status</th> <th colspan="2">Action</th></tr>`;
@@ -25797,17 +25883,19 @@
         if (if_block3)
           if_block3.c();
         attr(h1, "class", "title is-1");
-        attr(div, "class", "notification is-info is-light");
+        attr(div0, "class", "notification is-info is-light");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div, anchor);
+        insert(target, div0, anchor);
         insert(target, t6, anchor);
-        insert(target, table, anchor);
+        insert(target, div1, anchor);
+        append(div1, table);
         append(table, thead);
         append(table, t16);
         append(table, tbody);
@@ -25868,9 +25956,9 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(div);
+          detach(div0);
           detach(t6);
-          detach(table);
+          detach(div1);
         }
         if (if_block0)
           if_block0.d();
@@ -25946,7 +26034,7 @@
       }
     };
   }
-  function instance26($$self, $$props, $$invalidate) {
+  function instance27($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(3, $route = $$value));
@@ -25972,7 +26060,7 @@
   var Approval = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance26, create_fragment34, safe_not_equal, {});
+      init(this, options, instance27, create_fragment34, safe_not_equal, {});
     }
   };
   var approval_default = Approval;
@@ -30878,7 +30966,7 @@
       }
     };
   }
-  function instance27($$self, $$props, $$invalidate) {
+  function instance28($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(86, $apiURL = $$value));
@@ -31341,7 +31429,7 @@
   var Detailproposal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance27, create_fragment35, safe_not_equal, { params: 66 }, null, [-1, -1, -1, -1]);
+      init(this, options, instance28, create_fragment35, safe_not_equal, { params: 66 }, null, [-1, -1, -1, -1]);
     }
   };
   var detailproposal_default = Detailproposal;
@@ -31350,14 +31438,14 @@
   init_define_process();
   function get_each_context10(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[0] = list[i];
+    child_ctx[2] = list[i];
     return child_ctx;
   }
   function create_if_block13(ctx) {
     let ul;
     let each_value = ensure_array_like(
       /*reminder*/
-      ctx[0]
+      ctx[2]
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
@@ -31380,10 +31468,10 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*reminder*/
-        1) {
+        4) {
           each_value = ensure_array_like(
             /*reminder*/
-            ctx2[0]
+            ctx2[2]
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
@@ -31417,7 +31505,7 @@
     let strong0;
     let t1_value = (
       /*reminder*/
-      ctx[0].judul + ""
+      ctx[2].judul + ""
     );
     let t1;
     let t2;
@@ -31425,13 +31513,13 @@
     let strong1;
     let t3_value = (
       /*reminder*/
-      ctx[0].tersisa + ""
+      ctx[2].tersisa + ""
     );
     let t3;
     let t4;
     let t5_value = (
       /*reminder*/
-      ctx[0].selesai + ""
+      ctx[2].selesai + ""
     );
     let t5;
     let t6;
@@ -31473,16 +31561,16 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*reminder*/
-        1 && t1_value !== (t1_value = /*reminder*/
-        ctx2[0].judul + ""))
+        4 && t1_value !== (t1_value = /*reminder*/
+        ctx2[2].judul + ""))
           set_data(t1, t1_value);
         if (dirty & /*reminder*/
-        1 && t3_value !== (t3_value = /*reminder*/
-        ctx2[0].tersisa + ""))
+        4 && t3_value !== (t3_value = /*reminder*/
+        ctx2[2].tersisa + ""))
           set_data(t3, t3_value);
         if (dirty & /*reminder*/
-        1 && t5_value !== (t5_value = /*reminder*/
-        ctx2[0].selesai + ""))
+        4 && t5_value !== (t5_value = /*reminder*/
+        ctx2[2].selesai + ""))
           set_data(t5, t5_value);
       },
       d(detaching) {
@@ -31504,6 +31592,10 @@
     let icon0;
     let t3;
     let div1;
+    let p0;
+    let t5;
+    let p1;
+    let t6;
     let t7;
     let div7;
     let div6;
@@ -31511,6 +31603,10 @@
     let icon1;
     let t8;
     let div5;
+    let p2;
+    let t10;
+    let p3;
+    let t11;
     let t12;
     let div11;
     let div10;
@@ -31549,7 +31645,7 @@
     });
     let if_block = (
       /*reminder*/
-      ctx[0] && create_if_block13(ctx)
+      ctx[2] && create_if_block13(ctx)
     );
     return {
       c() {
@@ -31565,7 +31661,14 @@
         create_component(icon0.$$.fragment);
         t3 = space();
         div1 = element("div");
-        div1.innerHTML = `<p class="heading">Penelitian</p> <p class="title">132</p>`;
+        p0 = element("p");
+        p0.textContent = "Penelitian";
+        t5 = space();
+        p1 = element("p");
+        t6 = text(
+          /*penelitianCounter*/
+          ctx[0]
+        );
         t7 = space();
         div7 = element("div");
         div6 = element("div");
@@ -31573,7 +31676,14 @@
         create_component(icon1.$$.fragment);
         t8 = space();
         div5 = element("div");
-        div5.innerHTML = `<p class="heading">Pengmas</p> <p class="title">87</p>`;
+        p2 = element("p");
+        p2.textContent = "Pengmas";
+        t10 = space();
+        p3 = element("p");
+        t11 = text(
+          /*pengmasCounter*/
+          ctx[1]
+        );
         t12 = space();
         div11 = element("div");
         div10 = element("div");
@@ -31604,10 +31714,14 @@
           if_block.c();
         attr(h1, "class", "title is-1");
         attr(div0, "class", "flex-item-left svelte-gz7kfg");
+        attr(p0, "class", "heading");
+        attr(p1, "class", "title");
         attr(div1, "class", "flex-item-right has-text-centered svelte-gz7kfg");
         attr(div2, "class", "box svelte-gz7kfg");
         attr(div3, "class", "column");
         attr(div4, "class", "flex-item-left svelte-gz7kfg");
+        attr(p2, "class", "heading");
+        attr(p3, "class", "title");
         attr(div5, "class", "flex-item-right has-text-centered svelte-gz7kfg");
         attr(div6, "class", "box svelte-gz7kfg");
         attr(div7, "class", "column");
@@ -31636,6 +31750,10 @@
         mount_component(icon0, div0, null);
         append(div2, t3);
         append(div2, div1);
+        append(div1, p0);
+        append(div1, t5);
+        append(div1, p1);
+        append(p1, t6);
         append(div16, t7);
         append(div16, div7);
         append(div7, div6);
@@ -31643,6 +31761,10 @@
         mount_component(icon1, div4, null);
         append(div6, t8);
         append(div6, div5);
+        append(div5, p2);
+        append(div5, t10);
+        append(div5, p3);
+        append(p3, t11);
         append(div16, t12);
         append(div16, div11);
         append(div11, div10);
@@ -31671,9 +31793,23 @@
         current = true;
       },
       p(ctx2, dirty) {
+        if (!current || dirty & /*penelitianCounter*/
+        1)
+          set_data(
+            t6,
+            /*penelitianCounter*/
+            ctx2[0]
+          );
+        if (!current || dirty & /*pengmasCounter*/
+        2)
+          set_data(
+            t11,
+            /*pengmasCounter*/
+            ctx2[1]
+          );
         if (
           /*reminder*/
-          ctx2[0]
+          ctx2[2]
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
@@ -31741,8 +31877,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, reminder*/
-        65) {
+        if (dirty & /*$$scope, reminder, pengmasCounter, penelitianCounter*/
+        263) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -31774,10 +31910,10 @@
     const remainingDays = days % 30;
     return { months, remainingWeeks, remainingDays };
   }
-  function instance28($$self, $$props, $$invalidate) {
+  function instance29($$self, $$props, $$invalidate) {
     let $apiURL;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
-    let items;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(4, $apiURL = $$value));
+    let items, penelitianCounter, pengmasCounter;
     let reminder;
     const id = localStorage.id;
     onMount(async () => {
@@ -31790,7 +31926,7 @@
       const result = await response.json();
       if (response.ok) {
         items = result.dbData;
-        $$invalidate(0, reminder = []);
+        $$invalidate(2, reminder = []);
         for (const item of items) {
           reminder.push({
             judul: item.judul,
@@ -31803,13 +31939,31 @@
           response
         );
       }
+      const responseCP = await fetch($apiURL + "/counterPenelitian/" + id, { method: "GET", headers });
+      const resultCP = await responseCP.json();
+      if (responseCP.ok) {
+        $$invalidate(0, penelitianCounter = resultCP.penelitianCounter);
+      } else {
+        console.log(
+          responseCP
+        );
+      }
+      const responseCPM = await fetch($apiURL + "/counterPengmas/" + id, { method: "GET", headers });
+      const resultCPM = await responseCPM.json();
+      if (responseCPM.ok) {
+        $$invalidate(1, pengmasCounter = resultCPM.pengmasCounter);
+      } else {
+        console.log(
+          responseCPM
+        );
+      }
     });
-    return [reminder];
+    return [penelitianCounter, pengmasCounter, reminder];
   }
   var Home2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance28, create_fragment36, safe_not_equal, {});
+      init(this, options, instance29, create_fragment36, safe_not_equal, {});
     }
   };
   var home_default2 = Home2;
@@ -32072,6 +32226,7 @@
     let t3;
     let span1;
     let t5;
+    let div;
     let table;
     let thead;
     let t15;
@@ -32097,6 +32252,7 @@
         span1 = element("span");
         span1.innerHTML = `<a>Buat Proposal</a>`;
         t5 = space();
+        div = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow">Jenis Kegiatan</th> <th class="is-narrow">Jenis Skema</th> <th>Status</th> <th colspan="2">Action</th></tr>`;
@@ -32107,6 +32263,7 @@
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
@@ -32119,7 +32276,8 @@
         append(button, t3);
         append(button, span1);
         insert(target, t5, anchor);
-        insert(target, table, anchor);
+        insert(target, div, anchor);
+        append(div, table);
         append(table, thead);
         append(table, t15);
         if (if_block)
@@ -32175,7 +32333,7 @@
           detach(t2);
           detach(button);
           detach(t5);
-          detach(table);
+          detach(div);
         }
         destroy_component(icon);
         if (if_block)
@@ -32244,7 +32402,7 @@
   function addProposal2() {
     location.href = "/dosen/proposal";
   }
-  function instance29($$self, $$props, $$invalidate) {
+  function instance30($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(1, $apiURL = $$value));
     const id = localStorage.id;
@@ -32278,7 +32436,7 @@
   var Ppmmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance29, create_fragment37, safe_not_equal, {});
+      init(this, options, instance30, create_fragment37, safe_not_equal, {});
     }
   };
   var ppmmanagement_default = Ppmmanagement;
@@ -33580,6 +33738,7 @@
     };
   }
   function create_if_block_76(ctx) {
+    let div1;
     let table;
     let thead;
     let t7;
@@ -33644,13 +33803,14 @@
     let td14;
     let textarea2;
     let t32;
-    let div;
+    let div0;
     let p;
     let button;
     let mounted;
     let dispose;
     return {
       c() {
+        div1 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow">Program</th> <th>S1</th> <th>S2</th> <th>S3</th></tr>`;
@@ -33721,7 +33881,7 @@
         td14 = element("td");
         textarea2 = element("textarea");
         t32 = space();
-        div = element("div");
+        div0 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
@@ -33755,10 +33915,12 @@
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div0, "class", "field is-grouped is-grouped-right");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
-        insert(target, table, anchor);
+        insert(target, div1, anchor);
+        append(div1, table);
         append(table, thead);
         append(table, t7);
         append(table, tbody);
@@ -33896,9 +34058,9 @@
           /*judulTugasAkhirS3*/
           ctx[62]
         );
-        insert(target, t32, anchor);
-        insert(target, div, anchor);
-        append(div, p);
+        append(div1, t32);
+        append(div1, div0);
+        append(div0, p);
         append(p, button);
         if (!mounted) {
           dispose = [
@@ -34138,9 +34300,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(table);
-          detach(t32);
-          detach(div);
+          detach(div1);
         }
         mounted = false;
         run_all(dispose);
@@ -34148,19 +34308,20 @@
     };
   }
   function create_if_block15(ctx) {
+    let modal0;
+    let updating_show;
+    let t0;
+    let div4;
     let nav0;
     let div1;
-    let t1;
+    let t2;
     let div3;
     let div2;
     let button0;
     let span0;
     let icon0;
-    let t2;
+    let t3;
     let span1;
-    let t4;
-    let modal0;
-    let updating_show;
     let t5;
     let table0;
     let thead0;
@@ -34169,19 +34330,20 @@
     let t17;
     let br0;
     let t18;
+    let modal1;
+    let updating_show_1;
+    let t19;
+    let div9;
     let nav1;
-    let div5;
-    let t20;
-    let div7;
     let div6;
+    let t21;
+    let div8;
+    let div7;
     let button1;
     let span2;
     let icon1;
-    let t21;
+    let t22;
     let span3;
-    let t23;
-    let modal1;
-    let updating_show_1;
     let t24;
     let table1;
     let thead1;
@@ -34190,19 +34352,20 @@
     let t36;
     let br1;
     let t37;
+    let modal2;
+    let updating_show_2;
+    let t38;
+    let div14;
     let nav2;
-    let div9;
-    let t39;
     let div11;
-    let div10;
+    let t40;
+    let div13;
+    let div12;
     let button2;
     let span4;
     let icon2;
-    let t40;
+    let t41;
     let span5;
-    let t42;
-    let modal2;
-    let updating_show_2;
     let t43;
     let table2;
     let thead2;
@@ -34211,19 +34374,20 @@
     let t53;
     let br2;
     let t54;
+    let modal3;
+    let updating_show_3;
+    let t55;
+    let div19;
     let nav3;
-    let div13;
-    let t56;
-    let div15;
-    let div14;
+    let div16;
+    let t57;
+    let div18;
+    let div17;
     let button3;
     let span6;
     let icon3;
-    let t57;
+    let t58;
     let span7;
-    let t59;
-    let modal3;
-    let updating_show_3;
     let t60;
     let table3;
     let thead3;
@@ -34232,19 +34396,20 @@
     let t70;
     let br3;
     let t71;
+    let modal4;
+    let updating_show_4;
+    let t72;
+    let div24;
     let nav4;
-    let div17;
-    let t73;
-    let div19;
-    let div18;
+    let div21;
+    let t74;
+    let div23;
+    let div22;
     let button4;
     let span8;
     let icon4;
-    let t74;
+    let t75;
     let span9;
-    let t76;
-    let modal4;
-    let updating_show_4;
     let t77;
     let table4;
     let thead4;
@@ -34253,19 +34418,20 @@
     let t89;
     let br4;
     let t90;
+    let modal5;
+    let updating_show_5;
+    let t91;
+    let div29;
     let nav5;
-    let div21;
-    let t92;
-    let div23;
-    let div22;
+    let div26;
+    let t93;
+    let div28;
+    let div27;
     let button5;
     let span10;
     let icon5;
-    let t93;
+    let t94;
     let span11;
-    let t95;
-    let modal5;
-    let updating_show_5;
     let t96;
     let table5;
     let thead5;
@@ -34276,7 +34442,6 @@
     let current;
     let mounted;
     let dispose;
-    icon0 = new Icon_default({ props: { id: "orang", src: add } });
     function modal0_show_binding(value) {
       ctx[131](value);
     }
@@ -34296,11 +34461,11 @@
     }
     modal0 = new Modal_default({ props: modal0_props });
     binding_callbacks.push(() => bind(modal0, "show", modal0_show_binding));
+    icon0 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block0 = (
       /*dataPP*/
       ctx[0] && create_if_block_66(ctx)
     );
-    icon1 = new Icon_default({ props: { id: "orang", src: add } });
     function modal1_show_binding(value) {
       ctx[138](value);
     }
@@ -34320,11 +34485,11 @@
     }
     modal1 = new Modal_default({ props: modal1_props });
     binding_callbacks.push(() => bind(modal1, "show", modal1_show_binding));
+    icon1 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block1 = (
       /*dataPM*/
       ctx[1] && create_if_block_56(ctx)
     );
-    icon2 = new Icon_default({ props: { id: "orang", src: add } });
     function modal2_show_binding(value) {
       ctx[143](value);
     }
@@ -34344,11 +34509,11 @@
     }
     modal2 = new Modal_default({ props: modal2_props });
     binding_callbacks.push(() => bind(modal2, "show", modal2_show_binding));
+    icon2 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block2 = (
       /*dataPD*/
       ctx[2] && create_if_block_47(ctx)
     );
-    icon3 = new Icon_default({ props: { id: "orang", src: add } });
     function modal3_show_binding(value) {
       ctx[148](value);
     }
@@ -34368,11 +34533,11 @@
     }
     modal3 = new Modal_default({ props: modal3_props });
     binding_callbacks.push(() => bind(modal3, "show", modal3_show_binding));
+    icon3 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block3 = (
       /*dataPPub*/
       ctx[3] && create_if_block_37(ctx)
     );
-    icon4 = new Icon_default({ props: { id: "orang", src: add } });
     function modal4_show_binding(value) {
       ctx[154](value);
     }
@@ -34392,11 +34557,11 @@
     }
     modal4 = new Modal_default({ props: modal4_props });
     binding_callbacks.push(() => bind(modal4, "show", modal4_show_binding));
+    icon4 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block4 = (
       /*dataPPB*/
       ctx[4] && create_if_block_28(ctx)
     );
-    icon5 = new Icon_default({ props: { id: "orang", src: add } });
     function modal5_show_binding(value) {
       ctx[160](value);
     }
@@ -34416,26 +34581,28 @@
     }
     modal5 = new Modal_default({ props: modal5_props });
     binding_callbacks.push(() => bind(modal5, "show", modal5_show_binding));
+    icon5 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block5 = (
       /*dataPHKI*/
       ctx[5] && create_if_block_117(ctx)
     );
     return {
       c() {
+        create_component(modal0.$$.fragment);
+        t0 = space();
+        div4 = element("div");
         nav0 = element("nav");
         div1 = element("div");
         div1.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penelitian</h6></div>`;
-        t1 = space();
+        t2 = space();
         div3 = element("div");
         div2 = element("div");
         button0 = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
-        t2 = space();
+        t3 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Tambah</a>`;
-        t4 = space();
-        create_component(modal0.$$.fragment);
         t5 = space();
         table0 = element("table");
         thead0 = element("thead");
@@ -34447,20 +34614,21 @@
         t17 = space();
         br0 = element("br");
         t18 = space();
+        create_component(modal1.$$.fragment);
+        t19 = space();
+        div9 = element("div");
         nav1 = element("nav");
-        div5 = element("div");
-        div5.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
-        t20 = space();
-        div7 = element("div");
         div6 = element("div");
+        div6.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
+        t21 = space();
+        div8 = element("div");
+        div7 = element("div");
         button1 = element("button");
         span2 = element("span");
         create_component(icon1.$$.fragment);
-        t21 = space();
+        t22 = space();
         span3 = element("span");
         span3.innerHTML = `<a>Tambah</a>`;
-        t23 = space();
-        create_component(modal1.$$.fragment);
         t24 = space();
         table1 = element("table");
         thead1 = element("thead");
@@ -34472,20 +34640,21 @@
         t36 = space();
         br1 = element("br");
         t37 = space();
+        create_component(modal2.$$.fragment);
+        t38 = space();
+        div14 = element("div");
         nav2 = element("nav");
-        div9 = element("div");
-        div9.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
-        t39 = space();
         div11 = element("div");
-        div10 = element("div");
+        div11.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
+        t40 = space();
+        div13 = element("div");
+        div12 = element("div");
         button2 = element("button");
         span4 = element("span");
         create_component(icon2.$$.fragment);
-        t40 = space();
+        t41 = space();
         span5 = element("span");
         span5.innerHTML = `<a>Tambah</a>`;
-        t42 = space();
-        create_component(modal2.$$.fragment);
         t43 = space();
         table2 = element("table");
         thead2 = element("thead");
@@ -34497,20 +34666,21 @@
         t53 = space();
         br2 = element("br");
         t54 = space();
+        create_component(modal3.$$.fragment);
+        t55 = space();
+        div19 = element("div");
         nav3 = element("nav");
-        div13 = element("div");
-        div13.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
-        t56 = space();
-        div15 = element("div");
-        div14 = element("div");
+        div16 = element("div");
+        div16.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
+        t57 = space();
+        div18 = element("div");
+        div17 = element("div");
         button3 = element("button");
         span6 = element("span");
         create_component(icon3.$$.fragment);
-        t57 = space();
+        t58 = space();
         span7 = element("span");
         span7.innerHTML = `<a>Tambah</a>`;
-        t59 = space();
-        create_component(modal3.$$.fragment);
         t60 = space();
         table3 = element("table");
         thead3 = element("thead");
@@ -34522,20 +34692,21 @@
         t70 = space();
         br3 = element("br");
         t71 = space();
+        create_component(modal4.$$.fragment);
+        t72 = space();
+        div24 = element("div");
         nav4 = element("nav");
-        div17 = element("div");
-        div17.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
-        t73 = space();
-        div19 = element("div");
-        div18 = element("div");
+        div21 = element("div");
+        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
+        t74 = space();
+        div23 = element("div");
+        div22 = element("div");
         button4 = element("button");
         span8 = element("span");
         create_component(icon4.$$.fragment);
-        t74 = space();
+        t75 = space();
         span9 = element("span");
         span9.innerHTML = `<a>Tambah</a>`;
-        t76 = space();
-        create_component(modal4.$$.fragment);
         t77 = space();
         table4 = element("table");
         thead4 = element("thead");
@@ -34547,20 +34718,21 @@
         t89 = space();
         br4 = element("br");
         t90 = space();
+        create_component(modal5.$$.fragment);
+        t91 = space();
+        div29 = element("div");
         nav5 = element("nav");
-        div21 = element("div");
-        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
-        t92 = space();
-        div23 = element("div");
-        div22 = element("div");
+        div26 = element("div");
+        div26.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
+        t93 = space();
+        div28 = element("div");
+        div27 = element("div");
         button5 = element("button");
         span10 = element("span");
         create_component(icon5.$$.fragment);
-        t93 = space();
+        t94 = space();
         span11 = element("span");
         span11.innerHTML = `<a>Tambah</a>`;
-        t95 = space();
-        create_component(modal5.$$.fragment);
         t96 = space();
         table5 = element("table");
         thead5 = element("thead");
@@ -34577,58 +34749,65 @@
         attr(div2, "class", "level-item");
         attr(div3, "class", "level-right");
         attr(nav0, "class", "level");
-        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div5, "class", "level-left");
+        attr(table0, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div4, "class", "box");
+        attr(div6, "class", "level-left");
         attr(span2, "class", "icon");
         attr(button1, "class", "button is-info");
-        attr(div6, "class", "level-item");
-        attr(div7, "class", "level-right");
+        attr(div7, "class", "level-item");
+        attr(div8, "class", "level-right");
         attr(nav1, "class", "level");
-        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div9, "class", "level-left");
+        attr(table1, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div9, "class", "box");
+        attr(div11, "class", "level-left");
         attr(span4, "class", "icon");
         attr(button2, "class", "button is-info");
-        attr(div10, "class", "level-item");
-        attr(div11, "class", "level-right");
+        attr(div12, "class", "level-item");
+        attr(div13, "class", "level-right");
         attr(nav2, "class", "level");
-        attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div13, "class", "level-left");
+        attr(table2, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div14, "class", "box");
+        attr(div16, "class", "level-left");
         attr(span6, "class", "icon");
         attr(button3, "class", "button is-info");
-        attr(div14, "class", "level-item");
-        attr(div15, "class", "level-right");
+        attr(div17, "class", "level-item");
+        attr(div18, "class", "level-right");
         attr(nav3, "class", "level");
-        attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div17, "class", "level-left");
+        attr(table3, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div19, "class", "box");
+        attr(div21, "class", "level-left");
         attr(span8, "class", "icon");
         attr(button4, "class", "button is-info");
-        attr(div18, "class", "level-item");
-        attr(div19, "class", "level-right");
-        attr(nav4, "class", "level");
-        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div21, "class", "level-left");
-        attr(span10, "class", "icon");
-        attr(button5, "class", "button is-info");
         attr(div22, "class", "level-item");
         attr(div23, "class", "level-right");
+        attr(nav4, "class", "level");
+        attr(table4, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div24, "class", "box");
+        attr(div26, "class", "level-left");
+        attr(span10, "class", "icon");
+        attr(button5, "class", "button is-info");
+        attr(div27, "class", "level-item");
+        attr(div28, "class", "level-right");
         attr(nav5, "class", "level");
-        attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(table5, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div29, "class", "box");
       },
       m(target, anchor) {
-        insert(target, nav0, anchor);
+        mount_component(modal0, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, div4, anchor);
+        append(div4, nav0);
         append(nav0, div1);
-        append(nav0, t1);
+        append(nav0, t2);
         append(nav0, div3);
         append(div3, div2);
         append(div2, button0);
         append(button0, span0);
         mount_component(icon0, span0, null);
-        append(button0, t2);
+        append(button0, t3);
         append(button0, span1);
-        insert(target, t4, anchor);
-        mount_component(modal0, target, anchor);
-        insert(target, t5, anchor);
-        insert(target, table0, anchor);
+        append(div4, t5);
+        append(div4, table0);
         append(table0, thead0);
         append(table0, t16);
         append(table0, tbody0);
@@ -34637,20 +34816,21 @@
         insert(target, t17, anchor);
         insert(target, br0, anchor);
         insert(target, t18, anchor);
-        insert(target, nav1, anchor);
-        append(nav1, div5);
-        append(nav1, t20);
-        append(nav1, div7);
-        append(div7, div6);
-        append(div6, button1);
+        mount_component(modal1, target, anchor);
+        insert(target, t19, anchor);
+        insert(target, div9, anchor);
+        append(div9, nav1);
+        append(nav1, div6);
+        append(nav1, t21);
+        append(nav1, div8);
+        append(div8, div7);
+        append(div7, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
-        append(button1, t21);
+        append(button1, t22);
         append(button1, span3);
-        insert(target, t23, anchor);
-        mount_component(modal1, target, anchor);
-        insert(target, t24, anchor);
-        insert(target, table1, anchor);
+        append(div9, t24);
+        append(div9, table1);
         append(table1, thead1);
         append(table1, t35);
         append(table1, tbody1);
@@ -34659,20 +34839,21 @@
         insert(target, t36, anchor);
         insert(target, br1, anchor);
         insert(target, t37, anchor);
-        insert(target, nav2, anchor);
-        append(nav2, div9);
-        append(nav2, t39);
+        mount_component(modal2, target, anchor);
+        insert(target, t38, anchor);
+        insert(target, div14, anchor);
+        append(div14, nav2);
         append(nav2, div11);
-        append(div11, div10);
-        append(div10, button2);
+        append(nav2, t40);
+        append(nav2, div13);
+        append(div13, div12);
+        append(div12, button2);
         append(button2, span4);
         mount_component(icon2, span4, null);
-        append(button2, t40);
+        append(button2, t41);
         append(button2, span5);
-        insert(target, t42, anchor);
-        mount_component(modal2, target, anchor);
-        insert(target, t43, anchor);
-        insert(target, table2, anchor);
+        append(div14, t43);
+        append(div14, table2);
         append(table2, thead2);
         append(table2, t52);
         append(table2, tbody2);
@@ -34681,20 +34862,21 @@
         insert(target, t53, anchor);
         insert(target, br2, anchor);
         insert(target, t54, anchor);
-        insert(target, nav3, anchor);
-        append(nav3, div13);
-        append(nav3, t56);
-        append(nav3, div15);
-        append(div15, div14);
-        append(div14, button3);
+        mount_component(modal3, target, anchor);
+        insert(target, t55, anchor);
+        insert(target, div19, anchor);
+        append(div19, nav3);
+        append(nav3, div16);
+        append(nav3, t57);
+        append(nav3, div18);
+        append(div18, div17);
+        append(div17, button3);
         append(button3, span6);
         mount_component(icon3, span6, null);
-        append(button3, t57);
+        append(button3, t58);
         append(button3, span7);
-        insert(target, t59, anchor);
-        mount_component(modal3, target, anchor);
-        insert(target, t60, anchor);
-        insert(target, table3, anchor);
+        append(div19, t60);
+        append(div19, table3);
         append(table3, thead3);
         append(table3, t69);
         append(table3, tbody3);
@@ -34703,20 +34885,21 @@
         insert(target, t70, anchor);
         insert(target, br3, anchor);
         insert(target, t71, anchor);
-        insert(target, nav4, anchor);
-        append(nav4, div17);
-        append(nav4, t73);
-        append(nav4, div19);
-        append(div19, div18);
-        append(div18, button4);
+        mount_component(modal4, target, anchor);
+        insert(target, t72, anchor);
+        insert(target, div24, anchor);
+        append(div24, nav4);
+        append(nav4, div21);
+        append(nav4, t74);
+        append(nav4, div23);
+        append(div23, div22);
+        append(div22, button4);
         append(button4, span8);
         mount_component(icon4, span8, null);
-        append(button4, t74);
+        append(button4, t75);
         append(button4, span9);
-        insert(target, t76, anchor);
-        mount_component(modal4, target, anchor);
-        insert(target, t77, anchor);
-        insert(target, table4, anchor);
+        append(div24, t77);
+        append(div24, table4);
         append(table4, thead4);
         append(table4, t88);
         append(table4, tbody4);
@@ -34725,20 +34908,21 @@
         insert(target, t89, anchor);
         insert(target, br4, anchor);
         insert(target, t90, anchor);
-        insert(target, nav5, anchor);
-        append(nav5, div21);
-        append(nav5, t92);
-        append(nav5, div23);
-        append(div23, div22);
-        append(div22, button5);
+        mount_component(modal5, target, anchor);
+        insert(target, t91, anchor);
+        insert(target, div29, anchor);
+        append(div29, nav5);
+        append(nav5, div26);
+        append(nav5, t93);
+        append(nav5, div28);
+        append(div28, div27);
+        append(div27, button5);
         append(button5, span10);
         mount_component(icon5, span10, null);
-        append(button5, t93);
+        append(button5, t94);
         append(button5, span11);
-        insert(target, t95, anchor);
-        mount_component(modal5, target, anchor);
-        insert(target, t96, anchor);
-        insert(target, table5, anchor);
+        append(div29, t96);
+        append(div29, table5);
         append(table5, thead5);
         append(table5, t107);
         append(table5, tbody5);
@@ -35017,113 +35201,101 @@
       i(local) {
         if (current)
           return;
-        transition_in(icon0.$$.fragment, local);
         transition_in(modal0.$$.fragment, local);
+        transition_in(icon0.$$.fragment, local);
         transition_in(if_block0);
-        transition_in(icon1.$$.fragment, local);
         transition_in(modal1.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
         transition_in(if_block1);
-        transition_in(icon2.$$.fragment, local);
         transition_in(modal2.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
         transition_in(if_block2);
-        transition_in(icon3.$$.fragment, local);
         transition_in(modal3.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
         transition_in(if_block3);
-        transition_in(icon4.$$.fragment, local);
         transition_in(modal4.$$.fragment, local);
+        transition_in(icon4.$$.fragment, local);
         transition_in(if_block4);
-        transition_in(icon5.$$.fragment, local);
         transition_in(modal5.$$.fragment, local);
+        transition_in(icon5.$$.fragment, local);
         transition_in(if_block5);
         current = true;
       },
       o(local) {
-        transition_out(icon0.$$.fragment, local);
         transition_out(modal0.$$.fragment, local);
+        transition_out(icon0.$$.fragment, local);
         transition_out(if_block0);
-        transition_out(icon1.$$.fragment, local);
         transition_out(modal1.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
         transition_out(if_block1);
-        transition_out(icon2.$$.fragment, local);
         transition_out(modal2.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
         transition_out(if_block2);
-        transition_out(icon3.$$.fragment, local);
         transition_out(modal3.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
         transition_out(if_block3);
-        transition_out(icon4.$$.fragment, local);
         transition_out(modal4.$$.fragment, local);
+        transition_out(icon4.$$.fragment, local);
         transition_out(if_block4);
-        transition_out(icon5.$$.fragment, local);
         transition_out(modal5.$$.fragment, local);
+        transition_out(icon5.$$.fragment, local);
         transition_out(if_block5);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(nav0);
-          detach(t4);
-          detach(t5);
-          detach(table0);
+          detach(t0);
+          detach(div4);
           detach(t17);
           detach(br0);
           detach(t18);
-          detach(nav1);
-          detach(t23);
-          detach(t24);
-          detach(table1);
+          detach(t19);
+          detach(div9);
           detach(t36);
           detach(br1);
           detach(t37);
-          detach(nav2);
-          detach(t42);
-          detach(t43);
-          detach(table2);
+          detach(t38);
+          detach(div14);
           detach(t53);
           detach(br2);
           detach(t54);
-          detach(nav3);
-          detach(t59);
-          detach(t60);
-          detach(table3);
+          detach(t55);
+          detach(div19);
           detach(t70);
           detach(br3);
           detach(t71);
-          detach(nav4);
-          detach(t76);
-          detach(t77);
-          detach(table4);
+          detach(t72);
+          detach(div24);
           detach(t89);
           detach(br4);
           detach(t90);
-          detach(nav5);
-          detach(t95);
-          detach(t96);
-          detach(table5);
+          detach(t91);
+          detach(div29);
           detach(t108);
           detach(br5);
         }
-        destroy_component(icon0);
         destroy_component(modal0, detaching);
+        destroy_component(icon0);
         if (if_block0)
           if_block0.d();
-        destroy_component(icon1);
         destroy_component(modal1, detaching);
+        destroy_component(icon1);
         if (if_block1)
           if_block1.d();
-        destroy_component(icon2);
         destroy_component(modal2, detaching);
+        destroy_component(icon2);
         if (if_block2)
           if_block2.d();
-        destroy_component(icon3);
         destroy_component(modal3, detaching);
+        destroy_component(icon3);
         if (if_block3)
           if_block3.d();
-        destroy_component(icon4);
         destroy_component(modal4, detaching);
+        destroy_component(icon4);
         if (if_block4)
           if_block4.d();
-        destroy_component(icon5);
         destroy_component(modal5, detaching);
+        destroy_component(icon5);
         if (if_block5)
           if_block5.d();
         mounted = false;
@@ -39350,7 +39522,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance30($$self, $$props, $$invalidate) {
+  function instance31($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(163, $apiURL = $$value));
@@ -40238,7 +40410,7 @@
   var Profile2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance30, create_fragment38, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance31, create_fragment38, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default2 = Profile2;
@@ -41780,7 +41952,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance31($$self, $$props, $$invalidate) {
+  function instance32($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(33, $route = $$value));
@@ -42103,7 +42275,7 @@
   var Proposal2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance31, create_fragment39, safe_not_equal, {}, null, [-1, -1]);
+      init(this, options, instance32, create_fragment39, safe_not_equal, {}, null, [-1, -1]);
     }
   };
   var proposal_default2 = Proposal2;
@@ -48399,7 +48571,7 @@
   }
   function addLogbook() {
   }
-  function instance32($$self, $$props, $$invalidate) {
+  function instance33($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(90, $route = $$value));
@@ -49063,7 +49235,7 @@
   var Proposals2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance32, create_fragment40, safe_not_equal, { params: 71 }, null, [-1, -1, -1, -1]);
+      init(this, options, instance33, create_fragment40, safe_not_equal, { params: 71 }, null, [-1, -1, -1, -1]);
     }
   };
   var proposals_default2 = Proposals2;
@@ -49228,7 +49400,7 @@
       console.error("Error downloading file:", error);
     }
   }
-  function instance33($$self, $$props, $$invalidate) {
+  function instance34($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
     let file;
@@ -49267,7 +49439,7 @@
   var Select2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance33, create_fragment41, safe_not_equal, {});
+      init(this, options, instance34, create_fragment41, safe_not_equal, {});
     }
   };
   var select_default = Select2;
@@ -49532,7 +49704,7 @@
       }
     };
   }
-  function instance34($$self, $$props, $$invalidate) {
+  function instance35($$self, $$props, $$invalidate) {
     let { params = {} } = $$props;
     let cmp;
     $$self.$$set = ($$props2) => {
@@ -49551,7 +49723,7 @@
   var Index4 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance34, create_fragment42, safe_not_equal, { params: 0 });
+      init(this, options, instance35, create_fragment42, safe_not_equal, { params: 0 });
     }
   };
   var Index_default4 = Index4;
@@ -49791,7 +49963,7 @@
       }
     };
   }
-  function instance35($$self, $$props, $$invalidate) {
+  function instance36($$self, $$props, $$invalidate) {
     const role = localStorage.getItem("role");
     let items;
     if (role === "admin")
@@ -49803,7 +49975,7 @@
   var Sidebar = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance35, create_fragment43, safe_not_equal, {});
+      init(this, options, instance36, create_fragment43, safe_not_equal, {});
     }
   };
   var Sidebar_default = Sidebar;
@@ -50040,7 +50212,7 @@
       }
     };
   }
-  function instance36($$self, $$props, $$invalidate) {
+  function instance37($$self, $$props, $$invalidate) {
     let $isLogin;
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(1, $isLogin = $$value));
     let token = localStorage.getItem("token");
@@ -50060,7 +50232,7 @@
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance36, create_fragment44, safe_not_equal, {});
+      init(this, options, instance37, create_fragment44, safe_not_equal, {});
     }
   };
   var Navbarmenu_default = Navbarmenu;
@@ -50286,7 +50458,7 @@
       }
     };
   }
-  function instance37($$self, $$props, $$invalidate) {
+  function instance38($$self, $$props, $$invalidate) {
     let $route;
     component_subscribe($$self, route, ($$value) => $$invalidate(5, $route = $$value));
     let cmp, params;
@@ -50319,7 +50491,7 @@
   var App = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance37, create_fragment45, safe_not_equal, {});
+      init(this, options, instance38, create_fragment45, safe_not_equal, {});
     }
   };
   var App_default = App;

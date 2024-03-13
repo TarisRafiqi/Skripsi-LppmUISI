@@ -1,7 +1,53 @@
 <script>
+   import { onMount } from "svelte";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import { penelitian, pengmas, jurnal, copyright } from "../../store/icons";
+   import { apiURL } from "../../store";
+
+   let penelitianCounter, pengmasCounter;
+   onMount(async () => {
+      const accessToken = localStorage.getItem("token");
+
+      const headers = {
+         Authorization: `${accessToken}`,
+         "Content-Type": "application/json",
+      };
+
+      // ---------------------------------------
+      // Counter Penelitian
+      // ---------------------------------------
+      const responseCP = await fetch($apiURL + "/counterPenelitian", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultCP = await responseCP.json();
+
+      if (responseCP.ok) {
+         penelitianCounter = resultCP.penelitianCounter;
+         // console.log(resultCP.penelitianCounter);
+      } else {
+         console.log(responseCP);
+      }
+
+      // ---------------------------------------
+      // Counter Pengabdian Masyarakat
+      // ---------------------------------------
+      const responseCPM = await fetch($apiURL + "/counterPengmas", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultCPM = await responseCPM.json();
+
+      if (responseCPM.ok) {
+         pengmasCounter = resultCPM.pengmasCounter;
+         // console.log(resultCPM.pengmasCounter);
+      } else {
+         console.log(responseCPM);
+      }
+   });
 </script>
 
 <Article>
@@ -17,7 +63,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">Penelitian</p>
-               <p class="title">132</p>
+               <p class="title">{penelitianCounter}</p>
             </div>
          </div>
       </div>
@@ -29,7 +75,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">Pengmas</p>
-               <p class="title">87</p>
+               <p class="title">{pengmasCounter}</p>
             </div>
          </div>
       </div>
@@ -41,7 +87,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">Jurnal</p>
-               <p class="title">121</p>
+               <p class="title">...</p>
             </div>
          </div>
       </div>
@@ -53,7 +99,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">HKI</p>
-               <p class="title">54</p>
+               <p class="title">...</p>
             </div>
          </div>
       </div>

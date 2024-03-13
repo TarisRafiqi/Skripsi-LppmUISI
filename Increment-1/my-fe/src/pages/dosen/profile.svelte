@@ -898,118 +898,138 @@
    {/if}
 
    {#if tab2 === true}
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow">Program</th>
-               <th>S1</th>
-               <th>S2</th>
-               <th>S3</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <th>Nama Perguruan Tinggi</th>
-               <td><input class="input" type="text" bind:value={pertiS1} /></td>
-               <td><input class="input" type="text" bind:value={pertiS2} /></td>
-               <td><input class="input" type="text" bind:value={pertiS3} /></td>
-            </tr>
-            <tr>
-               <th>Bidang Ilmu</th>
-               <td
-                  ><input
-                     class="input"
-                     type="text"
-                     bind:value={bidangIlmuS1}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="text"
-                     bind:value={bidangIlmuS2}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="text"
-                     bind:value={bidangIlmuS3}
-                  /></td
-               >
-            </tr>
-            <tr>
-               <th>Tahun Masuk</th>
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunMasukS1}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunMasukS2}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunMasukS3}
-                  /></td
-               >
-            </tr>
-            <tr>
-               <th>Tahun Lulus</th>
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunLulusS1}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunLulusS2}
-                  /></td
-               >
-               <td
-                  ><input
-                     class="input"
-                     type="number"
-                     bind:value={tahunLulusS3}
-                  /></td
-               >
-            </tr>
-            <tr>
-               <th>Judul Skripsi/Tesis/Disertasi</th>
-               <td
-                  ><textarea class="textarea" bind:value={judulTugasAkhirS1}
-                  ></textarea></td
-               >
-               <td
-                  ><textarea class="textarea" bind:value={judulTugasAkhirS2}
-                  ></textarea></td
-               >
-               <td
-                  ><textarea class="textarea" bind:value={judulTugasAkhirS3}
-                  ></textarea></td
-               >
-            </tr>
-         </tbody>
-      </table>
+      <div class="box">
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+            <thead>
+               <tr>
+                  <th class="is-narrow">Program</th>
+                  <th>S1</th>
+                  <th>S2</th>
+                  <th>S3</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th>Nama Perguruan Tinggi</th>
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={pertiS1}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={pertiS2}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={pertiS3}
+                     /></td
+                  >
+               </tr>
+               <tr>
+                  <th>Bidang Ilmu</th>
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={bidangIlmuS1}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={bidangIlmuS2}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="text"
+                        bind:value={bidangIlmuS3}
+                     /></td
+                  >
+               </tr>
+               <tr>
+                  <th>Tahun Masuk</th>
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunMasukS1}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunMasukS2}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunMasukS3}
+                     /></td
+                  >
+               </tr>
+               <tr>
+                  <th>Tahun Lulus</th>
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunLulusS1}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunLulusS2}
+                     /></td
+                  >
+                  <td
+                     ><input
+                        class="input"
+                        type="number"
+                        bind:value={tahunLulusS3}
+                     /></td
+                  >
+               </tr>
+               <tr>
+                  <th>Judul Skripsi/Tesis/Disertasi</th>
+                  <td
+                     ><textarea class="textarea" bind:value={judulTugasAkhirS1}
+                     ></textarea></td
+                  >
+                  <td
+                     ><textarea class="textarea" bind:value={judulTugasAkhirS2}
+                     ></textarea></td
+                  >
+                  <td
+                     ><textarea class="textarea" bind:value={judulTugasAkhirS3}
+                     ></textarea></td
+                  >
+               </tr>
+            </tbody>
+         </table>
 
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanRiwayatPendidikan}
-               >Simpan</button
-            >
-         </p>
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanRiwayatPendidikan}
+                  >Simpan</button
+               >
+            </p>
+         </div>
       </div>
    {/if}
 
@@ -1017,27 +1037,6 @@
       <!-- ------------------------------------------------------------------------>
       <!-- Table Pengalaman Penelitian -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">Pengalaman Penelitian</h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button class="button is-info" on:click={clickModalPenelitian}>
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalPenelitian}>
          <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
@@ -1091,67 +1090,73 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul Penelitian</th>
-               <th class="is-narrow">Ketua / Anggota</th>
-               <th class="is-narrow">Sumber Dana</th>
-               <th>Jumlah Rp.</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPP}
-               {#each dataPP as PP}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PP.id}
-                           on:click={delrowPP}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PP.tahun_penelitian}</td>
-                     <td>{PP.judul_penelitian}</td>
-                     <td>{PP.role_penelitian}</td>
-                     <td>{PP.sumber_dana}</td>
-                     <td>{PP.jumlah}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Pengalaman Penelitian</h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={clickModalPenelitian}
+                  >
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul Penelitian</th>
+                  <th class="is-narrow">Ketua / Anggota</th>
+                  <th class="is-narrow">Sumber Dana</th>
+                  <th>Jumlah Rp.</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPP}
+                  {#each dataPP as PP}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PP.id}
+                              on:click={delrowPP}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PP.tahun_penelitian}</td>
+                        <td>{PP.judul_penelitian}</td>
+                        <td>{PP.role_penelitian}</td>
+                        <td>{PP.sumber_dana}</td>
+                        <td>{PP.jumlah}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Table Pengabdian Masyarakat -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button class="button is-info" on:click={clickModalPengmas}>
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalPengmas}>
          <h4 class="title is-4" slot="header">
@@ -1203,69 +1208,70 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul Pengabdian Masyarakat</th>
-               <th class="is-narrow">Ketua / Anggota</th>
-               <th class="is-narrow">Sumber Dana</th>
-               <th>Jumlah Rp.</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPM}
-               {#each dataPM as PM}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PM.id}
-                           on:click={delrowPM}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PM.tahun_pengmas}</td>
-                     <td>{PM.judul_pengmas}</td>
-                     <td>{PM.role_pengmas}</td>
-                     <td>{PM.sumber_dana}</td>
-                     <td>{PM.jumlah}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button class="button is-info" on:click={clickModalPengmas}>
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul Pengabdian Masyarakat</th>
+                  <th class="is-narrow">Ketua / Anggota</th>
+                  <th class="is-narrow">Sumber Dana</th>
+                  <th>Jumlah Rp.</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPM}
+                  {#each dataPM as PM}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PM.id}
+                              on:click={delrowPM}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PM.tahun_pengmas}</td>
+                        <td>{PM.judul_pengmas}</td>
+                        <td>{PM.role_pengmas}</td>
+                        <td>{PM.sumber_dana}</td>
+                        <td>{PM.jumlah}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
 
       <!-- ------------------------------------------------------------------------>
       <!--  Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">
-                  Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
-               </h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button class="button is-info" on:click={clickModalDiseminasi}>
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalDiseminasi}>
          <h4 class="title is-4" slot="header">
@@ -1306,67 +1312,73 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul Artikel</th>
-               <th>Nama Pemakalah</th>
-               <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPD}
-               {#each dataPD as PD}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PD.id}
-                           on:click={delrowPD}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PD.tahun_diseminasi}</td>
-                     <td>{PD.judul_artikel}</td>
-                     <td>{PD.nama_pemakalah}</td>
-                     <td>{PD.nama_pertemuan}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">
+                     Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
+                  </h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={clickModalDiseminasi}
+                  >
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul Artikel</th>
+                  <th>Nama Pemakalah</th>
+                  <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPD}
+                  {#each dataPD as PD}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PD.id}
+                              on:click={delrowPD}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PD.tahun_diseminasi}</td>
+                        <td>{PD.judul_artikel}</td>
+                        <td>{PD.nama_pemakalah}</td>
+                        <td>{PD.nama_pertemuan}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding" -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">
-                  Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
-               </h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button class="button is-info" on:click={clickModalPublikasi}>
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalPublikasi}>
          <h4 class="title is-4" slot="header">
@@ -1400,68 +1412,70 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul Artikel</th>
-               <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th>
-               <th>Impact Factor/Scopus Quarter/Akreditasi</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPPub}
-               {#each dataPPub as PPub}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PPub.id}
-                           on:click={delrowPPub}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PPub.tahun_publikasi}</td>
-                     <td>{PPub.judul_artikel}</td>
-                     <td>{PPub.nama_jurnal}</td>
-                     <td>{PPub.impact}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">
+                     Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
+                  </h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button class="button is-info" on:click={clickModalPublikasi}>
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul Artikel</th>
+                  <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th>
+                  <th>Impact Factor/Scopus Quarter/Akreditasi</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPPub}
+                  {#each dataPPub as PPub}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PPub.id}
+                              on:click={delrowPPub}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PPub.tahun_publikasi}</td>
+                        <td>{PPub.judul_artikel}</td>
+                        <td>{PPub.nama_jurnal}</td>
+                        <td>{PPub.impact}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Penulisan Buku -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button
-                  class="button is-info"
-                  on:click={clickModalPenulisanBuku}
-               >
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalPenulisanBuku}>
          <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
@@ -1497,67 +1511,73 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul Buku</th>
-               <th>Nama Penulis</th>
-               <th>Penerbit</th>
-               <th>ISBN</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPPB}
-               {#each dataPPB as PPB}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PPB.id}
-                           on:click={delrowPPB}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PPB.tahun_buku}</td>
-                     <td>{PPB.judul_buku}</td>
-                     <td>{PPB.nama_penulis}</td>
-                     <td>{PPB.penerbit}</td>
-                     <td>{PPB.isbn}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={clickModalPenulisanBuku}
+                  >
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul Buku</th>
+                  <th>Nama Penulis</th>
+                  <th>Penerbit</th>
+                  <th>ISBN</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPPB}
+                  {#each dataPPB as PPB}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PPB.id}
+                              on:click={delrowPPB}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PPB.tahun_buku}</td>
+                        <td>{PPB.judul_buku}</td>
+                        <td>{PPB.nama_penulis}</td>
+                        <td>{PPB.penerbit}</td>
+                        <td>{PPB.isbn}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Hak Kekayaan Intelektual -->
       <!-- ------------------------------------------------------------------------>
-      <nav class="level">
-         <!-- Left side -->
-         <div class="level-left">
-            <div class="level-item">
-               <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6>
-            </div>
-         </div>
-
-         <!-- Right side -->
-         <div class="level-right">
-            <div class="level-item">
-               <button class="button is-info" on:click={clickModalHKI}>
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
-            </div>
-         </div>
-      </nav>
 
       <Modal bind:show={showModalHKI}>
          <h4 class="title is-4" slot="header">
@@ -1595,41 +1615,67 @@
          </div>
       </Modal>
 
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th class="is-narrow">Tahun</th>
-               <th>Judul HKI</th>
-               <th>Nama Penulis</th>
-               <th>Jenis HKI</th>
-               <th>No HKI</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if dataPHKI}
-               {#each dataPHKI as PHKI}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           pid={PHKI.id}
-                           on:click={delrowPHKI}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{PHKI.tahun_hki}</td>
-                     <td>{PHKI.judul_hki}</td>
-                     <td>{PHKI.nama_penulis}</td>
-                     <td>{PHKI.jenis_hki}</td>
-                     <td>{PHKI.no_hki}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
+      <div class="box">
+         <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">
+                     Pengalaman Hak Kekayaan Intelektual
+                  </h6>
+               </div>
+            </div>
+
+            <!-- Right side -->
+            <div class="level-right">
+               <div class="level-item">
+                  <button class="button is-info" on:click={clickModalHKI}>
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th class="is-narrow">Tahun</th>
+                  <th>Judul HKI</th>
+                  <th>Nama Penulis</th>
+                  <th>Jenis HKI</th>
+                  <th>No HKI</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataPHKI}
+                  {#each dataPHKI as PHKI}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              pid={PHKI.id}
+                              on:click={delrowPHKI}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{PHKI.tahun_hki}</td>
+                        <td>{PHKI.judul_hki}</td>
+                        <td>{PHKI.nama_penulis}</td>
+                        <td>{PHKI.jenis_hki}</td>
+                        <td>{PHKI.no_hki}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
       <br />
    {/if}
 </Article>

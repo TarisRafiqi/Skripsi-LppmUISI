@@ -3,8 +3,8 @@
    import { route, apiURL } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import Status from "../../modules/Status.svelte";
    import { accountAdd, infoOutline } from "../../store/icons";
+   import Status from "../../modules/Status.svelte";
 
    const id = localStorage.id;
    let items;
@@ -64,7 +64,7 @@
                //    " hari.",
             });
          }
-         // console.log(reminder);
+         //    (reminder);
       } else {
          console.log(response);
       }
@@ -92,42 +92,44 @@
       <span><a>Buat Proposal</a></span>
    </button>
 
-   <table class="table is-fullwidth is-striped is-hoverable">
-      <thead>
-         <tr>
-            <th>Judul</th>
-            <th class="is-narrow">Jenis Kegiatan</th>
-            <th class="is-narrow">Jenis Skema</th>
-            <th>Status</th>
-            <th colspan="2">Action</th>
-         </tr>
-      </thead>
+   <div class="box">
+      <table class="table is-fullwidth is-striped is-hoverable">
+         <thead>
+            <tr>
+               <th>Judul</th>
+               <th class="is-narrow">Jenis Kegiatan</th>
+               <th class="is-narrow">Jenis Skema</th>
+               <th>Status</th>
+               <th colspan="2">Action</th>
+            </tr>
+         </thead>
 
-      {#if items}
-         <tbody>
-            {#each items as item}
-               <tr>
-                  <td><p>{item.judul}</p></td>
-                  <td><p>{item.jenis_kegiatan}</p></td>
-                  <td><p>{item.jenis_skema}</p></td>
-                  <td class="status" pid={item.id}>
-                     <Status code={item.status} />
-                  </td>
-                  <td class="review"
-                     ><button
-                        class="button is-info is-rounded is-small"
-                        pid={item.id}
-                        on:click={detail}
-                        ><span class="icon">
-                           <Icon id="info" src={infoOutline} />
-                        </span></button
-                     ></td
-                  >
-               </tr>
-            {/each}
-         </tbody>
-      {/if}
-   </table>
+         {#if items}
+            <tbody>
+               {#each items as item}
+                  <tr>
+                     <td><p>{item.judul}</p></td>
+                     <td><p>{item.jenis_kegiatan}</p></td>
+                     <td><p>{item.jenis_skema}</p></td>
+                     <td class="status" pid={item.id}>
+                        <Status code={item.status} />
+                     </td>
+                     <td class="review"
+                        ><button
+                           class="button is-info is-rounded is-small"
+                           pid={item.id}
+                           on:click={detail}
+                           ><span class="icon">
+                              <Icon id="info" src={infoOutline} />
+                           </span></button
+                        ></td
+                     >
+                  </tr>
+               {/each}
+            </tbody>
+         {/if}
+      </table>
+   </div>
 </Article>
 
 <style>

@@ -5,7 +5,7 @@
    import { apiURL } from "../../store";
    import { penelitian, pengmas, jurnal, copyright } from "../../store/icons";
 
-   let items;
+   let items, penelitianCounter, pengmasCounter;
    let reminder;
    const id = localStorage.id;
 
@@ -67,6 +67,40 @@
       } else {
          console.log(response);
       }
+
+      // ---------------------------------------
+      // Counter Penelitian
+      // ---------------------------------------
+      const responseCP = await fetch($apiURL + "/counterPenelitian/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultCP = await responseCP.json();
+
+      if (responseCP.ok) {
+         penelitianCounter = resultCP.penelitianCounter;
+         // console.log(resultCP.penelitianCounter);
+      } else {
+         console.log(responseCP);
+      }
+
+      // ---------------------------------------
+      // Counter Pengabdian Masyarakat
+      // ---------------------------------------
+      const responseCPM = await fetch($apiURL + "/counterPengmas/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultCPM = await responseCPM.json();
+
+      if (responseCPM.ok) {
+         pengmasCounter = resultCPM.pengmasCounter;
+         // console.log(resultCPM.pengmasCounter);
+      } else {
+         console.log(responseCPM);
+      }
    });
 </script>
 
@@ -83,7 +117,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">Penelitian</p>
-               <p class="title">132</p>
+               <p class="title">{penelitianCounter}</p>
             </div>
          </div>
       </div>
@@ -95,7 +129,7 @@
             </div>
             <div class="flex-item-right has-text-centered">
                <p class="heading">Pengmas</p>
-               <p class="title">87</p>
+               <p class="title">{pengmasCounter}</p>
             </div>
          </div>
       </div>
