@@ -1,5 +1,5 @@
 <script>
-   import { route, isLogin } from "../store";
+   import { route, isLogin, isUsername } from "../store";
    import Article from "../libs/Article.svelte";
    import { menu } from "../store/icons";
    import { onMount } from "svelte";
@@ -10,6 +10,7 @@
    let token = localStorage.getItem("token");
    let username = localStorage.getItem("username");
    let navbarMenu;
+
    // console.log($isLogin, token);
 
    // onMount(() => {
@@ -22,6 +23,12 @@
 
    function test() {
       navbarMenu.classList.toggle("is-active");
+   }
+
+   function gotoDashboard() {
+      const role = localStorage.getItem("role");
+      if (role === "admin") $route("/admin");
+      else $route("/dosen");
    }
 </script>
 
@@ -36,7 +43,6 @@
                alt="Logo UISI"
             />
          </a>
-
          <!-- svelte-ignore a11y-missing-attribute -->
          <!-- svelte-ignore a11y-click-events-have-key-events -->
          <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -98,11 +104,16 @@
                   <a class="navbar-link">
                      <Icon src={accountRounded} />
                      &nbsp;
-                     {username}
+                     {username || $isUsername}
                   </a>
 
                   <div class="navbar-dropdown">
-                     <a class="navbar-item" href="/">Dashboard</a>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <a class="navbar-item" on:click={gotoDashboard}
+                        >Dashboard</a
+                     >
 
                      <hr class="navbar-divider" />
 

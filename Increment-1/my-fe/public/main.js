@@ -1783,7 +1783,10 @@
   // src/store/index.js
   var route = writable(0);
   var isLogin = writable(false);
-  var apiURL = writable(define_process_default.ENV.production ? "https://lppmuisiapi.dififa.com" : "http://localhost:10443");
+  var isUsername = writable(null);
+  var apiURL = writable(
+    define_process_default.ENV.production ? "https://lppmuisiapi.dififa.com" : "http://localhost:10443"
+  );
 
   // src/libs/Icon.svelte
   init_define_process();
@@ -1883,9 +1886,11 @@
   init_define_process();
   var accountRounded = "M12 19.2c-2.5 0-4.71-1.28-6-3.2c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.232 7.232 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10";
   var accountAdd = "M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z";
+  var accountEdit = "M2 17v3h8v-1.89H3.9V17c0-.64 3.13-2.1 6.1-2.1c.96.01 1.91.14 2.83.38l1.52-1.52c-1.4-.47-2.85-.73-4.35-.76c-2.67 0-8 1.33-8 4m8-13C7.79 4 6 5.79 6 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4m0 6c-1.1 0-2-.89-2-2s.9-2 2-2s2 .9 2 2s-.89 2-2 2m11.7 3.35l-1 1l-2.05-2l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2l-6 6.07H12z";
   var infoOutline = "M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z";
   var addProposal = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95H5Zm0-3v1V5v6.075V11v7Zm2-1h4.075q.075-.525.238-1.025t.362-.975H7v2Zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7v2Zm0-4h10V7H7v2Zm11 14q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23Zm-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5V21Z";
   var add = "M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z";
+  var check = "m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z";
   var deleteIcon = "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
   var penelitian = "M15.5 12c2.5 0 4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5m0 2a2.5 2.5 0 0 0-2.5 2.5a2.5 2.5 0 0 0 2.5 2.5a2.5 2.5 0 0 0 2.5-2.5a2.5 2.5 0 0 0-2.5-2.5M5 3h14c1.11 0 2 .89 2 2v8.03c-.5-.8-1.19-1.49-2-2.03V5H5v14h4.5c.31.75.76 1.42 1.31 2H5c-1.11 0-2-.89-2-2V5c0-1.11.89-2 2-2m2 4h10v2H7zm0 4h5.03c-.8.5-1.49 1.19-2.03 2H7zm0 4h2.17c-.11.5-.17 1-.17 1.5v.5H7z";
   var pengmas = "M16.5 13c-1.2 0-3.07.34-4.5 1c-1.43-.67-3.3-1-4.5-1C5.33 13 1 14.08 1 16.25V19h22v-2.75c0-2.17-4.33-3.25-6.5-3.25m-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75zm9 0H14v-1.25c0-.46-.2-.86-.52-1.22c.88-.3 1.96-.53 3.02-.53c2.44 0 5 1.21 5 1.75zM7.5 12c1.93 0 3.5-1.57 3.5-3.5S9.43 5 7.5 5S4 6.57 4 8.5S5.57 12 7.5 12m0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m9 5.5c1.93 0 3.5-1.57 3.5-3.5S18.43 5 16.5 5S13 6.57 13 8.5s1.57 3.5 3.5 3.5m0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2";
@@ -2067,10 +2072,12 @@
   function instance5($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
+    let $isUsername;
     let $isLogin;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(6, $apiURL = $$value));
     component_subscribe($$self, route, ($$value) => $$invalidate(7, $route = $$value));
-    component_subscribe($$self, isLogin, ($$value) => $$invalidate(8, $isLogin = $$value));
+    component_subscribe($$self, isUsername, ($$value) => $$invalidate(8, $isUsername = $$value));
+    component_subscribe($$self, isLogin, ($$value) => $$invalidate(9, $isLogin = $$value));
     let username = "";
     let password = "";
     document.addEventListener("keydown", function(event) {
@@ -2090,6 +2097,7 @@
       if (result.sukses) {
         set_store_value(isLogin, $isLogin = true, $isLogin);
         const { id, username: username2, role, token } = result;
+        set_store_value(isUsername, $isUsername = username2, $isUsername);
         localStorage.setItem("id", id);
         localStorage.setItem("username", username2);
         localStorage.setItem("role", role);
@@ -23375,6 +23383,7 @@
     let t1;
     let hr;
     let t2;
+    let div3;
     let div2;
     let div0;
     let t7;
@@ -23385,6 +23394,7 @@
     let t8;
     let span1;
     let t10;
+    let div4;
     let table;
     let thead;
     let t18;
@@ -23408,10 +23418,10 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
+        div3 = element("div");
         div2 = element("div");
         div0 = element("div");
-        div0.innerHTML = `<p>Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br/>buat
-               akun disini</p>`;
+        div0.innerHTML = `<p>Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br/>buat akun disini</p>`;
         t7 = space();
         div1 = element("div");
         button = element("button");
@@ -23421,6 +23431,7 @@
         span1 = element("span");
         span1.innerHTML = `<a>Create User</a>`;
         t10 = space();
+        div4 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Username</th> <th>Email</th> <th class="is-narrow">Role</th> <th class="is-narrow">Active</th></tr>`;
@@ -23434,15 +23445,18 @@
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
         attr(div1, "class", "column");
-        attr(div2, "class", "columns notification is-info is-light");
+        attr(div2, "class", "columns");
+        attr(div3, "class", "notification is-info is-light");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div4, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div2, anchor);
+        insert(target, div3, anchor);
+        append(div3, div2);
         append(div2, div0);
         append(div2, t7);
         append(div2, div1);
@@ -23452,7 +23466,8 @@
         append(button, t8);
         append(button, span1);
         insert(target, t10, anchor);
-        insert(target, table, anchor);
+        insert(target, div4, anchor);
+        append(div4, table);
         append(table, thead);
         append(table, t18);
         append(table, tbody);
@@ -23512,9 +23527,9 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(div2);
+          detach(div3);
           detach(t10);
-          detach(table);
+          detach(div4);
         }
         destroy_component(icon);
         destroy_each(each_blocks, detaching);
@@ -32233,7 +32248,9 @@
     let current;
     let mounted;
     let dispose;
-    icon = new Icon_default({ props: { id: "orang", src: accountAdd } });
+    icon = new Icon_default({
+      props: { id: "accountAdd", src: accountAdd }
+    });
     let if_block = (
       /*items*/
       ctx[0] && create_if_block14(ctx)
@@ -40618,7 +40635,7 @@
       }
     };
   }
-  function create_if_block_118(ctx) {
+  function create_if_block_29(ctx) {
     let option0;
     let option1;
     let option2;
@@ -40676,7 +40693,7 @@
         /*jenisKegiatan*/
         ctx2[0] === "Penelitian"
       )
-        return create_if_block_118;
+        return create_if_block_29;
       return create_else_block5;
     }
     let current_block_type = select_block_type(ctx, [-1, -1]);
@@ -40686,7 +40703,7 @@
         div = element("div");
         select = element("select");
         option = element("option");
-        option.textContent = "Pilih Jenis Skema\r\n            ";
+        option.textContent = "Pilih Jenis Skema\r\n               ";
         if_block.c();
         option.__value = "";
         set_input_value(option, option.__value);
@@ -41001,6 +41018,48 @@
         }
         mounted = false;
         run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_118(ctx) {
+    let field;
+    let current;
+    field = new Field_default({
+      props: {
+        name: "Rencana Anggaran Biaya",
+        $$slots: { default: [create_default_slot_56] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(field, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field_changes = {};
+        if (dirty[0] & /*fileRab*/
+        4096 | dirty[1] & /*$$scope*/
+        2048) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(field, detaching);
       }
     };
   }
@@ -41421,54 +41480,81 @@
     let t1;
     let hr0;
     let t2;
-    let field0;
+    let div3;
+    let ul;
+    let li0;
+    let span1;
+    let span0;
+    let icon0;
     let t3;
-    let field1;
-    let t4;
-    let field2;
-    let t5;
-    let field3;
-    let t6;
-    let field4;
+    let div0;
     let t7;
-    let field5;
+    let li1;
+    let span3;
+    let span2;
+    let icon1;
     let t8;
-    let field6;
-    let t9;
-    let field7;
-    let t10;
-    let field8;
-    let t11;
-    let field9;
+    let div1;
     let t12;
-    let br;
+    let li2;
+    let span5;
+    let span4;
+    let icon2;
     let t13;
+    let div2;
+    let t17;
+    let br0;
+    let t18;
+    let field0;
+    let t19;
+    let field1;
+    let t20;
+    let field2;
+    let t21;
+    let field3;
+    let t22;
+    let field4;
+    let t23;
+    let field5;
+    let t24;
+    let field6;
+    let t25;
+    let field7;
+    let t26;
+    let t27;
+    let field8;
+    let t28;
+    let br1;
+    let t29;
     let table;
     let thead;
-    let t17;
+    let t33;
     let tbody;
     let tr1;
-    let t22;
-    let t23;
+    let t38;
+    let t39;
     let hr1;
-    let t24;
+    let t40;
+    let field9;
+    let t41;
     let field10;
-    let t25;
+    let t42;
     let field11;
-    let t26;
-    let field12;
-    let t27;
-    let hr2;
-    let t28;
-    let div;
-    let p0;
+    let t43;
+    let div4;
+    let p6;
     let button0;
-    let t30;
-    let p1;
+    let t45;
+    let p7;
     let button1;
     let current;
     let mounted;
     let dispose;
+    icon0 = new Icon_default({ props: { id: "orang", src: penelitian } });
+    icon1 = new Icon_default({
+      props: { id: "accountEdit", src: accountEdit }
+    });
+    icon2 = new Icon_default({ props: { id: "check", src: check } });
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
@@ -41525,39 +41611,40 @@
         $$scope: { ctx }
       }
     });
+    let if_block0 = (
+      /*jenisSkema*/
+      (ctx[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+      ctx[2] === "Riset Terapan" || /*jenisSkema*/
+      ctx[2] === "Riset Kerjasama" || /*jenisSkema*/
+      ctx[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+      ctx[2] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_118(ctx)
+    );
     field8 = new Field_default({
-      props: {
-        name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_56] },
-        $$scope: { ctx }
-      }
-    });
-    field9 = new Field_default({
       props: {
         name: "Anggota Tim",
         $$slots: { default: [create_default_slot_411] },
         $$scope: { ctx }
       }
     });
-    let if_block = (
+    let if_block1 = (
       /*anggotaTim*/
       ctx[9].length > 0 && create_if_block16(ctx)
     );
-    field10 = new Field_default({
+    field9 = new Field_default({
       props: {
         name: "Judul",
         $$slots: { default: [create_default_slot_317] },
         $$scope: { ctx }
       }
     });
-    field11 = new Field_default({
+    field10 = new Field_default({
       props: {
         name: "Abstrak",
         $$slots: { default: [create_default_slot_218] },
         $$scope: { ctx }
       }
     });
-    field12 = new Field_default({
+    field11 = new Field_default({
       props: {
         name: "Proposal",
         $$slots: { default: [create_default_slot_119] },
@@ -41567,121 +41654,189 @@
     return {
       c() {
         h1 = element("h1");
-        h1.textContent = "Buat Proposal";
+        h1.textContent = "Pendaftaran Proposal";
         t1 = space();
         hr0 = element("hr");
         t2 = space();
-        create_component(field0.$$.fragment);
+        div3 = element("div");
+        ul = element("ul");
+        li0 = element("li");
+        span1 = element("span");
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
         t3 = space();
-        create_component(field1.$$.fragment);
-        t4 = space();
-        create_component(field2.$$.fragment);
-        t5 = space();
-        create_component(field3.$$.fragment);
-        t6 = space();
-        create_component(field4.$$.fragment);
+        div0 = element("div");
+        div0.innerHTML = `<p class="is-size-5"><b>Step 1</b></p> <p class="is-size-6">Proposal</p>`;
         t7 = space();
-        create_component(field5.$$.fragment);
+        li1 = element("li");
+        span3 = element("span");
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
         t8 = space();
-        create_component(field6.$$.fragment);
-        t9 = space();
-        create_component(field7.$$.fragment);
-        t10 = space();
-        create_component(field8.$$.fragment);
-        t11 = space();
-        create_component(field9.$$.fragment);
+        div1 = element("div");
+        div1.innerHTML = `<p class="is-size-5"><b>Step 2</b></p> <p class="is-size-6">Biodata Peneliti</p>`;
         t12 = space();
-        br = element("br");
+        li2 = element("li");
+        span5 = element("span");
+        span4 = element("span");
+        create_component(icon2.$$.fragment);
         t13 = space();
+        div2 = element("div");
+        div2.innerHTML = `<p class="is-size-5"><b>Step 3</b></p> <p class="is-size-6">Next Step</p>`;
+        t17 = space();
+        br0 = element("br");
+        t18 = space();
+        create_component(field0.$$.fragment);
+        t19 = space();
+        create_component(field1.$$.fragment);
+        t20 = space();
+        create_component(field2.$$.fragment);
+        t21 = space();
+        create_component(field3.$$.fragment);
+        t22 = space();
+        create_component(field4.$$.fragment);
+        t23 = space();
+        create_component(field5.$$.fragment);
+        t24 = space();
+        create_component(field6.$$.fragment);
+        t25 = space();
+        create_component(field7.$$.fragment);
+        t26 = space();
+        if (if_block0)
+          if_block0.c();
+        t27 = space();
+        create_component(field8.$$.fragment);
+        t28 = space();
+        br1 = element("br");
+        t29 = space();
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow" style="width:55px"></th> <th class="is-narrow" style="width:86px">Role</th> <th></th></tr>`;
-        t17 = space();
+        t33 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
-        t22 = space();
-        if (if_block)
-          if_block.c();
-        t23 = space();
+        t38 = space();
+        if (if_block1)
+          if_block1.c();
+        t39 = space();
         hr1 = element("hr");
-        t24 = space();
+        t40 = space();
+        create_component(field9.$$.fragment);
+        t41 = space();
         create_component(field10.$$.fragment);
-        t25 = space();
+        t42 = space();
         create_component(field11.$$.fragment);
-        t26 = space();
-        create_component(field12.$$.fragment);
-        t27 = space();
-        hr2 = element("hr");
-        t28 = space();
-        div = element("div");
-        p0 = element("p");
+        t43 = space();
+        div4 = element("div");
+        p6 = element("p");
         button0 = element("button");
         button0.textContent = "Simpan";
-        t30 = space();
-        p1 = element("p");
+        t45 = space();
+        p7 = element("p");
         button1 = element("button");
         button1.textContent = "Submit";
         attr(h1, "class", "title is-1");
+        attr(span0, "class", "icon");
+        attr(span1, "class", "steps-marker");
+        attr(div0, "class", "steps-content");
+        attr(li0, "data-step", "1");
+        attr(li0, "class", "steps-segment is-active is-dashed");
+        attr(span2, "class", "icon");
+        attr(span3, "class", "steps-marker is-hollow");
+        attr(div1, "class", "steps-content");
+        attr(li1, "data-step", "2");
+        attr(li1, "class", "steps-segment is-dashed");
+        attr(span4, "class", "icon");
+        attr(span5, "class", "steps-marker is-hollow");
+        attr(div2, "class", "steps-content");
+        attr(li2, "data-step", "3");
+        attr(li2, "class", "steps-segment");
+        attr(ul, "class", "steps is-medium has-content-centered");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div3, "class", "box");
         attr(button0, "class", "button is-info is-light");
-        attr(p0, "class", "control");
+        attr(p6, "class", "control");
         attr(button1, "class", "button is-info");
-        attr(p1, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(p7, "class", "control");
+        attr(div4, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr0, anchor);
         insert(target, t2, anchor);
-        mount_component(field0, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t11, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t12, anchor);
-        insert(target, br, anchor);
-        insert(target, t13, anchor);
-        insert(target, table, anchor);
+        insert(target, div3, anchor);
+        append(div3, ul);
+        append(ul, li0);
+        append(li0, span1);
+        append(span1, span0);
+        mount_component(icon0, span0, null);
+        append(li0, t3);
+        append(li0, div0);
+        append(ul, t7);
+        append(ul, li1);
+        append(li1, span3);
+        append(span3, span2);
+        mount_component(icon1, span2, null);
+        append(li1, t8);
+        append(li1, div1);
+        append(ul, t12);
+        append(ul, li2);
+        append(li2, span5);
+        append(span5, span4);
+        mount_component(icon2, span4, null);
+        append(li2, t13);
+        append(li2, div2);
+        append(div3, t17);
+        append(div3, br0);
+        append(div3, t18);
+        mount_component(field0, div3, null);
+        append(div3, t19);
+        mount_component(field1, div3, null);
+        append(div3, t20);
+        mount_component(field2, div3, null);
+        append(div3, t21);
+        mount_component(field3, div3, null);
+        append(div3, t22);
+        mount_component(field4, div3, null);
+        append(div3, t23);
+        mount_component(field5, div3, null);
+        append(div3, t24);
+        mount_component(field6, div3, null);
+        append(div3, t25);
+        mount_component(field7, div3, null);
+        append(div3, t26);
+        if (if_block0)
+          if_block0.m(div3, null);
+        append(div3, t27);
+        mount_component(field8, div3, null);
+        append(div3, t28);
+        append(div3, br1);
+        append(div3, t29);
+        append(div3, table);
         append(table, thead);
-        append(table, t17);
+        append(table, t33);
         append(table, tbody);
         append(tbody, tr1);
-        append(tbody, t22);
-        if (if_block)
-          if_block.m(tbody, null);
-        insert(target, t23, anchor);
-        insert(target, hr1, anchor);
-        insert(target, t24, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t25, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t26, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t27, anchor);
-        insert(target, hr2, anchor);
-        insert(target, t28, anchor);
-        insert(target, div, anchor);
-        append(div, p0);
-        append(p0, button0);
-        append(div, t30);
-        append(div, p1);
-        append(p1, button1);
+        append(tbody, t38);
+        if (if_block1)
+          if_block1.m(tbody, null);
+        append(div3, t39);
+        append(div3, hr1);
+        append(div3, t40);
+        mount_component(field9, div3, null);
+        append(div3, t41);
+        mount_component(field10, div3, null);
+        append(div3, t42);
+        mount_component(field11, div3, null);
+        insert(target, t43, anchor);
+        insert(target, div4, anchor);
+        append(div4, p6);
+        append(p6, button0);
+        append(div4, t45);
+        append(div4, p7);
+        append(p7, button1);
         current = true;
         if (!mounted) {
           dispose = [
@@ -41758,68 +41913,91 @@
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
+        if (
+          /*jenisSkema*/
+          ctx2[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+          ctx2[2] === "Riset Terapan" || /*jenisSkema*/
+          ctx2[2] === "Riset Kerjasama" || /*jenisSkema*/
+          ctx2[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+          ctx2[2] === "Pengabdian Masyarakat UMKM Binaan"
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+            if (dirty[0] & /*jenisSkema*/
+            4) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_118(ctx2);
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(div3, t27);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
         const field8_changes = {};
-        if (dirty[0] & /*fileRab*/
-        4096 | dirty[1] & /*$$scope*/
+        if (dirty[0] & /*items, anggotaTim*/
+        2560 | dirty[1] & /*$$scope*/
         2048) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
-        const field9_changes = {};
-        if (dirty[0] & /*items, anggotaTim*/
-        2560 | dirty[1] & /*$$scope*/
-        2048) {
-          field9_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field9.$set(field9_changes);
         if (
           /*anggotaTim*/
           ctx2[9].length > 0
         ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
             if (dirty[0] & /*anggotaTim*/
             512) {
-              transition_in(if_block, 1);
+              transition_in(if_block1, 1);
             }
           } else {
-            if_block = create_if_block16(ctx2);
-            if_block.c();
-            transition_in(if_block, 1);
-            if_block.m(tbody, null);
+            if_block1 = create_if_block16(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(tbody, null);
           }
-        } else if (if_block) {
+        } else if (if_block1) {
           group_outros();
-          transition_out(if_block, 1, 1, () => {
-            if_block = null;
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
           });
           check_outros();
         }
-        const field10_changes = {};
+        const field9_changes = {};
         if (dirty[0] & /*judul*/
         16 | dirty[1] & /*$$scope*/
+        2048) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[0] & /*myAbstract*/
+        1024 | dirty[1] & /*$$scope*/
         2048) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*myAbstract*/
-        1024 | dirty[1] & /*$$scope*/
+        if (dirty[0] & /*filePpm*/
+        8192 | dirty[1] & /*$$scope*/
         2048) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
-        const field12_changes = {};
-        if (dirty[0] & /*filePpm*/
-        8192 | dirty[1] & /*$$scope*/
-        2048) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
       },
       i(local) {
         if (current)
           return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
         transition_in(field0.$$.fragment, local);
         transition_in(field1.$$.fragment, local);
         transition_in(field2.$$.fragment, local);
@@ -41828,15 +42006,18 @@
         transition_in(field5.$$.fragment, local);
         transition_in(field6.$$.fragment, local);
         transition_in(field7.$$.fragment, local);
+        transition_in(if_block0);
         transition_in(field8.$$.fragment, local);
+        transition_in(if_block1);
         transition_in(field9.$$.fragment, local);
-        transition_in(if_block);
         transition_in(field10.$$.fragment, local);
         transition_in(field11.$$.fragment, local);
-        transition_in(field12.$$.fragment, local);
         current = true;
       },
       o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
         transition_out(field0.$$.fragment, local);
         transition_out(field1.$$.fragment, local);
         transition_out(field2.$$.fragment, local);
@@ -41845,12 +42026,12 @@
         transition_out(field5.$$.fragment, local);
         transition_out(field6.$$.fragment, local);
         transition_out(field7.$$.fragment, local);
+        transition_out(if_block0);
         transition_out(field8.$$.fragment, local);
+        transition_out(if_block1);
         transition_out(field9.$$.fragment, local);
-        transition_out(if_block);
         transition_out(field10.$$.fragment, local);
         transition_out(field11.$$.fragment, local);
-        transition_out(field12.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -41859,44 +42040,29 @@
           detach(t1);
           detach(hr0);
           detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(t12);
-          detach(br);
-          detach(t13);
-          detach(table);
-          detach(t23);
-          detach(hr1);
-          detach(t24);
-          detach(t25);
-          detach(t26);
-          detach(t27);
-          detach(hr2);
-          detach(t28);
-          detach(div);
+          detach(div3);
+          detach(t43);
+          detach(div4);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        if (if_block)
-          if_block.d();
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
+        destroy_component(icon0);
+        destroy_component(icon1);
+        destroy_component(icon2);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        if (if_block0)
+          if_block0.d();
+        destroy_component(field8);
+        if (if_block1)
+          if_block1.d();
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         mounted = false;
         run_all(dispose);
       }
@@ -41921,7 +42087,7 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*filePpm, myAbstract, judul, anggotaTim, items, fileRab, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisSkema, jenisKegiatan, jenisProposal*/
+        if (dirty[0] & /*filePpm, myAbstract, judul, anggotaTim, items, fileRab, jenisSkema, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal*/
         16383 | dirty[1] & /*$$scope*/
         2048) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
@@ -47893,7 +48059,7 @@
       }
     };
   }
-  function create_if_block_29(ctx) {
+  function create_if_block_210(ctx) {
     let div2;
     let div0;
     let t1;
@@ -48081,7 +48247,7 @@
     );
     let if_block4 = (
       /*tab5*/
-      ctx[57] === true && create_if_block_29(ctx)
+      ctx[57] === true && create_if_block_210(ctx)
     );
     let if_block5 = (
       /*tab6*/
@@ -48405,7 +48571,7 @@
               transition_in(if_block4, 1);
             }
           } else {
-            if_block4 = create_if_block_29(ctx2);
+            if_block4 = create_if_block_210(ctx2);
             if_block4.c();
             transition_in(if_block4, 1);
             if_block4.m(t18.parentNode, t18);
@@ -49804,6 +49970,7 @@
       ctx[2].title + ""
     );
     let t;
+    let a_id_value;
     let a_href_value;
     return {
       c() {
@@ -49811,6 +49978,8 @@
         li = element("li");
         a = element("a");
         t = text(t_value);
+        attr(a, "id", a_id_value = /*item*/
+        ctx[2].title === "Dashboard" ? "dashboard" : null);
         attr(a, "href", a_href_value = /*item*/
         ctx[2].href);
         attr(a, "class", "svelte-1lfjw54");
@@ -49827,6 +49996,11 @@
         1 && t_value !== (t_value = /*item*/
         ctx2[2].title + ""))
           set_data(t, t_value);
+        if (dirty & /*items*/
+        1 && a_id_value !== (a_id_value = /*item*/
+        ctx2[2].title === "Dashboard" ? "dashboard" : null)) {
+          attr(a, "id", a_id_value);
+        }
         if (dirty & /*items*/
         1 && a_href_value !== (a_href_value = /*item*/
         ctx2[2].href)) {
@@ -50008,10 +50182,22 @@
     let a0;
     let icon;
     let t0;
+    let t1_value = (
+      /*username*/
+      (ctx[4] || /*$isUsername*/
+      ctx[2]) + ""
+    );
     let t1;
     let t2;
     let div0;
+    let a1;
+    let t4;
+    let hr;
+    let t5;
+    let a2;
     let current;
+    let mounted;
+    let dispose;
     icon = new Icon_default({ props: { src: accountRounded } });
     return {
       c() {
@@ -50019,14 +50205,21 @@
         a0 = element("a");
         create_component(icon.$$.fragment);
         t0 = text("\r\n                     \xA0\r\n                     ");
-        t1 = text(
-          /*username*/
-          ctx[3]
-        );
+        t1 = text(t1_value);
         t2 = space();
         div0 = element("div");
-        div0.innerHTML = `<a class="navbar-item" href="/">Dashboard</a> <hr class="navbar-divider"/> <a class="navbar-item has-text-danger" href="/logout">Logout</a>`;
+        a1 = element("a");
+        a1.textContent = "Dashboard";
+        t4 = space();
+        hr = element("hr");
+        t5 = space();
+        a2 = element("a");
+        a2.textContent = "Logout";
         attr(a0, "class", "navbar-link");
+        attr(a1, "class", "navbar-item");
+        attr(hr, "class", "navbar-divider");
+        attr(a2, "class", "navbar-item has-text-danger");
+        attr(a2, "href", "/logout");
         attr(div0, "class", "navbar-dropdown");
         attr(div1, "class", "navbar-item has-dropdown is-hoverable");
       },
@@ -50038,9 +50231,29 @@
         append(a0, t1);
         append(div1, t2);
         append(div1, div0);
+        append(div0, a1);
+        append(div0, t4);
+        append(div0, hr);
+        append(div0, t5);
+        append(div0, a2);
         current = true;
+        if (!mounted) {
+          dispose = listen(
+            a1,
+            "click",
+            /*gotoDashboard*/
+            ctx[6]
+          );
+          mounted = true;
+        }
       },
-      p: noop,
+      p(ctx2, dirty) {
+        if ((!current || dirty & /*$isUsername*/
+        4) && t1_value !== (t1_value = /*username*/
+        (ctx2[4] || /*$isUsername*/
+        ctx2[2]) + ""))
+          set_data(t1, t1_value);
+      },
       i(local) {
         if (current)
           return;
@@ -50056,6 +50269,8 @@
           detach(div1);
         }
         destroy_component(icon);
+        mounted = false;
+        dispose();
       }
     };
   }
@@ -50088,7 +50303,7 @@
       if (
         /*$isLogin*/
         ctx2[1] || /*token*/
-        ctx2[2]
+        ctx2[3]
       )
         return 0;
       return 1;
@@ -50157,14 +50372,14 @@
         append(div5, div4);
         append(div5, t23);
         if_blocks[current_block_type_index].m(div5, null);
-        ctx[5](div6);
+        ctx[7](div6);
         current = true;
         if (!mounted) {
           dispose = listen(
             a1,
             "click",
             /*test*/
-            ctx[4]
+            ctx[5]
           );
           mounted = true;
         }
@@ -50206,20 +50421,31 @@
           detach(header);
         }
         if_blocks[current_block_type_index].d();
-        ctx[5](null);
+        ctx[7](null);
         mounted = false;
         dispose();
       }
     };
   }
   function instance37($$self, $$props, $$invalidate) {
+    let $route;
     let $isLogin;
+    let $isUsername;
+    component_subscribe($$self, route, ($$value) => $$invalidate(8, $route = $$value));
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(1, $isLogin = $$value));
+    component_subscribe($$self, isUsername, ($$value) => $$invalidate(2, $isUsername = $$value));
     let token = localStorage.getItem("token");
     let username = localStorage.getItem("username");
     let navbarMenu;
     function test() {
       navbarMenu.classList.toggle("is-active");
+    }
+    function gotoDashboard() {
+      const role = localStorage.getItem("role");
+      if (role === "admin")
+        $route("/admin");
+      else
+        $route("/dosen");
     }
     function div6_binding($$value) {
       binding_callbacks[$$value ? "unshift" : "push"](() => {
@@ -50227,7 +50453,16 @@
         $$invalidate(0, navbarMenu);
       });
     }
-    return [navbarMenu, $isLogin, token, username, test, div6_binding];
+    return [
+      navbarMenu,
+      $isLogin,
+      $isUsername,
+      token,
+      username,
+      test,
+      gotoDashboard,
+      div6_binding
+    ];
   }
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {

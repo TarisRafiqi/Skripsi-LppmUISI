@@ -1,5 +1,5 @@
 <script>
-   import { route, isLogin, apiURL } from "../store";
+   import { route, isLogin, isUsername, apiURL } from "../store";
    import Icon from "../libs/Icon.svelte";
    import { googleIcon } from "../store/icons";
 
@@ -32,6 +32,7 @@
       if (result.sukses) {
          $isLogin = true;
          const { id, username, role, token } = result;
+         $isUsername = username;
          localStorage.setItem("id", id);
          localStorage.setItem("username", username);
          localStorage.setItem("role", role);

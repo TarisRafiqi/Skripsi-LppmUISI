@@ -40,7 +40,12 @@
    {#each items as item}
       <ul class="menu-list">
          <!-- svelte-ignore a11y-missing-attribute -->
-         <li><a href={item.href}>{item.title}</a></li>
+         <li>
+            <a
+               id={item.title === "Dashboard" ? "dashboard" : null}
+               href={item.href}>{item.title}</a
+            >
+         </li>
       </ul>
    {/each}
 

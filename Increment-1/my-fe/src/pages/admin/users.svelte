@@ -116,81 +116,85 @@
       <h1 class="title is-1">User Management</h1>
       <hr />
 
-      <div class="columns notification is-info is-light">
-         <div class="column is-4">
-            <p>
-               Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br />buat
-               akun disini
-            </p>
-         </div>
+      <div class="notification is-info is-light">
+         <div class="columns">
+            <div class="column is-4">
+               <p>
+                  Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br
+                  />buat akun disini
+               </p>
+            </div>
 
-         <div class="column">
-            <button class="button is-info" on:click={addUser}>
-               <span class="icon">
-                  <Icon id="orang" src={accountAdd} />
-               </span>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <span><a>Create User</a></span>
-            </button>
+            <div class="column">
+               <button class="button is-info" on:click={addUser}>
+                  <span class="icon">
+                     <Icon id="orang" src={accountAdd} />
+                  </span>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <span><a>Create User</a></span>
+               </button>
+            </div>
          </div>
       </div>
 
-      <table class="table is-fullwidth is-striped is-hoverable">
-         <thead>
-            <tr>
-               <th>Username</th>
-               <th>Email</th>
-               <th class="is-narrow">Role</th>
-               <th class="is-narrow">Active</th>
-            </tr>
-         </thead>
-
-         <tbody>
-            {#each items as item, idx}
+      <div class="box">
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
                <tr>
-                  <td>
-                     <a href={"/admin/profile/" + item.id}>
-                        {item.username}
-                     </a>
-                  </td>
-                  <td>{item.email}</td>
-                  <td fixed class="group">
-                     <div class="select">
-                        <select uid={idx} on:change={handleGroup}>
-                           <option value="9" selected={item.role === 9}
-                              >Admin</option
-                           >
-                           <option value="0" selected={item.role === 0}
-                              >Dosen</option
-                           >
-                           <option value="10" selected={item.role === 10}
-                              >Reviewer</option
-                           >
-                           <option value="11" selected={item.role === 11}
-                              >Ka. Departemen</option
-                           >
-                           <option value="12" selected={item.role === 12}
-                              >Ka. LPPM</option
-                           >
-                           <option value="13" selected={item.role === 13}
-                              >Ka. Pusat Kajian</option
-                           >
-                        </select>
-                     </div>
-                  </td>
-                  <td
-                     fixed
-                     on:click={handleActive}
-                     uid={idx}
-                     role={item.role}
-                     class="active"
-                     class:red={!item.active}
-                     >{item.active ? "✔" : "✘"}
-                  </td>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th class="is-narrow">Role</th>
+                  <th class="is-narrow">Active</th>
                </tr>
-            {/each}
-         </tbody>
-      </table>
+            </thead>
+
+            <tbody>
+               {#each items as item, idx}
+                  <tr>
+                     <td>
+                        <a href={"/admin/profile/" + item.id}>
+                           {item.username}
+                        </a>
+                     </td>
+                     <td>{item.email}</td>
+                     <td fixed class="group">
+                        <div class="select">
+                           <select uid={idx} on:change={handleGroup}>
+                              <option value="9" selected={item.role === 9}
+                                 >Admin</option
+                              >
+                              <option value="0" selected={item.role === 0}
+                                 >Dosen</option
+                              >
+                              <option value="10" selected={item.role === 10}
+                                 >Reviewer</option
+                              >
+                              <option value="11" selected={item.role === 11}
+                                 >Ka. Departemen</option
+                              >
+                              <option value="12" selected={item.role === 12}
+                                 >Ka. LPPM</option
+                              >
+                              <option value="13" selected={item.role === 13}
+                                 >Ka. Pusat Kajian</option
+                              >
+                           </select>
+                        </div>
+                     </td>
+                     <td
+                        fixed
+                        on:click={handleActive}
+                        uid={idx}
+                        role={item.role}
+                        class="active"
+                        class:red={!item.active}
+                        >{item.active ? "✔" : "✘"}
+                     </td>
+                  </tr>
+               {/each}
+            </tbody>
+         </table>
+      </div>
    {/if}
 </Article>
 

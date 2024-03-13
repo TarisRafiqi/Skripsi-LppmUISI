@@ -86,7 +86,7 @@
 
    <button class="button is-info" on:click={addProposal}>
       <span class="icon">
-         <Icon id="orang" src={accountAdd} />
+         <Icon id="accountAdd" src={accountAdd} />
       </span>
       <!-- svelte-ignore a11y-missing-attribute -->
       <span><a>Buat Proposal</a></span>
