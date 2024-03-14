@@ -4,12 +4,7 @@
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
-   import {
-      deleteIcon,
-      penelitian,
-      accountEdit,
-      check,
-   } from "../../store/icons";
+   import { deleteIcon, penelitian, accountEdit, add } from "../../store/icons";
    import Select from "../../libs/Select.svelte";
 
    let value;
@@ -31,12 +26,28 @@
    let randomPpmFileName = "";
 
    let myAbstract;
-   let myIsi;
+   let vmataKuliah;
 
    const id = Number(localStorage.getItem("id"));
    let items = [];
    let fileRab;
    let filePpm;
+
+   let idProfile,
+      // idUser,
+      namaLengkap,
+      jabatanFungsional,
+      nip,
+      nidn,
+      tempatLahir,
+      tanggalLahir,
+      alamatRumah,
+      telpFaxRumah,
+      nomorHandphone,
+      alamatKantor,
+      telpFaxKantor,
+      email,
+      mataKuliah = [];
 
    // function getDataStep() {
    //    const currentStep = 1 + "";
@@ -85,6 +96,39 @@
       }
 
       //------------------------------------------------------------
+      // Get Profile
+      //------------------------------------------------------------
+      const responseGP = await fetch($apiURL + "/user/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultGP = await responseGP.json();
+
+      if (responseGP.ok) {
+         data = resultGP;
+
+         idProfile = data.id;
+         idUser = data.uid;
+         namaLengkap = data.nama_lengkap;
+         jabatanFungsional = data.jabatan_fungsional;
+         nip = data.nip;
+         nidn = data.nidn;
+         tempatLahir = data.tempat_lahir;
+         tanggalLahir = data.tanggal_lahir;
+         alamatRumah = data.alamat_rumah;
+         telpFaxRumah = data.telp_fax_rumah;
+         nomorHandphone = data.nomor_handphone;
+         alamatKantor = data.alamat_kantor;
+         telpFaxKantor = data.telp_fax_kantor;
+         email = data.email;
+         mataKuliah =
+            typeof data.mata_kuliah === "string"
+               ? JSON.parse(data.mata_kuliah)
+               : data.mata_kuliah || [];
+      }
+
+      //------------------------------------------------------------
       // Generate RAB Random Character
       //------------------------------------------------------------
       const characters =
@@ -112,6 +156,27 @@
    });
 
    //------------------------------------------------------------
+   // Add Mata Kuliah
+   //------------------------------------------------------------
+   function addMatkul() {
+      let addVmatkul = {
+         label: vmataKuliah,
+      };
+      mataKuliah = [...mataKuliah, addVmatkul];
+      vmataKuliah = "";
+   }
+
+   //------------------------------------------------------------
+   // Delete Mata Kuliah
+   //------------------------------------------------------------
+   function deleteMatkul(e) {
+      let delMatkul = e.target.getAttribute("data-value");
+      mataKuliah = mataKuliah.filter((matkul) => {
+         return matkul.label !== delMatkul;
+      });
+   }
+
+   //------------------------------------------------------------
    // Format Rupiah
    //------------------------------------------------------------
    function formatRupiah(angka, prefix) {
@@ -132,7 +197,6 @@
 
    async function simpanProposal() {
       // myAbstract = tinymce.get("abstract").getContent();
-      // myIsi = tinymce.get("isi").getContent();
 
       const accessToken = localStorage.getItem("token");
       const readerRab = new FileReader();
@@ -213,7 +277,6 @@
          anggotaTim,
          judul,
          myAbstract,
-         myIsi,
          status: 0,
          randomRabFileName,
          randomPpmFileName,
@@ -239,7 +302,6 @@
 
    async function submitProposal() {
       // myAbstract = tinymce.get("abstract").getContent();
-      // myIsi = tinymce.get("isi").getContent();
 
       const accessToken = localStorage.getItem("token");
       const readerRab = new FileReader();
@@ -320,7 +382,6 @@
          anggotaTim,
          judul,
          myAbstract,
-         myIsi,
          status: 2,
          randomRabFileName,
          randomPpmFileName,
@@ -357,71 +418,37 @@
 
    let tab1 = true;
    let tab2;
-   let tab3;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      tab3 = false;
    }
 
    function clicktab2() {
-      const jpValue = document.getElementById("jenisProposal");
-      const jkValue = document.getElementById("jenisKegiatan");
-      const jsValue = document.getElementById("jenisSkema");
-      const kkValue = document.getElementById("kelompokKeahlian");
-      const topikValue = document.getElementById("topik");
-      const tmValue = document.getElementById("tanggalMulai");
-      const tsValue = document.getElementById("tanggalSelesai");
-      const bpValue = document.getElementById("biayaPenelitian");
-      const fileRabValue = document.getElementById("fileRab");
-      // const anggotaTimValue = document.getElementById("anggotaTim");
-      const judulValue = document.getElementById("judul");
-      const maValue = document.getElementById("myAbstract");
-      const filePpmValue = document.getElementById("filePpm");
-
-      // if (
-      //    jpValue.value === "" ||
-      //    jpValue.value == null ||
-      //    jkValue.value === "" ||
-      //    jkValue.value == null ||
-      //    jsValue.value === "" ||
-      //    jsValue.value == null ||
-      //    kkValue.value === "" ||
-      //    kkValue.value == null ||
-      //    topikValue.value === "" ||
-      //    topikValue.value == null ||
-      //    tmValue.value === "" ||
-      //    tmValue.value == null ||
-      //    tsValue.value === "" ||
-      //    tsValue.value == null ||
-      //    bpValue.value === "" ||
-      //    bpValue.value == null ||
-      //    fileRabValue.value === "" ||
-      //    fileRabValue.value == null ||
-      //    judulValue.value === "" ||
-      //    judulValue.value == null ||
-      //    maValue.value === "" ||
-      //    maValue.value == null ||
-      //    filePpmValue.value === "" ||
-      //    filePpmValue.value == null
-      // ) {
-      //    warningFormText = true;
-      // } else {
-      //    tab1 = false;
-      //    tab2 = true;
-      //    tab3 = false;
-      // }
-
       tab1 = false;
       tab2 = true;
-      tab3 = false;
    }
 
-   function clicktab3() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = true;
+   let tab1Step2 = true;
+   let tab2Step2;
+   let tab3Step2;
+
+   function clicktab1Step2() {
+      tab1Step2 = true;
+      tab2Step2 = false;
+      tab3Step2 = false;
+   }
+
+   function clicktab2Step2() {
+      tab1Step2 = false;
+      tab2Step2 = true;
+      tab3Step2 = false;
+   }
+
+   function clicktab3Step2() {
+      tab1Step2 = false;
+      tab2Step2 = false;
+      tab3Step2 = true;
    }
 </script>
 
@@ -465,24 +492,6 @@
             <div class="steps-content">
                <p class="is-size-5"><b>Step 2</b></p>
                <p class="is-size-6">Biodata Peneliti</p>
-            </div>
-         </li>
-         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-         <!-- svelte-ignore a11y-click-events-have-key-events -->
-         <li
-            on:click={clicktab3}
-            class:is-active={tab3}
-            data-step="3"
-            class="steps-segment"
-         >
-            <span class="steps-marker">
-               <span class="icon">
-                  <Icon id="check" src={check} />
-               </span>
-            </span>
-            <div class="steps-content">
-               <p class="is-size-5"><b>Step 3</b></p>
-               <p class="is-size-6">Next Step</p>
             </div>
          </li>
       </ul>
@@ -707,13 +716,183 @@
       {/if}
 
       {#if tab2 === true}
-         <h3>Tab 2</h3>
-      {/if}
+         <div class="tabs is-boxed">
+            <ul>
+               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <li on:click={clicktab1Step2} class:is-active={tab1Step2}>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a>
+                     <span>Identitas</span>
+                  </a>
+               </li>
+               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <li on:click={clicktab2Step2} class:is-active={tab2Step2}>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a>
+                     <span>Riwayat Pendidikan</span>
+                  </a>
+               </li>
+               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <li on:click={clicktab3Step2} class:is-active={tab3Step2}>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a>
+                     <span>Pengalaman</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
 
-      {#if tab3 === true}
-         <h3>Tab 3</h3>
+         {#if tab1Step2 === true}
+            <!-- <Field name="Id Profile">{idProfile}</Field> -->
+            <!-- <Field name="Id User">{idUser}</Field> -->
+
+            <Field name="Nama Lengkap">
+               <input class="input" type="text" bind:value={namaLengkap} />
+               <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
+            </Field>
+
+            <Field name="Jabatan Fungsional">
+               <input
+                  class="input"
+                  type="text"
+                  bind:value={jabatanFungsional}
+               /></Field
+            >
+
+            <Field name="NIP">
+               <input class="input" type="number" bind:value={nip} /></Field
+            >
+            <Field name="NIDN">
+               <input class="input" type="number" bind:value={nidn} /></Field
+            >
+
+            <Field name="Tempat / Tanggal Lahir">
+               <div class="field-body">
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="text"
+                        bind:value={tempatLahir}
+                     />
+                  </div>
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="date"
+                        bind:value={tanggalLahir}
+                     />
+                  </div>
+               </div>
+            </Field>
+
+            <Field name="Alamat Rumah">
+               <input class="input" type="text" bind:value={alamatRumah} />
+            </Field>
+
+            <Field name="Telp/Fax Rumah">
+               <input class="input" type="number" bind:value={telpFaxRumah} />
+            </Field>
+
+            <Field name="Nomor Handphone">
+               <input
+                  class="input"
+                  type="number"
+                  bind:value={nomorHandphone}
+               /></Field
+            >
+            <Field name="Alamat Kantor">
+               <input
+                  class="input"
+                  type="text"
+                  bind:value={alamatKantor}
+               /></Field
+            >
+
+            <Field name="Telp/Fax Kantor">
+               <input
+                  class="input"
+                  type="number"
+                  bind:value={telpFaxKantor}
+               /></Field
+            >
+            <Field class="input" name="Email">
+               <input class="input" type="text" bind:value={email} />
+            </Field>
+
+            <Field name="Mata Kuliah">
+               <div class="field is-grouped">
+                  <p class="control is-expanded">
+                     <input
+                        class="input"
+                        type="text"
+                        placeholder="Tambahkan mata kuliah yang diampu"
+                        bind:value={vmataKuliah}
+                     />
+                  </p>
+                  <p class="control">
+                     <button
+                        on:click={addMatkul}
+                        class="button is-info"
+                        disabled={vmataKuliah ? false : true}
+                     >
+                        <span class="icon">
+                           <Icon id="orang" src={add} />
+                        </span>
+                        <!-- svelte-ignore a11y-missing-attribute -->
+                        <span><a>Tambah</a></span>
+                     </button>
+                  </p>
+               </div>
+            </Field>
+            <br />
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th class="is-narrow"></th>
+                     <th>Mata Kuliah</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if mataKuliah && mataKuliah.length > 0}
+                     {#each mataKuliah as matkul}
+                        <tr>
+                           <td
+                              ><button
+                                 class="button is-danger is-rounded is-small"
+                                 data-value={matkul.label}
+                                 on:click={deleteMatkul}
+                                 ><span class="icon">
+                                    <Icon id="delete" src={deleteIcon} />
+                                 </span></button
+                              ></td
+                           >
+                           <td>{matkul.label}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         {/if}
+
+         {#if tab2Step2 === true}
+            <h3>Tab2 - Step2</h3>
+         {/if}
+
+         {#if tab3Step2 === true}
+            <h3>Tab3 - Step2</h3>
+         {/if}
       {/if}
    </div>
+
+   <!-- ---------------------------------------------------
+            Action Button
+   --------------------------------------------------- -->
 
    {#if tab1 === true}
       <div class="field is-grouped is-grouped-right">
@@ -727,17 +906,6 @@
       <div class="field is-grouped is-grouped-right">
          <p class="control">
             <button class="button" on:click={clicktab1}>Back</button>
-         </p>
-         <p class="control">
-            <button class="button is-info" on:click={clicktab3}>Next</button>
-         </p>
-      </div>
-   {/if}
-
-   {#if tab3 === true}
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button" on:click={clicktab2}>Back</button>
          </p>
          <p class="control">
             <button class="button is-info is-light" on:click={simpanProposal}

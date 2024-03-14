@@ -43,7 +43,6 @@
       anggotaTim = [],
       judul,
       abstrak,
-      isi,
       comment,
       status;
 
@@ -109,7 +108,6 @@
 
          judul = data.judul;
          abstrak = data.abstrak;
-         isi = data.isi;
          comment = data.comment;
          status = data.status;
          kdeptSelected = data.uid_kdept;
@@ -500,7 +498,6 @@
          id,
          judul,
          abstrak,
-         isi,
          comment: "",
          status: Number(data.status) + 1,
          kdeptSelected,
@@ -609,7 +606,6 @@
          id,
          judul,
          abstrak,
-         isi,
          comment: "",
          status: Number(data.status) + 2,
          kdeptSelected,
@@ -718,7 +714,6 @@
          id,
          judul,
          abstrak,
-         isi,
          comment: "",
          status: Number(data.status),
          kdeptSelected,
