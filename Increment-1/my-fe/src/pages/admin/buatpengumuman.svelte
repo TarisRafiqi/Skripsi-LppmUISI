@@ -12,20 +12,20 @@
    <h1 class="title is-1">Buat Pengumuman</h1>
    <hr />
 
-   <Field name="Judul Pengumuman">
-      <input
-         class="input"
-         type="text"
-         placeholder="Masukkan Judul Pengumuman"
-         bind:value={judulPengumuman}
-      />
-   </Field>
+   <div class="box">
+      <Field name="Judul Pengumuman">
+         <input
+            class="input"
+            type="text"
+            placeholder="Masukkan Judul Pengumuman"
+            bind:value={judulPengumuman}
+         />
+      </Field>
 
-   <Field name="Isi Pengumuman">
-      <Wysiwyg id="isi" content={isiPengumuman} />
-   </Field>
-
-   <hr />
+      <Field name="Isi Pengumuman">
+         <Wysiwyg id="isi" content={isiPengumuman} />
+      </Field>
+   </div>
 
    <div class="field is-grouped is-grouped-right">
       <p class="control">

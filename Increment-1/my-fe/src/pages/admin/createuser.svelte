@@ -55,37 +55,35 @@
 
    <hr />
 
-   <Field name="Username">
-      <input
-         class="input"
-         type="text"
-         placeholder="Masukkan username"
-         bind:value={createUsername}
-      />
-   </Field>
+   <div class="box">
+      <Field name="Username">
+         <input
+            class="input"
+            type="text"
+            placeholder="Masukkan username"
+            bind:value={createUsername}
+         />
+      </Field>
 
-   <Field name="Password">
-      <input
-         class="input"
-         type="password"
-         placeholder="Masukkan password"
-         bind:value={createPassword}
-      />
-   </Field>
+      <Field name="Password">
+         <input
+            class="input"
+            type="password"
+            placeholder="Masukkan password"
+            bind:value={createPassword}
+         />
+      </Field>
 
-   <Field name="Email">
-      <input
-         class="input"
-         type="text"
-         placeholder="Masukkan email"
-         bind:value={createEmail}
-      />
-   </Field>
-
-   <br />
-
-   <Field>
-      <div class="field is-grouped">
+      <Field name="Email">
+         <input
+            class="input"
+            type="text"
+            placeholder="Masukkan email"
+            bind:value={createEmail}
+         />
+      </Field>
+      <br />
+      <div class="field is-grouped is-grouped-right">
          <div class="control">
             <button class="button is-info is-light" on:click={kembali}
                >Kembali</button
@@ -97,5 +95,5 @@
             >
          </div>
       </div>
-   </Field>
+   </div>
 </Article>

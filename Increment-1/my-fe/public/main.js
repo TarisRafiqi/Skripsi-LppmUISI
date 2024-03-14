@@ -3647,7 +3647,7 @@
 
   // src/pages/admin/aboutuisi.svelte
   function create_if_block_22(ctx) {
-    let field;
+    let wysiwyg;
     let t0;
     let hr;
     let t1;
@@ -3657,16 +3657,15 @@
     let current;
     let mounted;
     let dispose;
-    field = new Field_default({
-      props: {
-        name: "LPPM UISI",
-        $$slots: { default: [create_default_slot_3] },
-        $$scope: { ctx }
-      }
+    wysiwyg = new Wysiwyg_default({
+      props: { id: "isi", content: (
+        /*lppmUisi*/
+        ctx[3]
+      ) }
     });
     return {
       c() {
-        create_component(field.$$.fragment);
+        create_component(wysiwyg.$$.fragment);
         t0 = space();
         hr = element("hr");
         t1 = space();
@@ -3679,7 +3678,7 @@
         attr(div, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        mount_component(field, target, anchor);
+        mount_component(wysiwyg, target, anchor);
         insert(target, t0, anchor);
         insert(target, hr, anchor);
         insert(target, t1, anchor);
@@ -3692,54 +3691,6 @@
           mounted = true;
         }
       },
-      p(ctx2, dirty) {
-        const field_changes = {};
-        if (dirty & /*$$scope*/
-        512) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(field, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_3(ctx) {
-    let wysiwyg;
-    let current;
-    wysiwyg = new Wysiwyg_default({
-      props: { id: "isi", content: (
-        /*lppmUisi*/
-        ctx[3]
-      ) }
-    });
-    return {
-      c() {
-        create_component(wysiwyg.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        current = true;
-      },
       p: noop,
       i(local) {
         if (current)
@@ -3752,12 +3703,20 @@
         current = false;
       },
       d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(hr);
+          detach(t1);
+          detach(div);
+        }
         destroy_component(wysiwyg, detaching);
+        mounted = false;
+        dispose();
       }
     };
   }
   function create_if_block_12(ctx) {
-    let field;
+    let wysiwyg;
     let t0;
     let hr;
     let t1;
@@ -3767,75 +3726,6 @@
     let current;
     let mounted;
     let dispose;
-    field = new Field_default({
-      props: {
-        name: "Fungsi & Tujuan",
-        $$slots: { default: [create_default_slot_2] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field.$$.fragment);
-        t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Simpan";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        mount_component(field, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, button);
-        current = true;
-        if (!mounted) {
-          dispose = listen(button, "click", simpanFungsiTujuan);
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        const field_changes = {};
-        if (dirty & /*$$scope*/
-        512) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(field, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_2(ctx) {
-    let wysiwyg;
-    let current;
     wysiwyg = new Wysiwyg_default({
       props: {
         id: "isi",
@@ -3848,48 +3738,6 @@
     return {
       c() {
         create_component(wysiwyg.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        current = true;
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(wysiwyg, detaching);
-      }
-    };
-  }
-  function create_if_block2(ctx) {
-    let field;
-    let t0;
-    let hr;
-    let t1;
-    let div;
-    let p;
-    let button;
-    let current;
-    let mounted;
-    let dispose;
-    field = new Field_default({
-      props: {
-        name: "Visi & Misi",
-        $$slots: { default: [create_default_slot_1] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field.$$.fragment);
         t0 = space();
         hr = element("hr");
         t1 = space();
@@ -3902,7 +3750,7 @@
         attr(div, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        mount_component(field, target, anchor);
+        mount_component(wysiwyg, target, anchor);
         insert(target, t0, anchor);
         insert(target, hr, anchor);
         insert(target, t1, anchor);
@@ -3911,57 +3759,9 @@
         append(p, button);
         current = true;
         if (!mounted) {
-          dispose = listen(button, "click", simpanVisiMisi);
+          dispose = listen(button, "click", simpanFungsiTujuan);
           mounted = true;
         }
-      },
-      p(ctx2, dirty) {
-        const field_changes = {};
-        if (dirty & /*$$scope*/
-        512) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(field, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_1(ctx) {
-    let wysiwyg;
-    let current;
-    wysiwyg = new Wysiwyg_default({
-      props: { id: "isi", content: (
-        /*visiMisi*/
-        ctx[5]
-      ) }
-    });
-    return {
-      c() {
-        create_component(wysiwyg.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        current = true;
       },
       p: noop,
       i(local) {
@@ -3975,7 +3775,84 @@
         current = false;
       },
       d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(hr);
+          detach(t1);
+          detach(div);
+        }
         destroy_component(wysiwyg, detaching);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block2(ctx) {
+    let wysiwyg;
+    let t0;
+    let hr;
+    let t1;
+    let div;
+    let p;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    wysiwyg = new Wysiwyg_default({
+      props: { id: "isi", content: (
+        /*visiMisi*/
+        ctx[5]
+      ) }
+    });
+    return {
+      c() {
+        create_component(wysiwyg.$$.fragment);
+        t0 = space();
+        hr = element("hr");
+        t1 = space();
+        div = element("div");
+        p = element("p");
+        button = element("button");
+        button.textContent = "Simpan";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        mount_component(wysiwyg, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, hr, anchor);
+        insert(target, t1, anchor);
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, button);
+        current = true;
+        if (!mounted) {
+          dispose = listen(button, "click", simpanVisiMisi);
+          mounted = true;
+        }
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(wysiwyg.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(wysiwyg.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(hr);
+          detach(t1);
+          detach(div);
+        }
+        destroy_component(wysiwyg, detaching);
+        mounted = false;
+        dispose();
       }
     };
   }
@@ -4328,7 +4205,7 @@
 
   // src/pages/admin/buatpengumuman.svelte
   init_define_process();
-  function create_default_slot_22(ctx) {
+  function create_default_slot_2(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4376,7 +4253,7 @@
       }
     };
   }
-  function create_default_slot_12(ctx) {
+  function create_default_slot_1(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
@@ -4415,15 +4292,14 @@
   function create_default_slot3(ctx) {
     let h1;
     let t1;
-    let hr0;
+    let hr;
     let t2;
+    let div0;
     let field0;
     let t3;
     let field1;
     let t4;
-    let hr1;
-    let t5;
-    let div;
+    let div1;
     let p;
     let button;
     let current;
@@ -4432,14 +4308,14 @@
     field0 = new Field_default({
       props: {
         name: "Judul Pengumuman",
-        $$slots: { default: [create_default_slot_22] },
+        $$slots: { default: [create_default_slot_2] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Isi Pengumuman",
-        $$slots: { default: [create_default_slot_12] },
+        $$slots: { default: [create_default_slot_1] },
         $$scope: { ctx }
       }
     });
@@ -4448,36 +4324,35 @@
         h1 = element("h1");
         h1.textContent = "Buat Pengumuman";
         t1 = space();
-        hr0 = element("hr");
+        hr = element("hr");
         t2 = space();
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t3 = space();
         create_component(field1.$$.fragment);
         t4 = space();
-        hr1 = element("hr");
-        t5 = space();
-        div = element("div");
+        div1 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
         attr(h1, "class", "title is-1");
+        attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
-        insert(target, hr0, anchor);
+        insert(target, hr, anchor);
         insert(target, t2, anchor);
-        mount_component(field0, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field1, target, anchor);
+        insert(target, div0, anchor);
+        mount_component(field0, div0, null);
+        append(div0, t3);
+        mount_component(field1, div0, null);
         insert(target, t4, anchor);
-        insert(target, hr1, anchor);
-        insert(target, t5, anchor);
-        insert(target, div, anchor);
-        append(div, p);
+        insert(target, div1, anchor);
+        append(div1, p);
         append(p, button);
         current = true;
         if (!mounted) {
@@ -4515,16 +4390,14 @@
         if (detaching) {
           detach(h1);
           detach(t1);
-          detach(hr0);
+          detach(hr);
           detach(t2);
-          detach(t3);
+          detach(div0);
           detach(t4);
-          detach(hr1);
-          detach(t5);
-          detach(div);
+          detach(div1);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
         mounted = false;
         dispose();
       }
@@ -4759,7 +4632,7 @@
   var Modalerror_default = Modalerror;
 
   // src/pages/admin/createuser.svelte
-  function create_default_slot_5(ctx) {
+  function create_default_slot_4(ctx) {
     let p;
     return {
       c() {
@@ -4777,7 +4650,7 @@
       }
     };
   }
-  function create_default_slot_4(ctx) {
+  function create_default_slot_3(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4825,7 +4698,7 @@
       }
     };
   }
-  function create_default_slot_32(ctx) {
+  function create_default_slot_22(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4873,7 +4746,7 @@
       }
     };
   }
-  function create_default_slot_23(ctx) {
+  function create_default_slot_12(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4921,38 +4794,126 @@
       }
     };
   }
-  function create_default_slot_13(ctx) {
+  function create_default_slot4(ctx) {
+    let modalerror;
+    let updating_show;
+    let t0;
+    let h1;
+    let t2;
+    let hr;
+    let t3;
+    let div3;
+    let field0;
+    let t4;
+    let field1;
+    let t5;
+    let field2;
+    let t6;
+    let br;
+    let t7;
     let div2;
     let div0;
     let button0;
-    let t1;
+    let t9;
     let div1;
     let button1;
+    let current;
     let mounted;
     let dispose;
+    function modalerror_show_binding(value) {
+      ctx[6](value);
+    }
+    let modalerror_props = {
+      $$slots: { default: [create_default_slot_4] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalError*/
+      ctx[0] !== void 0
+    ) {
+      modalerror_props.show = /*showModalError*/
+      ctx[0];
+    }
+    modalerror = new Modalerror_default({ props: modalerror_props });
+    binding_callbacks.push(() => bind(modalerror, "show", modalerror_show_binding));
+    field0 = new Field_default({
+      props: {
+        name: "Username",
+        $$slots: { default: [create_default_slot_3] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Password",
+        $$slots: { default: [create_default_slot_22] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "Email",
+        $$slots: { default: [create_default_slot_12] },
+        $$scope: { ctx }
+      }
+    });
     return {
       c() {
+        create_component(modalerror.$$.fragment);
+        t0 = space();
+        h1 = element("h1");
+        h1.textContent = "Create User";
+        t2 = space();
+        hr = element("hr");
+        t3 = space();
+        div3 = element("div");
+        create_component(field0.$$.fragment);
+        t4 = space();
+        create_component(field1.$$.fragment);
+        t5 = space();
+        create_component(field2.$$.fragment);
+        t6 = space();
+        br = element("br");
+        t7 = space();
         div2 = element("div");
         div0 = element("div");
         button0 = element("button");
         button0.textContent = "Kembali";
-        t1 = space();
+        t9 = space();
         div1 = element("div");
         button1 = element("button");
         button1.textContent = "Create";
+        attr(h1, "class", "title is-1");
         attr(button0, "class", "button is-info is-light");
         attr(div0, "class", "control");
         attr(button1, "class", "button is-info");
         attr(div1, "class", "control");
-        attr(div2, "class", "field is-grouped");
+        attr(div2, "class", "field is-grouped is-grouped-right");
+        attr(div3, "class", "box");
       },
       m(target, anchor) {
-        insert(target, div2, anchor);
+        mount_component(modalerror, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, h1, anchor);
+        insert(target, t2, anchor);
+        insert(target, hr, anchor);
+        insert(target, t3, anchor);
+        insert(target, div3, anchor);
+        mount_component(field0, div3, null);
+        append(div3, t4);
+        mount_component(field1, div3, null);
+        append(div3, t5);
+        mount_component(field2, div3, null);
+        append(div3, t6);
+        append(div3, br);
+        append(div3, t7);
+        append(div3, div2);
         append(div2, div0);
         append(div0, button0);
-        append(div2, t1);
+        append(div2, t9);
         append(div2, div1);
         append(div1, button1);
+        current = true;
         if (!mounted) {
           dispose = [
             listen(
@@ -4970,115 +4931,6 @@
           ];
           mounted = true;
         }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(div2);
-        }
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_default_slot4(ctx) {
-    let modalerror;
-    let updating_show;
-    let t0;
-    let h1;
-    let t2;
-    let hr;
-    let t3;
-    let field0;
-    let t4;
-    let field1;
-    let t5;
-    let field2;
-    let t6;
-    let br;
-    let t7;
-    let field3;
-    let current;
-    function modalerror_show_binding(value) {
-      ctx[6](value);
-    }
-    let modalerror_props = {
-      $$slots: { default: [create_default_slot_5] },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModalError*/
-      ctx[0] !== void 0
-    ) {
-      modalerror_props.show = /*showModalError*/
-      ctx[0];
-    }
-    modalerror = new Modalerror_default({ props: modalerror_props });
-    binding_callbacks.push(() => bind(modalerror, "show", modalerror_show_binding));
-    field0 = new Field_default({
-      props: {
-        name: "Username",
-        $$slots: { default: [create_default_slot_4] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Password",
-        $$slots: { default: [create_default_slot_32] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "Email",
-        $$slots: { default: [create_default_slot_23] },
-        $$scope: { ctx }
-      }
-    });
-    field3 = new Field_default({
-      props: {
-        $$slots: { default: [create_default_slot_13] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(modalerror.$$.fragment);
-        t0 = space();
-        h1 = element("h1");
-        h1.textContent = "Create User";
-        t2 = space();
-        hr = element("hr");
-        t3 = space();
-        create_component(field0.$$.fragment);
-        t4 = space();
-        create_component(field1.$$.fragment);
-        t5 = space();
-        create_component(field2.$$.fragment);
-        t6 = space();
-        br = element("br");
-        t7 = space();
-        create_component(field3.$$.fragment);
-        attr(h1, "class", "title is-1");
-      },
-      m(target, anchor) {
-        mount_component(modalerror, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, h1, anchor);
-        insert(target, t2, anchor);
-        insert(target, hr, anchor);
-        insert(target, t3, anchor);
-        mount_component(field0, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t6, anchor);
-        insert(target, br, anchor);
-        insert(target, t7, anchor);
-        mount_component(field3, target, anchor);
-        current = true;
       },
       p(ctx2, dirty) {
         const modalerror_changes = {};
@@ -5112,12 +4964,6 @@
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty & /*$$scope*/
-        8192) {
-          field3_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field3.$set(field3_changes);
       },
       i(local) {
         if (current)
@@ -5126,7 +4972,6 @@
         transition_in(field0.$$.fragment, local);
         transition_in(field1.$$.fragment, local);
         transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -5134,7 +4979,6 @@
         transition_out(field0.$$.fragment, local);
         transition_out(field1.$$.fragment, local);
         transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -5144,17 +4988,14 @@
           detach(t2);
           detach(hr);
           detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(br);
-          detach(t7);
+          detach(div3);
         }
         destroy_component(modalerror, detaching);
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        mounted = false;
+        run_all(dispose);
       }
     };
   }
@@ -5592,6 +5433,7 @@
     let t3;
     let span1;
     let t5;
+    let div1;
     let table;
     let thead;
     let t8;
@@ -5600,7 +5442,7 @@
     let td0;
     let t10;
     let td1;
-    let div;
+    let div0;
     let p0;
     let button1;
     let span2;
@@ -5630,6 +5472,7 @@
         span1 = element("span");
         span1.innerHTML = `<a>Buat Pengumuman</a>`;
         t5 = space();
+        div1 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow"></th></tr>`;
@@ -5640,7 +5483,7 @@
         td0.textContent = "Contoh Nama Pengumuman 1";
         t10 = space();
         td1 = element("td");
-        div = element("div");
+        div0 = element("div");
         p0 = element("p");
         button1 = element("button");
         span2 = element("span");
@@ -5659,8 +5502,9 @@
         attr(span3, "class", "icon");
         attr(button2, "class", "button is-link is-rounded is-outlined is-small");
         attr(p1, "class", "control");
-        attr(div, "class", "field is-grouped");
+        attr(div0, "class", "field is-grouped");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
@@ -5673,7 +5517,8 @@
         append(button0, t3);
         append(button0, span1);
         insert(target, t5, anchor);
-        insert(target, table, anchor);
+        insert(target, div1, anchor);
+        append(div1, table);
         append(table, thead);
         append(table, t8);
         append(table, tbody);
@@ -5681,13 +5526,13 @@
         append(tr1, td0);
         append(tr1, t10);
         append(tr1, td1);
-        append(td1, div);
-        append(div, p0);
+        append(td1, div0);
+        append(div0, p0);
         append(p0, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
-        append(div, t11);
-        append(div, p1);
+        append(div0, t11);
+        append(div0, p1);
         append(p1, button2);
         append(button2, span3);
         mount_component(icon2, span3, null);
@@ -5720,7 +5565,7 @@
           detach(t2);
           detach(button0);
           detach(t5);
-          detach(table);
+          detach(div1);
         }
         destroy_component(icon0);
         destroy_component(icon1);
@@ -6027,6 +5872,7 @@
     return child_ctx;
   }
   function create_if_block_8(ctx) {
+    let div0;
     let field0;
     let t0;
     let field1;
@@ -6058,9 +5904,7 @@
     let t15;
     let tbody;
     let t16;
-    let hr;
-    let t17;
-    let div;
+    let div1;
     let p;
     let button;
     let current;
@@ -6158,6 +6002,7 @@
     );
     return {
       c() {
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         create_component(field1.$$.fragment);
@@ -6192,55 +6037,53 @@
         if (if_block)
           if_block.c();
         t16 = space();
-        hr = element("hr");
-        t17 = space();
-        div = element("div");
+        div1 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t11, anchor);
-        insert(target, br, anchor);
-        insert(target, t12, anchor);
-        insert(target, table, anchor);
+        insert(target, div0, anchor);
+        mount_component(field0, div0, null);
+        append(div0, t0);
+        mount_component(field1, div0, null);
+        append(div0, t1);
+        mount_component(field2, div0, null);
+        append(div0, t2);
+        mount_component(field3, div0, null);
+        append(div0, t3);
+        mount_component(field4, div0, null);
+        append(div0, t4);
+        mount_component(field5, div0, null);
+        append(div0, t5);
+        mount_component(field6, div0, null);
+        append(div0, t6);
+        mount_component(field7, div0, null);
+        append(div0, t7);
+        mount_component(field8, div0, null);
+        append(div0, t8);
+        mount_component(field9, div0, null);
+        append(div0, t9);
+        mount_component(field10, div0, null);
+        append(div0, t10);
+        mount_component(field11, div0, null);
+        append(div0, t11);
+        append(div0, br);
+        append(div0, t12);
+        append(div0, table);
         append(table, thead);
         append(table, t15);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
         insert(target, t16, anchor);
-        insert(target, hr, anchor);
-        insert(target, t17, anchor);
-        insert(target, div, anchor);
-        append(div, p);
+        insert(target, div1, anchor);
+        append(div1, p);
         append(p, button);
         current = true;
         if (!mounted) {
@@ -6399,38 +6242,22 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(br);
-          detach(t12);
-          detach(table);
+          detach(div0);
           detach(t16);
-          detach(hr);
-          detach(t17);
-          detach(div);
+          detach(div1);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -7286,6 +7113,7 @@
     };
   }
   function create_if_block_7(ctx) {
+    let div0;
     let table;
     let thead;
     let t7;
@@ -7350,13 +7178,14 @@
     let td14;
     let textarea2;
     let t32;
-    let div;
+    let div1;
     let p;
     let button;
     let mounted;
     let dispose;
     return {
       c() {
+        div0 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow">Program</th> <th>S1</th> <th>S2</th> <th>S3</th></tr>`;
@@ -7427,7 +7256,7 @@
         td14 = element("td");
         textarea2 = element("textarea");
         t32 = space();
-        div = element("div");
+        div1 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
@@ -7459,12 +7288,14 @@
         attr(textarea1, "class", "textarea");
         attr(textarea2, "class", "textarea");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        insert(target, table, anchor);
+        insert(target, div0, anchor);
+        append(div0, table);
         append(table, thead);
         append(table, t7);
         append(table, tbody);
@@ -7603,8 +7434,8 @@
           ctx[62]
         );
         insert(target, t32, anchor);
-        insert(target, div, anchor);
-        append(div, p);
+        insert(target, div1, anchor);
+        append(div1, p);
         append(p, button);
         if (!mounted) {
           dispose = [
@@ -7844,9 +7675,9 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(table);
+          detach(div0);
           detach(t32);
-          detach(div);
+          detach(div1);
         }
         mounted = false;
         run_all(dispose);
@@ -7854,135 +7685,128 @@
     };
   }
   function create_if_block3(ctx) {
+    let modal0;
+    let updating_show;
+    let t0;
+    let div4;
     let nav0;
     let div1;
-    let t1;
+    let t2;
     let div3;
     let div2;
     let button0;
     let span0;
     let icon0;
-    let t2;
+    let t3;
     let span1;
-    let t4;
-    let modal0;
-    let updating_show;
     let t5;
     let table0;
     let thead0;
     let t16;
     let tbody0;
     let t17;
-    let br0;
+    let modal1;
+    let updating_show_1;
     let t18;
+    let div9;
     let nav1;
-    let div5;
-    let t20;
-    let div7;
     let div6;
+    let t20;
+    let div8;
+    let div7;
     let button1;
     let span2;
     let icon1;
     let t21;
     let span3;
     let t23;
-    let modal1;
-    let updating_show_1;
-    let t24;
     let table1;
     let thead1;
-    let t35;
+    let t34;
     let tbody1;
+    let t35;
+    let modal2;
+    let updating_show_2;
     let t36;
-    let br1;
-    let t37;
+    let div14;
     let nav2;
-    let div9;
-    let t39;
     let div11;
-    let div10;
+    let t38;
+    let div13;
+    let div12;
     let button2;
     let span4;
     let icon2;
-    let t40;
+    let t39;
     let span5;
-    let t42;
-    let modal2;
-    let updating_show_2;
-    let t43;
+    let t41;
     let table2;
     let thead2;
-    let t52;
+    let t50;
     let tbody2;
-    let t53;
-    let br2;
-    let t54;
+    let t51;
+    let modal3;
+    let updating_show_3;
+    let t52;
+    let div19;
     let nav3;
-    let div13;
-    let t56;
-    let div15;
-    let div14;
+    let div16;
+    let t54;
+    let div18;
+    let div17;
     let button3;
     let span6;
     let icon3;
-    let t57;
+    let t55;
     let span7;
-    let t59;
-    let modal3;
-    let updating_show_3;
-    let t60;
+    let t57;
     let table3;
     let thead3;
-    let t69;
+    let t66;
     let tbody3;
-    let t70;
-    let br3;
-    let t71;
+    let t67;
+    let modal4;
+    let updating_show_4;
+    let t68;
+    let div24;
     let nav4;
-    let div17;
-    let t73;
-    let div19;
-    let div18;
+    let div21;
+    let t70;
+    let div23;
+    let div22;
     let button4;
     let span8;
     let icon4;
-    let t74;
+    let t71;
     let span9;
-    let t76;
-    let modal4;
-    let updating_show_4;
-    let t77;
+    let t73;
     let table4;
     let thead4;
-    let t88;
+    let t84;
     let tbody4;
-    let t89;
-    let br4;
-    let t90;
+    let t85;
+    let modal5;
+    let updating_show_5;
+    let t86;
+    let div29;
     let nav5;
-    let div21;
-    let t92;
-    let div23;
-    let div22;
+    let div26;
+    let t88;
+    let div28;
+    let div27;
     let button5;
     let span10;
     let icon5;
-    let t93;
+    let t89;
     let span11;
-    let t95;
-    let modal5;
-    let updating_show_5;
-    let t96;
+    let t91;
     let table5;
     let thead5;
-    let t107;
+    let t102;
     let tbody5;
-    let t108;
-    let br5;
     let current;
     let mounted;
     let dispose;
-    icon0 = new Icon_default({ props: { id: "orang", src: add } });
     function modal0_show_binding(value) {
       ctx[132](value);
     }
@@ -8002,18 +7826,18 @@
     }
     modal0 = new Modal_default({ props: modal0_props });
     binding_callbacks.push(() => bind(modal0, "show", modal0_show_binding));
+    icon0 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block0 = (
       /*dataPP*/
       ctx[0] && create_if_block_6(ctx)
     );
-    icon1 = new Icon_default({ props: { id: "orang", src: add } });
     function modal1_show_binding(value) {
       ctx[139](value);
     }
     let modal1_props = {
       $$slots: {
         header: [create_header_slot_4],
-        default: [create_default_slot_232]
+        default: [create_default_slot_23]
       },
       $$scope: { ctx }
     };
@@ -8026,11 +7850,11 @@
     }
     modal1 = new Modal_default({ props: modal1_props });
     binding_callbacks.push(() => bind(modal1, "show", modal1_show_binding));
+    icon1 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block1 = (
       /*dataPM*/
       ctx[1] && create_if_block_5(ctx)
     );
-    icon2 = new Icon_default({ props: { id: "orang", src: add } });
     function modal2_show_binding(value) {
       ctx[144](value);
     }
@@ -8050,18 +7874,18 @@
     }
     modal2 = new Modal_default({ props: modal2_props });
     binding_callbacks.push(() => bind(modal2, "show", modal2_show_binding));
+    icon2 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block2 = (
       /*dataPD*/
       ctx[2] && create_if_block_42(ctx)
     );
-    icon3 = new Icon_default({ props: { id: "orang", src: add } });
     function modal3_show_binding(value) {
       ctx[149](value);
     }
     let modal3_props = {
       $$slots: {
         header: [create_header_slot_2],
-        default: [create_default_slot_132]
+        default: [create_default_slot_13]
       },
       $$scope: { ctx }
     };
@@ -8074,11 +7898,11 @@
     }
     modal3 = new Modal_default({ props: modal3_props });
     binding_callbacks.push(() => bind(modal3, "show", modal3_show_binding));
+    icon3 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block3 = (
       /*dataPPub*/
       ctx[3] && create_if_block_32(ctx)
     );
-    icon4 = new Icon_default({ props: { id: "orang", src: add } });
     function modal4_show_binding(value) {
       ctx[155](value);
     }
@@ -8098,11 +7922,11 @@
     }
     modal4 = new Modal_default({ props: modal4_props });
     binding_callbacks.push(() => bind(modal4, "show", modal4_show_binding));
+    icon4 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block4 = (
       /*dataPPB*/
       ctx[4] && create_if_block_23(ctx)
     );
-    icon5 = new Icon_default({ props: { id: "orang", src: add } });
     function modal5_show_binding(value) {
       ctx[161](value);
     }
@@ -8122,26 +7946,28 @@
     }
     modal5 = new Modal_default({ props: modal5_props });
     binding_callbacks.push(() => bind(modal5, "show", modal5_show_binding));
+    icon5 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block5 = (
       /*dataPHKI*/
       ctx[5] && create_if_block_13(ctx)
     );
     return {
       c() {
+        create_component(modal0.$$.fragment);
+        t0 = space();
+        div4 = element("div");
         nav0 = element("nav");
         div1 = element("div");
         div1.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penelitian</h6></div>`;
-        t1 = space();
+        t2 = space();
         div3 = element("div");
         div2 = element("div");
         button0 = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
-        t2 = space();
+        t3 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Tambah</a>`;
-        t4 = space();
-        create_component(modal0.$$.fragment);
         t5 = space();
         table0 = element("table");
         thead0 = element("thead");
@@ -8151,14 +7977,15 @@
         if (if_block0)
           if_block0.c();
         t17 = space();
-        br0 = element("br");
+        create_component(modal1.$$.fragment);
         t18 = space();
+        div9 = element("div");
         nav1 = element("nav");
-        div5 = element("div");
-        div5.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
-        t20 = space();
-        div7 = element("div");
         div6 = element("div");
+        div6.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6></div>`;
+        t20 = space();
+        div8 = element("div");
+        div7 = element("div");
         button1 = element("button");
         span2 = element("span");
         create_component(icon1.$$.fragment);
@@ -8166,117 +7993,109 @@
         span3 = element("span");
         span3.innerHTML = `<a>Tambah</a>`;
         t23 = space();
-        create_component(modal1.$$.fragment);
-        t24 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th>Jumlah Rp.</th></tr>`;
-        t35 = space();
+        t34 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
+        t35 = space();
+        create_component(modal2.$$.fragment);
         t36 = space();
-        br1 = element("br");
-        t37 = space();
+        div14 = element("div");
         nav2 = element("nav");
-        div9 = element("div");
-        div9.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
-        t39 = space();
         div11 = element("div");
-        div10 = element("div");
+        div11.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran</h6></div>`;
+        t38 = space();
+        div13 = element("div");
+        div12 = element("div");
         button2 = element("button");
         span4 = element("span");
         create_component(icon2.$$.fragment);
-        t40 = space();
+        t39 = space();
         span5 = element("span");
         span5.innerHTML = `<a>Tambah</a>`;
-        t42 = space();
-        create_component(modal2.$$.fragment);
-        t43 = space();
+        t41 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t52 = space();
+        t50 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t53 = space();
-        br2 = element("br");
-        t54 = space();
+        t51 = space();
+        create_component(modal3.$$.fragment);
+        t52 = space();
+        div19 = element("div");
         nav3 = element("nav");
-        div13 = element("div");
-        div13.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
-        t56 = space();
-        div15 = element("div");
-        div14 = element("div");
+        div16 = element("div");
+        div16.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)</h6></div>`;
+        t54 = space();
+        div18 = element("div");
+        div17 = element("div");
         button3 = element("button");
         span6 = element("span");
         create_component(icon3.$$.fragment);
-        t57 = space();
+        t55 = space();
         span7 = element("span");
         span7.innerHTML = `<a>Tambah</a>`;
-        t59 = space();
-        create_component(modal3.$$.fragment);
-        t60 = space();
+        t57 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t69 = space();
+        t66 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t70 = space();
-        br3 = element("br");
-        t71 = space();
+        t67 = space();
+        create_component(modal4.$$.fragment);
+        t68 = space();
+        div24 = element("div");
         nav4 = element("nav");
-        div17 = element("div");
-        div17.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
-        t73 = space();
-        div19 = element("div");
-        div18 = element("div");
+        div21 = element("div");
+        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Penulisan Buku</h6></div>`;
+        t70 = space();
+        div23 = element("div");
+        div22 = element("div");
         button4 = element("button");
         span8 = element("span");
         create_component(icon4.$$.fragment);
-        t74 = space();
+        t71 = space();
         span9 = element("span");
         span9.innerHTML = `<a>Tambah</a>`;
-        t76 = space();
-        create_component(modal4.$$.fragment);
-        t77 = space();
+        t73 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t88 = space();
+        t84 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t89 = space();
-        br4 = element("br");
-        t90 = space();
+        t85 = space();
+        create_component(modal5.$$.fragment);
+        t86 = space();
+        div29 = element("div");
         nav5 = element("nav");
-        div21 = element("div");
-        div21.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
-        t92 = space();
-        div23 = element("div");
-        div22 = element("div");
+        div26 = element("div");
+        div26.innerHTML = `<div class="level-item"><h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6></div>`;
+        t88 = space();
+        div28 = element("div");
+        div27 = element("div");
         button5 = element("button");
         span10 = element("span");
         create_component(icon5.$$.fragment);
-        t93 = space();
+        t89 = space();
         span11 = element("span");
         span11.innerHTML = `<a>Tambah</a>`;
-        t95 = space();
-        create_component(modal5.$$.fragment);
-        t96 = space();
+        t91 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow"></th> <th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t107 = space();
+        t102 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t108 = space();
-        br5 = element("br");
         attr(div1, "class", "level-left");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
@@ -8284,174 +8103,174 @@
         attr(div3, "class", "level-right");
         attr(nav0, "class", "level");
         attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div5, "class", "level-left");
+        attr(div4, "class", "box");
+        attr(div6, "class", "level-left");
         attr(span2, "class", "icon");
         attr(button1, "class", "button is-info");
-        attr(div6, "class", "level-item");
-        attr(div7, "class", "level-right");
+        attr(div7, "class", "level-item");
+        attr(div8, "class", "level-right");
         attr(nav1, "class", "level");
         attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div9, "class", "level-left");
+        attr(div9, "class", "box");
+        attr(div11, "class", "level-left");
         attr(span4, "class", "icon");
         attr(button2, "class", "button is-info");
-        attr(div10, "class", "level-item");
-        attr(div11, "class", "level-right");
+        attr(div12, "class", "level-item");
+        attr(div13, "class", "level-right");
         attr(nav2, "class", "level");
         attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div13, "class", "level-left");
+        attr(div14, "class", "box");
+        attr(div16, "class", "level-left");
         attr(span6, "class", "icon");
         attr(button3, "class", "button is-info");
-        attr(div14, "class", "level-item");
-        attr(div15, "class", "level-right");
+        attr(div17, "class", "level-item");
+        attr(div18, "class", "level-right");
         attr(nav3, "class", "level");
         attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div17, "class", "level-left");
+        attr(div19, "class", "box");
+        attr(div21, "class", "level-left");
         attr(span8, "class", "icon");
         attr(button4, "class", "button is-info");
-        attr(div18, "class", "level-item");
-        attr(div19, "class", "level-right");
-        attr(nav4, "class", "level");
-        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div21, "class", "level-left");
-        attr(span10, "class", "icon");
-        attr(button5, "class", "button is-info");
         attr(div22, "class", "level-item");
         attr(div23, "class", "level-right");
+        attr(nav4, "class", "level");
+        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div24, "class", "box");
+        attr(div26, "class", "level-left");
+        attr(span10, "class", "icon");
+        attr(button5, "class", "button is-info");
+        attr(div27, "class", "level-item");
+        attr(div28, "class", "level-right");
         attr(nav5, "class", "level");
         attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div29, "class", "box");
       },
       m(target, anchor) {
-        insert(target, nav0, anchor);
+        mount_component(modal0, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, div4, anchor);
+        append(div4, nav0);
         append(nav0, div1);
-        append(nav0, t1);
+        append(nav0, t2);
         append(nav0, div3);
         append(div3, div2);
         append(div2, button0);
         append(button0, span0);
         mount_component(icon0, span0, null);
-        append(button0, t2);
+        append(button0, t3);
         append(button0, span1);
-        insert(target, t4, anchor);
-        mount_component(modal0, target, anchor);
-        insert(target, t5, anchor);
-        insert(target, table0, anchor);
+        append(div4, t5);
+        append(div4, table0);
         append(table0, thead0);
         append(table0, t16);
         append(table0, tbody0);
         if (if_block0)
           if_block0.m(tbody0, null);
         insert(target, t17, anchor);
-        insert(target, br0, anchor);
+        mount_component(modal1, target, anchor);
         insert(target, t18, anchor);
-        insert(target, nav1, anchor);
-        append(nav1, div5);
+        insert(target, div9, anchor);
+        append(div9, nav1);
+        append(nav1, div6);
         append(nav1, t20);
-        append(nav1, div7);
-        append(div7, div6);
-        append(div6, button1);
+        append(nav1, div8);
+        append(div8, div7);
+        append(div7, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
         append(button1, t21);
         append(button1, span3);
-        insert(target, t23, anchor);
-        mount_component(modal1, target, anchor);
-        insert(target, t24, anchor);
-        insert(target, table1, anchor);
+        append(div9, t23);
+        append(div9, table1);
         append(table1, thead1);
-        append(table1, t35);
+        append(table1, t34);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
+        insert(target, t35, anchor);
+        mount_component(modal2, target, anchor);
         insert(target, t36, anchor);
-        insert(target, br1, anchor);
-        insert(target, t37, anchor);
-        insert(target, nav2, anchor);
-        append(nav2, div9);
-        append(nav2, t39);
+        insert(target, div14, anchor);
+        append(div14, nav2);
         append(nav2, div11);
-        append(div11, div10);
-        append(div10, button2);
+        append(nav2, t38);
+        append(nav2, div13);
+        append(div13, div12);
+        append(div12, button2);
         append(button2, span4);
         mount_component(icon2, span4, null);
-        append(button2, t40);
+        append(button2, t39);
         append(button2, span5);
-        insert(target, t42, anchor);
-        mount_component(modal2, target, anchor);
-        insert(target, t43, anchor);
-        insert(target, table2, anchor);
+        append(div14, t41);
+        append(div14, table2);
         append(table2, thead2);
-        append(table2, t52);
+        append(table2, t50);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t53, anchor);
-        insert(target, br2, anchor);
-        insert(target, t54, anchor);
-        insert(target, nav3, anchor);
-        append(nav3, div13);
-        append(nav3, t56);
-        append(nav3, div15);
-        append(div15, div14);
-        append(div14, button3);
+        insert(target, t51, anchor);
+        mount_component(modal3, target, anchor);
+        insert(target, t52, anchor);
+        insert(target, div19, anchor);
+        append(div19, nav3);
+        append(nav3, div16);
+        append(nav3, t54);
+        append(nav3, div18);
+        append(div18, div17);
+        append(div17, button3);
         append(button3, span6);
         mount_component(icon3, span6, null);
-        append(button3, t57);
+        append(button3, t55);
         append(button3, span7);
-        insert(target, t59, anchor);
-        mount_component(modal3, target, anchor);
-        insert(target, t60, anchor);
-        insert(target, table3, anchor);
+        append(div19, t57);
+        append(div19, table3);
         append(table3, thead3);
-        append(table3, t69);
+        append(table3, t66);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t70, anchor);
-        insert(target, br3, anchor);
-        insert(target, t71, anchor);
-        insert(target, nav4, anchor);
-        append(nav4, div17);
-        append(nav4, t73);
-        append(nav4, div19);
-        append(div19, div18);
-        append(div18, button4);
+        insert(target, t67, anchor);
+        mount_component(modal4, target, anchor);
+        insert(target, t68, anchor);
+        insert(target, div24, anchor);
+        append(div24, nav4);
+        append(nav4, div21);
+        append(nav4, t70);
+        append(nav4, div23);
+        append(div23, div22);
+        append(div22, button4);
         append(button4, span8);
         mount_component(icon4, span8, null);
-        append(button4, t74);
+        append(button4, t71);
         append(button4, span9);
-        insert(target, t76, anchor);
-        mount_component(modal4, target, anchor);
-        insert(target, t77, anchor);
-        insert(target, table4, anchor);
+        append(div24, t73);
+        append(div24, table4);
         append(table4, thead4);
-        append(table4, t88);
+        append(table4, t84);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t89, anchor);
-        insert(target, br4, anchor);
-        insert(target, t90, anchor);
-        insert(target, nav5, anchor);
-        append(nav5, div21);
-        append(nav5, t92);
-        append(nav5, div23);
-        append(div23, div22);
-        append(div22, button5);
+        insert(target, t85, anchor);
+        mount_component(modal5, target, anchor);
+        insert(target, t86, anchor);
+        insert(target, div29, anchor);
+        append(div29, nav5);
+        append(nav5, div26);
+        append(nav5, t88);
+        append(nav5, div28);
+        append(div28, div27);
+        append(div27, button5);
         append(button5, span10);
         mount_component(icon5, span10, null);
-        append(button5, t93);
+        append(button5, t89);
         append(button5, span11);
-        insert(target, t95, anchor);
-        mount_component(modal5, target, anchor);
-        insert(target, t96, anchor);
-        insert(target, table5, anchor);
+        append(div29, t91);
+        append(div29, table5);
         append(table5, thead5);
-        append(table5, t107);
+        append(table5, t102);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t108, anchor);
-        insert(target, br5, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -8723,113 +8542,89 @@
       i(local) {
         if (current)
           return;
-        transition_in(icon0.$$.fragment, local);
         transition_in(modal0.$$.fragment, local);
+        transition_in(icon0.$$.fragment, local);
         transition_in(if_block0);
-        transition_in(icon1.$$.fragment, local);
         transition_in(modal1.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
         transition_in(if_block1);
-        transition_in(icon2.$$.fragment, local);
         transition_in(modal2.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
         transition_in(if_block2);
-        transition_in(icon3.$$.fragment, local);
         transition_in(modal3.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
         transition_in(if_block3);
-        transition_in(icon4.$$.fragment, local);
         transition_in(modal4.$$.fragment, local);
+        transition_in(icon4.$$.fragment, local);
         transition_in(if_block4);
-        transition_in(icon5.$$.fragment, local);
         transition_in(modal5.$$.fragment, local);
+        transition_in(icon5.$$.fragment, local);
         transition_in(if_block5);
         current = true;
       },
       o(local) {
-        transition_out(icon0.$$.fragment, local);
         transition_out(modal0.$$.fragment, local);
+        transition_out(icon0.$$.fragment, local);
         transition_out(if_block0);
-        transition_out(icon1.$$.fragment, local);
         transition_out(modal1.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
         transition_out(if_block1);
-        transition_out(icon2.$$.fragment, local);
         transition_out(modal2.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
         transition_out(if_block2);
-        transition_out(icon3.$$.fragment, local);
         transition_out(modal3.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
         transition_out(if_block3);
-        transition_out(icon4.$$.fragment, local);
         transition_out(modal4.$$.fragment, local);
+        transition_out(icon4.$$.fragment, local);
         transition_out(if_block4);
-        transition_out(icon5.$$.fragment, local);
         transition_out(modal5.$$.fragment, local);
+        transition_out(icon5.$$.fragment, local);
         transition_out(if_block5);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(nav0);
-          detach(t4);
-          detach(t5);
-          detach(table0);
+          detach(t0);
+          detach(div4);
           detach(t17);
-          detach(br0);
           detach(t18);
-          detach(nav1);
-          detach(t23);
-          detach(t24);
-          detach(table1);
+          detach(div9);
+          detach(t35);
           detach(t36);
-          detach(br1);
-          detach(t37);
-          detach(nav2);
-          detach(t42);
-          detach(t43);
-          detach(table2);
-          detach(t53);
-          detach(br2);
-          detach(t54);
-          detach(nav3);
-          detach(t59);
-          detach(t60);
-          detach(table3);
-          detach(t70);
-          detach(br3);
-          detach(t71);
-          detach(nav4);
-          detach(t76);
-          detach(t77);
-          detach(table4);
-          detach(t89);
-          detach(br4);
-          detach(t90);
-          detach(nav5);
-          detach(t95);
-          detach(t96);
-          detach(table5);
-          detach(t108);
-          detach(br5);
+          detach(div14);
+          detach(t51);
+          detach(t52);
+          detach(div19);
+          detach(t67);
+          detach(t68);
+          detach(div24);
+          detach(t85);
+          detach(t86);
+          detach(div29);
         }
-        destroy_component(icon0);
         destroy_component(modal0, detaching);
+        destroy_component(icon0);
         if (if_block0)
           if_block0.d();
-        destroy_component(icon1);
         destroy_component(modal1, detaching);
+        destroy_component(icon1);
         if (if_block1)
           if_block1.d();
-        destroy_component(icon2);
         destroy_component(modal2, detaching);
+        destroy_component(icon2);
         if (if_block2)
           if_block2.d();
-        destroy_component(icon3);
         destroy_component(modal3, detaching);
+        destroy_component(icon3);
         if (if_block3)
           if_block3.d();
-        destroy_component(icon4);
         destroy_component(modal4, detaching);
+        destroy_component(icon4);
         if (if_block4)
           if_block4.d();
-        destroy_component(icon5);
         destroy_component(modal5, detaching);
+        destroy_component(icon5);
         if (if_block5)
           if_block5.d();
         mounted = false;
@@ -8931,7 +8726,7 @@
       }
     };
   }
-  function create_default_slot_322(ctx) {
+  function create_default_slot_32(ctx) {
     let div;
     let select;
     let option0;
@@ -9148,7 +8943,7 @@
     field2 = new Field_default({
       props: {
         name: "Ketua/Anggota",
-        $$slots: { default: [create_default_slot_322] },
+        $$slots: { default: [create_default_slot_32] },
         $$scope: { ctx }
       }
     });
@@ -9822,7 +9617,7 @@
       }
     };
   }
-  function create_default_slot_232(ctx) {
+  function create_default_slot_23(ctx) {
     let field0;
     let t0;
     let field1;
@@ -11027,7 +10822,7 @@
       }
     };
   }
-  function create_default_slot_132(ctx) {
+  function create_default_slot_13(ctx) {
     let field0;
     let t0;
     let field1;
@@ -12138,7 +11933,7 @@
       }
     };
   }
-  function create_default_slot_52(ctx) {
+  function create_default_slot_5(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12355,7 +12150,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul HKI",
-        $$slots: { default: [create_default_slot_52] },
+        $$slots: { default: [create_default_slot_5] },
         $$scope: { ctx }
       }
     });
@@ -14737,7 +14532,7 @@
       }
     };
   }
-  function create_default_slot_472(ctx) {
+  function create_default_slot_462(ctx) {
     let p;
     return {
       c() {
@@ -14757,14 +14552,13 @@
     };
   }
   function create_if_block_15(ctx) {
+    let div0;
     let current_block_type_index;
     let if_block0;
     let t0;
-    let hr;
+    let div1;
     let t1;
-    let div;
     let t2;
-    let t3;
     let current;
     const if_block_creators = [create_if_block_19, create_else_block_2];
     const if_blocks = [];
@@ -14797,35 +14591,34 @@
     );
     return {
       c() {
+        div0 = element("div");
         if_block0.c();
         t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
+        div1 = element("div");
         if (if_block1)
           if_block1.c();
-        t2 = space();
+        t1 = space();
         if (if_block2)
           if_block2.c();
-        t3 = space();
+        t2 = space();
         if (if_block3)
           if_block3.c();
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div0, "class", "box");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        if_blocks[current_block_type_index].m(target, anchor);
+        insert(target, div0, anchor);
+        if_blocks[current_block_type_index].m(div0, null);
         insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
+        insert(target, div1, anchor);
         if (if_block1)
-          if_block1.m(div, null);
-        append(div, t2);
+          if_block1.m(div1, null);
+        append(div1, t1);
         if (if_block2)
-          if_block2.m(div, null);
-        append(div, t3);
+          if_block2.m(div1, null);
+        append(div1, t2);
         if (if_block3)
-          if_block3.m(div, null);
+          if_block3.m(div1, null);
         current = true;
       },
       p(ctx2, dirty) {
@@ -14847,7 +14640,7 @@
             if_block0.p(ctx2, dirty);
           }
           transition_in(if_block0, 1);
-          if_block0.m(t0.parentNode, t0);
+          if_block0.m(div0, null);
         }
         if (
           /*status*/
@@ -14861,7 +14654,7 @@
           } else {
             if_block1 = create_if_block_18(ctx2);
             if_block1.c();
-            if_block1.m(div, t2);
+            if_block1.m(div1, t1);
           }
         } else if (if_block1) {
           if_block1.d(1);
@@ -14876,7 +14669,7 @@
           } else {
             if_block2 = create_if_block_17(ctx2);
             if_block2.c();
-            if_block2.m(div, t3);
+            if_block2.m(div1, t2);
           }
         } else if (if_block2) {
           if_block2.d(1);
@@ -14895,7 +14688,7 @@
           } else {
             if_block3 = create_if_block_16(ctx2);
             if_block3.c();
-            if_block3.m(div, null);
+            if_block3.m(div1, null);
           }
         } else if (if_block3) {
           if_block3.d(1);
@@ -14914,12 +14707,11 @@
       },
       d(detaching) {
         if (detaching) {
+          detach(div0);
           detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
+          detach(div1);
         }
-        if_blocks[current_block_type_index].d(detaching);
+        if_blocks[current_block_type_index].d();
         if (if_block1)
           if_block1.d();
         if (if_block2)
@@ -14976,70 +14768,70 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_462] },
+        $$slots: { default: [create_default_slot_452] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_452] },
+        $$slots: { default: [create_default_slot_442] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_442] },
+        $$slots: { default: [create_default_slot_432] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_432] },
+        $$slots: { default: [create_default_slot_422] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_422] },
+        $$slots: { default: [create_default_slot_412] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tanggal Mulai",
-        $$slots: { default: [create_default_slot_412] },
+        $$slots: { default: [create_default_slot_402] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_402] },
+        $$slots: { default: [create_default_slot_392] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_392] },
+        $$slots: { default: [create_default_slot_382] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_382] },
+        $$slots: { default: [create_default_slot_372] },
         $$scope: { ctx }
       }
     });
     field9 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_372] },
+        $$slots: { default: [create_default_slot_362] },
         $$scope: { ctx }
       }
     });
@@ -15050,35 +14842,35 @@
     field10 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_362] },
+        $$slots: { default: [create_default_slot_352] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "abstrak",
-        $$slots: { default: [create_default_slot_352] },
+        $$slots: { default: [create_default_slot_342] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Proposal",
-        $$slots: { default: [create_default_slot_342] },
+        $$slots: { default: [create_default_slot_332] },
         $$scope: { ctx }
       }
     });
     field13 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_332] },
+        $$slots: { default: [create_default_slot_322] },
         $$scope: { ctx }
       }
     });
     field14 = new Field_default({
       props: {
         name: "Riwayat Revisi",
-        $$slots: { default: [create_default_slot_323] },
+        $$slots: { default: [create_default_slot_312] },
         $$scope: { ctx }
       }
     });
@@ -15428,70 +15220,70 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_312] },
+        $$slots: { default: [create_default_slot_302] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_302] },
+        $$slots: { default: [create_default_slot_292] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_292] },
+        $$slots: { default: [create_default_slot_282] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_282] },
+        $$slots: { default: [create_default_slot_272] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_272] },
+        $$slots: { default: [create_default_slot_262] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Tanggal Mulai",
-        $$slots: { default: [create_default_slot_262] },
+        $$slots: { default: [create_default_slot_252] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_252] },
+        $$slots: { default: [create_default_slot_242] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_242] },
+        $$slots: { default: [create_default_slot_232] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_233] },
+        $$slots: { default: [create_default_slot_223] },
         $$scope: { ctx }
       }
     });
     field9 = new Field_default({
       props: {
         name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_223] },
+        $$slots: { default: [create_default_slot_212] },
         $$scope: { ctx }
       }
     });
@@ -15502,35 +15294,35 @@
     field10 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_212] },
+        $$slots: { default: [create_default_slot_202] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_202] },
+        $$slots: { default: [create_default_slot_192] },
         $$scope: { ctx }
       }
     });
     field12 = new Field_default({
       props: {
         name: "Proposal",
-        $$slots: { default: [create_default_slot_192] },
+        $$slots: { default: [create_default_slot_182] },
         $$scope: { ctx }
       }
     });
     field13 = new Field_default({
       props: {
         name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_182] },
+        $$slots: { default: [create_default_slot_172] },
         $$scope: { ctx }
       }
     });
     field14 = new Field_default({
       props: {
         name: "Riwayat Revisi",
-        $$slots: { default: [create_default_slot_172] },
+        $$slots: { default: [create_default_slot_162] },
         $$scope: { ctx }
       }
     });
@@ -15847,7 +15639,7 @@
       }
     };
   }
-  function create_default_slot_462(ctx) {
+  function create_default_slot_452(ctx) {
     let t;
     return {
       c() {
@@ -15875,7 +15667,7 @@
       }
     };
   }
-  function create_default_slot_452(ctx) {
+  function create_default_slot_442(ctx) {
     let t;
     return {
       c() {
@@ -15903,7 +15695,7 @@
       }
     };
   }
-  function create_default_slot_442(ctx) {
+  function create_default_slot_432(ctx) {
     let t;
     return {
       c() {
@@ -15931,7 +15723,7 @@
       }
     };
   }
-  function create_default_slot_432(ctx) {
+  function create_default_slot_422(ctx) {
     let t;
     return {
       c() {
@@ -15959,7 +15751,7 @@
       }
     };
   }
-  function create_default_slot_422(ctx) {
+  function create_default_slot_412(ctx) {
     let t;
     return {
       c() {
@@ -15987,7 +15779,7 @@
       }
     };
   }
-  function create_default_slot_412(ctx) {
+  function create_default_slot_402(ctx) {
     let t;
     return {
       c() {
@@ -16015,7 +15807,7 @@
       }
     };
   }
-  function create_default_slot_402(ctx) {
+  function create_default_slot_392(ctx) {
     let t;
     return {
       c() {
@@ -16043,7 +15835,7 @@
       }
     };
   }
-  function create_default_slot_392(ctx) {
+  function create_default_slot_382(ctx) {
     let t;
     return {
       c() {
@@ -16071,7 +15863,7 @@
       }
     };
   }
-  function create_default_slot_382(ctx) {
+  function create_default_slot_372(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -16103,7 +15895,7 @@
       }
     };
   }
-  function create_default_slot_372(ctx) {
+  function create_default_slot_362(ctx) {
     let span;
     return {
       c() {
@@ -16219,7 +16011,7 @@
       }
     };
   }
-  function create_default_slot_362(ctx) {
+  function create_default_slot_352(ctx) {
     let t_value = (
       /*data*/
       ctx[0].judul + ""
@@ -16245,7 +16037,7 @@
       }
     };
   }
-  function create_default_slot_352(ctx) {
+  function create_default_slot_342(ctx) {
     let html_tag;
     let raw_value = (
       /*data*/
@@ -16276,7 +16068,7 @@
       }
     };
   }
-  function create_default_slot_342(ctx) {
+  function create_default_slot_332(ctx) {
     let button;
     let mounted;
     let dispose;
@@ -16308,7 +16100,7 @@
       }
     };
   }
-  function create_default_slot_332(ctx) {
+  function create_default_slot_322(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -16481,7 +16273,7 @@
       }
     };
   }
-  function create_default_slot_323(ctx) {
+  function create_default_slot_312(ctx) {
     let table;
     let thead;
     let t5;
@@ -16532,7 +16324,7 @@
       }
     };
   }
-  function create_default_slot_312(ctx) {
+  function create_default_slot_302(ctx) {
     let div;
     let select;
     let option0;
@@ -16610,7 +16402,7 @@
       }
     };
   }
-  function create_default_slot_302(ctx) {
+  function create_default_slot_292(ctx) {
     let div;
     let select;
     let option0;
@@ -16775,7 +16567,7 @@
       }
     };
   }
-  function create_default_slot_292(ctx) {
+  function create_default_slot_282(ctx) {
     let div;
     let select;
     let option;
@@ -16796,7 +16588,7 @@
         div = element("div");
         select = element("select");
         option = element("option");
-        option.textContent = "Pilih Jenis Skema\r\n                     ";
+        option.textContent = "Pilih Jenis Skema\r\n                        ";
         if_block.c();
         option.__value = "";
         set_input_value(option, option.__value);
@@ -16862,7 +16654,7 @@
       }
     };
   }
-  function create_default_slot_282(ctx) {
+  function create_default_slot_272(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -16910,7 +16702,7 @@
       }
     };
   }
-  function create_default_slot_272(ctx) {
+  function create_default_slot_262(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -16958,7 +16750,7 @@
       }
     };
   }
-  function create_default_slot_262(ctx) {
+  function create_default_slot_252(ctx) {
     let div;
     let input;
     let mounted;
@@ -17008,7 +16800,7 @@
       }
     };
   }
-  function create_default_slot_252(ctx) {
+  function create_default_slot_242(ctx) {
     let div;
     let input;
     let mounted;
@@ -17058,7 +16850,7 @@
       }
     };
   }
-  function create_default_slot_242(ctx) {
+  function create_default_slot_232(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -17114,7 +16906,7 @@
       }
     };
   }
-  function create_default_slot_233(ctx) {
+  function create_default_slot_223(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -17147,7 +16939,7 @@
       }
     };
   }
-  function create_default_slot_223(ctx) {
+  function create_default_slot_212(ctx) {
     let select;
     let updating_result;
     let current;
@@ -17380,7 +17172,7 @@
       }
     };
   }
-  function create_default_slot_212(ctx) {
+  function create_default_slot_202(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -17428,7 +17220,7 @@
       }
     };
   }
-  function create_default_slot_202(ctx) {
+  function create_default_slot_192(ctx) {
     let textarea;
     let mounted;
     let dispose;
@@ -17473,7 +17265,7 @@
       }
     };
   }
-  function create_default_slot_192(ctx) {
+  function create_default_slot_182(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -17506,7 +17298,7 @@
       }
     };
   }
-  function create_default_slot_182(ctx) {
+  function create_default_slot_172(ctx) {
     let div;
     let t;
     return {
@@ -17664,7 +17456,7 @@
       }
     };
   }
-  function create_default_slot_172(ctx) {
+  function create_default_slot_162(ctx) {
     let table;
     let thead;
     let t5;
@@ -17889,6 +17681,7 @@
   }
   function create_if_block_63(ctx) {
     let t0;
+    let div0;
     let field0;
     let t1;
     let field1;
@@ -17913,133 +17706,119 @@
     let t11;
     let field11;
     let t12;
-    let br0;
-    let t13;
-    let div0;
+    let div1;
     let h60;
-    let t15;
+    let t14;
     let table0;
     let thead0;
-    let t23;
+    let t22;
     let tbody0;
     let tr1;
     let th4;
-    let t25;
+    let t24;
     let td0;
+    let t25;
     let t26;
-    let t27;
     let td1;
+    let t27;
     let t28;
-    let t29;
     let td2;
+    let t29;
     let t30;
-    let t31;
     let tr2;
     let th5;
-    let t33;
+    let t32;
     let td3;
+    let t33;
     let t34;
-    let t35;
     let td4;
+    let t35;
     let t36;
-    let t37;
     let td5;
+    let t37;
     let t38;
-    let t39;
     let tr3;
     let th6;
-    let t41;
+    let t40;
     let td6;
+    let t41;
     let t42;
-    let t43;
     let td7;
+    let t43;
     let t44;
-    let t45;
     let td8;
+    let t45;
     let t46;
-    let t47;
     let tr4;
     let th7;
-    let t49;
+    let t48;
     let td9;
+    let t49;
     let t50;
-    let t51;
     let td10;
+    let t51;
     let t52;
-    let t53;
     let td11;
+    let t53;
     let t54;
-    let t55;
     let tr5;
     let th8;
-    let t57;
+    let t56;
     let td12;
+    let t57;
     let t58;
-    let t59;
     let td13;
+    let t59;
     let t60;
-    let t61;
     let td14;
+    let t61;
     let t62;
-    let t63;
-    let br1;
-    let t64;
-    let div1;
+    let div2;
     let h61;
-    let t66;
+    let t64;
     let table1;
     let thead1;
-    let t76;
+    let t74;
     let tbody1;
-    let t77;
-    let br2;
-    let t78;
-    let div2;
+    let t75;
+    let div3;
     let h62;
-    let t80;
+    let t77;
     let table2;
     let thead2;
-    let t90;
+    let t87;
     let tbody2;
-    let t91;
-    let br3;
-    let t92;
-    let div3;
+    let t88;
+    let div4;
     let h63;
-    let t94;
+    let t90;
     let table3;
     let thead3;
-    let t102;
+    let t98;
     let tbody3;
-    let t103;
-    let br4;
-    let t104;
-    let div4;
+    let t99;
+    let div5;
     let h64;
-    let t106;
+    let t101;
     let table4;
     let thead4;
-    let t114;
+    let t109;
     let tbody4;
-    let t115;
-    let br5;
-    let t116;
-    let div5;
+    let t110;
+    let div6;
     let h65;
-    let t118;
+    let t112;
     let table5;
     let thead5;
-    let t128;
+    let t122;
     let tbody5;
-    let t129;
-    let br6;
-    let t130;
-    let div6;
+    let t123;
+    let div7;
     let h66;
-    let t132;
+    let t125;
     let table6;
     let thead6;
-    let t142;
+    let t135;
     let tbody6;
     let current;
     function select_block_type_2(ctx2, dirty) {
@@ -18055,84 +17834,84 @@
     field0 = new Field_default({
       props: {
         name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_162] },
+        $$slots: { default: [create_default_slot_152] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_152] },
+        $$slots: { default: [create_default_slot_142] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_142] },
+        $$slots: { default: [create_default_slot_132] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_133] },
+        $$slots: { default: [create_default_slot_123] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Tempat / Tanggal Lahir",
-        $$slots: { default: [create_default_slot_123] },
+        $$slots: { default: [create_default_slot_112] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
-        $$slots: { default: [create_default_slot_112] },
+        $$slots: { default: [create_default_slot_102] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_102] },
+        $$slots: { default: [create_default_slot_92] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
-        $$slots: { default: [create_default_slot_92] },
+        $$slots: { default: [create_default_slot_82] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_82] },
+        $$slots: { default: [create_default_slot_72] },
         $$scope: { ctx }
       }
     });
     field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_72] },
+        $$slots: { default: [create_default_slot_62] },
         $$scope: { ctx }
       }
     });
     field10 = new Field_default({
       props: {
         name: "Email",
-        $$slots: { default: [create_default_slot_62] },
+        $$slots: { default: [create_default_slot_52] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
-        $$slots: { default: [create_default_slot_53] },
+        $$slots: { default: [create_default_slot_48] },
         $$scope: { ctx }
       }
     });
@@ -18164,6 +17943,7 @@
       c() {
         if_block0.c();
         t0 = space();
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t1 = space();
         create_component(field1.$$.fragment);
@@ -18188,389 +17968,370 @@
         t11 = space();
         create_component(field11.$$.fragment);
         t12 = space();
-        br0 = element("br");
-        t13 = space();
-        div0 = element("div");
+        div1 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t15 = space();
+        t14 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t23 = space();
+        t22 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t25 = space();
+        t24 = space();
         td0 = element("td");
-        t26 = text(
+        t25 = text(
           /*pertiS1*/
           ctx[44]
         );
-        t27 = space();
+        t26 = space();
         td1 = element("td");
-        t28 = text(
+        t27 = text(
           /*pertiS2*/
           ctx[45]
         );
-        t29 = space();
+        t28 = space();
         td2 = element("td");
-        t30 = text(
+        t29 = text(
           /*pertiS3*/
           ctx[46]
         );
-        t31 = space();
+        t30 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t33 = space();
+        t32 = space();
         td3 = element("td");
-        t34 = text(
+        t33 = text(
           /*bidangIlmuS1*/
           ctx[47]
         );
-        t35 = space();
+        t34 = space();
         td4 = element("td");
-        t36 = text(
+        t35 = text(
           /*bidangIlmuS2*/
           ctx[48]
         );
-        t37 = space();
+        t36 = space();
         td5 = element("td");
-        t38 = text(
+        t37 = text(
           /*bidangIlmuS3*/
           ctx[49]
         );
-        t39 = space();
+        t38 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t41 = space();
+        t40 = space();
         td6 = element("td");
-        t42 = text(
+        t41 = text(
           /*tahunMasukS1*/
           ctx[50]
         );
-        t43 = space();
+        t42 = space();
         td7 = element("td");
-        t44 = text(
+        t43 = text(
           /*tahunMasukS2*/
           ctx[51]
         );
-        t45 = space();
+        t44 = space();
         td8 = element("td");
-        t46 = text(
+        t45 = text(
           /*tahunMasukS3*/
           ctx[52]
         );
-        t47 = space();
+        t46 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t49 = space();
+        t48 = space();
         td9 = element("td");
-        t50 = text(
+        t49 = text(
           /*tahunLulusS1*/
           ctx[53]
         );
-        t51 = space();
+        t50 = space();
         td10 = element("td");
-        t52 = text(
+        t51 = text(
           /*tahunLulusS2*/
           ctx[54]
         );
-        t53 = space();
+        t52 = space();
         td11 = element("td");
-        t54 = text(
+        t53 = text(
           /*tahunLulusS3*/
           ctx[55]
         );
-        t55 = space();
+        t54 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t57 = space();
+        t56 = space();
         td12 = element("td");
-        t58 = text(
+        t57 = text(
           /*judulTugasAkhirS1*/
           ctx[56]
         );
-        t59 = space();
+        t58 = space();
         td13 = element("td");
-        t60 = text(
+        t59 = text(
           /*judulTugasAkhirS2*/
           ctx[57]
         );
-        t61 = space();
+        t60 = space();
         td14 = element("td");
-        t62 = text(
+        t61 = text(
           /*judulTugasAkhirS3*/
           ctx[58]
         );
-        t63 = space();
-        br1 = element("br");
-        t64 = space();
-        div1 = element("div");
+        t62 = space();
+        div2 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t66 = space();
+        t64 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t76 = space();
+        t74 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t77 = space();
-        br2 = element("br");
-        t78 = space();
-        div2 = element("div");
+        t75 = space();
+        div3 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t80 = space();
+        t77 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t90 = space();
+        t87 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t91 = space();
-        br3 = element("br");
-        t92 = space();
-        div3 = element("div");
+        t88 = space();
+        div4 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t94 = space();
+        t90 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t102 = space();
+        t98 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t103 = space();
-        br4 = element("br");
-        t104 = space();
-        div4 = element("div");
+        t99 = space();
+        div5 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t106 = space();
+        t101 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t114 = space();
+        t109 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t115 = space();
-        br5 = element("br");
-        t116 = space();
-        div5 = element("div");
+        t110 = space();
+        div6 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t118 = space();
+        t112 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t128 = space();
+        t122 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t129 = space();
-        br6 = element("br");
-        t130 = space();
-        div6 = element("div");
+        t123 = space();
+        div7 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t132 = space();
+        t125 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t142 = space();
+        t135 = space();
         tbody6 = element("tbody");
         if (if_block6)
           if_block6.c();
+        attr(div0, "class", "box");
         attr(h60, "class", "title is-6");
         attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div1, "class", "box");
         attr(h61, "class", "title is-6");
         attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div2, "class", "box");
         attr(h62, "class", "title is-6");
         attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div3, "class", "box");
         attr(h63, "class", "title is-6");
         attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div4, "class", "box");
         attr(h64, "class", "title is-6");
         attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div5, "class", "box");
         attr(h65, "class", "title is-6");
         attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div6, "class", "box");
         attr(h66, "class", "title is-6");
         attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div7, "class", "box");
       },
       m(target, anchor) {
         if_block0.m(target, anchor);
         insert(target, t0, anchor);
-        mount_component(field0, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t11, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t12, anchor);
-        insert(target, br0, anchor);
-        insert(target, t13, anchor);
         insert(target, div0, anchor);
-        append(div0, h60);
-        append(div0, t15);
-        append(div0, table0);
+        mount_component(field0, div0, null);
+        append(div0, t1);
+        mount_component(field1, div0, null);
+        append(div0, t2);
+        mount_component(field2, div0, null);
+        append(div0, t3);
+        mount_component(field3, div0, null);
+        append(div0, t4);
+        mount_component(field4, div0, null);
+        append(div0, t5);
+        mount_component(field5, div0, null);
+        append(div0, t6);
+        mount_component(field6, div0, null);
+        append(div0, t7);
+        mount_component(field7, div0, null);
+        append(div0, t8);
+        mount_component(field8, div0, null);
+        append(div0, t9);
+        mount_component(field9, div0, null);
+        append(div0, t10);
+        mount_component(field10, div0, null);
+        append(div0, t11);
+        mount_component(field11, div0, null);
+        insert(target, t12, anchor);
+        insert(target, div1, anchor);
+        append(div1, h60);
+        append(div1, t14);
+        append(div1, table0);
         append(table0, thead0);
-        append(table0, t23);
+        append(table0, t22);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t25);
+        append(tr1, t24);
         append(tr1, td0);
-        append(td0, t26);
-        append(tr1, t27);
+        append(td0, t25);
+        append(tr1, t26);
         append(tr1, td1);
-        append(td1, t28);
-        append(tr1, t29);
+        append(td1, t27);
+        append(tr1, t28);
         append(tr1, td2);
-        append(td2, t30);
-        append(tbody0, t31);
+        append(td2, t29);
+        append(tbody0, t30);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t33);
+        append(tr2, t32);
         append(tr2, td3);
-        append(td3, t34);
-        append(tr2, t35);
+        append(td3, t33);
+        append(tr2, t34);
         append(tr2, td4);
-        append(td4, t36);
-        append(tr2, t37);
+        append(td4, t35);
+        append(tr2, t36);
         append(tr2, td5);
-        append(td5, t38);
-        append(tbody0, t39);
+        append(td5, t37);
+        append(tbody0, t38);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t41);
+        append(tr3, t40);
         append(tr3, td6);
-        append(td6, t42);
-        append(tr3, t43);
+        append(td6, t41);
+        append(tr3, t42);
         append(tr3, td7);
-        append(td7, t44);
-        append(tr3, t45);
+        append(td7, t43);
+        append(tr3, t44);
         append(tr3, td8);
-        append(td8, t46);
-        append(tbody0, t47);
+        append(td8, t45);
+        append(tbody0, t46);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t49);
+        append(tr4, t48);
         append(tr4, td9);
-        append(td9, t50);
-        append(tr4, t51);
+        append(td9, t49);
+        append(tr4, t50);
         append(tr4, td10);
-        append(td10, t52);
-        append(tr4, t53);
+        append(td10, t51);
+        append(tr4, t52);
         append(tr4, td11);
-        append(td11, t54);
-        append(tbody0, t55);
+        append(td11, t53);
+        append(tbody0, t54);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t57);
+        append(tr5, t56);
         append(tr5, td12);
-        append(td12, t58);
-        append(tr5, t59);
+        append(td12, t57);
+        append(tr5, t58);
         append(tr5, td13);
-        append(td13, t60);
-        append(tr5, t61);
+        append(td13, t59);
+        append(tr5, t60);
         append(tr5, td14);
-        append(td14, t62);
-        insert(target, t63, anchor);
-        insert(target, br1, anchor);
-        insert(target, t64, anchor);
-        insert(target, div1, anchor);
-        append(div1, h61);
-        append(div1, t66);
-        append(div1, table1);
+        append(td14, t61);
+        insert(target, t62, anchor);
+        insert(target, div2, anchor);
+        append(div2, h61);
+        append(div2, t64);
+        append(div2, table1);
         append(table1, thead1);
-        append(table1, t76);
+        append(table1, t74);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        insert(target, t77, anchor);
-        insert(target, br2, anchor);
-        insert(target, t78, anchor);
-        insert(target, div2, anchor);
-        append(div2, h62);
-        append(div2, t80);
-        append(div2, table2);
+        insert(target, t75, anchor);
+        insert(target, div3, anchor);
+        append(div3, h62);
+        append(div3, t77);
+        append(div3, table2);
         append(table2, thead2);
-        append(table2, t90);
+        append(table2, t87);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t91, anchor);
-        insert(target, br3, anchor);
-        insert(target, t92, anchor);
-        insert(target, div3, anchor);
-        append(div3, h63);
-        append(div3, t94);
-        append(div3, table3);
+        insert(target, t88, anchor);
+        insert(target, div4, anchor);
+        append(div4, h63);
+        append(div4, t90);
+        append(div4, table3);
         append(table3, thead3);
-        append(table3, t102);
+        append(table3, t98);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t103, anchor);
-        insert(target, br4, anchor);
-        insert(target, t104, anchor);
-        insert(target, div4, anchor);
-        append(div4, h64);
-        append(div4, t106);
-        append(div4, table4);
+        insert(target, t99, anchor);
+        insert(target, div5, anchor);
+        append(div5, h64);
+        append(div5, t101);
+        append(div5, table4);
         append(table4, thead4);
-        append(table4, t114);
+        append(table4, t109);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t115, anchor);
-        insert(target, br5, anchor);
-        insert(target, t116, anchor);
-        insert(target, div5, anchor);
-        append(div5, h65);
-        append(div5, t118);
-        append(div5, table5);
+        insert(target, t110, anchor);
+        insert(target, div6, anchor);
+        append(div6, h65);
+        append(div6, t112);
+        append(div6, table5);
         append(table5, thead5);
-        append(table5, t128);
+        append(table5, t122);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t129, anchor);
-        insert(target, br6, anchor);
-        insert(target, t130, anchor);
-        insert(target, div6, anchor);
-        append(div6, h66);
-        append(div6, t132);
-        append(div6, table6);
+        insert(target, t123, anchor);
+        insert(target, div7, anchor);
+        append(div7, h66);
+        append(div7, t125);
+        append(div7, table6);
         append(table6, thead6);
-        append(table6, t142);
+        append(table6, t135);
         append(table6, tbody6);
         if (if_block6)
           if_block6.m(tbody6, null);
@@ -18674,105 +18435,105 @@
         if (!current || dirty[1] & /*pertiS1*/
         8192)
           set_data(
-            t26,
+            t25,
             /*pertiS1*/
             ctx2[44]
           );
         if (!current || dirty[1] & /*pertiS2*/
         16384)
           set_data(
-            t28,
+            t27,
             /*pertiS2*/
             ctx2[45]
           );
         if (!current || dirty[1] & /*pertiS3*/
         32768)
           set_data(
-            t30,
+            t29,
             /*pertiS3*/
             ctx2[46]
           );
         if (!current || dirty[1] & /*bidangIlmuS1*/
         65536)
           set_data(
-            t34,
+            t33,
             /*bidangIlmuS1*/
             ctx2[47]
           );
         if (!current || dirty[1] & /*bidangIlmuS2*/
         131072)
           set_data(
-            t36,
+            t35,
             /*bidangIlmuS2*/
             ctx2[48]
           );
         if (!current || dirty[1] & /*bidangIlmuS3*/
         262144)
           set_data(
-            t38,
+            t37,
             /*bidangIlmuS3*/
             ctx2[49]
           );
         if (!current || dirty[1] & /*tahunMasukS1*/
         524288)
           set_data(
-            t42,
+            t41,
             /*tahunMasukS1*/
             ctx2[50]
           );
         if (!current || dirty[1] & /*tahunMasukS2*/
         1048576)
           set_data(
-            t44,
+            t43,
             /*tahunMasukS2*/
             ctx2[51]
           );
         if (!current || dirty[1] & /*tahunMasukS3*/
         2097152)
           set_data(
-            t46,
+            t45,
             /*tahunMasukS3*/
             ctx2[52]
           );
         if (!current || dirty[1] & /*tahunLulusS1*/
         4194304)
           set_data(
-            t50,
+            t49,
             /*tahunLulusS1*/
             ctx2[53]
           );
         if (!current || dirty[1] & /*tahunLulusS2*/
         8388608)
           set_data(
-            t52,
+            t51,
             /*tahunLulusS2*/
             ctx2[54]
           );
         if (!current || dirty[1] & /*tahunLulusS3*/
         16777216)
           set_data(
-            t54,
+            t53,
             /*tahunLulusS3*/
             ctx2[55]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS1*/
         33554432)
           set_data(
-            t58,
+            t57,
             /*judulTugasAkhirS1*/
             ctx2[56]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS2*/
         67108864)
           set_data(
-            t60,
+            t59,
             /*judulTugasAkhirS2*/
             ctx2[57]
           );
         if (!current || dirty[1] & /*judulTugasAkhirS3*/
         134217728)
           set_data(
-            t62,
+            t61,
             /*judulTugasAkhirS3*/
             ctx2[58]
           );
@@ -18902,59 +18663,35 @@
       d(detaching) {
         if (detaching) {
           detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(t12);
-          detach(br0);
-          detach(t13);
           detach(div0);
-          detach(t63);
-          detach(br1);
-          detach(t64);
+          detach(t12);
           detach(div1);
-          detach(t77);
-          detach(br2);
-          detach(t78);
+          detach(t62);
           detach(div2);
-          detach(t91);
-          detach(br3);
-          detach(t92);
+          detach(t75);
           detach(div3);
-          detach(t103);
-          detach(br4);
-          detach(t104);
+          detach(t88);
           detach(div4);
-          detach(t115);
-          detach(br5);
-          detach(t116);
+          detach(t99);
           detach(div5);
-          detach(t129);
-          detach(br6);
-          detach(t130);
+          detach(t110);
           detach(div6);
+          detach(t123);
+          detach(div7);
         }
         if_block0.d(detaching);
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         if (if_block1)
           if_block1.d();
         if (if_block2)
@@ -19041,7 +18778,7 @@
       }
     };
   }
-  function create_default_slot_162(ctx) {
+  function create_default_slot_152(ctx) {
     let t;
     return {
       c() {
@@ -19069,7 +18806,7 @@
       }
     };
   }
-  function create_default_slot_152(ctx) {
+  function create_default_slot_142(ctx) {
     let t;
     return {
       c() {
@@ -19097,7 +18834,7 @@
       }
     };
   }
-  function create_default_slot_142(ctx) {
+  function create_default_slot_132(ctx) {
     let t;
     return {
       c() {
@@ -19125,7 +18862,7 @@
       }
     };
   }
-  function create_default_slot_133(ctx) {
+  function create_default_slot_123(ctx) {
     let t;
     return {
       c() {
@@ -19153,7 +18890,7 @@
       }
     };
   }
-  function create_default_slot_123(ctx) {
+  function create_default_slot_112(ctx) {
     let t0;
     let t1;
     let t2;
@@ -19199,7 +18936,7 @@
       }
     };
   }
-  function create_default_slot_112(ctx) {
+  function create_default_slot_102(ctx) {
     let t;
     return {
       c() {
@@ -19227,7 +18964,7 @@
       }
     };
   }
-  function create_default_slot_102(ctx) {
+  function create_default_slot_92(ctx) {
     let t;
     return {
       c() {
@@ -19255,7 +18992,7 @@
       }
     };
   }
-  function create_default_slot_92(ctx) {
+  function create_default_slot_82(ctx) {
     let t;
     return {
       c() {
@@ -19283,7 +19020,7 @@
       }
     };
   }
-  function create_default_slot_82(ctx) {
+  function create_default_slot_72(ctx) {
     let t;
     return {
       c() {
@@ -19311,7 +19048,7 @@
       }
     };
   }
-  function create_default_slot_72(ctx) {
+  function create_default_slot_62(ctx) {
     let t;
     return {
       c() {
@@ -19339,7 +19076,7 @@
       }
     };
   }
-  function create_default_slot_62(ctx) {
+  function create_default_slot_52(ctx) {
     let t;
     return {
       c() {
@@ -19459,7 +19196,7 @@
       }
     };
   }
-  function create_default_slot_53(ctx) {
+  function create_default_slot_48(ctx) {
     let table;
     let thead;
     let t1;
@@ -20442,6 +20179,7 @@
     };
   }
   function create_if_block_53(ctx) {
+    let div;
     let field0;
     let t;
     let field1;
@@ -20449,27 +20187,30 @@
     field0 = new Field_default({
       props: {
         name: "Status PPM",
-        $$slots: { default: [create_default_slot_48] },
+        $$slots: { default: [create_default_slot_311] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Status Pendanaan",
-        $$slots: { default: [create_default_slot_311] },
+        $$slots: { default: [create_default_slot_211] },
         $$scope: { ctx }
       }
     });
     return {
       c() {
+        div = element("div");
         create_component(field0.$$.fragment);
         t = space();
         create_component(field1.$$.fragment);
+        attr(div, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t, anchor);
-        mount_component(field1, target, anchor);
+        insert(target, div, anchor);
+        mount_component(field0, div, null);
+        append(div, t);
+        mount_component(field1, div, null);
         current = true;
       },
       p(ctx2, dirty) {
@@ -20501,14 +20242,14 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(div);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
       }
     };
   }
-  function create_default_slot_48(ctx) {
+  function create_default_slot_311(ctx) {
     let status_1;
     let current;
     status_1 = new Status_default({ props: { code: (
@@ -20546,7 +20287,7 @@
       }
     };
   }
-  function create_default_slot_311(ctx) {
+  function create_default_slot_211(ctx) {
     let div3;
     let div1;
     let div0;
@@ -20603,6 +20344,7 @@
     };
   }
   function create_if_block_44(ctx) {
+    let div0;
     let field0;
     let updating_value;
     let updating_selected;
@@ -20625,10 +20367,11 @@
     let updating_value_3;
     let updating_selected_3;
     let t6;
-    let br3;
-    let t7;
-    let field4;
+    let div1;
+    let button;
     let current;
+    let mounted;
+    let dispose;
     function field0_value_binding(value) {
       ctx[103](value);
     }
@@ -20757,14 +20500,9 @@
     field3 = new Field_default({ props: field3_props });
     binding_callbacks.push(() => bind(field3, "value", field3_value_binding));
     binding_callbacks.push(() => bind(field3, "selected", field3_selected_binding));
-    field4 = new Field_default({
-      props: {
-        $$slots: { default: [create_default_slot_211] },
-        $$scope: { ctx }
-      }
-    });
     return {
       c() {
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         br0 = element("br");
@@ -20779,29 +20517,41 @@
         t5 = space();
         create_component(field3.$$.fragment);
         t6 = space();
-        br3 = element("br");
-        t7 = space();
-        create_component(field4.$$.fragment);
+        div1 = element("div");
+        button = element("button");
+        button.textContent = "Submit";
+        attr(div0, "class", "box");
+        attr(button, "class", "button is-info");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, br0, anchor);
-        insert(target, t1, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t2, anchor);
-        insert(target, br1, anchor);
-        insert(target, t3, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t4, anchor);
-        insert(target, br2, anchor);
-        insert(target, t5, anchor);
-        mount_component(field3, target, anchor);
+        insert(target, div0, anchor);
+        mount_component(field0, div0, null);
+        append(div0, t0);
+        append(div0, br0);
+        append(div0, t1);
+        mount_component(field1, div0, null);
+        append(div0, t2);
+        append(div0, br1);
+        append(div0, t3);
+        mount_component(field2, div0, null);
+        append(div0, t4);
+        append(div0, br2);
+        append(div0, t5);
+        mount_component(field3, div0, null);
         insert(target, t6, anchor);
-        insert(target, br3, anchor);
-        insert(target, t7, anchor);
-        mount_component(field4, target, anchor);
+        insert(target, div1, anchor);
+        append(div1, button);
         current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*handleSubmitReviewer*/
+            ctx[75]
+          );
+          mounted = true;
+        }
       },
       p(ctx2, dirty) {
         const field0_changes = {};
@@ -20884,12 +20634,6 @@
           add_flush_callback(() => updating_selected_3 = false);
         }
         field3.$set(field3_changes);
-        const field4_changes = {};
-        if (dirty[4] & /*$$scope*/
-        1073741824) {
-          field4_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field4.$set(field4_changes);
       },
       i(local) {
         if (current)
@@ -20898,7 +20642,6 @@
         transition_in(field1.$$.fragment, local);
         transition_in(field2.$$.fragment, local);
         transition_in(field3.$$.fragment, local);
-        transition_in(field4.$$.fragment, local);
         current = true;
       },
       o(local) {
@@ -20906,59 +20649,18 @@
         transition_out(field1.$$.fragment, local);
         transition_out(field2.$$.fragment, local);
         transition_out(field3.$$.fragment, local);
-        transition_out(field4.$$.fragment, local);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(br0);
-          detach(t1);
-          detach(t2);
-          detach(br1);
-          detach(t3);
-          detach(t4);
-          detach(br2);
-          detach(t5);
+          detach(div0);
           detach(t6);
-          detach(br3);
-          detach(t7);
+          detach(div1);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-      }
-    };
-  }
-  function create_default_slot_211(ctx) {
-    let button;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        button = element("button");
-        button.textContent = "Submit";
-        attr(button, "class", "button is-info");
-      },
-      m(target, anchor) {
-        insert(target, button, anchor);
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*handleSubmitReviewer*/
-            ctx[75]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(button);
-        }
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
         mounted = false;
         dispose();
       }
@@ -21057,7 +20759,7 @@
       ctx[87](value);
     }
     let modalerror_props = {
-      $$slots: { default: [create_default_slot_472] },
+      $$slots: { default: [create_default_slot_462] },
       $$scope: { ctx }
     };
     if (
@@ -23094,6 +22796,7 @@
     let t4;
     let span1;
     let t6;
+    let div1;
     let table;
     let thead;
     let t10;
@@ -23105,7 +22808,7 @@
     let button1;
     let t14;
     let td2;
-    let div;
+    let div0;
     let p0;
     let button2;
     let span2;
@@ -23156,6 +22859,7 @@
         span1 = element("span");
         span1.innerHTML = `<a>Tambah Template</a>`;
         t6 = space();
+        div1 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Nama Template</th> <th class="is-narrow"></th> <th class="is-narrow"></th></tr>`;
@@ -23170,7 +22874,7 @@
         button1.textContent = "Download";
         t14 = space();
         td2 = element("td");
-        div = element("div");
+        div0 = element("div");
         p0 = element("p");
         button2 = element("button");
         span2 = element("span");
@@ -23190,8 +22894,9 @@
         attr(span3, "class", "icon");
         attr(button3, "class", "button is-link is-rounded is-outlined is-small");
         attr(p1, "class", "control");
-        attr(div, "class", "field is-grouped");
+        attr(div0, "class", "field is-grouped");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
@@ -23206,7 +22911,8 @@
         append(button0, t4);
         append(button0, span1);
         insert(target, t6, anchor);
-        insert(target, table, anchor);
+        insert(target, div1, anchor);
+        append(div1, table);
         append(table, thead);
         append(table, t10);
         append(table, tbody);
@@ -23217,13 +22923,13 @@
         append(td1, button1);
         append(tr1, t14);
         append(tr1, td2);
-        append(td2, div);
-        append(div, p0);
+        append(td2, div0);
+        append(div0, p0);
         append(p0, button2);
         append(button2, span2);
         mount_component(icon1, span2, null);
-        append(div, t15);
-        append(div, p1);
+        append(div0, t15);
+        append(div0, p1);
         append(p1, button3);
         append(button3, span3);
         mount_component(icon2, span3, null);
@@ -23281,7 +22987,7 @@
           detach(t3);
           detach(button0);
           detach(t6);
-          detach(table);
+          detach(div1);
         }
         destroy_component(modal, detaching);
         destroy_component(icon0);
@@ -26283,7 +25989,7 @@
     field6 = new Field_default({
       props: {
         name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_234] },
+        $$slots: { default: [create_default_slot_233] },
         $$scope: { ctx }
       }
     });
@@ -26871,7 +26577,7 @@
       }
     };
   }
-  function create_default_slot_234(ctx) {
+  function create_default_slot_233(ctx) {
     let t;
     return {
       c() {
@@ -27949,7 +27655,7 @@
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_134] },
+        $$slots: { default: [create_default_slot_133] },
         $$scope: { ctx }
       }
     });
@@ -28005,7 +27711,7 @@
     field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_54] },
+        $$slots: { default: [create_default_slot_53] },
         $$scope: { ctx }
       }
     });
@@ -28827,7 +28533,7 @@
       }
     };
   }
-  function create_default_slot_134(ctx) {
+  function create_default_slot_133(ctx) {
     let t;
     return {
       c() {
@@ -29069,7 +28775,7 @@
       }
     };
   }
-  function create_default_slot_54(ctx) {
+  function create_default_slot_53(ctx) {
     let t;
     return {
       c() {
@@ -32420,7 +32126,7 @@
     return child_ctx;
   }
   function create_if_block_86(ctx) {
-    let div1;
+    let div0;
     let field0;
     let t0;
     let field1;
@@ -32452,9 +32158,7 @@
     let t15;
     let tbody;
     let t16;
-    let hr;
-    let t17;
-    let div0;
+    let div1;
     let p;
     let button;
     let current;
@@ -32552,7 +32256,7 @@
     );
     return {
       c() {
-        div1 = element("div");
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         create_component(field1.$$.fragment);
@@ -32587,57 +32291,53 @@
         if (if_block)
           if_block.c();
         t16 = space();
-        hr = element("hr");
-        t17 = space();
-        div0 = element("div");
+        div1 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div0, "class", "field is-grouped is-grouped-right");
-        attr(div1, "class", "box");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        insert(target, div1, anchor);
-        mount_component(field0, div1, null);
-        append(div1, t0);
-        mount_component(field1, div1, null);
-        append(div1, t1);
-        mount_component(field2, div1, null);
-        append(div1, t2);
-        mount_component(field3, div1, null);
-        append(div1, t3);
-        mount_component(field4, div1, null);
-        append(div1, t4);
-        mount_component(field5, div1, null);
-        append(div1, t5);
-        mount_component(field6, div1, null);
-        append(div1, t6);
-        mount_component(field7, div1, null);
-        append(div1, t7);
-        mount_component(field8, div1, null);
-        append(div1, t8);
-        mount_component(field9, div1, null);
-        append(div1, t9);
-        mount_component(field10, div1, null);
-        append(div1, t10);
-        mount_component(field11, div1, null);
-        append(div1, t11);
-        append(div1, br);
-        append(div1, t12);
-        append(div1, table);
+        insert(target, div0, anchor);
+        mount_component(field0, div0, null);
+        append(div0, t0);
+        mount_component(field1, div0, null);
+        append(div0, t1);
+        mount_component(field2, div0, null);
+        append(div0, t2);
+        mount_component(field3, div0, null);
+        append(div0, t3);
+        mount_component(field4, div0, null);
+        append(div0, t4);
+        mount_component(field5, div0, null);
+        append(div0, t5);
+        mount_component(field6, div0, null);
+        append(div0, t6);
+        mount_component(field7, div0, null);
+        append(div0, t7);
+        mount_component(field8, div0, null);
+        append(div0, t8);
+        mount_component(field9, div0, null);
+        append(div0, t9);
+        mount_component(field10, div0, null);
+        append(div0, t10);
+        mount_component(field11, div0, null);
+        append(div0, t11);
+        append(div0, br);
+        append(div0, t12);
+        append(div0, table);
         append(table, thead);
         append(table, t15);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        append(div1, t16);
-        append(div1, hr);
-        append(div1, t17);
-        append(div1, div0);
-        append(div0, p);
+        insert(target, t16, anchor);
+        insert(target, div1, anchor);
+        append(div1, p);
         append(p, button);
         current = true;
         if (!mounted) {
@@ -32796,6 +32496,8 @@
       },
       d(detaching) {
         if (detaching) {
+          detach(div0);
+          detach(t16);
           detach(div1);
         }
         destroy_component(field0);
@@ -33665,7 +33367,7 @@
     };
   }
   function create_if_block_76(ctx) {
-    let div1;
+    let div0;
     let table;
     let thead;
     let t7;
@@ -33730,14 +33432,14 @@
     let td14;
     let textarea2;
     let t32;
-    let div0;
+    let div1;
     let p;
     let button;
     let mounted;
     let dispose;
     return {
       c() {
-        div1 = element("div");
+        div0 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow">Program</th> <th>S1</th> <th>S2</th> <th>S3</th></tr>`;
@@ -33808,7 +33510,7 @@
         td14 = element("td");
         textarea2 = element("textarea");
         t32 = space();
-        div0 = element("div");
+        div1 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
@@ -33840,14 +33542,14 @@
         attr(textarea1, "class", "textarea");
         attr(textarea2, "class", "textarea");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div0, "class", "field is-grouped is-grouped-right");
-        attr(div1, "class", "box");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        insert(target, div1, anchor);
-        append(div1, table);
+        insert(target, div0, anchor);
+        append(div0, table);
         append(table, thead);
         append(table, t7);
         append(table, tbody);
@@ -33985,9 +33687,9 @@
           /*judulTugasAkhirS3*/
           ctx[62]
         );
-        append(div1, t32);
-        append(div1, div0);
-        append(div0, p);
+        insert(target, t32, anchor);
+        insert(target, div1, anchor);
+        append(div1, p);
         append(p, button);
         if (!mounted) {
           dispose = [
@@ -34227,6 +33929,8 @@
       },
       d(detaching) {
         if (detaching) {
+          detach(div0);
+          detach(t32);
           detach(div1);
         }
         mounted = false;
@@ -34399,7 +34103,7 @@
     let modal1_props = {
       $$slots: {
         header: [create_header_slot_42],
-        default: [create_default_slot_235]
+        default: [create_default_slot_234]
       },
       $$scope: { ctx }
     };
@@ -34447,7 +34151,7 @@
     let modal3_props = {
       $$slots: {
         header: [create_header_slot_22],
-        default: [create_default_slot_135]
+        default: [create_default_slot_134]
       },
       $$scope: { ctx }
     };
@@ -35324,7 +35028,7 @@
       }
     };
   }
-  function create_default_slot_324(ctx) {
+  function create_default_slot_323(ctx) {
     let div;
     let select;
     let option0;
@@ -35541,7 +35245,7 @@
     field2 = new Field_default({
       props: {
         name: "Ketua/Anggota",
-        $$slots: { default: [create_default_slot_324] },
+        $$slots: { default: [create_default_slot_323] },
         $$scope: { ctx }
       }
     });
@@ -36215,7 +35919,7 @@
       }
     };
   }
-  function create_default_slot_235(ctx) {
+  function create_default_slot_234(ctx) {
     let field0;
     let t0;
     let field1;
@@ -37420,7 +37124,7 @@
       }
     };
   }
-  function create_default_slot_135(ctx) {
+  function create_default_slot_134(ctx) {
     let field0;
     let t0;
     let field1;
@@ -38531,7 +38235,7 @@
       }
     };
   }
-  function create_default_slot_55(ctx) {
+  function create_default_slot_54(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -38748,7 +38452,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul HKI",
-        $$slots: { default: [create_default_slot_55] },
+        $$slots: { default: [create_default_slot_54] },
         $$scope: { ctx }
       }
     });
@@ -40391,7 +40095,7 @@
     field0 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_136] },
+        $$slots: { default: [create_default_slot_135] },
         $$scope: { ctx }
       }
     });
@@ -40796,7 +40500,7 @@
       }
     };
   }
-  function create_default_slot_136(ctx) {
+  function create_default_slot_135(ctx) {
     let div;
     let select;
     let option0;
@@ -41392,7 +41096,7 @@
     field = new Field_default({
       props: {
         name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_56] },
+        $$slots: { default: [create_default_slot_55] },
         $$scope: { ctx }
       }
     });
@@ -41428,7 +41132,7 @@
       }
     };
   }
-  function create_default_slot_56(ctx) {
+  function create_default_slot_55(ctx) {
     let input;
     let t0;
     let p;
@@ -43202,7 +42906,7 @@
     field10 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_325] },
+        $$slots: { default: [create_default_slot_324] },
         $$scope: { ctx }
       }
     });
@@ -43585,7 +43289,7 @@
     field6 = new Field_default({
       props: {
         name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_236] },
+        $$slots: { default: [create_default_slot_235] },
         $$scope: { ctx }
       }
     });
@@ -44380,7 +44084,7 @@
       }
     };
   }
-  function create_default_slot_325(ctx) {
+  function create_default_slot_324(ctx) {
     let t_value = (
       /*data*/
       ctx[2].judul + ""
@@ -44946,7 +44650,7 @@
       }
     };
   }
-  function create_default_slot_236(ctx) {
+  function create_default_slot_235(ctx) {
     let div;
     let input;
     let mounted;
@@ -45950,7 +45654,7 @@
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_137] },
+        $$slots: { default: [create_default_slot_136] },
         $$scope: { ctx }
       }
     });
@@ -46006,7 +45710,7 @@
     field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_57] },
+        $$slots: { default: [create_default_slot_56] },
         $$scope: { ctx }
       }
     });
@@ -46885,7 +46589,7 @@
       }
     };
   }
-  function create_default_slot_137(ctx) {
+  function create_default_slot_136(ctx) {
     let t;
     return {
       c() {
@@ -47127,7 +46831,7 @@
       }
     };
   }
-  function create_default_slot_57(ctx) {
+  function create_default_slot_56(ctx) {
     let t;
     return {
       c() {

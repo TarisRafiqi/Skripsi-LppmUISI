@@ -890,16 +890,14 @@
                {/if}
             </tbody>
          </table>
+      </div>
 
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanIdentitas}
-                  >Simpan</button
-               >
-            </p>
-         </div>
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button is-info" on:click={simpanIdentitas}
+               >Simpan</button
+            >
+         </p>
       </div>
    {/if}
 
@@ -1028,14 +1026,14 @@
                </tr>
             </tbody>
          </table>
+      </div>
 
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanRiwayatPendidikan}
-                  >Simpan</button
-               >
-            </p>
-         </div>
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button is-info" on:click={simpanRiwayatPendidikan}
+               >Simpan</button
+            >
+         </p>
       </div>
    {/if}
 

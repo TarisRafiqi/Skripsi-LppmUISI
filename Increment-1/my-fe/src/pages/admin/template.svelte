@@ -58,45 +58,47 @@
       <span><a>Tambah Template</a></span>
    </button>
 
-   <table class="table is-fullwidth is-striped is-hoverable">
-      <thead>
-         <tr>
-            <th>Nama Template</th>
-            <th class="is-narrow"></th>
-            <th class="is-narrow"></th>
-         </tr>
-      </thead>
+   <div class="box">
+      <table class="table is-fullwidth is-striped is-hoverable">
+         <thead>
+            <tr>
+               <th>Nama Template</th>
+               <th class="is-narrow"></th>
+               <th class="is-narrow"></th>
+            </tr>
+         </thead>
 
-      <tbody>
-         <tr>
-            <td>Contoh Template Penelitian Internal</td>
-            <td
-               ><button
-                  class="button is-link is-rounded button is-small"
-                  on:click={handleDownloadTemplate}>Download</button
-               ></td
-            >
-            <td>
-               <div class="field is-grouped">
-                  <p class="control">
-                     <button
-                        class="button is-danger is-rounded is-outlined is-small"
-                        ><span class="icon">
-                           <Icon id="delete" src={deleteIcon} />
-                        </span></button
-                     >
-                  </p>
-                  <p class="control">
-                     <button
-                        class="button is-link is-rounded is-outlined is-small"
-                        ><span class="icon">
-                           <Icon id="edit" src={edit} />
-                        </span></button
-                     >
-                  </p>
-               </div>
-            </td>
-         </tr>
-      </tbody>
-   </table>
+         <tbody>
+            <tr>
+               <td>Contoh Template Penelitian Internal</td>
+               <td
+                  ><button
+                     class="button is-link is-rounded button is-small"
+                     on:click={handleDownloadTemplate}>Download</button
+                  ></td
+               >
+               <td>
+                  <div class="field is-grouped">
+                     <p class="control">
+                        <button
+                           class="button is-danger is-rounded is-outlined is-small"
+                           ><span class="icon">
+                              <Icon id="delete" src={deleteIcon} />
+                           </span></button
+                        >
+                     </p>
+                     <p class="control">
+                        <button
+                           class="button is-link is-rounded is-outlined is-small"
+                           ><span class="icon">
+                              <Icon id="edit" src={edit} />
+                           </span></button
+                        >
+                     </p>
+                  </div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 </Article>

@@ -69,9 +69,7 @@
    </div>
 
    {#if tab1 === true}
-      <Field name="LPPM UISI">
-         <Wysiwyg id="isi" content={lppmUisi} />
-      </Field>
+      <Wysiwyg id="isi" content={lppmUisi} />
 
       <hr />
 
@@ -85,9 +83,7 @@
    {/if}
 
    {#if tab2 === true}
-      <Field name="Fungsi & Tujuan">
-         <Wysiwyg id="isi" content={fungsiTujuan} />
-      </Field>
+      <Wysiwyg id="isi" content={fungsiTujuan} />
 
       <hr />
 
@@ -101,9 +97,7 @@
    {/if}
 
    {#if tab3 === true}
-      <Field name="Visi & Misi">
-         <Wysiwyg id="isi" content={visiMisi} />
-      </Field>
+      <Wysiwyg id="isi" content={visiMisi} />
 
       <hr />
 
