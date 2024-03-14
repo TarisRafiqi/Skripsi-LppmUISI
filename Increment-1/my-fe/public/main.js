@@ -26189,6 +26189,7 @@
     };
   }
   function create_if_block_134(ctx) {
+    let div;
     let field0;
     let t0;
     let field1;
@@ -26232,11 +26233,9 @@
     let t25;
     let field14;
     let t26;
-    let hr2;
     let t27;
     let t28;
     let t29;
-    let t30;
     let if_block4_anchor;
     let current;
     field0 = new Field_default({
@@ -26366,6 +26365,7 @@
     );
     return {
       c() {
+        div = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         create_component(field1.$$.fragment);
@@ -26413,46 +26413,46 @@
         t25 = space();
         create_component(field14.$$.fragment);
         t26 = space();
-        hr2 = element("hr");
-        t27 = space();
         if (if_block1)
           if_block1.c();
-        t28 = space();
+        t27 = space();
         if (if_block2)
           if_block2.c();
-        t29 = space();
+        t28 = space();
         if (if_block3)
           if_block3.c();
-        t30 = space();
+        t29 = space();
         if (if_block4)
           if_block4.c();
         if_block4_anchor = empty();
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t9, anchor);
-        insert(target, br, anchor);
-        insert(target, t10, anchor);
-        insert(target, table, anchor);
+        insert(target, div, anchor);
+        mount_component(field0, div, null);
+        append(div, t0);
+        mount_component(field1, div, null);
+        append(div, t1);
+        mount_component(field2, div, null);
+        append(div, t2);
+        mount_component(field3, div, null);
+        append(div, t3);
+        mount_component(field4, div, null);
+        append(div, t4);
+        mount_component(field5, div, null);
+        append(div, t5);
+        mount_component(field6, div, null);
+        append(div, t6);
+        mount_component(field7, div, null);
+        append(div, t7);
+        mount_component(field8, div, null);
+        append(div, t8);
+        mount_component(field9, div, null);
+        append(div, t9);
+        append(div, br);
+        append(div, t10);
+        append(div, table);
         append(table, thead);
         append(table, t14);
         append(table, tbody);
@@ -26460,32 +26460,30 @@
         append(tbody, t18);
         if (if_block0)
           if_block0.m(tbody, null);
-        insert(target, t19, anchor);
-        insert(target, hr0, anchor);
-        insert(target, t20, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t21, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t22, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t23, anchor);
-        insert(target, hr1, anchor);
-        insert(target, t24, anchor);
-        mount_component(field13, target, anchor);
-        insert(target, t25, anchor);
-        mount_component(field14, target, anchor);
+        append(div, t19);
+        append(div, hr0);
+        append(div, t20);
+        mount_component(field10, div, null);
+        append(div, t21);
+        mount_component(field11, div, null);
+        append(div, t22);
+        mount_component(field12, div, null);
+        append(div, t23);
+        append(div, hr1);
+        append(div, t24);
+        mount_component(field13, div, null);
+        append(div, t25);
+        mount_component(field14, div, null);
         insert(target, t26, anchor);
-        insert(target, hr2, anchor);
-        insert(target, t27, anchor);
         if (if_block1)
           if_block1.m(target, anchor);
-        insert(target, t28, anchor);
+        insert(target, t27, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
-        insert(target, t29, anchor);
+        insert(target, t28, anchor);
         if (if_block3)
           if_block3.m(target, anchor);
-        insert(target, t30, anchor);
+        insert(target, t29, anchor);
         if (if_block4)
           if_block4.m(target, anchor);
         insert(target, if_block4_anchor, anchor);
@@ -26670,53 +26668,30 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(br);
-          detach(t10);
-          detach(table);
-          detach(t19);
-          detach(hr0);
-          detach(t20);
-          detach(t21);
-          detach(t22);
-          detach(t23);
-          detach(hr1);
-          detach(t24);
-          detach(t25);
+          detach(div);
           detach(t26);
-          detach(hr2);
           detach(t27);
           detach(t28);
           detach(t29);
-          detach(t30);
           detach(if_block4_anchor);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
         if (if_block0)
           if_block0.d();
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
-        destroy_component(field12, detaching);
-        destroy_component(field13, detaching);
-        destroy_component(field14, detaching);
+        destroy_component(field10);
+        destroy_component(field11);
+        destroy_component(field12);
+        destroy_component(field13);
+        destroy_component(field14);
         if (if_block1)
           if_block1.d(detaching);
         if (if_block2)
@@ -27824,6 +27799,7 @@
     };
   }
   function create_if_block_55(ctx) {
+    let div0;
     let field0;
     let t0;
     let field1;
@@ -27848,133 +27824,119 @@
     let t10;
     let field11;
     let t11;
-    let br0;
-    let t12;
-    let div0;
+    let div1;
     let h60;
-    let t14;
+    let t13;
     let table0;
     let thead0;
-    let t22;
+    let t21;
     let tbody0;
     let tr1;
     let th4;
-    let t24;
+    let t23;
     let td0;
+    let t24;
     let t25;
-    let t26;
     let td1;
+    let t26;
     let t27;
-    let t28;
     let td2;
+    let t28;
     let t29;
-    let t30;
     let tr2;
     let th5;
-    let t32;
+    let t31;
     let td3;
+    let t32;
     let t33;
-    let t34;
     let td4;
+    let t34;
     let t35;
-    let t36;
     let td5;
+    let t36;
     let t37;
-    let t38;
     let tr3;
     let th6;
-    let t40;
+    let t39;
     let td6;
+    let t40;
     let t41;
-    let t42;
     let td7;
+    let t42;
     let t43;
-    let t44;
     let td8;
+    let t44;
     let t45;
-    let t46;
     let tr4;
     let th7;
-    let t48;
+    let t47;
     let td9;
+    let t48;
     let t49;
-    let t50;
     let td10;
+    let t50;
     let t51;
-    let t52;
     let td11;
+    let t52;
     let t53;
-    let t54;
     let tr5;
     let th8;
-    let t56;
+    let t55;
     let td12;
+    let t56;
     let t57;
-    let t58;
     let td13;
+    let t58;
     let t59;
-    let t60;
     let td14;
+    let t60;
     let t61;
-    let t62;
-    let br1;
-    let t63;
-    let div1;
+    let div2;
     let h61;
-    let t65;
+    let t63;
     let table1;
     let thead1;
-    let t75;
+    let t73;
     let tbody1;
-    let t76;
-    let br2;
-    let t77;
-    let div2;
+    let t74;
+    let div3;
     let h62;
-    let t79;
+    let t76;
     let table2;
     let thead2;
-    let t89;
+    let t86;
     let tbody2;
-    let t90;
-    let br3;
-    let t91;
-    let div3;
+    let t87;
+    let div4;
     let h63;
-    let t93;
+    let t89;
     let table3;
     let thead3;
-    let t101;
+    let t97;
     let tbody3;
-    let t102;
-    let br4;
-    let t103;
-    let div4;
+    let t98;
+    let div5;
     let h64;
-    let t105;
+    let t100;
     let table4;
     let thead4;
-    let t113;
+    let t108;
     let tbody4;
-    let t114;
-    let br5;
-    let t115;
-    let div5;
+    let t109;
+    let div6;
     let h65;
-    let t117;
+    let t111;
     let table5;
     let thead5;
-    let t127;
+    let t121;
     let tbody5;
-    let t128;
-    let br6;
-    let t129;
-    let div6;
+    let t122;
+    let div7;
     let h66;
-    let t131;
+    let t124;
     let table6;
     let thead6;
-    let t141;
+    let t134;
     let tbody6;
     let current;
     field0 = new Field_default({
@@ -28087,6 +28049,7 @@
     );
     return {
       c() {
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         create_component(field1.$$.fragment);
@@ -28111,387 +28074,368 @@
         t10 = space();
         create_component(field11.$$.fragment);
         t11 = space();
-        br0 = element("br");
-        t12 = space();
-        div0 = element("div");
+        div1 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t14 = space();
+        t13 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t22 = space();
+        t21 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t24 = space();
+        t23 = space();
         td0 = element("td");
-        t25 = text(
+        t24 = text(
           /*pertiS1*/
           ctx[9]
         );
-        t26 = space();
+        t25 = space();
         td1 = element("td");
-        t27 = text(
+        t26 = text(
           /*pertiS2*/
           ctx[10]
         );
-        t28 = space();
+        t27 = space();
         td2 = element("td");
-        t29 = text(
+        t28 = text(
           /*pertiS3*/
           ctx[11]
         );
-        t30 = space();
+        t29 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t32 = space();
+        t31 = space();
         td3 = element("td");
-        t33 = text(
+        t32 = text(
           /*bidangIlmuS1*/
           ctx[12]
         );
-        t34 = space();
+        t33 = space();
         td4 = element("td");
-        t35 = text(
+        t34 = text(
           /*bidangIlmuS2*/
           ctx[13]
         );
-        t36 = space();
+        t35 = space();
         td5 = element("td");
-        t37 = text(
+        t36 = text(
           /*bidangIlmuS3*/
           ctx[14]
         );
-        t38 = space();
+        t37 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t40 = space();
+        t39 = space();
         td6 = element("td");
-        t41 = text(
+        t40 = text(
           /*tahunMasukS1*/
           ctx[15]
         );
-        t42 = space();
+        t41 = space();
         td7 = element("td");
-        t43 = text(
+        t42 = text(
           /*tahunMasukS2*/
           ctx[16]
         );
-        t44 = space();
+        t43 = space();
         td8 = element("td");
-        t45 = text(
+        t44 = text(
           /*tahunMasukS3*/
           ctx[17]
         );
-        t46 = space();
+        t45 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t48 = space();
+        t47 = space();
         td9 = element("td");
-        t49 = text(
+        t48 = text(
           /*tahunLulusS1*/
           ctx[18]
         );
-        t50 = space();
+        t49 = space();
         td10 = element("td");
-        t51 = text(
+        t50 = text(
           /*tahunLulusS2*/
           ctx[19]
         );
-        t52 = space();
+        t51 = space();
         td11 = element("td");
-        t53 = text(
+        t52 = text(
           /*tahunLulusS3*/
           ctx[20]
         );
-        t54 = space();
+        t53 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t56 = space();
+        t55 = space();
         td12 = element("td");
-        t57 = text(
+        t56 = text(
           /*judulTugasAkhirS1*/
           ctx[21]
         );
-        t58 = space();
+        t57 = space();
         td13 = element("td");
-        t59 = text(
+        t58 = text(
           /*judulTugasAkhirS2*/
           ctx[22]
         );
-        t60 = space();
+        t59 = space();
         td14 = element("td");
-        t61 = text(
+        t60 = text(
           /*judulTugasAkhirS3*/
           ctx[23]
         );
-        t62 = space();
-        br1 = element("br");
-        t63 = space();
-        div1 = element("div");
+        t61 = space();
+        div2 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t65 = space();
+        t63 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t75 = space();
+        t73 = space();
         tbody1 = element("tbody");
         if (if_block0)
           if_block0.c();
-        t76 = space();
-        br2 = element("br");
-        t77 = space();
-        div2 = element("div");
+        t74 = space();
+        div3 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t79 = space();
+        t76 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t89 = space();
+        t86 = space();
         tbody2 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t90 = space();
-        br3 = element("br");
-        t91 = space();
-        div3 = element("div");
+        t87 = space();
+        div4 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t93 = space();
+        t89 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t101 = space();
+        t97 = space();
         tbody3 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t102 = space();
-        br4 = element("br");
-        t103 = space();
-        div4 = element("div");
+        t98 = space();
+        div5 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t105 = space();
+        t100 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t113 = space();
+        t108 = space();
         tbody4 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t114 = space();
-        br5 = element("br");
-        t115 = space();
-        div5 = element("div");
+        t109 = space();
+        div6 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t117 = space();
+        t111 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t127 = space();
+        t121 = space();
         tbody5 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t128 = space();
-        br6 = element("br");
-        t129 = space();
-        div6 = element("div");
+        t122 = space();
+        div7 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t131 = space();
+        t124 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t141 = space();
+        t134 = space();
         tbody6 = element("tbody");
         if (if_block5)
           if_block5.c();
+        attr(div0, "class", "box");
         attr(h60, "class", "title is-6");
         attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div1, "class", "box");
         attr(h61, "class", "title is-6");
         attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div2, "class", "box");
         attr(h62, "class", "title is-6");
         attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div3, "class", "box");
         attr(h63, "class", "title is-6");
         attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div4, "class", "box");
         attr(h64, "class", "title is-6");
         attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div5, "class", "box");
         attr(h65, "class", "title is-6");
         attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div6, "class", "box");
         attr(h66, "class", "title is-6");
         attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div7, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t11, anchor);
-        insert(target, br0, anchor);
-        insert(target, t12, anchor);
         insert(target, div0, anchor);
-        append(div0, h60);
-        append(div0, t14);
-        append(div0, table0);
+        mount_component(field0, div0, null);
+        append(div0, t0);
+        mount_component(field1, div0, null);
+        append(div0, t1);
+        mount_component(field2, div0, null);
+        append(div0, t2);
+        mount_component(field3, div0, null);
+        append(div0, t3);
+        mount_component(field4, div0, null);
+        append(div0, t4);
+        mount_component(field5, div0, null);
+        append(div0, t5);
+        mount_component(field6, div0, null);
+        append(div0, t6);
+        mount_component(field7, div0, null);
+        append(div0, t7);
+        mount_component(field8, div0, null);
+        append(div0, t8);
+        mount_component(field9, div0, null);
+        append(div0, t9);
+        mount_component(field10, div0, null);
+        append(div0, t10);
+        mount_component(field11, div0, null);
+        insert(target, t11, anchor);
+        insert(target, div1, anchor);
+        append(div1, h60);
+        append(div1, t13);
+        append(div1, table0);
         append(table0, thead0);
-        append(table0, t22);
+        append(table0, t21);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t24);
+        append(tr1, t23);
         append(tr1, td0);
-        append(td0, t25);
-        append(tr1, t26);
+        append(td0, t24);
+        append(tr1, t25);
         append(tr1, td1);
-        append(td1, t27);
-        append(tr1, t28);
+        append(td1, t26);
+        append(tr1, t27);
         append(tr1, td2);
-        append(td2, t29);
-        append(tbody0, t30);
+        append(td2, t28);
+        append(tbody0, t29);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t32);
+        append(tr2, t31);
         append(tr2, td3);
-        append(td3, t33);
-        append(tr2, t34);
+        append(td3, t32);
+        append(tr2, t33);
         append(tr2, td4);
-        append(td4, t35);
-        append(tr2, t36);
+        append(td4, t34);
+        append(tr2, t35);
         append(tr2, td5);
-        append(td5, t37);
-        append(tbody0, t38);
+        append(td5, t36);
+        append(tbody0, t37);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t40);
+        append(tr3, t39);
         append(tr3, td6);
-        append(td6, t41);
-        append(tr3, t42);
+        append(td6, t40);
+        append(tr3, t41);
         append(tr3, td7);
-        append(td7, t43);
-        append(tr3, t44);
+        append(td7, t42);
+        append(tr3, t43);
         append(tr3, td8);
-        append(td8, t45);
-        append(tbody0, t46);
+        append(td8, t44);
+        append(tbody0, t45);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t48);
+        append(tr4, t47);
         append(tr4, td9);
-        append(td9, t49);
-        append(tr4, t50);
+        append(td9, t48);
+        append(tr4, t49);
         append(tr4, td10);
-        append(td10, t51);
-        append(tr4, t52);
+        append(td10, t50);
+        append(tr4, t51);
         append(tr4, td11);
-        append(td11, t53);
-        append(tbody0, t54);
+        append(td11, t52);
+        append(tbody0, t53);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t56);
+        append(tr5, t55);
         append(tr5, td12);
-        append(td12, t57);
-        append(tr5, t58);
+        append(td12, t56);
+        append(tr5, t57);
         append(tr5, td13);
-        append(td13, t59);
-        append(tr5, t60);
+        append(td13, t58);
+        append(tr5, t59);
         append(tr5, td14);
-        append(td14, t61);
-        insert(target, t62, anchor);
-        insert(target, br1, anchor);
-        insert(target, t63, anchor);
-        insert(target, div1, anchor);
-        append(div1, h61);
-        append(div1, t65);
-        append(div1, table1);
+        append(td14, t60);
+        insert(target, t61, anchor);
+        insert(target, div2, anchor);
+        append(div2, h61);
+        append(div2, t63);
+        append(div2, table1);
         append(table1, thead1);
-        append(table1, t75);
+        append(table1, t73);
         append(table1, tbody1);
         if (if_block0)
           if_block0.m(tbody1, null);
-        insert(target, t76, anchor);
-        insert(target, br2, anchor);
-        insert(target, t77, anchor);
-        insert(target, div2, anchor);
-        append(div2, h62);
-        append(div2, t79);
-        append(div2, table2);
+        insert(target, t74, anchor);
+        insert(target, div3, anchor);
+        append(div3, h62);
+        append(div3, t76);
+        append(div3, table2);
         append(table2, thead2);
-        append(table2, t89);
+        append(table2, t86);
         append(table2, tbody2);
         if (if_block1)
           if_block1.m(tbody2, null);
-        insert(target, t90, anchor);
-        insert(target, br3, anchor);
-        insert(target, t91, anchor);
-        insert(target, div3, anchor);
-        append(div3, h63);
-        append(div3, t93);
-        append(div3, table3);
+        insert(target, t87, anchor);
+        insert(target, div4, anchor);
+        append(div4, h63);
+        append(div4, t89);
+        append(div4, table3);
         append(table3, thead3);
-        append(table3, t101);
+        append(table3, t97);
         append(table3, tbody3);
         if (if_block2)
           if_block2.m(tbody3, null);
-        insert(target, t102, anchor);
-        insert(target, br4, anchor);
-        insert(target, t103, anchor);
-        insert(target, div4, anchor);
-        append(div4, h64);
-        append(div4, t105);
-        append(div4, table4);
+        insert(target, t98, anchor);
+        insert(target, div5, anchor);
+        append(div5, h64);
+        append(div5, t100);
+        append(div5, table4);
         append(table4, thead4);
-        append(table4, t113);
+        append(table4, t108);
         append(table4, tbody4);
         if (if_block3)
           if_block3.m(tbody4, null);
-        insert(target, t114, anchor);
-        insert(target, br5, anchor);
-        insert(target, t115, anchor);
-        insert(target, div5, anchor);
-        append(div5, h65);
-        append(div5, t117);
-        append(div5, table5);
+        insert(target, t109, anchor);
+        insert(target, div6, anchor);
+        append(div6, h65);
+        append(div6, t111);
+        append(div6, table5);
         append(table5, thead5);
-        append(table5, t127);
+        append(table5, t121);
         append(table5, tbody5);
         if (if_block4)
           if_block4.m(tbody5, null);
-        insert(target, t128, anchor);
-        insert(target, br6, anchor);
-        insert(target, t129, anchor);
-        insert(target, div6, anchor);
-        append(div6, h66);
-        append(div6, t131);
-        append(div6, table6);
+        insert(target, t122, anchor);
+        insert(target, div7, anchor);
+        append(div7, h66);
+        append(div7, t124);
+        append(div7, table6);
         append(table6, thead6);
-        append(table6, t141);
+        append(table6, t134);
         append(table6, tbody6);
         if (if_block5)
           if_block5.m(tbody6, null);
@@ -28585,105 +28529,105 @@
         if (!current || dirty[0] & /*pertiS1*/
         512)
           set_data(
-            t25,
+            t24,
             /*pertiS1*/
             ctx2[9]
           );
         if (!current || dirty[0] & /*pertiS2*/
         1024)
           set_data(
-            t27,
+            t26,
             /*pertiS2*/
             ctx2[10]
           );
         if (!current || dirty[0] & /*pertiS3*/
         2048)
           set_data(
-            t29,
+            t28,
             /*pertiS3*/
             ctx2[11]
           );
         if (!current || dirty[0] & /*bidangIlmuS1*/
         4096)
           set_data(
-            t33,
+            t32,
             /*bidangIlmuS1*/
             ctx2[12]
           );
         if (!current || dirty[0] & /*bidangIlmuS2*/
         8192)
           set_data(
-            t35,
+            t34,
             /*bidangIlmuS2*/
             ctx2[13]
           );
         if (!current || dirty[0] & /*bidangIlmuS3*/
         16384)
           set_data(
-            t37,
+            t36,
             /*bidangIlmuS3*/
             ctx2[14]
           );
         if (!current || dirty[0] & /*tahunMasukS1*/
         32768)
           set_data(
-            t41,
+            t40,
             /*tahunMasukS1*/
             ctx2[15]
           );
         if (!current || dirty[0] & /*tahunMasukS2*/
         65536)
           set_data(
-            t43,
+            t42,
             /*tahunMasukS2*/
             ctx2[16]
           );
         if (!current || dirty[0] & /*tahunMasukS3*/
         131072)
           set_data(
-            t45,
+            t44,
             /*tahunMasukS3*/
             ctx2[17]
           );
         if (!current || dirty[0] & /*tahunLulusS1*/
         262144)
           set_data(
-            t49,
+            t48,
             /*tahunLulusS1*/
             ctx2[18]
           );
         if (!current || dirty[0] & /*tahunLulusS2*/
         524288)
           set_data(
-            t51,
+            t50,
             /*tahunLulusS2*/
             ctx2[19]
           );
         if (!current || dirty[0] & /*tahunLulusS3*/
         1048576)
           set_data(
-            t53,
+            t52,
             /*tahunLulusS3*/
             ctx2[20]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS1*/
         2097152)
           set_data(
-            t57,
+            t56,
             /*judulTugasAkhirS1*/
             ctx2[21]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS2*/
         4194304)
           set_data(
-            t59,
+            t58,
             /*judulTugasAkhirS2*/
             ctx2[22]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS3*/
         8388608)
           set_data(
-            t61,
+            t60,
             /*judulTugasAkhirS3*/
             ctx2[23]
           );
@@ -28812,58 +28756,34 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(br0);
-          detach(t12);
           detach(div0);
-          detach(t62);
-          detach(br1);
-          detach(t63);
+          detach(t11);
           detach(div1);
-          detach(t76);
-          detach(br2);
-          detach(t77);
+          detach(t61);
           detach(div2);
-          detach(t90);
-          detach(br3);
-          detach(t91);
+          detach(t74);
           detach(div3);
-          detach(t102);
-          detach(br4);
-          detach(t103);
+          detach(t87);
           detach(div4);
-          detach(t114);
-          detach(br5);
-          detach(t115);
+          detach(t98);
           detach(div5);
-          detach(t128);
-          detach(br6);
-          detach(t129);
+          detach(t109);
           detach(div6);
+          detach(t122);
+          detach(div7);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         if (if_block0)
           if_block0.d();
         if (if_block1)
@@ -30280,6 +30200,7 @@
     };
   }
   function create_if_block_46(ctx) {
+    let div;
     let field0;
     let t;
     let field1;
@@ -30300,14 +30221,17 @@
     });
     return {
       c() {
+        div = element("div");
         create_component(field0.$$.fragment);
         t = space();
         create_component(field1.$$.fragment);
+        attr(div, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t, anchor);
-        mount_component(field1, target, anchor);
+        insert(target, div, anchor);
+        mount_component(field0, div, null);
+        append(div, t);
+        mount_component(field1, div, null);
         current = true;
       },
       p(ctx2, dirty) {
@@ -30339,10 +30263,10 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(div);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
       }
     };
   }
@@ -43068,12 +42992,11 @@
     };
   }
   function create_if_block_144(ctx) {
+    let div0;
     let current_block_type_index;
     let if_block0;
-    let t0;
-    let hr;
-    let t1;
-    let div;
+    let t;
+    let div1;
     let current;
     const if_block_creators = [create_if_block_173, create_else_block_3];
     const if_blocks = [];
@@ -43089,23 +43012,22 @@
     ctx[1] && create_if_block_153(ctx);
     return {
       c() {
+        div0 = element("div");
         if_block0.c();
-        t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
+        t = space();
+        div1 = element("div");
         if (if_block1)
           if_block1.c();
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div0, "class", "box");
+        attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        if_blocks[current_block_type_index].m(target, anchor);
-        insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
+        insert(target, div0, anchor);
+        if_blocks[current_block_type_index].m(div0, null);
+        insert(target, t, anchor);
+        insert(target, div1, anchor);
         if (if_block1)
-          if_block1.m(div, null);
+          if_block1.m(div1, null);
         current = true;
       },
       p(ctx2, dirty) {
@@ -43127,7 +43049,7 @@
             if_block0.p(ctx2, dirty);
           }
           transition_in(if_block0, 1);
-          if_block0.m(t0.parentNode, t0);
+          if_block0.m(div0, null);
         }
         if (!/*view*/
         ctx2[1]) {
@@ -43136,7 +43058,7 @@
           } else {
             if_block1 = create_if_block_153(ctx2);
             if_block1.c();
-            if_block1.m(div, null);
+            if_block1.m(div1, null);
           }
         } else if (if_block1) {
           if_block1.d(1);
@@ -43155,12 +43077,11 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
+          detach(div0);
+          detach(t);
+          detach(div1);
         }
-        if_blocks[current_block_type_index].d(detaching);
+        if_blocks[current_block_type_index].d();
         if (if_block1)
           if_block1.d();
       }
@@ -43785,8 +43706,8 @@
         hr1 = element("hr");
         t31 = space();
         div1 = element("div");
-        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Perhatikan</strong> catatan revisi dari evalutor untuk
-                     detail yang akan direvisi!</p></div>`;
+        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Perhatikan</strong> catatan revisi dari evalutor
+                        untuk detail yang akan direvisi!</p></div>`;
         t34 = space();
         create_component(field13.$$.fragment);
         t35 = space();
@@ -44813,7 +44734,7 @@
         div = element("div");
         select = element("select");
         option = element("option");
-        option.textContent = "Pilih Jenis Skema\r\n                     ";
+        option.textContent = "Pilih Jenis Skema\r\n                        ";
         if_block.c();
         option.__value = "";
         set_input_value(option, option.__value);
@@ -45869,6 +45790,7 @@
   }
   function create_if_block_58(ctx) {
     let t0;
+    let div0;
     let field0;
     let t1;
     let field1;
@@ -45893,133 +45815,119 @@
     let t11;
     let field11;
     let t12;
-    let br0;
-    let t13;
-    let div0;
+    let div1;
     let h60;
-    let t15;
+    let t14;
     let table0;
     let thead0;
-    let t23;
+    let t22;
     let tbody0;
     let tr1;
     let th4;
-    let t25;
+    let t24;
     let td0;
+    let t25;
     let t26;
-    let t27;
     let td1;
+    let t27;
     let t28;
-    let t29;
     let td2;
+    let t29;
     let t30;
-    let t31;
     let tr2;
     let th5;
-    let t33;
+    let t32;
     let td3;
+    let t33;
     let t34;
-    let t35;
     let td4;
+    let t35;
     let t36;
-    let t37;
     let td5;
+    let t37;
     let t38;
-    let t39;
     let tr3;
     let th6;
-    let t41;
+    let t40;
     let td6;
+    let t41;
     let t42;
-    let t43;
     let td7;
+    let t43;
     let t44;
-    let t45;
     let td8;
+    let t45;
     let t46;
-    let t47;
     let tr4;
     let th7;
-    let t49;
+    let t48;
     let td9;
+    let t49;
     let t50;
-    let t51;
     let td10;
+    let t51;
     let t52;
-    let t53;
     let td11;
+    let t53;
     let t54;
-    let t55;
     let tr5;
     let th8;
-    let t57;
+    let t56;
     let td12;
+    let t57;
     let t58;
-    let t59;
     let td13;
+    let t59;
     let t60;
-    let t61;
     let td14;
+    let t61;
     let t62;
-    let t63;
-    let br1;
-    let t64;
-    let div1;
+    let div2;
     let h61;
-    let t66;
+    let t64;
     let table1;
     let thead1;
-    let t76;
+    let t74;
     let tbody1;
-    let t77;
-    let br2;
-    let t78;
-    let div2;
+    let t75;
+    let div3;
     let h62;
-    let t80;
+    let t77;
     let table2;
     let thead2;
-    let t90;
+    let t87;
     let tbody2;
-    let t91;
-    let br3;
-    let t92;
-    let div3;
+    let t88;
+    let div4;
     let h63;
-    let t94;
+    let t90;
     let table3;
     let thead3;
-    let t102;
+    let t98;
     let tbody3;
-    let t103;
-    let br4;
-    let t104;
-    let div4;
+    let t99;
+    let div5;
     let h64;
-    let t106;
+    let t101;
     let table4;
     let thead4;
-    let t114;
+    let t109;
     let tbody4;
-    let t115;
-    let br5;
-    let t116;
-    let div5;
+    let t110;
+    let div6;
     let h65;
-    let t118;
+    let t112;
     let table5;
     let thead5;
-    let t128;
+    let t122;
     let tbody5;
-    let t129;
-    let br6;
-    let t130;
-    let div6;
+    let t123;
+    let div7;
     let h66;
-    let t132;
+    let t125;
     let table6;
     let thead6;
-    let t142;
+    let t135;
     let tbody6;
     let current;
     function select_block_type_3(ctx2, dirty) {
@@ -46144,6 +46052,7 @@
       c() {
         if_block0.c();
         t0 = space();
+        div0 = element("div");
         create_component(field0.$$.fragment);
         t1 = space();
         create_component(field1.$$.fragment);
@@ -46168,389 +46077,370 @@
         t11 = space();
         create_component(field11.$$.fragment);
         t12 = space();
-        br0 = element("br");
-        t13 = space();
-        div0 = element("div");
+        div1 = element("div");
         h60 = element("h6");
         h60.textContent = "Riwayat Pendidikan";
-        t15 = space();
+        t14 = space();
         table0 = element("table");
         thead0 = element("thead");
         thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t23 = space();
+        t22 = space();
         tbody0 = element("tbody");
         tr1 = element("tr");
         th4 = element("th");
         th4.textContent = "Nama Perguruan Tinggi";
-        t25 = space();
+        t24 = space();
         td0 = element("td");
-        t26 = text(
+        t25 = text(
           /*pertiS1*/
           ctx[10]
         );
-        t27 = space();
+        t26 = space();
         td1 = element("td");
-        t28 = text(
+        t27 = text(
           /*pertiS2*/
           ctx[11]
         );
-        t29 = space();
+        t28 = space();
         td2 = element("td");
-        t30 = text(
+        t29 = text(
           /*pertiS3*/
           ctx[12]
         );
-        t31 = space();
+        t30 = space();
         tr2 = element("tr");
         th5 = element("th");
         th5.textContent = "Bidang Ilmu";
-        t33 = space();
+        t32 = space();
         td3 = element("td");
-        t34 = text(
+        t33 = text(
           /*bidangIlmuS1*/
           ctx[13]
         );
-        t35 = space();
+        t34 = space();
         td4 = element("td");
-        t36 = text(
+        t35 = text(
           /*bidangIlmuS2*/
           ctx[14]
         );
-        t37 = space();
+        t36 = space();
         td5 = element("td");
-        t38 = text(
+        t37 = text(
           /*bidangIlmuS3*/
           ctx[15]
         );
-        t39 = space();
+        t38 = space();
         tr3 = element("tr");
         th6 = element("th");
         th6.textContent = "Tahun Masuk";
-        t41 = space();
+        t40 = space();
         td6 = element("td");
-        t42 = text(
+        t41 = text(
           /*tahunMasukS1*/
           ctx[16]
         );
-        t43 = space();
+        t42 = space();
         td7 = element("td");
-        t44 = text(
+        t43 = text(
           /*tahunMasukS2*/
           ctx[17]
         );
-        t45 = space();
+        t44 = space();
         td8 = element("td");
-        t46 = text(
+        t45 = text(
           /*tahunMasukS3*/
           ctx[18]
         );
-        t47 = space();
+        t46 = space();
         tr4 = element("tr");
         th7 = element("th");
         th7.textContent = "Tahun Lulus";
-        t49 = space();
+        t48 = space();
         td9 = element("td");
-        t50 = text(
+        t49 = text(
           /*tahunLulusS1*/
           ctx[19]
         );
-        t51 = space();
+        t50 = space();
         td10 = element("td");
-        t52 = text(
+        t51 = text(
           /*tahunLulusS2*/
           ctx[20]
         );
-        t53 = space();
+        t52 = space();
         td11 = element("td");
-        t54 = text(
+        t53 = text(
           /*tahunLulusS3*/
           ctx[21]
         );
-        t55 = space();
+        t54 = space();
         tr5 = element("tr");
         th8 = element("th");
         th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t57 = space();
+        t56 = space();
         td12 = element("td");
-        t58 = text(
+        t57 = text(
           /*judulTugasAkhirS1*/
           ctx[22]
         );
-        t59 = space();
+        t58 = space();
         td13 = element("td");
-        t60 = text(
+        t59 = text(
           /*judulTugasAkhirS2*/
           ctx[23]
         );
-        t61 = space();
+        t60 = space();
         td14 = element("td");
-        t62 = text(
+        t61 = text(
           /*judulTugasAkhirS3*/
           ctx[24]
         );
-        t63 = space();
-        br1 = element("br");
-        t64 = space();
-        div1 = element("div");
+        t62 = space();
+        div2 = element("div");
         h61 = element("h6");
         h61.textContent = "Pengalaman Penelitian";
-        t66 = space();
+        t64 = space();
         table1 = element("table");
         thead1 = element("thead");
         thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t76 = space();
+        t74 = space();
         tbody1 = element("tbody");
         if (if_block1)
           if_block1.c();
-        t77 = space();
-        br2 = element("br");
-        t78 = space();
-        div2 = element("div");
+        t75 = space();
+        div3 = element("div");
         h62 = element("h6");
         h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t80 = space();
+        t77 = space();
         table2 = element("table");
         thead2 = element("thead");
         thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t90 = space();
+        t87 = space();
         tbody2 = element("tbody");
         if (if_block2)
           if_block2.c();
-        t91 = space();
-        br3 = element("br");
-        t92 = space();
-        div3 = element("div");
+        t88 = space();
+        div4 = element("div");
         h63 = element("h6");
         h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t94 = space();
+        t90 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t102 = space();
+        t98 = space();
         tbody3 = element("tbody");
         if (if_block3)
           if_block3.c();
-        t103 = space();
-        br4 = element("br");
-        t104 = space();
-        div4 = element("div");
+        t99 = space();
+        div5 = element("div");
         h64 = element("h6");
         h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t106 = space();
+        t101 = space();
         table4 = element("table");
         thead4 = element("thead");
         thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t114 = space();
+        t109 = space();
         tbody4 = element("tbody");
         if (if_block4)
           if_block4.c();
-        t115 = space();
-        br5 = element("br");
-        t116 = space();
-        div5 = element("div");
+        t110 = space();
+        div6 = element("div");
         h65 = element("h6");
         h65.textContent = "Pengalaman Penulisan Buku";
-        t118 = space();
+        t112 = space();
         table5 = element("table");
         thead5 = element("thead");
         thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t128 = space();
+        t122 = space();
         tbody5 = element("tbody");
         if (if_block5)
           if_block5.c();
-        t129 = space();
-        br6 = element("br");
-        t130 = space();
-        div6 = element("div");
+        t123 = space();
+        div7 = element("div");
         h66 = element("h6");
         h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t132 = space();
+        t125 = space();
         table6 = element("table");
         thead6 = element("thead");
         thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t142 = space();
+        t135 = space();
         tbody6 = element("tbody");
         if (if_block6)
           if_block6.c();
+        attr(div0, "class", "box");
         attr(h60, "class", "title is-6");
         attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div1, "class", "box");
         attr(h61, "class", "title is-6");
         attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div2, "class", "box");
         attr(h62, "class", "title is-6");
         attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div3, "class", "box");
         attr(h63, "class", "title is-6");
         attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div4, "class", "box");
         attr(h64, "class", "title is-6");
         attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div5, "class", "box");
         attr(h65, "class", "title is-6");
         attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div6, "class", "box");
         attr(h66, "class", "title is-6");
         attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div7, "class", "box");
       },
       m(target, anchor) {
         if_block0.m(target, anchor);
         insert(target, t0, anchor);
-        mount_component(field0, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t11, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t12, anchor);
-        insert(target, br0, anchor);
-        insert(target, t13, anchor);
         insert(target, div0, anchor);
-        append(div0, h60);
-        append(div0, t15);
-        append(div0, table0);
+        mount_component(field0, div0, null);
+        append(div0, t1);
+        mount_component(field1, div0, null);
+        append(div0, t2);
+        mount_component(field2, div0, null);
+        append(div0, t3);
+        mount_component(field3, div0, null);
+        append(div0, t4);
+        mount_component(field4, div0, null);
+        append(div0, t5);
+        mount_component(field5, div0, null);
+        append(div0, t6);
+        mount_component(field6, div0, null);
+        append(div0, t7);
+        mount_component(field7, div0, null);
+        append(div0, t8);
+        mount_component(field8, div0, null);
+        append(div0, t9);
+        mount_component(field9, div0, null);
+        append(div0, t10);
+        mount_component(field10, div0, null);
+        append(div0, t11);
+        mount_component(field11, div0, null);
+        insert(target, t12, anchor);
+        insert(target, div1, anchor);
+        append(div1, h60);
+        append(div1, t14);
+        append(div1, table0);
         append(table0, thead0);
-        append(table0, t23);
+        append(table0, t22);
         append(table0, tbody0);
         append(tbody0, tr1);
         append(tr1, th4);
-        append(tr1, t25);
+        append(tr1, t24);
         append(tr1, td0);
-        append(td0, t26);
-        append(tr1, t27);
+        append(td0, t25);
+        append(tr1, t26);
         append(tr1, td1);
-        append(td1, t28);
-        append(tr1, t29);
+        append(td1, t27);
+        append(tr1, t28);
         append(tr1, td2);
-        append(td2, t30);
-        append(tbody0, t31);
+        append(td2, t29);
+        append(tbody0, t30);
         append(tbody0, tr2);
         append(tr2, th5);
-        append(tr2, t33);
+        append(tr2, t32);
         append(tr2, td3);
-        append(td3, t34);
-        append(tr2, t35);
+        append(td3, t33);
+        append(tr2, t34);
         append(tr2, td4);
-        append(td4, t36);
-        append(tr2, t37);
+        append(td4, t35);
+        append(tr2, t36);
         append(tr2, td5);
-        append(td5, t38);
-        append(tbody0, t39);
+        append(td5, t37);
+        append(tbody0, t38);
         append(tbody0, tr3);
         append(tr3, th6);
-        append(tr3, t41);
+        append(tr3, t40);
         append(tr3, td6);
-        append(td6, t42);
-        append(tr3, t43);
+        append(td6, t41);
+        append(tr3, t42);
         append(tr3, td7);
-        append(td7, t44);
-        append(tr3, t45);
+        append(td7, t43);
+        append(tr3, t44);
         append(tr3, td8);
-        append(td8, t46);
-        append(tbody0, t47);
+        append(td8, t45);
+        append(tbody0, t46);
         append(tbody0, tr4);
         append(tr4, th7);
-        append(tr4, t49);
+        append(tr4, t48);
         append(tr4, td9);
-        append(td9, t50);
-        append(tr4, t51);
+        append(td9, t49);
+        append(tr4, t50);
         append(tr4, td10);
-        append(td10, t52);
-        append(tr4, t53);
+        append(td10, t51);
+        append(tr4, t52);
         append(tr4, td11);
-        append(td11, t54);
-        append(tbody0, t55);
+        append(td11, t53);
+        append(tbody0, t54);
         append(tbody0, tr5);
         append(tr5, th8);
-        append(tr5, t57);
+        append(tr5, t56);
         append(tr5, td12);
-        append(td12, t58);
-        append(tr5, t59);
+        append(td12, t57);
+        append(tr5, t58);
         append(tr5, td13);
-        append(td13, t60);
-        append(tr5, t61);
+        append(td13, t59);
+        append(tr5, t60);
         append(tr5, td14);
-        append(td14, t62);
-        insert(target, t63, anchor);
-        insert(target, br1, anchor);
-        insert(target, t64, anchor);
-        insert(target, div1, anchor);
-        append(div1, h61);
-        append(div1, t66);
-        append(div1, table1);
+        append(td14, t61);
+        insert(target, t62, anchor);
+        insert(target, div2, anchor);
+        append(div2, h61);
+        append(div2, t64);
+        append(div2, table1);
         append(table1, thead1);
-        append(table1, t76);
+        append(table1, t74);
         append(table1, tbody1);
         if (if_block1)
           if_block1.m(tbody1, null);
-        insert(target, t77, anchor);
-        insert(target, br2, anchor);
-        insert(target, t78, anchor);
-        insert(target, div2, anchor);
-        append(div2, h62);
-        append(div2, t80);
-        append(div2, table2);
+        insert(target, t75, anchor);
+        insert(target, div3, anchor);
+        append(div3, h62);
+        append(div3, t77);
+        append(div3, table2);
         append(table2, thead2);
-        append(table2, t90);
+        append(table2, t87);
         append(table2, tbody2);
         if (if_block2)
           if_block2.m(tbody2, null);
-        insert(target, t91, anchor);
-        insert(target, br3, anchor);
-        insert(target, t92, anchor);
-        insert(target, div3, anchor);
-        append(div3, h63);
-        append(div3, t94);
-        append(div3, table3);
+        insert(target, t88, anchor);
+        insert(target, div4, anchor);
+        append(div4, h63);
+        append(div4, t90);
+        append(div4, table3);
         append(table3, thead3);
-        append(table3, t102);
+        append(table3, t98);
         append(table3, tbody3);
         if (if_block3)
           if_block3.m(tbody3, null);
-        insert(target, t103, anchor);
-        insert(target, br4, anchor);
-        insert(target, t104, anchor);
-        insert(target, div4, anchor);
-        append(div4, h64);
-        append(div4, t106);
-        append(div4, table4);
+        insert(target, t99, anchor);
+        insert(target, div5, anchor);
+        append(div5, h64);
+        append(div5, t101);
+        append(div5, table4);
         append(table4, thead4);
-        append(table4, t114);
+        append(table4, t109);
         append(table4, tbody4);
         if (if_block4)
           if_block4.m(tbody4, null);
-        insert(target, t115, anchor);
-        insert(target, br5, anchor);
-        insert(target, t116, anchor);
-        insert(target, div5, anchor);
-        append(div5, h65);
-        append(div5, t118);
-        append(div5, table5);
+        insert(target, t110, anchor);
+        insert(target, div6, anchor);
+        append(div6, h65);
+        append(div6, t112);
+        append(div6, table5);
         append(table5, thead5);
-        append(table5, t128);
+        append(table5, t122);
         append(table5, tbody5);
         if (if_block5)
           if_block5.m(tbody5, null);
-        insert(target, t129, anchor);
-        insert(target, br6, anchor);
-        insert(target, t130, anchor);
-        insert(target, div6, anchor);
-        append(div6, h66);
-        append(div6, t132);
-        append(div6, table6);
+        insert(target, t123, anchor);
+        insert(target, div7, anchor);
+        append(div7, h66);
+        append(div7, t125);
+        append(div7, table6);
         append(table6, thead6);
-        append(table6, t142);
+        append(table6, t135);
         append(table6, tbody6);
         if (if_block6)
           if_block6.m(tbody6, null);
@@ -46652,105 +46542,105 @@
         if (!current || dirty[0] & /*pertiS1*/
         1024)
           set_data(
-            t26,
+            t25,
             /*pertiS1*/
             ctx2[10]
           );
         if (!current || dirty[0] & /*pertiS2*/
         2048)
           set_data(
-            t28,
+            t27,
             /*pertiS2*/
             ctx2[11]
           );
         if (!current || dirty[0] & /*pertiS3*/
         4096)
           set_data(
-            t30,
+            t29,
             /*pertiS3*/
             ctx2[12]
           );
         if (!current || dirty[0] & /*bidangIlmuS1*/
         8192)
           set_data(
-            t34,
+            t33,
             /*bidangIlmuS1*/
             ctx2[13]
           );
         if (!current || dirty[0] & /*bidangIlmuS2*/
         16384)
           set_data(
-            t36,
+            t35,
             /*bidangIlmuS2*/
             ctx2[14]
           );
         if (!current || dirty[0] & /*bidangIlmuS3*/
         32768)
           set_data(
-            t38,
+            t37,
             /*bidangIlmuS3*/
             ctx2[15]
           );
         if (!current || dirty[0] & /*tahunMasukS1*/
         65536)
           set_data(
-            t42,
+            t41,
             /*tahunMasukS1*/
             ctx2[16]
           );
         if (!current || dirty[0] & /*tahunMasukS2*/
         131072)
           set_data(
-            t44,
+            t43,
             /*tahunMasukS2*/
             ctx2[17]
           );
         if (!current || dirty[0] & /*tahunMasukS3*/
         262144)
           set_data(
-            t46,
+            t45,
             /*tahunMasukS3*/
             ctx2[18]
           );
         if (!current || dirty[0] & /*tahunLulusS1*/
         524288)
           set_data(
-            t50,
+            t49,
             /*tahunLulusS1*/
             ctx2[19]
           );
         if (!current || dirty[0] & /*tahunLulusS2*/
         1048576)
           set_data(
-            t52,
+            t51,
             /*tahunLulusS2*/
             ctx2[20]
           );
         if (!current || dirty[0] & /*tahunLulusS3*/
         2097152)
           set_data(
-            t54,
+            t53,
             /*tahunLulusS3*/
             ctx2[21]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS1*/
         4194304)
           set_data(
-            t58,
+            t57,
             /*judulTugasAkhirS1*/
             ctx2[22]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS2*/
         8388608)
           set_data(
-            t60,
+            t59,
             /*judulTugasAkhirS2*/
             ctx2[23]
           );
         if (!current || dirty[0] & /*judulTugasAkhirS3*/
         16777216)
           set_data(
-            t62,
+            t61,
             /*judulTugasAkhirS3*/
             ctx2[24]
           );
@@ -46880,59 +46770,35 @@
       d(detaching) {
         if (detaching) {
           detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(t12);
-          detach(br0);
-          detach(t13);
           detach(div0);
-          detach(t63);
-          detach(br1);
-          detach(t64);
+          detach(t12);
           detach(div1);
-          detach(t77);
-          detach(br2);
-          detach(t78);
+          detach(t62);
           detach(div2);
-          detach(t91);
-          detach(br3);
-          detach(t92);
+          detach(t75);
           detach(div3);
-          detach(t103);
-          detach(br4);
-          detach(t104);
+          detach(t88);
           detach(div4);
-          detach(t115);
-          detach(br5);
-          detach(t116);
+          detach(t99);
           detach(div5);
-          detach(t129);
-          detach(br6);
-          detach(t130);
+          detach(t110);
           detach(div6);
+          detach(t123);
+          detach(div7);
         }
         if_block0.d(detaching);
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         if (if_block1)
           if_block1.d();
         if (if_block2)
@@ -46949,45 +46815,44 @@
     };
   }
   function create_else_block6(ctx) {
-    let div1;
+    let div;
     return {
       c() {
-        div1 = element("div");
-        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam
-                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
-                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
-                     peneliti sanggup menerima sanksinya. Jika ada perubahan,
-                     klik
-                     <a href="${"/dosen/profile"}"><strong>Disini!</strong></a></p></div>`;
-        attr(div1, "class", "columns notification is-danger is-light");
+        div = element("div");
+        div.innerHTML = `<p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam
+                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik
+                  <a href="${"/dosen/profile"}"><strong>Disini!</strong></a></p>`;
+        attr(div, "class", "notification is-danger is-light");
       },
       m(target, anchor) {
-        insert(target, div1, anchor);
+        insert(target, div, anchor);
       },
       d(detaching) {
         if (detaching) {
-          detach(div1);
+          detach(div);
         }
       }
     };
   }
   function create_if_block_135(ctx) {
-    let div1;
+    let div;
     return {
       c() {
-        div1 = element("div");
-        div1.innerHTML = `<div class="column"><p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                     sanksinya.</p></div>`;
-        attr(div1, "class", "columns notification is-danger is-light");
+        div = element("div");
+        div.innerHTML = `<p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                  sanksinya.</p>`;
+        attr(div, "class", "notification is-danger is-light");
       },
       m(target, anchor) {
-        insert(target, div1, anchor);
+        insert(target, div, anchor);
       },
       d(detaching) {
         if (detaching) {
-          detach(div1);
+          detach(div);
         }
       }
     };
@@ -48393,6 +48258,7 @@
     };
   }
   function create_if_block_49(ctx) {
+    let div;
     let field0;
     let t;
     let field1;
@@ -48413,14 +48279,17 @@
     });
     return {
       c() {
+        div = element("div");
         create_component(field0.$$.fragment);
         t = space();
         create_component(field1.$$.fragment);
+        attr(div, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t, anchor);
-        mount_component(field1, target, anchor);
+        insert(target, div, anchor);
+        mount_component(field0, div, null);
+        append(div, t);
+        mount_component(field1, div, null);
         current = true;
       },
       p(ctx2, dirty) {
@@ -48452,10 +48321,10 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(div);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
       }
     };
   }

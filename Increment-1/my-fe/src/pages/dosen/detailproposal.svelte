@@ -688,132 +688,134 @@
       </div>
 
       {#if tab1 === true}
-         <Field name="Jenis Proposal">
-            {jenisProposal}
-         </Field>
+         <div class="box">
+            <Field name="Jenis Proposal">
+               {jenisProposal}
+            </Field>
 
-         <Field name="Jenis Kegiatan">
-            {jenisKegiatan}
-         </Field>
+            <Field name="Jenis Kegiatan">
+               {jenisKegiatan}
+            </Field>
 
-         <Field name="Jenis Skema">
-            {jenisSkema}
-         </Field>
+            <Field name="Jenis Skema">
+               {jenisSkema}
+            </Field>
 
-         <Field name="Kelompok Keahlian">
-            {kelompokKeahlian}
-         </Field>
+            <Field name="Kelompok Keahlian">
+               {kelompokKeahlian}
+            </Field>
 
-         <Field name="Topik">
-            {topik}
-         </Field>
+            <Field name="Topik">
+               {topik}
+            </Field>
 
-         <Field name="Tanggal Mulai">
-            {tanggalMulai}
-         </Field>
+            <Field name="Tanggal Mulai">
+               {tanggalMulai}
+            </Field>
 
-         <Field name="Tanggal Selesai">
-            {tanggalSelesai}
-         </Field>
+            <Field name="Tanggal Selesai">
+               {tanggalSelesai}
+            </Field>
 
-         <Field name="Biaya Penelitian">
-            {biayaPenelitian}
-         </Field>
+            <Field name="Biaya Penelitian">
+               {biayaPenelitian}
+            </Field>
 
-         <Field name="Rencana Anggaran Biaya">
-            <button
-               class="button is-link is-rounded button is-small"
-               on:click={handleDownloadRab}>Download RAB</button
-            >
-         </Field>
+            <Field name="Rencana Anggaran Biaya">
+               <button
+                  class="button is-link is-rounded button is-small"
+                  on:click={handleDownloadRab}>Download RAB</button
+               >
+            </Field>
 
-         <Field name="Anggota Tim">
-            <span></span>
-         </Field>
-         <br />
-         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-            <thead>
-               <tr>
-                  <th class="is-narrow">Role</th>
-                  <th>Nama</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>Ketua</td>
-                  <td>...</td>
-               </tr>
-               {#if anggotaTim.length > 0}
-                  {#each anggotaTim as member}
-                     <tr>
-                        <td>Anggota</td>
-                        <td>{member.label}</td>
-                     </tr>
-                  {/each}
-               {/if}
-            </tbody>
-         </table>
-
-         <hr />
-
-         <Field name="Judul">
-            {data.judul}
-         </Field>
-
-         <Field name="abstrak">
-            {@html data.abstrak}
-         </Field>
-
-         <!-- <Field name="isi">
-            <div class="box box-padding">
-               {@html data.isi}
-            </div>
-         </Field> -->
-         <Field name="Proposal">
-            <button
-               class="button is-link is-rounded button is-small"
-               on:click={handleDownloadPpm}>Download Proposal</button
-            >
-         </Field>
-
-         <hr />
-
-         <Field name="Catatan Revisi">
-            <textarea
-               class="textarea"
-               bind:value={comment}
-               name="komentar"
-               id="komentar"
-            ></textarea>
-         </Field>
-
-         <Field name="Riwayat Revisi">
+            <Field name="Anggota Tim">
+               <span></span>
+            </Field>
+            <br />
             <table
                class="table is-fullwidth is-striped is-hoverable is-bordered"
             >
                <thead>
                   <tr>
-                     <th>Catatan Revisi</th>
-                     <th>Evalutor</th>
-                     <th class="is-narrow">Waktu</th>
+                     <th class="is-narrow">Role</th>
+                     <th>Nama</th>
                   </tr>
                </thead>
-
-               {#if itemsRCR}
-                  <tbody>
-                     {#each itemsRCR as item}
+               <tbody>
+                  <tr>
+                     <td>Ketua</td>
+                     <td>...</td>
+                  </tr>
+                  {#if anggotaTim.length > 0}
+                     {#each anggotaTim as member}
                         <tr>
-                           <td>{item.comment}</td>
-                           <td>{item.evaluator}</td>
-                           <td>{item.time}</td>
+                           <td>Anggota</td>
+                           <td>{member.label}</td>
                         </tr>
                      {/each}
-                  </tbody>
-               {/if}
+                  {/if}
+               </tbody>
             </table>
-         </Field>
 
-         <hr />
+            <hr />
+
+            <Field name="Judul">
+               {data.judul}
+            </Field>
+
+            <Field name="abstrak">
+               {@html data.abstrak}
+            </Field>
+
+            <!-- <Field name="isi">
+            <div class="box box-padding">
+               {@html data.isi}
+            </div>
+         </Field> -->
+            <Field name="Proposal">
+               <button
+                  class="button is-link is-rounded button is-small"
+                  on:click={handleDownloadPpm}>Download Proposal</button
+               >
+            </Field>
+
+            <hr />
+
+            <Field name="Catatan Revisi">
+               <textarea
+                  class="textarea"
+                  bind:value={comment}
+                  name="komentar"
+                  id="komentar"
+               ></textarea>
+            </Field>
+
+            <Field name="Riwayat Revisi">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Catatan Revisi</th>
+                        <th>Evalutor</th>
+                        <th class="is-narrow">Waktu</th>
+                     </tr>
+                  </thead>
+
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
+            </Field>
+         </div>
 
          {#if role === "Ka.Departemen"}
             {#if status === 4}
@@ -891,43 +893,43 @@
       {/if}
 
       {#if tab2 === true}
-         <Field name="Nama Lengkap">{namaLengkap}</Field>
-         <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
-         <Field name="NIP">{nip}</Field>
-         <Field name="NIDN">{nidn}</Field>
-         <Field name="Tempat / Tanggal Lahir"
-            >{tempatLahir} / {tanggalLahir}</Field
-         >
-         <Field name="Alamat Rumah">{alamatRumah}</Field>
-         <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
-         <Field name="Nomoh Handphone">{nomorHandphone}</Field>
-         <Field name="Alamat Kantor">{alamatKantor}</Field>
-         <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
-         <Field name="Email">{email}</Field>
-         <Field name="Mata Kuliah">
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
+         <div class="box">
+            <Field name="Nama Lengkap">{namaLengkap}</Field>
+            <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
+            <Field name="NIP">{nip}</Field>
+            <Field name="NIDN">{nidn}</Field>
+            <Field name="Tempat / Tanggal Lahir"
+               >{tempatLahir} / {tanggalLahir}</Field
             >
-               <thead>
-                  <tr>
-                     <th>Mata Kuliah</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {#if mataKuliah && mataKuliah.length > 0}
-                     {#each mataKuliah as matkul}
-                        <tr>
-                           <td>{matkul.label}</td>
-                        </tr>
-                     {/each}
-                  {/if}
-               </tbody>
-            </table>
-         </Field>
+            <Field name="Alamat Rumah">{alamatRumah}</Field>
+            <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
+            <Field name="Nomoh Handphone">{nomorHandphone}</Field>
+            <Field name="Alamat Kantor">{alamatKantor}</Field>
+            <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
+            <Field name="Email">{email}</Field>
+            <Field name="Mata Kuliah">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Mata Kuliah</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if mataKuliah && mataKuliah.length > 0}
+                        {#each mataKuliah as matkul}
+                           <tr>
+                              <td>{matkul.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </Field>
+         </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Riwayat Pendidikan</h6>
 
             <table
@@ -976,9 +978,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Penelitian</h6>
 
             <table
@@ -1009,9 +1009,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
 
             <table
@@ -1042,9 +1040,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">
                Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
             </h6>
@@ -1075,9 +1071,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">
                Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
             </h6>
@@ -1108,9 +1102,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
 
             <table
@@ -1141,9 +1133,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6>
 
             <table
@@ -1176,11 +1166,13 @@
       {/if}
 
       {#if tab3 === true}
-         <Field name="Status PPM">
-            <Status code={data.status} />
-         </Field>
+         <div class="box">
+            <Field name="Status PPM">
+               <Status code={data.status} />
+            </Field>
 
-         <Field name="Status Pendanaan">. . .</Field>
+            <Field name="Status Pendanaan">. . .</Field>
+         </div>
       {/if}
 
       {#if tab4 === true}

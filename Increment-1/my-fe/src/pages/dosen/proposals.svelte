@@ -879,338 +879,350 @@
 
       <!-- Tab Identitas PPM -->
       {#if tab1 === true}
-         {#if !view}
-            <p id="days"></p>
-            <p id="hours"></p>
-            <p id="mins"></p>
-            <p id="secs"></p>
-            <Field name="Jenis Proposal">
-               <div class="select is-fullwidth">
-                  <select bind:value={jenisProposal}>
-                     <option value="" selected disabled hidden
-                        >Pilih Jenis Proposal</option
-                     >
-                     <option selected value="Proposal Awal"
-                        >Proposal Awal</option
-                     >
-                     <option value="Proposal Lanjutan">Proposal Lanjutan</option
-                     >
-                  </select>
-               </div>
-            </Field>
-
-            <Field name="Jenis Kegiatan">
-               <div class="select is-fullwidth">
-                  <select bind:value={jenisKegiatan}>
-                     <option value="" selected disabled hidden
-                        >Pilih Jenis Kegiatan</option
-                     >
-                     <option value="Penelitian">Penelitian</option>
-                     <option value="Pengabdian Masyarakat"
-                        >Pengabdian Masyarakat</option
-                     >
-                  </select>
-               </div>
-            </Field>
-
-            <Field name="Jenis Skema">
-               <div class="select is-fullwidth">
-                  <select bind:value={jenisSkema}>
-                     <option value="" selected disabled hidden
-                        >Pilih Jenis Skema
-                     </option>
-                     {#if jenisKegiatan === "Penelitian"}
-                        <!-- <optgroup label="Skema Penelitian"> -->
-                        <option value="Riset Kelompok Keahlian"
-                           >Riset Kelompok Keahlian</option
+         <div class="box">
+            {#if !view}
+               <p id="days"></p>
+               <p id="hours"></p>
+               <p id="mins"></p>
+               <p id="secs"></p>
+               <Field name="Jenis Proposal">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisProposal}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Proposal</option
                         >
-                        <option value="Riset Terapan">Riset Terapan</option>
-                        <option value="Riset Kerjasama">Riset Kerjasama</option>
-                        <option value="Riset Mandiri">Riset Mandiri</option>
-                        <option value="Riset Eksternal">Riset Eksternal</option>
-                        <!-- </optgroup> -->
-                     {:else}
-                        <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
-                        <option value="Pengabdian Masyarakat Desa Binaan"
-                           >Pengabdian Masyarakat Desa Binaan</option
+                        <option selected value="Proposal Awal"
+                           >Proposal Awal</option
                         >
-                        <option value="Pengabdian Masyarakat UMKM Binaan"
-                           >Pengabdian Masyarakat UMKM Binaan</option
+                        <option value="Proposal Lanjutan"
+                           >Proposal Lanjutan</option
                         >
-                        <option value="Pengabdian Masyarakat Mandiri"
-                           >Pengabdian Masyarakat Mandiri</option
+                     </select>
+                  </div>
+               </Field>
+
+               <Field name="Jenis Kegiatan">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisKegiatan}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Kegiatan</option
                         >
-                        <option value="Pengabdian Masyarakat Hibah Eksternal"
-                           >Pengabdian Masyarakat Hibah Eksternal</option
+                        <option value="Penelitian">Penelitian</option>
+                        <option value="Pengabdian Masyarakat"
+                           >Pengabdian Masyarakat</option
                         >
-                        <!-- </optgroup> -->
-                     {/if}
-                  </select>
-               </div>
-            </Field>
+                     </select>
+                  </div>
+               </Field>
 
-            <Field name="Kelompok Keahlian">
-               <input
-                  class="input"
-                  type="text"
-                  placeholder="Masukkan Kelompok Keahlian"
-                  bind:value={kelompokKeahlian}
-               />
-            </Field>
+               <Field name="Jenis Skema">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisSkema}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Skema
+                        </option>
+                        {#if jenisKegiatan === "Penelitian"}
+                           <!-- <optgroup label="Skema Penelitian"> -->
+                           <option value="Riset Kelompok Keahlian"
+                              >Riset Kelompok Keahlian</option
+                           >
+                           <option value="Riset Terapan">Riset Terapan</option>
+                           <option value="Riset Kerjasama"
+                              >Riset Kerjasama</option
+                           >
+                           <option value="Riset Mandiri">Riset Mandiri</option>
+                           <option value="Riset Eksternal"
+                              >Riset Eksternal</option
+                           >
+                           <!-- </optgroup> -->
+                        {:else}
+                           <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
+                           <option value="Pengabdian Masyarakat Desa Binaan"
+                              >Pengabdian Masyarakat Desa Binaan</option
+                           >
+                           <option value="Pengabdian Masyarakat UMKM Binaan"
+                              >Pengabdian Masyarakat UMKM Binaan</option
+                           >
+                           <option value="Pengabdian Masyarakat Mandiri"
+                              >Pengabdian Masyarakat Mandiri</option
+                           >
+                           <option value="Pengabdian Masyarakat Hibah Eksternal"
+                              >Pengabdian Masyarakat Hibah Eksternal</option
+                           >
+                           <!-- </optgroup> -->
+                        {/if}
+                     </select>
+                  </div>
+               </Field>
 
-            <Field name="Topik">
-               <input
-                  class="input"
-                  type="text"
-                  placeholder="Masukkan Topik"
-                  bind:value={topik}
-               />
-            </Field>
-
-            <Field name="Tanggal Mulai">
-               <div class="field">
-                  <input class="input" type="date" bind:value={tanggalMulai} />
-               </div>
-            </Field>
-
-            <Field name="Tanggal Selesai">
-               <div class="field">
+               <Field name="Kelompok Keahlian">
                   <input
                      class="input"
-                     type="date"
-                     bind:value={tanggalSelesai}
+                     type="text"
+                     placeholder="Masukkan Kelompok Keahlian"
+                     bind:value={kelompokKeahlian}
                   />
-               </div>
-            </Field>
+               </Field>
 
-            <Field name="Biaya Penelitian">
-               <input
-                  class="input"
-                  type="text"
-                  placeholder="Masukkan Biaya Penelitian"
-                  bind:value={biayaPenelitian}
-                  on:keyup={() =>
-                     (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
-               />
-            </Field>
+               <Field name="Topik">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Topik"
+                     bind:value={topik}
+                  />
+               </Field>
 
-            <Field name="Rencana Anggaran Biaya">
-               <input
-                  class="input"
-                  accept=".xlsx"
-                  type="file"
-                  on:change={(e) => (fileRab = e.target.files[0])}
-               />
-            </Field>
+               <Field name="Tanggal Mulai">
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="date"
+                        bind:value={tanggalMulai}
+                     />
+                  </div>
+               </Field>
 
-            <Field name="Anggota Tim">
-               <Select start="2" {items} bind:result={anggotaTim} />
-            </Field>
+               <Field name="Tanggal Selesai">
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="date"
+                        bind:value={tanggalSelesai}
+                     />
+                  </div>
+               </Field>
 
-            <br />
+               <Field name="Biaya Penelitian">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Biaya Penelitian"
+                     bind:value={biayaPenelitian}
+                     on:keyup={() =>
+                        (biayaPenelitian = formatRupiah(
+                           biayaPenelitian,
+                           "Rp. "
+                        ))}
+                  />
+               </Field>
 
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th class="is-narrow" style="width:65px"></th>
-                     <th class="is-narrow">Role</th>
-                     <th>Nama</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td></td>
-                     <td>Ketua</td>
-                     <td>...</td>
-                  </tr>
-                  {#if anggotaTim.length > 0}
-                     {#each anggotaTim as member}
-                        <tr>
-                           <td
-                              ><button
-                                 class="button is-danger is-rounded is-small"
-                                 data-value={member.value}
-                                 on:click={deleteMember}
-                                 ><span class="icon">
-                                    <Icon id="delete" src={deleteIcon} />
-                                 </span></button
-                              ></td
-                           >
-                           <td>Anggota</td>
-                           <td>{member.label}</td>
-                        </tr>
-                     {/each}
-                  {/if}
-               </tbody>
-            </table>
+               <Field name="Rencana Anggaran Biaya">
+                  <input
+                     class="input"
+                     accept=".xlsx"
+                     type="file"
+                     on:change={(e) => (fileRab = e.target.files[0])}
+                  />
+               </Field>
 
-            <hr />
+               <Field name="Anggota Tim">
+                  <Select start="2" {items} bind:result={anggotaTim} />
+               </Field>
 
-            <Field name="Judul">
-               <input
-                  class="input"
-                  type="text"
-                  placeholder="Masukkan Judul"
-                  bind:value={judul}
-               />
-            </Field>
+               <br />
 
-            <Field name="Abstrak">
-               <textarea class="textarea" bind:value={abstrak}></textarea>
-            </Field>
-
-            <!-- <Field name="Isi">
-               <Wysiwyg id="isi" content={isi} />
-            </Field> -->
-
-            <Field name="Proposal">
-               <input
-                  class="input"
-                  accept="application/pdf"
-                  type="file"
-                  on:change={(e) => (filePpm = e.target.files[0])}
-               />
-            </Field>
-
-            <br /><br />
-
-            <hr />
-
-            <div class="columns notification is-danger is-light">
-               <div class="column">
-                  <p style="text-align: justify;">
-                     <strong>Perhatikan</strong> catatan revisi dari evalutor untuk
-                     detail yang akan direvisi!
-                  </p>
-               </div>
-            </div>
-
-            <Field name="Catatan Revisi">
-               <div class="box">
-                  {comment}
-               </div>
-            </Field>
-
-            <Field name="Riwayat Revisi">
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
                   <thead>
                      <tr>
-                        <th>Catatan Revisi</th>
-                        <th>Evalutor</th>
-                        <th class="is-narrow">Waktu</th>
+                        <th class="is-narrow" style="width:65px"></th>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
                      </tr>
                   </thead>
-                  {#if itemsRCR}
-                     <tbody>
-                        {#each itemsRCR as item}
+                  <tbody>
+                     <tr>
+                        <td></td>
+                        <td>Ketua</td>
+                        <td>...</td>
+                     </tr>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member}
                            <tr>
-                              <td>{item.comment}</td>
-                              <td>{item.evaluator}</td>
-                              <td>{item.time}</td>
+                              <td
+                                 ><button
+                                    class="button is-danger is-rounded is-small"
+                                    data-value={member.value}
+                                    on:click={deleteMember}
+                                    ><span class="icon">
+                                       <Icon id="delete" src={deleteIcon} />
+                                    </span></button
+                                 ></td
+                              >
+                              <td>Anggota</td>
+                              <td>{member.label}</td>
                            </tr>
                         {/each}
-                     </tbody>
-                  {/if}
+                     {/if}
+                  </tbody>
                </table>
-            </Field>
-         {:else}
-            <Field name="Jenis Proposal">
-               {jenisProposal}
-            </Field>
 
-            <Field name="Jenis Kegiatan">
-               {jenisKegiatan}
-            </Field>
+               <hr />
 
-            <Field name="Jenis Skema">
-               {jenisSkema}
-            </Field>
+               <Field name="Judul">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Judul"
+                     bind:value={judul}
+                  />
+               </Field>
 
-            <Field name="Kelompok Keahlian">
-               {kelompokKeahlian}
-            </Field>
+               <Field name="Abstrak">
+                  <textarea class="textarea" bind:value={abstrak}></textarea>
+               </Field>
 
-            <Field name="Topik">
-               {topik}
-            </Field>
+               <!-- <Field name="Isi">
+               <Wysiwyg id="isi" content={isi} />
+            </Field> -->
 
-            <Field name="Tanggal Mulai">
-               {tanggalMulai}
-            </Field>
+               <Field name="Proposal">
+                  <input
+                     class="input"
+                     accept="application/pdf"
+                     type="file"
+                     on:change={(e) => (filePpm = e.target.files[0])}
+                  />
+               </Field>
 
-            <Field name="Tanggal Selesai">
-               {tanggalSelesai}
-            </Field>
+               <br /><br />
 
-            <Field name="Biaya Penelitian">
-               {biayaPenelitian}
-            </Field>
+               <hr />
 
-            <Field name="Rencana Anggaran Biaya">
-               <button
-                  class="button is-link is-rounded button is-small"
-                  on:click={handleDownloadRab}>Download RAB</button
-               >
-            </Field>
+               <div class="columns notification is-danger is-light">
+                  <div class="column">
+                     <p style="text-align: justify;">
+                        <strong>Perhatikan</strong> catatan revisi dari evalutor
+                        untuk detail yang akan direvisi!
+                     </p>
+                  </div>
+               </div>
 
-            <Field name="Anggota Tim">
-               <span></span>
-            </Field>
-            <br />
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th class="is-narrow">Role</th>
-                     <th>Nama</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>Ketua</td>
-                     <td>...</td>
-                  </tr>
-                  {#if anggotaTim.length > 0}
-                     {#each anggotaTim as member}
+               <Field name="Catatan Revisi">
+                  <div class="box">
+                     {comment}
+                  </div>
+               </Field>
+
+               <Field name="Riwayat Revisi">
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
                         <tr>
-                           <td>Anggota</td>
-                           <td>{member.label}</td>
+                           <th>Catatan Revisi</th>
+                           <th>Evalutor</th>
+                           <th class="is-narrow">Waktu</th>
                         </tr>
-                     {/each}
-                  {/if}
-               </tbody>
-            </table>
+                     </thead>
+                     {#if itemsRCR}
+                        <tbody>
+                           {#each itemsRCR as item}
+                              <tr>
+                                 <td>{item.comment}</td>
+                                 <td>{item.evaluator}</td>
+                                 <td>{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               </Field>
+            {:else}
+               <Field name="Jenis Proposal">
+                  {jenisProposal}
+               </Field>
 
-            <hr />
+               <Field name="Jenis Kegiatan">
+                  {jenisKegiatan}
+               </Field>
 
-            <Field name="Judul">
-               {data.judul}
-            </Field>
+               <Field name="Jenis Skema">
+                  {jenisSkema}
+               </Field>
 
-            <Field name="Abstrak">
-               {@html data.abstrak}
-            </Field>
+               <Field name="Kelompok Keahlian">
+                  {kelompokKeahlian}
+               </Field>
 
-            <!-- <Field name="Isi">
+               <Field name="Topik">
+                  {topik}
+               </Field>
+
+               <Field name="Tanggal Mulai">
+                  {tanggalMulai}
+               </Field>
+
+               <Field name="Tanggal Selesai">
+                  {tanggalSelesai}
+               </Field>
+
+               <Field name="Biaya Penelitian">
+                  {biayaPenelitian}
+               </Field>
+
+               <Field name="Rencana Anggaran Biaya">
+                  <button
+                     class="button is-link is-rounded button is-small"
+                     on:click={handleDownloadRab}>Download RAB</button
+                  >
+               </Field>
+
+               <Field name="Anggota Tim">
+                  <span></span>
+               </Field>
+               <br />
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Ketua</td>
+                        <td>...</td>
+                     </tr>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member}
+                           <tr>
+                              <td>Anggota</td>
+                              <td>{member.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+
+               <hr />
+
+               <Field name="Judul">
+                  {data.judul}
+               </Field>
+
+               <Field name="Abstrak">
+                  {@html data.abstrak}
+               </Field>
+
+               <!-- <Field name="Isi">
                <div class="box box-padding">
                   {@html data.isi}
                </div>
             </Field> -->
 
-            <Field name="Proposal">
-               <button
-                  class="button is-link is-rounded button is-small"
-                  on:click={handleDownloadPpm}>Download Proposal</button
-               >
-            </Field>
-         {/if}
-
-         <hr />
+               <Field name="Proposal">
+                  <button
+                     class="button is-link is-rounded button is-small"
+                     on:click={handleDownloadPpm}>Download Proposal</button
+                  >
+               </Field>
+            {/if}
+         </div>
 
          <div class="field is-grouped is-grouped-right">
             {#if !view}
@@ -1240,70 +1252,65 @@
       <!-- Tab Biodata Peneliti -->
       {#if tab2 === true}
          {#if status > 10}
-            <div class="columns notification is-danger is-light">
-               <div class="column">
-                  <p style="text-align: justify;">
-                     <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                     sanksinya.
-                  </p>
-               </div>
+            <div class="notification is-danger is-light">
+               <p style="text-align: justify;">
+                  <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                  sanksinya.
+               </p>
             </div>
          {:else}
-            <div class="columns notification is-danger is-light">
-               <div class="column">
-                  <p style="text-align: justify;">
-                     <strong>Biodata</strong> sebagai salah satu syarat dalam
-                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
-                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
-                     peneliti sanggup menerima sanksinya. Jika ada perubahan,
-                     klik
-                     <a href={"/dosen/profile"}>
-                        <strong>Disini!</strong>
-                     </a>
-                  </p>
-               </div>
+            <div class="notification is-danger is-light">
+               <p style="text-align: justify;">
+                  <strong>Biodata</strong> sebagai salah satu syarat dalam
+                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik
+                  <a href={"/dosen/profile"}>
+                     <strong>Disini!</strong>
+                  </a>
+               </p>
             </div>
          {/if}
 
-         <Field name="Nama Lengkap">{namaLengkap}</Field>
-         <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
-         <Field name="NIP">{nip}</Field>
-         <Field name="NIDN">{nidn}</Field>
-         <Field name="Tempat / Tanggal Lahir"
-            >{tempatLahir} / {tanggalLahir}</Field
-         >
-         <Field name="Alamat Rumah">{alamatRumah}</Field>
-         <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
-         <Field name="Nomoh Handphone">{nomorHandphone}</Field>
-         <Field name="Alamat Kantor">{alamatKantor}</Field>
-         <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
-         <Field name="Email">{email}</Field>
-         <Field name="Mata Kuliah">
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
+         <div class="box">
+            <Field name="Nama Lengkap">{namaLengkap}</Field>
+            <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
+            <Field name="NIP">{nip}</Field>
+            <Field name="NIDN">{nidn}</Field>
+            <Field name="Tempat / Tanggal Lahir"
+               >{tempatLahir} / {tanggalLahir}</Field
             >
-               <thead>
-                  <tr>
-                     <th>Mata Kuliah</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {#if mataKuliah && mataKuliah.length > 0}
-                     {#each mataKuliah as matkul}
-                        <tr>
-                           <td>{matkul.label}</td>
-                        </tr>
-                     {/each}
-                  {/if}
-               </tbody>
-            </table>
-         </Field>
+            <Field name="Alamat Rumah">{alamatRumah}</Field>
+            <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
+            <Field name="Nomoh Handphone">{nomorHandphone}</Field>
+            <Field name="Alamat Kantor">{alamatKantor}</Field>
+            <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
+            <Field name="Email">{email}</Field>
+            <Field name="Mata Kuliah">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th>Mata Kuliah</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if mataKuliah && mataKuliah.length > 0}
+                        {#each mataKuliah as matkul}
+                           <tr>
+                              <td>{matkul.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </Field>
+         </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Riwayat Pendidikan</h6>
 
             <table
@@ -1352,9 +1359,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Penelitian</h6>
 
             <table
@@ -1385,9 +1390,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
 
             <table
@@ -1418,9 +1421,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">
                Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
             </h6>
@@ -1451,9 +1452,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">
                Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
             </h6>
@@ -1484,9 +1483,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Penulisan Buku</h6>
 
             <table
@@ -1517,9 +1514,7 @@
             </table>
          </div>
 
-         <br />
-
-         <div>
+         <div class="box">
             <h6 class="title is-6">Pengalaman Hak Kekayaan Intelektual</h6>
 
             <table
@@ -1553,11 +1548,13 @@
 
       <!-- Tab Status -->
       {#if tab3 === true}
-         <Field name="Status PPM">
-            <Status code={data.status} />
-         </Field>
+         <div class="box">
+            <Field name="Status PPM">
+               <Status code={data.status} />
+            </Field>
 
-         <Field name="Status Pendanaan">. . .</Field>
+            <Field name="Status Pendanaan">. . .</Field>
+         </div>
       {/if}
 
       <!-- Tab Logbook -->
