@@ -11,17 +11,16 @@
       check,
    } from "../../store/icons";
    import Select from "../../libs/Select.svelte";
-   import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    let value;
    let label;
+   let warningFormText = false;
 
    let jenisKegiatan = "";
    let jenisProposal = "";
    let jenisSkema = "";
    let kelompokKeahlian = "";
    let judul = "";
-   // let tahunPelaksanaan = "";
    let tanggalMulai = "";
    let tanggalSelesai = "";
    let topik = "";
@@ -57,8 +56,6 @@
    // }
 
    onMount(async () => {
-      // getDataStep();
-
       const accessToken = localStorage.getItem("token");
 
       const headers = {
@@ -357,6 +354,75 @@
          return member.value !== uid;
       });
    }
+
+   let tab1 = true;
+   let tab2;
+   let tab3;
+
+   function clicktab1() {
+      tab1 = true;
+      tab2 = false;
+      tab3 = false;
+   }
+
+   function clicktab2() {
+      const jpValue = document.getElementById("jenisProposal");
+      const jkValue = document.getElementById("jenisKegiatan");
+      const jsValue = document.getElementById("jenisSkema");
+      const kkValue = document.getElementById("kelompokKeahlian");
+      const topikValue = document.getElementById("topik");
+      const tmValue = document.getElementById("tanggalMulai");
+      const tsValue = document.getElementById("tanggalSelesai");
+      const bpValue = document.getElementById("biayaPenelitian");
+      const fileRabValue = document.getElementById("fileRab");
+      // const anggotaTimValue = document.getElementById("anggotaTim");
+      const judulValue = document.getElementById("judul");
+      const maValue = document.getElementById("myAbstract");
+      const filePpmValue = document.getElementById("filePpm");
+
+      // if (
+      //    jpValue.value === "" ||
+      //    jpValue.value == null ||
+      //    jkValue.value === "" ||
+      //    jkValue.value == null ||
+      //    jsValue.value === "" ||
+      //    jsValue.value == null ||
+      //    kkValue.value === "" ||
+      //    kkValue.value == null ||
+      //    topikValue.value === "" ||
+      //    topikValue.value == null ||
+      //    tmValue.value === "" ||
+      //    tmValue.value == null ||
+      //    tsValue.value === "" ||
+      //    tsValue.value == null ||
+      //    bpValue.value === "" ||
+      //    bpValue.value == null ||
+      //    fileRabValue.value === "" ||
+      //    fileRabValue.value == null ||
+      //    judulValue.value === "" ||
+      //    judulValue.value == null ||
+      //    maValue.value === "" ||
+      //    maValue.value == null ||
+      //    filePpmValue.value === "" ||
+      //    filePpmValue.value == null
+      // ) {
+      //    warningFormText = true;
+      // } else {
+      //    tab1 = false;
+      //    tab2 = true;
+      //    tab3 = false;
+      // }
+
+      tab1 = false;
+      tab2 = true;
+      tab3 = false;
+   }
+
+   function clicktab3() {
+      tab1 = false;
+      tab2 = false;
+      tab3 = true;
+   }
 </script>
 
 <Article>
@@ -365,7 +431,14 @@
 
    <div class="box">
       <ul class="steps is-medium has-content-centered">
-         <li data-step="1" class="steps-segment is-active is-dashed">
+         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+         <!-- svelte-ignore a11y-click-events-have-key-events -->
+         <li
+            on:click={clicktab1}
+            class:is-active={tab1}
+            data-step="1"
+            class="steps-segment"
+         >
             <span class="steps-marker">
                <span class="icon">
                   <Icon id="orang" src={penelitian} />
@@ -376,8 +449,15 @@
                <p class="is-size-6">Proposal</p>
             </div>
          </li>
-         <li data-step="2" class="steps-segment is-dashed">
-            <span class="steps-marker is-hollow">
+         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+         <!-- svelte-ignore a11y-click-events-have-key-events -->
+         <li
+            on:click={clicktab2}
+            class:is-active={tab2}
+            data-step="2"
+            class="steps-segment"
+         >
+            <span class="steps-marker">
                <span class="icon">
                   <Icon id="accountEdit" src={accountEdit} />
                </span>
@@ -387,8 +467,15 @@
                <p class="is-size-6">Biodata Peneliti</p>
             </div>
          </li>
-         <li data-step="3" class="steps-segment">
-            <span class="steps-marker is-hollow">
+         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+         <!-- svelte-ignore a11y-click-events-have-key-events -->
+         <li
+            on:click={clicktab3}
+            class:is-active={tab3}
+            data-step="3"
+            class="steps-segment"
+         >
+            <span class="steps-marker">
                <span class="icon">
                   <Icon id="check" src={check} />
                </span>
@@ -402,201 +489,266 @@
 
       <br />
 
-      <Field name="Jenis Proposal">
-         <div class="select is-fullwidth">
-            <select bind:value={jenisProposal}>
-               <option value="" selected disabled hidden
-                  >Pilih Jenis Proposal</option
-               >
-               <option value="Proposal Awal">Proposal Awal</option>
-               <option value="Proposal Lanjutan">Proposal Lanjutan</option>
-            </select>
-         </div>
-      </Field>
-
-      <Field name="Jenis Kegiatan">
-         <div class="select is-fullwidth">
-            <select bind:value={jenisKegiatan}>
-               <option value="" selected disabled hidden
-                  >Pilih Jenis Kegiatan</option
-               >
-               <option value="Penelitian">Penelitian</option>
-               <option value="Pengabdian Masyarakat"
-                  >Pengabdian Masyarakat</option
-               >
-            </select>
-         </div>
-      </Field>
-
-      <Field name="Jenis Skema">
-         <div class="select is-fullwidth">
-            <select bind:value={jenisSkema}>
-               <option value="" selected disabled hidden
-                  >Pilih Jenis Skema
-               </option>
-               {#if jenisKegiatan === "Penelitian"}
-                  <!-- <optgroup label="Skema Penelitian"> -->
-                  <option value="Riset Kelompok Keahlian"
-                     >Riset Kelompok Keahlian</option
+      {#if tab1 === true}
+         <Field name="Jenis Proposal">
+            <div class="select is-fullwidth">
+               <select id="jenisProposal" bind:value={jenisProposal}>
+                  <option value="" selected disabled hidden
+                     >Pilih Jenis Proposal</option
                   >
-                  <option value="Riset Terapan">Riset Terapan</option>
-                  <option value="Riset Kerjasama">Riset Kerjasama</option>
-                  <option value="Riset Mandiri">Riset Mandiri</option>
-                  <option value="Riset Eksternal">Riset Eksternal</option>
-                  <!-- </optgroup> -->
-               {:else}
-                  <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
-                  <option value="Pengabdian Masyarakat Desa Binaan"
-                     >Pengabdian Masyarakat Desa Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat UMKM Binaan"
-                     >Pengabdian Masyarakat UMKM Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat Mandiri"
-                     >Pengabdian Masyarakat Mandiri</option
-                  >
-                  <option value="Pengabdian Masyarakat Hibah Eksternal"
-                     >Pengabdian Masyarakat Hibah Eksternal</option
-                  >
-                  <!-- </optgroup> -->
-               {/if}
-            </select>
-         </div>
-      </Field>
-
-      <Field name="Kelompok Keahlian">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan kelompok keahlian"
-            bind:value={kelompokKeahlian}
-         />
-      </Field>
-
-      <Field name="Topik">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan topik"
-            bind:value={topik}
-         />
-      </Field>
-
-      <Field name="Tanggal Mulai">
-         <div class="field">
-            <input class="input" type="date" bind:value={tanggalMulai} />
-         </div>
-      </Field>
-
-      <Field name="Tanggal Selesai">
-         <div class="field">
-            <input class="input" type="date" bind:value={tanggalSelesai} />
-         </div>
-      </Field>
-
-      <Field name="Biaya Penelitian">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan biaya penelitian"
-            bind:value={biayaPenelitian}
-            on:keyup={() =>
-               (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
-         />
-      </Field>
-
-      {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-         <Field name="Rencana Anggaran Biaya">
-            <input
-               class="input"
-               accept=".xlsx"
-               type="file"
-               on:change={(e) => (fileRab = e.target.files[0])}
-            />
-            <p class="help is-info">File Type: xlsx</p>
+                  <option value="Proposal Awal">Proposal Awal</option>
+                  <option value="Proposal Lanjutan">Proposal Lanjutan</option>
+               </select>
+            </div>
          </Field>
+
+         <Field name="Jenis Kegiatan">
+            <div class="select is-fullwidth">
+               <select id="jenisKegiatan" bind:value={jenisKegiatan}>
+                  <option value="" selected disabled hidden
+                     >Pilih Jenis Kegiatan</option
+                  >
+                  <option value="Penelitian">Penelitian</option>
+                  <option value="Pengabdian Masyarakat"
+                     >Pengabdian Masyarakat</option
+                  >
+               </select>
+            </div>
+         </Field>
+
+         <Field name="Jenis Skema">
+            <div class="select is-fullwidth">
+               <select id="jenisSkema" bind:value={jenisSkema}>
+                  <option value="" selected disabled hidden
+                     >Pilih Jenis Skema
+                  </option>
+                  {#if jenisKegiatan === "Penelitian"}
+                     <!-- <optgroup label="Skema Penelitian"> -->
+                     <option value="Riset Kelompok Keahlian"
+                        >Riset Kelompok Keahlian</option
+                     >
+                     <option value="Riset Terapan">Riset Terapan</option>
+                     <option value="Riset Kerjasama">Riset Kerjasama</option>
+                     <option value="Riset Mandiri">Riset Mandiri</option>
+                     <option value="Riset Eksternal">Riset Eksternal</option>
+                     <!-- </optgroup> -->
+                  {:else}
+                     <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
+                     <option value="Pengabdian Masyarakat Desa Binaan"
+                        >Pengabdian Masyarakat Desa Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat UMKM Binaan"
+                        >Pengabdian Masyarakat UMKM Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat Mandiri"
+                        >Pengabdian Masyarakat Mandiri</option
+                     >
+                     <option value="Pengabdian Masyarakat Hibah Eksternal"
+                        >Pengabdian Masyarakat Hibah Eksternal</option
+                     >
+                     <!-- </optgroup> -->
+                  {/if}
+               </select>
+            </div>
+         </Field>
+
+         <Field name="Kelompok Keahlian">
+            <input
+               id="kelompokKeahlian"
+               class="input"
+               type="text"
+               placeholder="Masukkan kelompok keahlian"
+               bind:value={kelompokKeahlian}
+            />
+         </Field>
+
+         <Field name="Topik">
+            <input
+               id="topik"
+               class="input"
+               type="text"
+               placeholder="Masukkan topik"
+               bind:value={topik}
+            />
+         </Field>
+
+         <Field name="Tanggal Mulai">
+            <div class="field">
+               <input
+                  id="tanggalMulai"
+                  class="input"
+                  type="date"
+                  bind:value={tanggalMulai}
+               />
+            </div>
+         </Field>
+
+         <Field name="Tanggal Selesai">
+            <div class="field">
+               <input
+                  id="tanggalSelesai"
+                  class="input"
+                  type="date"
+                  bind:value={tanggalSelesai}
+               />
+            </div>
+         </Field>
+
+         <Field name="Biaya Penelitian">
+            <input
+               id="biayaPenelitian"
+               class="input"
+               type="text"
+               placeholder="Masukkan biaya penelitian"
+               bind:value={biayaPenelitian}
+               on:keyup={() =>
+                  (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
+            />
+         </Field>
+
+         {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            <Field name="Rencana Anggaran Biaya">
+               <input
+                  id="fileRab"
+                  class="input"
+                  accept=".xlsx"
+                  type="file"
+                  on:change={(e) => (fileRab = e.target.files[0])}
+               />
+               <p class="help is-info">File Type: xlsx</p>
+            </Field>
+         {/if}
+
+         <Field name="Anggota Tim">
+            <Select
+               id="anggotaTim"
+               start="2"
+               {items}
+               bind:result={anggotaTim}
+            />
+         </Field>
+
+         <br />
+
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+            <thead>
+               <tr>
+                  <th class="is-narrow" style="width:55px"></th>
+                  <th class="is-narrow" style="width:86px">Role</th>
+                  <th> </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td></td>
+                  <td>Ketua</td>
+                  <td>...</td>
+               </tr>
+               {#if anggotaTim.length > 0}
+                  {#each anggotaTim as member}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              data-value={member.value}
+                              on:click={deleteMember}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>Anggota</td>
+                        <td>{member.label}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+
+         <hr />
+
+         <Field name="Judul">
+            <input
+               id="judul"
+               class="input"
+               type="text"
+               placeholder="Masukkan judul"
+               bind:value={judul}
+            />
+         </Field>
+
+         <Field name="Abstrak">
+            <textarea
+               id="myAbstract"
+               class="textarea"
+               bind:value={myAbstract}
+               placeholder="Masukkan abstrak"
+            ></textarea>
+         </Field>
+
+         <Field name="Proposal">
+            <input
+               id="filePpm"
+               class="input"
+               accept="application/pdf"
+               type="file"
+               on:change={(e) => (filePpm = e.target.files[0])}
+            />
+            <p class="help is-info">File Type: pdf</p>
+         </Field>
+
+         {#if warningFormText === true}
+            <div class="field is-grouped is-grouped-right">
+               <p class="has-text-danger">
+                  Lengkapi semua form untuk ke step selanjutnya.
+               </p>
+            </div>
+         {/if}
       {/if}
 
-      <Field name="Anggota Tim">
-         <Select start="2" {items} bind:result={anggotaTim} />
-      </Field>
+      {#if tab2 === true}
+         <h3>Tab 2</h3>
+      {/if}
 
-      <br />
-
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow" style="width:55px"></th>
-               <th class="is-narrow" style="width:86px">Role</th>
-               <th> </th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td></td>
-               <td>Ketua</td>
-               <td>...</td>
-            </tr>
-            {#if anggotaTim.length > 0}
-               {#each anggotaTim as member}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-small"
-                           data-value={member.value}
-                           on:click={deleteMember}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>Anggota</td>
-                     <td>{member.label}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
-
-      <hr />
-
-      <Field name="Judul">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan judul"
-            bind:value={judul}
-         />
-      </Field>
-
-      <Field name="Abstrak">
-         <textarea
-            class="textarea"
-            bind:value={myAbstract}
-            placeholder="Masukkan abstrak"
-         ></textarea>
-      </Field>
-
-      <Field name="Proposal">
-         <input
-            class="input"
-            accept="application/pdf"
-            type="file"
-            on:change={(e) => (filePpm = e.target.files[0])}
-         />
-         <p class="help is-info">File Type: pdf</p>
-      </Field>
+      {#if tab3 === true}
+         <h3>Tab 3</h3>
+      {/if}
    </div>
 
-   <div class="field is-grouped is-grouped-right">
-      <p class="control">
-         <button class="button is-info is-light" on:click={simpanProposal}
-            >Simpan</button
-         >
-      </p>
-      <p class="control">
-         <button class="button is-info" on:click={submitProposal}>Submit</button
-         >
-      </p>
-   </div>
+   {#if tab1 === true}
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button is-info" on:click={clicktab2}>Next</button>
+         </p>
+      </div>
+   {/if}
+
+   {#if tab2 === true}
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button" on:click={clicktab1}>Back</button>
+         </p>
+         <p class="control">
+            <button class="button is-info" on:click={clicktab3}>Next</button>
+         </p>
+      </div>
+   {/if}
+
+   {#if tab3 === true}
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button" on:click={clicktab2}>Back</button>
+         </p>
+         <p class="control">
+            <button class="button is-info is-light" on:click={simpanProposal}
+               >Simpan</button
+            >
+         </p>
+         <p class="control">
+            <button class="button is-info" on:click={submitProposal}
+               >Submit</button
+            >
+         </p>
+      </div>
+   {/if}
 </Article>

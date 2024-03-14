@@ -774,126 +774,132 @@
       <!-- <Field name="Id Profile">{idProfile}</Field> -->
       <!-- <Field name="Id User">{idUser}</Field> -->
 
-      <Field name="Nama Lengkap">
-         <input class="input" type="text" bind:value={namaLengkap} />
-         <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
-      </Field>
+      <div class="box">
+         <Field name="Nama Lengkap">
+            <input class="input" type="text" bind:value={namaLengkap} />
+            <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
+         </Field>
 
-      <Field name="Jabatan Fungsional">
-         <input
-            class="input"
-            type="text"
-            bind:value={jabatanFungsional}
-         /></Field
-      >
+         <Field name="Jabatan Fungsional">
+            <input
+               class="input"
+               type="text"
+               bind:value={jabatanFungsional}
+            /></Field
+         >
 
-      <Field name="NIP">
-         <input class="input" type="number" bind:value={nip} /></Field
-      >
-      <Field name="NIDN">
-         <input class="input" type="number" bind:value={nidn} /></Field
-      >
+         <Field name="NIP">
+            <input class="input" type="number" bind:value={nip} /></Field
+         >
+         <Field name="NIDN">
+            <input class="input" type="number" bind:value={nidn} /></Field
+         >
 
-      <Field name="Tempat / Tanggal Lahir">
-         <div class="field-body">
-            <div class="field">
-               <input class="input" type="text" bind:value={tempatLahir} />
+         <Field name="Tempat / Tanggal Lahir">
+            <div class="field-body">
+               <div class="field">
+                  <input class="input" type="text" bind:value={tempatLahir} />
+               </div>
+               <div class="field">
+                  <input class="input" type="date" bind:value={tanggalLahir} />
+               </div>
             </div>
-            <div class="field">
-               <input class="input" type="date" bind:value={tanggalLahir} />
+         </Field>
+
+         <Field name="Alamat Rumah">
+            <input class="input" type="text" bind:value={alamatRumah} />
+         </Field>
+
+         <Field name="Telp/Fax Rumah">
+            <input class="input" type="number" bind:value={telpFaxRumah} />
+         </Field>
+
+         <Field name="Nomor Handphone">
+            <input
+               class="input"
+               type="number"
+               bind:value={nomorHandphone}
+            /></Field
+         >
+         <Field name="Alamat Kantor">
+            <input class="input" type="text" bind:value={alamatKantor} /></Field
+         >
+
+         <Field name="Telp/Fax Kantor">
+            <input
+               class="input"
+               type="number"
+               bind:value={telpFaxKantor}
+            /></Field
+         >
+         <Field class="input" name="Email">
+            <input class="input" type="text" bind:value={email} />
+         </Field>
+
+         <Field name="Mata Kuliah">
+            <div class="field is-grouped">
+               <p class="control is-expanded">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Tambahkan mata kuliah yang diampu"
+                     bind:value={vmataKuliah}
+                  />
+               </p>
+               <p class="control">
+                  <button
+                     on:click={addMatkul}
+                     class="button is-info"
+                     disabled={vmataKuliah ? false : true}
+                  >
+                     <span class="icon">
+                        <Icon id="orang" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </p>
             </div>
-         </div>
-      </Field>
+         </Field>
+         <br />
 
-      <Field name="Alamat Rumah">
-         <input class="input" type="text" bind:value={alamatRumah} />
-      </Field>
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+            <thead>
+               <tr>
+                  <th class="is-narrow"></th>
+                  <th>Mata Kuliah</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if mataKuliah && mataKuliah.length > 0}
+                  {#each mataKuliah as matkul}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-rounded is-small"
+                              data-value={matkul.label}
+                              on:click={deleteMatkul}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{matkul.label}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
 
-      <Field name="Telp/Fax Rumah">
-         <input class="input" type="number" bind:value={telpFaxRumah} />
-      </Field>
+         <hr />
 
-      <Field name="Nomor Handphone">
-         <input
-            class="input"
-            type="number"
-            bind:value={nomorHandphone}
-         /></Field
-      >
-      <Field name="Alamat Kantor">
-         <input class="input" type="text" bind:value={alamatKantor} /></Field
-      >
-
-      <Field name="Telp/Fax Kantor">
-         <input class="input" type="number" bind:value={telpFaxKantor} /></Field
-      >
-      <Field class="input" name="Email">
-         <input class="input" type="text" bind:value={email} />
-      </Field>
-
-      <Field name="Mata Kuliah">
-         <div class="field is-grouped">
-            <p class="control is-expanded">
-               <input
-                  class="input"
-                  type="text"
-                  placeholder="Tambahkan mata kuliah yang diampu"
-                  bind:value={vmataKuliah}
-               />
-            </p>
+         <div class="field is-grouped is-grouped-right">
             <p class="control">
-               <button
-                  on:click={addMatkul}
-                  class="button is-info"
-                  disabled={vmataKuliah ? false : true}
+               <button class="button is-info" on:click={simpanIdentitas}
+                  >Simpan</button
                >
-                  <span class="icon">
-                     <Icon id="orang" src={add} />
-                  </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
-                  <span><a>Tambah</a></span>
-               </button>
             </p>
          </div>
-      </Field>
-      <br />
-
-      <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-         <thead>
-            <tr>
-               <th class="is-narrow"></th>
-               <th>Mata Kuliah</th>
-            </tr>
-         </thead>
-         <tbody>
-            {#if mataKuliah && mataKuliah.length > 0}
-               {#each mataKuliah as matkul}
-                  <tr>
-                     <td
-                        ><button
-                           class="button is-danger is-rounded is-small"
-                           data-value={matkul.label}
-                           on:click={deleteMatkul}
-                           ><span class="icon">
-                              <Icon id="delete" src={deleteIcon} />
-                           </span></button
-                        ></td
-                     >
-                     <td>{matkul.label}</td>
-                  </tr>
-               {/each}
-            {/if}
-         </tbody>
-      </table>
-
-      <hr />
-
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanIdentitas}
-               >Simpan</button
-            >
-         </p>
       </div>
    {/if}
 

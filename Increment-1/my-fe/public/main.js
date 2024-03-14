@@ -32496,6 +32496,7 @@
     return child_ctx;
   }
   function create_if_block_86(ctx) {
+    let div1;
     let field0;
     let t0;
     let field1;
@@ -32529,7 +32530,7 @@
     let t16;
     let hr;
     let t17;
-    let div;
+    let div0;
     let p;
     let button;
     let current;
@@ -32627,6 +32628,7 @@
     );
     return {
       c() {
+        div1 = element("div");
         create_component(field0.$$.fragment);
         t0 = space();
         create_component(field1.$$.fragment);
@@ -32663,53 +32665,55 @@
         t16 = space();
         hr = element("hr");
         t17 = space();
-        div = element("div");
+        div0 = element("div");
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
         attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
+        attr(div0, "class", "field is-grouped is-grouped-right");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t9, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t10, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t11, anchor);
-        insert(target, br, anchor);
-        insert(target, t12, anchor);
-        insert(target, table, anchor);
+        insert(target, div1, anchor);
+        mount_component(field0, div1, null);
+        append(div1, t0);
+        mount_component(field1, div1, null);
+        append(div1, t1);
+        mount_component(field2, div1, null);
+        append(div1, t2);
+        mount_component(field3, div1, null);
+        append(div1, t3);
+        mount_component(field4, div1, null);
+        append(div1, t4);
+        mount_component(field5, div1, null);
+        append(div1, t5);
+        mount_component(field6, div1, null);
+        append(div1, t6);
+        mount_component(field7, div1, null);
+        append(div1, t7);
+        mount_component(field8, div1, null);
+        append(div1, t8);
+        mount_component(field9, div1, null);
+        append(div1, t9);
+        mount_component(field10, div1, null);
+        append(div1, t10);
+        mount_component(field11, div1, null);
+        append(div1, t11);
+        append(div1, br);
+        append(div1, t12);
+        append(div1, table);
         append(table, thead);
         append(table, t15);
         append(table, tbody);
         if (if_block)
           if_block.m(tbody, null);
-        insert(target, t16, anchor);
-        insert(target, hr, anchor);
-        insert(target, t17, anchor);
-        insert(target, div, anchor);
-        append(div, p);
+        append(div1, t16);
+        append(div1, hr);
+        append(div1, t17);
+        append(div1, div0);
+        append(div0, p);
         append(p, button);
         current = true;
         if (!mounted) {
@@ -32868,38 +32872,20 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(t11);
-          detach(br);
-          detach(t12);
-          detach(table);
-          detach(t16);
-          detach(hr);
-          detach(t17);
-          detach(div);
+          detach(div1);
         }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -40436,8 +40422,455 @@
   init_define_process();
   function get_each_context13(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[39] = list[i];
+    child_ctx[45] = list[i];
     return child_ctx;
+  }
+  function create_if_block_57(ctx) {
+    let field0;
+    let t0;
+    let field1;
+    let t1;
+    let field2;
+    let t2;
+    let field3;
+    let t3;
+    let field4;
+    let t4;
+    let field5;
+    let t5;
+    let field6;
+    let t6;
+    let field7;
+    let t7;
+    let t8;
+    let field8;
+    let t9;
+    let br;
+    let t10;
+    let table;
+    let thead;
+    let t14;
+    let tbody;
+    let tr1;
+    let t19;
+    let t20;
+    let hr;
+    let t21;
+    let field9;
+    let t22;
+    let field10;
+    let t23;
+    let field11;
+    let t24;
+    let if_block2_anchor;
+    let current;
+    field0 = new Field_default({
+      props: {
+        name: "Jenis Proposal",
+        $$slots: { default: [create_default_slot_136] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jenis Kegiatan",
+        $$slots: { default: [create_default_slot_126] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "Jenis Skema",
+        $$slots: { default: [create_default_slot_118] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "Kelompok Keahlian",
+        $$slots: { default: [create_default_slot_105] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Topik",
+        $$slots: { default: [create_default_slot_95] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Tanggal Mulai",
+        $$slots: { default: [create_default_slot_85] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Tanggal Selesai",
+        $$slots: { default: [create_default_slot_75] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Biaya Penelitian",
+        $$slots: { default: [create_default_slot_65] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block0 = (
+      /*jenisSkema*/
+      (ctx[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+      ctx[2] === "Riset Terapan" || /*jenisSkema*/
+      ctx[2] === "Riset Kerjasama" || /*jenisSkema*/
+      ctx[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+      ctx[2] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_87(ctx)
+    );
+    field8 = new Field_default({
+      props: {
+        name: "Anggota Tim",
+        $$slots: { default: [create_default_slot_411] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*anggotaTim*/
+      ctx[9].length > 0 && create_if_block_77(ctx)
+    );
+    field9 = new Field_default({
+      props: {
+        name: "Judul",
+        $$slots: { default: [create_default_slot_317] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "Abstrak",
+        $$slots: { default: [create_default_slot_218] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "Proposal",
+        $$slots: { default: [create_default_slot_119] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block2 = warningFormText === true && create_if_block_67(ctx);
+    return {
+      c() {
+        create_component(field0.$$.fragment);
+        t0 = space();
+        create_component(field1.$$.fragment);
+        t1 = space();
+        create_component(field2.$$.fragment);
+        t2 = space();
+        create_component(field3.$$.fragment);
+        t3 = space();
+        create_component(field4.$$.fragment);
+        t4 = space();
+        create_component(field5.$$.fragment);
+        t5 = space();
+        create_component(field6.$$.fragment);
+        t6 = space();
+        create_component(field7.$$.fragment);
+        t7 = space();
+        if (if_block0)
+          if_block0.c();
+        t8 = space();
+        create_component(field8.$$.fragment);
+        t9 = space();
+        br = element("br");
+        t10 = space();
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:55px"></th> <th class="is-narrow" style="width:86px">Role</th> <th></th></tr>`;
+        t14 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
+        t19 = space();
+        if (if_block1)
+          if_block1.c();
+        t20 = space();
+        hr = element("hr");
+        t21 = space();
+        create_component(field9.$$.fragment);
+        t22 = space();
+        create_component(field10.$$.fragment);
+        t23 = space();
+        create_component(field11.$$.fragment);
+        t24 = space();
+        if (if_block2)
+          if_block2.c();
+        if_block2_anchor = empty();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        mount_component(field0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t1, anchor);
+        mount_component(field2, target, anchor);
+        insert(target, t2, anchor);
+        mount_component(field3, target, anchor);
+        insert(target, t3, anchor);
+        mount_component(field4, target, anchor);
+        insert(target, t4, anchor);
+        mount_component(field5, target, anchor);
+        insert(target, t5, anchor);
+        mount_component(field6, target, anchor);
+        insert(target, t6, anchor);
+        mount_component(field7, target, anchor);
+        insert(target, t7, anchor);
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t8, anchor);
+        mount_component(field8, target, anchor);
+        insert(target, t9, anchor);
+        insert(target, br, anchor);
+        insert(target, t10, anchor);
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t14);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tbody, t19);
+        if (if_block1)
+          if_block1.m(tbody, null);
+        insert(target, t20, anchor);
+        insert(target, hr, anchor);
+        insert(target, t21, anchor);
+        mount_component(field9, target, anchor);
+        insert(target, t22, anchor);
+        mount_component(field10, target, anchor);
+        insert(target, t23, anchor);
+        mount_component(field11, target, anchor);
+        insert(target, t24, anchor);
+        if (if_block2)
+          if_block2.m(target, anchor);
+        insert(target, if_block2_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty[0] & /*jenisProposal*/
+        2 | dirty[1] & /*$$scope*/
+        131072) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[0] & /*jenisKegiatan*/
+        1 | dirty[1] & /*$$scope*/
+        131072) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[0] & /*jenisSkema, jenisKegiatan*/
+        5 | dirty[1] & /*$$scope*/
+        131072) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[0] & /*kelompokKeahlian*/
+        8 | dirty[1] & /*$$scope*/
+        131072) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[0] & /*topik*/
+        128 | dirty[1] & /*$$scope*/
+        131072) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[0] & /*tanggalMulai*/
+        32 | dirty[1] & /*$$scope*/
+        131072) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[0] & /*tanggalSelesai*/
+        64 | dirty[1] & /*$$scope*/
+        131072) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[0] & /*biayaPenelitian*/
+        256 | dirty[1] & /*$$scope*/
+        131072) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        if (
+          /*jenisSkema*/
+          ctx2[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+          ctx2[2] === "Riset Terapan" || /*jenisSkema*/
+          ctx2[2] === "Riset Kerjasama" || /*jenisSkema*/
+          ctx2[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+          ctx2[2] === "Pengabdian Masyarakat UMKM Binaan"
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+            if (dirty[0] & /*jenisSkema*/
+            4) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_87(ctx2);
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(t8.parentNode, t8);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
+        const field8_changes = {};
+        if (dirty[0] & /*items, anggotaTim*/
+        2560 | dirty[1] & /*$$scope*/
+        131072) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        if (
+          /*anggotaTim*/
+          ctx2[9].length > 0
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty[0] & /*anggotaTim*/
+            512) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block_77(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(tbody, null);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+        const field9_changes = {};
+        if (dirty[0] & /*judul*/
+        16 | dirty[1] & /*$$scope*/
+        131072) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[0] & /*myAbstract*/
+        1024 | dirty[1] & /*$$scope*/
+        131072) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[0] & /*filePpm*/
+        8192 | dirty[1] & /*$$scope*/
+        131072) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(if_block0);
+        transition_in(field8.$$.fragment, local);
+        transition_in(if_block1);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(if_block0);
+        transition_out(field8.$$.fragment, local);
+        transition_out(if_block1);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+          detach(t3);
+          detach(t4);
+          detach(t5);
+          detach(t6);
+          detach(t7);
+          detach(t8);
+          detach(t9);
+          detach(br);
+          detach(t10);
+          detach(table);
+          detach(t20);
+          detach(hr);
+          detach(t21);
+          detach(t22);
+          detach(t23);
+          detach(t24);
+          detach(if_block2_anchor);
+        }
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        destroy_component(field2, detaching);
+        destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+        destroy_component(field5, detaching);
+        destroy_component(field6, detaching);
+        destroy_component(field7, detaching);
+        if (if_block0)
+          if_block0.d(detaching);
+        destroy_component(field8, detaching);
+        if (if_block1)
+          if_block1.d();
+        destroy_component(field9, detaching);
+        destroy_component(field10, detaching);
+        destroy_component(field11, detaching);
+        if (if_block2)
+          if_block2.d(detaching);
+      }
+    };
   }
   function create_default_slot_136(ctx) {
     let div;
@@ -40466,13 +40899,14 @@
         set_input_value(option1, option1.__value);
         option2.__value = "Proposal Lanjutan";
         set_input_value(option2, option2.__value);
+        attr(select, "id", "jenisProposal");
         if (
           /*jenisProposal*/
           ctx[1] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[17].call(select)
+            ctx[23].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -40493,7 +40927,7 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[17]
+            ctx[23]
           );
           mounted = true;
         }
@@ -40544,13 +40978,14 @@
         set_input_value(option1, option1.__value);
         option2.__value = "Pengabdian Masyarakat";
         set_input_value(option2, option2.__value);
+        attr(select, "id", "jenisKegiatan");
         if (
           /*jenisKegiatan*/
           ctx[0] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[18].call(select)
+            ctx[24].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -40571,7 +41006,7 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[18]
+            ctx[24]
           );
           mounted = true;
         }
@@ -40635,7 +41070,7 @@
       }
     };
   }
-  function create_if_block_29(ctx) {
+  function create_if_block_96(ctx) {
     let option0;
     let option1;
     let option2;
@@ -40693,7 +41128,7 @@
         /*jenisKegiatan*/
         ctx2[0] === "Penelitian"
       )
-        return create_if_block_29;
+        return create_if_block_96;
       return create_else_block5;
     }
     let current_block_type = select_block_type(ctx, [-1, -1]);
@@ -40703,20 +41138,21 @@
         div = element("div");
         select = element("select");
         option = element("option");
-        option.textContent = "Pilih Jenis Skema\r\n               ";
+        option.textContent = "Pilih Jenis Skema\r\n                  ";
         if_block.c();
         option.__value = "";
         set_input_value(option, option.__value);
         option.selected = true;
         option.disabled = true;
         option.hidden = true;
+        attr(select, "id", "jenisSkema");
         if (
           /*jenisSkema*/
           ctx[2] === void 0
         )
           add_render_callback(() => (
             /*select_change_handler_2*/
-            ctx[19].call(select)
+            ctx[25].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -40736,7 +41172,7 @@
             select,
             "change",
             /*select_change_handler_2*/
-            ctx[19]
+            ctx[25]
           );
           mounted = true;
         }
@@ -40776,6 +41212,7 @@
     return {
       c() {
         input = element("input");
+        attr(input, "id", "kelompokKeahlian");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan kelompok keahlian");
@@ -40792,7 +41229,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[20]
+            ctx[26]
           );
           mounted = true;
         }
@@ -40824,6 +41261,7 @@
     return {
       c() {
         input = element("input");
+        attr(input, "id", "topik");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan topik");
@@ -40840,7 +41278,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[21]
+            ctx[27]
           );
           mounted = true;
         }
@@ -40874,6 +41312,7 @@
       c() {
         div = element("div");
         input = element("input");
+        attr(input, "id", "tanggalMulai");
         attr(input, "class", "input");
         attr(input, "type", "date");
         attr(div, "class", "field");
@@ -40891,7 +41330,7 @@
             input,
             "input",
             /*input_input_handler_2*/
-            ctx[22]
+            ctx[28]
           );
           mounted = true;
         }
@@ -40924,6 +41363,7 @@
       c() {
         div = element("div");
         input = element("input");
+        attr(input, "id", "tanggalSelesai");
         attr(input, "class", "input");
         attr(input, "type", "date");
         attr(div, "class", "field");
@@ -40941,7 +41381,7 @@
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[23]
+            ctx[29]
           );
           mounted = true;
         }
@@ -40972,6 +41412,7 @@
     return {
       c() {
         input = element("input");
+        attr(input, "id", "biayaPenelitian");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan biaya penelitian");
@@ -40989,13 +41430,13 @@
               input,
               "input",
               /*input_input_handler_4*/
-              ctx[24]
+              ctx[30]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[25]
+              ctx[31]
             )
           ];
           mounted = true;
@@ -41021,7 +41462,7 @@
       }
     };
   }
-  function create_if_block_118(ctx) {
+  function create_if_block_87(ctx) {
     let field;
     let current;
     field = new Field_default({
@@ -41043,7 +41484,7 @@
         const field_changes = {};
         if (dirty[0] & /*fileRab*/
         4096 | dirty[1] & /*$$scope*/
-        2048) {
+        131072) {
           field_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field.$set(field_changes);
@@ -41075,6 +41516,7 @@
         t0 = space();
         p = element("p");
         p.textContent = "File Type: xlsx";
+        attr(input, "id", "fileRab");
         attr(input, "class", "input");
         attr(input, "accept", ".xlsx");
         attr(input, "type", "file");
@@ -41089,7 +41531,7 @@
             input,
             "change",
             /*change_handler*/
-            ctx[26]
+            ctx[32]
           );
           mounted = true;
         }
@@ -41111,12 +41553,16 @@
     let updating_result;
     let current;
     function select_result_binding(value) {
-      ctx[27](value);
+      ctx[33](value);
     }
-    let select_props = { start: "2", items: (
-      /*items*/
-      ctx[11]
-    ) };
+    let select_props = {
+      id: "anggotaTim",
+      start: "2",
+      items: (
+        /*items*/
+        ctx[11]
+      )
+    };
     if (
       /*anggotaTim*/
       ctx[9] !== void 0
@@ -41164,7 +41610,7 @@
       }
     };
   }
-  function create_if_block16(ctx) {
+  function create_if_block_77(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -41196,7 +41642,7 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim, deleteMember*/
-        66048) {
+        524800) {
           each_value = ensure_array_like(
             /*anggotaTim*/
             ctx2[9]
@@ -41257,7 +41703,7 @@
     let td2;
     let t3_value = (
       /*member*/
-      ctx[39].label + ""
+      ctx[45].label + ""
     );
     let t3;
     let t4;
@@ -41282,7 +41728,7 @@
         attr(span, "class", "icon");
         attr(button, "class", "button is-danger is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[39].value);
+        ctx[45].value);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -41302,7 +41748,7 @@
             button,
             "click",
             /*deleteMember*/
-            ctx[16]
+            ctx[19]
           );
           mounted = true;
         }
@@ -41310,12 +41756,12 @@
       p(ctx2, dirty) {
         if (!current || dirty[0] & /*anggotaTim*/
         512 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[39].value)) {
+        ctx2[45].value)) {
           attr(button, "data-value", button_data_value_value);
         }
         if ((!current || dirty[0] & /*anggotaTim*/
         512) && t3_value !== (t3_value = /*member*/
-        ctx2[39].label + ""))
+        ctx2[45].label + ""))
           set_data(t3, t3_value);
       },
       i(local) {
@@ -41345,6 +41791,7 @@
     return {
       c() {
         input = element("input");
+        attr(input, "id", "judul");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan judul");
@@ -41361,7 +41808,7 @@
             input,
             "input",
             /*input_input_handler_5*/
-            ctx[28]
+            ctx[34]
           );
           mounted = true;
         }
@@ -41393,6 +41840,7 @@
     return {
       c() {
         textarea = element("textarea");
+        attr(textarea, "id", "myAbstract");
         attr(textarea, "class", "textarea");
         attr(textarea, "placeholder", "Masukkan abstrak");
       },
@@ -41408,7 +41856,7 @@
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[29]
+            ctx[35]
           );
           mounted = true;
         }
@@ -41444,6 +41892,7 @@
         t0 = space();
         p = element("p");
         p.textContent = "File Type: pdf";
+        attr(input, "id", "filePpm");
         attr(input, "class", "input");
         attr(input, "accept", "application/pdf");
         attr(input, "type", "file");
@@ -41458,7 +41907,7 @@
             input,
             "change",
             /*change_handler_1*/
-            ctx[30]
+            ctx[36]
           );
           mounted = true;
         }
@@ -41475,10 +41924,240 @@
       }
     };
   }
+  function create_if_block_67(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.innerHTML = `<p class="has-text-danger">Lengkapi semua form untuk ke step selanjutnya.</p>`;
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+      }
+    };
+  }
+  function create_if_block_48(ctx) {
+    let h3;
+    return {
+      c() {
+        h3 = element("h3");
+        h3.textContent = "Tab 2";
+      },
+      m(target, anchor) {
+        insert(target, h3, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h3);
+        }
+      }
+    };
+  }
+  function create_if_block_38(ctx) {
+    let h3;
+    return {
+      c() {
+        h3 = element("h3");
+        h3.textContent = "Tab 3";
+      },
+      m(target, anchor) {
+        insert(target, h3, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h3);
+        }
+      }
+    };
+  }
+  function create_if_block_29(ctx) {
+    let div;
+    let p;
+    let button;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        p = element("p");
+        button = element("button");
+        button.textContent = "Next";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, button);
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*clicktab2*/
+            ctx[21]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_118(ctx) {
+    let div;
+    let p0;
+    let button0;
+    let t1;
+    let p1;
+    let button1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        p0 = element("p");
+        button0 = element("button");
+        button0.textContent = "Back";
+        t1 = space();
+        p1 = element("p");
+        button1 = element("button");
+        button1.textContent = "Next";
+        attr(button0, "class", "button");
+        attr(p0, "class", "control");
+        attr(button1, "class", "button is-info");
+        attr(p1, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, p0);
+        append(p0, button0);
+        append(div, t1);
+        append(div, p1);
+        append(p1, button1);
+        if (!mounted) {
+          dispose = [
+            listen(
+              button0,
+              "click",
+              /*clicktab1*/
+              ctx[20]
+            ),
+            listen(
+              button1,
+              "click",
+              /*clicktab3*/
+              ctx[22]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block16(ctx) {
+    let div;
+    let p0;
+    let button0;
+    let t1;
+    let p1;
+    let button1;
+    let t3;
+    let p2;
+    let button2;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        p0 = element("p");
+        button0 = element("button");
+        button0.textContent = "Back";
+        t1 = space();
+        p1 = element("p");
+        button1 = element("button");
+        button1.textContent = "Simpan";
+        t3 = space();
+        p2 = element("p");
+        button2 = element("button");
+        button2.textContent = "Submit";
+        attr(button0, "class", "button");
+        attr(p0, "class", "control");
+        attr(button1, "class", "button is-info is-light");
+        attr(p1, "class", "control");
+        attr(button2, "class", "button is-info");
+        attr(p2, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, p0);
+        append(p0, button0);
+        append(div, t1);
+        append(div, p1);
+        append(p1, button1);
+        append(div, t3);
+        append(div, p2);
+        append(p2, button2);
+        if (!mounted) {
+          dispose = [
+            listen(
+              button0,
+              "click",
+              /*clicktab2*/
+              ctx[21]
+            ),
+            listen(
+              button1,
+              "click",
+              /*simpanProposal*/
+              ctx[17]
+            ),
+            listen(
+              button2,
+              "click",
+              /*submitProposal*/
+              ctx[18]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
   function create_default_slot17(ctx) {
     let h1;
     let t1;
-    let hr0;
+    let hr;
     let t2;
     let div3;
     let ul;
@@ -41503,50 +42182,14 @@
     let t13;
     let div2;
     let t17;
-    let br0;
+    let br;
     let t18;
-    let field0;
     let t19;
-    let field1;
     let t20;
-    let field2;
     let t21;
-    let field3;
     let t22;
-    let field4;
     let t23;
-    let field5;
-    let t24;
-    let field6;
-    let t25;
-    let field7;
-    let t26;
-    let t27;
-    let field8;
-    let t28;
-    let br1;
-    let t29;
-    let table;
-    let thead;
-    let t33;
-    let tbody;
-    let tr1;
-    let t38;
-    let t39;
-    let hr1;
-    let t40;
-    let field9;
-    let t41;
-    let field10;
-    let t42;
-    let field11;
-    let t43;
-    let div4;
-    let p6;
-    let button0;
-    let t45;
-    let p7;
-    let button1;
+    let if_block5_anchor;
     let current;
     let mounted;
     let dispose;
@@ -41555,108 +42198,36 @@
       props: { id: "accountEdit", src: accountEdit }
     });
     icon2 = new Icon_default({ props: { id: "check", src: check } });
-    field0 = new Field_default({
-      props: {
-        name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_136] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_126] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_118] },
-        $$scope: { ctx }
-      }
-    });
-    field3 = new Field_default({
-      props: {
-        name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_105] },
-        $$scope: { ctx }
-      }
-    });
-    field4 = new Field_default({
-      props: {
-        name: "Topik",
-        $$slots: { default: [create_default_slot_95] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Mulai",
-        $$slots: { default: [create_default_slot_85] },
-        $$scope: { ctx }
-      }
-    });
-    field6 = new Field_default({
-      props: {
-        name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_75] },
-        $$scope: { ctx }
-      }
-    });
-    field7 = new Field_default({
-      props: {
-        name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_65] },
-        $$scope: { ctx }
-      }
-    });
     let if_block0 = (
-      /*jenisSkema*/
-      (ctx[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[2] === "Riset Terapan" || /*jenisSkema*/
-      ctx[2] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[2] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_118(ctx)
+      /*tab1*/
+      ctx[14] === true && create_if_block_57(ctx)
     );
-    field8 = new Field_default({
-      props: {
-        name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_411] },
-        $$scope: { ctx }
-      }
-    });
     let if_block1 = (
-      /*anggotaTim*/
-      ctx[9].length > 0 && create_if_block16(ctx)
+      /*tab2*/
+      ctx[15] === true && create_if_block_48(ctx)
     );
-    field9 = new Field_default({
-      props: {
-        name: "Judul",
-        $$slots: { default: [create_default_slot_317] },
-        $$scope: { ctx }
-      }
-    });
-    field10 = new Field_default({
-      props: {
-        name: "Abstrak",
-        $$slots: { default: [create_default_slot_218] },
-        $$scope: { ctx }
-      }
-    });
-    field11 = new Field_default({
-      props: {
-        name: "Proposal",
-        $$slots: { default: [create_default_slot_119] },
-        $$scope: { ctx }
-      }
-    });
+    let if_block2 = (
+      /*tab3*/
+      ctx[16] === true && create_if_block_38(ctx)
+    );
+    let if_block3 = (
+      /*tab1*/
+      ctx[14] === true && create_if_block_29(ctx)
+    );
+    let if_block4 = (
+      /*tab2*/
+      ctx[15] === true && create_if_block_118(ctx)
+    );
+    let if_block5 = (
+      /*tab3*/
+      ctx[16] === true && create_if_block16(ctx)
+    );
     return {
       c() {
         h1 = element("h1");
         h1.textContent = "Pendaftaran Proposal";
         t1 = space();
-        hr0 = element("hr");
+        hr = element("hr");
         t2 = space();
         div3 = element("div");
         ul = element("ul");
@@ -41684,87 +42255,67 @@
         div2 = element("div");
         div2.innerHTML = `<p class="is-size-5"><b>Step 3</b></p> <p class="is-size-6">Next Step</p>`;
         t17 = space();
-        br0 = element("br");
+        br = element("br");
         t18 = space();
-        create_component(field0.$$.fragment);
-        t19 = space();
-        create_component(field1.$$.fragment);
-        t20 = space();
-        create_component(field2.$$.fragment);
-        t21 = space();
-        create_component(field3.$$.fragment);
-        t22 = space();
-        create_component(field4.$$.fragment);
-        t23 = space();
-        create_component(field5.$$.fragment);
-        t24 = space();
-        create_component(field6.$$.fragment);
-        t25 = space();
-        create_component(field7.$$.fragment);
-        t26 = space();
         if (if_block0)
           if_block0.c();
-        t27 = space();
-        create_component(field8.$$.fragment);
-        t28 = space();
-        br1 = element("br");
-        t29 = space();
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow" style="width:55px"></th> <th class="is-narrow" style="width:86px">Role</th> <th></th></tr>`;
-        t33 = space();
-        tbody = element("tbody");
-        tr1 = element("tr");
-        tr1.innerHTML = `<td></td> <td>Ketua</td> <td>...</td>`;
-        t38 = space();
+        t19 = space();
         if (if_block1)
           if_block1.c();
-        t39 = space();
-        hr1 = element("hr");
-        t40 = space();
-        create_component(field9.$$.fragment);
-        t41 = space();
-        create_component(field10.$$.fragment);
-        t42 = space();
-        create_component(field11.$$.fragment);
-        t43 = space();
-        div4 = element("div");
-        p6 = element("p");
-        button0 = element("button");
-        button0.textContent = "Simpan";
-        t45 = space();
-        p7 = element("p");
-        button1 = element("button");
-        button1.textContent = "Submit";
+        t20 = space();
+        if (if_block2)
+          if_block2.c();
+        t21 = space();
+        if (if_block3)
+          if_block3.c();
+        t22 = space();
+        if (if_block4)
+          if_block4.c();
+        t23 = space();
+        if (if_block5)
+          if_block5.c();
+        if_block5_anchor = empty();
         attr(h1, "class", "title is-1");
         attr(span0, "class", "icon");
         attr(span1, "class", "steps-marker");
         attr(div0, "class", "steps-content");
         attr(li0, "data-step", "1");
-        attr(li0, "class", "steps-segment is-active is-dashed");
+        attr(li0, "class", "steps-segment");
+        toggle_class(
+          li0,
+          "is-active",
+          /*tab1*/
+          ctx[14]
+        );
         attr(span2, "class", "icon");
-        attr(span3, "class", "steps-marker is-hollow");
+        attr(span3, "class", "steps-marker");
         attr(div1, "class", "steps-content");
         attr(li1, "data-step", "2");
-        attr(li1, "class", "steps-segment is-dashed");
+        attr(li1, "class", "steps-segment");
+        toggle_class(
+          li1,
+          "is-active",
+          /*tab2*/
+          ctx[15]
+        );
         attr(span4, "class", "icon");
-        attr(span5, "class", "steps-marker is-hollow");
+        attr(span5, "class", "steps-marker");
         attr(div2, "class", "steps-content");
         attr(li2, "data-step", "3");
         attr(li2, "class", "steps-segment");
+        toggle_class(
+          li2,
+          "is-active",
+          /*tab3*/
+          ctx[16]
+        );
         attr(ul, "class", "steps is-medium has-content-centered");
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
         attr(div3, "class", "box");
-        attr(button0, "class", "button is-info is-light");
-        attr(p6, "class", "control");
-        attr(button1, "class", "button is-info");
-        attr(p7, "class", "control");
-        attr(div4, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
-        insert(target, hr0, anchor);
+        insert(target, hr, anchor);
         insert(target, t2, anchor);
         insert(target, div3, anchor);
         append(div3, ul);
@@ -41789,149 +42340,94 @@
         append(li2, t13);
         append(li2, div2);
         append(div3, t17);
-        append(div3, br0);
+        append(div3, br);
         append(div3, t18);
-        mount_component(field0, div3, null);
-        append(div3, t19);
-        mount_component(field1, div3, null);
-        append(div3, t20);
-        mount_component(field2, div3, null);
-        append(div3, t21);
-        mount_component(field3, div3, null);
-        append(div3, t22);
-        mount_component(field4, div3, null);
-        append(div3, t23);
-        mount_component(field5, div3, null);
-        append(div3, t24);
-        mount_component(field6, div3, null);
-        append(div3, t25);
-        mount_component(field7, div3, null);
-        append(div3, t26);
         if (if_block0)
           if_block0.m(div3, null);
-        append(div3, t27);
-        mount_component(field8, div3, null);
-        append(div3, t28);
-        append(div3, br1);
-        append(div3, t29);
-        append(div3, table);
-        append(table, thead);
-        append(table, t33);
-        append(table, tbody);
-        append(tbody, tr1);
-        append(tbody, t38);
+        append(div3, t19);
         if (if_block1)
-          if_block1.m(tbody, null);
-        append(div3, t39);
-        append(div3, hr1);
-        append(div3, t40);
-        mount_component(field9, div3, null);
-        append(div3, t41);
-        mount_component(field10, div3, null);
-        append(div3, t42);
-        mount_component(field11, div3, null);
-        insert(target, t43, anchor);
-        insert(target, div4, anchor);
-        append(div4, p6);
-        append(p6, button0);
-        append(div4, t45);
-        append(div4, p7);
-        append(p7, button1);
+          if_block1.m(div3, null);
+        append(div3, t20);
+        if (if_block2)
+          if_block2.m(div3, null);
+        insert(target, t21, anchor);
+        if (if_block3)
+          if_block3.m(target, anchor);
+        insert(target, t22, anchor);
+        if (if_block4)
+          if_block4.m(target, anchor);
+        insert(target, t23, anchor);
+        if (if_block5)
+          if_block5.m(target, anchor);
+        insert(target, if_block5_anchor, anchor);
         current = true;
         if (!mounted) {
           dispose = [
             listen(
-              button0,
+              li0,
               "click",
-              /*simpanProposal*/
-              ctx[14]
+              /*clicktab1*/
+              ctx[20]
             ),
             listen(
-              button1,
+              li1,
               "click",
-              /*submitProposal*/
-              ctx[15]
+              /*clicktab2*/
+              ctx[21]
+            ),
+            listen(
+              li2,
+              "click",
+              /*clicktab3*/
+              ctx[22]
             )
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        const field0_changes = {};
-        if (dirty[0] & /*jenisProposal*/
-        2 | dirty[1] & /*$$scope*/
-        2048) {
-          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        if (!current || dirty[0] & /*tab1*/
+        16384) {
+          toggle_class(
+            li0,
+            "is-active",
+            /*tab1*/
+            ctx2[14]
+          );
         }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty[0] & /*jenisKegiatan*/
-        1 | dirty[1] & /*$$scope*/
-        2048) {
-          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        if (!current || dirty[0] & /*tab2*/
+        32768) {
+          toggle_class(
+            li1,
+            "is-active",
+            /*tab2*/
+            ctx2[15]
+          );
         }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty[0] & /*jenisSkema, jenisKegiatan*/
-        5 | dirty[1] & /*$$scope*/
-        2048) {
-          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        if (!current || dirty[0] & /*tab3*/
+        65536) {
+          toggle_class(
+            li2,
+            "is-active",
+            /*tab3*/
+            ctx2[16]
+          );
         }
-        field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty[0] & /*kelompokKeahlian*/
-        8 | dirty[1] & /*$$scope*/
-        2048) {
-          field3_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field3.$set(field3_changes);
-        const field4_changes = {};
-        if (dirty[0] & /*topik*/
-        128 | dirty[1] & /*$$scope*/
-        2048) {
-          field4_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field4.$set(field4_changes);
-        const field5_changes = {};
-        if (dirty[0] & /*tanggalMulai*/
-        32 | dirty[1] & /*$$scope*/
-        2048) {
-          field5_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field5.$set(field5_changes);
-        const field6_changes = {};
-        if (dirty[0] & /*tanggalSelesai*/
-        64 | dirty[1] & /*$$scope*/
-        2048) {
-          field6_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field6.$set(field6_changes);
-        const field7_changes = {};
-        if (dirty[0] & /*biayaPenelitian*/
-        256 | dirty[1] & /*$$scope*/
-        2048) {
-          field7_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field7.$set(field7_changes);
         if (
-          /*jenisSkema*/
-          ctx2[2] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[2] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[2] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[2] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[2] === "Pengabdian Masyarakat UMKM Binaan"
+          /*tab1*/
+          ctx2[14] === true
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
-            if (dirty[0] & /*jenisSkema*/
-            4) {
+            if (dirty[0] & /*tab1*/
+            16384) {
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_118(ctx2);
+            if_block0 = create_if_block_57(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
-            if_block0.m(div3, t27);
+            if_block0.m(div3, t19);
           }
         } else if (if_block0) {
           group_outros();
@@ -41940,57 +42436,79 @@
           });
           check_outros();
         }
-        const field8_changes = {};
-        if (dirty[0] & /*items, anggotaTim*/
-        2560 | dirty[1] & /*$$scope*/
-        2048) {
-          field8_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field8.$set(field8_changes);
         if (
-          /*anggotaTim*/
-          ctx2[9].length > 0
+          /*tab2*/
+          ctx2[15] === true
         ) {
           if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*anggotaTim*/
-            512) {
-              transition_in(if_block1, 1);
-            }
           } else {
-            if_block1 = create_if_block16(ctx2);
+            if_block1 = create_if_block_48(ctx2);
             if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(tbody, null);
+            if_block1.m(div3, t20);
           }
         } else if (if_block1) {
-          group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
-          check_outros();
+          if_block1.d(1);
+          if_block1 = null;
         }
-        const field9_changes = {};
-        if (dirty[0] & /*judul*/
-        16 | dirty[1] & /*$$scope*/
-        2048) {
-          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        if (
+          /*tab3*/
+          ctx2[16] === true
+        ) {
+          if (if_block2) {
+          } else {
+            if_block2 = create_if_block_38(ctx2);
+            if_block2.c();
+            if_block2.m(div3, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
         }
-        field9.$set(field9_changes);
-        const field10_changes = {};
-        if (dirty[0] & /*myAbstract*/
-        1024 | dirty[1] & /*$$scope*/
-        2048) {
-          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        if (
+          /*tab1*/
+          ctx2[14] === true
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_29(ctx2);
+            if_block3.c();
+            if_block3.m(t22.parentNode, t22);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
         }
-        field10.$set(field10_changes);
-        const field11_changes = {};
-        if (dirty[0] & /*filePpm*/
-        8192 | dirty[1] & /*$$scope*/
-        2048) {
-          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        if (
+          /*tab2*/
+          ctx2[15] === true
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_118(ctx2);
+            if_block4.c();
+            if_block4.m(t23.parentNode, t23);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
         }
-        field11.$set(field11_changes);
+        if (
+          /*tab3*/
+          ctx2[16] === true
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block16(ctx2);
+            if_block5.c();
+            if_block5.m(if_block5_anchor.parentNode, if_block5_anchor);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
       },
       i(local) {
         if (current)
@@ -41998,71 +42516,43 @@
         transition_in(icon0.$$.fragment, local);
         transition_in(icon1.$$.fragment, local);
         transition_in(icon2.$$.fragment, local);
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
-        transition_in(field4.$$.fragment, local);
-        transition_in(field5.$$.fragment, local);
-        transition_in(field6.$$.fragment, local);
-        transition_in(field7.$$.fragment, local);
         transition_in(if_block0);
-        transition_in(field8.$$.fragment, local);
-        transition_in(if_block1);
-        transition_in(field9.$$.fragment, local);
-        transition_in(field10.$$.fragment, local);
-        transition_in(field11.$$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(icon0.$$.fragment, local);
         transition_out(icon1.$$.fragment, local);
         transition_out(icon2.$$.fragment, local);
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
-        transition_out(field4.$$.fragment, local);
-        transition_out(field5.$$.fragment, local);
-        transition_out(field6.$$.fragment, local);
-        transition_out(field7.$$.fragment, local);
         transition_out(if_block0);
-        transition_out(field8.$$.fragment, local);
-        transition_out(if_block1);
-        transition_out(field9.$$.fragment, local);
-        transition_out(field10.$$.fragment, local);
-        transition_out(field11.$$.fragment, local);
         current = false;
       },
       d(detaching) {
         if (detaching) {
           detach(h1);
           detach(t1);
-          detach(hr0);
+          detach(hr);
           detach(t2);
           detach(div3);
-          detach(t43);
-          detach(div4);
+          detach(t21);
+          detach(t22);
+          detach(t23);
+          detach(if_block5_anchor);
         }
         destroy_component(icon0);
         destroy_component(icon1);
         destroy_component(icon2);
-        destroy_component(field0);
-        destroy_component(field1);
-        destroy_component(field2);
-        destroy_component(field3);
-        destroy_component(field4);
-        destroy_component(field5);
-        destroy_component(field6);
-        destroy_component(field7);
         if (if_block0)
           if_block0.d();
-        destroy_component(field8);
         if (if_block1)
           if_block1.d();
-        destroy_component(field9);
-        destroy_component(field10);
-        destroy_component(field11);
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d(detaching);
+        if (if_block4)
+          if_block4.d(detaching);
+        if (if_block5)
+          if_block5.d(detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -42087,9 +42577,9 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*filePpm, myAbstract, judul, anggotaTim, items, fileRab, jenisSkema, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal*/
-        16383 | dirty[1] & /*$$scope*/
-        2048) {
+        if (dirty[0] & /*tab3, tab2, tab1, filePpm, myAbstract, judul, anggotaTim, items, fileRab, jenisSkema, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal*/
+        131071 | dirty[1] & /*$$scope*/
+        131072) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -42109,6 +42599,7 @@
       }
     };
   }
+  var warningFormText = false;
   function formatRupiah4(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
     if (ribuan) {
@@ -42121,8 +42612,8 @@
   function instance32($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(33, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(34, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(39, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(40, $apiURL = $$value));
     let value;
     let label;
     let jenisKegiatan = "";
@@ -42357,6 +42848,36 @@
         return member.value !== uid;
       }));
     }
+    let tab1 = true;
+    let tab2;
+    let tab3;
+    function clicktab1() {
+      $$invalidate(14, tab1 = true);
+      $$invalidate(15, tab2 = false);
+      $$invalidate(16, tab3 = false);
+    }
+    function clicktab2() {
+      const jpValue = document.getElementById("jenisProposal");
+      const jkValue = document.getElementById("jenisKegiatan");
+      const jsValue = document.getElementById("jenisSkema");
+      const kkValue = document.getElementById("kelompokKeahlian");
+      const topikValue = document.getElementById("topik");
+      const tmValue = document.getElementById("tanggalMulai");
+      const tsValue = document.getElementById("tanggalSelesai");
+      const bpValue = document.getElementById("biayaPenelitian");
+      const fileRabValue = document.getElementById("fileRab");
+      const judulValue = document.getElementById("judul");
+      const maValue = document.getElementById("myAbstract");
+      const filePpmValue = document.getElementById("filePpm");
+      $$invalidate(14, tab1 = false);
+      $$invalidate(15, tab2 = true);
+      $$invalidate(16, tab3 = false);
+    }
+    function clicktab3() {
+      $$invalidate(14, tab1 = false);
+      $$invalidate(15, tab2 = false);
+      $$invalidate(16, tab3 = true);
+    }
     function select_change_handler() {
       jenisProposal = select_value(this);
       $$invalidate(1, jenisProposal);
@@ -42419,9 +42940,15 @@
       items,
       fileRab,
       filePpm,
+      tab1,
+      tab2,
+      tab3,
       simpanProposal,
       submitProposal,
       deleteMember,
+      clicktab1,
+      clicktab2,
+      clicktab3,
       select_change_handler,
       select_change_handler_1,
       select_change_handler_2,
@@ -45340,7 +45867,7 @@
       }
     };
   }
-  function create_if_block_57(ctx) {
+  function create_if_block_58(ctx) {
     let t0;
     let field0;
     let t1;
@@ -45599,19 +46126,19 @@
     );
     let if_block3 = (
       /*dataPD*/
-      ctx[5] && create_if_block_96(ctx)
+      ctx[5] && create_if_block_97(ctx)
     );
     let if_block4 = (
       /*dataPPub*/
-      ctx[6] && create_if_block_87(ctx)
+      ctx[6] && create_if_block_88(ctx)
     );
     let if_block5 = (
       /*dataPPB*/
-      ctx[7] && create_if_block_77(ctx)
+      ctx[7] && create_if_block_78(ctx)
     );
     let if_block6 = (
       /*dataPHKI*/
-      ctx[8] && create_if_block_67(ctx)
+      ctx[8] && create_if_block_68(ctx)
     );
     return {
       c() {
@@ -46264,7 +46791,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block_96(ctx2);
+            if_block3 = create_if_block_97(ctx2);
             if_block3.c();
             if_block3.m(tbody3, null);
           }
@@ -46279,7 +46806,7 @@
           if (if_block4) {
             if_block4.p(ctx2, dirty);
           } else {
-            if_block4 = create_if_block_87(ctx2);
+            if_block4 = create_if_block_88(ctx2);
             if_block4.c();
             if_block4.m(tbody4, null);
           }
@@ -46294,7 +46821,7 @@
           if (if_block5) {
             if_block5.p(ctx2, dirty);
           } else {
-            if_block5 = create_if_block_77(ctx2);
+            if_block5 = create_if_block_78(ctx2);
             if_block5.c();
             if_block5.m(tbody5, null);
           }
@@ -46309,7 +46836,7 @@
           if (if_block6) {
             if_block6.p(ctx2, dirty);
           } else {
-            if_block6 = create_if_block_67(ctx2);
+            if_block6 = create_if_block_68(ctx2);
             if_block6.c();
             if_block6.m(tbody6, null);
           }
@@ -47259,7 +47786,7 @@
       }
     };
   }
-  function create_if_block_96(ctx) {
+  function create_if_block_97(ctx) {
     let each_1_anchor;
     let each_value_3 = ensure_array_like(
       /*dataPD*/
@@ -47402,7 +47929,7 @@
       }
     };
   }
-  function create_if_block_87(ctx) {
+  function create_if_block_88(ctx) {
     let each_1_anchor;
     let each_value_2 = ensure_array_like(
       /*dataPPub*/
@@ -47545,7 +48072,7 @@
       }
     };
   }
-  function create_if_block_77(ctx) {
+  function create_if_block_78(ctx) {
     let each_1_anchor;
     let each_value_1 = ensure_array_like(
       /*dataPPB*/
@@ -47705,7 +48232,7 @@
       }
     };
   }
-  function create_if_block_67(ctx) {
+  function create_if_block_68(ctx) {
     let each_1_anchor;
     let each_value = ensure_array_like(
       /*dataPHKI*/
@@ -47865,7 +48392,7 @@
       }
     };
   }
-  function create_if_block_48(ctx) {
+  function create_if_block_49(ctx) {
     let field0;
     let t;
     let field1;
@@ -47986,7 +48513,7 @@
       }
     };
   }
-  function create_if_block_38(ctx) {
+  function create_if_block_39(ctx) {
     let div2;
     let div0;
     let t1;
@@ -48235,15 +48762,15 @@
     );
     let if_block1 = (
       /*tab2*/
-      ctx[54] === true && create_if_block_57(ctx)
+      ctx[54] === true && create_if_block_58(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[55] === true && create_if_block_48(ctx)
+      ctx[55] === true && create_if_block_49(ctx)
     );
     let if_block3 = (
       /*tab4*/
-      ctx[56] === true && create_if_block_38(ctx)
+      ctx[56] === true && create_if_block_39(ctx)
     );
     let if_block4 = (
       /*tab5*/
@@ -48502,7 +49029,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_57(ctx2);
+            if_block1 = create_if_block_58(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(t15.parentNode, t15);
@@ -48525,7 +49052,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_48(ctx2);
+            if_block2 = create_if_block_49(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(t16.parentNode, t16);
@@ -48548,7 +49075,7 @@
               transition_in(if_block3, 1);
             }
           } else {
-            if_block3 = create_if_block_38(ctx2);
+            if_block3 = create_if_block_39(ctx2);
             if_block3.c();
             transition_in(if_block3, 1);
             if_block3.m(t17.parentNode, t17);
