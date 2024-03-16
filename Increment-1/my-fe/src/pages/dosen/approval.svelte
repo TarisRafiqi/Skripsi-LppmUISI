@@ -46,11 +46,15 @@
          <table class="table is-fullwidth is-striped is-hoverable">
             <thead>
                <tr>
-                  <th>Judul</th>
-                  <th class="is-narrow">Jenis Kegiatan</th>
-                  <th class="is-narrow">Jenis Skema</th>
-                  <th>Status</th>
-                  <th colspan="2">Action</th>
+                  <th style="width: 50%;">Judul</th>
+                  <th style="width: 10%; text-align: center" class="is-narrow"
+                     >Jenis Kegiatan</th
+                  >
+                  <th style="width: auto; text-align: center" class="is-narrow"
+                     >Jenis Skema</th
+                  >
+                  <th style="width: 15%; text-align: center">Status</th>
+                  <th style="width: 5%;" colspan="2">Action</th>
                </tr>
             </thead>
 
@@ -59,9 +63,10 @@
                   {#each items as item}
                      {#if item.status === 10}
                         <tr>
-                           <td>{item.judul}</td>
-                           <td><p>{item.jenis_kegiatan}</p></td>
-                           <td><p>{item.jenis_skema}</p></td>
+                           <td class="judul">{item.judul}</td>
+                           <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
+                           >
+                           <td class="skema"><p>{item.jenis_skema}</p></td>
                            <td class="status" pid={item.id}>
                               <Status code={item.status} />
                            </td>
@@ -84,9 +89,10 @@
                   {#each items as item}
                      {#if item.status === 8}
                         <tr>
-                           <td>{item.judul}</td>
-                           <td><p>{item.jenis_kegiatan}</p></td>
-                           <td><p>{item.jenis_skema}</p></td>
+                           <td class="judul">{item.judul}</td>
+                           <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
+                           >
+                           <td class="skema"><p>{item.jenis_skema}</p></td>
                            <td class="status" pid={item.id}>
                               <Status code={item.status} />
                            </td>
@@ -109,9 +115,10 @@
                   {#each items as item}
                      {#if item.status === 6}
                         <tr>
-                           <td>{item.judul}</td>
-                           <td><p>{item.jenis_kegiatan}</p></td>
-                           <td><p>{item.jenis_skema}</p></td>
+                           <td class="judul">{item.judul}</td>
+                           <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
+                           >
+                           <td class="skema"><p>{item.jenis_skema}</p></td>
                            <td class="status" pid={item.id}>
                               <Status code={item.status} />
                            </td>
@@ -134,9 +141,10 @@
                   {#each items as item}
                      {#if item.status === 4}
                         <tr>
-                           <td>{item.judul}</td>
-                           <td><p>{item.jenis_kegiatan}</p></td>
-                           <td><p>{item.jenis_skema}</p></td>
+                           <td class="judul">{item.judul}</td>
+                           <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
+                           >
+                           <td class="skema"><p>{item.jenis_skema}</p></td>
                            <td class="status" pid={item.id}>
                               <Status code={item.status} />
                            </td>
@@ -161,11 +169,18 @@
 {/if}
 
 <style>
-   .review {
-      cursor: pointer;
+   .judul {
+      text-align: justify;
    }
 
-   .status {
+   .kegiatan,
+   .skema,
+   .status,
+   .review {
       text-align: center;
+   }
+
+   .review {
+      cursor: pointer;
    }
 </style>

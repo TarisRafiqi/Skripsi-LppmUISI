@@ -47,20 +47,24 @@
          <table class="table is-fullwidth is-striped is-hoverable">
             <thead>
                <tr>
-                  <th>Judul</th>
-                  <th class="is-narrow">Jenis Kegiatan</th>
-                  <th class="is-narrow">Jenis Skema</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th style="width: 50%;">Judul</th>
+                  <th style="width: 10%; text-align: center" class="is-narrow"
+                     >Jenis Kegiatan</th
+                  >
+                  <th style="width: auto; text-align: center" class="is-narrow"
+                     >Jenis Skema</th
+                  >
+                  <th style="width: 15%; text-align: center">Status</th>
+                  <th style="width: 5%;" colspan="2">Action</th>
                </tr>
             </thead>
 
             <tbody>
                {#each items as item}
                   <tr>
-                     <td><p>{item.judul}</p> </td>
-                     <td><p>{item.jenis_kegiatan}</p></td>
-                     <td><p>{item.jenis_skema}</p></td>
+                     <td class="judul"><p>{item.judul}</p> </td>
+                     <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
+                     <td class="skema"><p>{item.jenis_skema}</p></td>
                      <td class="status"><Status code={item.status} /></td>
                      <td class="review"
                         ><button
@@ -82,17 +86,18 @@
 {/if}
 
 <style>
-   th {
-      text-align: center;
-   }
-   p {
+   .judul {
       text-align: justify;
    }
+
+   .kegiatan,
+   .skema,
+   .status,
    .review {
-      cursor: pointer;
+      text-align: center;
    }
 
-   .status {
-      text-align: center;
+   .review {
+      cursor: pointer;
    }
 </style>

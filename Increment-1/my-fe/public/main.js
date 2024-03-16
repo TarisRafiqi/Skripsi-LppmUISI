@@ -13754,31 +13754,13 @@
 
   // src/modules/Status.svelte
   init_define_process();
-  function create_if_block_132(ctx) {
-    let span;
-    return {
-      c() {
-        span = element("span");
-        span.textContent = "PPM Selesai";
-        attr(span, "class", "tag is-success is-rounded");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(span);
-        }
-      }
-    };
-  }
   function create_if_block_122(ctx) {
     let span;
     return {
       c() {
         span = element("span");
-        span.textContent = "PPM Berjalan";
-        attr(span, "class", "tag is-link is-rounded");
+        span.textContent = "Proposal Diterima";
+        attr(span, "class", "tag is-link is-success is-rounded");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -14074,11 +14056,6 @@
         ctx2[0] === 12
       )
         return create_if_block_122;
-      if (
-        /*code*/
-        ctx2[0] === 13
-      )
-        return create_if_block_132;
     }
     let current_block_type = select_block_type(ctx, -1);
     let if_block = current_block_type && current_block_type(ctx);
@@ -19103,7 +19080,7 @@
       }
     };
   }
-  function create_if_block_133(ctx) {
+  function create_if_block_132(ctx) {
     let each_1_anchor;
     let each_value_6 = ensure_array_like(
       /*mataKuliah*/
@@ -19203,7 +19180,7 @@
     let if_block = (
       /*mataKuliah*/
       ctx[43] && /*mataKuliah*/
-      ctx[43].length > 0 && create_if_block_133(ctx)
+      ctx[43].length > 0 && create_if_block_132(ctx)
     );
     return {
       c() {
@@ -19233,7 +19210,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_133(ctx2);
+            if_block = create_if_block_132(ctx2);
             if_block.c();
             if_block.m(tbody, null);
           }
@@ -22280,15 +22257,15 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(p0, "class", "svelte-1fo15t");
-        attr(p1, "class", "svelte-1fo15t");
-        attr(p2, "class", "svelte-1fo15t");
-        attr(td3, "class", "status svelte-1fo15t");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "uid", button_uid_value = /*item*/
         ctx[4].id);
-        attr(td4, "class", "review svelte-1fo15t");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -22403,7 +22380,7 @@
         div = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th class="svelte-1fo15t">Judul</th> <th class="is-narrow svelte-1fo15t">Jenis Kegiatan</th> <th class="is-narrow svelte-1fo15t">Jenis Skema</th> <th class="svelte-1fo15t">Status</th> <th class="svelte-1fo15t">Action</th></tr>`;
+        thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
         t12 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
@@ -24478,14 +24455,17 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(td3, "class", "status svelte-1eb6cem");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
-        attr(td4, "class", "review svelte-1eb6cem");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -24780,14 +24760,17 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(td3, "class", "status svelte-1eb6cem");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
-        attr(td4, "class", "review svelte-1eb6cem");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -25082,14 +25065,17 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(td3, "class", "status svelte-1eb6cem");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
-        attr(td4, "class", "review svelte-1eb6cem");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -25384,14 +25370,17 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(td3, "class", "status svelte-1eb6cem");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
-        attr(td4, "class", "review svelte-1eb6cem");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -25588,7 +25577,7 @@
         div1 = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow">Jenis Kegiatan</th> <th class="is-narrow">Jenis Skema</th> <th>Status</th> <th colspan="2">Action</th></tr>`;
+        thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
         t16 = space();
         tbody = element("tbody");
         if (if_block0)
@@ -25893,7 +25882,7 @@
       }
     };
   }
-  function create_if_block_134(ctx) {
+  function create_if_block_133(ctx) {
     let div;
     let field0;
     let t0;
@@ -30133,7 +30122,7 @@
     binding_callbacks.push(() => bind(modalerror, "show", modalerror_show_binding));
     let if_block0 = (
       /*tab1*/
-      ctx[48] === true && create_if_block_134(ctx)
+      ctx[48] === true && create_if_block_133(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -30398,7 +30387,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_134(ctx2);
+            if_block0 = create_if_block_133(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t15.parentNode, t15);
@@ -31172,13 +31161,13 @@
         em0 = element("em");
         strong0 = element("strong");
         t1 = text(t1_value);
-        t2 = text("\r\n                           tersisa\r\n                           ");
+        t2 = text("\r\n                        tersisa\r\n                        ");
         em1 = element("em");
         strong1 = element("strong");
         t3 = text(t3_value);
-        t4 = text(".\r\n                           Berakhir pada ");
+        t4 = text(". Berakhir\r\n                        pada ");
         t5 = text(t5_value);
-        t6 = text(".\r\n                           ");
+        t6 = text(".\r\n                        ");
         hr = element("hr");
         t7 = space();
         attr(li, "align", "justify");
@@ -31262,7 +31251,6 @@
     let t18;
     let div13;
     let t22;
-    let div21;
     let div20;
     let div19;
     let div17;
@@ -31341,7 +31329,6 @@
         div13 = element("div");
         div13.innerHTML = `<p class="heading">HKI</p> <p class="title">...</p>`;
         t22 = space();
-        div21 = element("div");
         div20 = element("div");
         div19 = element("div");
         div17 = element("div");
@@ -31353,30 +31340,30 @@
         if (if_block)
           if_block.c();
         attr(h1, "class", "title is-1");
-        attr(div0, "class", "flex-item-left svelte-gz7kfg");
+        attr(div0, "class", "flex-item-left svelte-1skwhu2");
         attr(p0, "class", "heading");
         attr(p1, "class", "title");
-        attr(div1, "class", "flex-item-right has-text-centered svelte-gz7kfg");
-        attr(div2, "class", "box svelte-gz7kfg");
+        attr(div1, "class", "flex-item-right has-text-centered svelte-1skwhu2");
+        attr(div2, "class", "box svelte-1skwhu2");
         attr(div3, "class", "column");
-        attr(div4, "class", "flex-item-left svelte-gz7kfg");
+        attr(div4, "class", "flex-item-left svelte-1skwhu2");
         attr(p2, "class", "heading");
         attr(p3, "class", "title");
-        attr(div5, "class", "flex-item-right has-text-centered svelte-gz7kfg");
-        attr(div6, "class", "box svelte-gz7kfg");
+        attr(div5, "class", "flex-item-right has-text-centered svelte-1skwhu2");
+        attr(div6, "class", "box svelte-1skwhu2");
         attr(div7, "class", "column");
-        attr(div8, "class", "flex-item-left svelte-gz7kfg");
-        attr(div9, "class", "flex-item-right has-text-centered svelte-gz7kfg");
-        attr(div10, "class", "box svelte-gz7kfg");
+        attr(div8, "class", "flex-item-left svelte-1skwhu2");
+        attr(div9, "class", "flex-item-right has-text-centered svelte-1skwhu2");
+        attr(div10, "class", "box svelte-1skwhu2");
         attr(div11, "class", "column");
-        attr(div12, "class", "flex-item-left svelte-gz7kfg");
-        attr(div13, "class", "flex-item-right has-text-centered svelte-gz7kfg");
-        attr(div14, "class", "box svelte-gz7kfg");
+        attr(div12, "class", "flex-item-left svelte-1skwhu2");
+        attr(div13, "class", "flex-item-right has-text-centered svelte-1skwhu2");
+        attr(div14, "class", "box svelte-1skwhu2");
         attr(div15, "class", "column");
         attr(div16, "class", "columns");
+        attr(div18, "class", "child svelte-1skwhu2");
         attr(div19, "class", "column");
-        attr(div20, "class", "child svelte-gz7kfg");
-        attr(div21, "class", "box parent svelte-gz7kfg");
+        attr(div20, "class", "box parent svelte-1skwhu2");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
@@ -31420,8 +31407,7 @@
         append(div14, t18);
         append(div14, div13);
         insert(target, t22, anchor);
-        insert(target, div21, anchor);
-        append(div21, div20);
+        insert(target, div20, anchor);
         append(div20, div19);
         append(div19, div17);
         append(div19, t24);
@@ -31487,7 +31473,7 @@
           detach(t2);
           detach(div16);
           detach(t22);
-          detach(div21);
+          detach(div20);
         }
         destroy_component(icon0);
         destroy_component(icon1);
@@ -31762,17 +31748,17 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t7 = space();
-        attr(p0, "class", "svelte-4z2166");
-        attr(p1, "class", "svelte-4z2166");
-        attr(p2, "class", "svelte-4z2166");
-        attr(td3, "class", "status svelte-4z2166");
+        attr(td0, "class", "judul svelte-1olobvf");
+        attr(td1, "class", "kegiatan svelte-1olobvf");
+        attr(td2, "class", "skema svelte-1olobvf");
+        attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[3].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[3].id);
-        attr(td4, "class", "review svelte-4z2166");
+        attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -31897,7 +31883,7 @@
         div = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow">Jenis Kegiatan</th> <th class="is-narrow">Jenis Skema</th> <th>Status</th> <th colspan="2">Action</th></tr>`;
+        thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
         t15 = space();
         if (if_block)
           if_block.c();
@@ -40083,7 +40069,7 @@
     child_ctx[232] = list[i];
     return child_ctx;
   }
-  function create_if_block_135(ctx) {
+  function create_if_block_134(ctx) {
     let field0;
     let t0;
     let field1;
@@ -48674,7 +48660,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[83] === true && create_if_block_135(ctx)
+      ctx[83] === true && create_if_block_134(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -48837,7 +48823,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_135(ctx2);
+            if_block0 = create_if_block_134(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div2, t14);
@@ -53182,7 +53168,7 @@
         /*status*/
         ctx2[37] > 10
       )
-        return create_if_block_136;
+        return create_if_block_135;
       return create_else_block6;
     }
     let current_block_type = select_block_type_3(ctx, [-1, -1, -1, -1]);
@@ -54083,7 +54069,7 @@
       }
     };
   }
-  function create_if_block_136(ctx) {
+  function create_if_block_135(ctx) {
     let div;
     return {
       c() {

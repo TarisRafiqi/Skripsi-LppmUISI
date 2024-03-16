@@ -160,31 +160,29 @@
    </div>
 
    <div class="box parent">
-      <div class="child">
-         <div class="column">
-            <div>
-               <h4 class="title is-4">Notification</h4>
-            </div>
+      <div class="column">
+         <div>
+            <h4 class="title is-4">Notification</h4>
+         </div>
 
-            <br />
+         <br />
 
-            <div>
-               {#if reminder}
-                  <ul>
-                     {#each reminder as reminder}
-                        <li align="justify">
-                           PPM dengan judul <em
-                              ><strong>{reminder.judul}</strong></em
-                           >
-                           tersisa
-                           <em><strong>{reminder.tersisa}</strong></em>.
-                           Berakhir pada {reminder.selesai}.
-                           <hr />
-                        </li>
-                     {/each}
-                  </ul>
-               {/if}
-            </div>
+         <div class="child">
+            {#if reminder}
+               <ul>
+                  {#each reminder as reminder}
+                     <li align="justify">
+                        PPM dengan judul <em
+                           ><strong>{reminder.judul}</strong></em
+                        >
+                        tersisa
+                        <em><strong>{reminder.tersisa}</strong></em>. Berakhir
+                        pada {reminder.selesai}.
+                        <hr />
+                     </li>
+                  {/each}
+               </ul>
+            {/if}
          </div>
       </div>
    </div>
@@ -218,8 +216,9 @@
 
    .child {
       height: 100%;
-      margin-right: -50px; /* Maximum width of scrollbar */
-      padding-right: 50px; /* Maximum width of scrollbar */
+      margin-right: -35px; /* Maximum width of scrollbar */
+      padding-right: 25px; /* Maximum width of scrollbar */
+      scrollbar-width: thin;
       overflow-y: scroll;
    }
 

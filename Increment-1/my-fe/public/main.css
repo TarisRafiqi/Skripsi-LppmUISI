@@ -1826,17 +1826,17 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/proposals.esbuild-svelte-fake-css */
-th.svelte-1fo15t {
-  text-align: center;
-}
-p.svelte-1fo15t {
+.judul.svelte-1olobvf {
   text-align: justify;
 }
-.review.svelte-1fo15t {
-  cursor: pointer;
-}
-.status.svelte-1fo15t {
+.kegiatan.svelte-1olobvf,
+.skema.svelte-1olobvf,
+.status.svelte-1olobvf,
+.review.svelte-1olobvf {
   text-align: center;
+}
+.review.svelte-1olobvf {
+  cursor: pointer;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/users.esbuild-svelte-fake-css */
@@ -1865,43 +1865,53 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/approval.esbuild-svelte-fake-css */
-.review.svelte-1eb6cem {
-  cursor: pointer;
+.judul.svelte-1olobvf {
+  text-align: justify;
 }
-.status.svelte-1eb6cem {
+.kegiatan.svelte-1olobvf,
+.skema.svelte-1olobvf,
+.status.svelte-1olobvf,
+.review.svelte-1olobvf {
   text-align: center;
+}
+.review.svelte-1olobvf {
+  cursor: pointer;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
-.parent.svelte-gz7kfg {
+.parent.svelte-1skwhu2 {
   height: 500px;
   overflow: hidden;
 }
-.child.svelte-gz7kfg {
+.child.svelte-1skwhu2 {
   height: 100%;
-  margin-right: -50px;
-  padding-right: 50px;
+  margin-right: -35px;
+  padding-right: 25px;
+  scrollbar-width: thin;
   overflow-y: scroll;
 }
-.box.svelte-gz7kfg {
+.box.svelte-1skwhu2 {
   display: flex;
 }
-.flex-item-left.svelte-gz7kfg {
+.flex-item-left.svelte-1skwhu2 {
   flex: 50%;
 }
-.flex-item-right.svelte-gz7kfg {
+.flex-item-right.svelte-1skwhu2 {
   flex: 50%;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/ppmmanagement.esbuild-svelte-fake-css */
-p.svelte-4z2166 {
+.judul.svelte-1olobvf {
   text-align: justify;
 }
-.review.svelte-4z2166 {
-  cursor: pointer;
-}
-.status.svelte-4z2166 {
+.kegiatan.svelte-1olobvf,
+.skema.svelte-1olobvf,
+.status.svelte-1olobvf,
+.review.svelte-1olobvf {
   text-align: center;
+}
+.review.svelte-1olobvf {
+  cursor: pointer;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
