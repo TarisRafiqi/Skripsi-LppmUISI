@@ -13,7 +13,7 @@
 
    let vmataKuliah;
 
-   let biayaPenelitian,
+   let biayaPP,
       tahunPenelitian,
       judulPenelitian,
       rolePenelitian,
@@ -396,7 +396,7 @@
          judulPenelitian,
          rolePenelitian,
          sumberDanaPenelitian,
-         biayaPenelitian,
+         biayaPP,
          id,
       };
 
@@ -417,7 +417,7 @@
          judulPenelitian = "";
          rolePenelitian = "";
          sumberDanaPenelitian = "";
-         biayaPenelitian = "";
+         biayaPP = "";
 
          getPengalamanPenelitian();
       } else {
@@ -1078,9 +1078,8 @@
                class="input"
                type="text"
                placeholder="Masukkan Biaya Penelitian"
-               bind:value={biayaPenelitian}
-               on:keyup={() =>
-                  (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
+               bind:value={biayaPP}
+               on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
             />
          </Field>
 
