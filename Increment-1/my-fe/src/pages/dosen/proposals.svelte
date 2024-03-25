@@ -10,6 +10,7 @@
    import { addProposal, deleteIcon } from "../../store/icons";
 
    export let params;
+   const own_id = Number(localStorage.getItem("id"));
 
    let items = [];
    let view;
@@ -817,7 +818,7 @@
 
 {#if data && items.length > 0}
    <Article>
-      <h1 class="title is-1">Detail PPM</h1>
+      <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
          <ul>
@@ -1002,14 +1003,16 @@
                   />
                </Field>
 
-               <Field name="Rencana Anggaran Biaya">
-                  <input
-                     class="input"
-                     accept=".xlsx"
-                     type="file"
-                     on:change={(e) => (fileRab = e.target.files[0])}
-                  />
-               </Field>
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <input
+                        class="input"
+                        accept=".xlsx"
+                        type="file"
+                        on:change={(e) => (fileRab = e.target.files[0])}
+                     />
+                  </Field>
+               {/if}
 
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
@@ -1071,7 +1074,7 @@
 
                <!-- <Field name="Isi">
                <Wysiwyg id="isi" content={isi} />
-            </Field> -->
+               </Field> -->
 
                <Field name="Proposal">
                   <input
@@ -1089,7 +1092,7 @@
                <div class="columns notification is-danger is-light">
                   <div class="column">
                      <p style="text-align: justify;">
-                        <strong>Perhatikan</strong> catatan revisi dari evalutor
+                        <strong>Perhatikan</strong> catatan revisi dari evaluator
                         untuk detail yang akan direvisi!
                      </p>
                   </div>
@@ -1108,7 +1111,7 @@
                      <thead>
                         <tr>
                            <th>Catatan Revisi</th>
-                           <th>Evalutor</th>
+                           <th>Evaluator</th>
                            <th class="is-narrow">Waktu</th>
                         </tr>
                      </thead>
@@ -1158,12 +1161,14 @@
                   {biayaPenelitian}
                </Field>
 
-               <Field name="Rencana Anggaran Biaya">
-                  <button
-                     class="button is-link is-rounded button is-small"
-                     on:click={handleDownloadRab}>Download RAB</button
-                  >
-               </Field>
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <button
+                        class="button is-link is-rounded button is-small"
+                        on:click={handleDownloadRab}>Download RAB</button
+                     >
+                  </Field>
+               {/if}
 
                <Field name="Anggota Tim">
                   <span></span>
@@ -1246,16 +1251,7 @@
 
       <!-- Tab Biodata Peneliti -->
       {#if tab2 === true}
-         {#if status > 10}
-            <div class="notification is-danger is-light">
-               <p style="text-align: justify;">
-                  <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                  sanksinya.
-               </p>
-            </div>
-         {:else}
+         {#if uidProposal === own_id}
             <div class="notification is-danger is-light">
                <p style="text-align: justify;">
                   <strong>Biodata</strong> sebagai salah satu syarat dalam

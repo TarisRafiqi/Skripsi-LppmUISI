@@ -37,7 +37,13 @@
          filteredItems = items.filter((item) => {
             let it;
             if (item.label) {
-               it = item.label.toLowerCase().includes(value.toLowerCase());
+               let idUser = Number(localStorage.getItem("id"));
+               let itemLabel = item.label.toLowerCase();
+               let itemValue = item.value;
+               let valueLabel = value.toLowerCase();
+
+               // it = item.label.toLowerCase().includes(value.toLowerCase());
+               it = itemLabel.includes(valueLabel) && itemValue !== idUser;
             }
             return it;
          });

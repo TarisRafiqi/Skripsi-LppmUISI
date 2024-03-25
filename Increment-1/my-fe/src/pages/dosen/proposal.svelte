@@ -1,14 +1,18 @@
 <script>
-   import { onMount } from "svelte";
-   import { route, apiURL } from "../../store";
+   import { onMount, afterUpdate, beforeUpdate } from "svelte";
+   import { route, apiURL, ppmFile, rabFile } from "../../store";
    import { deleteIcon, penelitian, accountEdit, add } from "../../store/icons";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
    import Select from "../../libs/Select.svelte";
    import Modal from "../../libs/Modal.svelte";
+   import Modalerror from "../../libs/Modalerror.svelte";
 
    const id = Number(localStorage.getItem("id"));
+   const username = localStorage.getItem("username");
+   let showModalErrorProposal = false;
+   let showModalErrorBiodata = false;
    let warningFormText = false;
    let value;
    let label;
@@ -28,6 +32,7 @@
    let topik = "";
    let biayaPenelitian = "";
    let anggotaTim = [];
+   // let anggotaTim = [{ value: id, label: username }];
    let randomRabFileName = "";
    let randomPpmFileName = "";
 
@@ -137,6 +142,8 @@
    //       });
    //    }
    // }
+
+   let inputFilePPM;
 
    onMount(async () => {
       // --------------------------------------------------
@@ -526,42 +533,48 @@
    // Button Submit Proposal
    //------------------------------------------------------------
    async function submitProposal() {
-      // myAbstract = tinymce.get("abstract").getContent();
-
       const accessToken = localStorage.getItem("token");
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
+
       // -------------------------------------------------------------------//
       // Upload File RAB
       // -------------------------------------------------------------------//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: {
-                  Authorization: `${accessToken}`,
-                  "Content-Type": "application/json",
+      const readerRab = new FileReader();
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
                },
-               body: JSON.stringify(payloadRabFile),
-            });
+               randomRabFileName,
+            };
 
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-      readerRab.readAsDataURL(fileRab);
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: {
+                     Authorization: `${accessToken}`,
+                     "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(payloadRabFile),
+               });
 
+               const result = await response.json();
+            } catch (error) {
+               console.error("Error uploading file:", error);
+            }
+         };
+         readerRab.readAsDataURL(fileRab);
+      }
       // -------------------------------------------------------------------//
       // Upload File PPM
       // -------------------------------------------------------------------//
@@ -594,39 +607,118 @@
 
       readerPpm.readAsDataURL(filePpm);
       // -----------------------------------------------------------------------------//
-      let payload = {
-         id,
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         judul,
-         myAbstract,
-         status: 2,
-         randomRabFileName,
-         randomPpmFileName,
-      };
+      const idnamaLengkap = document.getElementById("namaLengkap");
+      const idjabatanFungsional = document.getElementById("jabatanFungsional");
+      const idnip = document.getElementById("nip");
+      const idnidn = document.getElementById("nidn");
+      const idtempatLahir = document.getElementById("tempatLahir");
+      const idtanggalLahir = document.getElementById("tanggalLahir");
+      const idalamatRumah = document.getElementById("alamatRumah");
+      const idtelpFaxRumah = document.getElementById("telpFaxRumah");
+      const idnomorHandphone = document.getElementById("nomorHandphone");
+      const idalamatKantor = document.getElementById("alamatKantor");
+      const idtelpFaxKantor = document.getElementById("telpFaxKantor");
+      const idemail = document.getElementById("email");
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "POST",
-         headers: {
-            Authorization: `${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-         $route("/dosen");
+      if (
+         idnamaLengkap.value === "" ||
+         idnamaLengkap.value == null ||
+         idjabatanFungsional.value === "" ||
+         idjabatanFungsional.value == null ||
+         idnip.value === "" ||
+         idnip.value == null ||
+         idnidn.value === "" ||
+         idnidn.value == null ||
+         idtempatLahir.value === "" ||
+         idtempatLahir.value == null ||
+         idtanggalLahir.value === "" ||
+         idtanggalLahir.value == null ||
+         idalamatRumah.value === "" ||
+         idalamatRumah.value == null ||
+         idtelpFaxRumah.value === "" ||
+         idtelpFaxRumah.value == null ||
+         idnomorHandphone.value === "" ||
+         idnomorHandphone.value == null ||
+         idalamatKantor.value === "" ||
+         idalamatKantor.value == null ||
+         idtelpFaxKantor.value === "" ||
+         idtelpFaxKantor.value == null ||
+         idemail.value === "" ||
+         idemail.value == null ||
+         mataKuliah.length === 0
+      ) {
+         showModalErrorBiodata = true;
       } else {
-         console.log(result.msg);
+         // ----------------------------------------------------//
+         // Post Proposal                                       //
+         // ----------------------------------------------------//
+         let payloadProposal = {
+            id,
+            jenisProposal,
+            jenisKegiatan,
+            jenisSkema,
+            kelompokKeahlian,
+            topik,
+            tanggalMulai,
+            tanggalSelesai,
+            biayaPenelitian,
+            anggotaTim,
+            judul,
+            myAbstract,
+            status: 2,
+            randomRabFileName,
+            randomPpmFileName,
+         };
+
+         const responseProposal = await fetch($apiURL + "/ppm", {
+            method: "POST",
+            headers: {
+               Authorization: `${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloadProposal),
+         });
+
+         // ----------------------------------------------------//
+         // Post Identitas                                      //
+         // ----------------------------------------------------//
+         let payloadIdentitas = {
+            idProfile,
+            namaLengkap,
+            jabatanFungsional,
+            nip,
+            nidn,
+            tempatLahir,
+            tanggalLahir,
+            alamatRumah,
+            telpFaxRumah,
+            nomorHandphone,
+            alamatKantor,
+            telpFaxKantor,
+            email,
+            mataKuliah,
+         };
+
+         const responseIdentitas = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloadIdentitas),
+         });
+
+         // ----------------------------------------------------
+         // Response
+         // ----------------------------------------------------
+         const resultProposal = await responseProposal.json();
+         const resultIdentitas = await responseIdentitas.json();
+         console.log(resultProposal);
+
+         if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/ppmmanagement");
+         } else {
+            console.log(result.msg);
+         }
       }
    }
 
@@ -644,6 +736,13 @@
    // -----------------------------------------------
    // Stepper Function
    // -----------------------------------------------
+   // afterUpdate(() => {
+   //    const ppmInput = $ppmFile;
+   //    if (ppmInput.name) {
+   //       console.log($ppmFile);
+   //    }
+   // });
+
    let tab1 = true;
    let tab2;
 
@@ -653,8 +752,55 @@
    }
 
    function clicktab2() {
-      tab1 = false;
-      tab2 = true;
+      const idjenisProposal = document.getElementById("jenisProposal");
+      const idjenisKegiatan = document.getElementById("jenisKegiatan");
+      const idjenisSkema = document.getElementById("jenisSkema");
+      const idkelompokKeahlian = document.getElementById("kelompokKeahlian");
+      const idtopik = document.getElementById("topik");
+      const idtanggalMulai = document.getElementById("tanggalMulai");
+      const idtanggalSelesai = document.getElementById("tanggalSelesai");
+      const idbiayaPenelitian = document.getElementById("biayaPenelitian");
+      const idjudul = document.getElementById("judul");
+      const idmyAbstract = document.getElementById("myAbstract");
+      // const idanggotaTim = document.getElementById("anggotaTim");
+      // const idfilePpm = document.getElementById("filePpm");
+      // const idfileRab = document.getElementById("fileRab");
+
+      if (
+         idjenisProposal.value === "" ||
+         idjenisProposal.value == null ||
+         idjenisKegiatan.value === "" ||
+         idjenisKegiatan.value == null ||
+         idjenisSkema.value === "" ||
+         idjenisSkema.value == null ||
+         idkelompokKeahlian.value === "" ||
+         idkelompokKeahlian.value == null ||
+         idtopik.value === "" ||
+         idtopik.value == null ||
+         idtanggalMulai.value === "" ||
+         idtanggalMulai.value == null ||
+         idtanggalSelesai.value === "" ||
+         idtanggalSelesai.value == null ||
+         idbiayaPenelitian.value === "" ||
+         idbiayaPenelitian.value == null ||
+         anggotaTim.length === 0 ||
+         idjudul.value === "" ||
+         idjudul.value == null ||
+         idmyAbstract.value === "" ||
+         idmyAbstract.value == null ||
+         $ppmFile.value === "" ||
+         $ppmFile.value === null
+
+         // $rabFile.value === "" ||
+         // $rabFile.value == null ||
+      ) {
+         showModalErrorProposal = true;
+      } else {
+         tab1 = false;
+         tab2 = true;
+      }
+      // tab1 = false;
+      // tab2 = true;
    }
 
    // -----------------------------------------------
@@ -1040,11 +1186,29 @@
          console.log(response);
       }
    }
+
+   function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      $ppmFile = e.target.files[0];
+   }
+
+   function fileRabChange(e) {
+      fileRab = e.target.files[0];
+      $rabFile = e.target.files[0];
+   }
 </script>
 
 <Article>
    <h1 class="title is-1">Pendaftaran Proposal</h1>
    <hr />
+
+   <Modalerror bind:show={showModalErrorProposal}>
+      <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>
+   </Modalerror>
+
+   <Modalerror bind:show={showModalErrorBiodata}>
+      <p>Lengkapi semua form biodata untuk submit proposal!</p>
+   </Modalerror>
 
    <!-- ---------------------------------------------------- -->
    <!-- Bulma Stepper -->
@@ -1213,13 +1377,22 @@
 
          {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
             <Field name="Rencana Anggaran Biaya">
-               <input
-                  id="fileRab"
-                  class="input"
-                  accept=".xlsx"
-                  type="file"
-                  on:change={(e) => (fileRab = e.target.files[0])}
-               />
+               <span class="inputf__wrapper">
+                  <input
+                     id="fileRab"
+                     class="inputf custom-file-input"
+                     accept=".xlsx"
+                     type="file"
+                     on:change={fileRabChange}
+                  />
+                  <label for="fileRab" class="button">
+                     {#if $rabFile?.name}
+                        {$rabFile.name}
+                     {:else}
+                        Choose File
+                     {/if}
+                  </label>
+               </span>
                <p class="help is-info">File Type: xlsx</p>
             </Field>
          {/if}
@@ -1240,28 +1413,25 @@
                <tr>
                   <th class="is-narrow" style="width:55px"></th>
                   <th class="is-narrow" style="width:86px">Role</th>
-                  <th> </th>
+                  <th>Nama Anggota </th>
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td></td>
-                  <td>Ketua</td>
-                  <td>...</td>
-               </tr>
                {#if anggotaTim.length > 0}
-                  {#each anggotaTim as member}
+                  {#each anggotaTim as member, idx}
                      <tr>
-                        <td
-                           ><button
-                              class="button is-danger is-small"
-                              data-value={member.value}
-                              on:click={deleteMember}
-                              ><span class="icon">
-                                 <Icon id="delete" src={deleteIcon} />
-                              </span></button
-                           ></td
-                        >
+                        <td>
+                           {#if idx > 0}
+                              <button
+                                 class="button is-danger is-small"
+                                 data-value={member.value}
+                                 on:click={deleteMember}
+                                 ><span class="icon">
+                                    <Icon id="delete" src={deleteIcon} />
+                                 </span>
+                              </button>
+                           {/if}
+                        </td>
                         <td>Anggota</td>
                         <td>{member.label}</td>
                      </tr>
@@ -1292,13 +1462,22 @@
          </Field>
 
          <Field name="Proposal">
-            <input
-               id="filePpm"
-               class="input"
-               accept="application/pdf"
-               type="file"
-               on:change={(e) => (filePpm = e.target.files[0])}
-            />
+            <span class="inputf__wrapper">
+               <input
+                  id="filePpm"
+                  class="inputf custom-file-input"
+                  accept="application/pdf"
+                  type="file"
+                  on:change={filePpmChange}
+               />
+               <label for="filePpm" class="button">
+                  {#if $ppmFile?.name}
+                     {$ppmFile.name}
+                  {:else}
+                     Choose File
+                  {/if}
+               </label>
+            </span>
             <p class="help is-info">File Type: pdf</p>
          </Field>
 
@@ -1349,12 +1528,18 @@
          <!-- ---------------------------------------------------- -->
          {#if tab1Step2 === true}
             <Field name="Nama Lengkap">
-               <input class="input" type="text" bind:value={namaLengkap} />
+               <input
+                  id="namaLengkap"
+                  class="input"
+                  type="text"
+                  bind:value={namaLengkap}
+               />
                <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
             </Field>
 
             <Field name="Jabatan Fungsional">
                <input
+                  id="jabatanFungsional"
                   class="input"
                   type="text"
                   bind:value={jabatanFungsional}
@@ -1362,16 +1547,27 @@
             >
 
             <Field name="NIP">
-               <input class="input" type="number" bind:value={nip} /></Field
+               <input
+                  id="nip"
+                  class="input"
+                  type="number"
+                  bind:value={nip}
+               /></Field
             >
             <Field name="NIDN">
-               <input class="input" type="number" bind:value={nidn} /></Field
+               <input
+                  id="nidn"
+                  class="input"
+                  type="number"
+                  bind:value={nidn}
+               /></Field
             >
 
             <Field name="Tempat / Tanggal Lahir">
                <div class="field-body">
                   <div class="field">
                      <input
+                        id="tempatLahir"
                         class="input"
                         type="text"
                         bind:value={tempatLahir}
@@ -1379,6 +1575,7 @@
                   </div>
                   <div class="field">
                      <input
+                        id="tanggalLahir"
                         class="input"
                         type="date"
                         bind:value={tanggalLahir}
@@ -1388,15 +1585,26 @@
             </Field>
 
             <Field name="Alamat Rumah">
-               <input class="input" type="text" bind:value={alamatRumah} />
+               <input
+                  id="alamatRumah"
+                  class="input"
+                  type="text"
+                  bind:value={alamatRumah}
+               />
             </Field>
 
             <Field name="Telp/Fax Rumah">
-               <input class="input" type="number" bind:value={telpFaxRumah} />
+               <input
+                  id="telpFaxRumah"
+                  class="input"
+                  type="number"
+                  bind:value={telpFaxRumah}
+               />
             </Field>
 
             <Field name="Nomor Handphone">
                <input
+                  id="nomorHandphone"
                   class="input"
                   type="number"
                   bind:value={nomorHandphone}
@@ -1404,6 +1612,7 @@
             >
             <Field name="Alamat Kantor">
                <input
+                  id="alamatKantor"
                   class="input"
                   type="text"
                   bind:value={alamatKantor}
@@ -1412,13 +1621,14 @@
 
             <Field name="Telp/Fax Kantor">
                <input
+                  id="telpFaxKantor"
                   class="input"
                   type="number"
                   bind:value={telpFaxKantor}
                /></Field
             >
             <Field class="input" name="Email">
-               <input class="input" type="text" bind:value={email} />
+               <input id="email" class="input" type="text" bind:value={email} />
             </Field>
 
             <Field name="Mata Kuliah">
@@ -1499,6 +1709,7 @@
                      <th>Nama Perguruan Tinggi</th>
                      <td
                         ><input
+                           id="pertiS1"
                            class="input"
                            type="text"
                            bind:value={pertiS1}
@@ -1506,6 +1717,7 @@
                      >
                      <td
                         ><input
+                           id="pertiS2"
                            class="input"
                            type="text"
                            bind:value={pertiS2}
@@ -1513,6 +1725,7 @@
                      >
                      <td
                         ><input
+                           id="pertiS3"
                            class="input"
                            type="text"
                            bind:value={pertiS3}
@@ -1523,6 +1736,7 @@
                      <th>Bidang Ilmu</th>
                      <td
                         ><input
+                           id="bidangIlmuS1"
                            class="input"
                            type="text"
                            bind:value={bidangIlmuS1}
@@ -1530,6 +1744,7 @@
                      >
                      <td
                         ><input
+                           id="bidangIlmuS2"
                            class="input"
                            type="text"
                            bind:value={bidangIlmuS2}
@@ -1537,6 +1752,7 @@
                      >
                      <td
                         ><input
+                           id="bidangIlmuS3"
                            class="input"
                            type="text"
                            bind:value={bidangIlmuS3}
@@ -1547,6 +1763,7 @@
                      <th>Tahun Masuk</th>
                      <td
                         ><input
+                           id="tahunMasukS1"
                            class="input"
                            type="number"
                            bind:value={tahunMasukS1}
@@ -1554,6 +1771,7 @@
                      >
                      <td
                         ><input
+                           id="tahunMasukS2"
                            class="input"
                            type="number"
                            bind:value={tahunMasukS2}
@@ -1561,6 +1779,7 @@
                      >
                      <td
                         ><input
+                           id="tahunMasukS3"
                            class="input"
                            type="number"
                            bind:value={tahunMasukS3}
@@ -1571,6 +1790,7 @@
                      <th>Tahun Lulus</th>
                      <td
                         ><input
+                           id="tahunLulusS1"
                            class="input"
                            type="number"
                            bind:value={tahunLulusS1}
@@ -1578,6 +1798,7 @@
                      >
                      <td
                         ><input
+                           id="tahunLulusS2"
                            class="input"
                            type="number"
                            bind:value={tahunLulusS2}
@@ -1585,6 +1806,7 @@
                      >
                      <td
                         ><input
+                           id="tahunLulusS3"
                            class="input"
                            type="number"
                            bind:value={tahunLulusS3}
@@ -1595,18 +1817,21 @@
                      <th>Judul Skripsi/Tesis/Disertasi</th>
                      <td
                         ><textarea
+                           id="judulTugasAkhirS1"
                            class="textarea"
                            bind:value={judulTugasAkhirS1}
                         ></textarea></td
                      >
                      <td
                         ><textarea
+                           id="judulTugasAkhirS2"
                            class="textarea"
                            bind:value={judulTugasAkhirS2}
                         ></textarea></td
                      >
                      <td
                         ><textarea
+                           id="judulTugasAkhirS3"
                            class="textarea"
                            bind:value={judulTugasAkhirS3}
                         ></textarea></td
@@ -1642,7 +1867,7 @@
                   />
                </Field>
 
-               <Field name="Ketua/Anggota">
+               <Field name="Role">
                   <div class="select is-fullwidth">
                      <select bind:value={rolePenelitian}>
                         <option value="" disabled selected hidden
@@ -1715,7 +1940,7 @@
                         <th class="is-narrow"></th>
                         <th class="is-narrow">Tahun</th>
                         <th>Judul Penelitian</th>
-                        <th class="is-narrow">Ketua / Anggota</th>
+                        <th class="is-narrow">Role</th>
                         <th class="is-narrow">Sumber Dana</th>
                         <th>Jumlah Rp.</th>
                      </tr>
@@ -1768,7 +1993,7 @@
                   <input class="input" type="text" bind:value={judulPengmas} />
                </Field>
 
-               <Field name="Ketua/Anggota">
+               <Field name="Role">
                   <div class="select is-fullwidth">
                      <select bind:value={rolePengmas}>
                         <option value="" disabled selected hidden
@@ -1844,7 +2069,7 @@
                         <th class="is-narrow"></th>
                         <th class="is-narrow">Tahun</th>
                         <th>Judul Pengabdian Masyarakat</th>
-                        <th class="is-narrow">Ketua / Anggota</th>
+                        <th class="is-narrow">Role</th>
                         <th class="is-narrow">Sumber Dana</th>
                         <th>Jumlah Rp.</th>
                      </tr>
@@ -2352,3 +2577,47 @@
       </div>
    {/if}
 </Article>
+
+<style>
+   /* .custom-file-input {
+      color: transparent;
+   }
+   .custom-file-input::-webkit-file-upload-button {
+      visibility: hidden;
+   }
+   .custom-file-input::before {
+      content: "Select some files";
+      color: black;
+      display: inline-block;
+      background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+      border: 1px solid #999;
+      border-radius: 3px;
+      padding: 5px 8px;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      text-shadow: 1px 1px #fff;
+      font-weight: 700;
+      font-size: 10pt;
+   }
+   .custom-file-input:hover::before {
+      border-color: black;
+   }
+   .custom-file-input:active {
+      outline: 0;
+   }
+   .custom-file-input:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+   } */
+
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+</style>

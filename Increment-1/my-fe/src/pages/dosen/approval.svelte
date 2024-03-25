@@ -26,12 +26,12 @@
    }
 </script>
 
-{#if items}
-   <Article>
-      <h1 class="title is-1">Approval Management</h1>
+<Article>
+   <h1 class="title is-1">Approval Management</h1>
 
-      <hr />
+   <hr />
 
+   {#if items}
       <div class="notification is-info is-light">
          <p>
             Berikut adalah list <strong
@@ -165,8 +165,8 @@
             </tbody>
          </table>
       </div>
-   </Article>
-{/if}
+   {/if}
+</Article>
 
 <style>
    .judul {

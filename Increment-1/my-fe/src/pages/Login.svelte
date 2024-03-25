@@ -1,7 +1,7 @@
 <script>
    import { route, isLogin, isUsername, apiURL } from "../store";
-   import Icon from "../libs/Icon.svelte";
-   import { googleIcon } from "../store/icons";
+   // import Icon from "../libs/Icon.svelte";
+   // import { googleIcon } from "../store/icons";
 
    let username = "";
    let password = "";

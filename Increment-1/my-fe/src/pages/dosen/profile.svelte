@@ -1053,7 +1053,7 @@
             <input class="input" type="text" bind:value={judulPenelitian} />
          </Field>
 
-         <Field name="Ketua/Anggota">
+         <Field name="Role">
             <div class="select is-fullwidth">
                <select bind:value={rolePenelitian}>
                   <option value="" disabled selected hidden
@@ -1125,7 +1125,7 @@
                   <th class="is-narrow"></th>
                   <th class="is-narrow">Tahun</th>
                   <th>Judul Penelitian</th>
-                  <th class="is-narrow">Ketua / Anggota</th>
+                  <th class="is-narrow">Role</th>
                   <th class="is-narrow">Sumber Dana</th>
                   <th>Jumlah Rp.</th>
                </tr>
@@ -1174,7 +1174,7 @@
             <input class="input" type="text" bind:value={judulPengmas} />
          </Field>
 
-         <Field name="Ketua/Anggota">
+         <Field name="Role">
             <div class="select is-fullwidth">
                <select bind:value={rolePengmas}>
                   <option value="" disabled selected hidden
@@ -1240,7 +1240,7 @@
                   <th class="is-narrow"></th>
                   <th class="is-narrow">Tahun</th>
                   <th>Judul Pengabdian Masyarakat</th>
-                  <th class="is-narrow">Ketua / Anggota</th>
+                  <th class="is-narrow">Role</th>
                   <th class="is-narrow">Sumber Dana</th>
                   <th>Jumlah Rp.</th>
                </tr>

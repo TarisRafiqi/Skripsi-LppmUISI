@@ -883,7 +883,7 @@
          </p>
       </Modalerror>
 
-      <h1 class="title is-1">Detail PPM</h1>
+      <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
          <ul>
@@ -1076,14 +1076,16 @@
                   />
                </Field>
 
-               <Field name="Rencana Anggaran Biaya">
-                  <input
-                     class="input"
-                     accept=".xlsx"
-                     type="file"
-                     on:change={(e) => (fileRab = e.target.files[0])}
-                  />
-               </Field>
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <input
+                        class="input"
+                        accept=".xlsx"
+                        type="file"
+                        on:change={(e) => (fileRab = e.target.files[0])}
+                     />
+                  </Field>
+               {/if}
 
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
@@ -1226,12 +1228,14 @@
                   {biayaPenelitian}
                </Field>
 
-               <Field name="Rencana Anggaran Biaya">
-                  <button
-                     class="button is-link is-rounded button is-small"
-                     on:click={handleDownloadRab}>Download RAB</button
-                  >
-               </Field>
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <button
+                        class="button is-link is-rounded button is-small"
+                        on:click={handleDownloadRab}>Download RAB</button
+                     >
+                  </Field>
+               {/if}
 
                <Field name="Anggota Tim">
                   <span></span>
@@ -1371,30 +1375,25 @@
 
       {#if tab2 === true}
          {#if status > 10}
-            <div class="columns notification is-danger is-light">
-               <div class="column">
-                  <p style="text-align: justify;">
-                     <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                     hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                     hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                     sanksinya.
-                  </p>
-               </div>
+            <div class="notification is-danger is-light">
+               <p style="text-align: justify;">
+                  <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                  sanksinya.
+               </p>
             </div>
          {:else}
-            <div class="columns notification is-danger is-light">
-               <div class="column">
-                  <p style="text-align: justify;">
-                     <strong>Biodata</strong> sebagai salah satu syarat dalam
-                     pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
-                     apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
-                     peneliti sanggup menerima sanksinya. Jika ada perubahan,
-                     klik
-                     <a href={"/admin/profile/" + uidProposal}>
-                        <strong>Disini!</strong>
-                     </a>
-                  </p>
-               </div>
+            <div class="notification is-danger is-light">
+               <p style="text-align: justify;">
+                  <strong>Biodata</strong> sebagai salah satu syarat dalam
+                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik
+                  <a href={"/admin/profile/" + uidProposal}>
+                     <strong>Disini!</strong>
+                  </a>
+               </p>
             </div>
          {/if}
 

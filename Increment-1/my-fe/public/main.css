@@ -1914,6 +1914,17 @@ article.svelte-12yf9li {
   cursor: pointer;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/proposal.esbuild-svelte-fake-css */
+.inputf__wrapper.svelte-kpqjr6.svelte-kpqjr6 {
+  position: relative;
+  display: flex;
+}
+.inputf__wrapper.svelte-kpqjr6 input.svelte-kpqjr6 {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
 .svelte-5za9if.svelte-5za9if {
   padding: 0;

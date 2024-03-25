@@ -627,7 +627,7 @@
          </p>
       </Modalerror>
 
-      <h1 class="title is-1">Detail PPM</h1>
+      <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
          <ul>
@@ -716,12 +716,14 @@
                {biayaPenelitian}
             </Field>
 
-            <Field name="Rencana Anggaran Biaya">
-               <button
-                  class="button is-link is-rounded button is-small"
-                  on:click={handleDownloadRab}>Download RAB</button
-               >
-            </Field>
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <Field name="Rencana Anggaran Biaya">
+                  <button
+                     class="button is-link is-rounded button is-small"
+                     on:click={handleDownloadRab}>Download RAB</button
+                  >
+               </Field>
+            {/if}
 
             <Field name="Anggota Tim">
                <span></span>
@@ -815,12 +817,6 @@
          {#if role === "Ka.Departemen"}
             {#if status === 4}
                <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}>Revisi</button
-                     >
-                  </p>
                   <p class="control">
                      <button class="button is-info" on:click={handlePass}
                         >Proses</button
