@@ -16,7 +16,7 @@ module.exports = async function (fastify, opts) {
             data.judulPenelitian,
             data.rolePenelitian,
             data.sumberDanaPenelitian,
-            data.biayaPenelitian,
+            data.biayaPP,
          ]);
          connection.release();
          reply.send({

@@ -11,7 +11,7 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
       const sql =
-         "SELECT * FROM ppm WHERE uid_kdept = ? or uid_klppm = ? or uid_kpk = ? or uid_reviewer = ?";
+         "SELECT * FROM proposal_ppm WHERE uid_kdept = ? or uid_klppm = ? or uid_kpk = ? or uid_reviewer = ?";
       try {
          connection = await fastify.mysql.getConnection();
          const [rows] = await connection.query(sql, [uid, uid, uid, uid]);

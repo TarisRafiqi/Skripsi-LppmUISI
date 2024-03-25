@@ -11,7 +11,7 @@ module.exports = async function (fastify, opts) {
       // });
       // return;
 
-      const sql = `SELECT * FROM ppm where JSON_CONTAINS(anggota_tim, '{"value": "${id}" }')`;
+      const sql = `SELECT * FROM proposal_ppm where JSON_CONTAINS(anggota_tim, '{"value": "${id}" }')`;
 
       try {
          connection = await fastify.mysql.getConnection();

@@ -34,6 +34,7 @@ module.exports = async function (fastify, opts) {
             });
          }
       } else if (
+         roleFromToken === "dosen" ||
          roleFromToken === "admin" ||
          roleFromToken === "Ka.Departemen" ||
          roleFromToken === "reviewer" ||

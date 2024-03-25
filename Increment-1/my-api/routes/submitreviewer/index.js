@@ -11,7 +11,7 @@ module.exports = async function (fastify, opts) {
       let data = request.body;
 
       const sql =
-         "UPDATE ppm SET  uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ? WHERE id = ?";
+         "UPDATE proposal_ppm SET  uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ? WHERE id = ?";
 
       try {
          connection = await fastify.mysql.getConnection();
