@@ -739,14 +739,10 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td>Ketua</td>
-                     <td>...</td>
-                  </tr>
                   {#if anggotaTim.length > 0}
                      {#each anggotaTim as member}
                         <tr>
-                           <td>Anggota</td>
+                           <td>{member.role}</td>
                            <td>{member.label}</td>
                         </tr>
                      {/each}

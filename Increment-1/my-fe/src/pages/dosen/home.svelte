@@ -7,7 +7,7 @@
 
    let items, penelitianCounter, pengmasCounter;
    let reminder;
-   const id = localStorage.id;
+   const id = Number(localStorage.getItem("id"));
 
    function daysUntil(targetDate) {
       const today = new Date();
@@ -63,7 +63,6 @@
                //    " hari.",
             });
          }
-         // console.log(reminder);
       } else {
          console.log(response);
       }
@@ -80,7 +79,6 @@
 
       if (responseCP.ok) {
          penelitianCounter = resultCP.penelitianCounter;
-         // console.log(resultCP.penelitianCounter);
       } else {
          console.log(responseCP);
       }
@@ -97,9 +95,24 @@
 
       if (responseCPM.ok) {
          pengmasCounter = resultCPM.pengmasCounter;
-         // console.log(resultCPM.pengmasCounter);
       } else {
          console.log(responseCPM);
+      }
+
+      //------------------------------------------------------------
+      // Get Profile
+      //------------------------------------------------------------
+      const responseGP = await fetch($apiURL + "/user/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultGP = await responseGP.json();
+
+      if (responseGP.ok) {
+         // dataGP = resultGP;
+         nama_lengkap = resultGP.nama_lengkap;
+         localStorage.setItem("nama_lengkap", nama_lengkap);
       }
    });
 </script>

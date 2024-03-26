@@ -40,7 +40,7 @@
          console.error("Error", error);
       }
    }
-   $: console.log(showModalError);
+   // $: console.log(showModalError);
 </script>
 
 <Article>

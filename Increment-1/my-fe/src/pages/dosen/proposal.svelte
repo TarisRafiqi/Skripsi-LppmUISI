@@ -10,7 +10,7 @@
    import Modalerror from "../../libs/Modalerror.svelte";
 
    const id = Number(localStorage.getItem("id"));
-   const username = localStorage.getItem("username");
+   const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
    let showModalErrorProposal = false;
    let showModalErrorBiodata = false;
    let warningFormText = false;
@@ -31,8 +31,10 @@
    let tanggalSelesai = "";
    let topik = "";
    let biayaPenelitian = "";
-   let anggotaTim = [];
-   // let anggotaTim = [{ value: id, label: username }];
+   // let anggotaTim = [];
+   let anggotaTim = [
+      { value: id, label: localStorage_namaLengkap, role: "Ketua" },
+   ];
    let randomRabFileName = "";
    let randomPpmFileName = "";
 
@@ -164,7 +166,6 @@
             items.push({
                value: value.uid,
                label: value.nama_lengkap,
-               // role: "Anggota",
             });
          }
       } else {
@@ -1397,14 +1398,16 @@
             </Field>
          {/if}
 
-         <Field name="Anggota Tim">
-            <Select
-               id="anggotaTim"
-               start="2"
-               {items}
-               bind:result={anggotaTim}
-            />
-         </Field>
+         {#if items.length}
+            <Field name="Anggota Tim">
+               <Select
+                  id="anggotaTim"
+                  start="2"
+                  {items}
+                  bind:result={anggotaTim}
+               />
+            </Field>
+         {/if}
 
          <br />
 
@@ -1432,7 +1435,7 @@
                               </button>
                            {/if}
                         </td>
-                        <td>Anggota</td>
+                        <td>{member.role}</td>
                         <td>{member.label}</td>
                      </tr>
                   {/each}

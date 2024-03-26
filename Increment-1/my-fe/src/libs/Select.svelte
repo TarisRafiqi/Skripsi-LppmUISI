@@ -7,13 +7,10 @@
    let value = "";
    let filteredItems = items;
 
-   function changeFocus() {
-      focused = !focused;
-   }
-
    function setSelected(e) {
       e.preventDefault();
       let el = e.target;
+
       if (el.classList.contains("selected")) {
          el.classList.remove("selected");
          result = result.filter((it) => {
@@ -27,6 +24,7 @@
             {
                value: el.getAttribute("data-value").trim(),
                label: el.innerText.trim(),
+               role: "Anggota",
             },
          ];
       }

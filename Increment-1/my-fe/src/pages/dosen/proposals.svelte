@@ -1031,25 +1031,22 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td></td>
-                        <td>Ketua</td>
-                        <td>...</td>
-                     </tr>
                      {#if anggotaTim.length > 0}
-                        {#each anggotaTim as member}
+                        {#each anggotaTim as member, idx}
                            <tr>
-                              <td
-                                 ><button
-                                    class="button is-danger is-rounded is-small"
-                                    data-value={member.value}
-                                    on:click={deleteMember}
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td>Anggota</td>
+                              <td>
+                                 {#if idx > 0}
+                                    <button
+                                       class="button is-danger is-rounded is-small"
+                                       data-value={member.value}
+                                       on:click={deleteMember}
+                                       ><span class="icon">
+                                          <Icon id="delete" src={deleteIcon} />
+                                       </span>
+                                    </button>
+                                 {/if}
+                              </td>
+                              <td>{member.role}</td>
                               <td>{member.label}</td>
                            </tr>
                         {/each}
@@ -1184,14 +1181,10 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>Ketua</td>
-                        <td>...</td>
-                     </tr>
                      {#if anggotaTim.length > 0}
                         {#each anggotaTim as member}
                            <tr>
-                              <td>Anggota</td>
+                              <td>{member.role}</td>
                               <td>{member.label}</td>
                            </tr>
                         {/each}
