@@ -873,7 +873,7 @@
     }
     component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
   }
-  function init(component, options, instance39, create_fragment46, not_equal, props, append_styles = null, dirty = [-1]) {
+  function init(component, options, instance40, create_fragment47, not_equal, props, append_styles = null, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $$ = component.$$ = {
@@ -899,7 +899,7 @@
     };
     append_styles && append_styles($$.root);
     let ready = false;
-    $$.ctx = instance39 ? instance39(component, options.props || {}, (i, ret, ...rest) => {
+    $$.ctx = instance40 ? instance40(component, options.props || {}, (i, ret, ...rest) => {
       const value = rest.length ? rest[0] : ret;
       if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
         if (!$$.skip_bound && $$.bound[i])
@@ -912,7 +912,7 @@
     $$.update();
     ready = true;
     run_all($$.before_update);
-    $$.fragment = create_fragment46 ? create_fragment46($$.ctx) : false;
+    $$.fragment = create_fragment47 ? create_fragment47($$.ctx) : false;
     if (options.target) {
       if (options.hydrate) {
         start_hydrating();
@@ -4398,11 +4398,11 @@
         if (!src_url_equal(img.src, img_src_value = "/img/warning.png"))
           attr(img, "src", img_src_value);
         attr(img, "alt", "alert-icon");
-        attr(img, "class", "svelte-1hmz5p1");
-        attr(p, "class", "svelte-1hmz5p1");
-        attr(button, "class", "button is-danger svelte-1hmz5p1");
-        attr(div0, "class", "cookiesContent svelte-1hmz5p1");
-        attr(b, "class", "svelte-1hmz5p1");
+        attr(img, "class", "svelte-ivfnq6");
+        attr(p, "class", "svelte-ivfnq6");
+        attr(button, "class", "button is-danger svelte-ivfnq6");
+        attr(div0, "class", "cookiesContent svelte-ivfnq6");
+        attr(b, "class", "svelte-ivfnq6");
         toggle_class(
           b,
           "show",
@@ -5678,9 +5678,9 @@
         t3 = space();
         if (default_slot)
           default_slot.c();
-        attr(span0, "class", "close svelte-1tzudmn");
-        attr(div, "class", "svelte-1tzudmn");
-        attr(b, "class", "svelte-1tzudmn");
+        attr(span0, "class", "close svelte-gcisbw");
+        attr(div, "class", "svelte-gcisbw");
+        attr(b, "class", "svelte-gcisbw");
         toggle_class(
           b,
           "show",
@@ -31820,17 +31820,193 @@
 
   // src/pages/dosen/ppmmanagement.svelte
   init_define_process();
+
+  // src/libs/Modalroute.svelte
+  init_define_process();
+  function create_fragment37(ctx) {
+    let b;
+    let div1;
+    let div0;
+    let p;
+    let t0;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    const default_slot_template = (
+      /*#slots*/
+      ctx[4].default
+    );
+    const default_slot = create_slot(
+      default_slot_template,
+      ctx,
+      /*$$scope*/
+      ctx[3],
+      null
+    );
+    return {
+      c() {
+        b = element("b");
+        div1 = element("div");
+        div0 = element("div");
+        p = element("p");
+        if (default_slot)
+          default_slot.c();
+        t0 = space();
+        button = element("button");
+        button.textContent = "OK";
+        attr(p, "class", "svelte-5cn8hs");
+        attr(button, "class", "button is-info svelte-5cn8hs");
+        attr(div0, "class", "cookiesContent svelte-5cn8hs");
+        attr(b, "class", "svelte-5cn8hs");
+        toggle_class(
+          b,
+          "show",
+          /*show*/
+          ctx[0]
+        );
+      },
+      m(target, anchor) {
+        insert(target, b, anchor);
+        append(b, div1);
+        append(div1, div0);
+        append(div0, p);
+        if (default_slot) {
+          default_slot.m(p, null);
+        }
+        append(div0, t0);
+        append(div0, button);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              button,
+              "click",
+              /*clickX*/
+              ctx[2]
+            ),
+            listen(
+              b,
+              "click",
+              /*handleClick*/
+              ctx[1]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & /*$$scope*/
+          8)) {
+            update_slot_base(
+              default_slot,
+              default_slot_template,
+              ctx2,
+              /*$$scope*/
+              ctx2[3],
+              !current ? get_all_dirty_from_scope(
+                /*$$scope*/
+                ctx2[3]
+              ) : get_slot_changes(
+                default_slot_template,
+                /*$$scope*/
+                ctx2[3],
+                dirty,
+                null
+              ),
+              null
+            );
+          }
+        }
+        if (!current || dirty & /*show*/
+        1) {
+          toggle_class(
+            b,
+            "show",
+            /*show*/
+            ctx2[0]
+          );
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(b);
+        }
+        if (default_slot)
+          default_slot.d(detaching);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function instance30($$self, $$props, $$invalidate) {
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { show = false } = $$props;
+    function handleClick(e) {
+      if (e.target === e.currentTarget) {
+        $$invalidate(0, show = false);
+      }
+    }
+    function clickX() {
+      $$invalidate(0, show = false);
+    }
+    $$self.$$set = ($$props2) => {
+      if ("show" in $$props2)
+        $$invalidate(0, show = $$props2.show);
+      if ("$$scope" in $$props2)
+        $$invalidate(3, $$scope = $$props2.$$scope);
+    };
+    return [show, handleClick, clickX, $$scope, slots];
+  }
+  var Modalroute = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance30, create_fragment37, safe_not_equal, { show: 0 });
+    }
+  };
+  var Modalroute_default = Modalroute;
+
+  // src/pages/dosen/ppmmanagement.svelte
   function get_each_context11(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[3] = list[i];
+    child_ctx[7] = list[i];
     return child_ctx;
+  }
+  function create_default_slot_116(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "Ayo lengkapi profile anda terlebih dahulu";
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
   }
   function create_if_block14(ctx) {
     let tbody;
     let current;
     let each_value = ensure_array_like(
       /*items*/
-      ctx[0]
+      ctx[1]
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
@@ -31857,10 +32033,10 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*items, detail*/
-        1) {
+        2) {
           each_value = ensure_array_like(
             /*items*/
-            ctx2[0]
+            ctx2[1]
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
@@ -31911,7 +32087,7 @@
     let p0;
     let t0_value = (
       /*item*/
-      ctx[3].judul + ""
+      ctx[7].judul + ""
     );
     let t0;
     let t1;
@@ -31919,7 +32095,7 @@
     let p1;
     let t2_value = (
       /*item*/
-      ctx[3].jenis_kegiatan + ""
+      ctx[7].jenis_kegiatan + ""
     );
     let t2;
     let t3;
@@ -31927,7 +32103,7 @@
     let p2;
     let t4_value = (
       /*item*/
-      ctx[3].jenis_skema + ""
+      ctx[7].jenis_skema + ""
     );
     let t4;
     let t5;
@@ -31946,7 +32122,7 @@
     let dispose;
     status = new Status_default({ props: { code: (
       /*item*/
-      ctx[3].status
+      ctx[7].status
     ) } });
     icon = new Icon_default({ props: { id: "info", src: infoOutline } });
     return {
@@ -31977,11 +32153,11 @@
         attr(td2, "class", "skema svelte-1olobvf");
         attr(td3, "class", "status svelte-1olobvf");
         attr(td3, "pid", td3_pid_value = /*item*/
-        ctx[3].id);
+        ctx[7].id);
         attr(span, "class", "icon");
         attr(button, "class", "button is-info is-rounded is-small");
         attr(button, "pid", button_pid_value = /*item*/
-        ctx[3].id);
+        ctx[7].id);
         attr(td4, "class", "review svelte-1olobvf");
       },
       m(target, anchor) {
@@ -32014,31 +32190,31 @@
       },
       p(ctx2, dirty) {
         if ((!current || dirty & /*items*/
-        1) && t0_value !== (t0_value = /*item*/
-        ctx2[3].judul + ""))
+        2) && t0_value !== (t0_value = /*item*/
+        ctx2[7].judul + ""))
           set_data(t0, t0_value);
         if ((!current || dirty & /*items*/
-        1) && t2_value !== (t2_value = /*item*/
-        ctx2[3].jenis_kegiatan + ""))
+        2) && t2_value !== (t2_value = /*item*/
+        ctx2[7].jenis_kegiatan + ""))
           set_data(t2, t2_value);
         if ((!current || dirty & /*items*/
-        1) && t4_value !== (t4_value = /*item*/
-        ctx2[3].jenis_skema + ""))
+        2) && t4_value !== (t4_value = /*item*/
+        ctx2[7].jenis_skema + ""))
           set_data(t4, t4_value);
         const status_changes = {};
         if (dirty & /*items*/
-        1)
+        2)
           status_changes.code = /*item*/
-          ctx2[3].status;
+          ctx2[7].status;
         status.$set(status_changes);
         if (!current || dirty & /*items*/
-        1 && td3_pid_value !== (td3_pid_value = /*item*/
-        ctx2[3].id)) {
+        2 && td3_pid_value !== (td3_pid_value = /*item*/
+        ctx2[7].id)) {
           attr(td3, "pid", td3_pid_value);
         }
         if (!current || dirty & /*items*/
-        1 && button_pid_value !== (button_pid_value = /*item*/
-        ctx2[3].id)) {
+        2 && button_pid_value !== (button_pid_value = /*item*/
+        ctx2[7].id)) {
           attr(button, "pid", button_pid_value);
         }
       },
@@ -32070,25 +32246,44 @@
     let t1;
     let hr;
     let t2;
+    let modalroute;
+    let updating_show;
+    let t3;
     let button;
     let span0;
     let icon;
-    let t3;
+    let t4;
     let span1;
-    let t5;
+    let t6;
     let div;
     let table;
     let thead;
-    let t15;
+    let t16;
     let current;
     let mounted;
     let dispose;
+    function modalroute_show_binding(value) {
+      ctx[3](value);
+    }
+    let modalroute_props = {
+      $$slots: { default: [create_default_slot_116] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalError*/
+      ctx[0] !== void 0
+    ) {
+      modalroute_props.show = /*showModalError*/
+      ctx[0];
+    }
+    modalroute = new Modalroute_default({ props: modalroute_props });
+    binding_callbacks.push(() => bind(modalroute, "show", modalroute_show_binding));
     icon = new Icon_default({
       props: { id: "accountAdd", src: accountAdd }
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block14(ctx)
+      ctx[1] && create_if_block14(ctx)
     );
     return {
       c() {
@@ -32097,18 +32292,20 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
+        create_component(modalroute.$$.fragment);
+        t3 = space();
         button = element("button");
         span0 = element("span");
         create_component(icon.$$.fragment);
-        t3 = space();
+        t4 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Buat Proposal</a>`;
-        t5 = space();
+        t6 = space();
         div = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
-        t15 = space();
+        t16 = space();
         if (if_block)
           if_block.c();
         attr(h1, "class", "title is-1");
@@ -32122,33 +32319,53 @@
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
+        mount_component(modalroute, target, anchor);
+        insert(target, t3, anchor);
         insert(target, button, anchor);
         append(button, span0);
         mount_component(icon, span0, null);
-        append(button, t3);
+        append(button, t4);
         append(button, span1);
-        insert(target, t5, anchor);
+        insert(target, t6, anchor);
         insert(target, div, anchor);
         append(div, table);
         append(table, thead);
-        append(table, t15);
+        append(table, t16);
         if (if_block)
           if_block.m(table, null);
         current = true;
         if (!mounted) {
-          dispose = listen(button, "click", addProposal2);
+          dispose = listen(
+            button,
+            "click",
+            /*addProposal*/
+            ctx[2]
+          );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
+        const modalroute_changes = {};
+        if (dirty & /*$$scope*/
+        1024) {
+          modalroute_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        if (!updating_show && dirty & /*showModalError*/
+        1) {
+          updating_show = true;
+          modalroute_changes.show = /*showModalError*/
+          ctx2[0];
+          add_flush_callback(() => updating_show = false);
+        }
+        modalroute.$set(modalroute_changes);
         if (
           /*items*/
-          ctx2[0]
+          ctx2[1]
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
             if (dirty & /*items*/
-            1) {
+            2) {
               transition_in(if_block, 1);
             }
           } else {
@@ -32168,11 +32385,13 @@
       i(local) {
         if (current)
           return;
+        transition_in(modalroute.$$.fragment, local);
         transition_in(icon.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
       o(local) {
+        transition_out(modalroute.$$.fragment, local);
         transition_out(icon.$$.fragment, local);
         transition_out(if_block);
         current = false;
@@ -32183,10 +32402,12 @@
           detach(t1);
           detach(hr);
           detach(t2);
+          detach(t3);
           detach(button);
-          detach(t5);
+          detach(t6);
           detach(div);
         }
+        destroy_component(modalroute, detaching);
         destroy_component(icon);
         if (if_block)
           if_block.d();
@@ -32195,7 +32416,7 @@
       }
     };
   }
-  function create_fragment37(ctx) {
+  function create_fragment38(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -32214,8 +32435,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, items*/
-        65) {
+        if (dirty & /*$$scope, items, showModalError*/
+        1027) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -32251,13 +32472,12 @@
     let propId = ev.target.getAttribute("pid");
     location.href = "/dosen/proposals/" + propId;
   }
-  function addProposal2() {
-    location.href = "/dosen/proposal";
-  }
-  function instance30($$self, $$props, $$invalidate) {
+  function instance31($$self, $$props, $$invalidate) {
     let $apiURL;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(1, $apiURL = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(4, $apiURL = $$value));
+    const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
     const id = localStorage.id;
+    let showModalError = false;
     let items;
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
@@ -32269,7 +32489,7 @@
       const result2 = await response.json();
       const reminder = [];
       if (response.ok) {
-        $$invalidate(0, items = result2.dbData);
+        $$invalidate(1, items = result2.dbData);
         for (const item of items) {
           reminder.push({
             judul: item.judul,
@@ -32283,12 +32503,23 @@
         );
       }
     });
-    return [items];
+    function addProposal2() {
+      if (localStorage_namaLengkap === null || localStorage_namaLengkap === "") {
+        $$invalidate(0, showModalError = true);
+      } else {
+        location.href = "/dosen/proposal";
+      }
+    }
+    function modalroute_show_binding(value) {
+      showModalError = value;
+      $$invalidate(0, showModalError);
+    }
+    return [showModalError, items, addProposal2, modalroute_show_binding];
   }
   var Ppmmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance30, create_fragment37, safe_not_equal, {});
+      init(this, options, instance31, create_fragment38, safe_not_equal, {});
     }
   };
   var ppmmanagement_default = Ppmmanagement;
@@ -34404,7 +34635,7 @@
     let modal5_props = {
       $$slots: {
         header: [create_header_slot4],
-        default: [create_default_slot_117]
+        default: [create_default_slot_118]
       },
       $$scope: { ctx }
     };
@@ -37770,7 +38001,7 @@
       }
     };
   }
-  function create_default_slot_116(ctx) {
+  function create_default_slot_117(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -37987,7 +38218,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul Buku",
-        $$slots: { default: [create_default_slot_116] },
+        $$slots: { default: [create_default_slot_117] },
         $$scope: { ctx }
       }
     });
@@ -38628,7 +38859,7 @@
       }
     };
   }
-  function create_default_slot_117(ctx) {
+  function create_default_slot_118(ctx) {
     let field0;
     let t0;
     let field1;
@@ -39306,7 +39537,7 @@
       }
     };
   }
-  function create_fragment38(ctx) {
+  function create_fragment39(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -39358,7 +39589,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance31($$self, $$props, $$invalidate) {
+  function instance32($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(163, $apiURL = $$value));
@@ -40246,7 +40477,7 @@
   var Profile2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance31, create_fragment38, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance32, create_fragment39, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default2 = Profile2;
@@ -44393,7 +44624,7 @@
     let modal5_props = {
       $$slots: {
         header: [create_header_slot5],
-        default: [create_default_slot_119]
+        default: [create_default_slot_120]
       },
       $$scope: { ctx }
     };
@@ -47761,7 +47992,7 @@
       }
     };
   }
-  function create_default_slot_118(ctx) {
+  function create_default_slot_119(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -47978,7 +48209,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul Buku",
-        $$slots: { default: [create_default_slot_118] },
+        $$slots: { default: [create_default_slot_119] },
         $$scope: { ctx }
       }
     });
@@ -48619,7 +48850,7 @@
       }
     };
   }
-  function create_default_slot_119(ctx) {
+  function create_default_slot_120(ctx) {
     let field0;
     let t0;
     let field1;
@@ -49559,7 +49790,7 @@
       }
     };
   }
-  function create_fragment39(ctx) {
+  function create_fragment40(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -49612,7 +49843,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance32($$self, $$props, $$invalidate) {
+  function instance33($$self, $$props, $$invalidate) {
     let $rabFile;
     let $ppmFile;
     let $apiURL;
@@ -50840,7 +51071,7 @@
   var Proposal2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance32, create_fragment39, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance33, create_fragment40, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var proposal_default2 = Proposal2;
@@ -56384,7 +56615,7 @@
     field1 = new Field_default({
       props: {
         name: "Status Pendanaan",
-        $$slots: { default: [create_default_slot_120] },
+        $$slots: { default: [create_default_slot_121] },
         $$scope: { ctx }
       }
     });
@@ -56477,7 +56708,7 @@
       }
     };
   }
-  function create_default_slot_120(ctx) {
+  function create_default_slot_121(ctx) {
     let t;
     return {
       c() {
@@ -57164,7 +57395,7 @@
       }
     };
   }
-  function create_fragment40(ctx) {
+  function create_fragment41(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -57244,7 +57475,7 @@
   }
   function addLogbook() {
   }
-  function instance33($$self, $$props, $$invalidate) {
+  function instance34($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(90, $route = $$value));
@@ -57907,7 +58138,7 @@
   var Proposals2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance33, create_fragment40, safe_not_equal, { params: 73 }, null, [-1, -1, -1, -1]);
+      init(this, options, instance34, create_fragment41, safe_not_equal, { params: 73 }, null, [-1, -1, -1, -1]);
     }
   };
   var proposals_default2 = Proposals2;
@@ -58014,7 +58245,7 @@
       }
     };
   }
-  function create_fragment41(ctx) {
+  function create_fragment42(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -58072,7 +58303,7 @@
       console.error("Error downloading file:", error);
     }
   }
-  function instance34($$self, $$props, $$invalidate) {
+  function instance35($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
     let file;
@@ -58111,7 +58342,7 @@
   var Select2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance34, create_fragment41, safe_not_equal, {});
+      init(this, options, instance35, create_fragment42, safe_not_equal, {});
     }
   };
   var select_default = Select2;
@@ -58298,7 +58529,7 @@
       }
     };
   }
-  function create_fragment42(ctx) {
+  function create_fragment43(ctx) {
     let show_if;
     let current_block_type_index;
     let if_block;
@@ -58376,7 +58607,7 @@
       }
     };
   }
-  function instance35($$self, $$props, $$invalidate) {
+  function instance36($$self, $$props, $$invalidate) {
     let { params = {} } = $$props;
     let cmp;
     $$self.$$set = ($$props2) => {
@@ -58395,7 +58626,7 @@
   var Index4 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance35, create_fragment42, safe_not_equal, { params: 0 });
+      init(this, options, instance36, create_fragment43, safe_not_equal, { params: 0 });
     }
   };
   var Index_default4 = Index4;
@@ -58548,7 +58779,7 @@
       }
     };
   }
-  function create_fragment43(ctx) {
+  function create_fragment44(ctx) {
     let aside;
     let p;
     let t1;
@@ -58643,7 +58874,7 @@
       }
     };
   }
-  function instance36($$self, $$props, $$invalidate) {
+  function instance37($$self, $$props, $$invalidate) {
     const role = localStorage.getItem("role");
     let items;
     if (role === "admin")
@@ -58655,7 +58886,7 @@
   var Sidebar = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance36, create_fragment43, safe_not_equal, {});
+      init(this, options, instance37, create_fragment44, safe_not_equal, {});
     }
   };
   var Sidebar_default = Sidebar;
@@ -58780,7 +59011,7 @@
       }
     };
   }
-  function create_fragment44(ctx) {
+  function create_fragment45(ctx) {
     let header;
     let nav;
     let div0;
@@ -58933,7 +59164,7 @@
       }
     };
   }
-  function instance37($$self, $$props, $$invalidate) {
+  function instance38($$self, $$props, $$invalidate) {
     let $route;
     let $isLogin;
     let $isUsername;
@@ -58973,7 +59204,7 @@
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance37, create_fragment44, safe_not_equal, {});
+      init(this, options, instance38, create_fragment45, safe_not_equal, {});
     }
   };
   var Navbarmenu_default = Navbarmenu;
@@ -59085,7 +59316,7 @@
       }
     };
   }
-  function create_fragment45(ctx) {
+  function create_fragment46(ctx) {
     let navbarmenu;
     let t0;
     let t1;
@@ -59199,7 +59430,7 @@
       }
     };
   }
-  function instance38($$self, $$props, $$invalidate) {
+  function instance39($$self, $$props, $$invalidate) {
     let $route;
     component_subscribe($$self, route, ($$value) => $$invalidate(5, $route = $$value));
     let cmp, params;
@@ -59232,7 +59463,7 @@
   var App = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance38, create_fragment45, safe_not_equal, {});
+      init(this, options, instance39, create_fragment46, safe_not_equal, {});
     }
   };
   var App_default = App;

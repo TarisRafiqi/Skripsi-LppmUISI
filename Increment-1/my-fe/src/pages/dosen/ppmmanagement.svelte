@@ -5,8 +5,11 @@
    import Icon from "../../libs/Icon.svelte";
    import { accountAdd, infoOutline } from "../../store/icons";
    import Status from "../../modules/Status.svelte";
+   import Modalroute from "../../libs/Modalroute.svelte";
 
+   const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
    const id = localStorage.id;
+   let showModalError = false;
    let items;
 
    function daysUntil(targetDate) {
@@ -76,13 +79,24 @@
    }
 
    function addProposal() {
-      location.href = "/dosen/proposal";
+      if (
+         localStorage_namaLengkap === null ||
+         localStorage_namaLengkap === ""
+      ) {
+         showModalError = true;
+      } else {
+         location.href = "/dosen/proposal";
+      }
    }
 </script>
 
 <Article>
    <h1 class="title is-1">PPM Management</h1>
    <hr />
+
+   <Modalroute bind:show={showModalError}>
+      <p>Ayo lengkapi profile anda terlebih dahulu</p>
+   </Modalroute>
 
    <button class="button is-info" on:click={addProposal}>
       <span class="icon">

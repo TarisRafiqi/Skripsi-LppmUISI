@@ -16,11 +16,10 @@
 <b class:show on:click={handleClick}>
    <div>
       <div class="cookiesContent">
-         <img src="/img/warning.png" alt="alert-icon" />
          <p>
             <slot />
          </p>
-         <button class="button is-danger" on:click={clickX}>Close</button>
+         <button class="button is-info" on:click={clickX}>OK</button>
       </div>
    </div>
 </b>
@@ -57,10 +56,10 @@
       padding: 30px;
    }
 
-   img {
+   /* img {
       width: 82px;
       margin-bottom: 15px;
-   }
+   } */
    p {
       font-family: "Roboto", sans-serif;
       margin-bottom: 40px;
@@ -74,6 +73,6 @@
       padding: 14px;
       font-size: 16px;
       color: white;
-      box-shadow: 0px 6px 18px -5px rgb(247, 145, 138);
+      /* box-shadow: 0px 6px 18px -5px rgb(147, 247, 138); */
    }
 </style>

@@ -2,7 +2,7 @@
    import { onMount } from "svelte";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { apiURL } from "../../store";
+   import { route, apiURL } from "../../store";
    import { penelitian, pengmas, jurnal, copyright } from "../../store/icons";
 
    let items, penelitianCounter, pengmasCounter;
@@ -110,7 +110,6 @@
       const resultGP = await responseGP.json();
 
       if (responseGP.ok) {
-         // dataGP = resultGP;
          nama_lengkap = resultGP.nama_lengkap;
          localStorage.setItem("nama_lengkap", nama_lengkap);
       }

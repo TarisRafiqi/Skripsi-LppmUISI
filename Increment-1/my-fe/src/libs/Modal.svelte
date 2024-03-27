@@ -62,8 +62,9 @@
    div {
       padding: 1em 1.5em;
       /* max-width: 32em; */
+      /* border-radius: 0.5em; */
       width: 40em;
       background: white;
-      border-radius: 0.5em;
+      border-radius: 10px;
    }
 </style>
