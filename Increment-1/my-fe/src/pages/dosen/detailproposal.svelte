@@ -1,6 +1,6 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL } from "../../store";
+   import { route, apiURL, penilaianFile } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Status from "../../modules/Status.svelte";
@@ -8,6 +8,7 @@
 
    export let params;
 
+   let randomPenilaianFileName = "";
    let showModalError = false;
    const id = params["1"];
    const role = localStorage.getItem("role");
@@ -117,7 +118,23 @@
          reviewerSelected = data.uid_reviewer;
          randomRabFileName = data.random_rab_file_name;
          randomPpmFileName = data.random_ppm_file_name;
+         randomPenilaianFileNamedb = data.random_penilaian_file_name;
       }
+
+      //------------------------------------------------------------
+      // Generate Penilaian Random Character
+      //------------------------------------------------------------
+      const characters =
+         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let resultPenilaianChar = "";
+
+      for (let i = 0; i < 30; i++) {
+         const randomIndex = Math.floor(Math.random() * characters.length);
+         resultPenilaianChar += characters.charAt(randomIndex);
+      }
+
+      randomPenilaianFileName = resultPenilaianChar;
+
       // -----------------------------------------------------------------------------//
       // Get Nama Lengkap Evaluator
       // -----------------------------------------------------------------------------//
@@ -361,29 +378,12 @@
          //          API PPM
          // -----------------------------
          const payload = {
-            jenisProposal,
-            jenisKegiatan,
-            jenisSkema,
-            kelompokKeahlian,
-            topik,
-            tanggalMulai,
-            tanggalSelesai,
-            biayaPenelitian,
-            anggotaTim,
-            id,
-            judul,
-            abstrak,
             comment,
             status: Number(data.status) - 1,
-            kdeptSelected,
-            klppmSelected,
-            kpkSelected,
-            reviewerSelected,
-            randomRabFileName,
-            randomPpmFileName,
+            id,
          };
 
-         const response = await fetch($apiURL + "/ppm", {
+         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: {
                "Content-Type": "application/json",
@@ -392,6 +392,8 @@
          });
 
          const result = await response.json();
+         // console.log(result);
+         // return;
 
          if (response.ok) {
             $route("/dosen/approval");
@@ -403,29 +405,12 @@
 
    async function handleDitolak() {
       const payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
-         comment,
+         comment: "",
          status: Number(data.status) + 1,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         id,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: {
             "Content-Type": "application/json",
@@ -434,6 +419,8 @@
       });
 
       const result = await response.json();
+      // console.log(result);
+      // return;
 
       if (response.ok) {
          $route("/dosen/approval");
@@ -444,29 +431,12 @@
 
    async function handlePass() {
       const payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
          comment: "",
          status: Number(data.status) + 2,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         id,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: {
             "Content-Type": "application/json",
@@ -475,6 +445,80 @@
       });
 
       const result = await response.json();
+      // console.log(result);
+      // return;
+
+      if (response.ok) {
+         $route("/dosen/approval");
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function handlePassReviewer() {
+      const accessToken = localStorage.getItem("token");
+      // -------------------------------------------------------------------//
+      // Upload File Penilaian
+      // -------------------------------------------------------------------//
+      const readerPenilaian = new FileReader();
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         readerPenilaian.onloadend = async () => {
+            const base64Data = readerPenilaian.result.split(",")[1];
+            const payloadPenilaianFile = {
+               filePenilaian: {
+                  name: filePenilaian.name,
+                  type: filePenilaian.type,
+                  data: base64Data,
+               },
+               randomPenilaianFileName,
+            };
+
+            try {
+               const responseUpload = await fetch(
+                  $apiURL + "/uploadPenilaian",
+                  {
+                     method: "POST",
+                     headers: {
+                        Authorization: `${accessToken}`,
+                        "Content-Type": "application/json",
+                     },
+                     body: JSON.stringify(payloadPenilaianFile),
+                  }
+               );
+
+               const resultUpload = await responseUpload.json();
+            } catch (error) {
+               console.error("Error uploading file:", error);
+            }
+         };
+         readerPenilaian.readAsDataURL(filePenilaian);
+      }
+      // -------------------------------------------------------------------//
+
+      const payload = {
+         comment: "",
+         status: Number(data.status) + 2,
+         randomPenilaianFileName,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/handleEvaluatorAction", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      // console.log(result);
+      // return;
 
       if (response.ok) {
          $route("/dosen/approval");
@@ -512,7 +556,9 @@
          Authorization: `${accessToken}`,
          "Content-Type": "application/json",
       };
+
       let filename = "rab.xlsx";
+
       try {
          const response = await fetch(
             $apiURL + `/uploadRab/${randomRabFileName}`,
@@ -537,7 +583,9 @@
          Authorization: `${accessToken}`,
          "Content-Type": "application/json",
       };
+
       let filename = "proposal.pdf";
+
       try {
          const response = await fetch(
             $apiURL + `/uploadPpm/${randomPpmFileName}`,
@@ -556,66 +604,107 @@
       }
    }
 
+   async function handleDownloadPenilaian(e) {
+      const accessToken = localStorage.getItem("token");
+      const headers = {
+         Authorization: `${accessToken}`,
+         "Content-Type": "application/json",
+      };
+
+      let filename = "penilaian.xlsx";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+         const blob = await response.blob();
+         const link = document.createElement("a");
+         link.href = window.URL.createObjectURL(blob);
+         link.download = filename;
+         link.click();
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
    let tab1 = true;
    let tab2;
-   let tab3;
-   let tab4;
-   let tab5;
-   let tab6;
+   // let tab3;
+   // let tab4;
+   // let tab5;
+   // let tab6;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
+      // tab3 = false;
+      // tab4 = false;
+      // tab5 = false;
+      // tab6 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
+      // tab3 = false;
+      // tab4 = false;
+      // tab5 = false;
+      // tab6 = false;
    }
 
-   function clicktab3() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = true;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
+   // function clicktab3() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = true;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = false;
+   // }
+
+   // function clicktab4() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = true;
+   //    tab5 = false;
+   //    tab6 = false;
+   // }
+
+   // function clicktab5() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = true;
+   //    tab6 = false;
+   // }
+
+   // function clicktab6() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = true;
+   // }
+
+   function filePenilaianChange(e) {
+      filePenilaian = e.target.files[0];
+      $penilaianFile = e.target.files[0];
    }
 
-   function clicktab4() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = true;
-      tab5 = false;
-      tab6 = false;
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
    }
-
-   function clicktab5() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = true;
-      tab6 = false;
-   }
-
-   function clicktab6() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = true;
-   }
+   // $: console.log(data);
 </script>
 
 {#if data}
@@ -649,36 +738,36 @@
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab3} class:is-active={tab3}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Status</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Status</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab4} class:is-active={tab4}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Logbook</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Logbook</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab5} class:is-active={tab5}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Monev</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Monev</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab6} class:is-active={tab6}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Laporan</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Laporan</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
          </ul>
       </div>
 
@@ -715,15 +804,6 @@
             <Field name="Biaya Penelitian">
                {biayaPenelitian}
             </Field>
-
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-               <Field name="Rencana Anggaran Biaya">
-                  <button
-                     class="button is-link is-rounded button is-small"
-                     on:click={handleDownloadRab}>Download RAB</button
-                  >
-               </Field>
-            {/if}
 
             <Field name="Anggota Tim">
                <span></span>
@@ -771,6 +851,49 @@
                   on:click={handleDownloadPpm}>Download Proposal</button
                >
             </Field>
+
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <Field name="Rencana Anggaran Biaya">
+                  <button
+                     class="button is-link is-rounded button is-small"
+                     on:click={handleDownloadRab}>Download RAB</button
+                  >
+               </Field>
+            {/if}
+
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               {#if status === 8}
+                  <Field name="Penilaian Proposal">
+                     <span class="inputf__wrapper">
+                        <input
+                           id="filePenilaian"
+                           class="inputf custom-file-input"
+                           accept=".xlsx"
+                           type="file"
+                           on:change={filePenilaianChange}
+                        />
+                        <label for="filePenilaian" class="button">
+                           {#if $penilaianFile?.name}
+                              {$penilaianFile.name}
+                           {:else}
+                              Choose File
+                           {/if}
+                        </label>
+                     </span>
+                     <p class="help is-info">File Type: xlsx</p>
+                  </Field>
+               {/if}
+
+               {#if status > 8}
+                  <Field name="Penilaian Proposal">
+                     <button
+                        class="button is-link is-rounded button is-small"
+                        on:click={handleDownloadPenilaian}
+                        >Download Form Penilaian</button
+                     >
+                  </Field>
+               {/if}
+            {/if}
 
             <hr />
 
@@ -844,8 +967,9 @@
             {#if status === 8}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
+                     <button
+                        class="button is-info"
+                        on:click={handlePassReviewer}>Proses</button
                      >
                   </p>
                </div>
@@ -1151,49 +1275,6 @@
             </table>
          </div>
       {/if}
-
-      {#if tab3 === true}
-         <div class="box">
-            <Field name="Status PPM">
-               <Status code={data.status} />
-            </Field>
-
-            <Field name="Status Pendanaan">. . .</Field>
-         </div>
-      {/if}
-
-      {#if tab4 === true}
-         <div class="columns notification is-info is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>LogBook</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if}
-
-      {#if tab5 === true}
-         <div class="columns notification is-success is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>Monev</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if}
-
-      {#if tab6 === true}
-         <div class="columns notification is-link is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>Laporan</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if}
    </Article>
 {/if}
 
@@ -1203,4 +1284,13 @@
       padding: 4.724rem;
    }
    */
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
 </style>

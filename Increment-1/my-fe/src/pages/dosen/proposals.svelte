@@ -744,64 +744,64 @@
 
    let tab1 = true;
    let tab2;
-   let tab3;
-   let tab4;
-   let tab5;
-   let tab6;
+   // let tab3;
+   // let tab4;
+   // let tab5;
+   // let tab6;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
+      // tab3 = false;
+      // tab4 = false;
+      // tab5 = false;
+      // tab6 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
+      // tab3 = false;
+      // tab4 = false;
+      // tab5 = false;
+      // tab6 = false;
    }
 
-   function clicktab3() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = true;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
-   }
+   // function clicktab3() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = true;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = false;
+   // }
 
-   function clicktab4() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = true;
-      tab5 = false;
-      tab6 = false;
-   }
+   // function clicktab4() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = true;
+   //    tab5 = false;
+   //    tab6 = false;
+   // }
 
-   function clicktab5() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = true;
-      tab6 = false;
-   }
+   // function clicktab5() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = true;
+   //    tab6 = false;
+   // }
 
-   function clicktab6() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = true;
-   }
+   // function clicktab6() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = true;
+   // }
 
    function addLogbook() {
       // $route("/dosen/addlogbook");
@@ -840,36 +840,36 @@
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab3} class:is-active={tab3}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Status</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Status</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab4} class:is-active={tab4}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Logbook</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Logbook</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab5} class:is-active={tab5}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Monev</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Monev</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab6} class:is-active={tab6}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Laporan</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Laporan</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
          </ul>
       </div>
 
@@ -1003,17 +1003,6 @@
                   />
                </Field>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
-                     <input
-                        class="input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={(e) => (fileRab = e.target.files[0])}
-                     />
-                  </Field>
-               {/if}
-
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
                </Field>
@@ -1081,6 +1070,17 @@
                      on:change={(e) => (filePpm = e.target.files[0])}
                   />
                </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <input
+                        class="input"
+                        accept=".xlsx"
+                        type="file"
+                        on:change={(e) => (fileRab = e.target.files[0])}
+                     />
+                  </Field>
+               {/if}
 
                <br /><br />
 
@@ -1158,15 +1158,6 @@
                   {biayaPenelitian}
                </Field>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
-                     <button
-                        class="button is-link is-rounded button is-small"
-                        on:click={handleDownloadRab}>Download RAB</button
-                     >
-                  </Field>
-               {/if}
-
                <Field name="Anggota Tim">
                   <span></span>
                </Field>
@@ -1214,6 +1205,15 @@
                      on:click={handleDownloadPpm}>Download Proposal</button
                   >
                </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <button
+                        class="button is-link is-rounded button is-small"
+                        on:click={handleDownloadRab}>Download RAB</button
+                     >
+                  </Field>
+               {/if}
             {/if}
          </div>
 
@@ -1531,7 +1531,7 @@
       {/if}
 
       <!-- Tab Status -->
-      {#if tab3 === true}
+      <!-- {#if tab3 === true}
          <div class="box">
             <Field name="Status PPM">
                <Status code={data.status} />
@@ -1539,10 +1539,10 @@
 
             <Field name="Status Pendanaan">. . .</Field>
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Logbook -->
-      {#if tab4 === true}
+      <!-- {#if tab4 === true}
          <div class="columns notification is-info is-light">
             <div class="column is-4">
                <p>
@@ -1556,15 +1556,14 @@
                   <span class="icon">
                      <Icon id="logbook" src={addProposal} />
                   </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
                   <span><a>Create Logbook</a></span>
                </button>
             </div>
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Monev -->
-      {#if tab5 === true}
+      <!-- {#if tab5 === true}
          <div class="columns notification is-success is-light">
             <div class="column is-4">
                <p>
@@ -1578,15 +1577,14 @@
                   <span class="icon">
                      <Icon id="monev" src={addProposal} />
                   </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
                   <span><a>Create Monev</a></span>
                </button>
             </div>
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Laporan -->
-      {#if tab6 === true}
+      <!-- {#if tab6 === true}
          <div class="columns notification is-info is-light">
             <div class="column is-4">
                <p>
@@ -1600,12 +1598,11 @@
                   <span class="icon">
                      <Icon id="laporan" src={addProposal} />
                   </span>
-                  <!-- svelte-ignore a11y-missing-attribute -->
                   <span><a>Create Laporan</a></span>
                </button>
             </div>
          </div>
-      {/if}
+      {/if} -->
    </Article>
 {/if}
 

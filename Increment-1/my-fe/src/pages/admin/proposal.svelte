@@ -802,76 +802,78 @@
 
    let tab1 = true;
    let tab2;
-   let tab3;
+   // let tab3;
    let tab4;
-   let tab5;
-   let tab6;
-   let tab7;
+   // let tab5;
+   // let tab6;
+   // let tab7;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      tab3 = false;
+      // tab3 = false;
       tab4 = false;
-      tab5 = false;
-      tab6 = false;
-      tab7 = false;
+      // tab5 = false;
+      // tab6 = false;
+      // tab7 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      tab3 = false;
+      // tab3 = false;
       tab4 = false;
-      tab5 = false;
-      tab6 = false;
-      tab7 = false;
+      // tab5 = false;
+      // tab6 = false;
+      // tab7 = false;
    }
 
-   function clicktab3() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = true;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
-      tab7 = false;
-   }
+   // function clicktab3() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = true;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = false;
+   //    tab7 = false;
+   // }
 
    function clicktab4() {
       tab1 = false;
       tab2 = false;
-      tab3 = false;
+      // tab3 = false;
       tab4 = true;
-      tab5 = false;
+      // tab5 = false;
+      // tab6 = false;
+      //    tab7 = false;
    }
-   function clicktab5() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = true;
-      tab6 = false;
-      tab7 = false;
-   }
-   function clicktab6() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = true;
-      tab7 = false;
-   }
-   function clicktab7() {
-      tab1 = false;
-      tab2 = false;
-      tab3 = false;
-      tab4 = false;
-      tab5 = false;
-      tab6 = false;
-      tab7 = true;
-   }
+   // function clicktab5() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = true;
+   //    tab6 = false;
+   //    tab7 = false;
+   // }
+   // function clicktab6() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = true;
+   //    tab7 = false;
+   // }
+   // function clicktab7() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = false;
+   //    tab5 = false;
+   //    tab6 = false;
+   //    tab7 = true;
+   // }
 </script>
 
 {#if data}
@@ -905,44 +907,44 @@
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab3} class:is-active={tab3}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Status</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Status</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <li on:click={clicktab4} class:is-active={tab4}>
                <!-- svelte-ignore a11y-missing-attribute -->
                <a>
-                  <span>Reviewer</span>
+                  <span>Evaluator</span>
                </a>
             </li>
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab5} class:is-active={tab5}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Logbook</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Logbook</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab6} class:is-active={tab6}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Monev</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Monev</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab7} class:is-active={tab7}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Laporan</span>
-               </a>
-            </li>
+            <!-- <li on:click={clicktab7} class:is-active={tab7}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a> -->
+            <!-- <span>Laporan</span> -->
+            <!-- </a> -->
+            <!-- </li> -->
          </ul>
       </div>
 
@@ -1663,7 +1665,7 @@
       {/if}
 
       <!-- Tab Status -->
-      {#if tab3 === true}
+      <!-- {#if tab3 === true}
          <div class="box">
             <Field name="Status PPM">
                <Status code={data.status} />
@@ -1693,7 +1695,7 @@
                </div></Field
             >
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Reviewer -->
       {#if tab4 === true}
@@ -1743,7 +1745,7 @@
       {/if}
 
       <!-- Tab Logbook -->
-      {#if tab5 === true}
+      <!-- {#if tab5 === true}
          <div class="columns notification is-info is-light">
             <div class="column">
                <p>
@@ -1752,10 +1754,10 @@
                </p>
             </div>
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Monev -->
-      {#if tab6 === true}
+      <!-- {#if tab6 === true}
          <div class="columns notification is-success is-light">
             <div class="column">
                <p>
@@ -1764,10 +1766,10 @@
                </p>
             </div>
          </div>
-      {/if}
+      {/if} -->
 
       <!-- Tab Laporan -->
-      {#if tab7 === true}
+      <!-- {#if tab7 === true}
          <div class="columns notification is-info is-light">
             <div class="column">
                <p>
@@ -1776,7 +1778,7 @@
                </p>
             </div>
          </div>
-      {/if}
+      {/if} -->
    </Article>
 {/if}
 

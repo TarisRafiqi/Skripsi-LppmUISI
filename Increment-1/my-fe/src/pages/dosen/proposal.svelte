@@ -10,9 +10,12 @@
    import Modalerror from "../../libs/Modalerror.svelte";
 
    const id = Number(localStorage.getItem("id"));
+   const localStorage_id = localStorage.getItem("id");
    const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
+
    let showModalErrorProposal = false;
    let showModalErrorBiodata = false;
+   let showModalErrorBiodata2 = false;
    let warningFormText = false;
    let value;
    let label;
@@ -33,7 +36,11 @@
    let biayaPenelitian = "";
    // let anggotaTim = [];
    let anggotaTim = [
-      { value: id, label: localStorage_namaLengkap, role: "Ketua" },
+      {
+         value: localStorage_id,
+         label: localStorage_namaLengkap,
+         role: "Ketua",
+      },
    ];
    let randomRabFileName = "";
    let randomPpmFileName = "";
@@ -426,116 +433,7 @@
    // Button Simpan Proposal
    //------------------------------------------------------------
    async function simpanProposal() {
-      // myAbstract = tinymce.get("abstract").getContent();
-
       const accessToken = localStorage.getItem("token");
-      const readerRab = new FileReader();
-      const readerPpm = new FileReader();
-      // -------------------------------------------------------------------//
-      // Upload File RAB
-      // -------------------------------------------------------------------//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: {
-                  Authorization: `${accessToken}`,
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify(payloadRabFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-      readerRab.readAsDataURL(fileRab);
-
-      // -------------------------------------------------------------------//
-      // Upload File PPM
-      // -------------------------------------------------------------------//
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: {
-                  Authorization: `${accessToken}`,
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
-      let payload = {
-         id,
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         judul,
-         myAbstract,
-         status: 0,
-         randomRabFileName,
-         randomPpmFileName,
-      };
-
-      const response = await fetch($apiURL + "/ppm", {
-         method: "POST",
-         headers: {
-            Authorization: `${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-         $route("/dosen");
-      } else {
-         console.log(result.msg);
-      }
-   }
-
-   //------------------------------------------------------------
-   // Button Submit Proposal
-   //------------------------------------------------------------
-   async function submitProposal() {
-      const accessToken = localStorage.getItem("token");
-      const readerPpm = new FileReader();
 
       // -------------------------------------------------------------------//
       // Upload File RAB
@@ -579,6 +477,199 @@
       // -------------------------------------------------------------------//
       // Upload File PPM
       // -------------------------------------------------------------------//
+      const readerPpm = new FileReader();
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerPpm.readAsDataURL(filePpm);
+      // -----------------------------------------------------------------------------//
+      const idnamaLengkap = document.getElementById("namaLengkap");
+      const idjabatanFungsional = document.getElementById("jabatanFungsional");
+      const idnip = document.getElementById("nip");
+      const idnidn = document.getElementById("nidn");
+      const idtempatLahir = document.getElementById("tempatLahir");
+      const idtanggalLahir = document.getElementById("tanggalLahir");
+      const idalamatRumah = document.getElementById("alamatRumah");
+      const idtelpFaxRumah = document.getElementById("telpFaxRumah");
+      const idnomorHandphone = document.getElementById("nomorHandphone");
+      const idalamatKantor = document.getElementById("alamatKantor");
+      const idtelpFaxKantor = document.getElementById("telpFaxKantor");
+      const idemail = document.getElementById("email");
+
+      if (
+         idnamaLengkap.value === "" ||
+         idnamaLengkap.value == null ||
+         idjabatanFungsional.value === "" ||
+         idjabatanFungsional.value == null ||
+         idnip.value === "" ||
+         idnip.value == null ||
+         idnidn.value === "" ||
+         idnidn.value == null ||
+         idtempatLahir.value === "" ||
+         idtempatLahir.value == null ||
+         idtanggalLahir.value === "" ||
+         idtanggalLahir.value == null ||
+         idalamatRumah.value === "" ||
+         idalamatRumah.value == null ||
+         idtelpFaxRumah.value === "" ||
+         idtelpFaxRumah.value == null ||
+         idnomorHandphone.value === "" ||
+         idnomorHandphone.value == null ||
+         idalamatKantor.value === "" ||
+         idalamatKantor.value == null ||
+         idtelpFaxKantor.value === "" ||
+         idtelpFaxKantor.value == null ||
+         idemail.value === "" ||
+         idemail.value == null ||
+         mataKuliah.length === 0
+      ) {
+         showModalErrorBiodata2 = true;
+      } else {
+         // ----------------------------------------------------//
+         // Post Proposal                                       //
+         // ----------------------------------------------------//
+         let payloadProposal = {
+            id,
+            jenisProposal,
+            jenisKegiatan,
+            jenisSkema,
+            kelompokKeahlian,
+            topik,
+            tanggalMulai,
+            tanggalSelesai,
+            biayaPenelitian,
+            anggotaTim,
+            judul,
+            myAbstract,
+            status: 0,
+            randomRabFileName,
+            randomPpmFileName,
+         };
+
+         const responseProposal = await fetch($apiURL + "/ppm", {
+            method: "POST",
+            headers: {
+               Authorization: `${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloadProposal),
+         });
+
+         // ----------------------------------------------------//
+         // Post Identitas                                      //
+         // ----------------------------------------------------//
+         let payloadIdentitas = {
+            idProfile,
+            namaLengkap,
+            jabatanFungsional,
+            nip,
+            nidn,
+            tempatLahir,
+            tanggalLahir,
+            alamatRumah,
+            telpFaxRumah,
+            nomorHandphone,
+            alamatKantor,
+            telpFaxKantor,
+            email,
+            mataKuliah,
+         };
+
+         const responseIdentitas = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payloadIdentitas),
+         });
+
+         // ----------------------------------------------------
+         // Response
+         // ----------------------------------------------------
+         const resultProposal = await responseProposal.json();
+         const resultIdentitas = await responseIdentitas.json();
+
+         if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/ppmmanagement");
+         } else {
+            console.log(result.msg);
+         }
+      }
+   }
+
+   //------------------------------------------------------------
+   // Button Submit Proposal
+   //------------------------------------------------------------
+   async function submitProposal() {
+      const accessToken = localStorage.getItem("token");
+
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      const readerRab = new FileReader();
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
+               },
+               randomRabFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: {
+                     Authorization: `${accessToken}`,
+                     "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(payloadRabFile),
+               });
+
+               const result = await response.json();
+            } catch (error) {
+               console.error("Error uploading file:", error);
+            }
+         };
+         readerRab.readAsDataURL(fileRab);
+      }
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      const readerPpm = new FileReader();
       readerPpm.onloadend = async () => {
          const base64Data = readerPpm.result.split(",")[1];
          const payloadPpmFile = {
@@ -713,7 +804,6 @@
          // ----------------------------------------------------
          const resultProposal = await responseProposal.json();
          const resultIdentitas = await responseIdentitas.json();
-         console.log(resultProposal);
 
          if (responseProposal.ok && responseIdentitas.ok) {
             $route("/dosen/ppmmanagement");
@@ -744,6 +834,14 @@
    //    }
    // });
 
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
+
    let tab1 = true;
    let tab2;
 
@@ -763,9 +861,6 @@
       const idbiayaPenelitian = document.getElementById("biayaPenelitian");
       const idjudul = document.getElementById("judul");
       const idmyAbstract = document.getElementById("myAbstract");
-      // const idanggotaTim = document.getElementById("anggotaTim");
-      // const idfilePpm = document.getElementById("filePpm");
-      // const idfileRab = document.getElementById("fileRab");
 
       if (
          idjenisProposal.value === "" ||
@@ -784,16 +879,12 @@
          idtanggalSelesai.value == null ||
          idbiayaPenelitian.value === "" ||
          idbiayaPenelitian.value == null ||
-         anggotaTim.length === 0 ||
+         anggotaTim.length === 1 ||
          idjudul.value === "" ||
          idjudul.value == null ||
          idmyAbstract.value === "" ||
          idmyAbstract.value == null ||
-         $ppmFile.value === "" ||
-         $ppmFile.value === null
-
-         // $rabFile.value === "" ||
-         // $rabFile.value == null ||
+         isObjectEmpty($ppmFile)
       ) {
          showModalErrorProposal = true;
       } else {
@@ -1211,6 +1302,10 @@
       <p>Lengkapi semua form biodata untuk submit proposal!</p>
    </Modalerror>
 
+   <Modalerror bind:show={showModalErrorBiodata2}>
+      <p>Lengkapi semua form biodata untuk simpan proposal!</p>
+   </Modalerror>
+
    <!-- ---------------------------------------------------- -->
    <!-- Bulma Stepper -->
    <!-- ---------------------------------------------------- -->
@@ -1376,28 +1471,6 @@
             />
          </Field>
 
-         {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-            <Field name="Rencana Anggaran Biaya">
-               <span class="inputf__wrapper">
-                  <input
-                     id="fileRab"
-                     class="inputf custom-file-input"
-                     accept=".xlsx"
-                     type="file"
-                     on:change={fileRabChange}
-                  />
-                  <label for="fileRab" class="button">
-                     {#if $rabFile?.name}
-                        {$rabFile.name}
-                     {:else}
-                        Choose File
-                     {/if}
-                  </label>
-               </span>
-               <p class="help is-info">File Type: xlsx</p>
-            </Field>
-         {/if}
-
          {#if items.length}
             <Field name="Anggota Tim">
                <Select
@@ -1483,6 +1556,28 @@
             </span>
             <p class="help is-info">File Type: pdf</p>
          </Field>
+
+         {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            <Field name="Rencana Anggaran Biaya">
+               <span class="inputf__wrapper">
+                  <input
+                     id="fileRab"
+                     class="inputf custom-file-input"
+                     accept=".xlsx"
+                     type="file"
+                     on:change={fileRabChange}
+                  />
+                  <label for="fileRab" class="button">
+                     {#if $rabFile?.name}
+                        {$rabFile.name}
+                     {:else}
+                        Choose File
+                     {/if}
+                  </label>
+               </span>
+               <p class="help is-info">File Type: xlsx</p>
+            </Field>
+         {/if}
 
          {#if warningFormText === true}
             <div class="field is-grouped is-grouped-right">
