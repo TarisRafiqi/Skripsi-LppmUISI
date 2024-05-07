@@ -17,6 +17,7 @@
    const idEvaluator = localStorage.getItem("id");
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let showModalError = false;
+   let showModalErrorInputEvaluator = false;
 
    let jenisProposal;
    let jenisKegiatan;
@@ -136,6 +137,10 @@
          randomRabFileName = data.random_rab_file_name;
          randomPpmFileName = data.random_ppm_file_name;
       }
+      // console.log(kdeptSelected);
+      // console.log(klppmSelected);
+      // console.log(kpkSelected);
+      // console.log(reviewerSelected);
 
       // -----------------------------------------------------------------------------//
       // Get Nama Lengkap Evaluator
@@ -488,7 +493,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/admin/proposals");
+         $route("/admin/proposalmanagement");
       } else {
          console.log(response);
       }
@@ -558,7 +563,7 @@
          const result = await response.json();
 
          if (response.ok) {
-            $route("/admin/proposals");
+            $route("/admin/proposalmanagement");
          } else {
             console.log(response);
          }
@@ -601,79 +606,100 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/admin/proposals");
+         $route("/admin/proposalmanagement");
       } else {
          console.log(response);
       }
    }
 
    async function handlePass() {
-      const payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
-         isi,
-         comment: "",
-         status: Number(data.status) + 2,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
-      };
+      const evaluatorKdept = document.getElementById("evaluatorKdept");
+      const evaluatorKlppm = document.getElementById("evaluatorKlppm");
+      const evaluatorReviewer = document.getElementById("evaluatorReviewer");
+      const evaluatorKpk = document.getElementById("evaluatorKpk");
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      // console.log(evaluatorKdept.value);
+      // return;
 
-      const result = await response.json();
-
-      if (response.ok) {
-         $route("/admin/proposals");
+      if (
+         evaluatorKdept.value === "" ||
+         evaluatorKdept.value == null ||
+         evaluatorKlppm.value === "" ||
+         evaluatorKlppm.value == null ||
+         evaluatorReviewer.value === "" ||
+         evaluatorReviewer.value == null ||
+         evaluatorKpk.value === "" ||
+         evaluatorKpk.value == null
+      ) {
+         showModalErrorInputEvaluator = true;
       } else {
-         console.log(response);
+         const payload = {
+            jenisProposal,
+            jenisKegiatan,
+            jenisSkema,
+            kelompokKeahlian,
+            topik,
+            tanggalMulai,
+            tanggalSelesai,
+            biayaPenelitian,
+            anggotaTim,
+            id,
+            judul,
+            abstrak,
+            isi,
+            comment: "",
+            status: Number(data.status) + 2,
+            kdeptSelected,
+            klppmSelected,
+            kpkSelected,
+            reviewerSelected,
+            randomRabFileName,
+            randomPpmFileName,
+         };
+
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.ok) {
+            $route("/admin/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
-   async function handleSubmitReviewer() {
-      // Mengirimkan data reviewer terpilih
+   // async function handleSubmitReviewer() {
+   //    // Mengirimkan data reviewer terpilih
 
-      const payload = {
-         id: id,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-      };
-      const response = await fetch($apiURL + "/submitreviewer", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+   //    const payload = {
+   //       id: id,
+   //       kdeptSelected,
+   //       klppmSelected,
+   //       kpkSelected,
+   //       reviewerSelected,
+   //    };
+   //    const response = await fetch($apiURL + "/submitreviewer", {
+   //       method: "PATCH",
+   //       headers: {
+   //          "Content-Type": "application/json",
+   //       },
+   //       body: JSON.stringify(payload),
+   //    });
 
-      const result = await response.json();
+   //    const result = await response.json();
 
-      if (response.ok) {
-      } else {
-         console.log(response);
-      }
-   }
+   //    if (response.ok) {
+   //    } else {
+   //       console.log(response);
+   //    }
+   // }
 
    async function handleSubmitDana() {
       // Mengirimkan data update status pendanaan
@@ -812,7 +838,7 @@
       tab1 = true;
       tab2 = false;
       // tab3 = false;
-      tab4 = false;
+      // tab4 = false;
       // tab5 = false;
       // tab6 = false;
       // tab7 = false;
@@ -822,7 +848,7 @@
       tab1 = false;
       tab2 = true;
       // tab3 = false;
-      tab4 = false;
+      // tab4 = false;
       // tab5 = false;
       // tab6 = false;
       // tab7 = false;
@@ -838,15 +864,16 @@
    //    tab7 = false;
    // }
 
-   function clicktab4() {
-      tab1 = false;
-      tab2 = false;
-      // tab3 = false;
-      tab4 = true;
-      // tab5 = false;
-      // tab6 = false;
-      //    tab7 = false;
-   }
+   // function clicktab4() {
+   //    tab1 = false;
+   //    tab2 = false;
+   //    tab3 = false;
+   //    tab4 = true;
+   //    tab5 = false;
+   //    tab6 = false;
+   //    tab7 = false;
+   // }
+
    // function clicktab5() {
    //    tab1 = false;
    //    tab2 = false;
@@ -885,6 +912,10 @@
          </p>
       </Modalerror>
 
+      <Modalerror bind:show={showModalErrorInputEvaluator}>
+         <p>Masukkan evaluator proposal terlebih dahulu sebelum di proses</p>
+      </Modalerror>
+
       <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
@@ -915,12 +946,12 @@
             <!-- </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab4} class:is-active={tab4}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
+            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <!-- <a>
                   <span>Evaluator</span>
                </a>
-            </li>
+            </li> -->
             <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
@@ -1078,17 +1109,6 @@
                   />
                </Field>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
-                     <input
-                        class="input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={(e) => (fileRab = e.target.files[0])}
-                     />
-                  </Field>
-               {/if}
-
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
                </Field>
@@ -1156,6 +1176,17 @@
                      on:change={(e) => (filePpm = e.target.files[0])}
                   />
                </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <input
+                        class="input"
+                        accept=".xlsx"
+                        type="file"
+                        on:change={(e) => (fileRab = e.target.files[0])}
+                     />
+                  </Field>
+               {/if}
 
                <hr />
 
@@ -1227,15 +1258,6 @@
                   {biayaPenelitian}
                </Field>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
-                     <button
-                        class="button is-link is-rounded button is-small"
-                        on:click={handleDownloadRab}>Download RAB</button
-                     >
-                  </Field>
-               {/if}
-
                <Field name="Anggota Tim">
                   <span></span>
                </Field>
@@ -1279,10 +1301,19 @@
 
                <Field name="Proposal">
                   <button
-                     class="button is-link is-rounded button is-small"
+                     class="button is-link button"
                      on:click={handleDownloadPpm}>Download Proposal</button
                   >
                </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <button
+                        class="button is-link button"
+                        on:click={handleDownloadRab}>Download RAB</button
+                     >
+                  </Field>
+               {/if}
 
                <hr />
 
@@ -1322,6 +1353,59 @@
                </Field>
             {/if}
          </div>
+
+         <!-- ========================================== -->
+         <!--              Input Evaluator               -->
+         <!-- ========================================== -->
+         <div class="box">
+            <h3 class="title is-3">Evaluator</h3>
+            <hr />
+            <Field
+               id={"evaluatorKdept"}
+               name="Ka. Departemen"
+               bind:value={ka_departemen}
+               bind:selected={kdeptSelected}
+               select
+               view
+               userId={kdeptSelected}
+            />
+            <br />
+            <Field
+               id={"evaluatorKlppm"}
+               name="Ka. LPPM"
+               bind:value={ka_lppm}
+               bind:selected={klppmSelected}
+               select
+               view
+               userId={klppmSelected}
+            />
+            <br />
+            <Field
+               id={"evaluatorReviewer"}
+               name="Reviewer"
+               bind:value={reviewer}
+               bind:selected={reviewerSelected}
+               select
+               view
+               userId={reviewerSelected}
+            />
+            <br />
+            <Field
+               id={"evaluatorKpk"}
+               name="Ka. Pusat Kajian"
+               bind:value={ka_pusat_kajian}
+               bind:selected={kpkSelected}
+               select
+               view
+               userId={kpkSelected}
+            />
+         </div>
+
+         <!-- <div class="field is-grouped is-grouped-right">
+            <button class="button is-info" on:click={handleSubmitReviewer}
+               >Submit</button
+            >
+         </div> -->
 
          <div class="field is-grouped is-grouped-right">
             {#if status === 2 || status === 4 || status === 6 || status === 8}
@@ -1696,53 +1780,6 @@
             >
          </div>
       {/if} -->
-
-      <!-- Tab Reviewer -->
-      {#if tab4 === true}
-         <div class="box">
-            <Field
-               name="Ka. Departemen"
-               bind:value={ka_departemen}
-               bind:selected={kdeptSelected}
-               select
-               view
-               userId={kdeptSelected}
-            />
-            <br />
-            <Field
-               name="Ka. LPPM"
-               bind:value={ka_lppm}
-               bind:selected={klppmSelected}
-               select
-               view
-               userId={klppmSelected}
-            />
-            <br />
-            <Field
-               name="Reviewer"
-               bind:value={reviewer}
-               bind:selected={reviewerSelected}
-               select
-               view
-               userId={reviewerSelected}
-            />
-            <br />
-            <Field
-               name="Ka. Pusat Kajian"
-               bind:value={ka_pusat_kajian}
-               bind:selected={kpkSelected}
-               select
-               view
-               userId={kpkSelected}
-            />
-         </div>
-
-         <div class="field is-grouped is-grouped-right">
-            <button class="button is-info" on:click={handleSubmitReviewer}
-               >Submit</button
-            >
-         </div>
-      {/if}
 
       <!-- Tab Logbook -->
       <!-- {#if tab5 === true}

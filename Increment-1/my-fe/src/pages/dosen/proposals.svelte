@@ -520,7 +520,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen/ppmmanagement");
+         $route("/dosen/proposalmanagement");
       } else {
          console.log(response);
       }
@@ -628,7 +628,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen/ppmmanagement");
+         $route("/dosen/proposalmanagement");
       } else {
          console.log(response);
       }
@@ -736,7 +736,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen/ppmmanagement");
+         $route("/dosen/proposalmanagement");
       } else {
          console.log(response);
       }
@@ -1201,7 +1201,7 @@
 
                <Field name="Proposal">
                   <button
-                     class="button is-link is-rounded button is-small"
+                     class="button is-link button"
                      on:click={handleDownloadPpm}>Download Proposal</button
                   >
                </Field>
@@ -1209,7 +1209,7 @@
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                   <Field name="Rencana Anggaran Biaya">
                      <button
-                        class="button is-link is-rounded button is-small"
+                        class="button is-link button"
                         on:click={handleDownloadRab}>Download RAB</button
                      >
                   </Field>

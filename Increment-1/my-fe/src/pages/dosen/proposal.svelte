@@ -614,7 +614,7 @@
          const resultIdentitas = await responseIdentitas.json();
 
          if (responseProposal.ok && responseIdentitas.ok) {
-            $route("/dosen/ppmmanagement");
+            $route("/dosen/proposalmanagement");
          } else {
             console.log(result.msg);
          }
@@ -806,7 +806,7 @@
          const resultIdentitas = await responseIdentitas.json();
 
          if (responseProposal.ok && responseIdentitas.ok) {
-            $route("/dosen/ppmmanagement");
+            $route("/dosen/proposalmanagement");
          } else {
             console.log(result.msg);
          }

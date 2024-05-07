@@ -5,11 +5,11 @@ const admin = [
    },
    {
       title: "User Management",
-      href: "/admin/users",
+      href: "/admin/usersmanagement",
    },
    {
-      title: "PPM Management",
-      href: "/admin/proposals",
+      title: "Proposal Management",
+      href: "/admin/proposalmanagement",
    },
 ];
 
@@ -19,8 +19,8 @@ const dosen = [
       href: "/dosen",
    },
    {
-      title: "PPM Management",
-      href: "/dosen/ppmmanagement",
+      title: "Proposal Management",
+      href: "/dosen/proposalmanagement",
    },
    {
       title: "Approval Management",

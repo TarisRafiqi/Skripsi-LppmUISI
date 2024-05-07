@@ -8,7 +8,7 @@
    let showModalError = false;
 
    function kembali() {
-      $route("/admin/users");
+      $route("/admin/usersmanagement");
    }
 
    async function HandleCreateUser() {
@@ -32,7 +32,7 @@
 
          const result = await response.json();
          if (response.ok) {
-            $route("/admin/users");
+            $route("/admin/usersmanagement");
          } else {
             showModalError = true;
          }

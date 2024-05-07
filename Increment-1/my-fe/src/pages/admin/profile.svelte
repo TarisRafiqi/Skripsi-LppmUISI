@@ -524,7 +524,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/admin/users");
+         $route("/admin/usersmanagement");
       } else {
          console.log(response);
       }
@@ -559,7 +559,7 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/admin/users");
+         $route("/admin/usersmanagement");
       } else {
          console.log(response);
       }

@@ -91,62 +91,73 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">PPM Management</h1>
+   <h1 class="title is-1">Proposal Management</h1>
    <hr />
 
    <Modalroute bind:show={showModalError}>
-      <p>Ayo lengkapi profile anda terlebih dahulu</p>
+      <p>Lengkapi profile anda terlebih dahulu</p>
    </Modalroute>
 
-   <button class="button is-info" on:click={addProposal}>
-      <span class="icon">
-         <Icon id="accountAdd" src={accountAdd} />
-      </span>
-      <!-- svelte-ignore a11y-missing-attribute -->
-      <span><a>Buat Proposal</a></span>
-   </button>
-
    <div class="box">
-      <table class="table is-fullwidth is-striped is-hoverable">
-         <thead>
-            <tr>
-               <th style="width: 50%;">Judul</th>
-               <th style="width: 10%; text-align: center" class="is-narrow"
-                  >Jenis Kegiatan</th
-               >
-               <th style="width: auto; text-align: center" class="is-narrow"
-                  >Jenis Skema</th
-               >
-               <th style="width: 15%; text-align: center">Status</th>
-               <th style="width: 5%;" colspan="2">Action</th>
-            </tr>
-         </thead>
+      <div class="columns">
+         <div class="column is-narrow">
+            <p>Daftarkan proposal anda, klik disini!</p>
+         </div>
+         <div class="column">
+            <button class="button is-info is-small" on:click={addProposal}>
+               <span class="icon">
+                  <Icon id="accountAdd" src={accountAdd} />
+               </span>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <span><a>Buat Proposal</a></span>
+            </button>
+         </div>
+      </div>
+   </div>
 
-         {#if items}
-            <tbody>
-               {#each items as item}
-                  <tr>
-                     <td class="judul"><p>{item.judul}</p></td>
-                     <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
-                     <td class="skema"><p>{item.jenis_skema}</p></td>
-                     <td class="status" pid={item.id}>
-                        <Status code={item.status} />
-                     </td>
-                     <td class="review"
-                        ><button
-                           class="button is-info is-rounded is-small"
-                           pid={item.id}
-                           on:click={detail}
-                           ><span class="icon">
-                              <Icon id="info" src={infoOutline} />
-                           </span></button
-                        ></td
-                     >
-                  </tr>
-               {/each}
-            </tbody>
-         {/if}
-      </table>
+   <div class="box parent">
+      <div class="child">
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th style="width: 50%;">Judul</th>
+                  <th style="width: 10%; text-align: center" class="is-narrow"
+                     >Jenis Kegiatan</th
+                  >
+                  <th style="width: auto; text-align: center" class="is-narrow"
+                     >Jenis Skema</th
+                  >
+                  <th style="width: 15%; text-align: center">Status</th>
+                  <th style="width: 5%;" colspan="2">Action</th>
+               </tr>
+            </thead>
+
+            {#if items}
+               <tbody>
+                  {#each items as item}
+                     <tr>
+                        <td class="judul"><p>{item.judul}</p></td>
+                        <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
+                        <td class="skema"><p>{item.jenis_skema}</p></td>
+                        <td class="status" pid={item.id}>
+                           <Status code={item.status} />
+                        </td>
+                        <td class="review"
+                           ><button
+                              class="button is-info is-rounded is-small"
+                              pid={item.id}
+                              on:click={detail}
+                              ><span class="icon">
+                                 <Icon id="info" src={infoOutline} />
+                              </span></button
+                           ></td
+                        >
+                     </tr>
+                  {/each}
+               </tbody>
+            {/if}
+         </table>
+      </div>
    </div>
 </Article>
 
@@ -164,5 +175,18 @@
 
    .review {
       cursor: pointer;
+   }
+
+   .parent {
+      height: 600px;
+      overflow: hidden;
+   }
+
+   .child {
+      height: 100%;
+      margin-right: -20px;
+      padding-right: 20px;
+      scrollbar-width: thin;
+      overflow-y: scroll;
    }
 </style>

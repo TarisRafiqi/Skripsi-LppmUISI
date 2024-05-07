@@ -75,9 +75,9 @@
       <!-- true && true -->
       <!-- true -->
       <p class="select">
-         <select on:change={fillSelect}>
+         <select {id} on:change={fillSelect}>
             {#each value as it}
-               <!-- <option value="" selected disabled hidden></option> -->
+               <option value="" selected disabled hidden></option>
                <option value={it.id} use:goSelect>{it.username}</option>
             {/each}
          </select>

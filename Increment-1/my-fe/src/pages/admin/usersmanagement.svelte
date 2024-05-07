@@ -137,63 +137,65 @@
          </div>
       </div>
 
-      <div class="box">
-         <table class="table is-fullwidth is-striped is-hoverable">
-            <thead>
-               <tr>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th class="is-narrow">Role</th>
-                  <th class="is-narrow">Active</th>
-               </tr>
-            </thead>
-
-            <tbody>
-               {#each items as item, idx}
+      <div class="box parent">
+         <div class="child">
+            <table class="table is-fullwidth is-striped is-hoverable">
+               <thead>
                   <tr>
-                     <td>
-                        <a href={"/admin/profile/" + item.id}>
-                           {item.username}
-                        </a>
-                     </td>
-                     <td>{item.email}</td>
-                     <td fixed class="group">
-                        <div class="select">
-                           <select uid={idx} on:change={handleGroup}>
-                              <option value="9" selected={item.role === 9}
-                                 >Admin</option
-                              >
-                              <option value="0" selected={item.role === 0}
-                                 >Dosen</option
-                              >
-                              <option value="10" selected={item.role === 10}
-                                 >Reviewer</option
-                              >
-                              <option value="11" selected={item.role === 11}
-                                 >Ka. Departemen</option
-                              >
-                              <option value="12" selected={item.role === 12}
-                                 >Ka. LPPM</option
-                              >
-                              <option value="13" selected={item.role === 13}
-                                 >Ka. Pusat Kajian</option
-                              >
-                           </select>
-                        </div>
-                     </td>
-                     <td
-                        fixed
-                        on:click={handleActive}
-                        uid={idx}
-                        role={item.role}
-                        class="active"
-                        class:red={!item.active}
-                        >{item.active ? "✔" : "✘"}
-                     </td>
+                     <th>Username</th>
+                     <th>Email</th>
+                     <th class="is-narrow">Role</th>
+                     <th class="is-narrow">Active</th>
                   </tr>
-               {/each}
-            </tbody>
-         </table>
+               </thead>
+
+               <tbody>
+                  {#each items as item, idx}
+                     <tr>
+                        <td>
+                           <a href={"/admin/profile/" + item.id}>
+                              {item.username}
+                           </a>
+                        </td>
+                        <td>{item.email}</td>
+                        <td fixed class="group">
+                           <div class="select">
+                              <select uid={idx} on:change={handleGroup}>
+                                 <option value="9" selected={item.role === 9}
+                                    >Admin</option
+                                 >
+                                 <option value="0" selected={item.role === 0}
+                                    >Dosen</option
+                                 >
+                                 <option value="10" selected={item.role === 10}
+                                    >Reviewer</option
+                                 >
+                                 <option value="11" selected={item.role === 11}
+                                    >Ka. Departemen</option
+                                 >
+                                 <option value="12" selected={item.role === 12}
+                                    >Ka. LPPM</option
+                                 >
+                                 <option value="13" selected={item.role === 13}
+                                    >Ka. Pusat Kajian</option
+                                 >
+                              </select>
+                           </div>
+                        </td>
+                        <td
+                           fixed
+                           on:click={handleActive}
+                           uid={idx}
+                           role={item.role}
+                           class="active"
+                           class:red={!item.active}
+                           >{item.active ? "✔" : "✘"}
+                        </td>
+                     </tr>
+                  {/each}
+               </tbody>
+            </table>
+         </div>
       </div>
    {/if}
 </Article>
@@ -220,5 +222,18 @@
       border: none;
       box-shadow: none;
       background: inherit;
+   }
+
+   .parent {
+      height: 600px;
+      overflow: hidden;
+   }
+
+   .child {
+      height: 100%;
+      margin-right: -20px;
+      padding-right: 20px;
+      scrollbar-width: thin;
+      overflow-y: scroll;
    }
 </style>

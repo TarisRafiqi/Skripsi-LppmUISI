@@ -174,26 +174,32 @@
    <div class="box parent">
       <div class="column">
          <div>
-            <h4 class="title is-4">Notification</h4>
+            <h3 class="title is-3">Notification</h3>
          </div>
 
          <br />
 
          <div class="child">
             {#if reminder}
-               <ul>
-                  {#each reminder as reminder}
-                     <li align="justify">
-                        PPM dengan judul <em
-                           ><strong>{reminder.judul}</strong></em
+               <table class="table is-fullwidth is-striped is-hoverable">
+                  <thead>
+                     <tr>
+                        <th style="width: 70%;">Judul</th>
+                        <th style="width: 15%; text-align: center">Deadline</th>
+                        <th style="width: 15%; text-align: center">Countdown</th
                         >
-                        tersisa
-                        <em><strong>{reminder.tersisa}</strong></em>. Berakhir
-                        pada {reminder.selesai}.
-                        <hr />
-                     </li>
-                  {/each}
-               </ul>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#each reminder as reminder}
+                        <tr>
+                           <td>{reminder.judul}</td>
+                           <td class="isi">{reminder.selesai}</td>
+                           <td class="isi">{reminder.tersisa}</td>
+                        </tr>
+                     {/each}
+                  </tbody>
+               </table>
             {/if}
          </div>
       </div>
@@ -201,26 +207,10 @@
 </Article>
 
 <style>
-   /* .vl {
-      border-left: 1px solid rgb(200, 200, 200);
-      height: auto;
-   } */
+   .isi {
+      text-align: center;
+   }
 
-   /* .hoverable:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-   } */
-   /* .notification-title {
-    position: sticky; 
-    top: 0; 
-    background-color: white; 
-    z-index: 1; 
-    padding: 10px; 
-} */
-
-   /* .overflow {
-      max-height: 500px;
-      overflow-y: auto;
-   } */
    .parent {
       height: 500px;
       overflow: hidden;
@@ -230,6 +220,7 @@
       height: 100%;
       margin-right: -35px; /* Maximum width of scrollbar */
       padding-right: 25px; /* Maximum width of scrollbar */
+      padding-bottom: 25px;
       scrollbar-width: thin;
       overflow-y: scroll;
    }
