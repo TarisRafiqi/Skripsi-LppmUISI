@@ -8,60 +8,67 @@ const e500 = `The server has encountered a situation it does not know how to han
 
 module.exports = async function (fastify, opts) {
    // get detail user aka profile
-   fastify.get("/:id", async function (request, reply) {
-      const id = Number(request.params.id);
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      const idFromToken = decodedToken.id;
-      const roleFromToken = decodedToken.role;
-      let dbData;
-      let connection;
+   fastify.get(
+      "/:id",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const id = Number(request.params.id);
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const idFromToken = decodedToken.id;
+         const roleFromToken = decodedToken.role;
+         let dbData;
+         let connection;
 
-      if (idFromToken === id) {
-         const sql = "SELECT * FROM profile WHERE uid = ?";
+         if (idFromToken === id) {
+            const sql = "SELECT * FROM profile WHERE uid = ?";
 
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [id]);
-            dbData = rows[0];
-            connection.release();
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, [id]);
+               dbData = rows[0];
+               connection.release();
+               reply.send({
+                  ...dbData,
+                  statusCode: 200,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db profile",
+               });
+            }
+         } else if (
+            roleFromToken === "dosen" ||
+            roleFromToken === "admin" ||
+            roleFromToken === "Ka.Departemen" ||
+            roleFromToken === "reviewer" ||
+            roleFromToken === "Ka.LPPM" ||
+            roleFromToken === "Ka.PusatKajian"
+         ) {
+            const sql = "SELECT * FROM profile WHERE uid = ?";
+
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, [id]);
+               dbData = rows[0];
+               connection.release();
+               reply.send({
+                  ...dbData,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db profile",
+               });
+            }
+         } else {
             reply.send({
-               ...dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db profile",
+               msg: "Anda tidak memiliki hak akses halaman ini",
             });
          }
-      } else if (
-         roleFromToken === "dosen" ||
-         roleFromToken === "admin" ||
-         roleFromToken === "Ka.Departemen" ||
-         roleFromToken === "reviewer" ||
-         roleFromToken === "Ka.LPPM" ||
-         roleFromToken === "Ka.PusatKajian"
-      ) {
-         const sql = "SELECT * FROM profile WHERE uid = ?";
-
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [id]);
-            dbData = rows[0];
-            connection.release();
-            reply.send({
-               ...dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db profile",
-            });
-         }
-      } else {
-         reply.send({
-            msg: "Anda tidak memiliki hak akses halaman ini",
-         });
       }
-   });
+   );
 
    // get users
    fastify.get("/", async function (request, reply) {

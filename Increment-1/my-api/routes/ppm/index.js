@@ -16,11 +16,6 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
 
-      // reply.send({
-      //    msg: ">>> test",
-      // });
-      // return;
-
       if (
          roleFromToken === "admin" ||
          roleFromToken === "dosen" ||
@@ -52,39 +47,39 @@ module.exports = async function (fastify, opts) {
 
    // API ini diakses oleh halaman List Proposal untuk mengambil semua proposal/penelitian milik id tersebut.
    // Reseach by Id
-   fastify.get("/:id/:uid", async function (request, reply) {
-      // id hanya hiasan, agar bisa membuat 2 GET didalam 1 API
-      const uid = Number(request.params.uid);
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      const idFromToken = decodedToken.id;
-      const roleFromToken = decodedToken.role;
-      let dbData;
-      let connection;
+   fastify.get(
+      "/:id/:uid",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const uid = Number(request.params.uid);
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const idFromToken = decodedToken.id;
+         const roleFromToken = decodedToken.role;
+         let dbData;
+         let connection;
 
-      if (idFromToken === uid) {
-         // const sql = "SELECT * FROM proposal_ppm WHERE uid = ?";
-         const sql = `SELECT * FROM proposal_ppm where JSON_CONTAINS(anggota_tim, '{"value": "${uid}" }')`;
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [uid]);
-            dbData = rows;
-            connection.release();
-
-            reply.send({
-               // token,
-               // decodedToken,
-               // uid,
-               // idFromToken,
-               dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
-            });
+         if (idFromToken === uid) {
+            const sql = `SELECT * FROM proposal_ppm where JSON_CONTAINS(anggota_tim, '{"value": "${uid}" }')`;
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, [uid]);
+               dbData = rows;
+               connection.release();
+               reply.send({
+                  statusCode: 200,
+                  dbData,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
          }
       }
-   });
+   );
 
    // Get all research
    fastify.get("/", async function (request, reply) {

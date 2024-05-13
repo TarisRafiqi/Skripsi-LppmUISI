@@ -67,10 +67,6 @@ module.exports = async function (fastify, opts) {
          const [rows] = await connection.query(sql, [username]);
          dbData = rows[0] || false;
          connection.release();
-         // console.log("\n\n");
-         // console.log(dbData);
-         // console.log(username);
-         // console.log("\n\n");
 
          if (!dbData) {
             // jika tidak ada, daftarkan sebagai user baru kemudian kirimkan id, username, role dan token
@@ -102,8 +98,6 @@ module.exports = async function (fastify, opts) {
 
             id = dbData.id;
             role = groupMap[rows[0].role];
-
-            // console.log("data ada");
          }
       } catch (error) {
          reply.send({
@@ -124,26 +118,6 @@ module.exports = async function (fastify, opts) {
             ? `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
             : `https://lppmuisi.dififa.com/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
       );
-
-      // return;
-
-      // Query ke db, SELECT db where username = data.email
-      // jika tidak ada, daftarkan sebagai user baru
-      // query ke db lagi, CREATE user
-      // jika ada, bandingkan data dengan db
-      // jika benar, maka beri token, username, dan role ke FE
-
-      // const token = fastify.jwt.sign({
-      //    username,
-      //    role,
-      //    // type: "google"
-      //    // id,
-      // });
-
-      // reply.redirect(
-      //    `/auth/home?token=${token}&&role=${role}&&username=${username}`
-      // );
-      //reply.send({ data });
    });
 
    fastify.post("/", async function (request, reply) {
@@ -155,9 +129,6 @@ module.exports = async function (fastify, opts) {
       let role;
       let id;
       let sukses = true;
-
-      // reply.send(request.body);
-      // return;
 
       try {
          connection = await fastify.mysql.getConnection();
@@ -182,7 +153,6 @@ module.exports = async function (fastify, opts) {
                username,
                role: dbData.role,
                id: dbData.id,
-               // type: "db"
             });
          } else {
             reply.send({
@@ -198,7 +168,6 @@ module.exports = async function (fastify, opts) {
       }
 
       reply.send({
-         // ...dbData,
          id: dbData.id,
          username: dbData.username,
          role: dbData.role,

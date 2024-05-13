@@ -6,7 +6,7 @@ module.exports = fp(async function (fastify, opts) {
    fastify.register(require("@fastify/jwt"), {
       secret: "rahasia",
       sign: {
-         expiresIn: "1d",
+         expiresIn: "30s",
       },
    });
 
