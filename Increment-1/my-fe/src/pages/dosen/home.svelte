@@ -33,7 +33,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -43,28 +43,25 @@
       });
 
       const result = await response.json();
+      // console.log(result);
 
-      if (response.ok) {
-         items = result.dbData;
-         // console.log(items);
-         reminder = [];
-         for (const item of items) {
-            // console.log(item);
-            reminder.push({
-               judul: item.judul,
-               selesai: item.tanggal_selesai,
-               tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari`,
-               // tersisa:
-               //    daysUntil(item.tanggal_selesai).months +
-               //    " bulan, " +
-               //    daysUntil(item.tanggal_selesai).remainingWeeks +
-               //    " minggu. " +
-               //    daysUntil(item.tanggal_selesai).remainingDays +
-               //    " hari.",
-            });
-         }
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            items = result.dbData;
+            reminder = [];
+            for (const item of items) {
+               reminder.push({
+                  judul: item.judul,
+                  selesai: item.tanggal_selesai,
+                  tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari`,
+               });
+            }
+         } else {
+            console.log(response);
+         }
       }
 
       // ---------------------------------------
@@ -76,11 +73,16 @@
       });
 
       const resultCP = await responseCP.json();
+      // console.log(resultCP);
 
-      if (responseCP.ok) {
-         penelitianCounter = resultCP.penelitianCounter;
+      if (resultCP.statusCode != 200) {
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responseCP);
+         if (responseCP.ok) {
+            penelitianCounter = resultCP.penelitianCounter;
+         } else {
+            console.log(responseCP);
+         }
       }
 
       // ---------------------------------------
@@ -92,11 +94,16 @@
       });
 
       const resultCPM = await responseCPM.json();
+      // console.log(resultCPM);
 
-      if (responseCPM.ok) {
-         pengmasCounter = resultCPM.pengmasCounter;
+      if (resultCPM.statusCode != 200) {
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responseCPM);
+         if (responseCPM.ok) {
+            pengmasCounter = resultCPM.pengmasCounter;
+         } else {
+            console.log(responseCPM);
+         }
       }
 
       //------------------------------------------------------------
@@ -108,10 +115,15 @@
       });
 
       const resultGP = await responseGP.json();
+      // console.log(resultGP);
 
-      if (responseGP.ok) {
-         nama_lengkap = resultGP.nama_lengkap;
-         localStorage.setItem("nama_lengkap", nama_lengkap);
+      if (resultGP.statusCode != 200) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseGP.ok) {
+            nama_lengkap = resultGP.nama_lengkap;
+            localStorage.setItem("nama_lengkap", nama_lengkap);
+         }
       }
    });
 </script>

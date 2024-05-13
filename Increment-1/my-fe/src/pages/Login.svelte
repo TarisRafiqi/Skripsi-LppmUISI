@@ -3,8 +3,8 @@
    // import Icon from "../libs/Icon.svelte";
    // import { googleIcon } from "../store/icons";
 
-   let username = "";
-   let password = "";
+   let username = "fiqi";
+   let password = "1234";
 
    document.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {

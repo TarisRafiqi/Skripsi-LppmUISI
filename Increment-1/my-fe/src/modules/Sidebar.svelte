@@ -48,6 +48,14 @@
          </li>
       </ul>
    {/each}
+   {#if role === "Ka.Departemen" || role === "Ka.LPPM" || role === "Ka.PusatKajian" || role === "reviewer"}
+      <ul class="menu-list">
+         <!-- svelte-ignore a11y-missing-attribute -->
+         <li>
+            <a href="/dosen/approval">Approval Management</a>
+         </li>
+      </ul>
+   {/if}
 
    {#if role === "admin"}
       <p class="menu-label">Website Settings</p>

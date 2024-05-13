@@ -36,7 +36,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -46,30 +46,27 @@
       });
 
       const result = await response.json();
+      console.log(result);
+      // return;
 
       const reminder = [];
 
-      if (response.ok) {
-         items = result.dbData;
-         // console.log(items);
-         for (const item of items) {
-            // console.log(item);
-            reminder.push({
-               judul: item.judul,
-               selesai: item.tanggal_selesai,
-               tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari.`,
-               // tersisa:
-               //    daysUntil(item.tanggal_selesai).months +
-               //    " bulan, " +
-               //    daysUntil(item.tanggal_selesai).remainingWeeks +
-               //    " minggu. " +
-               //    daysUntil(item.tanggal_selesai).remainingDays +
-               //    " hari.",
-            });
-         }
-         //    (reminder);
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            items = result.dbData;
+            for (const item of items) {
+               reminder.push({
+                  judul: item.judul,
+                  selesai: item.tanggal_selesai,
+                  tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari.`,
+               });
+            }
+         } else {
+            console.log(response);
+         }
       }
    });
 
@@ -85,7 +82,7 @@
       ) {
          showModalError = true;
       } else {
-         location.href = "/dosen/proposal";
+         location.href = "/dosen/pendaftaranproposal";
       }
    }
 </script>

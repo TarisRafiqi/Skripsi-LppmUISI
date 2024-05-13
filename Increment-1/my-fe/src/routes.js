@@ -6,6 +6,9 @@ import Login from "./pages/Login.svelte";
 import Logout from "./pages/Logout.svelte";
 import Penelitian from "./pages/Penelitian.svelte";
 import Register from "./pages/Register.svelte";
+import Testdashboard from "./pages/Testdashboard.svelte";
+import Testlogin from "./pages/Testlogin.svelte";
+import Tokenexpired from "./pages/Tokenexpired.svelte";
 import Verify from "./pages/Verify.svelte";
 import adminIndex from "./pages/admin/Index.svelte";
 import authIndex from "./pages/auth/Index.svelte";
@@ -20,6 +23,9 @@ export default [
 	{ path: "/logout", page: Logout },
 	{ path: "/penelitian", page: Penelitian },
 	{ path: "/register", page: Register },
+	{ path: "/testdashboard", page: Testdashboard },
+	{ path: "/testlogin", page: Testlogin },
+	{ path: "/tokenexpired", page: Tokenexpired },
 	{ path: "/verify", page: Verify },
 	{ path: "/admin/:0", page: adminIndex },
 	{ path: "/auth/:0", page: authIndex },

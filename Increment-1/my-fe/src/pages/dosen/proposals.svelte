@@ -66,8 +66,10 @@
    let file;
    let fileRab;
    let filePpm;
+   let isLoading = false;
 
    onMount(async () => {
+      isLoading = false;
       const accessToken = localStorage.getItem("token");
 
       const headers = {
@@ -527,6 +529,7 @@
    }
 
    async function submitProposal() {
+      isLoading = true;
       const accessToken = localStorage.getItem("token");
 
       const readerRab = new FileReader();
@@ -628,10 +631,12 @@
       const result = await response.json();
 
       if (response.ok) {
-         $route("/dosen/proposalmanagement");
+         // $route("/dosen/proposalmanagement");
       } else {
          console.log(response);
       }
+
+      isLoading = false;
    }
 
    async function simpanProposal() {
@@ -814,6 +819,8 @@
          return member.value !== uid;
       });
    }
+
+   // $: dataGP.telpFaxKantor !== null ? dataGP.telpFaxKantor : "";
 </script>
 
 {#if data && items.length > 0}
@@ -1199,7 +1206,7 @@
                </div>
             </Field> -->
 
-               <Field name="Proposal">
+               <Field name="File Proposal">
                   <button
                      class="button is-link button"
                      on:click={handleDownloadPpm}>Download Proposal</button
@@ -1207,7 +1214,7 @@
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
+                  <Field name="File RAB">
                      <button
                         class="button is-link button"
                         on:click={handleDownloadRab}>Download RAB</button
@@ -1227,8 +1234,10 @@
                      >
                   </p>
                   <p class="control">
-                     <button class="button is-info" on:click={submitProposal}
-                        >Submit</button
+                     <button
+                        class="button is-info"
+                        on:click={submitProposal}
+                        class:is-loading={isLoading}>Submit</button
                      >
                   </p>
                {:else}
@@ -1270,8 +1279,21 @@
             <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
             <Field name="Nomoh Handphone">{nomorHandphone}</Field>
             <Field name="Alamat Kantor">{alamatKantor}</Field>
-            <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
-            <Field name="Email">{email}</Field>
+            <!-- <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field> -->
+            <!-- <Field name="Email">{email}</Field> -->
+
+            {#if telpFaxKantor !== null}
+               <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
+            {:else}
+               <Field name="Telp/Fax Kantor"><span></span></Field>
+            {/if}
+
+            {#if email !== null}
+               <Field name="Email">{email}</Field>
+            {:else}
+               <Field name="Email"><span></span></Field>
+            {/if}
+
             <Field name="Mata Kuliah">
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"

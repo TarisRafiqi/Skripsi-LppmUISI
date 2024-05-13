@@ -1,25 +1,31 @@
 <script>
    import { isLogin } from "../store";
-   import Article from "../libs/Article.svelte";
 
    localStorage.clear();
    $isLogin = false;
 
    setTimeout(() => {
       location.pathname = "/";
-   }, 500);
+   }, 1000);
 </script>
 
-<Article>
-   <article>
-      <h3 class="title is-3">TERIMA KASIH</h3>
-      <h5 class="subtitle is-5">Karena anda sudah menggunakan aplikasi ini.</h5>
-   </article>
-</Article>
+<article>
+   <div class="box">
+      <h3 class="title is-3">You are Logged Out</h3>
+      <h6 class="subtitle is-6">Thank you for using our website</h6>
+   </div>
+</article>
 
 <style>
    article {
-      margin: 0 auto;
+      margin-top: 100px;
+      margin-left: auto;
+      margin-right: auto;
       text-align: center;
+   }
+
+   .box {
+      height: auto;
+      width: auto;
    }
 </style>

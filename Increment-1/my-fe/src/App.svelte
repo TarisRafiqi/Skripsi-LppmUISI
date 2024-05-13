@@ -20,7 +20,7 @@
       token = localStorage.getItem("token");
       role = localStorage.getItem("role");
 
-      const paths = ["/", "/about"];
+      const paths = ["/", "/about", "/penelitian", "/abdimas"];
       inBeranda = paths.some((path) => path === location.pathname);
       // console.log(inBeranda);
    });

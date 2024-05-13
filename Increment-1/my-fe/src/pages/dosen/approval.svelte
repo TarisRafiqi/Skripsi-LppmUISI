@@ -11,12 +11,30 @@
    let items;
 
    onMount(async () => {
-      const response = await fetch($apiURL + "/approval/" + id);
+      const accessToken = localStorage.getItem("token");
+
+      const headers = {
+         Authorization: `Bearer ${accessToken}`,
+         "Content-Type": "application/json",
+      };
+
+      const response = await fetch($apiURL + "/approval/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
       const result = await response.json();
-      if (response.ok) {
-         items = result.dbData;
+      // console.log(result);
+
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            items = result.dbData;
+         } else {
+            console.log(response);
+         }
       }
    });
 
@@ -32,7 +50,7 @@
    <hr />
 
    {#if items}
-      <div class="notification is-info is-light">
+      <!-- <div class="notification is-info is-light">
          <p>
             Berikut adalah list <strong
                >Penelitian / Pengabdian Masyarakat</strong
@@ -40,7 +58,7 @@
             yang diberikan kepada anda untuk mendapatkan approval. Cek PPM dengan
             teliti sebelum memberikan approval!
          </p>
-      </div>
+      </div> -->
 
       <div class="box parent">
          <div class="child">

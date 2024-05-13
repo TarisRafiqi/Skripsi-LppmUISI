@@ -104,6 +104,7 @@
    let showModalPublikasi = false;
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
+   let isLoading = false;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -155,6 +156,7 @@
    let inputFilePPM;
 
    onMount(async () => {
+      isLoading = false;
       // --------------------------------------------------
       // Get Users for Form Select Anggota Tim
       // --------------------------------------------------
@@ -625,6 +627,7 @@
    // Button Submit Proposal
    //------------------------------------------------------------
    async function submitProposal() {
+      isLoading = true;
       const accessToken = localStorage.getItem("token");
 
       // -------------------------------------------------------------------//
@@ -810,6 +813,7 @@
          } else {
             console.log(result.msg);
          }
+         isLoading = false;
       }
    }
 
@@ -2668,8 +2672,10 @@
             >
          </p>
          <p class="control">
-            <button class="button is-info" on:click={submitProposal}
-               >Submit</button
+            <button
+               class="button is-info"
+               on:click={submitProposal}
+               class:is-loading={isLoading}>Submit</button
             >
          </p>
       </div>

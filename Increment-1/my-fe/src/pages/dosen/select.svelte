@@ -58,12 +58,35 @@
       };
       reader.readAsDataURL(file);
    }
+
+   // --------------------------------------------------------------
+   let isLoading = false;
+
+   function handleClick() {
+      isLoading = true;
+      // Simulate loading delay, you can replace this with your actual async operation
+      setTimeout(() => {
+         isLoading = false;
+      }, 2000); // 2 seconds
+   }
+
+   // Optional: If you want to reset loading state when component is mounted
+   onMount(() => {
+      isLoading = false;
+   });
 </script>
 
 <Article>
+   <button
+      class="button is-info {isLoading ? 'is-loading' : ''}"
+      on:click={handleClick}
+   >
+      <span>Click Me</span>
+   </button>
+
    <br />
 
-   <input
+   <!-- <input
       class="input"
       accept=".xlsx"
       type="file"
@@ -78,7 +101,7 @@
    <br />
    <br />
 
-   <button on:click={handleDownload}>Download</button>
+   <button on:click={handleDownload}>Download</button> -->
 </Article>
 
 <style>

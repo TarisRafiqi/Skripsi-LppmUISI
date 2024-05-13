@@ -19,17 +19,21 @@ const dosen = [
       href: "/dosen",
    },
    {
+      title: "Profile",
+      href: "/dosen/profile",
+   },
+   {
       title: "Proposal Management",
       href: "/dosen/proposalmanagement",
    },
    {
-      title: "Approval Management",
-      href: "/dosen/approval",
+      title: "Penelitian & Pengmas",
+      href: "/dosen/ppmongoing",
    },
-   {
-      title: "Profile",
-      href: "/dosen/profile",
-   },
+   // {
+   //    title: "Approval Management",
+   //    href: "/dosen/approval",
+   // },
 ];
 export default {
    admin,
