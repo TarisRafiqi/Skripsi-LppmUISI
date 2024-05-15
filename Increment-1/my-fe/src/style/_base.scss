@@ -115,26 +115,26 @@ article.container {
    }
 }
 
-@media screen and (min-width: 992px) {
-   article.container {
-      max-width: 960px;
-   }
-}
+// @media screen and (min-width: 992px) {
+//    article.container {
+//       max-width: 960px;
+//    }
+// }
 
-@media screen and (min-width: 1200px) {
-   article {
-      padding-left: 3em;
-      padding-right: 3em;
-      // max-width: 1140px;
-      max-width: 1340px;
-   }
-}
+// @media screen and (min-width: 1200px) {
+//    article {
+//       padding-left: 3em;
+//       padding-right: 3em;
+//       // max-width: 1140px;
+//       max-width: 1340px;
+//    }
+// }
 
-@media screen and (min-width: 1400px) {
-   article.container {
-      max-width: 1560px;
-   }
-}
+// @media screen and (min-width: 1400px) {
+//    article.container {
+//       max-width: 1560px;
+//    }
+// }
 
 /* BUTTON */
 

@@ -98,7 +98,7 @@
    // Memakai akses Token, hanya uid pemilik dan role Admin yang bisa mengakses halaman ini
    const accessToken = localStorage.getItem("token");
    const headers = {
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
    };
 

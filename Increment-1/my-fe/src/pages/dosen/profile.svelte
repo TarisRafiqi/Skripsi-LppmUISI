@@ -97,7 +97,7 @@
    // Memakai akses Token, hanya uid pemilik dan role Admin yang bisa mengakses halaman ini
    const accessToken = localStorage.getItem("token");
    const headers = {
-      Authorization: `${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
    };
 
@@ -108,28 +108,33 @@
       });
 
       const result = await response.json();
+      // console.log(result);
 
-      if (response.ok) {
-         data = result;
-
-         idProfile = data.id;
-         idUser = data.uid;
-         namaLengkap = data.nama_lengkap;
-         jabatanFungsional = data.jabatan_fungsional;
-         nip = data.nip;
-         nidn = data.nidn;
-         tempatLahir = data.tempat_lahir;
-         tanggalLahir = data.tanggal_lahir;
-         alamatRumah = data.alamat_rumah;
-         telpFaxRumah = data.telp_fax_rumah;
-         nomorHandphone = data.nomor_handphone;
-         alamatKantor = data.alamat_kantor;
-         telpFaxKantor = data.telp_fax_kantor;
-         email = data.email;
-         mataKuliah =
-            typeof data.mata_kuliah === "string"
-               ? JSON.parse(data.mata_kuliah)
-               : data.mata_kuliah || [];
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            idProfile = data.id;
+            idUser = data.uid;
+            namaLengkap = data.nama_lengkap;
+            jabatanFungsional = data.jabatan_fungsional;
+            nip = data.nip;
+            nidn = data.nidn;
+            tempatLahir = data.tempat_lahir;
+            tanggalLahir = data.tanggal_lahir;
+            alamatRumah = data.alamat_rumah;
+            telpFaxRumah = data.telp_fax_rumah;
+            nomorHandphone = data.nomor_handphone;
+            alamatKantor = data.alamat_kantor;
+            telpFaxKantor = data.telp_fax_kantor;
+            email = data.email;
+            mataKuliah =
+               typeof data.mata_kuliah === "string"
+                  ? JSON.parse(data.mata_kuliah)
+                  : data.mata_kuliah || [];
+         }
       }
 
       // --------------------------------------------
@@ -141,27 +146,33 @@
       });
 
       const dataRP = await responseRP.json();
+      // console.log(dataRP);
 
-      if (responseRP.ok) {
-         pertiS1 = dataRP.nama_perti_s1;
-         pertiS2 = dataRP.nama_perti_s2;
-         pertiS3 = dataRP.nama_perti_s3;
+      if (dataRP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRP.ok) {
+            pertiS1 = dataRP.nama_perti_s1;
+            pertiS2 = dataRP.nama_perti_s2;
+            pertiS3 = dataRP.nama_perti_s3;
 
-         bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-         bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-         bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
+            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
+            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
 
-         tahunMasukS1 = dataRP.tahun_masuk_s1;
-         tahunMasukS2 = dataRP.tahun_masuk_s2;
-         tahunMasukS3 = dataRP.tahun_masuk_s3;
+            tahunMasukS1 = dataRP.tahun_masuk_s1;
+            tahunMasukS2 = dataRP.tahun_masuk_s2;
+            tahunMasukS3 = dataRP.tahun_masuk_s3;
 
-         tahunLulusS1 = dataRP.tahun_lulus_s1;
-         tahunLulusS2 = dataRP.tahun_lulus_s2;
-         tahunLulusS3 = dataRP.tahun_lulus_s3;
+            tahunLulusS1 = dataRP.tahun_lulus_s1;
+            tahunLulusS2 = dataRP.tahun_lulus_s2;
+            tahunLulusS3 = dataRP.tahun_lulus_s3;
 
-         judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-         judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-         judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
+            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
+            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+         }
       }
 
       getPengalamanPenelitian();
@@ -182,11 +193,17 @@
       });
 
       const resultPP = await responsePP.json();
+      // console.log(resultPP);
 
-      if (responsePP.ok) {
-         dataPP = resultPP.dbData;
+      if (resultPP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePP);
+         if (responsePP.ok) {
+            dataPP = resultPP.dbData;
+         } else {
+            console.log(responsePP);
+         }
       }
    }
 
@@ -200,11 +217,17 @@
       });
 
       const resultPM = await responsePM.json();
+      // console.log(resultPM);
 
-      if (responsePM.ok) {
-         dataPM = resultPM.dbData;
+      if (resultPM.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePM);
+         if (responsePM.ok) {
+            dataPM = resultPM.dbData;
+         } else {
+            console.log(responsePM);
+         }
       }
    }
 
@@ -218,11 +241,17 @@
       });
 
       const resultPD = await responsePD.json();
+      // console.log(resultPD);
 
-      if (responsePD.ok) {
-         dataPD = resultPD.dbData;
+      if (resultPD.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePD);
+         if (responsePD.ok) {
+            dataPD = resultPD.dbData;
+         } else {
+            console.log(responsePD);
+         }
       }
    }
 
@@ -236,11 +265,17 @@
       });
 
       const resultPPub = await responsePPub.json();
+      // console.log(resultPPub);
 
-      if (responsePPub.ok) {
-         dataPPub = resultPPub.dbData;
+      if (resultPPub.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPub);
+         if (responsePPub.ok) {
+            dataPPub = resultPPub.dbData;
+         } else {
+            console.log(responsePPub);
+         }
       }
    }
 
@@ -257,11 +292,17 @@
       );
 
       const resultPPB = await responsePPB.json();
+      // console.log(resultPPB);
 
-      if (responsePPB.ok) {
-         dataPPB = resultPPB.dbData;
+      if (resultPPB.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPB);
+         if (responsePPB.ok) {
+            dataPPB = resultPPB.dbData;
+         } else {
+            console.log(responsePPB);
+         }
       }
    }
 
@@ -275,11 +316,17 @@
       });
 
       const resultPHKI = await responsePHKI.json();
+      // console.log(resultPHKI);
 
-      if (responsePHKI.ok) {
-         dataPHKI = resultPHKI.dbData;
+      if (resultPHKI.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePHKI);
+         if (responsePHKI.ok) {
+            dataPHKI = resultPHKI.dbData;
+         } else {
+            console.log(responsePHKI);
+         }
       }
    }
 
@@ -299,6 +346,7 @@
       const response = await fetch($apiURL + "/pengalamanHKI", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -306,18 +354,21 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalHKI = false;
-
-         tahunHKI = "";
-         JudulHKI = "";
-         namaPenulisHKI = "";
-         jenisHKI = "";
-         noHKI = "";
-
-         getPengalamanHKI();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalHKI = false;
+            tahunHKI = "";
+            JudulHKI = "";
+            namaPenulisHKI = "";
+            jenisHKI = "";
+            noHKI = "";
+            getPengalamanHKI();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -334,6 +385,7 @@
       const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -341,18 +393,23 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalPenulisanBuku = false;
-
-         tahunBuku = "";
-         JudulBuku = "";
-         namaPenulisBuku = "";
-         PenerbitBuku = "";
-         Isbn = "";
-
-         getPengalamanPenulisanBuku();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalPenulisanBuku = false;
+
+            tahunBuku = "";
+            JudulBuku = "";
+            namaPenulisBuku = "";
+            PenerbitBuku = "";
+            Isbn = "";
+
+            getPengalamanPenulisanBuku();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -368,6 +425,7 @@
       const response = await fetch($apiURL + "/pengalamanPublikasi", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -375,17 +433,22 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalPublikasi = false;
-
-         tahunPublikasi = "";
-         judulPublikasi = "";
-         namaJurnal = "";
-         impactFactor = "";
-
-         getPengalamanPublikasi();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalPublikasi = false;
+
+            tahunPublikasi = "";
+            judulPublikasi = "";
+            namaJurnal = "";
+            impactFactor = "";
+
+            getPengalamanPublikasi();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -402,6 +465,7 @@
       const response = await fetch($apiURL + "/pengalamanPenelitian", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -409,18 +473,23 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalPenelitian = false;
-
-         tahunPenelitian = "";
-         judulPenelitian = "";
-         rolePenelitian = "";
-         sumberDanaPenelitian = "";
-         biayaPP = "";
-
-         getPengalamanPenelitian();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalPenelitian = false;
+
+            tahunPenelitian = "";
+            judulPenelitian = "";
+            rolePenelitian = "";
+            sumberDanaPenelitian = "";
+            biayaPP = "";
+
+            getPengalamanPenelitian();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -437,6 +506,7 @@
       const response = await fetch($apiURL + "/pengalamanPengmas", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -444,18 +514,23 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalPengmas = false;
-
-         tahunPengmas = "";
-         judulPengmas = "";
-         rolePengmas = "";
-         sumberDanaPengmas = "";
-         biayaPengmas = "";
-
-         getPengalamanPengmas();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalPengmas = false;
+
+            tahunPengmas = "";
+            judulPengmas = "";
+            rolePengmas = "";
+            sumberDanaPengmas = "";
+            biayaPengmas = "";
+
+            getPengalamanPengmas();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -471,6 +546,7 @@
       const response = await fetch($apiURL + "/pengalamanDiseminasi", {
          method: "POST",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -478,17 +554,22 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         showModalDiseminasi = false;
-
-         tahunDiseminasi = "";
-         judulDiseminasi = "";
-         namaPemakalahDiseminasi = "";
-         namaPertemuanDiseminasi = "";
-
-         getPengalamanDiseminasi();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            showModalDiseminasi = false;
+
+            tahunDiseminasi = "";
+            judulDiseminasi = "";
+            namaPemakalahDiseminasi = "";
+            namaPertemuanDiseminasi = "";
+
+            getPengalamanDiseminasi();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -515,6 +596,7 @@
       const response = await fetch($apiURL + "/riwayatpendidikan", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -522,10 +604,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         $route("/dosen");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -550,6 +637,7 @@
       const response = await fetch($apiURL + "/userprofile", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -557,10 +645,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         $route("/dosen");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -603,16 +696,22 @@
       const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, {
          method: "DELETE",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
       });
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanPenelitian();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanPenelitian();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -622,16 +721,22 @@
       const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, {
          method: "DELETE",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
       });
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanPengmas();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanPengmas();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -641,16 +746,22 @@
       const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, {
          method: "DELETE",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
       });
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanDiseminasi();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanDiseminasi();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -660,16 +771,22 @@
       const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, {
          method: "DELETE",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
       });
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanPublikasi();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanPublikasi();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -681,6 +798,7 @@
          {
             method: "DELETE",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
          }
@@ -688,10 +806,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanPenulisanBuku();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanPenulisanBuku();
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -701,16 +824,22 @@
       const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, {
          method: "DELETE",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
       });
 
       const result = await response.json();
 
-      if (response.ok) {
-         getPengalamanHKI();
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            getPengalamanHKI();
+         } else {
+            console.log(response);
+         }
       }
    }
 

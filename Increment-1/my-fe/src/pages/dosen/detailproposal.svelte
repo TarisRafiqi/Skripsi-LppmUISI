@@ -1,20 +1,19 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL, penilaianFile } from "../../store";
+   import { route, apiURL } from "../../store";
    import Article from "../../libs/Article.svelte";
+   import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
    import Status from "../../modules/Status.svelte";
-   import Modalerror from "../../libs/Modalerror.svelte";
+   import Wysiwyg from "../../libs/Wysiwyg.svelte";
+   import Select from "../../libs/Select.svelte";
+   import { addProposal, deleteIcon } from "../../store/icons";
 
    export let params;
+   const own_id = Number(localStorage.getItem("id"));
 
-   let randomPenilaianFileName = "";
-   let showModalError = false;
-   const id = params["1"];
-   const role = localStorage.getItem("role");
-   const idEvaluator = localStorage.getItem("id");
-   let showModal = false;
-
+   let items = [];
+   let view;
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let itemsRCR;
    let pertiS1,
@@ -33,6 +32,21 @@
       judulTugasAkhirS2,
       judulTugasAkhirS3;
 
+   let uidProposal,
+      jenisProposal,
+      jenisKegiatan,
+      jenisSkema,
+      kelompokKeahlian,
+      topik,
+      tanggalMulai,
+      tanggalSelesai,
+      biayaPenelitian,
+      anggotaTim = [],
+      judul,
+      abstrak,
+      comment,
+      status;
+
    let idProfile,
       namaLengkap,
       jabatanFungsional,
@@ -48,30 +62,14 @@
       email,
       mataKuliah = [];
 
-   let ka_departemen, ka_lppm, reviewer, ka_pusat_kajian;
+   const id = params["1"];
+   let file;
+   let fileRab;
+   let filePpm;
+   let isLoading = false;
 
-   let uidProposal,
-      jenisProposal,
-      jenisKegiatan,
-      jenisSkema,
-      kelompokKeahlian,
-      topik,
-      tanggalMulai,
-      tanggalSelesai,
-      biayaPenelitian,
-      anggotaTim,
-      rab,
-      judul,
-      abstrak,
-      comment,
-      status,
-      kdeptSelected,
-      klppmSelected,
-      kpkSelected,
-      reviewerSelected;
-
-   // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
+      isLoading = false;
       const accessToken = localStorage.getItem("token");
 
       const headers = {
@@ -79,16 +77,14 @@
          "Content-Type": "application/json",
       };
 
-      ka_departemen = await findRole(11);
-      ka_lppm = await findRole(12);
-      ka_pusat_kajian = await findRole(13);
-      reviewer = await findRole(10);
-
       const response = await fetch($apiURL + "/ppm/" + id, {
          method: "GET",
          headers: headers,
       });
+
       const result = await response.json();
+      console.log(result);
+      view = !isEdit(result.status);
 
       if (response.ok) {
          data = result;
@@ -107,7 +103,13 @@
             typeof data.anggota_tim === "string"
                ? JSON.parse(data.anggota_tim)
                : data.anggota_tim;
-         rab = data.rab;
+
+         // console.log(anggotaTim);
+         // let ccx = anggotaTim.map(function (obj) {
+         //    return obj.value;
+         // });
+         // console.log(ccx);
+
          judul = data.judul;
          abstrak = data.abstrak;
          comment = data.comment;
@@ -118,36 +120,8 @@
          reviewerSelected = data.uid_reviewer;
          randomRabFileName = data.random_rab_file_name;
          randomPpmFileName = data.random_ppm_file_name;
-         randomPenilaianFileNamedb = data.random_penilaian_file_name;
-      }
-
-      //------------------------------------------------------------
-      // Generate Penilaian Random Character
-      //------------------------------------------------------------
-      const characters =
-         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultPenilaianChar = "";
-
-      for (let i = 0; i < 30; i++) {
-         const randomIndex = Math.floor(Math.random() * characters.length);
-         resultPenilaianChar += characters.charAt(randomIndex);
-      }
-
-      randomPenilaianFileName = resultPenilaianChar;
-
-      // -----------------------------------------------------------------------------//
-      // Get Nama Lengkap Evaluator
-      // -----------------------------------------------------------------------------//
-      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultEvl = await responseEvl.json();
-
-      if (responseEvl.ok) {
-         dataEvl = resultEvl;
-         namaLengkapEvl = dataEvl.nama_lengkap;
+      } else {
+         console.log(response);
       }
 
       // -----------------------------------------------------------------------------//
@@ -166,7 +140,6 @@
       if (responseRCR.ok) {
          itemsRCR = dataRCR.dbData;
       }
-
       // -----------------------------------------------------------------------------//
       // Get Profile
       // -----------------------------------------------------------------------------//
@@ -348,206 +321,52 @@
       } else {
          console.log(responsePHKI);
       }
+
+      // -----------------------------------------------------------------------------//
+      // Get list user name for Select Option
+      // -----------------------------------------------------------------------------//
+      const responsee = await fetch($apiURL + "/pilihUser", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const results = await responsee.json();
+
+      if (responsee.ok) {
+         listUser = results;
+         for (const [key, value] of Object.entries(listUser)) {
+            items = [
+               ...items,
+               {
+                  value: value.uid,
+                  label: value.nama_lengkap,
+               },
+            ];
+         }
+      } else {
+         console.log(responsee);
+      }
    });
 
-   async function handleRevisi() {
-      const komentar = document.getElementById("komentar");
-      // -------------------------
-      //    API RiwayatCttnRevisi
-      // -------------------------
-      const payloadCttnRevisi = {
-         ppmId,
-         comment,
-         namaLengkapEvl,
-      };
-
-      if (komentar.value === "" || komentar.value == null) {
-         showModalError = true;
-      } else {
-         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payloadCttnRevisi),
-         });
-
-         const resultRev = await responseRev.json();
-
-         // -----------------------------
-         //          API PPM
-         // -----------------------------
-         const payload = {
-            comment,
-            status: Number(data.status) - 1,
-            id,
-         };
-
-         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
-            method: "PATCH",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-         });
-
-         const result = await response.json();
-         // console.log(result);
-         // return;
-
-         if (response.ok) {
-            $route("/dosen/approval");
-         } else {
-            console.log(response);
-         }
-      }
+   function isEdit(code) {
+      const edit = [0, 1, 3, 5, 7, 9];
+      return edit.some((x) => x === code);
    }
 
-   async function handleDitolak() {
-      const payload = {
-         comment: "",
-         status: Number(data.status) + 1,
-         id,
-      };
+   function formatRupiah(angka, prefix) {
+      var number_string = angka.replace(/[^,\d]/g, "").toString(),
+         split = number_string.split(","),
+         sisa = split[0].length % 3,
+         rupiah = split[0].substr(0, sisa),
+         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-      // console.log(result);
-      // return;
-
-      if (response.ok) {
-         $route("/dosen/approval");
-      } else {
-         console.log(response);
+      if (ribuan) {
+         separator = sisa ? "." : "";
+         rupiah += separator + ribuan.join(".");
       }
-   }
 
-   async function handlePass() {
-      const payload = {
-         comment: "",
-         status: Number(data.status) + 2,
-         id,
-      };
-
-      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-      // console.log(result);
-      // return;
-
-      if (response.ok) {
-         $route("/dosen/approval");
-      } else {
-         console.log(response);
-      }
-   }
-
-   async function handlePassReviewer() {
-      const accessToken = localStorage.getItem("token");
-      // -------------------------------------------------------------------//
-      // Upload File Penilaian
-      // -------------------------------------------------------------------//
-      const readerPenilaian = new FileReader();
-      if (
-         jenisSkema === "Riset Kelompok Keahlian" ||
-         jenisSkema === "Riset Terapan" ||
-         jenisSkema === "Riset Kerjasama" ||
-         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-      ) {
-         readerPenilaian.onloadend = async () => {
-            const base64Data = readerPenilaian.result.split(",")[1];
-            const payloadPenilaianFile = {
-               filePenilaian: {
-                  name: filePenilaian.name,
-                  type: filePenilaian.type,
-                  data: base64Data,
-               },
-               randomPenilaianFileName,
-            };
-
-            try {
-               const responseUpload = await fetch(
-                  $apiURL + "/uploadPenilaian",
-                  {
-                     method: "POST",
-                     headers: {
-                        Authorization: `${accessToken}`,
-                        "Content-Type": "application/json",
-                     },
-                     body: JSON.stringify(payloadPenilaianFile),
-                  }
-               );
-
-               const resultUpload = await responseUpload.json();
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-         readerPenilaian.readAsDataURL(filePenilaian);
-      }
-      // -------------------------------------------------------------------//
-
-      const payload = {
-         comment: "",
-         status: Number(data.status) + 2,
-         randomPenilaianFileName,
-         id,
-      };
-
-      const response = await fetch($apiURL + "/handleEvaluatorAction", {
-         method: "PATCH",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-      // console.log(result);
-      // return;
-
-      if (response.ok) {
-         $route("/dosen/approval");
-      } else {
-         console.log(response);
-      }
-   }
-
-   async function searchUser(ev) {
-      const response = await fetch($apiURL + "/user");
-      const result = await response.json();
-
-      if (response.ok) {
-         showModal = true;
-      }
-   }
-
-   let options;
-
-   async function findRole(role) {
-      const response = await fetch($apiURL + "/role/" + role);
-      const result = await response.json();
-
-      if (response.ok) {
-         options = result;
-         return options;
-      } else {
-         console.log(response);
-      }
+      rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
+      return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 
    async function handleDownloadRab(e) {
@@ -556,9 +375,7 @@
          Authorization: `${accessToken}`,
          "Content-Type": "application/json",
       };
-
       let filename = "rab.xlsx";
-
       try {
          const response = await fetch(
             $apiURL + `/uploadRab/${randomRabFileName}`,
@@ -583,9 +400,7 @@
          Authorization: `${accessToken}`,
          "Content-Type": "application/json",
       };
-
       let filename = "proposal.pdf";
-
       try {
          const response = await fetch(
             $apiURL + `/uploadPpm/${randomPpmFileName}`,
@@ -604,30 +419,332 @@
       }
    }
 
-   async function handleDownloadPenilaian(e) {
+   async function remediasi() {
       const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `${accessToken}`,
-         "Content-Type": "application/json",
+
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
+               data: base64Data,
+            },
+            randomRabFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadRab", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadRabFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
       };
 
-      let filename = "penilaian.xlsx";
+      if (fileRab) readerRab.readAsDataURL(fileRab);
 
-      try {
-         const response = await fetch(
-            $apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`,
-            {
-               method: "GET",
-               headers: headers,
-            }
-         );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
-      } catch (error) {
-         console.error("Error downloading file:", error);
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      if (filePpm) readerPpm.readAsDataURL(filePpm);
+      // -----------------------------------------------------------------------------//
+
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         comment: "",
+         status: Number(data.status) + 1,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         $route("/dosen/proposalmanagement");
+      } else {
+         console.log(response);
+      }
+   }
+
+   async function submitProposal() {
+      isLoading = true;
+      const accessToken = localStorage.getItem("token");
+
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
+               data: base64Data,
+            },
+            randomRabFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadRab", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadRabFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerRab.readAsDataURL(fileRab);
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+      readerPpm.readAsDataURL(filePpm);
+      // -----------------------------------------------------------------------------//
+
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         comment: "",
+         status: Number(data.status) + 2,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         // $route("/dosen/proposalmanagement");
+      } else {
+         console.log(response);
+      }
+
+      isLoading = false;
+   }
+
+   async function simpanProposal() {
+      const accessToken = localStorage.getItem("token");
+
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File RAB
+      // -------------------------------------------------------------------//
+      readerRab.onloadend = async () => {
+         const base64Data = readerRab.result.split(",")[1];
+         const payloadRabFile = {
+            fileRab: {
+               name: fileRab.name,
+               type: fileRab.type,
+               data: base64Data,
+            },
+            randomRabFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadRab", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadRabFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerRab.readAsDataURL(fileRab);
+      // -------------------------------------------------------------------//
+      // Upload File PPM
+      // -------------------------------------------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: {
+                  Authorization: `${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+      readerPpm.readAsDataURL(filePpm);
+      // -----------------------------------------------------------------------------//
+
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         comment: "",
+         status: Number(data.status),
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+         $route("/dosen/proposalmanagement");
+      } else {
+         console.log(response);
       }
    }
 
@@ -692,30 +809,23 @@
    //    tab6 = true;
    // }
 
-   function filePenilaianChange(e) {
-      filePenilaian = e.target.files[0];
-      $penilaianFile = e.target.files[0];
+   function addLogbook() {
+      // $route("/dosen/addlogbook");
+      // location.href = "/dosen/addlogbook";
    }
 
-   function isObjectEmpty(objectName) {
-      return (
-         objectName &&
-         Object.keys(objectName).length === 0 &&
-         objectName.constructor === Object
-      );
+   function deleteMember(e) {
+      let uid = e.target.getAttribute("data-value");
+      anggotaTim = anggotaTim.filter((member) => {
+         return member.value !== uid;
+      });
    }
-   // $: console.log(data);
+
+   // $: dataGP.telpFaxKantor !== null ? dataGP.telpFaxKantor : "";
 </script>
 
-{#if data}
+{#if data && items.length > 0}
    <Article>
-      <Modalerror bind:show={showModalError}>
-         <p>
-            <b>Catatan Revisi</b> masih kosong! <br /> Isi catatan revisi sebagai
-            acuan peneliti untuk memperbaiki kesalahan!
-         </p>
-      </Modalerror>
-
       <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
@@ -771,239 +881,393 @@
          </ul>
       </div>
 
+      <!-- Tab Identitas PPM -->
       {#if tab1 === true}
          <div class="box">
-            <Field name="Jenis Proposal">
-               {jenisProposal}
-            </Field>
-
-            <Field name="Jenis Kegiatan">
-               {jenisKegiatan}
-            </Field>
-
-            <Field name="Jenis Skema">
-               {jenisSkema}
-            </Field>
-
-            <Field name="Kelompok Keahlian">
-               {kelompokKeahlian}
-            </Field>
-
-            <Field name="Topik">
-               {topik}
-            </Field>
-
-            <Field name="Tanggal Mulai">
-               {tanggalMulai}
-            </Field>
-
-            <Field name="Tanggal Selesai">
-               {tanggalSelesai}
-            </Field>
-
-            <Field name="Biaya Penelitian">
-               {biayaPenelitian}
-            </Field>
-
-            <Field name="Anggota Tim">
-               <span></span>
-            </Field>
-            <br />
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th class="is-narrow">Role</th>
-                     <th>Nama</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {#if anggotaTim.length > 0}
-                     {#each anggotaTim as member}
-                        <tr>
-                           <td>{member.role}</td>
-                           <td>{member.label}</td>
-                        </tr>
-                     {/each}
-                  {/if}
-               </tbody>
-            </table>
-
-            <hr />
-
-            <Field name="Judul">
-               {data.judul}
-            </Field>
-
-            <Field name="abstrak">
-               {@html data.abstrak}
-            </Field>
-
-            <!-- <Field name="isi">
-            <div class="box box-padding">
-               {@html data.isi}
-            </div>
-         </Field> -->
-            <Field name="Proposal">
-               <button
-                  class="button is-link is-rounded button is-small"
-                  on:click={handleDownloadPpm}>Download Proposal</button
-               >
-            </Field>
-
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-               <Field name="Rencana Anggaran Biaya">
-                  <button
-                     class="button is-link is-rounded button is-small"
-                     on:click={handleDownloadRab}>Download RAB</button
-                  >
+            {#if !view}
+               <p id="days"></p>
+               <p id="hours"></p>
+               <p id="mins"></p>
+               <p id="secs"></p>
+               <Field name="Jenis Proposal">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisProposal}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Proposal</option
+                        >
+                        <option selected value="Proposal Awal"
+                           >Proposal Awal</option
+                        >
+                        <option value="Proposal Lanjutan"
+                           >Proposal Lanjutan</option
+                        >
+                     </select>
+                  </div>
                </Field>
-            {/if}
 
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-               {#if status === 8}
-                  <Field name="Penilaian Proposal">
-                     <span class="inputf__wrapper">
-                        <input
-                           id="filePenilaian"
-                           class="inputf custom-file-input"
-                           accept=".xlsx"
-                           type="file"
-                           on:change={filePenilaianChange}
-                        />
-                        <label for="filePenilaian" class="button">
-                           {#if $penilaianFile?.name}
-                              {$penilaianFile.name}
-                           {:else}
-                              Choose File
-                           {/if}
-                        </label>
-                     </span>
-                     <p class="help is-info">File Type: xlsx</p>
-                  </Field>
-               {/if}
+               <Field name="Jenis Kegiatan">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisKegiatan}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Kegiatan</option
+                        >
+                        <option value="Penelitian">Penelitian</option>
+                        <option value="Pengabdian Masyarakat"
+                           >Pengabdian Masyarakat</option
+                        >
+                     </select>
+                  </div>
+               </Field>
 
-               {#if status > 8}
-                  <Field name="Penilaian Proposal">
-                     <button
-                        class="button is-link is-rounded button is-small"
-                        on:click={handleDownloadPenilaian}
-                        >Download Form Penilaian</button
-                     >
-                  </Field>
-               {/if}
-            {/if}
+               <Field name="Jenis Skema">
+                  <div class="select is-fullwidth">
+                     <select bind:value={jenisSkema}>
+                        <option value="" selected disabled hidden
+                           >Pilih Jenis Skema
+                        </option>
+                        {#if jenisKegiatan === "Penelitian"}
+                           <!-- <optgroup label="Skema Penelitian"> -->
+                           <option value="Riset Kelompok Keahlian"
+                              >Riset Kelompok Keahlian</option
+                           >
+                           <option value="Riset Terapan">Riset Terapan</option>
+                           <option value="Riset Kerjasama"
+                              >Riset Kerjasama</option
+                           >
+                           <option value="Riset Mandiri">Riset Mandiri</option>
+                           <option value="Riset Eksternal"
+                              >Riset Eksternal</option
+                           >
+                           <!-- </optgroup> -->
+                        {:else}
+                           <!-- <optgroup label="Skema Pengabdian Masyarakat"> -->
+                           <option value="Pengabdian Masyarakat Desa Binaan"
+                              >Pengabdian Masyarakat Desa Binaan</option
+                           >
+                           <option value="Pengabdian Masyarakat UMKM Binaan"
+                              >Pengabdian Masyarakat UMKM Binaan</option
+                           >
+                           <option value="Pengabdian Masyarakat Mandiri"
+                              >Pengabdian Masyarakat Mandiri</option
+                           >
+                           <option value="Pengabdian Masyarakat Hibah Eksternal"
+                              >Pengabdian Masyarakat Hibah Eksternal</option
+                           >
+                           <!-- </optgroup> -->
+                        {/if}
+                     </select>
+                  </div>
+               </Field>
 
-            <hr />
+               <Field name="Kelompok Keahlian">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Kelompok Keahlian"
+                     bind:value={kelompokKeahlian}
+                  />
+               </Field>
 
-            <Field name="Catatan Revisi">
-               <textarea
-                  class="textarea"
-                  bind:value={comment}
-                  name="komentar"
-                  id="komentar"
-               ></textarea>
-            </Field>
+               <Field name="Topik">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Topik"
+                     bind:value={topik}
+                  />
+               </Field>
 
-            <Field name="Riwayat Revisi">
+               <Field name="Tanggal Mulai">
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="date"
+                        bind:value={tanggalMulai}
+                     />
+                  </div>
+               </Field>
+
+               <Field name="Tanggal Selesai">
+                  <div class="field">
+                     <input
+                        class="input"
+                        type="date"
+                        bind:value={tanggalSelesai}
+                     />
+                  </div>
+               </Field>
+
+               <Field name="Biaya Penelitian">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Biaya Penelitian"
+                     bind:value={biayaPenelitian}
+                     on:keyup={() =>
+                        (biayaPenelitian = formatRupiah(
+                           biayaPenelitian,
+                           "Rp. "
+                        ))}
+                  />
+               </Field>
+
+               <Field name="Anggota Tim">
+                  <Select start="2" {items} bind:result={anggotaTim} />
+               </Field>
+
+               <br />
+
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
                   <thead>
                      <tr>
-                        <th>Catatan Revisi</th>
-                        <th>Evalutor</th>
-                        <th class="is-narrow">Waktu</th>
+                        <th class="is-narrow" style="width:65px"></th>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
                      </tr>
                   </thead>
-
-                  {#if itemsRCR}
-                     <tbody>
-                        {#each itemsRCR as item}
+                  <tbody>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member, idx}
                            <tr>
-                              <td>{item.comment}</td>
-                              <td>{item.evaluator}</td>
-                              <td>{item.time}</td>
+                              <td>
+                                 {#if idx > 0}
+                                    <button
+                                       class="button is-danger is-rounded is-small"
+                                       data-value={member.value}
+                                       on:click={deleteMember}
+                                       ><span class="icon">
+                                          <Icon id="delete" src={deleteIcon} />
+                                       </span>
+                                    </button>
+                                 {/if}
+                              </td>
+                              <td>{member.role}</td>
+                              <td>{member.label}</td>
                            </tr>
                         {/each}
-                     </tbody>
-                  {/if}
+                     {/if}
+                  </tbody>
                </table>
-            </Field>
+
+               <hr />
+
+               <Field name="Judul">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Judul"
+                     bind:value={judul}
+                  />
+               </Field>
+
+               <Field name="Abstrak">
+                  <textarea class="textarea" bind:value={abstrak}></textarea>
+               </Field>
+
+               <!-- <Field name="Isi">
+               <Wysiwyg id="isi" content={isi} />
+               </Field> -->
+
+               <Field name="Proposal">
+                  <input
+                     class="input"
+                     accept="application/pdf"
+                     type="file"
+                     on:change={(e) => (filePpm = e.target.files[0])}
+                  />
+               </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="Rencana Anggaran Biaya">
+                     <input
+                        class="input"
+                        accept=".xlsx"
+                        type="file"
+                        on:change={(e) => (fileRab = e.target.files[0])}
+                     />
+                  </Field>
+               {/if}
+
+               <br /><br />
+
+               <hr />
+
+               <div class="columns notification is-danger is-light">
+                  <div class="column">
+                     <p style="text-align: justify;">
+                        <strong>Perhatikan</strong> catatan revisi dari evaluator
+                        untuk detail yang akan direvisi!
+                     </p>
+                  </div>
+               </div>
+
+               <Field name="Catatan Revisi">
+                  <div class="box">
+                     {comment}
+                  </div>
+               </Field>
+
+               <Field name="Riwayat Revisi">
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th>Catatan Revisi</th>
+                           <th>Evaluator</th>
+                           <th class="is-narrow">Waktu</th>
+                        </tr>
+                     </thead>
+                     {#if itemsRCR}
+                        <tbody>
+                           {#each itemsRCR as item}
+                              <tr>
+                                 <td>{item.comment}</td>
+                                 <td>{item.evaluator}</td>
+                                 <td>{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               </Field>
+            {:else}
+               <Field name="Jenis Proposal">
+                  {jenisProposal}
+               </Field>
+
+               <Field name="Jenis Kegiatan">
+                  {jenisKegiatan}
+               </Field>
+
+               <Field name="Jenis Skema">
+                  {jenisSkema}
+               </Field>
+
+               <Field name="Kelompok Keahlian">
+                  {kelompokKeahlian}
+               </Field>
+
+               <Field name="Topik">
+                  {topik}
+               </Field>
+
+               <Field name="Tanggal Mulai">
+                  {tanggalMulai}
+               </Field>
+
+               <Field name="Tanggal Selesai">
+                  {tanggalSelesai}
+               </Field>
+
+               <Field name="Biaya Penelitian">
+                  {biayaPenelitian}
+               </Field>
+
+               <Field name="Anggota Tim">
+                  <span></span>
+               </Field>
+               <br />
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member}
+                           <tr>
+                              <td>{member.role}</td>
+                              <td>{member.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+
+               <hr />
+
+               <Field name="Judul">
+                  {data.judul}
+               </Field>
+
+               <Field name="Abstrak">
+                  {@html data.abstrak}
+               </Field>
+
+               <!-- <Field name="Isi">
+               <div class="box box-padding">
+                  {@html data.isi}
+               </div>
+            </Field> -->
+
+               <Field name="File Proposal">
+                  <button
+                     class="button is-link button"
+                     on:click={handleDownloadPpm}>Download Proposal</button
+                  >
+               </Field>
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  <Field name="File RAB">
+                     <button
+                        class="button is-link button"
+                        on:click={handleDownloadRab}>Download RAB</button
+                     >
+                  </Field>
+               {/if}
+            {/if}
          </div>
 
-         {#if role === "Ka.Departemen"}
-            {#if status === 4}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
-
-         {#if role === "Ka.LPPM"}
-            {#if status === 6}
-               <div class="field is-grouped is-grouped-right">
+         <div class="field is-grouped is-grouped-right">
+            {#if !view}
+               {#if status === 0}
                   <p class="control">
                      <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}>Revisi</button
+                        class="button is-info is-light"
+                        on:click={simpanProposal}>Simpan</button
                      >
                   </p>
-                  <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
-
-         {#if role === "reviewer"}
-            {#if status === 8}
-               <div class="field is-grouped is-grouped-right">
                   <p class="control">
                      <button
                         class="button is-info"
-                        on:click={handlePassReviewer}>Proses</button
+                        on:click={submitProposal}
+                        class:is-loading={isLoading}>Submit</button
                      >
                   </p>
-               </div>
+               {:else}
+                  <p class="control">
+                     <button class="button is-info" on:click={remediasi}
+                        >Remediasi</button
+                     >
+                  </p>
+               {/if}
             {/if}
-         {/if}
-
-         {#if role === "Ka.PusatKajian"}
-            {#if status === 10}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}>Revisi</button
-                     >
-                  </p>
-
-                  <p class="control">
-                     <button
-                        class="button is-danger is-light is-outlined"
-                        on:click={handleDitolak}>Ditolak</button
-                     >
-                  </p>
-
-                  <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
+         </div>
       {/if}
 
+      <!-- Tab Biodata Peneliti -->
       {#if tab2 === true}
+         {#if uidProposal === own_id}
+            <div class="notification is-danger is-light">
+               <p style="text-align: justify;">
+                  <strong>Biodata</strong> sebagai salah satu syarat dalam
+                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
+                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
+                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik
+                  <a href={"/dosen/profile"}>
+                     <strong>Disini!</strong>
+                  </a>
+               </p>
+            </div>
+         {/if}
+
          <div class="box">
             <Field name="Nama Lengkap">{namaLengkap}</Field>
             <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
@@ -1016,8 +1280,21 @@
             <Field name="Telp/Fax Rumah">{telpFaxRumah}</Field>
             <Field name="Nomoh Handphone">{nomorHandphone}</Field>
             <Field name="Alamat Kantor">{alamatKantor}</Field>
-            <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
-            <Field name="Email">{email}</Field>
+            <!-- <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field> -->
+            <!-- <Field name="Email">{email}</Field> -->
+
+            {#if telpFaxKantor !== null}
+               <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
+            {:else}
+               <Field name="Telp/Fax Kantor"><span></span></Field>
+            {/if}
+
+            {#if email !== null}
+               <Field name="Email">{email}</Field>
+            {:else}
+               <Field name="Email"><span></span></Field>
+            {/if}
+
             <Field name="Mata Kuliah">
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
@@ -1275,22 +1552,86 @@
             </table>
          </div>
       {/if}
+
+      <!-- Tab Status -->
+      <!-- {#if tab3 === true}
+         <div class="box">
+            <Field name="Status PPM">
+               <Status code={data.status} />
+            </Field>
+
+            <Field name="Status Pendanaan">. . .</Field>
+         </div>
+      {/if} -->
+
+      <!-- Tab Logbook -->
+      <!-- {#if tab4 === true}
+         <div class="columns notification is-info is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
+
+            <div class="column">
+               <button class="button is-info" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="logbook" src={addProposal} />
+                  </span>
+                  <span><a>Create Logbook</a></span>
+               </button>
+            </div>
+         </div>
+      {/if} -->
+
+      <!-- Tab Monev -->
+      <!-- {#if tab5 === true}
+         <div class="columns notification is-success is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
+
+            <div class="column">
+               <button class="button is-success" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="monev" src={addProposal} />
+                  </span>
+                  <span><a>Create Monev</a></span>
+               </button>
+            </div>
+         </div>
+      {/if} -->
+
+      <!-- Tab Laporan -->
+      <!-- {#if tab6 === true}
+         <div class="columns notification is-info is-light">
+            <div class="column is-4">
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                  suscipit placeat amet.
+               </p>
+            </div>
+
+            <div class="column">
+               <button class="button is-info" on:click={addLogbook}>
+                  <span class="icon">
+                     <Icon id="laporan" src={addProposal} />
+                  </span>
+                  <span><a>Create Laporan</a></span>
+               </button>
+            </div>
+         </div>
+      {/if} -->
    </Article>
 {/if}
 
 <style>
-   /*
-   .box-padding {
+   /* .box-padding { 
       padding: 4.724rem;
    }
    */
-   .inputf__wrapper {
-      position: relative;
-      display: flex;
-   }
-   .inputf__wrapper input {
-      width: 0;
-      height: 0;
-      opacity: 0;
-   }
 </style>

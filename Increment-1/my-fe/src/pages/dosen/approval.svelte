@@ -40,7 +40,7 @@
 
    function detail(ev) {
       let propId = ev.target.getAttribute("pid");
-      $route("/dosen/detailproposal/" + propId);
+      $route("/dosen/detailapproval/" + propId);
    }
 </script>
 

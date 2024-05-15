@@ -90,7 +90,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -106,36 +106,41 @@
       const result = await response.json();
       view = !isEdit(result.status);
 
-      if (response.ok) {
-         data = result;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
 
-         ppmId = data.id;
-         uidProposal = data.uid;
-         jenisProposal = data.jenis_proposal;
-         jenisKegiatan = data.jenis_kegiatan;
-         jenisSkema = data.jenis_skema;
-         kelompokKeahlian = data.kelompok_keahlian;
-         topik = data.topik;
-         // tahunPelaksanaan = data.tahun_pelaksanaan;
-         tanggalMulai = data.tanggal_mulai;
-         tanggalSelesai = data.tanggal_selesai;
-         biayaPenelitian = data.biaya_penelitian;
-         anggotaTim =
-            typeof data.anggota_tim === "string"
-               ? JSON.parse(data.anggota_tim)
-               : data.anggota_tim;
-         judul = data.judul;
-         abstrak = data.abstrak;
-         isi = data.isi;
-         comment = data.comment;
-         status = data.status;
-         kdeptSelected = data.uid_kdept;
-         klppmSelected = data.uid_klppm;
-         kpkSelected = data.uid_kpk;
-         reviewerSelected = data.uid_reviewer;
-         // randomFileName = data.random_file_name;
-         randomRabFileName = data.random_rab_file_name;
-         randomPpmFileName = data.random_ppm_file_name;
+            ppmId = data.id;
+            uidProposal = data.uid;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            // tahunPelaksanaan = data.tahun_pelaksanaan;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim =
+               typeof data.anggota_tim === "string"
+                  ? JSON.parse(data.anggota_tim)
+                  : data.anggota_tim;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            isi = data.isi;
+            comment = data.comment;
+            status = data.status;
+            kdeptSelected = data.uid_kdept;
+            klppmSelected = data.uid_klppm;
+            kpkSelected = data.uid_kpk;
+            reviewerSelected = data.uid_reviewer;
+            // randomFileName = data.random_file_name;
+            randomRabFileName = data.random_rab_file_name;
+            randomPpmFileName = data.random_ppm_file_name;
+         }
       }
       // console.log(kdeptSelected);
       // console.log(klppmSelected);
@@ -177,13 +182,13 @@
       // -----------------------------------------------------------------------------//
       // Get Profile
       // -----------------------------------------------------------------------------//
-
       const responseGP = await fetch($apiURL + "/user/" + uidProposal, {
          method: "GET",
          headers: headers,
       });
 
       const resultGP = await responseGP.json();
+      console.log(resultGP);
 
       if (responseGP.ok) {
          dataGP = resultGP;
@@ -367,20 +372,27 @@
       });
 
       const results = await responsee.json();
+      console.log(results);
+      result;
 
-      if (responsee.ok) {
-         listUser = results;
-         for (const [key, value] of Object.entries(listUser)) {
-            items = [
-               ...items,
-               {
-                  value: value.uid,
-                  label: value.nama_lengkap,
-               },
-            ];
-         }
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsee);
+         if (responsee.ok) {
+            listUser = results;
+            for (const [key, value] of Object.entries(listUser)) {
+               items = [
+                  ...items,
+                  {
+                     value: value.uid,
+                     label: value.nama_lengkap,
+                  },
+               ];
+            }
+         } else {
+            console.log(responsee);
+         }
       }
    });
 

@@ -46,7 +46,7 @@
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       // return;
 
       const reminder = [];
@@ -72,7 +72,7 @@
 
    function detail(ev) {
       let propId = ev.target.getAttribute("pid");
-      location.href = "/dosen/proposals/" + propId;
+      location.href = "/dosen/detailproposal/" + propId;
    }
 
    function addProposal() {

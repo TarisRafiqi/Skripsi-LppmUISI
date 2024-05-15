@@ -1401,23 +1401,6 @@ article.container {
     max-width: 720px;
   }
 }
-@media screen and (min-width: 992px) {
-  article.container {
-    max-width: 960px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  article {
-    padding-left: 3em;
-    padding-right: 3em;
-    max-width: 1340px;
-  }
-}
-@media screen and (min-width: 1400px) {
-  article.container {
-    max-width: 1560px;
-  }
-}
 button {
   display: inline-block;
   font-family: var(--fonts);
@@ -1933,7 +1916,7 @@ article.svelte-12yf9li {
   overflow-y: scroll;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/detailproposal.esbuild-svelte-fake-css */
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/detailapproval.esbuild-svelte-fake-css */
 .inputf__wrapper.svelte-zw0hh6.svelte-zw0hh6 {
   position: relative;
   display: flex;
