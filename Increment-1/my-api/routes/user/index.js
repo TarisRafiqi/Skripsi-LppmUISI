@@ -40,12 +40,12 @@ module.exports = async function (fastify, opts) {
                });
             }
          } else if (
-            roleFromToken === "dosen" ||
-            roleFromToken === "admin" ||
-            roleFromToken === "Ka.Departemen" ||
-            roleFromToken === "reviewer" ||
-            roleFromToken === "Ka.LPPM" ||
-            roleFromToken === "Ka.PusatKajian"
+            roleFromToken === "admin"
+            // roleFromToken === "dosen" ||
+            // roleFromToken === "Ka.Departemen" ||
+            // roleFromToken === "reviewer" ||
+            // roleFromToken === "Ka.LPPM" ||
+            // roleFromToken === "Ka.PusatKajian"
          ) {
             const sql = "SELECT * FROM profile WHERE uid = ?";
 
@@ -132,31 +132,38 @@ module.exports = async function (fastify, opts) {
    });
 
    // patch/edit
-   fastify.patch("/", async function (request, reply) {
-      let dbData;
-      let connection;
-      let data = request.body;
-      const sql = "UPDATE users SET active = ?, role = ? WHERE id = ?";
+   fastify.patch(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let dbData;
+         let connection;
+         let data = request.body;
+         const sql = "UPDATE users SET active = ?, role = ? WHERE id = ?";
 
-      try {
-         connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [
-            data.active,
-            data.role,
-            data.id,
-         ]);
-         dbData = rows;
-         connection.release();
-         reply.send({
-            data: dbData,
-            msg: "berhasilss",
-         });
-      } catch (error) {
-         reply.send({
-            msg: "gagal terkoneksi ke db",
-         });
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [
+               data.active,
+               data.role,
+               data.id,
+            ]);
+            dbData = rows;
+            connection.release();
+            reply.send({
+               data: dbData,
+               msg: "berhasil mengubah data",
+               statusCode: 200,
+            });
+         } catch (error) {
+            reply.send({
+               msg: "gagal terkoneksi ke db",
+            });
+         }
       }
-   });
+   );
 };
 
 function sendEmail(code, email) {

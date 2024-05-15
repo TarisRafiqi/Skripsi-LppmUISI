@@ -8,42 +8,50 @@ const e500 = `The server has encountered a situation it does not know how to han
 
 module.exports = async function (fastify, opts) {
    // get users
-   fastify.get("/", async function (request, reply) {
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      // const idFromToken = decodedToken.id;
-      const roleFromToken = decodedToken.role;
+   fastify.get(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         // const decodedToken = fastify.jwt.decode(token);
+         // const idFromToken = decodedToken.id;
+         const roleFromToken = decodedToken.role;
 
-      let dbData;
-      // const sql = "SELECT id, username, email, role, active FROM users";
-      const sql = "SELECT uid, nama_lengkap FROM profile";
-      let connection;
+         let dbData;
+         // const sql = "SELECT id, username, email, role, active FROM users";
+         const sql = "SELECT uid, nama_lengkap FROM profile";
+         let connection;
 
-      if (
-         roleFromToken === "admin" ||
-         roleFromToken === "dosen" ||
-         roleFromToken === "reviewer" ||
-         roleFromToken === "Ka.Departemen" ||
-         roleFromToken === "Ka.LPPM" ||
-         roleFromToken === "Ka.PusatKajian"
-      ) {
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, []);
-            dbData = rows;
-            connection.release();
+         if (
+            roleFromToken === "admin" ||
+            roleFromToken === "dosen" ||
+            roleFromToken === "reviewer" ||
+            roleFromToken === "Ka.Departemen" ||
+            roleFromToken === "Ka.LPPM" ||
+            roleFromToken === "Ka.PusatKajian"
+         ) {
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, []);
+               dbData = rows;
+               connection.release();
+               reply.send({
+                  ...dbData,
+                  statusCode: 200,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
+         } else {
             reply.send({
-               ...dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               msg: "Anda tidak memiliki hak akses halaman ini",
             });
          }
-      } else {
-         reply.send({
-            msg: "Anda tidak memiliki hak akses halaman ini",
-         });
       }
-   });
+   );
 };

@@ -7,43 +7,50 @@ const e500 = `The server has encountered a situation it does not know how to han
 module.exports = async function (fastify, opts) {
    // API ini diakses oleh halaman Detail Proposal untuk meminta detail proposal dari id tsb
    // Get detail proposal
-   fastify.get("/:id", async function (request, reply) {
-      const id = Number(request.params.id);
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      const idFromToken = decodedToken.id;
-      const roleFromToken = decodedToken.role;
-      let dbData;
-      let connection;
+   fastify.get(
+      "/:id",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const id = Number(request.params.id);
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const idFromToken = decodedToken.id;
+         const roleFromToken = decodedToken.role;
+         let dbData;
+         let connection;
 
-      if (
-         roleFromToken === "admin" ||
-         roleFromToken === "dosen" ||
-         roleFromToken === "reviewer" ||
-         roleFromToken === "Ka.Departemen" ||
-         roleFromToken === "Ka.LPPM" ||
-         roleFromToken === "Ka.PusatKajian"
-      ) {
-         const sql = "SELECT * FROM proposal_ppm WHERE id = ?";
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [id]);
-            dbData = rows[0];
-            connection.release();
+         if (
+            roleFromToken === "admin" ||
+            roleFromToken === "dosen" ||
+            roleFromToken === "reviewer" ||
+            roleFromToken === "Ka.Departemen" ||
+            roleFromToken === "Ka.LPPM" ||
+            roleFromToken === "Ka.PusatKajian"
+         ) {
+            const sql = "SELECT * FROM proposal_ppm WHERE id = ?";
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, [id]);
+               dbData = rows[0];
+               connection.release();
+               reply.send({
+                  ...dbData,
+                  statusCode: 200,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
+         } else {
             reply.send({
-               ...dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               msg: "Anda tidak memiliki hak akses halaman ini",
             });
          }
-      } else {
-         reply.send({
-            msg: "Anda tidak memiliki hak akses halaman ini",
-         });
       }
-   });
+   );
 
    // API ini diakses oleh halaman List Proposal untuk mengambil semua proposal/penelitian milik id tersebut.
    // Reseach by Id
