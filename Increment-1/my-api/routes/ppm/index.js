@@ -191,53 +191,55 @@ module.exports = async function (fastify, opts) {
    });
 
    // edit
-   fastify.patch("/", async function (request, reply) {
-      let dbData;
-      let connection;
-      let data = request.body;
+   fastify.patch(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let dbData;
+         let connection;
+         let data = request.body;
 
-      // reply.send({
-      //    data,
-      // });
-      // return;
+         const sql =
+            "UPDATE proposal_ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, judul = ?, abstrak = ?,  comment = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
 
-      const sql =
-         "UPDATE proposal_ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, judul = ?, abstrak = ?,  comment = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
-
-      try {
-         connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [
-            data.jenisProposal,
-            data.jenisKegiatan,
-            data.jenisSkema,
-            data.kelompokKeahlian,
-            data.topik,
-            data.tanggalMulai,
-            data.tanggalSelesai,
-            data.biayaPenelitian,
-            JSON.stringify(data.anggotaTim),
-            data.judul,
-            data.abstrak,
-            data.comment,
-            data.status,
-            data.kdeptSelected,
-            data.klppmSelected,
-            data.kpkSelected,
-            data.reviewerSelected,
-            data.randomRabFileName,
-            data.randomPpmFileName,
-            data.id,
-         ]);
-         dbData = rows;
-         connection.release();
-         reply.send({
-            dbData,
-         });
-      } catch (error) {
-         reply.send({
-            msg: "gagal terkoneksi ke db",
-            error,
-         });
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [
+               data.jenisProposal,
+               data.jenisKegiatan,
+               data.jenisSkema,
+               data.kelompokKeahlian,
+               data.topik,
+               data.tanggalMulai,
+               data.tanggalSelesai,
+               data.biayaPenelitian,
+               JSON.stringify(data.anggotaTim),
+               data.judul,
+               data.abstrak,
+               data.comment,
+               data.status,
+               data.kdeptSelected,
+               data.klppmSelected,
+               data.kpkSelected,
+               data.reviewerSelected,
+               data.randomRabFileName,
+               data.randomPpmFileName,
+               data.id,
+            ]);
+            dbData = rows;
+            connection.release();
+            reply.send({
+               dbData,
+               statusCode: 200,
+            });
+         } catch (error) {
+            reply.send({
+               msg: "gagal terkoneksi ke db",
+               error,
+            });
+         }
       }
-   });
+   );
 };

@@ -40,12 +40,12 @@ module.exports = async function (fastify, opts) {
                });
             }
          } else if (
-            roleFromToken === "admin"
-            // roleFromToken === "dosen" ||
-            // roleFromToken === "Ka.Departemen" ||
-            // roleFromToken === "reviewer" ||
-            // roleFromToken === "Ka.LPPM" ||
-            // roleFromToken === "Ka.PusatKajian"
+            roleFromToken === "admin" ||
+            roleFromToken === "dosen" ||
+            roleFromToken === "Ka.Departemen" ||
+            roleFromToken === "reviewer" ||
+            roleFromToken === "Ka.LPPM" ||
+            roleFromToken === "Ka.PusatKajian"
          ) {
             const sql = "SELECT * FROM profile WHERE uid = ?";
 
