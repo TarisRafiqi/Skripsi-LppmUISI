@@ -75,7 +75,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -396,7 +396,7 @@
          // return;
 
          if (response.ok) {
-            $route("/dosen/approval");
+            $route("/dosen/approvalmanagement");
          } else {
             console.log(response);
          }
@@ -423,7 +423,7 @@
       // return;
 
       if (response.ok) {
-         $route("/dosen/approval");
+         $route("/dosen/approvalmanagement");
       } else {
          console.log(response);
       }
@@ -449,7 +449,7 @@
       // return;
 
       if (response.ok) {
-         $route("/dosen/approval");
+         $route("/dosen/approvalmanagement");
       } else {
          console.log(response);
       }
@@ -521,7 +521,7 @@
       // return;
 
       if (response.ok) {
-         $route("/dosen/approval");
+         $route("/dosen/approvalmanagement");
       } else {
          console.log(response);
       }

@@ -52,7 +52,7 @@
       <ul class="menu-list">
          <!-- svelte-ignore a11y-missing-attribute -->
          <li>
-            <a href="/dosen/approval">Approval Management</a>
+            <a href="/dosen/approvalmanagement">Approval Management</a>
          </li>
       </ul>
    {/if}

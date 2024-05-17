@@ -1971,7 +1971,7 @@
     component_subscribe($$self, route, ($$value) => $$invalidate(7, $route = $$value));
     component_subscribe($$self, isUsername, ($$value) => $$invalidate(8, $isUsername = $$value));
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(9, $isLogin = $$value));
-    let username = "fiqi";
+    let username = "kdept";
     let password = "1234";
     document.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
@@ -2064,7 +2064,7 @@
       () => {
         location.pathname = "/";
       },
-      1e3
+      500
     );
     return [];
   }
@@ -2790,7 +2790,7 @@
     return {
       c() {
         article = element("article");
-        article.innerHTML = `<div class="box svelte-1axbk4p"><img src="/img/warning.png" alt="alert-icon" class="svelte-1axbk4p"/> <h4 class="title is-3">Oops, your session has expired</h4> <h6 class="subtitle is-6">You will be redirected to login page</h6></div>`;
+        article.innerHTML = `<div class="box svelte-1axbk4p"><img src="/img/warning.png" alt="alert-icon" class="svelte-1axbk4p"/> <h4 class="title is-3">Your session has expired</h4> <h6 class="subtitle is-6">You will be redirected to login page</h6></div>`;
         attr(article, "class", "svelte-1axbk4p");
       },
       m(target, anchor) {
@@ -24258,7 +24258,7 @@
   // src/pages/dosen/index.js
   var dosen_exports = {};
   __export(dosen_exports, {
-    approval: () => approval_default,
+    approvalmanagement: () => approvalmanagement_default,
     detailapproval: () => detailapproval_default,
     detailproposal: () => detailproposal_default,
     home: () => home_default2,
@@ -24270,7 +24270,7 @@
   });
   init_define_process();
 
-  // src/pages/dosen/approval.svelte
+  // src/pages/dosen/approvalmanagement.svelte
   init_define_process();
   function get_each_context8(ctx, list, i) {
     const child_ctx = ctx.slice();
@@ -25789,13 +25789,13 @@
     }
     return [items, role, detail2];
   }
-  var Approval = class extends SvelteComponent {
+  var Approvalmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance30, create_fragment37, safe_not_equal, {});
     }
   };
-  var approval_default = Approval;
+  var approvalmanagement_default = Approvalmanagement;
 
   // src/pages/dosen/detailapproval.svelte
   init_define_process();
@@ -30662,7 +30662,7 @@
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       ka_departemen = await findRole(11);
@@ -30821,7 +30821,7 @@
         });
         const result2 = await response.json();
         if (response.ok) {
-          $route("/dosen/approval");
+          $route("/dosen/approvalmanagement");
         } else {
           console.log(response);
         }
@@ -30840,7 +30840,7 @@
       });
       const result2 = await response.json();
       if (response.ok) {
-        $route("/dosen/approval");
+        $route("/dosen/approvalmanagement");
       } else {
         console.log(response);
       }
@@ -30858,7 +30858,7 @@
       });
       const result2 = await response.json();
       if (response.ok) {
-        $route("/dosen/approval");
+        $route("/dosen/approvalmanagement");
       } else {
         console.log(response);
       }
@@ -30906,7 +30906,7 @@
       });
       const result2 = await response.json();
       if (response.ok) {
-        $route("/dosen/approval");
+        $route("/dosen/approvalmanagement");
       } else {
         console.log(response);
       }
@@ -37153,146 +37153,190 @@
       $$invalidate(54, isLoading = false);
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result2 = await response.json();
       console.log(result2);
       $$invalidate(1, view = !isEdit2(result2.status));
-      if (response.ok) {
-        $$invalidate(2, data2 = result2);
-        ppmId = data2.id;
-        $$invalidate(25, uidProposal = data2.uid);
-        $$invalidate(26, jenisProposal = data2.jenis_proposal);
-        $$invalidate(27, jenisKegiatan = data2.jenis_kegiatan);
-        $$invalidate(28, jenisSkema = data2.jenis_skema);
-        $$invalidate(29, kelompokKeahlian = data2.kelompok_keahlian);
-        $$invalidate(30, topik = data2.topik);
-        $$invalidate(31, tanggalMulai = data2.tanggal_mulai);
-        $$invalidate(32, tanggalSelesai = data2.tanggal_selesai);
-        $$invalidate(33, biayaPenelitian = data2.biaya_penelitian);
-        $$invalidate(34, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
-        $$invalidate(35, judul = data2.judul);
-        $$invalidate(36, abstrak = data2.abstrak);
-        $$invalidate(37, comment = data2.comment);
-        $$invalidate(38, status = data2.status);
-        kdeptSelected = data2.uid_kdept;
-        klppmSelected = data2.uid_klppm;
-        kpkSelected = data2.uid_kpk;
-        reviewerSelected = data2.uid_reviewer;
-        randomRabFileName = data2.random_rab_file_name;
-        randomPpmFileName = data2.random_ppm_file_name;
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(2, data2 = result2);
+          ppmId = data2.id;
+          $$invalidate(25, uidProposal = data2.uid);
+          $$invalidate(26, jenisProposal = data2.jenis_proposal);
+          $$invalidate(27, jenisKegiatan = data2.jenis_kegiatan);
+          $$invalidate(28, jenisSkema = data2.jenis_skema);
+          $$invalidate(29, kelompokKeahlian = data2.kelompok_keahlian);
+          $$invalidate(30, topik = data2.topik);
+          $$invalidate(31, tanggalMulai = data2.tanggal_mulai);
+          $$invalidate(32, tanggalSelesai = data2.tanggal_selesai);
+          $$invalidate(33, biayaPenelitian = data2.biaya_penelitian);
+          $$invalidate(34, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(35, judul = data2.judul);
+          $$invalidate(36, abstrak = data2.abstrak);
+          $$invalidate(37, comment = data2.comment);
+          $$invalidate(38, status = data2.status);
+          kdeptSelected = data2.uid_kdept;
+          klppmSelected = data2.uid_klppm;
+          kpkSelected = data2.uid_kpk;
+          reviewerSelected = data2.uid_reviewer;
+          randomRabFileName = data2.random_rab_file_name;
+          randomPpmFileName = data2.random_ppm_file_name;
+        } else {
+          console.log(response);
+        }
       }
       const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
-      if (responseRCR.ok) {
-        $$invalidate(9, itemsRCR = dataRCR.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRCR.ok) {
+          $$invalidate(9, itemsRCR = dataRCR.dbData);
+        }
       }
       const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
-      if (responseGP.ok) {
-        dataGP = resultGP;
-        idProfile = dataGP.id;
-        idUser = dataGP.uid;
-        $$invalidate(39, namaLengkap = dataGP.nama_lengkap);
-        $$invalidate(40, jabatanFungsional = dataGP.jabatan_fungsional);
-        $$invalidate(41, nip = dataGP.nip);
-        $$invalidate(42, nidn = dataGP.nidn);
-        $$invalidate(43, tempatLahir = dataGP.tempat_lahir);
-        $$invalidate(44, tanggalLahir = dataGP.tanggal_lahir);
-        $$invalidate(45, alamatRumah = dataGP.alamat_rumah);
-        $$invalidate(46, telpFaxRumah = dataGP.telp_fax_rumah);
-        $$invalidate(47, nomorHandphone = dataGP.nomor_handphone);
-        $$invalidate(48, alamatKantor = dataGP.alamat_kantor);
-        $$invalidate(49, telpFaxKantor = dataGP.telp_fax_kantor);
-        $$invalidate(50, email = dataGP.email);
-        $$invalidate(51, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseGP.ok) {
+          dataGP = resultGP;
+          idProfile = dataGP.id;
+          idUser = dataGP.uid;
+          $$invalidate(39, namaLengkap = dataGP.nama_lengkap);
+          $$invalidate(40, jabatanFungsional = dataGP.jabatan_fungsional);
+          $$invalidate(41, nip = dataGP.nip);
+          $$invalidate(42, nidn = dataGP.nidn);
+          $$invalidate(43, tempatLahir = dataGP.tempat_lahir);
+          $$invalidate(44, tanggalLahir = dataGP.tanggal_lahir);
+          $$invalidate(45, alamatRumah = dataGP.alamat_rumah);
+          $$invalidate(46, telpFaxRumah = dataGP.telp_fax_rumah);
+          $$invalidate(47, nomorHandphone = dataGP.nomor_handphone);
+          $$invalidate(48, alamatKantor = dataGP.alamat_kantor);
+          $$invalidate(49, telpFaxKantor = dataGP.telp_fax_kantor);
+          $$invalidate(50, email = dataGP.email);
+          $$invalidate(51, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
+        }
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
       const dataRP = await responseRP.json();
-      if (responseRP.ok) {
-        $$invalidate(10, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(11, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(12, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(13, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(14, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(15, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(16, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(17, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(18, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(19, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(20, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(21, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(22, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(23, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(24, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRP.ok) {
+          $$invalidate(10, pertiS1 = dataRP.nama_perti_s1);
+          $$invalidate(11, pertiS2 = dataRP.nama_perti_s2);
+          $$invalidate(12, pertiS3 = dataRP.nama_perti_s3);
+          $$invalidate(13, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+          $$invalidate(14, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+          $$invalidate(15, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+          $$invalidate(16, tahunMasukS1 = dataRP.tahun_masuk_s1);
+          $$invalidate(17, tahunMasukS2 = dataRP.tahun_masuk_s2);
+          $$invalidate(18, tahunMasukS3 = dataRP.tahun_masuk_s3);
+          $$invalidate(19, tahunLulusS1 = dataRP.tahun_lulus_s1);
+          $$invalidate(20, tahunLulusS2 = dataRP.tahun_lulus_s2);
+          $$invalidate(21, tahunLulusS3 = dataRP.tahun_lulus_s3);
+          $$invalidate(22, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+          $$invalidate(23, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+          $$invalidate(24, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        }
       }
       const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
-      if (responsePP.ok) {
-        $$invalidate(3, dataPP = resultPP.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePP);
+        if (responsePP.ok) {
+          $$invalidate(3, dataPP = resultPP.dbData);
+        } else {
+          console.log(responsePP);
+        }
       }
       const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
-      if (responsePM.ok) {
-        $$invalidate(4, dataPM = resultPM.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePM);
+        if (responsePM.ok) {
+          $$invalidate(4, dataPM = resultPM.dbData);
+        } else {
+          console.log(responsePM);
+        }
       }
       const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
-      if (responsePD.ok) {
-        $$invalidate(5, dataPD = resultPD.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePD);
+        if (responsePD.ok) {
+          $$invalidate(5, dataPD = resultPD.dbData);
+        } else {
+          console.log(responsePD);
+        }
       }
       const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
-      if (responsePPub.ok) {
-        $$invalidate(6, dataPPub = resultPPub.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPub);
+        if (responsePPub.ok) {
+          $$invalidate(6, dataPPub = resultPPub.dbData);
+        } else {
+          console.log(responsePPub);
+        }
       }
       const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
-      if (responsePPB.ok) {
-        $$invalidate(7, dataPPB = resultPPB.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPB);
+        if (responsePPB.ok) {
+          $$invalidate(7, dataPPB = resultPPB.dbData);
+        } else {
+          console.log(responsePPB);
+        }
       }
       const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
-      if (responsePHKI.ok) {
-        $$invalidate(8, dataPHKI = resultPHKI.dbData);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePHKI);
+        if (responsePHKI.ok) {
+          $$invalidate(8, dataPHKI = resultPHKI.dbData);
+        } else {
+          console.log(responsePHKI);
+        }
       }
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
-      if (responsee.ok) {
-        listUser = results;
-        for (const [key, value] of Object.entries(listUser)) {
-          $$invalidate(0, items = [
-            ...items,
-            {
-              value: value.uid,
-              label: value.nama_lengkap
-            }
-          ]);
-        }
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsee);
+        if (responsee.ok) {
+          listUser = results;
+          for (const [key, value] of Object.entries(listUser)) {
+            $$invalidate(0, items = [
+              ...items,
+              {
+                value: value.uid,
+                label: value.nama_lengkap
+              }
+            ]);
+          }
+        } else {
+          console.log(responsee);
+        }
       }
     });
     async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       let filename = "rab.xlsx";
@@ -37310,7 +37354,7 @@
     async function handleDownloadPpm(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       let filename = "proposal.pdf";
@@ -37343,7 +37387,7 @@
           const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadRabFile)
@@ -37369,7 +37413,7 @@
           const response2 = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadPpmFile)
@@ -37405,14 +37449,22 @@
       };
       const response = await fetch($apiURL + "/ppm", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result2 = await response.json();
-      if (response.ok) {
-        $route("/dosen/proposalmanagement");
+      console.log(result2);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $route("/dosen/proposalmanagement");
+        } else {
+          console.log(response);
+        }
       }
     }
     async function submitProposal() {
@@ -37434,7 +37486,7 @@
           const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadRabFile)
@@ -37444,7 +37496,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      readerRab.readAsDataURL(fileRab);
+      if (fileRab)
+        readerRab.readAsDataURL(fileRab);
       readerPpm.onloadend = async () => {
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
@@ -37459,7 +37512,7 @@
           const response2 = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadPpmFile)
@@ -37469,7 +37522,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      readerPpm.readAsDataURL(filePpm);
+      if (filePpm)
+        readerPpm.readAsDataURL(filePpm);
       const payload = {
         jenisProposal,
         jenisKegiatan,
@@ -37494,15 +37548,22 @@
       };
       const response = await fetch($apiURL + "/ppm", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result2 = await response.json();
-      if (response.ok) {
+      console.log(result2);
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(
-          response
-        );
+        if (response.ok) {
+          $route("/dosen/proposalmanagement");
+        } else {
+          console.log(response);
+        }
       }
       $$invalidate(54, isLoading = false);
     }
@@ -37524,7 +37585,7 @@
           const response2 = await fetch($apiURL + "/uploadRab", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadRabFile)
@@ -37534,7 +37595,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      readerRab.readAsDataURL(fileRab);
+      if (fileRab)
+        readerRab.readAsDataURL(fileRab);
       readerPpm.onloadend = async () => {
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
@@ -37549,7 +37611,7 @@
           const response2 = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadPpmFile)
@@ -37559,7 +37621,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      readerPpm.readAsDataURL(filePpm);
+      if (filePpm)
+        readerPpm.readAsDataURL(filePpm);
       const payload = {
         jenisProposal,
         jenisKegiatan,
@@ -37584,14 +37647,21 @@
       };
       const response = await fetch($apiURL + "/ppm", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result2 = await response.json();
-      if (response.ok) {
-        $route("/dosen/proposalmanagement");
+      if (result2.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $route("/dosen/proposalmanagement");
+        } else {
+          console.log(response);
+        }
       }
     }
     let tab1 = true;
@@ -58485,7 +58555,7 @@
     return {
       c() {
         ul = element("ul");
-        ul.innerHTML = `<li><a href="/dosen/approval" class="svelte-1lfjw54">Approval Management</a></li>`;
+        ul.innerHTML = `<li><a href="/dosen/approvalmanagement" class="svelte-1lfjw54">Approval Management</a></li>`;
         attr(ul, "class", "menu-list svelte-1lfjw54");
       },
       m(target, anchor) {

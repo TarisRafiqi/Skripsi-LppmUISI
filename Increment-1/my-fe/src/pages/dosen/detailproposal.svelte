@@ -73,7 +73,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -86,42 +86,47 @@
       console.log(result);
       view = !isEdit(result.status);
 
-      if (response.ok) {
-         data = result;
-
-         ppmId = data.id;
-         uidProposal = data.uid;
-         jenisProposal = data.jenis_proposal;
-         jenisKegiatan = data.jenis_kegiatan;
-         jenisSkema = data.jenis_skema;
-         kelompokKeahlian = data.kelompok_keahlian;
-         topik = data.topik;
-         tanggalMulai = data.tanggal_mulai;
-         tanggalSelesai = data.tanggal_selesai;
-         biayaPenelitian = data.biaya_penelitian;
-         anggotaTim =
-            typeof data.anggota_tim === "string"
-               ? JSON.parse(data.anggota_tim)
-               : data.anggota_tim;
-
-         // console.log(anggotaTim);
-         // let ccx = anggotaTim.map(function (obj) {
-         //    return obj.value;
-         // });
-         // console.log(ccx);
-
-         judul = data.judul;
-         abstrak = data.abstrak;
-         comment = data.comment;
-         status = data.status;
-         kdeptSelected = data.uid_kdept;
-         klppmSelected = data.uid_klppm;
-         kpkSelected = data.uid_kpk;
-         reviewerSelected = data.uid_reviewer;
-         randomRabFileName = data.random_rab_file_name;
-         randomPpmFileName = data.random_ppm_file_name;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            data = result;
+
+            ppmId = data.id;
+            uidProposal = data.uid;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim =
+               typeof data.anggota_tim === "string"
+                  ? JSON.parse(data.anggota_tim)
+                  : data.anggota_tim;
+
+            // console.log(anggotaTim);
+            // let ccx = anggotaTim.map(function (obj) {
+            //    return obj.value;
+            // });
+            // console.log(ccx);
+
+            judul = data.judul;
+            abstrak = data.abstrak;
+            comment = data.comment;
+            status = data.status;
+            kdeptSelected = data.uid_kdept;
+            klppmSelected = data.uid_klppm;
+            kpkSelected = data.uid_kpk;
+            reviewerSelected = data.uid_reviewer;
+            randomRabFileName = data.random_rab_file_name;
+            randomPpmFileName = data.random_ppm_file_name;
+         } else {
+            console.log(response);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -136,9 +141,15 @@
       );
 
       const dataRCR = await responseRCR.json();
+      // console.log(dataRCR);
 
-      if (responseRCR.ok) {
-         itemsRCR = dataRCR.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRCR.ok) {
+            itemsRCR = dataRCR.dbData;
+         }
       }
       // -----------------------------------------------------------------------------//
       // Get Profile
@@ -149,28 +160,34 @@
       });
 
       const resultGP = await responseGP.json();
+      // console.log(resultGP);
 
-      if (responseGP.ok) {
-         dataGP = resultGP;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseGP.ok) {
+            dataGP = resultGP;
 
-         idProfile = dataGP.id;
-         idUser = dataGP.uid;
-         namaLengkap = dataGP.nama_lengkap;
-         jabatanFungsional = dataGP.jabatan_fungsional;
-         nip = dataGP.nip;
-         nidn = dataGP.nidn;
-         tempatLahir = dataGP.tempat_lahir;
-         tanggalLahir = dataGP.tanggal_lahir;
-         alamatRumah = dataGP.alamat_rumah;
-         telpFaxRumah = dataGP.telp_fax_rumah;
-         nomorHandphone = dataGP.nomor_handphone;
-         alamatKantor = dataGP.alamat_kantor;
-         telpFaxKantor = dataGP.telp_fax_kantor;
-         email = dataGP.email;
-         mataKuliah =
-            typeof dataGP.mata_kuliah === "string"
-               ? JSON.parse(dataGP.mata_kuliah)
-               : dataGP.mata_kuliah || [];
+            idProfile = dataGP.id;
+            idUser = dataGP.uid;
+            namaLengkap = dataGP.nama_lengkap;
+            jabatanFungsional = dataGP.jabatan_fungsional;
+            nip = dataGP.nip;
+            nidn = dataGP.nidn;
+            tempatLahir = dataGP.tempat_lahir;
+            tanggalLahir = dataGP.tanggal_lahir;
+            alamatRumah = dataGP.alamat_rumah;
+            telpFaxRumah = dataGP.telp_fax_rumah;
+            nomorHandphone = dataGP.nomor_handphone;
+            alamatKantor = dataGP.alamat_kantor;
+            telpFaxKantor = dataGP.telp_fax_kantor;
+            email = dataGP.email;
+            mataKuliah =
+               typeof dataGP.mata_kuliah === "string"
+                  ? JSON.parse(dataGP.mata_kuliah)
+                  : dataGP.mata_kuliah || [];
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -185,29 +202,34 @@
       );
 
       const dataRP = await responseRP.json();
+      // console.log(dataRP);
 
-      if (responseRP.ok) {
-         pertiS1 = dataRP.nama_perti_s1;
-         pertiS2 = dataRP.nama_perti_s2;
-         pertiS3 = dataRP.nama_perti_s3;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRP.ok) {
+            pertiS1 = dataRP.nama_perti_s1;
+            pertiS2 = dataRP.nama_perti_s2;
+            pertiS3 = dataRP.nama_perti_s3;
 
-         bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-         bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-         bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
+            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
+            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
 
-         tahunMasukS1 = dataRP.tahun_masuk_s1;
-         tahunMasukS2 = dataRP.tahun_masuk_s2;
-         tahunMasukS3 = dataRP.tahun_masuk_s3;
+            tahunMasukS1 = dataRP.tahun_masuk_s1;
+            tahunMasukS2 = dataRP.tahun_masuk_s2;
+            tahunMasukS3 = dataRP.tahun_masuk_s3;
 
-         tahunLulusS1 = dataRP.tahun_lulus_s1;
-         tahunLulusS2 = dataRP.tahun_lulus_s2;
-         tahunLulusS3 = dataRP.tahun_lulus_s3;
+            tahunLulusS1 = dataRP.tahun_lulus_s1;
+            tahunLulusS2 = dataRP.tahun_lulus_s2;
+            tahunLulusS3 = dataRP.tahun_lulus_s3;
 
-         judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-         judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-         judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
+            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
+            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+         }
       }
-
       // -----------------------------------------------------------------------------//
       // Get Pengalaman Penelitian
       // -----------------------------------------------------------------------------//
@@ -220,11 +242,17 @@
       );
 
       const resultPP = await responsePP.json();
+      // console.log(resultPP);
 
-      if (responsePP.ok) {
-         dataPP = resultPP.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePP);
+         if (responsePP.ok) {
+            dataPP = resultPP.dbData;
+         } else {
+            console.log(responsePP);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -239,11 +267,17 @@
       );
 
       const resultPM = await responsePM.json();
+      // console.log(resultPM);
 
-      if (responsePM.ok) {
-         dataPM = resultPM.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePM);
+         if (responsePM.ok) {
+            dataPM = resultPM.dbData;
+         } else {
+            console.log(responsePM);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -258,11 +292,17 @@
       );
 
       const resultPD = await responsePD.json();
+      // console.log(resultPD);
 
-      if (responsePD.ok) {
-         dataPD = resultPD.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePD);
+         if (responsePD.ok) {
+            dataPD = resultPD.dbData;
+         } else {
+            console.log(responsePD);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -277,11 +317,17 @@
       );
 
       const resultPPub = await responsePPub.json();
+      // console.log(resultPPub);
 
-      if (responsePPub.ok) {
-         dataPPub = resultPPub.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPub);
+         if (responsePPub.ok) {
+            dataPPub = resultPPub.dbData;
+         } else {
+            console.log(responsePPub);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -296,11 +342,17 @@
       );
 
       const resultPPB = await responsePPB.json();
+      // console.log(resultPPB);
 
-      if (responsePPB.ok) {
-         dataPPB = resultPPB.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPB);
+         if (responsePPB.ok) {
+            dataPPB = resultPPB.dbData;
+         } else {
+            console.log(responsePPB);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -315,11 +367,17 @@
       );
 
       const resultPHKI = await responsePHKI.json();
+      // console.log(resultPHKI);
 
-      if (responsePHKI.ok) {
-         dataPHKI = resultPHKI.dbData;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePHKI);
+         if (responsePHKI.ok) {
+            dataPHKI = resultPHKI.dbData;
+         } else {
+            console.log(responsePHKI);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -331,20 +389,26 @@
       });
 
       const results = await responsee.json();
+      // console.log(results);
 
-      if (responsee.ok) {
-         listUser = results;
-         for (const [key, value] of Object.entries(listUser)) {
-            items = [
-               ...items,
-               {
-                  value: value.uid,
-                  label: value.nama_lengkap,
-               },
-            ];
-         }
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsee);
+         if (responsee.ok) {
+            listUser = results;
+            for (const [key, value] of Object.entries(listUser)) {
+               items = [
+                  ...items,
+                  {
+                     value: value.uid,
+                     label: value.nama_lengkap,
+                  },
+               ];
+            }
+         } else {
+            console.log(responsee);
+         }
       }
    });
 
@@ -372,7 +436,7 @@
    async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
       let filename = "rab.xlsx";
@@ -397,7 +461,7 @@
    async function handleDownloadPpm(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
       let filename = "proposal.pdf";
@@ -421,7 +485,6 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -442,7 +505,7 @@
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadRabFile),
@@ -474,7 +537,7 @@
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadPpmFile),
@@ -487,8 +550,8 @@
       };
 
       if (filePpm) readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
 
+      // ------------------------------------------------------------------------
       const payload = {
          jenisProposal,
          jenisKegiatan,
@@ -515,24 +578,30 @@
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      console.log(result);
 
-      if (response.ok) {
-         $route("/dosen/proposalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
    async function submitProposal() {
       isLoading = true;
       const accessToken = localStorage.getItem("token");
-
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -553,7 +622,7 @@
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadRabFile),
@@ -565,7 +634,7 @@
          }
       };
 
-      readerRab.readAsDataURL(fileRab);
+      if (fileRab) readerRab.readAsDataURL(fileRab);
       // -------------------------------------------------------------------//
       // Upload File PPM
       // -------------------------------------------------------------------//
@@ -584,7 +653,7 @@
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadPpmFile),
@@ -595,9 +664,9 @@
             console.error("Error uploading file:", error);
          }
       };
-      readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
+      if (filePpm) readerPpm.readAsDataURL(filePpm);
 
+      // -----------------------------------------------------------------------------//
       const payload = {
          jenisProposal,
          jenisKegiatan,
@@ -624,17 +693,24 @@
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
+      console.log(result);
 
-      if (response.ok) {
-         // $route("/dosen/proposalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
 
       isLoading = false;
@@ -642,7 +718,6 @@
 
    async function simpanProposal() {
       const accessToken = localStorage.getItem("token");
-
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -663,7 +738,7 @@
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadRabFile),
@@ -675,7 +750,7 @@
          }
       };
 
-      readerRab.readAsDataURL(fileRab);
+      if (fileRab) readerRab.readAsDataURL(fileRab);
       // -------------------------------------------------------------------//
       // Upload File PPM
       // -------------------------------------------------------------------//
@@ -694,7 +769,7 @@
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadPpmFile),
@@ -705,9 +780,9 @@
             console.error("Error uploading file:", error);
          }
       };
-      readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
+      if (filePpm) readerPpm.readAsDataURL(filePpm);
 
+      // -----------------------------------------------------------------------------//
       const payload = {
          jenisProposal,
          jenisKegiatan,
@@ -734,6 +809,7 @@
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -741,10 +817,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         $route("/dosen/proposalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 

@@ -15,7 +15,7 @@
 <article>
    <div class="box">
       <img src="/img/warning.png" alt="alert-icon" />
-      <h4 class="title is-3">Oops, your session has expired</h4>
+      <h4 class="title is-3">Your session has expired</h4>
       <h6 class="subtitle is-6">You will be redirected to login page</h6>
    </div>
 </article>
