@@ -100,13 +100,6 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
 
-      // reply.send({
-      //    token,
-      //    decodedToken,
-      //    idFromToken,
-      // });
-      // return;
-
       if (roleFromToken === "admin") {
          try {
             connection = await fastify.mysql.getConnection();
@@ -128,67 +121,68 @@ module.exports = async function (fastify, opts) {
       }
    });
 
-   fastify.post("/", async function (request, reply) {
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      const roleFromToken = decodedToken.role;
-      // const idFromToken = decodedToken.id;
+   fastify.post(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const token = request.headers.authorization;
+         const decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const roleFromToken = decodedToken.role;
 
-      let connection;
-      let data = request.body;
+         let connection;
+         let data = request.body;
 
-      // reply.send({
-      //    data,
-      // });
-      // return;
+         const sql =
+            "INSERT INTO proposal_ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-      const sql =
-         "INSERT INTO proposal_ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-      if (
-         roleFromToken === "admin" ||
-         roleFromToken === "dosen" ||
-         roleFromToken === "reviewer" ||
-         roleFromToken === "Ka.Departemen" ||
-         roleFromToken === "Ka.LPPM" ||
-         roleFromToken === "Ka.PusatKajian"
-      ) {
-         try {
-            connection = await fastify.mysql.getConnection();
-            await connection.query(sql, [
-               data.id,
-               data.judul,
-               data.myAbstract,
-               data.status,
-               data.jenisProposal,
-               data.jenisKegiatan,
-               data.jenisSkema,
-               data.kelompokKeahlian,
-               data.topik,
-               data.biayaPenelitian,
-               JSON.stringify(data.anggotaTim),
-               data.tanggalMulai,
-               data.tanggalSelesai,
-               data.randomRabFileName,
-               data.randomPpmFileName,
-            ]);
-            connection.release();
+         if (
+            roleFromToken === "admin" ||
+            roleFromToken === "dosen" ||
+            roleFromToken === "reviewer" ||
+            roleFromToken === "Ka.Departemen" ||
+            roleFromToken === "Ka.LPPM" ||
+            roleFromToken === "Ka.PusatKajian"
+         ) {
+            try {
+               connection = await fastify.mysql.getConnection();
+               await connection.query(sql, [
+                  data.id,
+                  data.judul,
+                  data.myAbstract,
+                  data.status,
+                  data.jenisProposal,
+                  data.jenisKegiatan,
+                  data.jenisSkema,
+                  data.kelompokKeahlian,
+                  data.topik,
+                  data.biayaPenelitian,
+                  JSON.stringify(data.anggotaTim),
+                  data.tanggalMulai,
+                  data.tanggalSelesai,
+                  data.randomRabFileName,
+                  data.randomPpmFileName,
+               ]);
+               connection.release();
+               reply.send({
+                  statusCode: 200,
+                  msg: "Sukses Menambahkan Proposal",
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+                  error,
+               });
+            }
+         } else {
             reply.send({
-               msg: "Sukses Menambahkan Proposal",
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               msg: "anda tidak memiliki hak akses halaman ini",
                error,
             });
          }
-      } else {
-         reply.send({
-            msg: "anda tidak memiliki hak akses halaman ini",
-            error,
-         });
       }
-   });
+   );
 
    // edit
    fastify.patch(
