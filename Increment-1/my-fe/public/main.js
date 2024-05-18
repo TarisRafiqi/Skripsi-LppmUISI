@@ -158,11 +158,11 @@
     return -1;
   }
   function exclude_internal_props(props) {
-    const result2 = {};
+    const result = {};
     for (const k in props)
       if (k[0] !== "$")
-        result2[k] = props[k];
-    return result2;
+        result[k] = props[k];
+    return result;
   }
   function set_store_value(store, ret, value) {
     store.set(value);
@@ -473,14 +473,14 @@
     }
   };
   function get_custom_elements_slots(element2) {
-    const result2 = {};
+    const result = {};
     element2.childNodes.forEach(
       /** @param {Element} node */
       (node) => {
-        result2[node.slot || "default"] = true;
+        result[node.slot || "default"] = true;
       }
     );
-    return result2;
+    return result;
   }
   function construct_svelte_component(component, props) {
     return new component(props);
@@ -1971,7 +1971,7 @@
     component_subscribe($$self, route, ($$value) => $$invalidate(7, $route = $$value));
     component_subscribe($$self, isUsername, ($$value) => $$invalidate(8, $isUsername = $$value));
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(9, $isLogin = $$value));
-    let username = "kdept";
+    let username = "fiqi";
     let password = "1234";
     document.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
@@ -1986,10 +1986,10 @@
         body: JSON.stringify({ username, password })
       };
       const response = await fetch($apiURL + "/auth", payload);
-      const result2 = await response.json();
-      if (result2.sukses) {
+      const result = await response.json();
+      if (result.sukses) {
         set_store_value(isLogin, $isLogin = true, $isLogin);
-        const { id, username: username2, role, token } = result2;
+        const { id, username: username2, role, token } = result;
         set_store_value(isUsername, $isUsername = username2, $isUsername);
         localStorage.setItem("id", id);
         localStorage.setItem("username", username2);
@@ -2266,12 +2266,12 @@
         body: JSON.stringify({ username, email })
       };
       const response = await fetch($apiURL + "//user", payload);
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        localStorage.setItem("code", result2.code);
+        localStorage.setItem("code", result.code);
         $route("/verify");
       } else {
-        console.log(result2);
+        console.log(result);
       }
     }
     function input0_input_handler() {
@@ -2537,11 +2537,11 @@
         }
       };
       const response = await fetch($apiURL + "/testDashboard", payload);
-      const result2 = await response.json();
-      console.log(result2);
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      console.log(result);
+      if (result.statusCode != 200) {
         location.pathname = "/testlogin";
-        console.log(result2);
+        console.log(result);
       }
     });
     return [pesan, token];
@@ -2755,13 +2755,13 @@
         body: JSON.stringify({ username, password })
       };
       const response = await fetch($apiURL + "/testSignIn", payload);
-      const result2 = await response.json();
-      if (result2.token) {
-        localStorage.setItem("Ttoken", result2.token);
+      const result = await response.json();
+      if (result.token) {
+        localStorage.setItem("Ttoken", result.token);
         $route("/testdashboard");
       } else {
         console.log(
-          result2
+          result
         );
       }
     }
@@ -5353,7 +5353,7 @@
           },
           body: JSON.stringify(payload)
         });
-        const result2 = await response.json();
+        const result = await response.json();
         if (response.ok) {
           $route("/admin/usersmanagement");
         } else {
@@ -13290,9 +13290,9 @@
     };
     onMount(async () => {
       const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        data2 = result2;
+        data2 = result;
         idProfile = data2.id;
         idUser = data2.uid;
         $$invalidate(35, namaLengkap = data2.nama_lengkap);
@@ -13403,7 +13403,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(68, showModalHKI = false);
         $$invalidate(30, tahunHKI = "");
@@ -13430,7 +13430,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(67, showModalPenulisanBuku = false);
         $$invalidate(25, tahunBuku = "");
@@ -13456,7 +13456,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(66, showModalPublikasi = false);
         $$invalidate(21, tahunPublikasi = "");
@@ -13482,7 +13482,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(63, showModalPenelitian = false);
         $$invalidate(8, tahunPenelitian = "");
@@ -13509,7 +13509,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(64, showModalPengmas = false);
         $$invalidate(13, tahunPengmas = "");
@@ -13535,7 +13535,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(65, showModalDiseminasi = false);
         $$invalidate(17, tahunDiseminasi = "");
@@ -13571,7 +13571,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/admin/usersmanagement");
       } else {
@@ -13600,7 +13600,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/admin/usersmanagement");
       } else {
@@ -13636,7 +13636,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanPenelitian();
       } else {
@@ -13649,7 +13649,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanPengmas();
       } else {
@@ -13662,7 +13662,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanDiseminasi();
       } else {
@@ -13675,7 +13675,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanPublikasi();
       } else {
@@ -13688,7 +13688,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanPenulisanBuku();
       } else {
@@ -13701,7 +13701,7 @@
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         getPengalamanHKI();
       } else {
@@ -14716,7 +14716,7 @@
   function instance23($$self, $$props, $$invalidate) {
     let { items } = $$props;
     let { start = 1 } = $$props;
-    let { result: result2 = [] } = $$props;
+    let { result = [] } = $$props;
     let focused = 0;
     let value = "";
     let filteredItems = items;
@@ -14725,13 +14725,13 @@
       let el = e.target;
       if (el.classList.contains("selected")) {
         el.classList.remove("selected");
-        $$invalidate(4, result2 = result2.filter((it) => {
+        $$invalidate(4, result = result.filter((it) => {
           return it.value !== el.getAttribute("data-value");
         }));
       } else {
         el.classList.add("selected");
-        $$invalidate(4, result2 = [
-          ...result2,
+        $$invalidate(4, result = [
+          ...result,
           {
             value: el.getAttribute("data-value").trim(),
             label: el.innerText.trim(),
@@ -14775,7 +14775,7 @@
       if ("start" in $$props2)
         $$invalidate(6, start = $$props2.start);
       if ("result" in $$props2)
-        $$invalidate(4, result2 = $$props2.result);
+        $$invalidate(4, result = $$props2.result);
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty & /*value, start*/
@@ -14789,7 +14789,7 @@
       focused,
       filteredItems,
       setSelected,
-      result2,
+      result,
       items,
       start,
       input_input_handler
@@ -21507,13 +21507,13 @@
       $$invalidate(26, ka_pusat_kajian = await findRole(13));
       $$invalidate(25, reviewer = await findRole(10));
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
-      const result2 = await response.json();
-      $$invalidate(64, view = !isEdit(result2.status));
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      $$invalidate(64, view = !isEdit(result.status));
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, data2 = result2);
+          $$invalidate(0, data2 = result);
           ppmId = data2.id;
           $$invalidate(60, uidProposal = data2.uid);
           $$invalidate(9, jenisProposal = data2.jenis_proposal);
@@ -21634,8 +21634,8 @@
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
       console.log(results);
-      result2;
-      if (result2.statusCode != 200) {
+      result;
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsee.ok) {
@@ -21677,7 +21677,7 @@
             },
             body: JSON.stringify(payloadRabFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -21703,7 +21703,7 @@
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -21738,7 +21738,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/admin/proposalmanagement");
       } else {
@@ -21785,7 +21785,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-        const result2 = await response.json();
+        const result = await response.json();
         if (response.ok) {
           $route("/admin/proposalmanagement");
         } else {
@@ -21822,7 +21822,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/admin/proposalmanagement");
       } else {
@@ -21865,7 +21865,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-        const result2 = await response.json();
+        const result = await response.json();
         if (response.ok) {
           $route("/admin/proposalmanagement");
         } else {
@@ -21917,7 +21917,7 @@
     }
     async function searchUser(ev) {
       const response = await fetch($apiURL + "/user");
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $$invalidate(27, showModal = true);
       }
@@ -21925,9 +21925,9 @@
     let options;
     async function findRole(role) {
       const response = await fetch($apiURL + "/role/" + role);
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        options = result2;
+        options = result;
         return options;
       } else {
         console.log(response);
@@ -22554,9 +22554,9 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm", { method: "GET", headers });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        $$invalidate(0, items = result2.dbData);
+        $$invalidate(0, items = result.dbData);
       }
     });
     async function handleReview(ev) {
@@ -23595,9 +23595,9 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/user", { method: "GET", headers });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.status === 200) {
-        $$invalidate(0, items = result2.dbData);
+        $$invalidate(0, items = result.dbData);
       }
     }
     async function handleActive(ev) {
@@ -23613,7 +23613,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         populateTable();
       } else {
@@ -23633,7 +23633,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         populateTable();
       } else {
@@ -23644,12 +23644,12 @@
       if (params["1"] === "profile") {
         let id = params["2"];
         const response = await fetch($apiURL + "/user/" + id);
-        const result2 = await response.json();
+        const result = await response.json();
         if (response.ok) {
-          if (!result2.length)
+          if (!result.length)
             return;
           $$invalidate(5, profile = []);
-          for (const [field, value] of Object.entries(result2[0])) {
+          for (const [field, value] of Object.entries(result[0])) {
             profile.push({ field, value });
           }
         } else {
@@ -25772,12 +25772,12 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/approval/" + id, { method: "GET", headers });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result2.dbData);
+          $$invalidate(0, items = result.dbData);
         } else {
           console.log(response);
         }
@@ -30670,9 +30670,9 @@
       ka_pusat_kajian = await findRole(13);
       reviewer = await findRole(10);
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        $$invalidate(1, data2 = result2);
+        $$invalidate(1, data2 = result);
         ppmId = data2.id;
         uidProposal = data2.uid;
         $$invalidate(37, jenisProposal = data2.jenis_proposal);
@@ -30819,7 +30819,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-        const result2 = await response.json();
+        const result = await response.json();
         if (response.ok) {
           $route("/dosen/approvalmanagement");
         } else {
@@ -30838,7 +30838,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/dosen/approvalmanagement");
       } else {
@@ -30856,7 +30856,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/dosen/approvalmanagement");
       } else {
@@ -30904,7 +30904,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         $route("/dosen/approvalmanagement");
       } else {
@@ -30913,7 +30913,7 @@
     }
     async function searchUser(ev) {
       const response = await fetch($apiURL + "/user");
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
         showModal = true;
       }
@@ -30921,9 +30921,9 @@
     let options;
     async function findRole(role2) {
       const response = await fetch($apiURL + "/role/" + role2);
-      const result2 = await response.json();
+      const result = await response.json();
       if (response.ok) {
-        options = result2;
+        options = result;
         return options;
       } else {
         console.log(response);
@@ -37157,14 +37157,13 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
-      const result2 = await response.json();
-      console.log(result2);
-      $$invalidate(1, view = !isEdit2(result2.status));
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      $$invalidate(1, view = !isEdit2(result.status));
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(2, data2 = result2);
+          $$invalidate(2, data2 = result);
           ppmId = data2.id;
           $$invalidate(25, uidProposal = data2.uid);
           $$invalidate(26, jenisProposal = data2.jenis_proposal);
@@ -37192,7 +37191,7 @@
       }
       const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseRCR.ok) {
@@ -37201,7 +37200,7 @@
       }
       const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseGP.ok) {
@@ -37225,7 +37224,7 @@
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
       const dataRP = await responseRP.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseRP.ok) {
@@ -37248,7 +37247,7 @@
       }
       const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePP.ok) {
@@ -37259,7 +37258,7 @@
       }
       const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePM.ok) {
@@ -37270,7 +37269,7 @@
       }
       const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePD.ok) {
@@ -37281,7 +37280,7 @@
       }
       const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePPub.ok) {
@@ -37292,7 +37291,7 @@
       }
       const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePPB.ok) {
@@ -37303,7 +37302,7 @@
       }
       const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePHKI.ok) {
@@ -37314,7 +37313,7 @@
       }
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsee.ok) {
@@ -37392,7 +37391,7 @@
             },
             body: JSON.stringify(payloadRabFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37418,7 +37417,7 @@
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37455,9 +37454,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      console.log(result2);
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -37491,7 +37489,7 @@
             },
             body: JSON.stringify(payloadRabFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37517,7 +37515,7 @@
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37554,9 +37552,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      console.log(result2);
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -37590,7 +37587,7 @@
             },
             body: JSON.stringify(payloadRabFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37616,7 +37613,7 @@
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result3 = await response2.json();
+          const result2 = await response2.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -37653,8 +37650,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -38309,12 +38306,12 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          items = result2.dbData;
+          items = result.dbData;
           $$invalidate(2, reminder = []);
           for (const item of items) {
             reminder.push({
@@ -47891,57 +47888,69 @@
     onMount(async () => {
       $$invalidate(84, isLoading = false);
       const response = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
-      const result2 = await response.json();
-      if (response.ok) {
-        listUser = result2;
-        $$invalidate(5, items = []);
-        for (const [key, value2] of Object.entries(listUser)) {
-          items.push({
-            value: value2.uid,
-            label: value2.nama_lengkap
-          });
-        }
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          listUser = result;
+          $$invalidate(5, items = []);
+          for (const [key, value2] of Object.entries(listUser)) {
+            items.push({
+              value: value2.uid,
+              label: value2.nama_lengkap
+            });
+          }
+        } else {
+          console.log(response);
+        }
       }
       const responseGP = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
       const resultGP = await responseGP.json();
-      if (responseGP.ok) {
-        data2 = resultGP;
-        idProfile = data2.id;
-        idUser = data2.uid;
-        $$invalidate(31, namaLengkap = data2.nama_lengkap);
-        $$invalidate(32, jabatanFungsional = data2.jabatan_fungsional);
-        $$invalidate(33, nip = data2.nip);
-        $$invalidate(34, nidn = data2.nidn);
-        $$invalidate(35, tempatLahir = data2.tempat_lahir);
-        $$invalidate(36, tanggalLahir = data2.tanggal_lahir);
-        $$invalidate(37, alamatRumah = data2.alamat_rumah);
-        $$invalidate(38, telpFaxRumah = data2.telp_fax_rumah);
-        $$invalidate(39, nomorHandphone = data2.nomor_handphone);
-        $$invalidate(40, alamatKantor = data2.alamat_kantor);
-        $$invalidate(41, telpFaxKantor = data2.telp_fax_kantor);
-        $$invalidate(42, email = data2.email);
-        $$invalidate(43, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+      if (resultGP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseGP.ok) {
+          data2 = resultGP;
+          idProfile = data2.id;
+          idUser = data2.uid;
+          $$invalidate(31, namaLengkap = data2.nama_lengkap);
+          $$invalidate(32, jabatanFungsional = data2.jabatan_fungsional);
+          $$invalidate(33, nip = data2.nip);
+          $$invalidate(34, nidn = data2.nidn);
+          $$invalidate(35, tempatLahir = data2.tempat_lahir);
+          $$invalidate(36, tanggalLahir = data2.tanggal_lahir);
+          $$invalidate(37, alamatRumah = data2.alamat_rumah);
+          $$invalidate(38, telpFaxRumah = data2.telp_fax_rumah);
+          $$invalidate(39, nomorHandphone = data2.nomor_handphone);
+          $$invalidate(40, alamatKantor = data2.alamat_kantor);
+          $$invalidate(41, telpFaxKantor = data2.telp_fax_kantor);
+          $$invalidate(42, email = data2.email);
+          $$invalidate(43, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+        }
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
-      if (responseRP.ok) {
-        $$invalidate(16, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(17, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(18, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(19, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(20, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(21, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(22, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(23, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(24, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(25, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(26, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(27, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(28, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(29, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(30, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+      if (dataRP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRP.ok) {
+          $$invalidate(16, pertiS1 = dataRP.nama_perti_s1);
+          $$invalidate(17, pertiS2 = dataRP.nama_perti_s2);
+          $$invalidate(18, pertiS3 = dataRP.nama_perti_s3);
+          $$invalidate(19, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+          $$invalidate(20, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+          $$invalidate(21, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+          $$invalidate(22, tahunMasukS1 = dataRP.tahun_masuk_s1);
+          $$invalidate(23, tahunMasukS2 = dataRP.tahun_masuk_s2);
+          $$invalidate(24, tahunMasukS3 = dataRP.tahun_masuk_s3);
+          $$invalidate(25, tahunLulusS1 = dataRP.tahun_lulus_s1);
+          $$invalidate(26, tahunLulusS2 = dataRP.tahun_lulus_s2);
+          $$invalidate(27, tahunLulusS3 = dataRP.tahun_lulus_s3);
+          $$invalidate(28, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+          $$invalidate(29, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+          $$invalidate(30, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        }
       }
       const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultRabChar = "";
@@ -47966,55 +47975,79 @@
     async function getPengalamanPenelitian() {
       const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers });
       const resultPP = await responsePP.json();
-      if (responsePP.ok) {
-        $$invalidate(44, dataPP = resultPP.dbData);
+      if (resultPP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePP);
+        if (responsePP.ok) {
+          $$invalidate(44, dataPP = resultPP.dbData);
+        } else {
+          console.log(responsePP);
+        }
       }
     }
     async function getPengalamanPengmas() {
       const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers });
       const resultPM = await responsePM.json();
-      if (responsePM.ok) {
-        $$invalidate(45, dataPM = resultPM.dbData);
+      if (resultPM.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePM);
+        if (responsePM.ok) {
+          $$invalidate(45, dataPM = resultPM.dbData);
+        } else {
+          console.log(responsePM);
+        }
       }
     }
     async function getPengalamanDiseminasi() {
       const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers });
       const resultPD = await responsePD.json();
-      if (responsePD.ok) {
-        $$invalidate(46, dataPD = resultPD.dbData);
+      if (resultPD.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePD);
+        if (responsePD.ok) {
+          $$invalidate(46, dataPD = resultPD.dbData);
+        } else {
+          console.log(responsePD);
+        }
       }
     }
     async function getPengalamanPublikasi() {
       const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
-      if (responsePPub.ok) {
-        $$invalidate(47, dataPPub = resultPPub.dbData);
+      if (resultPPub.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPub);
+        if (responsePPub.ok) {
+          $$invalidate(47, dataPPub = resultPPub.dbData);
+        } else {
+          console.log(responsePPub);
+        }
       }
     }
     async function getPengalamanPenulisanBuku() {
       const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
-      if (responsePPB.ok) {
-        $$invalidate(48, dataPPB = resultPPB.dbData);
+      if (resultPPB.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPB);
+        if (responsePPB.ok) {
+          $$invalidate(48, dataPPB = resultPPB.dbData);
+        } else {
+          console.log(responsePPB);
+        }
       }
     }
     async function getPengalamanHKI() {
       const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
-      if (responsePHKI.ok) {
-        $$invalidate(49, dataPHKI = resultPHKI.dbData);
+      if (resultPHKI.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePHKI);
+        if (responsePHKI.ok) {
+          $$invalidate(49, dataPHKI = resultPHKI.dbData);
+        } else {
+          console.log(responsePHKI);
+        }
       }
     }
     function addMatkul() {
@@ -48046,12 +48079,12 @@
             const response = await fetch($apiURL + "/uploadRab", {
               method: "POST",
               headers: {
-                Authorization: `${accessToken2}`,
+                Authorization: `Bearer ${accessToken2}`,
                 "Content-Type": "application/json"
               },
               body: JSON.stringify(payloadRabFile)
             });
-            const result2 = await response.json();
+            const result = await response.json();
           } catch (error) {
             console.error("Error uploading file:", error);
           }
@@ -48073,12 +48106,12 @@
           const response = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken2}`,
+              Authorization: `Bearer ${accessToken2}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result2 = await response.json();
+          const result = await response.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -48119,7 +48152,7 @@
         const responseProposal = await fetch($apiURL + "/ppm", {
           method: "POST",
           headers: {
-            Authorization: `${accessToken2}`,
+            Authorization: `Bearer ${accessToken2}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(payloadProposal)
@@ -48142,15 +48175,25 @@
         };
         const responseIdentitas = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Authorization: `Bearer ${accessToken2}`,
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(payloadIdentitas)
         });
         const resultProposal = await responseProposal.json();
         const resultIdentitas = await responseIdentitas.json();
-        if (responseProposal.ok && responseIdentitas.ok) {
-          $route("/dosen/proposalmanagement");
+        console.log(resultProposal);
+        console.log(resultIdentitas);
+        if (resultProposal.statusCode != 200 || resultIdentitas.statusCode !== 200) {
+          location.pathname = "/tokenexpired";
         } else {
-          console.log(result.msg);
+          if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/proposalmanagement");
+          } else {
+            console.log(responseProposal.msg);
+            console.log(responseIdentitas.msg);
+          }
         }
       }
     }
@@ -48173,12 +48216,12 @@
             const response = await fetch($apiURL + "/uploadRab", {
               method: "POST",
               headers: {
-                Authorization: `${accessToken2}`,
+                Authorization: `Bearer ${accessToken2}`,
                 "Content-Type": "application/json"
               },
               body: JSON.stringify(payloadRabFile)
             });
-            const result2 = await response.json();
+            const result = await response.json();
           } catch (error) {
             console.error("Error uploading file:", error);
           }
@@ -48200,12 +48243,12 @@
           const response = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
             headers: {
-              Authorization: `${accessToken2}`,
+              Authorization: `Bearer ${accessToken2}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payloadPpmFile)
           });
-          const result2 = await response.json();
+          const result = await response.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -48246,7 +48289,7 @@
         const responseProposal = await fetch($apiURL + "/ppm", {
           method: "POST",
           headers: {
-            Authorization: `${accessToken2}`,
+            Authorization: `Bearer ${accessToken2}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(payloadProposal)
@@ -48269,15 +48312,25 @@
         };
         const responseIdentitas = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Authorization: `Bearer ${accessToken2}`,
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(payloadIdentitas)
         });
         const resultProposal = await responseProposal.json();
         const resultIdentitas = await responseIdentitas.json();
-        if (responseProposal.ok && responseIdentitas.ok) {
-          $route("/dosen/proposalmanagement");
+        console.log(resultProposal);
+        console.log(resultIdentitas);
+        if (resultProposal.statusCode != 200 || resultIdentitas.statusCode !== 200) {
+          location.pathname = "/tokenexpired";
         } else {
-          console.log(result.msg);
+          if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/proposalmanagement");
+          } else {
+            console.log(responseProposal.msg);
+            console.log(responseIdentitas.msg);
+          }
         }
         $$invalidate(84, isLoading = false);
       }
@@ -48341,20 +48394,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPenelitian", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(78, showModalPenelitian = false);
-        $$invalidate(51, tahunPenelitian = "");
-        $$invalidate(52, judulPenelitian = "");
-        $$invalidate(53, rolePenelitian = "");
-        $$invalidate(54, sumberDanaPenelitian = "");
-        $$invalidate(50, biayaPP = "");
-        getPengalamanPenelitian();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(78, showModalPenelitian = false);
+          $$invalidate(51, tahunPenelitian = "");
+          $$invalidate(52, judulPenelitian = "");
+          $$invalidate(53, rolePenelitian = "");
+          $$invalidate(54, sumberDanaPenelitian = "");
+          $$invalidate(50, biayaPP = "");
+          getPengalamanPenelitian();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPM() {
@@ -48368,20 +48428,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPengmas", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(79, showModalPengmas = false);
-        $$invalidate(56, tahunPengmas = "");
-        $$invalidate(57, judulPengmas = "");
-        $$invalidate(58, rolePengmas = "");
-        $$invalidate(59, sumberDanaPengmas = "");
-        $$invalidate(55, biayaPengmas = "");
-        getPengalamanPengmas();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(79, showModalPengmas = false);
+          $$invalidate(56, tahunPengmas = "");
+          $$invalidate(57, judulPengmas = "");
+          $$invalidate(58, rolePengmas = "");
+          $$invalidate(59, sumberDanaPengmas = "");
+          $$invalidate(55, biayaPengmas = "");
+          getPengalamanPengmas();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPD() {
@@ -48394,19 +48461,26 @@
       };
       const response = await fetch($apiURL + "/pengalamanDiseminasi", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(80, showModalDiseminasi = false);
-        $$invalidate(60, tahunDiseminasi = "");
-        $$invalidate(61, judulDiseminasi = "");
-        $$invalidate(62, namaPemakalahDiseminasi = "");
-        $$invalidate(63, namaPertemuanDiseminasi = "");
-        getPengalamanDiseminasi();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(80, showModalDiseminasi = false);
+          $$invalidate(60, tahunDiseminasi = "");
+          $$invalidate(61, judulDiseminasi = "");
+          $$invalidate(62, namaPemakalahDiseminasi = "");
+          $$invalidate(63, namaPertemuanDiseminasi = "");
+          getPengalamanDiseminasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPPublikasi() {
@@ -48419,19 +48493,26 @@
       };
       const response = await fetch($apiURL + "/pengalamanPublikasi", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(81, showModalPublikasi = false);
-        $$invalidate(64, tahunPublikasi = "");
-        $$invalidate(65, judulPublikasi = "");
-        $$invalidate(66, namaJurnal = "");
-        $$invalidate(67, impactFactor = "");
-        getPengalamanPublikasi();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(81, showModalPublikasi = false);
+          $$invalidate(64, tahunPublikasi = "");
+          $$invalidate(65, judulPublikasi = "");
+          $$invalidate(66, namaJurnal = "");
+          $$invalidate(67, impactFactor = "");
+          getPengalamanPublikasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPPB() {
@@ -48445,20 +48526,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(82, showModalPenulisanBuku = false);
-        $$invalidate(68, tahunBuku = "");
-        $$invalidate(69, JudulBuku = "");
-        $$invalidate(70, namaPenulisBuku = "");
-        $$invalidate(71, PenerbitBuku = "");
-        $$invalidate(72, Isbn = "");
-        getPengalamanPenulisanBuku();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(82, showModalPenulisanBuku = false);
+          $$invalidate(68, tahunBuku = "");
+          $$invalidate(69, JudulBuku = "");
+          $$invalidate(70, namaPenulisBuku = "");
+          $$invalidate(71, PenerbitBuku = "");
+          $$invalidate(72, Isbn = "");
+          getPengalamanPenulisanBuku();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPHKI() {
@@ -48472,98 +48560,147 @@
       };
       const response = await fetch($apiURL + "/pengalamanHKI", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        $$invalidate(83, showModalHKI = false);
-        $$invalidate(73, tahunHKI = "");
-        $$invalidate(74, JudulHKI = "");
-        $$invalidate(75, namaPenulisHKI = "");
-        $$invalidate(76, jenisHKI = "");
-        $$invalidate(77, noHKI = "");
-        getPengalamanHKI();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(83, showModalHKI = false);
+          $$invalidate(73, tahunHKI = "");
+          $$invalidate(74, JudulHKI = "");
+          $$invalidate(75, namaPenulisHKI = "");
+          $$invalidate(76, jenisHKI = "");
+          $$invalidate(77, noHKI = "");
+          getPengalamanHKI();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanPenelitian();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPenelitian();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPM(ev) {
       let idPM = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanPengmas();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPengmas();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPD(ev) {
       let idPD = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanDiseminasi();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanDiseminasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPPub(ev) {
       let idPPub = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanPublikasi();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPublikasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPPB(ev) {
       let idPPB = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idPPB, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanPenulisanBuku();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPenulisanBuku();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPHKI(ev) {
       let idPHKI = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
-      const result2 = await response.json();
-      if (response.ok) {
-        getPengalamanHKI();
+      const result = await response.json();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanHKI();
+        } else {
+          console.log(response);
+        }
       }
     }
     function filePpmChange(e) {
@@ -56282,12 +56419,12 @@
     };
     onMount(async () => {
       const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          data2 = result2;
+          data2 = result;
           idProfile = data2.id;
           idUser = data2.uid;
           $$invalidate(35, namaLengkap = data2.nama_lengkap);
@@ -56430,8 +56567,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56464,8 +56601,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56497,8 +56634,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56530,8 +56667,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56564,8 +56701,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56597,8 +56734,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56640,8 +56777,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56676,8 +56813,8 @@
         },
         body: JSON.stringify(payload)
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56719,8 +56856,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56739,8 +56876,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56759,8 +56896,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56779,8 +56916,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56799,8 +56936,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -56819,8 +56956,8 @@
           "Content-Type": "application/json"
         }
       });
-      const result2 = await response.json();
-      if (result2.statusCode != 200) {
+      const result = await response.json();
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
@@ -57950,13 +58087,13 @@
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers });
-      const result2 = await response.json();
+      const result = await response.json();
       const reminder = [];
-      if (result2.statusCode != 200) {
+      if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(1, items = result2.dbData);
+          $$invalidate(1, items = result.dbData);
           for (const item of items) {
             reminder.push({
               judul: item.judul,
@@ -58109,7 +58246,7 @@
             },
             body: JSON.stringify(payloadfile)
           });
-          const result2 = await response.json();
+          const result = await response.json();
         } catch (error) {
           console.error("Error uploading file:", error);
         }

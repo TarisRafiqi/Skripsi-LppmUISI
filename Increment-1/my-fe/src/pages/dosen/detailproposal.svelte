@@ -83,7 +83,7 @@
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       view = !isEdit(result.status);
 
       if (result.statusCode != 200) {
@@ -585,7 +585,7 @@
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
@@ -700,7 +700,7 @@
       });
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
