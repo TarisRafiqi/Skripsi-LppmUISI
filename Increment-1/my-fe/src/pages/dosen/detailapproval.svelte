@@ -70,10 +70,9 @@
       kpkSelected,
       reviewerSelected;
 
+   const accessToken = localStorage.getItem("token");
    // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-
       const headers = {
          Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
@@ -90,35 +89,39 @@
       });
       const result = await response.json();
 
-      if (response.ok) {
-         data = result;
-
-         ppmId = data.id;
-         uidProposal = data.uid;
-         jenisProposal = data.jenis_proposal;
-         jenisKegiatan = data.jenis_kegiatan;
-         jenisSkema = data.jenis_skema;
-         kelompokKeahlian = data.kelompok_keahlian;
-         topik = data.topik;
-         tanggalMulai = data.tanggal_mulai;
-         tanggalSelesai = data.tanggal_selesai;
-         biayaPenelitian = data.biaya_penelitian;
-         anggotaTim =
-            typeof data.anggota_tim === "string"
-               ? JSON.parse(data.anggota_tim)
-               : data.anggota_tim;
-         rab = data.rab;
-         judul = data.judul;
-         abstrak = data.abstrak;
-         comment = data.comment;
-         status = data.status;
-         kdeptSelected = data.uid_kdept;
-         klppmSelected = data.uid_klppm;
-         kpkSelected = data.uid_kpk;
-         reviewerSelected = data.uid_reviewer;
-         randomRabFileName = data.random_rab_file_name;
-         randomPpmFileName = data.random_ppm_file_name;
-         randomPenilaianFileNamedb = data.random_penilaian_file_name;
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            ppmId = data.id;
+            uidProposal = data.uid;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim =
+               typeof data.anggota_tim === "string"
+                  ? JSON.parse(data.anggota_tim)
+                  : data.anggota_tim;
+            rab = data.rab;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            comment = data.comment;
+            status = data.status;
+            kdeptSelected = data.uid_kdept;
+            klppmSelected = data.uid_klppm;
+            kpkSelected = data.uid_kpk;
+            reviewerSelected = data.uid_reviewer;
+            randomRabFileName = data.random_rab_file_name;
+            randomPpmFileName = data.random_ppm_file_name;
+            randomPenilaianFileNamedb = data.random_penilaian_file_name;
+         }
       }
 
       //------------------------------------------------------------
@@ -145,9 +148,14 @@
 
       const resultEvl = await responseEvl.json();
 
-      if (responseEvl.ok) {
-         dataEvl = resultEvl;
-         namaLengkapEvl = dataEvl.nama_lengkap;
+      if (resultEvl.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseEvl.ok) {
+            dataEvl = resultEvl;
+            namaLengkapEvl = dataEvl.nama_lengkap;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -163,8 +171,13 @@
 
       const dataRCR = await responseRCR.json();
 
-      if (responseRCR.ok) {
-         itemsRCR = dataRCR.dbData;
+      if (dataRCR.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRCR.ok) {
+            itemsRCR = dataRCR.dbData;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -177,27 +190,31 @@
 
       const resultGP = await responseGP.json();
 
-      if (responseGP.ok) {
-         dataGP = resultGP;
-
-         idProfile = dataGP.id;
-         idUser = dataGP.uid;
-         namaLengkap = dataGP.nama_lengkap;
-         jabatanFungsional = dataGP.jabatan_fungsional;
-         nip = dataGP.nip;
-         nidn = dataGP.nidn;
-         tempatLahir = dataGP.tempat_lahir;
-         tanggalLahir = dataGP.tanggal_lahir;
-         alamatRumah = dataGP.alamat_rumah;
-         telpFaxRumah = dataGP.telp_fax_rumah;
-         nomorHandphone = dataGP.nomor_handphone;
-         alamatKantor = dataGP.alamat_kantor;
-         telpFaxKantor = dataGP.telp_fax_kantor;
-         email = dataGP.email;
-         mataKuliah =
-            typeof dataGP.mata_kuliah === "string"
-               ? JSON.parse(dataGP.mata_kuliah)
-               : dataGP.mata_kuliah || [];
+      if (resultGP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseGP.ok) {
+            dataGP = resultGP;
+            idProfile = dataGP.id;
+            idUser = dataGP.uid;
+            namaLengkap = dataGP.nama_lengkap;
+            jabatanFungsional = dataGP.jabatan_fungsional;
+            nip = dataGP.nip;
+            nidn = dataGP.nidn;
+            tempatLahir = dataGP.tempat_lahir;
+            tanggalLahir = dataGP.tanggal_lahir;
+            alamatRumah = dataGP.alamat_rumah;
+            telpFaxRumah = dataGP.telp_fax_rumah;
+            nomorHandphone = dataGP.nomor_handphone;
+            alamatKantor = dataGP.alamat_kantor;
+            telpFaxKantor = dataGP.telp_fax_kantor;
+            email = dataGP.email;
+            mataKuliah =
+               typeof dataGP.mata_kuliah === "string"
+                  ? JSON.parse(dataGP.mata_kuliah)
+                  : dataGP.mata_kuliah || [];
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -213,26 +230,31 @@
 
       const dataRP = await responseRP.json();
 
-      if (responseRP.ok) {
-         pertiS1 = dataRP.nama_perti_s1;
-         pertiS2 = dataRP.nama_perti_s2;
-         pertiS3 = dataRP.nama_perti_s3;
+      if (dataRP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRP.ok) {
+            pertiS1 = dataRP.nama_perti_s1;
+            pertiS2 = dataRP.nama_perti_s2;
+            pertiS3 = dataRP.nama_perti_s3;
 
-         bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-         bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-         bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
+            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
+            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
 
-         tahunMasukS1 = dataRP.tahun_masuk_s1;
-         tahunMasukS2 = dataRP.tahun_masuk_s2;
-         tahunMasukS3 = dataRP.tahun_masuk_s3;
+            tahunMasukS1 = dataRP.tahun_masuk_s1;
+            tahunMasukS2 = dataRP.tahun_masuk_s2;
+            tahunMasukS3 = dataRP.tahun_masuk_s3;
 
-         tahunLulusS1 = dataRP.tahun_lulus_s1;
-         tahunLulusS2 = dataRP.tahun_lulus_s2;
-         tahunLulusS3 = dataRP.tahun_lulus_s3;
+            tahunLulusS1 = dataRP.tahun_lulus_s1;
+            tahunLulusS2 = dataRP.tahun_lulus_s2;
+            tahunLulusS3 = dataRP.tahun_lulus_s3;
 
-         judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-         judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-         judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
+            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
+            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -248,10 +270,15 @@
 
       const resultPP = await responsePP.json();
 
-      if (responsePP.ok) {
-         dataPP = resultPP.dbData;
+      if (resultPP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePP);
+         if (responsePP.ok) {
+            dataPP = resultPP.dbData;
+         } else {
+            console.log(responsePP);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -267,10 +294,15 @@
 
       const resultPM = await responsePM.json();
 
-      if (responsePM.ok) {
-         dataPM = resultPM.dbData;
+      if (resultPM.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePM);
+         if (responsePM.ok) {
+            dataPM = resultPM.dbData;
+         } else {
+            console.log(responsePM);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -286,10 +318,15 @@
 
       const resultPD = await responsePD.json();
 
-      if (responsePD.ok) {
-         dataPD = resultPD.dbData;
+      if (resultPD.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePD);
+         if (responsePD.ok) {
+            dataPD = resultPD.dbData;
+         } else {
+            console.log(responsePD);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -305,10 +342,15 @@
 
       const resultPPub = await responsePPub.json();
 
-      if (responsePPub.ok) {
-         dataPPub = resultPPub.dbData;
+      if (resultPPub.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPub);
+         if (responsePPub.ok) {
+            dataPPub = resultPPub.dbData;
+         } else {
+            console.log(responsePPub);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -324,10 +366,15 @@
 
       const resultPPB = await responsePPB.json();
 
-      if (responsePPB.ok) {
-         dataPPB = resultPPB.dbData;
+      if (resultPPB.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPB);
+         if (responsePPB.ok) {
+            dataPPB = resultPPB.dbData;
+         } else {
+            console.log(responsePPB);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -343,10 +390,15 @@
 
       const resultPHKI = await responsePHKI.json();
 
-      if (responsePHKI.ok) {
-         dataPHKI = resultPHKI.dbData;
+      if (resultPHKI.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePHKI);
+         if (responsePHKI.ok) {
+            dataPHKI = resultPHKI.dbData;
+         } else {
+            console.log(responsePHKI);
+         }
       }
    });
 
@@ -367,6 +419,7 @@
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
             body: JSON.stringify(payloadCttnRevisi),
@@ -386,19 +439,24 @@
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
             body: JSON.stringify(payload),
          });
 
          const result = await response.json();
-         // console.log(result);
-         // return;
 
-         if (response.ok) {
-            $route("/dosen/approvalmanagement");
+         if (resultRev.statusCode != 200 || result.statusCode != 200) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (responseRev.ok && response.ok) {
+               $route("/dosen/approvalmanagement");
+            } else {
+               console.log(responseRev);
+               console.log(response);
+            }
          }
       }
    }
@@ -413,19 +471,23 @@
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
-      if (response.ok) {
-         $route("/dosen/approvalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/approvalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -439,19 +501,23 @@
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
-      if (response.ok) {
-         $route("/dosen/approvalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/approvalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -485,7 +551,7 @@
                   {
                      method: "POST",
                      headers: {
-                        Authorization: `${accessToken}`,
+                        Authorization: `Bearer ${accessToken}`,
                         "Content-Type": "application/json",
                      },
                      body: JSON.stringify(payloadPenilaianFile),
@@ -511,19 +577,23 @@
       const response = await fetch($apiURL + "/handleEvaluatorAction", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
-      if (response.ok) {
-         $route("/dosen/approvalmanagement");
+      if (result.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/dosen/approvalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -553,7 +623,7 @@
    async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -580,7 +650,7 @@
    async function handleDownloadPpm(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -607,7 +677,7 @@
    async function handleDownloadPenilaian(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 

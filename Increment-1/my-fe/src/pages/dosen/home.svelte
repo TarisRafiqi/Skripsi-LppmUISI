@@ -43,7 +43,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
@@ -73,9 +72,9 @@
       });
 
       const resultCP = await responseCP.json();
-      // console.log(resultCP);
 
       if (resultCP.statusCode != 200) {
+         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseCP.ok) {
@@ -94,9 +93,9 @@
       });
 
       const resultCPM = await responseCPM.json();
-      // console.log(resultCPM);
 
       if (resultCPM.statusCode != 200) {
+         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseCPM.ok) {
@@ -115,9 +114,9 @@
       });
 
       const resultGP = await responseGP.json();
-      // console.log(resultGP);
 
       if (resultGP.statusCode != 200) {
+         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseGP.ok) {
