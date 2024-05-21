@@ -13,7 +13,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -21,10 +21,16 @@
          method: "GET",
          headers: headers,
       });
+
       const result = await response.json();
 
-      if (response.ok) {
-         items = result.dbData;
+      if (response.status === 401) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            items = result.dbData;
+         }
       }
    });
 
@@ -76,7 +82,7 @@
                               on:click={handleReview}
                            >
                               <span class="icon">
-                                 <Icon id="orang" src={infoOutline} />
+                                 <Icon id="review" src={infoOutline} />
                               </span></button
                            ></td
                         >

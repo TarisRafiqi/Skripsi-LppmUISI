@@ -344,6 +344,20 @@
     else if (node.getAttribute(attribute) !== value)
       node.setAttribute(attribute, value);
   }
+  function init_binding_group(group) {
+    let _inputs;
+    return {
+      /* push */
+      p(...inputs) {
+        _inputs = inputs;
+        _inputs.forEach((input) => group.push(input));
+      },
+      /* remove */
+      r() {
+        _inputs.forEach((input) => group.splice(group.indexOf(input), 1));
+      }
+    };
+  }
   function to_number(value) {
     return value === "" ? null : +value;
   }
@@ -2815,7 +2829,7 @@
       () => {
         location.pathname = "/login";
       },
-      1e3
+      500
     );
     return [];
   }
@@ -4920,7 +4934,7 @@
   var Modalerror_default = Modalerror;
 
   // src/pages/admin/createuser.svelte
-  function create_default_slot_4(ctx) {
+  function create_default_slot_7(ctx) {
     let p;
     return {
       c() {
@@ -4938,13 +4952,244 @@
       }
     };
   }
-  function create_default_slot_3(ctx) {
+  function create_default_slot_6(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "Lengkapi seluruh form!";
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_else_block2(ctx) {
+    let h4;
+    return {
+      c() {
+        h4 = element("h4");
+        h4.textContent = "Anda tidak memiliki hak akses halaman ini!";
+        attr(h4, "class", "title is-4");
+      },
+      m(target, anchor) {
+        insert(target, h4, anchor);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(h4);
+        }
+      }
+    };
+  }
+  function create_if_block3(ctx) {
+    let div3;
+    let field0;
+    let t0;
+    let field1;
+    let t1;
+    let field2;
+    let t2;
+    let field3;
+    let t3;
+    let field4;
+    let t4;
+    let br;
+    let t5;
+    let div2;
+    let div0;
+    let button0;
+    let t7;
+    let div1;
+    let button1;
+    let current;
+    let mounted;
+    let dispose;
+    field0 = new Field_default({
+      props: {
+        name: "Username",
+        $$slots: { default: [create_default_slot_5] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Password",
+        $$slots: { default: [create_default_slot_4] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "Email",
+        $$slots: { default: [create_default_slot_3] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "Role",
+        $$slots: { default: [create_default_slot_22] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Active",
+        $$slots: { default: [create_default_slot_12] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        div3 = element("div");
+        create_component(field0.$$.fragment);
+        t0 = space();
+        create_component(field1.$$.fragment);
+        t1 = space();
+        create_component(field2.$$.fragment);
+        t2 = space();
+        create_component(field3.$$.fragment);
+        t3 = space();
+        create_component(field4.$$.fragment);
+        t4 = space();
+        br = element("br");
+        t5 = space();
+        div2 = element("div");
+        div0 = element("div");
+        button0 = element("button");
+        button0.textContent = "Kembali";
+        t7 = space();
+        div1 = element("div");
+        button1 = element("button");
+        button1.textContent = "Create";
+        attr(button0, "class", "button is-info is-light");
+        attr(div0, "class", "control");
+        attr(button1, "class", "button is-info");
+        attr(div1, "class", "control");
+        attr(div2, "class", "field is-grouped is-grouped-right");
+        attr(div3, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, div3, anchor);
+        mount_component(field0, div3, null);
+        append(div3, t0);
+        mount_component(field1, div3, null);
+        append(div3, t1);
+        mount_component(field2, div3, null);
+        append(div3, t2);
+        mount_component(field3, div3, null);
+        append(div3, t3);
+        mount_component(field4, div3, null);
+        append(div3, t4);
+        append(div3, br);
+        append(div3, t5);
+        append(div3, div2);
+        append(div2, div0);
+        append(div0, button0);
+        append(div2, t7);
+        append(div2, div1);
+        append(div1, button1);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              button0,
+              "click",
+              /*kembali*/
+              ctx[8]
+            ),
+            listen(
+              button1,
+              "click",
+              /*HandleCreateUser*/
+              ctx[9]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty & /*$$scope, createUsername*/
+        4194305) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty & /*$$scope, createPassword*/
+        4194306) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty & /*$$scope, createEmail*/
+        4194308) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty & /*$$scope, jenisRole*/
+        4194320) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty & /*$$scope, selectedActivation*/
+        4194312) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div3);
+        }
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot_5(ctx) {
     let input;
     let mounted;
     let dispose;
     return {
       c() {
         input = element("input");
+        attr(input, "id", "username");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan username");
@@ -4961,7 +5206,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[7]
+            ctx[12]
           );
           mounted = true;
         }
@@ -4986,13 +5231,14 @@
       }
     };
   }
-  function create_default_slot_22(ctx) {
+  function create_default_slot_4(ctx) {
     let input;
     let mounted;
     let dispose;
     return {
       c() {
         input = element("input");
+        attr(input, "id", "password");
         attr(input, "class", "input");
         attr(input, "type", "password");
         attr(input, "placeholder", "Masukkan password");
@@ -5009,7 +5255,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[8]
+            ctx[13]
           );
           mounted = true;
         }
@@ -5034,13 +5280,14 @@
       }
     };
   }
-  function create_default_slot_12(ctx) {
+  function create_default_slot_3(ctx) {
     let input;
     let mounted;
     let dispose;
     return {
       c() {
         input = element("input");
+        attr(input, "id", "email");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Masukkan email");
@@ -5057,7 +5304,7 @@
             input,
             "input",
             /*input_input_handler_2*/
-            ctx[9]
+            ctx[14]
           );
           mounted = true;
         }
@@ -5082,208 +5329,340 @@
       }
     };
   }
-  function create_default_slot5(ctx) {
-    let modalerror;
-    let updating_show;
-    let t0;
-    let h1;
-    let t2;
-    let hr;
-    let t3;
-    let div3;
-    let field0;
-    let t4;
-    let field1;
-    let t5;
-    let field2;
-    let t6;
-    let br;
-    let t7;
-    let div2;
-    let div0;
-    let button0;
-    let t9;
-    let div1;
-    let button1;
-    let current;
+  function create_default_slot_22(ctx) {
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    let option5;
     let mounted;
     let dispose;
-    function modalerror_show_binding(value) {
-      ctx[6](value);
-    }
-    let modalerror_props = {
-      $$slots: { default: [create_default_slot_4] },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModalError*/
-      ctx[3] !== void 0
-    ) {
-      modalerror_props.show = /*showModalError*/
-      ctx[3];
-    }
-    modalerror = new Modalerror_default({ props: modalerror_props });
-    binding_callbacks.push(() => bind(modalerror, "show", modalerror_show_binding));
-    field0 = new Field_default({
-      props: {
-        name: "Username",
-        $$slots: { default: [create_default_slot_3] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Password",
-        $$slots: { default: [create_default_slot_22] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "Email",
-        $$slots: { default: [create_default_slot_12] },
-        $$scope: { ctx }
-      }
-    });
     return {
       c() {
-        create_component(modalerror.$$.fragment);
-        t0 = space();
-        h1 = element("h1");
-        h1.textContent = "Create User";
-        t2 = space();
-        hr = element("hr");
-        t3 = space();
-        div3 = element("div");
-        create_component(field0.$$.fragment);
-        t4 = space();
-        create_component(field1.$$.fragment);
-        t5 = space();
-        create_component(field2.$$.fragment);
-        t6 = space();
-        br = element("br");
-        t7 = space();
-        div2 = element("div");
-        div0 = element("div");
-        button0 = element("button");
-        button0.textContent = "Kembali";
-        t9 = space();
-        div1 = element("div");
-        button1 = element("button");
-        button1.textContent = "Create";
-        attr(h1, "class", "title is-1");
-        attr(button0, "class", "button is-info is-light");
-        attr(div0, "class", "control");
-        attr(button1, "class", "button is-info");
-        attr(div1, "class", "control");
-        attr(div2, "class", "field is-grouped is-grouped-right");
-        attr(div3, "class", "box");
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jenis Role";
+        option1 = element("option");
+        option1.textContent = "Dosen";
+        option2 = element("option");
+        option2.textContent = "Reviewer";
+        option3 = element("option");
+        option3.textContent = "Kepala Departemen";
+        option4 = element("option");
+        option4.textContent = "Kepala LPPM";
+        option5 = element("option");
+        option5.textContent = "Kepala Pusat Kajian";
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "0";
+        set_input_value(option1, option1.__value);
+        option2.__value = "10";
+        set_input_value(option2, option2.__value);
+        option3.__value = "11";
+        set_input_value(option3, option3.__value);
+        option4.__value = "12";
+        set_input_value(option4, option4.__value);
+        option5.__value = "13";
+        set_input_value(option5, option5.__value);
+        attr(select, "id", "jenisRole");
+        if (
+          /*jenisRole*/
+          ctx[4] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler*/
+            ctx[15].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
       },
       m(target, anchor) {
-        mount_component(modalerror, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, h1, anchor);
-        insert(target, t2, anchor);
-        insert(target, hr, anchor);
-        insert(target, t3, anchor);
-        insert(target, div3, anchor);
-        mount_component(field0, div3, null);
-        append(div3, t4);
-        mount_component(field1, div3, null);
-        append(div3, t5);
-        mount_component(field2, div3, null);
-        append(div3, t6);
-        append(div3, br);
-        append(div3, t7);
-        append(div3, div2);
-        append(div2, div0);
-        append(div0, button0);
-        append(div2, t9);
-        append(div2, div1);
-        append(div1, button1);
-        current = true;
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(select, option3);
+        append(select, option4);
+        append(select, option5);
+        select_option(
+          select,
+          /*jenisRole*/
+          ctx[4],
+          true
+        );
+        if (!mounted) {
+          dispose = listen(
+            select,
+            "change",
+            /*select_change_handler*/
+            ctx[15]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*jenisRole*/
+        16) {
+          select_option(
+            select,
+            /*jenisRole*/
+            ctx2[4]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_12(ctx) {
+    let div;
+    let label0;
+    let input0;
+    let t0;
+    let t1;
+    let label1;
+    let input1;
+    let t2;
+    let binding_group;
+    let mounted;
+    let dispose;
+    binding_group = init_binding_group(
+      /*$$binding_groups*/
+      ctx[17][0]
+    );
+    return {
+      c() {
+        div = element("div");
+        label0 = element("label");
+        input0 = element("input");
+        t0 = text("\r\n                  Yes");
+        t1 = space();
+        label1 = element("label");
+        input1 = element("input");
+        t2 = text("\r\n                  No");
+        attr(input0, "id", "selectedActivation");
+        attr(input0, "type", "radio");
+        attr(input0, "name", "active");
+        input0.__value = "1";
+        set_input_value(input0, input0.__value);
+        attr(label0, "class", "radio");
+        attr(input1, "id", "selectedActivation");
+        attr(input1, "type", "radio");
+        attr(input1, "name", "active");
+        input1.__value = "0";
+        set_input_value(input1, input1.__value);
+        attr(label1, "class", "radio");
+        attr(div, "class", "control");
+        binding_group.p(input0, input1);
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, label0);
+        append(label0, input0);
+        input0.checked = input0.__value === /*selectedActivation*/
+        ctx[3];
+        append(label0, t0);
+        append(div, t1);
+        append(div, label1);
+        append(label1, input1);
+        input1.checked = input1.__value === /*selectedActivation*/
+        ctx[3];
+        append(label1, t2);
         if (!mounted) {
           dispose = [
             listen(
-              button0,
-              "click",
-              /*kembali*/
-              ctx[4]
+              input0,
+              "change",
+              /*input0_change_handler*/
+              ctx[16]
             ),
             listen(
-              button1,
-              "click",
-              /*HandleCreateUser*/
-              ctx[5]
+              input1,
+              "change",
+              /*input1_change_handler*/
+              ctx[18]
             )
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        const modalerror_changes = {};
+        if (dirty & /*selectedActivation*/
+        8) {
+          input0.checked = input0.__value === /*selectedActivation*/
+          ctx2[3];
+        }
+        if (dirty & /*selectedActivation*/
+        8) {
+          input1.checked = input1.__value === /*selectedActivation*/
+          ctx2[3];
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        binding_group.r();
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot5(ctx) {
+    let modalerror0;
+    let updating_show;
+    let t0;
+    let modalerror1;
+    let updating_show_1;
+    let t1;
+    let h1;
+    let t3;
+    let hr;
+    let t4;
+    let current_block_type_index;
+    let if_block;
+    let if_block_anchor;
+    let current;
+    function modalerror0_show_binding(value) {
+      ctx[10](value);
+    }
+    let modalerror0_props = {
+      $$slots: { default: [create_default_slot_7] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalError*/
+      ctx[5] !== void 0
+    ) {
+      modalerror0_props.show = /*showModalError*/
+      ctx[5];
+    }
+    modalerror0 = new Modalerror_default({ props: modalerror0_props });
+    binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
+    function modalerror1_show_binding(value) {
+      ctx[11](value);
+    }
+    let modalerror1_props = {
+      $$slots: { default: [create_default_slot_6] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalErrorEmptyForm*/
+      ctx[6] !== void 0
+    ) {
+      modalerror1_props.show = /*showModalErrorEmptyForm*/
+      ctx[6];
+    }
+    modalerror1 = new Modalerror_default({ props: modalerror1_props });
+    binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
+    const if_block_creators = [create_if_block3, create_else_block2];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (
+        /*role*/
+        ctx2[7] === "admin"
+      )
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    return {
+      c() {
+        create_component(modalerror0.$$.fragment);
+        t0 = space();
+        create_component(modalerror1.$$.fragment);
+        t1 = space();
+        h1 = element("h1");
+        h1.textContent = "Create User";
+        t3 = space();
+        hr = element("hr");
+        t4 = space();
+        if_block.c();
+        if_block_anchor = empty();
+        attr(h1, "class", "title is-1");
+      },
+      m(target, anchor) {
+        mount_component(modalerror0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(modalerror1, target, anchor);
+        insert(target, t1, anchor);
+        insert(target, h1, anchor);
+        insert(target, t3, anchor);
+        insert(target, hr, anchor);
+        insert(target, t4, anchor);
+        if_blocks[current_block_type_index].m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const modalerror0_changes = {};
         if (dirty & /*$$scope*/
-        8192) {
-          modalerror_changes.$$scope = { dirty, ctx: ctx2 };
+        4194304) {
+          modalerror0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty & /*showModalError*/
-        8) {
+        32) {
           updating_show = true;
-          modalerror_changes.show = /*showModalError*/
-          ctx2[3];
+          modalerror0_changes.show = /*showModalError*/
+          ctx2[5];
           add_flush_callback(() => updating_show = false);
         }
-        modalerror.$set(modalerror_changes);
-        const field0_changes = {};
-        if (dirty & /*$$scope, createUsername*/
-        8193) {
-          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        modalerror0.$set(modalerror0_changes);
+        const modalerror1_changes = {};
+        if (dirty & /*$$scope*/
+        4194304) {
+          modalerror1_changes.$$scope = { dirty, ctx: ctx2 };
         }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty & /*$$scope, createPassword*/
-        8194) {
-          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        if (!updating_show_1 && dirty & /*showModalErrorEmptyForm*/
+        64) {
+          updating_show_1 = true;
+          modalerror1_changes.show = /*showModalErrorEmptyForm*/
+          ctx2[6];
+          add_flush_callback(() => updating_show_1 = false);
         }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty & /*$$scope, createEmail*/
-        8196) {
-          field2_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field2.$set(field2_changes);
+        modalerror1.$set(modalerror1_changes);
+        if_block.p(ctx2, dirty);
       },
       i(local) {
         if (current)
           return;
-        transition_in(modalerror.$$.fragment, local);
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
+        transition_in(modalerror0.$$.fragment, local);
+        transition_in(modalerror1.$$.fragment, local);
+        transition_in(if_block);
         current = true;
       },
       o(local) {
-        transition_out(modalerror.$$.fragment, local);
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
+        transition_out(modalerror0.$$.fragment, local);
+        transition_out(modalerror1.$$.fragment, local);
+        transition_out(if_block);
         current = false;
       },
       d(detaching) {
         if (detaching) {
           detach(t0);
+          detach(t1);
           detach(h1);
-          detach(t2);
-          detach(hr);
           detach(t3);
-          detach(div3);
+          detach(hr);
+          detach(t4);
+          detach(if_block_anchor);
         }
-        destroy_component(modalerror, detaching);
-        destroy_component(field0);
-        destroy_component(field1);
-        destroy_component(field2);
-        mounted = false;
-        run_all(dispose);
+        destroy_component(modalerror0, detaching);
+        destroy_component(modalerror1, detaching);
+        if_blocks[current_block_type_index].d(detaching);
       }
     };
   }
@@ -5306,8 +5685,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, createEmail, createPassword, createUsername, showModalError*/
-        8207) {
+        if (dirty & /*$$scope, selectedActivation, jenisRole, createEmail, createPassword, createUsername, showModalErrorEmptyForm, showModalError*/
+        4194431) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -5330,42 +5709,66 @@
   function instance17($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(10, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(11, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(19, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(20, $apiURL = $$value));
     let createUsername, createPassword, createEmail, createRole;
+    let selectedActivation = "";
+    let jenisRole = "";
     let showModalError = false;
+    let showModalErrorEmptyForm = false;
+    const role = localStorage.getItem("role");
     function kembali() {
       $route("/admin/usersmanagement");
     }
     async function HandleCreateUser() {
+      const formUsername = document.getElementById("username");
+      const formPassword = document.getElementById("password");
+      const formEmail = document.getElementById("email");
+      const formActive = document.getElementById("selectedActivation");
+      const formRole = document.getElementById("jenisRole");
       const accessToken = localStorage.getItem("token");
       let payload = {
         createUsername,
         createPassword,
-        createEmail
+        createEmail,
+        selectedActivation,
+        jenisRole
       };
-      try {
-        const response = await fetch($apiURL + "/createUser", {
-          method: "POST",
-          headers: {
-            Authorization: `${accessToken}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-        if (response.ok) {
-          $route("/admin/usersmanagement");
-        } else {
-          $$invalidate(3, showModalError = true);
+      if (formUsername.value === "" || formUsername.value === null || formPassword.value === "" || formPassword.value === null || formEmail.value === "" || formEmail.value === null || formActive.value === "" || formActive.value === null || formRole.value === "" || formRole.value === null) {
+        $$invalidate(6, showModalErrorEmptyForm = true);
+      } else {
+        try {
+          const response = await fetch($apiURL + "/createUser", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json();
+          if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+          } else {
+            if (response.ok) {
+              $route("/admin/usersmanagement");
+            } else {
+              $$invalidate(5, showModalError = true);
+            }
+          }
+        } catch (error) {
+          console.error("Error", error);
         }
-      } catch (error) {
-        console.error("Error", error);
       }
     }
-    function modalerror_show_binding(value) {
+    const $$binding_groups = [[]];
+    function modalerror0_show_binding(value) {
       showModalError = value;
-      $$invalidate(3, showModalError);
+      $$invalidate(5, showModalError);
+    }
+    function modalerror1_show_binding(value) {
+      showModalErrorEmptyForm = value;
+      $$invalidate(6, showModalErrorEmptyForm);
     }
     function input_input_handler() {
       createUsername = this.value;
@@ -5379,17 +5782,38 @@
       createEmail = this.value;
       $$invalidate(2, createEmail);
     }
+    function select_change_handler() {
+      jenisRole = select_value(this);
+      $$invalidate(4, jenisRole);
+    }
+    function input0_change_handler() {
+      selectedActivation = this.__value;
+      $$invalidate(3, selectedActivation);
+    }
+    function input1_change_handler() {
+      selectedActivation = this.__value;
+      $$invalidate(3, selectedActivation);
+    }
     return [
       createUsername,
       createPassword,
       createEmail,
+      selectedActivation,
+      jenisRole,
       showModalError,
+      showModalErrorEmptyForm,
+      role,
       kembali,
       HandleCreateUser,
-      modalerror_show_binding,
+      modalerror0_show_binding,
+      modalerror1_show_binding,
       input_input_handler,
       input_input_handler_1,
-      input_input_handler_2
+      input_input_handler_2,
+      select_change_handler,
+      input0_change_handler,
+      $$binding_groups,
+      input1_change_handler
     ];
   }
   var Createuser = class extends SvelteComponent {
@@ -5779,26 +6203,30 @@
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       const responseCP = await fetch($apiURL + "/counterPenelitian", { method: "GET", headers });
       const resultCP = await responseCP.json();
-      if (responseCP.ok) {
-        $$invalidate(0, penelitianCounter = resultCP.penelitianCounter);
+      if (resultCP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(
-          responseCP
-        );
+        if (responseCP.ok) {
+          $$invalidate(0, penelitianCounter = resultCP.penelitianCounter);
+        } else {
+          console.log(responseCP);
+        }
       }
       const responseCPM = await fetch($apiURL + "/counterPengmas", { method: "GET", headers });
       const resultCPM = await responseCPM.json();
-      if (responseCPM.ok) {
-        $$invalidate(1, pengmasCounter = resultCPM.pengmasCounter);
+      if (resultCPM.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(
-          responseCPM
-        );
+        if (responseCPM.ok) {
+          $$invalidate(1, pengmasCounter = resultCPM.pengmasCounter);
+        } else {
+          console.log(responseCPM);
+        }
       }
     });
     return [penelitianCounter, pengmasCounter];
@@ -8075,7 +8503,7 @@
       }
     };
   }
-  function create_if_block3(ctx) {
+  function create_if_block4(ctx) {
     let modal0;
     let updating_show;
     let t0;
@@ -8300,7 +8728,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_1],
-        default: [create_default_slot_7]
+        default: [create_default_slot_72]
       },
       $$scope: { ctx }
     };
@@ -11842,7 +12270,7 @@
       }
     };
   }
-  function create_default_slot_7(ctx) {
+  function create_default_slot_72(ctx) {
     let field0;
     let t0;
     let field1;
@@ -12277,7 +12705,7 @@
       }
     };
   }
-  function create_default_slot_6(ctx) {
+  function create_default_slot_62(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12324,7 +12752,7 @@
       }
     };
   }
-  function create_default_slot_5(ctx) {
+  function create_default_slot_52(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12534,14 +12962,14 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_6] },
+        $$slots: { default: [create_default_slot_62] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul HKI",
-        $$slots: { default: [create_default_slot_5] },
+        $$slots: { default: [create_default_slot_52] },
         $$scope: { ctx }
       }
     });
@@ -12974,7 +13402,7 @@
     );
     let if_block2 = (
       /*tab3*/
-      ctx[71] === true && create_if_block3(ctx)
+      ctx[71] === true && create_if_block4(ctx)
     );
     return {
       c() {
@@ -13144,7 +13572,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block3(ctx2);
+            if_block2 = create_if_block4(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
@@ -13291,42 +13719,50 @@
     onMount(async () => {
       const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
       const result = await response.json();
-      if (response.ok) {
-        data2 = result;
-        idProfile = data2.id;
-        idUser = data2.uid;
-        $$invalidate(35, namaLengkap = data2.nama_lengkap);
-        $$invalidate(36, jabatanFungsional = data2.jabatan_fungsional);
-        $$invalidate(37, nip = data2.nip);
-        $$invalidate(38, nidn = data2.nidn);
-        $$invalidate(39, tempatLahir = data2.tempat_lahir);
-        $$invalidate(40, tanggalLahir = data2.tanggal_lahir);
-        $$invalidate(41, alamatRumah = data2.alamat_rumah);
-        $$invalidate(42, telpFaxRumah = data2.telp_fax_rumah);
-        $$invalidate(43, nomorHandphone = data2.nomor_handphone);
-        $$invalidate(44, alamatKantor = data2.alamat_kantor);
-        $$invalidate(45, telpFaxKantor = data2.telp_fax_kantor);
-        $$invalidate(46, email = data2.email);
-        $$invalidate(47, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          data2 = result;
+          idProfile = data2.id;
+          idUser = data2.uid;
+          $$invalidate(35, namaLengkap = data2.nama_lengkap);
+          $$invalidate(36, jabatanFungsional = data2.jabatan_fungsional);
+          $$invalidate(37, nip = data2.nip);
+          $$invalidate(38, nidn = data2.nidn);
+          $$invalidate(39, tempatLahir = data2.tempat_lahir);
+          $$invalidate(40, tanggalLahir = data2.tanggal_lahir);
+          $$invalidate(41, alamatRumah = data2.alamat_rumah);
+          $$invalidate(42, telpFaxRumah = data2.telp_fax_rumah);
+          $$invalidate(43, nomorHandphone = data2.nomor_handphone);
+          $$invalidate(44, alamatKantor = data2.alamat_kantor);
+          $$invalidate(45, telpFaxKantor = data2.telp_fax_kantor);
+          $$invalidate(46, email = data2.email);
+          $$invalidate(47, mataKuliah = typeof data2.mata_kuliah === "string" ? JSON.parse(data2.mata_kuliah) : data2.mata_kuliah || []);
+        }
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, { method: "GET", headers });
       const dataRP = await responseRP.json();
-      if (responseRP.ok) {
-        $$invalidate(48, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(49, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(50, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(51, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(52, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(53, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(54, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(55, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(56, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(57, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(58, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(59, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(60, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(61, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(62, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+      if (dataRP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRP.ok) {
+          $$invalidate(48, pertiS1 = dataRP.nama_perti_s1);
+          $$invalidate(49, pertiS2 = dataRP.nama_perti_s2);
+          $$invalidate(50, pertiS3 = dataRP.nama_perti_s3);
+          $$invalidate(51, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+          $$invalidate(52, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+          $$invalidate(53, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+          $$invalidate(54, tahunMasukS1 = dataRP.tahun_masuk_s1);
+          $$invalidate(55, tahunMasukS2 = dataRP.tahun_masuk_s2);
+          $$invalidate(56, tahunMasukS3 = dataRP.tahun_masuk_s3);
+          $$invalidate(57, tahunLulusS1 = dataRP.tahun_lulus_s1);
+          $$invalidate(58, tahunLulusS2 = dataRP.tahun_lulus_s2);
+          $$invalidate(59, tahunLulusS3 = dataRP.tahun_lulus_s3);
+          $$invalidate(60, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+          $$invalidate(61, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+          $$invalidate(62, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        }
       }
       getPengalamanPenelitian();
       getPengalamanPengmas();
@@ -13338,55 +13774,79 @@
     async function getPengalamanPenelitian() {
       const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers });
       const resultPP = await responsePP.json();
-      if (responsePP.ok) {
-        $$invalidate(0, dataPP = resultPP.dbData);
+      if (resultPP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePP);
+        if (responsePP.ok) {
+          $$invalidate(0, dataPP = resultPP.dbData);
+        } else {
+          console.log(responsePP);
+        }
       }
     }
     async function getPengalamanPengmas() {
       const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers });
       const resultPM = await responsePM.json();
-      if (responsePM.ok) {
-        $$invalidate(1, dataPM = resultPM.dbData);
+      if (resultPM.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePM);
+        if (responsePM.ok) {
+          $$invalidate(1, dataPM = resultPM.dbData);
+        } else {
+          console.log(responsePM);
+        }
       }
     }
     async function getPengalamanDiseminasi() {
       const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers });
       const resultPD = await responsePD.json();
-      if (responsePD.ok) {
-        $$invalidate(2, dataPD = resultPD.dbData);
+      if (resultPD.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePD);
+        if (responsePD.ok) {
+          $$invalidate(2, dataPD = resultPD.dbData);
+        } else {
+          console.log(responsePD);
+        }
       }
     }
     async function getPengalamanPublikasi() {
       const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
-      if (responsePPub.ok) {
-        $$invalidate(3, dataPPub = resultPPub.dbData);
+      if (resultPPub.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPub);
+        if (responsePPub.ok) {
+          $$invalidate(3, dataPPub = resultPPub.dbData);
+        } else {
+          console.log(responsePPub);
+        }
       }
     }
     async function getPengalamanPenulisanBuku() {
       const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
-      if (responsePPB.ok) {
-        $$invalidate(4, dataPPB = resultPPB.dbData);
+      if (resultPPB.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePPB);
+        if (responsePPB.ok) {
+          $$invalidate(4, dataPPB = resultPPB.dbData);
+        } else {
+          console.log(responsePPB);
+        }
       }
     }
     async function getPengalamanHKI() {
       const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
-      if (responsePHKI.ok) {
-        $$invalidate(5, dataPHKI = resultPHKI.dbData);
+      if (resultPHKI.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(responsePHKI);
+        if (responsePHKI.ok) {
+          $$invalidate(5, dataPHKI = resultPHKI.dbData);
+        } else {
+          console.log(responsePHKI);
+        }
       }
     }
     async function simpanPHKI() {
@@ -13400,20 +13860,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanHKI", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(68, showModalHKI = false);
-        $$invalidate(30, tahunHKI = "");
-        $$invalidate(31, JudulHKI = "");
-        $$invalidate(32, namaPenulisHKI = "");
-        $$invalidate(33, jenisHKI = "");
-        $$invalidate(34, noHKI = "");
-        getPengalamanHKI();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(68, showModalHKI = false);
+          $$invalidate(30, tahunHKI = "");
+          $$invalidate(31, JudulHKI = "");
+          $$invalidate(32, namaPenulisHKI = "");
+          $$invalidate(33, jenisHKI = "");
+          $$invalidate(34, noHKI = "");
+          getPengalamanHKI();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPPB() {
@@ -13427,20 +13894,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(67, showModalPenulisanBuku = false);
-        $$invalidate(25, tahunBuku = "");
-        $$invalidate(26, JudulBuku = "");
-        $$invalidate(27, namaPenulisBuku = "");
-        $$invalidate(28, PenerbitBuku = "");
-        $$invalidate(29, Isbn = "");
-        getPengalamanPenulisanBuku();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(67, showModalPenulisanBuku = false);
+          $$invalidate(25, tahunBuku = "");
+          $$invalidate(26, JudulBuku = "");
+          $$invalidate(27, namaPenulisBuku = "");
+          $$invalidate(28, PenerbitBuku = "");
+          $$invalidate(29, Isbn = "");
+          getPengalamanPenulisanBuku();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPPublikasi() {
@@ -13453,19 +13927,26 @@
       };
       const response = await fetch($apiURL + "/pengalamanPublikasi", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(66, showModalPublikasi = false);
-        $$invalidate(21, tahunPublikasi = "");
-        $$invalidate(22, judulPublikasi = "");
-        $$invalidate(23, namaJurnal = "");
-        $$invalidate(24, impactFactor = "");
-        getPengalamanPublikasi();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(66, showModalPublikasi = false);
+          $$invalidate(21, tahunPublikasi = "");
+          $$invalidate(22, judulPublikasi = "");
+          $$invalidate(23, namaJurnal = "");
+          $$invalidate(24, impactFactor = "");
+          getPengalamanPublikasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPP() {
@@ -13479,20 +13960,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPenelitian", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(63, showModalPenelitian = false);
-        $$invalidate(8, tahunPenelitian = "");
-        $$invalidate(9, judulPenelitian = "");
-        $$invalidate(10, rolePenelitian = "");
-        $$invalidate(11, sumberDanaPenelitian = "");
-        $$invalidate(7, biayaPP = "");
-        getPengalamanPenelitian();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(63, showModalPenelitian = false);
+          $$invalidate(8, tahunPenelitian = "");
+          $$invalidate(9, judulPenelitian = "");
+          $$invalidate(10, rolePenelitian = "");
+          $$invalidate(11, sumberDanaPenelitian = "");
+          $$invalidate(7, biayaPP = "");
+          getPengalamanPenelitian();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPM() {
@@ -13506,20 +13994,27 @@
       };
       const response = await fetch($apiURL + "/pengalamanPengmas", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(64, showModalPengmas = false);
-        $$invalidate(13, tahunPengmas = "");
-        $$invalidate(14, judulPengmas = "");
-        $$invalidate(15, rolePengmas = "");
-        $$invalidate(16, sumberDanaPengmas = "");
-        $$invalidate(12, biayaPengmas = "");
-        getPengalamanPengmas();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(64, showModalPengmas = false);
+          $$invalidate(13, tahunPengmas = "");
+          $$invalidate(14, judulPengmas = "");
+          $$invalidate(15, rolePengmas = "");
+          $$invalidate(16, sumberDanaPengmas = "");
+          $$invalidate(12, biayaPengmas = "");
+          getPengalamanPengmas();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanPD() {
@@ -13532,19 +14027,26 @@
       };
       const response = await fetch($apiURL + "/pengalamanDiseminasi", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(65, showModalDiseminasi = false);
-        $$invalidate(17, tahunDiseminasi = "");
-        $$invalidate(18, judulDiseminasi = "");
-        $$invalidate(19, namaPemakalahDiseminasi = "");
-        $$invalidate(20, namaPertemuanDiseminasi = "");
-        getPengalamanDiseminasi();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $$invalidate(65, showModalDiseminasi = false);
+          $$invalidate(17, tahunDiseminasi = "");
+          $$invalidate(18, judulDiseminasi = "");
+          $$invalidate(19, namaPemakalahDiseminasi = "");
+          $$invalidate(20, namaPertemuanDiseminasi = "");
+          getPengalamanDiseminasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanRiwayatPendidikan() {
@@ -13568,14 +14070,21 @@
       };
       const response = await fetch($apiURL + "/riwayatpendidikan", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $route("/admin/usersmanagement");
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $route("/admin/usersmanagement");
+        } else {
+          console.log(response);
+        }
       }
     }
     async function simpanIdentitas() {
@@ -13597,14 +14106,21 @@
       };
       const response = await fetch($apiURL + "/userprofile", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        $route("/admin/usersmanagement");
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          $route("/admin/usersmanagement");
+        } else {
+          console.log(response);
+        }
       }
     }
     let tab1 = true;
@@ -13634,78 +14150,120 @@
       let idPP = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanPenelitian();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPenelitian();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPM(ev) {
       let idPM = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanPengmas();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPengmas();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPD(ev) {
       let idPD = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanDiseminasi();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanDiseminasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPPub(ev) {
       let idPPub = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanPublikasi();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPublikasi();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPPB(ev) {
       let idPPB = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idPPB, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanPenulisanBuku();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanPenulisanBuku();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function delrowPHKI(ev) {
       let idPHKI = ev.target.getAttribute("pid");
       const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        }
       });
       const result = await response.json();
-      if (response.ok) {
-        getPengalamanHKI();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          getPengalamanHKI();
+        } else {
+          console.log(response);
+        }
       }
     }
     function deleteMatkul(e) {
@@ -14362,7 +14920,7 @@
       }
     };
   }
-  function create_if_block4(ctx) {
+  function create_if_block5(ctx) {
     let span;
     return {
       c() {
@@ -14387,7 +14945,7 @@
         /*code*/
         ctx2[0] === 0
       )
-        return create_if_block4;
+        return create_if_block5;
       if (
         /*code*/
         ctx2[0] === 1
@@ -14508,7 +15066,7 @@
     child_ctx[10] = list[i];
     return child_ctx;
   }
-  function create_if_block5(ctx) {
+  function create_if_block6(ctx) {
     let span;
     let each_value = ensure_array_like(
       /*filteredItems*/
@@ -14625,7 +15183,7 @@
     let dispose;
     let if_block = (
       /*filteredItems*/
-      ctx[2] && create_if_block5(ctx)
+      ctx[2] && create_if_block6(ctx)
     );
     return {
       c() {
@@ -14691,7 +15249,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block5(ctx2);
+            if_block = create_if_block6(ctx2);
             if_block.c();
             if_block.m(div, null);
           }
@@ -14860,7 +15418,7 @@
     child_ctx[141] = i;
     return child_ctx;
   }
-  function create_if_block6(ctx) {
+  function create_if_block7(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -18688,7 +19246,7 @@
         ctx2[21] > 10
       )
         return create_if_block_93;
-      return create_else_block2;
+      return create_else_block3;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -18737,21 +19295,21 @@
     field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_72] },
+        $$slots: { default: [create_default_slot_73] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
-        $$slots: { default: [create_default_slot_62] },
+        $$slots: { default: [create_default_slot_63] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_52] },
+        $$slots: { default: [create_default_slot_53] },
         $$scope: { ctx }
       }
     });
@@ -19568,7 +20126,7 @@
       }
     };
   }
-  function create_else_block2(ctx) {
+  function create_else_block3(ctx) {
     let div;
     let p;
     let strong0;
@@ -19821,7 +20379,7 @@
       }
     };
   }
-  function create_default_slot_72(ctx) {
+  function create_default_slot_73(ctx) {
     let t;
     return {
       c() {
@@ -19849,7 +20407,7 @@
       }
     };
   }
-  function create_default_slot_62(ctx) {
+  function create_default_slot_63(ctx) {
     let t;
     return {
       c() {
@@ -19877,7 +20435,7 @@
       }
     };
   }
-  function create_default_slot_52(ctx) {
+  function create_default_slot_53(ctx) {
     let t;
     return {
       c() {
@@ -21345,7 +21903,7 @@
     let current;
     let if_block = (
       /*data*/
-      ctx[0] && create_if_block6(ctx)
+      ctx[0] && create_if_block7(ctx)
     );
     function modal_show_binding(value) {
       ctx[102](value);
@@ -21392,7 +21950,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block6(ctx2);
+            if_block = create_if_block7(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t.parentNode, t);
@@ -22164,7 +22722,7 @@
     child_ctx[4] = list[i];
     return child_ctx;
   }
-  function create_if_block7(ctx) {
+  function create_if_block8(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -22246,7 +22804,9 @@
       /*item*/
       ctx[4].status
     ) } });
-    icon = new Icon_default({ props: { id: "orang", src: infoOutline } });
+    icon = new Icon_default({
+      props: { id: "review", src: infoOutline }
+    });
     return {
       c() {
         tr = element("tr");
@@ -22483,7 +23043,7 @@
     let current;
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block7(ctx)
+      ctx[0] && create_if_block8(ctx)
     );
     return {
       c() {
@@ -22509,7 +23069,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block7(ctx2);
+            if_block = create_if_block8(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -22550,13 +23110,17 @@
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
-        Authorization: `${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
       const response = await fetch($apiURL + "/ppm", { method: "GET", headers });
       const result = await response.json();
-      if (response.ok) {
-        $$invalidate(0, items = result.dbData);
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(0, items = result.dbData);
+        }
       }
     });
     async function handleReview(ev) {
@@ -23073,11 +23637,95 @@
   init_define_process();
   function get_each_context7(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[10] = list[i];
-    child_ctx[12] = i;
+    child_ctx[13] = list[i];
+    child_ctx[15] = i;
     return child_ctx;
   }
-  function create_if_block8(ctx) {
+  function create_else_block4(ctx) {
+    let h4;
+    return {
+      c() {
+        h4 = element("h4");
+        h4.textContent = "Anda tidak memiliki hak akses halaman ini!";
+        attr(h4, "class", "title is-4");
+      },
+      m(target, anchor) {
+        insert(target, h4, anchor);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(h4);
+        }
+      }
+    };
+  }
+  function create_if_block9(ctx) {
+    let if_block_anchor;
+    let current;
+    let if_block = (
+      /*items*/
+      ctx[0] && create_if_block_111(ctx)
+    );
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (
+          /*items*/
+          ctx2[0]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+            if (dirty & /*items*/
+            1) {
+              transition_in(if_block, 1);
+            }
+          } else {
+            if_block = create_if_block_111(ctx2);
+            if_block.c();
+            transition_in(if_block, 1);
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          group_outros();
+          transition_out(if_block, 1, 1, () => {
+            if_block = null;
+          });
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(if_block_anchor);
+        }
+        if (if_block)
+          if_block.d(detaching);
+      }
+    };
+  }
+  function create_if_block_111(ctx) {
     let h1;
     let t1;
     let hr;
@@ -23185,14 +23833,14 @@
             button,
             "click",
             /*addUser*/
-            ctx[3]
+            ctx[4]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*items, handleActive, handleGroup*/
-        7) {
+        13) {
           each_value = ensure_array_like(
             /*items*/
             ctx2[0]
@@ -23247,7 +23895,7 @@
     let a;
     let t0_value = (
       /*item*/
-      ctx[10].username + ""
+      ctx[13].username + ""
     );
     let t0;
     let a_href_value;
@@ -23255,7 +23903,7 @@
     let td1;
     let t2_value = (
       /*item*/
-      ctx[10].email + ""
+      ctx[13].email + ""
     );
     let t2;
     let t3;
@@ -23285,7 +23933,7 @@
     let td3;
     let t11_value = (
       /*item*/
-      ctx[10].active ? "\u2714" : "\u2718"
+      ctx[13].active ? "\u2714" : "\u2718"
     );
     let t11;
     let td3_uid_value;
@@ -23323,45 +23971,45 @@
         t11 = text(t11_value);
         t12 = space();
         attr(a, "href", a_href_value = "/admin/profile/" + /*item*/
-        ctx[10].id);
+        ctx[13].id);
         option0.__value = "9";
         set_input_value(option0, option0.__value);
         option0.selected = option0_selected_value = /*item*/
-        ctx[10].role === 9;
+        ctx[13].role === 9;
         option1.__value = "0";
         set_input_value(option1, option1.__value);
         option1.selected = option1_selected_value = /*item*/
-        ctx[10].role === 0;
+        ctx[13].role === 0;
         option2.__value = "10";
         set_input_value(option2, option2.__value);
         option2.selected = option2_selected_value = /*item*/
-        ctx[10].role === 10;
+        ctx[13].role === 10;
         option3.__value = "11";
         set_input_value(option3, option3.__value);
         option3.selected = option3_selected_value = /*item*/
-        ctx[10].role === 11;
+        ctx[13].role === 11;
         option4.__value = "12";
         set_input_value(option4, option4.__value);
         option4.selected = option4_selected_value = /*item*/
-        ctx[10].role === 12;
+        ctx[13].role === 12;
         option5.__value = "13";
         set_input_value(option5, option5.__value);
         option5.selected = option5_selected_value = /*item*/
-        ctx[10].role === 13;
+        ctx[13].role === 13;
         attr(select, "uid", select_uid_value = /*idx*/
-        ctx[12]);
+        ctx[15]);
         attr(select, "class", "svelte-1amf2xn");
         attr(div, "class", "select");
         attr(td2, "fixed", "");
         attr(td2, "class", "group svelte-1amf2xn");
         attr(td3, "fixed", "");
         attr(td3, "uid", td3_uid_value = /*idx*/
-        ctx[12]);
+        ctx[15]);
         attr(td3, "role", td3_role_value = /*item*/
-        ctx[10].role);
+        ctx[13].role);
         attr(td3, "class", "active svelte-1amf2xn");
         toggle_class(td3, "red", !/*item*/
-        ctx[10].active);
+        ctx[13].active);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -23397,13 +24045,13 @@
               select,
               "change",
               /*handleGroup*/
-              ctx[2]
+              ctx[3]
             ),
             listen(
               td3,
               "click",
               /*handleActive*/
-              ctx[1]
+              ctx[2]
             )
           ];
           mounted = true;
@@ -23412,60 +24060,60 @@
       p(ctx2, dirty) {
         if (dirty & /*items*/
         1 && t0_value !== (t0_value = /*item*/
-        ctx2[10].username + ""))
+        ctx2[13].username + ""))
           set_data(t0, t0_value);
         if (dirty & /*items*/
         1 && a_href_value !== (a_href_value = "/admin/profile/" + /*item*/
-        ctx2[10].id)) {
+        ctx2[13].id)) {
           attr(a, "href", a_href_value);
         }
         if (dirty & /*items*/
         1 && t2_value !== (t2_value = /*item*/
-        ctx2[10].email + ""))
+        ctx2[13].email + ""))
           set_data(t2, t2_value);
         if (dirty & /*items*/
         1 && option0_selected_value !== (option0_selected_value = /*item*/
-        ctx2[10].role === 9)) {
+        ctx2[13].role === 9)) {
           option0.selected = option0_selected_value;
         }
         if (dirty & /*items*/
         1 && option1_selected_value !== (option1_selected_value = /*item*/
-        ctx2[10].role === 0)) {
+        ctx2[13].role === 0)) {
           option1.selected = option1_selected_value;
         }
         if (dirty & /*items*/
         1 && option2_selected_value !== (option2_selected_value = /*item*/
-        ctx2[10].role === 10)) {
+        ctx2[13].role === 10)) {
           option2.selected = option2_selected_value;
         }
         if (dirty & /*items*/
         1 && option3_selected_value !== (option3_selected_value = /*item*/
-        ctx2[10].role === 11)) {
+        ctx2[13].role === 11)) {
           option3.selected = option3_selected_value;
         }
         if (dirty & /*items*/
         1 && option4_selected_value !== (option4_selected_value = /*item*/
-        ctx2[10].role === 12)) {
+        ctx2[13].role === 12)) {
           option4.selected = option4_selected_value;
         }
         if (dirty & /*items*/
         1 && option5_selected_value !== (option5_selected_value = /*item*/
-        ctx2[10].role === 13)) {
+        ctx2[13].role === 13)) {
           option5.selected = option5_selected_value;
         }
         if (dirty & /*items*/
         1 && t11_value !== (t11_value = /*item*/
-        ctx2[10].active ? "\u2714" : "\u2718"))
+        ctx2[13].active ? "\u2714" : "\u2718"))
           set_data(t11, t11_value);
         if (dirty & /*items*/
         1 && td3_role_value !== (td3_role_value = /*item*/
-        ctx2[10].role)) {
+        ctx2[13].role)) {
           attr(td3, "role", td3_role_value);
         }
         if (dirty & /*items*/
         1) {
           toggle_class(td3, "red", !/*item*/
-          ctx2[10].active);
+          ctx2[13].active);
         }
       },
       d(detaching) {
@@ -23478,48 +24126,34 @@
     };
   }
   function create_default_slot12(ctx) {
+    let current_block_type_index;
+    let if_block;
     let if_block_anchor;
     let current;
-    let if_block = (
-      /*items*/
-      ctx[0] && create_if_block8(ctx)
-    );
+    const if_block_creators = [create_if_block9, create_else_block4];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (
+        /*roleFromToken*/
+        ctx2[1] === "admin"
+      )
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     return {
       c() {
-        if (if_block)
-          if_block.c();
+        if_block.c();
         if_block_anchor = empty();
       },
       m(target, anchor) {
-        if (if_block)
-          if_block.m(target, anchor);
+        if_blocks[current_block_type_index].m(target, anchor);
         insert(target, if_block_anchor, anchor);
         current = true;
       },
       p(ctx2, dirty) {
-        if (
-          /*items*/
-          ctx2[0]
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-            if (dirty & /*items*/
-            1) {
-              transition_in(if_block, 1);
-            }
-          } else {
-            if_block = create_if_block8(ctx2);
-            if_block.c();
-            transition_in(if_block, 1);
-            if_block.m(if_block_anchor.parentNode, if_block_anchor);
-          }
-        } else if (if_block) {
-          group_outros();
-          transition_out(if_block, 1, 1, () => {
-            if_block = null;
-          });
-          check_outros();
-        }
+        if_block.p(ctx2, dirty);
       },
       i(local) {
         if (current)
@@ -23535,8 +24169,7 @@
         if (detaching) {
           detach(if_block_anchor);
         }
-        if (if_block)
-          if_block.d(detaching);
+        if_blocks[current_block_type_index].d(detaching);
       }
     };
   }
@@ -23560,7 +24193,7 @@
       p(ctx2, [dirty]) {
         const article_changes = {};
         if (dirty & /*$$scope, items*/
-        8193) {
+        65537) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -23583,21 +24216,26 @@
   function instance27($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
-    component_subscribe($$self, route, ($$value) => $$invalidate(6, $route = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(7, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(7, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(8, $apiURL = $$value));
     let { params } = $$props;
     let profile;
     let items;
+    const accessToken = localStorage.getItem("token");
+    const roleFromToken = localStorage.getItem("role");
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    };
     async function populateTable() {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-        Authorization: `${accessToken}`,
-        "Content-Type": "application/json"
-      };
       const response = await fetch($apiURL + "/user", { method: "GET", headers });
       const result = await response.json();
-      if (response.status === 200) {
-        $$invalidate(0, items = result.dbData);
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.status === 200) {
+          $$invalidate(0, items = result.dbData);
+        }
       }
     }
     async function handleActive(ev) {
@@ -23605,19 +24243,26 @@
       const id = ev.target.getAttribute("uid");
       const payload = {
         id: items[id].id,
-        active: !items[id].active,
-        role: Number(value)
+        role: Number(value),
+        active: !items[id].active
       };
       const response = await fetch($apiURL + "/user", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        populateTable();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          populateTable();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function handleGroup(ev) {
@@ -23630,30 +24275,41 @@
       };
       const response = await fetch($apiURL + "/user", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(payload)
       });
       const result = await response.json();
-      if (response.ok) {
-        populateTable();
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          populateTable();
+        } else {
+          console.log(response);
+        }
       }
     }
     async function getPage() {
       if (params["1"] === "profile") {
         let id = params["2"];
-        const response = await fetch($apiURL + "/user/" + id);
+        const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
         const result = await response.json();
-        if (response.ok) {
-          if (!result.length)
-            return;
-          $$invalidate(5, profile = []);
-          for (const [field, value] of Object.entries(result[0])) {
-            profile.push({ field, value });
-          }
+        if (result.statusCode != 200) {
+          location.pathname = "/tokenexpired";
         } else {
-          data = null;
+          if (response.ok) {
+            if (!result.length)
+              return;
+            $$invalidate(6, profile = []);
+            for (const [field, value] of Object.entries(result[0])) {
+              profile.push({ field, value });
+            }
+          } else {
+            data = null;
+          }
         }
       }
     }
@@ -23662,26 +24318,26 @@
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(4, params = $$props2.params);
+        $$invalidate(5, params = $$props2.params);
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty & /*params*/
-      16) {
+      32) {
         $:
           params, getPage();
       }
       if ($$self.$$.dirty & /*profile*/
-      32) {
+      64) {
         $:
           profile, profile ? $$invalidate(0, items = null) : populateTable();
       }
     };
-    return [items, handleActive, handleGroup, addUser, params, profile];
+    return [items, roleFromToken, handleActive, handleGroup, addUser, params, profile];
   }
   var Usersmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance27, create_fragment33, safe_not_equal, { params: 4 });
+      init(this, options, instance27, create_fragment33, safe_not_equal, { params: 5 });
     }
   };
   var usersmanagement_default = Usersmanagement;
@@ -23718,293 +24374,7 @@
   var E404_default = E404;
 
   // src/pages/admin/Index.svelte
-  function create_else_block3(ctx) {
-    let e404;
-    let current;
-    e404 = new E404_default({});
-    return {
-      c() {
-        create_component(e404.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(e404, target, anchor);
-        current = true;
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(e404.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(e404.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(e404, detaching);
-      }
-    };
-  }
-  function create_if_block_111(ctx) {
-    let switch_instance;
-    let switch_instance_anchor;
-    let current;
-    var switch_value = (
-      /*cmp*/
-      ctx[1]
-    );
-    function switch_props(ctx2, dirty) {
-      return { props: { params: (
-        /*params*/
-        ctx2[0]
-      ) } };
-    }
-    if (switch_value) {
-      switch_instance = construct_svelte_component(switch_value, switch_props(ctx));
-    }
-    return {
-      c() {
-        if (switch_instance)
-          create_component(switch_instance.$$.fragment);
-        switch_instance_anchor = empty();
-      },
-      m(target, anchor) {
-        if (switch_instance)
-          mount_component(switch_instance, target, anchor);
-        insert(target, switch_instance_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*cmp*/
-        2 && switch_value !== (switch_value = /*cmp*/
-        ctx2[1])) {
-          if (switch_instance) {
-            group_outros();
-            const old_component = switch_instance;
-            transition_out(old_component.$$.fragment, 1, 0, () => {
-              destroy_component(old_component, 1);
-            });
-            check_outros();
-          }
-          if (switch_value) {
-            switch_instance = construct_svelte_component(switch_value, switch_props(ctx2, dirty));
-            create_component(switch_instance.$$.fragment);
-            transition_in(switch_instance.$$.fragment, 1);
-            mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
-          } else {
-            switch_instance = null;
-          }
-        } else if (switch_value) {
-          const switch_instance_changes = {};
-          if (dirty & /*params*/
-          1)
-            switch_instance_changes.params = /*params*/
-            ctx2[0];
-          switch_instance.$set(switch_instance_changes);
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        if (switch_instance)
-          transition_in(switch_instance.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        if (switch_instance)
-          transition_out(switch_instance.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(switch_instance_anchor);
-        }
-        if (switch_instance)
-          destroy_component(switch_instance, detaching);
-      }
-    };
-  }
-  function create_if_block9(ctx) {
-    let switch_instance;
-    let switch_instance_anchor;
-    let current;
-    var switch_value = home_default;
-    function switch_props(ctx2, dirty) {
-      return { props: { params: (
-        /*params*/
-        ctx2[0]
-      ) } };
-    }
-    if (switch_value) {
-      switch_instance = construct_svelte_component(switch_value, switch_props(ctx));
-    }
-    return {
-      c() {
-        if (switch_instance)
-          create_component(switch_instance.$$.fragment);
-        switch_instance_anchor = empty();
-      },
-      m(target, anchor) {
-        if (switch_instance)
-          mount_component(switch_instance, target, anchor);
-        insert(target, switch_instance_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (switch_value !== (switch_value = home_default)) {
-          if (switch_instance) {
-            group_outros();
-            const old_component = switch_instance;
-            transition_out(old_component.$$.fragment, 1, 0, () => {
-              destroy_component(old_component, 1);
-            });
-            check_outros();
-          }
-          if (switch_value) {
-            switch_instance = construct_svelte_component(switch_value, switch_props(ctx2, dirty));
-            create_component(switch_instance.$$.fragment);
-            transition_in(switch_instance.$$.fragment, 1);
-            mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
-          } else {
-            switch_instance = null;
-          }
-        } else if (switch_value) {
-          const switch_instance_changes = {};
-          if (dirty & /*params*/
-          1)
-            switch_instance_changes.params = /*params*/
-            ctx2[0];
-          switch_instance.$set(switch_instance_changes);
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        if (switch_instance)
-          transition_in(switch_instance.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        if (switch_instance)
-          transition_out(switch_instance.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(switch_instance_anchor);
-        }
-        if (switch_instance)
-          destroy_component(switch_instance, detaching);
-      }
-    };
-  }
-  function create_fragment35(ctx) {
-    let show_if;
-    let current_block_type_index;
-    let if_block;
-    let if_block_anchor;
-    let current;
-    const if_block_creators = [create_if_block9, create_if_block_111, create_else_block3];
-    const if_blocks = [];
-    function select_block_type(ctx2, dirty) {
-      if (dirty & /*params*/
-      1)
-        show_if = null;
-      if (show_if == null)
-        show_if = !!(Object.keys(
-          /*params*/
-          ctx2[0]
-        ).length === 0);
-      if (show_if)
-        return 0;
-      if (
-        /*cmp*/
-        ctx2[1]
-      )
-        return 1;
-      return 2;
-    }
-    current_block_type_index = select_block_type(ctx, -1);
-    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    return {
-      c() {
-        if_block.c();
-        if_block_anchor = empty();
-      },
-      m(target, anchor) {
-        if_blocks[current_block_type_index].m(target, anchor);
-        insert(target, if_block_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
-        let previous_block_index = current_block_type_index;
-        current_block_type_index = select_block_type(ctx2, dirty);
-        if (current_block_type_index === previous_block_index) {
-          if_blocks[current_block_type_index].p(ctx2, dirty);
-        } else {
-          group_outros();
-          transition_out(if_blocks[previous_block_index], 1, 1, () => {
-            if_blocks[previous_block_index] = null;
-          });
-          check_outros();
-          if_block = if_blocks[current_block_type_index];
-          if (!if_block) {
-            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
-            if_block.c();
-          } else {
-            if_block.p(ctx2, dirty);
-          }
-          transition_in(if_block, 1);
-          if_block.m(if_block_anchor.parentNode, if_block_anchor);
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(if_block_anchor);
-        }
-        if_blocks[current_block_type_index].d(detaching);
-      }
-    };
-  }
-  function instance28($$self, $$props, $$invalidate) {
-    let { params = {} } = $$props;
-    let cmp;
-    $$self.$$set = ($$props2) => {
-      if ("params" in $$props2)
-        $$invalidate(0, params = $$props2.params);
-    };
-    $$self.$$.update = () => {
-      if ($$self.$$.dirty & /*params*/
-      1) {
-        $:
-          params, $$invalidate(1, cmp = admin_exports[params["0"]] || null);
-      }
-    };
-    return [params, cmp];
-  }
-  var Index2 = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance28, create_fragment35, safe_not_equal, { params: 0 });
-    }
-  };
-  var Index_default2 = Index2;
-
-  // src/pages/auth/Index.svelte
-  init_define_process();
-  var pages = __toESM(require_auth());
-  function create_else_block4(ctx) {
+  function create_else_block5(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -24112,6 +24482,292 @@
     };
   }
   function create_if_block10(ctx) {
+    let switch_instance;
+    let switch_instance_anchor;
+    let current;
+    var switch_value = home_default;
+    function switch_props(ctx2, dirty) {
+      return { props: { params: (
+        /*params*/
+        ctx2[0]
+      ) } };
+    }
+    if (switch_value) {
+      switch_instance = construct_svelte_component(switch_value, switch_props(ctx));
+    }
+    return {
+      c() {
+        if (switch_instance)
+          create_component(switch_instance.$$.fragment);
+        switch_instance_anchor = empty();
+      },
+      m(target, anchor) {
+        if (switch_instance)
+          mount_component(switch_instance, target, anchor);
+        insert(target, switch_instance_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (switch_value !== (switch_value = home_default)) {
+          if (switch_instance) {
+            group_outros();
+            const old_component = switch_instance;
+            transition_out(old_component.$$.fragment, 1, 0, () => {
+              destroy_component(old_component, 1);
+            });
+            check_outros();
+          }
+          if (switch_value) {
+            switch_instance = construct_svelte_component(switch_value, switch_props(ctx2, dirty));
+            create_component(switch_instance.$$.fragment);
+            transition_in(switch_instance.$$.fragment, 1);
+            mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
+          } else {
+            switch_instance = null;
+          }
+        } else if (switch_value) {
+          const switch_instance_changes = {};
+          if (dirty & /*params*/
+          1)
+            switch_instance_changes.params = /*params*/
+            ctx2[0];
+          switch_instance.$set(switch_instance_changes);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        if (switch_instance)
+          transition_in(switch_instance.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        if (switch_instance)
+          transition_out(switch_instance.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(switch_instance_anchor);
+        }
+        if (switch_instance)
+          destroy_component(switch_instance, detaching);
+      }
+    };
+  }
+  function create_fragment35(ctx) {
+    let show_if;
+    let current_block_type_index;
+    let if_block;
+    let if_block_anchor;
+    let current;
+    const if_block_creators = [create_if_block10, create_if_block_113, create_else_block5];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (dirty & /*params*/
+      1)
+        show_if = null;
+      if (show_if == null)
+        show_if = !!(Object.keys(
+          /*params*/
+          ctx2[0]
+        ).length === 0);
+      if (show_if)
+        return 0;
+      if (
+        /*cmp*/
+        ctx2[1]
+      )
+        return 1;
+      return 2;
+    }
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    return {
+      c() {
+        if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if_blocks[current_block_type_index].m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          group_outros();
+          transition_out(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          check_outros();
+          if_block = if_blocks[current_block_type_index];
+          if (!if_block) {
+            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
+            if_block.c();
+          } else {
+            if_block.p(ctx2, dirty);
+          }
+          transition_in(if_block, 1);
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(if_block_anchor);
+        }
+        if_blocks[current_block_type_index].d(detaching);
+      }
+    };
+  }
+  function instance28($$self, $$props, $$invalidate) {
+    let { params = {} } = $$props;
+    let cmp;
+    $$self.$$set = ($$props2) => {
+      if ("params" in $$props2)
+        $$invalidate(0, params = $$props2.params);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & /*params*/
+      1) {
+        $:
+          params, $$invalidate(1, cmp = admin_exports[params["0"]] || null);
+      }
+    };
+    return [params, cmp];
+  }
+  var Index2 = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance28, create_fragment35, safe_not_equal, { params: 0 });
+    }
+  };
+  var Index_default2 = Index2;
+
+  // src/pages/auth/Index.svelte
+  init_define_process();
+  var pages = __toESM(require_auth());
+  function create_else_block6(ctx) {
+    let e404;
+    let current;
+    e404 = new E404_default({});
+    return {
+      c() {
+        create_component(e404.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(e404, target, anchor);
+        current = true;
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(e404.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(e404.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(e404, detaching);
+      }
+    };
+  }
+  function create_if_block_114(ctx) {
+    let switch_instance;
+    let switch_instance_anchor;
+    let current;
+    var switch_value = (
+      /*cmp*/
+      ctx[1]
+    );
+    function switch_props(ctx2, dirty) {
+      return { props: { params: (
+        /*params*/
+        ctx2[0]
+      ) } };
+    }
+    if (switch_value) {
+      switch_instance = construct_svelte_component(switch_value, switch_props(ctx));
+    }
+    return {
+      c() {
+        if (switch_instance)
+          create_component(switch_instance.$$.fragment);
+        switch_instance_anchor = empty();
+      },
+      m(target, anchor) {
+        if (switch_instance)
+          mount_component(switch_instance, target, anchor);
+        insert(target, switch_instance_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*cmp*/
+        2 && switch_value !== (switch_value = /*cmp*/
+        ctx2[1])) {
+          if (switch_instance) {
+            group_outros();
+            const old_component = switch_instance;
+            transition_out(old_component.$$.fragment, 1, 0, () => {
+              destroy_component(old_component, 1);
+            });
+            check_outros();
+          }
+          if (switch_value) {
+            switch_instance = construct_svelte_component(switch_value, switch_props(ctx2, dirty));
+            create_component(switch_instance.$$.fragment);
+            transition_in(switch_instance.$$.fragment, 1);
+            mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
+          } else {
+            switch_instance = null;
+          }
+        } else if (switch_value) {
+          const switch_instance_changes = {};
+          if (dirty & /*params*/
+          1)
+            switch_instance_changes.params = /*params*/
+            ctx2[0];
+          switch_instance.$set(switch_instance_changes);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        if (switch_instance)
+          transition_in(switch_instance.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        if (switch_instance)
+          transition_out(switch_instance.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(switch_instance_anchor);
+        }
+        if (switch_instance)
+          destroy_component(switch_instance, detaching);
+      }
+    };
+  }
+  function create_if_block11(ctx) {
     let article;
     return {
       c() {
@@ -24137,7 +24793,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block10, create_if_block_113, create_else_block4];
+    const if_block_creators = [create_if_block11, create_if_block_114, create_else_block6];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -24292,7 +24948,7 @@
     child_ctx[6] = list[i];
     return child_ctx;
   }
-  function create_if_block11(ctx) {
+  function create_if_block12(ctx) {
     let div1;
     let div0;
     let table;
@@ -24317,7 +24973,7 @@
     );
     let if_block3 = (
       /*role*/
-      ctx[1] === "Ka.Departemen" && create_if_block_114(ctx)
+      ctx[1] === "Ka.Departemen" && create_if_block_115(ctx)
     );
     return {
       c() {
@@ -25331,7 +25987,7 @@
       }
     };
   }
-  function create_if_block_114(ctx) {
+  function create_if_block_115(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -25645,7 +26301,7 @@
     let current;
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block11(ctx)
+      ctx[0] && create_if_block12(ctx)
     );
     return {
       c() {
@@ -25681,7 +26337,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block11(ctx2);
+            if_block = create_if_block12(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -25844,7 +26500,7 @@
     child_ctx[113] = list[i];
     return child_ctx;
   }
-  function create_if_block12(ctx) {
+  function create_if_block13(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -27139,7 +27795,7 @@
       }
     };
   }
-  function create_else_block5(ctx) {
+  function create_else_block7(ctx) {
     let t;
     return {
       c() {
@@ -27197,7 +27853,7 @@
         ctx2[50]?.name
       )
         return create_if_block_223;
-      return create_else_block5;
+      return create_else_block7;
     }
     let current_block_type = select_block_type(ctx, [-1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
@@ -27832,7 +28488,7 @@
     let if_block_anchor;
     let if_block = (
       /*status*/
-      ctx[47] === 10 && create_if_block_115(ctx)
+      ctx[47] === 10 && create_if_block_116(ctx)
     );
     return {
       c() {
@@ -27853,7 +28509,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_115(ctx2);
+            if_block = create_if_block_116(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -27871,7 +28527,7 @@
       }
     };
   }
-  function create_if_block_115(ctx) {
+  function create_if_block_116(ctx) {
     let div;
     let p0;
     let button0;
@@ -27949,7 +28605,7 @@
       }
     };
   }
-  function create_if_block_116(ctx) {
+  function create_if_block_117(ctx) {
     let div0;
     let field0;
     let t0;
@@ -28128,21 +28784,21 @@
     field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
-        $$slots: { default: [create_default_slot_73] },
+        $$slots: { default: [create_default_slot_74] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_63] },
+        $$slots: { default: [create_default_slot_64] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
-        $$slots: { default: [create_default_slot_53] },
+        $$slots: { default: [create_default_slot_54] },
         $$scope: { ctx }
       }
     });
@@ -29108,7 +29764,7 @@
       }
     };
   }
-  function create_default_slot_73(ctx) {
+  function create_default_slot_74(ctx) {
     let t;
     return {
       c() {
@@ -29136,7 +29792,7 @@
       }
     };
   }
-  function create_default_slot_63(ctx) {
+  function create_default_slot_64(ctx) {
     let t;
     return {
       c() {
@@ -29164,7 +29820,7 @@
       }
     };
   }
-  function create_default_slot_53(ctx) {
+  function create_default_slot_54(ctx) {
     let t;
     return {
       c() {
@@ -30389,7 +31045,7 @@
     );
     let if_block1 = (
       /*tab2*/
-      ctx[49] === true && create_if_block_116(ctx)
+      ctx[49] === true && create_if_block_117(ctx)
     );
     return {
       c() {
@@ -30529,7 +31185,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_116(ctx2);
+            if_block1 = create_if_block_117(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -30581,7 +31237,7 @@
     let current;
     let if_block = (
       /*data*/
-      ctx[1] && create_if_block12(ctx)
+      ctx[1] && create_if_block13(ctx)
     );
     return {
       c() {
@@ -30607,7 +31263,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block12(ctx2);
+            if_block = create_if_block13(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -31214,7 +31870,7 @@
     child_ctx[113] = i;
     return child_ctx;
   }
-  function create_if_block13(ctx) {
+  function create_if_block14(ctx) {
     let article;
     let current;
     article = new Article_default({
@@ -34251,7 +34907,7 @@
       }
     };
   }
-  function create_if_block_117(ctx) {
+  function create_if_block_118(ctx) {
     let t0;
     let div0;
     let field0;
@@ -34398,7 +35054,7 @@
     let if_block0 = (
       /*uidProposal*/
       ctx[25] === /*own_id*/
-      ctx[57] && create_if_block_118(ctx)
+      ctx[57] && create_if_block_119(ctx)
     );
     field0 = new Field_default({
       props: {
@@ -34452,14 +35108,14 @@
     field7 = new Field_default({
       props: {
         name: "Nomoh Handphone",
-        $$slots: { default: [create_default_slot_74] },
+        $$slots: { default: [create_default_slot_75] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_64] },
+        $$slots: { default: [create_default_slot_65] },
         $$scope: { ctx }
       }
     });
@@ -34475,7 +35131,7 @@
     }
     current_block_type_index = select_block_type_3(ctx, [-1, -1, -1, -1]);
     if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    const if_block_creators_1 = [create_if_block_95, create_else_block6];
+    const if_block_creators_1 = [create_if_block_95, create_else_block8];
     const if_blocks_1 = [];
     function select_block_type_4(ctx2, dirty) {
       if (
@@ -34926,7 +35582,7 @@
         ) {
           if (if_block0) {
           } else {
-            if_block0 = create_if_block_118(ctx2);
+            if_block0 = create_if_block_119(ctx2);
             if_block0.c();
             if_block0.m(t0.parentNode, t0);
           }
@@ -35320,7 +35976,7 @@
       }
     };
   }
-  function create_if_block_118(ctx) {
+  function create_if_block_119(ctx) {
     let div;
     return {
       c() {
@@ -35556,7 +36212,7 @@
       }
     };
   }
-  function create_default_slot_74(ctx) {
+  function create_default_slot_75(ctx) {
     let t;
     return {
       c() {
@@ -35584,7 +36240,7 @@
       }
     };
   }
-  function create_default_slot_64(ctx) {
+  function create_default_slot_65(ctx) {
     let t;
     return {
       c() {
@@ -35618,7 +36274,7 @@
     field = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_54] },
+        $$slots: { default: [create_default_slot_55] },
         $$scope: { ctx }
       }
     });
@@ -35695,7 +36351,7 @@
       }
     };
   }
-  function create_default_slot_54(ctx) {
+  function create_default_slot_55(ctx) {
     let span;
     return {
       c() {
@@ -35740,7 +36396,7 @@
       }
     };
   }
-  function create_else_block6(ctx) {
+  function create_else_block8(ctx) {
     let field;
     let current;
     field = new Field_default({
@@ -36962,7 +37618,7 @@
     );
     let if_block1 = (
       /*tab2*/
-      ctx[56] === true && create_if_block_117(ctx)
+      ctx[56] === true && create_if_block_118(ctx)
     );
     return {
       c() {
@@ -37085,7 +37741,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_117(ctx2);
+            if_block1 = create_if_block_118(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -37134,7 +37790,7 @@
     let if_block = (
       /*data*/
       ctx[2] && /*items*/
-      ctx[0].length > 0 && create_if_block13(ctx)
+      ctx[0].length > 0 && create_if_block14(ctx)
     );
     return {
       c() {
@@ -37161,7 +37817,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block13(ctx2);
+            if_block = create_if_block14(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -37903,7 +38559,7 @@
     child_ctx[2] = list[i];
     return child_ctx;
   }
-  function create_if_block14(ctx) {
+  function create_if_block15(ctx) {
     let table;
     let thead;
     let t5;
@@ -38106,7 +38762,7 @@
     });
     let if_block = (
       /*reminder*/
-      ctx[2] && create_if_block14(ctx)
+      ctx[2] && create_if_block15(ctx)
     );
     return {
       c() {
@@ -38273,7 +38929,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block14(ctx2);
+            if_block = create_if_block15(ctx2);
             if_block.c();
             if_block.m(div18, null);
           }
@@ -38607,7 +39263,7 @@
     field4 = new Field_default({
       props: {
         name: "Topik",
-        $$slots: { default: [create_default_slot_55] },
+        $$slots: { default: [create_default_slot_552] },
         $$scope: { ctx }
       }
     });
@@ -39377,7 +40033,7 @@
       }
     };
   }
-  function create_default_slot_55(ctx) {
+  function create_default_slot_552(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -40177,7 +40833,7 @@
       }
     };
   }
-  function create_else_block7(ctx) {
+  function create_else_block9(ctx) {
     let t;
     return {
       c() {
@@ -40235,7 +40891,7 @@
         ctx2[90]?.name
       )
         return create_if_block_164;
-      return create_else_block7;
+      return create_else_block9;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
@@ -40335,7 +40991,7 @@
     let dispose;
     let if_block0 = (
       /*tab1Step2*/
-      ctx[87] === true && create_if_block_119(ctx)
+      ctx[87] === true && create_if_block_1110(ctx)
     );
     let if_block1 = (
       /*tab2Step2*/
@@ -40469,7 +41125,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_119(ctx2);
+            if_block0 = create_if_block_1110(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t6.parentNode, t6);
@@ -40551,7 +41207,7 @@
       }
     };
   }
-  function create_if_block_119(ctx) {
+  function create_if_block_1110(ctx) {
     let field0;
     let t0;
     let field1;
@@ -42579,7 +43235,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_12],
-        default: [create_default_slot_75]
+        default: [create_default_slot_76]
       },
       $$scope: { ctx }
     };
@@ -46159,7 +46815,7 @@
       }
     };
   }
-  function create_default_slot_75(ctx) {
+  function create_default_slot_76(ctx) {
     let field0;
     let t0;
     let field1;
@@ -46594,7 +47250,7 @@
       }
     };
   }
-  function create_default_slot_65(ctx) {
+  function create_default_slot_66(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -46851,7 +47507,7 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_65] },
+        $$slots: { default: [create_default_slot_66] },
         $$scope: { ctx }
       }
     });
@@ -47304,7 +47960,7 @@
       }
     };
   }
-  function create_if_block15(ctx) {
+  function create_if_block16(ctx) {
     let div;
     let p0;
     let button0;
@@ -47503,7 +48159,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[86] === true && create_if_block15(ctx)
+      ctx[86] === true && create_if_block16(ctx)
     );
     return {
       c() {
@@ -47762,7 +48418,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block15(ctx2);
+            if_block3 = create_if_block16(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -51233,7 +51889,7 @@
       }
     };
   }
-  function create_if_block16(ctx) {
+  function create_if_block17(ctx) {
     let modal0;
     let updating_show;
     let t0;
@@ -51470,7 +52126,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_13],
-        default: [create_default_slot_76]
+        default: [create_default_slot_77]
       },
       $$scope: { ctx }
     };
@@ -55048,7 +55704,7 @@
       }
     };
   }
-  function create_default_slot_76(ctx) {
+  function create_default_slot_77(ctx) {
     let field0;
     let t0;
     let field1;
@@ -55483,7 +56139,7 @@
       }
     };
   }
-  function create_default_slot_66(ctx) {
+  function create_default_slot_67(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -55740,7 +56396,7 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_66] },
+        $$slots: { default: [create_default_slot_67] },
         $$scope: { ctx }
       }
     });
@@ -56180,7 +56836,7 @@
     );
     let if_block2 = (
       /*tab3*/
-      ctx[71] === true && create_if_block16(ctx)
+      ctx[71] === true && create_if_block17(ctx)
     );
     return {
       c() {
@@ -56350,7 +57006,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block16(ctx2);
+            if_block2 = create_if_block17(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
@@ -57654,7 +58310,7 @@
       }
     };
   }
-  function create_if_block17(ctx) {
+  function create_if_block18(ctx) {
     let tbody;
     let current;
     let each_value = ensure_array_like(
@@ -57942,7 +58598,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[1] && create_if_block17(ctx)
+      ctx[1] && create_if_block18(ctx)
     );
     return {
       c() {
@@ -58046,7 +58702,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block17(ctx2);
+            if_block = create_if_block18(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(table, null);
@@ -58353,7 +59009,7 @@
   var select_default = Select2;
 
   // src/pages/dosen/Index.svelte
-  function create_else_block8(ctx) {
+  function create_else_block10(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -58460,7 +59116,7 @@
       }
     };
   }
-  function create_if_block18(ctx) {
+  function create_if_block19(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -58540,7 +59196,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block18, create_if_block_127, create_else_block8];
+    const if_block_creators = [create_if_block19, create_if_block_127, create_else_block10];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -58781,7 +59437,7 @@
       }
     };
   }
-  function create_if_block19(ctx) {
+  function create_if_block20(ctx) {
     let p;
     let t1;
     let ul;
@@ -58836,7 +59492,7 @@
     );
     let if_block1 = (
       /*role*/
-      ctx[1] === "admin" && create_if_block19(ctx)
+      ctx[1] === "admin" && create_if_block20(ctx)
     );
     return {
       c() {
@@ -58939,7 +59595,7 @@
 
   // src/modules/Navbarmenu.svelte
   init_define_process();
-  function create_else_block9(ctx) {
+  function create_else_block11(ctx) {
     let div1;
     return {
       c() {
@@ -58960,7 +59616,7 @@
       }
     };
   }
-  function create_if_block20(ctx) {
+  function create_if_block21(ctx) {
     let div1;
     let a0;
     let icon;
@@ -59080,7 +59736,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block20, create_else_block9];
+    const if_block_creators = [create_if_block21, create_else_block11];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -59283,7 +59939,7 @@
       }
     };
   }
-  function create_if_block21(ctx) {
+  function create_if_block22(ctx) {
     let main;
     let switch_instance;
     let current;
@@ -59376,7 +60032,7 @@
     );
     let if_block1 = (
       /*cmp*/
-      ctx[0] && create_if_block21(ctx)
+      ctx[0] && create_if_block22(ctx)
     );
     return {
       c() {
@@ -59435,7 +60091,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block21(ctx2);
+            if_block1 = create_if_block22(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);

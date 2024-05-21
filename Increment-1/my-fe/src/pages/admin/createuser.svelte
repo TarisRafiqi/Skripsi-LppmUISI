@@ -5,39 +5,73 @@
    import Modalerror from "../../libs/Modalerror.svelte";
 
    let createUsername, createPassword, createEmail, createRole;
+   let selectedActivation = "";
+   let jenisRole = "";
    let showModalError = false;
+   let showModalErrorEmptyForm = false;
+   const role = localStorage.getItem("role");
 
    function kembali() {
       $route("/admin/usersmanagement");
    }
 
    async function HandleCreateUser() {
+      const formUsername = document.getElementById("username");
+      const formPassword = document.getElementById("password");
+      const formEmail = document.getElementById("email");
+      const formActive = document.getElementById("selectedActivation");
+      const formRole = document.getElementById("jenisRole");
       const accessToken = localStorage.getItem("token");
-
       let payload = {
          createUsername,
          createPassword,
          createEmail,
+         selectedActivation,
+         jenisRole,
       };
 
-      try {
-         const response = await fetch($apiURL + "/createUser", {
-            method: "POST",
-            headers: {
-               Authorization: `${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-         });
+      // console.log(payload);
+      // return;
 
-         const result = await response.json();
-         if (response.ok) {
-            $route("/admin/usersmanagement");
-         } else {
-            showModalError = true;
+      if (
+         formUsername.value === "" ||
+         formUsername.value === null ||
+         formPassword.value === "" ||
+         formPassword.value === null ||
+         formEmail.value === "" ||
+         formEmail.value === null ||
+         formActive.value === "" ||
+         formActive.value === null ||
+         formRole.value === "" ||
+         formRole.value === null
+      ) {
+         showModalErrorEmptyForm = true;
+      } else {
+         try {
+            const response = await fetch($apiURL + "/createUser", {
+               method: "POST",
+               headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (response.status === 401) {
+               // localStorage.clear();
+               location.pathname = "/tokenexpired";
+            } else {
+               if (response.ok) {
+                  $route("/admin/usersmanagement");
+               } else {
+                  showModalError = true;
+               }
+            }
+         } catch (error) {
+            console.error("Error", error);
          }
-      } catch (error) {
-         console.error("Error", error);
       }
    }
    // $: console.log(showModalError);
@@ -50,50 +84,101 @@
          lain
       </p>
    </Modalerror>
+   <Modalerror bind:show={showModalErrorEmptyForm}>
+      <p>Lengkapi seluruh form!</p>
+   </Modalerror>
 
    <h1 class="title is-1">Create User</h1>
-
    <hr />
 
-   <div class="box">
-      <Field name="Username">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan username"
-            bind:value={createUsername}
-         />
-      </Field>
+   {#if role === "admin"}
+      <div class="box">
+         <Field name="Username">
+            <input
+               id="username"
+               class="input"
+               type="text"
+               placeholder="Masukkan username"
+               bind:value={createUsername}
+            />
+         </Field>
 
-      <Field name="Password">
-         <input
-            class="input"
-            type="password"
-            placeholder="Masukkan password"
-            bind:value={createPassword}
-         />
-      </Field>
+         <Field name="Password">
+            <input
+               id="password"
+               class="input"
+               type="password"
+               placeholder="Masukkan password"
+               bind:value={createPassword}
+            />
+         </Field>
 
-      <Field name="Email">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan email"
-            bind:value={createEmail}
-         />
-      </Field>
-      <br />
-      <div class="field is-grouped is-grouped-right">
-         <div class="control">
-            <button class="button is-info is-light" on:click={kembali}
-               >Kembali</button
-            >
-         </div>
-         <div class="control">
-            <button class="button is-info" on:click={HandleCreateUser}
-               >Create</button
-            >
+         <Field name="Email">
+            <input
+               id="email"
+               class="input"
+               type="text"
+               placeholder="Masukkan email"
+               bind:value={createEmail}
+            />
+         </Field>
+
+         <Field name="Role">
+            <div class="select is-fullwidth">
+               <select id="jenisRole" bind:value={jenisRole}>
+                  <option value="" selected disabled hidden
+                     >Pilih Jenis Role</option
+                  >
+                  <option value="0">Dosen</option>
+                  <option value="10">Reviewer</option>
+                  <option value="11">Kepala Departemen</option>
+                  <option value="12">Kepala LPPM</option>
+                  <option value="13">Kepala Pusat Kajian</option>
+               </select>
+            </div>
+         </Field>
+
+         <Field name="Active">
+            <div class="control">
+               <label class="radio">
+                  <input
+                     id="selectedActivation"
+                     type="radio"
+                     name="active"
+                     value="1"
+                     bind:group={selectedActivation}
+                  />
+                  Yes
+               </label>
+               <label class="radio">
+                  <input
+                     id="selectedActivation"
+                     type="radio"
+                     name="active"
+                     value="0"
+                     bind:group={selectedActivation}
+                  />
+                  No
+               </label>
+            </div>
+         </Field>
+
+         <br />
+
+         <div class="field is-grouped is-grouped-right">
+            <div class="control">
+               <button class="button is-info is-light" on:click={kembali}
+                  >Kembali</button
+               >
+            </div>
+            <div class="control">
+               <button class="button is-info" on:click={HandleCreateUser}
+                  >Create</button
+               >
+            </div>
          </div>
       </div>
-   </div>
+   {:else}
+      <h4 class="title is-4">Anda tidak memiliki hak akses halaman ini!</h4>
+   {/if}
 </Article>

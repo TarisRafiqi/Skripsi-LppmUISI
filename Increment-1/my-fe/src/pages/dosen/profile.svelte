@@ -146,7 +146,6 @@
       });
 
       const dataRP = await responseRP.json();
-      // console.log(dataRP);
 
       if (dataRP.statusCode != 200) {
          // localStorage.clear();
@@ -193,7 +192,6 @@
       });
 
       const resultPP = await responsePP.json();
-      // console.log(resultPP);
 
       if (resultPP.statusCode != 200) {
          // localStorage.clear();
@@ -217,7 +215,6 @@
       });
 
       const resultPM = await responsePM.json();
-      // console.log(resultPM);
 
       if (resultPM.statusCode != 200) {
          // localStorage.clear();
@@ -241,7 +238,6 @@
       });
 
       const resultPD = await responsePD.json();
-      // console.log(resultPD);
 
       if (resultPD.statusCode != 200) {
          // localStorage.clear();
@@ -265,7 +261,6 @@
       });
 
       const resultPPub = await responsePPub.json();
-      // console.log(resultPPub);
 
       if (resultPPub.statusCode != 200) {
          // localStorage.clear();
@@ -292,7 +287,6 @@
       );
 
       const resultPPB = await responsePPB.json();
-      // console.log(resultPPB);
 
       if (resultPPB.statusCode != 200) {
          // localStorage.clear();
@@ -316,7 +310,6 @@
       });
 
       const resultPHKI = await responsePHKI.json();
-      // console.log(resultPHKI);
 
       if (resultPHKI.statusCode != 200) {
          // localStorage.clear();

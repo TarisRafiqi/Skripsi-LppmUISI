@@ -8,7 +8,7 @@
 
    setTimeout(() => {
       location.pathname = "/login";
-   }, 1000);
+   }, 500);
 </script>
 
 <!-- <Article> -->

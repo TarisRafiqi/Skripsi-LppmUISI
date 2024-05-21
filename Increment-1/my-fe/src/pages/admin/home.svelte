@@ -10,7 +10,7 @@
       const accessToken = localStorage.getItem("token");
 
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
 
@@ -24,11 +24,15 @@
 
       const resultCP = await responseCP.json();
 
-      if (responseCP.ok) {
-         penelitianCounter = resultCP.penelitianCounter;
-         // console.log(resultCP.penelitianCounter);
+      if (resultCP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responseCP);
+         if (responseCP.ok) {
+            penelitianCounter = resultCP.penelitianCounter;
+         } else {
+            console.log(responseCP);
+         }
       }
 
       // ---------------------------------------
@@ -41,11 +45,15 @@
 
       const resultCPM = await responseCPM.json();
 
-      if (responseCPM.ok) {
-         pengmasCounter = resultCPM.pengmasCounter;
-         // console.log(resultCPM.pengmasCounter);
+      if (resultCPM.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responseCPM);
+         if (responseCPM.ok) {
+            pengmasCounter = resultCPM.pengmasCounter;
+         } else {
+            console.log(responseCPM);
+         }
       }
    });
 </script>
