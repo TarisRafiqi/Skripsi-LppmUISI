@@ -55,7 +55,8 @@ module.exports = async function (fastify, opts) {
             });
          } catch (error) {
             reply.send({
-               msg: "gagal terkoneksi ke db profile",
+               msg: "gagal terkoneksi ke db",
+               error,
             });
          }
       }

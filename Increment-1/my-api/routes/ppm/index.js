@@ -15,7 +15,7 @@ module.exports = async function (fastify, opts) {
       async function (request, reply) {
          const id = Number(request.params.id);
          const token = request.headers.authorization;
-         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
          const idFromToken = decodedToken.id;
          const roleFromToken = decodedToken.role;
          let dbData;
@@ -62,7 +62,7 @@ module.exports = async function (fastify, opts) {
       async function (request, reply) {
          const uid = Number(request.params.uid);
          const token = request.headers.authorization;
-         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
          const idFromToken = decodedToken.id;
          const roleFromToken = decodedToken.role;
          let dbData;
@@ -89,37 +89,42 @@ module.exports = async function (fastify, opts) {
    );
 
    // Get all research
-   fastify.get("/", async function (request, reply) {
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      const roleFromToken = decodedToken.role;
-      // const idFromToken = decodedToken.id;
+   fastify.get(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const token = request.headers.authorization;
+         const decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const roleFromToken = decodedToken.role;
 
-      const sql =
-         "SELECT id, uid, judul, jenis_kegiatan, jenis_skema, status FROM proposal_ppm";
-      let dbData;
-      let connection;
+         const sql =
+            "SELECT id, uid, judul, jenis_kegiatan, jenis_skema, status FROM proposal_ppm";
+         let dbData;
+         let connection;
 
-      if (roleFromToken === "admin") {
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, []);
-            dbData = rows;
-            connection.release();
+         if (roleFromToken === "admin") {
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, []);
+               dbData = rows;
+               connection.release();
+               reply.send({
+                  dbData,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
+         } else {
             reply.send({
-               dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               pesan: "anda tidak memiliki hak akses halaman ini",
             });
          }
-      } else {
-         reply.send({
-            pesan: "anda tidak memiliki hak akses halaman ini",
-         });
       }
-   });
+   );
 
    fastify.post(
       "/",

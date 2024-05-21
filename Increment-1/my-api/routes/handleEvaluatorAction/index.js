@@ -5,72 +5,74 @@ const e404 = `Code 400\nServer tidak dapat atau tidak akan memproses permintaan 
 const e500 = `The server has encountered a situation it does not know how to handle.`;
 
 module.exports = async function (fastify, opts) {
-   fastify.patch("/", async function (request, reply) {
-      let dbData;
-      let connection;
-      let data = request.body;
+   fastify.patch(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let dbData;
+         let connection;
+         let data = request.body;
 
-      // reply.send({
-      //    data,
-      //    msg: "Handle Pass Reviewer",
-      // });
-      // return;
+         const sql =
+            "UPDATE proposal_ppm SET comment = ?, status = ?, random_penilaian_file_name = ? WHERE id = ?";
 
-      const sql =
-         "UPDATE proposal_ppm SET comment = ?, status = ?, random_penilaian_file_name = ? WHERE id = ?";
-
-      try {
-         connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [
-            data.comment,
-            data.status,
-            data.randomPenilaianFileName,
-            data.id,
-         ]);
-         dbData = rows;
-         connection.release();
-         reply.send({
-            dbData,
-         });
-      } catch (error) {
-         reply.send({
-            msg: "gagal terkoneksi ke db",
-            error,
-         });
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [
+               data.comment,
+               data.status,
+               data.randomPenilaianFileName,
+               data.id,
+            ]);
+            dbData = rows;
+            connection.release();
+            reply.send({
+               dbData,
+               statusCode: 200,
+            });
+         } catch (error) {
+            reply.send({
+               msg: "gagal terkoneksi ke db",
+               error,
+            });
+         }
       }
-   });
+   );
 
-   fastify.patch("/:pass", async function (request, reply) {
-      let dbData;
-      let connection;
-      let data = request.body;
+   fastify.patch(
+      "/:pass",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let dbData;
+         let connection;
+         let data = request.body;
 
-      // reply.send({
-      //    data,
-      //    msg: "Handle Pass Biasa",
-      // });
-      // return;
+         const sql =
+            "UPDATE proposal_ppm SET comment = ?, status = ? WHERE id = ?";
 
-      const sql =
-         "UPDATE proposal_ppm SET comment = ?, status = ? WHERE id = ?";
-
-      try {
-         connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [
-            data.comment,
-            data.status,
-            data.id,
-         ]);
-         dbData = rows;
-         connection.release();
-         reply.send({
-            dbData,
-         });
-      } catch (error) {
-         reply.send({
-            msg: "gagal terkoneksi ke db",
-            error,
-         });
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [
+               data.comment,
+               data.status,
+               data.id,
+            ]);
+            dbData = rows;
+            connection.release();
+            reply.send({
+               dbData,
+               statusCode: 200,
+            });
+         } catch (error) {
+            reply.send({
+               msg: "gagal terkoneksi ke db",
+               error,
+            });
+         }
       }
-   });
+   );
 };

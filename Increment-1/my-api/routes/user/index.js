@@ -56,6 +56,7 @@ module.exports = async function (fastify, opts) {
                connection.release();
                reply.send({
                   ...dbData,
+                  statusCode: 200,
                });
             } catch (error) {
                reply.send({
@@ -71,42 +72,46 @@ module.exports = async function (fastify, opts) {
    );
 
    // get users
-   fastify.get("/", async function (request, reply) {
-      const token = request.headers.authorization;
-      const decodedToken = fastify.jwt.decode(token);
-      // const idFromToken = decodedToken.id;
-      const roleFromToken = decodedToken.role;
+   fastify.get(
+      "/",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         const roleFromToken = decodedToken.role;
+         // const idFromToken = decodedToken.id;
 
-      let dbData;
-      const sql = "SELECT id, username, email, role, active FROM users";
-      let connection;
+         let dbData;
+         const sql = "SELECT id, username, email, role, active FROM users";
+         let connection;
 
-      if (roleFromToken === "admin") {
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, []);
-            dbData = rows;
-            connection.release();
+         if (roleFromToken === "admin") {
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, []);
+               dbData = rows;
+               connection.release();
+               reply.send({
+                  dbData,
+                  statusCode: 200,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
+         } else {
             reply.send({
-               dbData,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               msg: "Anda tidak memiliki hak akses halaman ini",
             });
          }
-      } else {
-         reply.send({
-            msg: "Anda tidak memiliki hak akses halaman ini",
-         });
       }
-   });
+   );
 
    // register user
    fastify.post("/", async function (request, reply) {
-      // 1 code sesuai alur. Dianggap semua payload/kondisi === true
-      // 2 Perangkap kesalahan
-      // 3 Otorisasi
       let pesan = "Sukses!";
       const { username, email } = request.body;
       const sql = "INSERT INTO users (username, code, email) values(?, ?, ?)";
@@ -131,35 +136,43 @@ module.exports = async function (fastify, opts) {
       }
    });
 
-   // patch/edit
    fastify.patch(
       "/",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
+         const token = request.headers.authorization;
+         let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
+         let roleFromToken = decodedToken.role;
          let dbData;
          let connection;
          let data = request.body;
+
          const sql = "UPDATE users SET active = ?, role = ? WHERE id = ?";
 
-         try {
-            connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [
-               data.active,
-               data.role,
-               data.id,
-            ]);
-            dbData = rows;
-            connection.release();
+         if (roleFromToken === "admin") {
+            try {
+               connection = await fastify.mysql.getConnection();
+               const [rows] = await connection.query(sql, [
+                  data.active,
+                  data.role,
+                  data.id,
+               ]);
+               dbData = rows;
+               connection.release();
+               reply.send({
+                  data: dbData,
+                  statusCode: 200,
+               });
+            } catch (error) {
+               reply.send({
+                  msg: "gagal terkoneksi ke db",
+               });
+            }
+         } else {
             reply.send({
-               data: dbData,
-               msg: "berhasil mengubah data",
-               statusCode: 200,
-            });
-         } catch (error) {
-            reply.send({
-               msg: "gagal terkoneksi ke db",
+               msg: "Anda tidak memiliki hak akses halaman ini",
             });
          }
       }
