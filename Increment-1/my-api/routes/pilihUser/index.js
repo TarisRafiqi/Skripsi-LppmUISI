@@ -16,12 +16,9 @@ module.exports = async function (fastify, opts) {
       async function (request, reply) {
          const token = request.headers.authorization;
          let decodedToken = fastify.jwt.decode(token.replace("Bearer ", ""));
-         // const decodedToken = fastify.jwt.decode(token);
-         // const idFromToken = decodedToken.id;
          const roleFromToken = decodedToken.role;
 
          let dbData;
-         // const sql = "SELECT id, username, email, role, active FROM users";
          const sql = "SELECT uid, nama_lengkap FROM profile";
          let connection;
 

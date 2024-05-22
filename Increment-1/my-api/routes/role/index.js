@@ -10,22 +10,28 @@ const groupMap = {
 };
 
 module.exports = async function (fastify, opts) {
-   fastify.get("/:role", async function (request, reply) {
-      let dbData;
-      let connection;
-      const role = Number(request.params.role);
-      const sql = "SELECT * FROM users WHERE role = ?";
+   fastify.get(
+      "/:role",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let dbData;
+         let connection;
+         const role = Number(request.params.role);
+         const sql = "SELECT * FROM users WHERE role = ?";
 
-      try {
-         connection = await fastify.mysql.getConnection();
-         const [rows] = await connection.query(sql, [role]);
-         dbData = rows;
-         connection.release();
-         reply.send([...dbData]);
-      } catch (error) {
-         reply.send({
-            msg: "gagal terkoneksi ke db",
-         });
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [role]);
+            dbData = rows;
+            connection.release();
+            reply.send([...dbData]);
+         } catch (error) {
+            reply.send({
+               msg: "gagal terkoneksi ke db",
+            });
+         }
       }
-   });
+   );
 };

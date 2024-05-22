@@ -45,13 +45,6 @@ module.exports = async function (fastify, opts) {
          const fileData = request.body.fileRab;
          const randomRabFileName = request.body.randomRabFileName;
 
-         // reply.send({
-         //    fileData,
-         //    randomRabFileName,
-         //    msg: "<<<<<<",
-         // });
-         // return;
-
          const filepath = "./upload_rab/" + randomRabFileName + ".xlsx";
 
          try {
