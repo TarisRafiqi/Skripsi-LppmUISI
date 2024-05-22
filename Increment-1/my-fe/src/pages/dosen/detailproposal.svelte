@@ -83,7 +83,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
       view = !isEdit(result.status);
 
       if (result.statusCode != 200) {
@@ -141,9 +140,8 @@
       );
 
       const dataRCR = await responseRCR.json();
-      // console.log(dataRCR);
 
-      if (result.statusCode != 200) {
+      if (dataRCR.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -160,9 +158,8 @@
       });
 
       const resultGP = await responseGP.json();
-      // console.log(resultGP);
 
-      if (result.statusCode != 200) {
+      if (resultGP.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -202,9 +199,8 @@
       );
 
       const dataRP = await responseRP.json();
-      // console.log(dataRP);
 
-      if (result.statusCode != 200) {
+      if (dataRP.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -242,9 +238,8 @@
       );
 
       const resultPP = await responsePP.json();
-      // console.log(resultPP);
 
-      if (result.statusCode != 200) {
+      if (resultPP.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -267,9 +262,8 @@
       );
 
       const resultPM = await responsePM.json();
-      // console.log(resultPM);
 
-      if (result.statusCode != 200) {
+      if (resultPM.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -292,9 +286,8 @@
       );
 
       const resultPD = await responsePD.json();
-      // console.log(resultPD);
 
-      if (result.statusCode != 200) {
+      if (resultPD.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -317,9 +310,8 @@
       );
 
       const resultPPub = await responsePPub.json();
-      // console.log(resultPPub);
 
-      if (result.statusCode != 200) {
+      if (resultPPub.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -342,9 +334,8 @@
       );
 
       const resultPPB = await responsePPB.json();
-      // console.log(resultPPB);
 
-      if (result.statusCode != 200) {
+      if (resultPPB.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -367,9 +358,8 @@
       );
 
       const resultPHKI = await responsePHKI.json();
-      // console.log(resultPHKI);
 
-      if (result.statusCode != 200) {
+      if (resultPHKI.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -389,9 +379,8 @@
       });
 
       const results = await responsee.json();
-      // console.log(results);
 
-      if (result.statusCode != 200) {
+      if (results.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -448,11 +437,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
@@ -473,11 +467,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
@@ -512,6 +511,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -544,6 +547,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -585,7 +592,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
@@ -629,6 +635,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -660,6 +670,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -700,7 +714,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
@@ -745,6 +758,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -776,6 +793,10 @@
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }

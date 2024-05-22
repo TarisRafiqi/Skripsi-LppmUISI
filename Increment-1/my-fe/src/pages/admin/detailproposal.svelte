@@ -6,10 +6,10 @@
    import Modal from "../../libs/Modal.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import Status from "../../modules/Status.svelte";
-   import Wysiwyg from "../../libs/Wysiwyg.svelte";
    import Select from "../../libs/Select.svelte";
    import { deleteIcon } from "../../store/icons";
+   // import Status from "../../modules/Status.svelte";
+   // import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    export let params;
    const id = params["1"];
@@ -85,15 +85,14 @@
    let file;
    let view;
 
+   const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
+
    // pakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
       ka_departemen = await findRole(11);
       ka_lppm = await findRole(12);
       ka_pusat_kajian = await findRole(13);
@@ -112,7 +111,6 @@
       } else {
          if (response.ok) {
             data = result;
-
             ppmId = data.id;
             uidProposal = data.uid;
             jenisProposal = data.jenis_proposal;
@@ -120,7 +118,6 @@
             jenisSkema = data.jenis_skema;
             kelompokKeahlian = data.kelompok_keahlian;
             topik = data.topik;
-            // tahunPelaksanaan = data.tahun_pelaksanaan;
             tanggalMulai = data.tanggal_mulai;
             tanggalSelesai = data.tanggal_selesai;
             biayaPenelitian = data.biaya_penelitian;
@@ -142,10 +139,6 @@
             randomPpmFileName = data.random_ppm_file_name;
          }
       }
-      // console.log(kdeptSelected);
-      // console.log(klppmSelected);
-      // console.log(kpkSelected);
-      // console.log(reviewerSelected);
 
       // -----------------------------------------------------------------------------//
       // Get Nama Lengkap Evaluator
@@ -157,9 +150,14 @@
 
       const resultEvl = await responseEvl.json();
 
-      if (responseEvl.ok) {
-         dataEvl = resultEvl;
-         namaLengkapEvl = dataEvl.nama_lengkap;
+      if (resultEvl.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseEvl.ok) {
+            dataEvl = resultEvl;
+            namaLengkapEvl = dataEvl.nama_lengkap;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -175,8 +173,13 @@
 
       const dataRCR = await responseRCR.json();
 
-      if (responseRCR.ok) {
-         itemsRCR = dataRCR.dbData;
+      if (dataRCR.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRCR.ok) {
+            itemsRCR = dataRCR.dbData;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -188,35 +191,37 @@
       });
 
       const resultGP = await responseGP.json();
-      console.log(resultGP);
 
-      if (responseGP.ok) {
-         dataGP = resultGP;
-
-         idProfile = dataGP.id;
-         idUser = dataGP.uid;
-         namaLengkap = dataGP.nama_lengkap;
-         jabatanFungsional = dataGP.jabatan_fungsional;
-         nip = dataGP.nip;
-         nidn = dataGP.nidn;
-         tempatLahir = dataGP.tempat_lahir;
-         tanggalLahir = dataGP.tanggal_lahir;
-         alamatRumah = dataGP.alamat_rumah;
-         telpFaxRumah = dataGP.telp_fax_rumah;
-         nomorHandphone = dataGP.nomor_handphone;
-         alamatKantor = dataGP.alamat_kantor;
-         telpFaxKantor = dataGP.telp_fax_kantor;
-         email = dataGP.email;
-         mataKuliah =
-            typeof dataGP.mata_kuliah === "string"
-               ? JSON.parse(dataGP.mata_kuliah)
-               : dataGP.mata_kuliah || [];
+      if (resultGP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseGP.ok) {
+            dataGP = resultGP;
+            idProfile = dataGP.id;
+            idUser = dataGP.uid;
+            namaLengkap = dataGP.nama_lengkap;
+            jabatanFungsional = dataGP.jabatan_fungsional;
+            nip = dataGP.nip;
+            nidn = dataGP.nidn;
+            tempatLahir = dataGP.tempat_lahir;
+            tanggalLahir = dataGP.tanggal_lahir;
+            alamatRumah = dataGP.alamat_rumah;
+            telpFaxRumah = dataGP.telp_fax_rumah;
+            nomorHandphone = dataGP.nomor_handphone;
+            alamatKantor = dataGP.alamat_kantor;
+            telpFaxKantor = dataGP.telp_fax_kantor;
+            email = dataGP.email;
+            mataKuliah =
+               typeof dataGP.mata_kuliah === "string"
+                  ? JSON.parse(dataGP.mata_kuliah)
+                  : dataGP.mata_kuliah || [];
+         }
       }
 
       // -----------------------------------------------------------------------------//
       // Get Riwayat Pendidikan
       // -----------------------------------------------------------------------------//
-
       const responseRP = await fetch(
          $apiURL + "/riwayatpendidikan/" + uidProposal,
          {
@@ -227,26 +232,31 @@
 
       const dataRP = await responseRP.json();
 
-      if (responseRP.ok) {
-         pertiS1 = dataRP.nama_perti_s1;
-         pertiS2 = dataRP.nama_perti_s2;
-         pertiS3 = dataRP.nama_perti_s3;
+      if (dataRP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRP.ok) {
+            pertiS1 = dataRP.nama_perti_s1;
+            pertiS2 = dataRP.nama_perti_s2;
+            pertiS3 = dataRP.nama_perti_s3;
 
-         bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-         bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-         bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
+            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
+            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
 
-         tahunMasukS1 = dataRP.tahun_masuk_s1;
-         tahunMasukS2 = dataRP.tahun_masuk_s2;
-         tahunMasukS3 = dataRP.tahun_masuk_s3;
+            tahunMasukS1 = dataRP.tahun_masuk_s1;
+            tahunMasukS2 = dataRP.tahun_masuk_s2;
+            tahunMasukS3 = dataRP.tahun_masuk_s3;
 
-         tahunLulusS1 = dataRP.tahun_lulus_s1;
-         tahunLulusS2 = dataRP.tahun_lulus_s2;
-         tahunLulusS3 = dataRP.tahun_lulus_s3;
+            tahunLulusS1 = dataRP.tahun_lulus_s1;
+            tahunLulusS2 = dataRP.tahun_lulus_s2;
+            tahunLulusS3 = dataRP.tahun_lulus_s3;
 
-         judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-         judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-         judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
+            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
+            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -262,10 +272,15 @@
 
       const resultPP = await responsePP.json();
 
-      if (responsePP.ok) {
-         dataPP = resultPP.dbData;
+      if (resultPP.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePP);
+         if (responsePP.ok) {
+            dataPP = resultPP.dbData;
+         } else {
+            console.log(responsePP);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -281,10 +296,15 @@
 
       const resultPM = await responsePM.json();
 
-      if (responsePM.ok) {
-         dataPM = resultPM.dbData;
+      if (resultPM.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePM);
+         if (responsePM.ok) {
+            dataPM = resultPM.dbData;
+         } else {
+            console.log(responsePM);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -300,10 +320,15 @@
 
       const resultPD = await responsePD.json();
 
-      if (responsePD.ok) {
-         dataPD = resultPD.dbData;
+      if (resultPD.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePD);
+         if (responsePD.ok) {
+            dataPD = resultPD.dbData;
+         } else {
+            console.log(responsePD);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -319,10 +344,15 @@
 
       const resultPPub = await responsePPub.json();
 
-      if (responsePPub.ok) {
-         dataPPub = resultPPub.dbData;
+      if (resultPPub.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPub);
+         if (responsePPub.ok) {
+            dataPPub = resultPPub.dbData;
+         } else {
+            console.log(responsePPub);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -338,10 +368,15 @@
 
       const resultPPB = await responsePPB.json();
 
-      if (responsePPB.ok) {
-         dataPPB = resultPPB.dbData;
+      if (resultPPB.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePPB);
+         if (responsePPB.ok) {
+            dataPPB = resultPPB.dbData;
+         } else {
+            console.log(responsePPB);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -357,10 +392,15 @@
 
       const resultPHKI = await responsePHKI.json();
 
-      if (responsePHKI.ok) {
-         dataPHKI = resultPHKI.dbData;
+      if (resultPHKI.statusCode != 200) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(responsePHKI);
+         if (responsePHKI.ok) {
+            dataPHKI = resultPHKI.dbData;
+         } else {
+            console.log(responsePHKI);
+         }
       }
 
       // -----------------------------------------------------------------------------//
@@ -372,10 +412,8 @@
       });
 
       const results = await responsee.json();
-      console.log(results);
-      result;
 
-      if (result.statusCode != 200) {
+      if (results.statusCode != 200) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -403,9 +441,9 @@
 
    async function remediasi() {
       const accessToken = localStorage.getItem("token");
-
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
+
       // -------------------------------------------------------------------//
       // Upload File RAB
       // -------------------------------------------------------------------//
@@ -424,13 +462,17 @@
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadRabFile),
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
@@ -455,21 +497,25 @@
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
                headers: {
-                  Authorization: `${accessToken}`,
+                  Authorization: `Bearer ${accessToken}`,
                   "Content-Type": "application/json",
                },
                body: JSON.stringify(payloadPpmFile),
             });
 
             const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+            }
          } catch (error) {
             console.error("Error uploading file:", error);
          }
       };
 
       if (filePpm) readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
 
+      // -----------------------------------------------------------------------------//
       const payload = {
          jenisProposal,
          jenisKegiatan,
@@ -497,6 +543,7 @@
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -504,10 +551,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         $route("/admin/proposalmanagement");
+      if (response.status === 401) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/admin/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -516,7 +568,6 @@
       // -------------------------
       //    API RiwayatCttnRevisi
       // -------------------------
-
       const payloadCttnRevisi = {
          ppmId,
          comment,
@@ -529,6 +580,7 @@
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
             body: JSON.stringify(payloadCttnRevisi),
@@ -536,10 +588,14 @@
 
          const resultRev = await responseRev.json();
 
+         if (responseRev.status === 401) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
+         }
+
          // -----------------------------
          //          API PPM
          // -----------------------------
-
          const payload = {
             jenisProposal,
             jenisKegiatan,
@@ -567,6 +623,7 @@
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
             body: JSON.stringify(payload),
@@ -574,10 +631,15 @@
 
          const result = await response.json();
 
-         if (response.ok) {
-            $route("/admin/proposalmanagement");
+         if (response.status === 401) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/admin/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -610,6 +672,7 @@
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
          headers: {
+            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
          },
          body: JSON.stringify(payload),
@@ -617,10 +680,15 @@
 
       const result = await response.json();
 
-      if (response.ok) {
-         $route("/admin/proposalmanagement");
+      if (response.status === 401) {
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            $route("/admin/proposalmanagement");
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -629,9 +697,6 @@
       const evaluatorKlppm = document.getElementById("evaluatorKlppm");
       const evaluatorReviewer = document.getElementById("evaluatorReviewer");
       const evaluatorKpk = document.getElementById("evaluatorKpk");
-
-      // console.log(evaluatorKdept.value);
-      // return;
 
       if (
          evaluatorKdept.value === "" ||
@@ -672,6 +737,7 @@
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: {
+               Authorization: `Bearer ${accessToken}`,
                "Content-Type": "application/json",
             },
             body: JSON.stringify(payload),
@@ -679,10 +745,15 @@
 
          const result = await response.json();
 
-         if (response.ok) {
-            $route("/admin/proposalmanagement");
+         if (response.status === 401) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/admin/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -740,35 +811,10 @@
       return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 
-   // async function handleDownloadRab(e) {
-   //    const accessToken = localStorage.getItem("token");
-   //    const headers = {
-   //       Authorization: `${accessToken}`,
-   //       "Content-Type": "application/json",
-   //    };
-   //    let filename = "rab.xlsx";
-   //    try {
-   //       const response = await fetch(
-   //          `${$apiURL}+"/uploadRab/${randomRabFileName}`,
-   //          {
-   //             method: "GET",
-   //             headers: headers,
-   //          }
-   //       );
-   //       const blob = await response.blob();
-   //       const link = document.createElement("a");
-   //       link.href = window.URL.createObjectURL(blob);
-   //       link.download = filename;
-   //       link.click();
-   //    } catch (error) {
-   //       console.error("Error downloading file:", error);
-   //    }
-   // }
-
    async function handleDownloadRab(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
       let filename = "rab.xlsx";
@@ -780,11 +826,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
@@ -793,10 +844,11 @@
    async function handleDownloadPpm(e) {
       const accessToken = localStorage.getItem("token");
       const headers = {
-         Authorization: `${accessToken}`,
+         Authorization: `Bearer ${accessToken}`,
          "Content-Type": "application/json",
       };
       let filename = "proposal.pdf";
+
       try {
          const response = await fetch(
             $apiURL + `/uploadPpm/${randomPpmFileName}`,
@@ -805,114 +857,64 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
    }
 
-   async function searchUser(ev) {
-      const response = await fetch($apiURL + "/user");
-      const result = await response.json();
+   // async function searchUser(ev) {
+   //    const response = await fetch($apiURL + "/user");
+   //    const result = await response.json();
 
-      if (response.ok) {
-         showModal = true;
-      }
-   }
+   //    if (response.ok) {
+   //       showModal = true;
+   //    }
+   // }
 
    let options;
 
    async function findRole(role) {
-      const response = await fetch($apiURL + "/role/" + role);
+      const response = await fetch($apiURL + "/role/" + role, {
+         method: "GET",
+         headers: headers,
+      });
       const result = await response.json();
 
-      if (response.ok) {
-         options = result;
-         return options;
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            options = result;
+            return options;
+         } else {
+            console.log(response);
+         }
       }
    }
 
    let tab1 = true;
    let tab2;
-   // let tab3;
    let tab4;
-   // let tab5;
-   // let tab6;
-   // let tab7;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
-      // tab7 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
-      // tab7 = false;
    }
-
-   // function clicktab3() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = true;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = false;
-   //    tab7 = false;
-   // }
-
-   // function clicktab4() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = true;
-   //    tab5 = false;
-   //    tab6 = false;
-   //    tab7 = false;
-   // }
-
-   // function clicktab5() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = true;
-   //    tab6 = false;
-   //    tab7 = false;
-   // }
-   // function clicktab6() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = true;
-   //    tab7 = false;
-   // }
-   // function clicktab7() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = false;
-   //    tab7 = true;
-   // }
 </script>
 
 {#if data}
@@ -948,46 +950,6 @@
                   <span>Biodata Peneliti</span>
                </a>
             </li>
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Status</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a>
-                  <span>Evaluator</span>
-               </a>
-            </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Logbook</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Monev</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab7} class:is-active={tab7}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Laporan</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
          </ul>
       </div>
 
@@ -1080,12 +1042,6 @@
                      bind:value={topik}
                   />
                </Field>
-
-               <!-- <Field
-               datepicker
-               name="Tahun Pelaksanaan"
-               bind:value={tahunPelaksanaan}
-            /> -->
 
                <Field name="Tanggal Mulai">
                   <div class="field">
@@ -1759,79 +1715,10 @@
             </table>
          </div>
       {/if}
-
-      <!-- Tab Status -->
-      <!-- {#if tab3 === true}
-         <div class="box">
-            <Field name="Status PPM">
-               <Status code={data.status} />
-            </Field>
-
-            <Field name="Status Pendanaan">
-               <div class="field has-addons">
-                  <div class="control">
-                     <div class="select">
-                        <select name="country">
-                           <option value="Dana belum dicairkan"
-                              >Dana belum dicairkan</option
-                           >
-                           <option value="50% dana sudah dicairkan"
-                              >50% dana sudah dicairkan</option
-                           >
-                           <option value="100% dana sudah dicairkan"
-                              >100% dana sudah dicairkan</option
-                           >
-                        </select>
-                     </div>
-                  </div>
-                  <div class="control">
-                     <button type="submit" class="button is-info">Simpan</button
-                     >
-                  </div>
-               </div></Field
-            >
-         </div>
-      {/if} -->
-
-      <!-- Tab Logbook -->
-      <!-- {#if tab5 === true}
-         <div class="columns notification is-info is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>LogBook</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if} -->
-
-      <!-- Tab Monev -->
-      <!-- {#if tab6 === true}
-         <div class="columns notification is-success is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>Monev</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if} -->
-
-      <!-- Tab Laporan -->
-      <!-- {#if tab7 === true}
-         <div class="columns notification is-info is-light">
-            <div class="column">
-               <p>
-                  Lorem ipsum <strong>Laporan</strong> sit amet consectetur adipisicing
-                  elit. Totam suscipit placeat amet.
-               </p>
-            </div>
-         </div>
-      {/if} -->
    </Article>
 {/if}
 
-<Modal bind:show={showModal}>
+<!-- <Modal bind:show={showModal}>
    <h2 slot="header">Find Approval</h2>
    <p>
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores fuga
@@ -1839,11 +1726,7 @@
       delectus soluta iusto odio architecto impedit maxime non asperiores
       eligendi?
    </p>
-</Modal>
+</Modal> -->
 
 <style>
-   /* .box-padding {
-      padding: 4.724rem;
-   }
-   */
 </style>

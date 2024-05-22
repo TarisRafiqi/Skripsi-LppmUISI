@@ -3108,10 +3108,10 @@
     aboutuisi: () => aboutuisi_default,
     buatpengumuman: () => buatpengumuman_default,
     createuser: () => createuser_default,
+    detailproposal: () => detailproposal_default,
     home: () => home_default,
     pengumuman: () => pengumuman_default,
     profile: () => profile_default,
-    proposal: () => proposal_default,
     proposalmanagement: () => proposalmanagement_default,
     template: () => template_default,
     usersmanagement: () => usersmanagement_default
@@ -5824,12 +5824,218 @@
   };
   var createuser_default = Createuser;
 
-  // src/pages/admin/home.svelte
+  // src/pages/admin/detailproposal.svelte
   init_define_process();
+
+  // src/libs/Modal.svelte
+  init_define_process();
+  var get_header_slot_changes = (dirty) => ({});
+  var get_header_slot_context = (ctx) => ({});
+  function create_fragment23(ctx) {
+    let b;
+    let div;
+    let span1;
+    let span0;
+    let t1;
+    let t2;
+    let hr;
+    let t3;
+    let current;
+    let mounted;
+    let dispose;
+    const header_slot_template = (
+      /*#slots*/
+      ctx[4].header
+    );
+    const header_slot = create_slot(
+      header_slot_template,
+      ctx,
+      /*$$scope*/
+      ctx[3],
+      get_header_slot_context
+    );
+    const default_slot_template = (
+      /*#slots*/
+      ctx[4].default
+    );
+    const default_slot = create_slot(
+      default_slot_template,
+      ctx,
+      /*$$scope*/
+      ctx[3],
+      null
+    );
+    return {
+      c() {
+        b = element("b");
+        div = element("div");
+        span1 = element("span");
+        span0 = element("span");
+        span0.textContent = "\xD7";
+        t1 = space();
+        if (header_slot)
+          header_slot.c();
+        t2 = space();
+        hr = element("hr");
+        t3 = space();
+        if (default_slot)
+          default_slot.c();
+        attr(span0, "class", "close svelte-gcisbw");
+        attr(div, "class", "svelte-gcisbw");
+        attr(b, "class", "svelte-gcisbw");
+        toggle_class(
+          b,
+          "show",
+          /*show*/
+          ctx[0]
+        );
+      },
+      m(target, anchor) {
+        insert(target, b, anchor);
+        append(b, div);
+        append(div, span1);
+        append(span1, span0);
+        append(span1, t1);
+        if (header_slot) {
+          header_slot.m(span1, null);
+        }
+        append(div, t2);
+        append(div, hr);
+        append(div, t3);
+        if (default_slot) {
+          default_slot.m(div, null);
+        }
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              span0,
+              "click",
+              /*clickX*/
+              ctx[2]
+            ),
+            listen(
+              b,
+              "click",
+              /*handleClick*/
+              ctx[1]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (header_slot) {
+          if (header_slot.p && (!current || dirty & /*$$scope*/
+          8)) {
+            update_slot_base(
+              header_slot,
+              header_slot_template,
+              ctx2,
+              /*$$scope*/
+              ctx2[3],
+              !current ? get_all_dirty_from_scope(
+                /*$$scope*/
+                ctx2[3]
+              ) : get_slot_changes(
+                header_slot_template,
+                /*$$scope*/
+                ctx2[3],
+                dirty,
+                get_header_slot_changes
+              ),
+              get_header_slot_context
+            );
+          }
+        }
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & /*$$scope*/
+          8)) {
+            update_slot_base(
+              default_slot,
+              default_slot_template,
+              ctx2,
+              /*$$scope*/
+              ctx2[3],
+              !current ? get_all_dirty_from_scope(
+                /*$$scope*/
+                ctx2[3]
+              ) : get_slot_changes(
+                default_slot_template,
+                /*$$scope*/
+                ctx2[3],
+                dirty,
+                null
+              ),
+              null
+            );
+          }
+        }
+        if (!current || dirty & /*show*/
+        1) {
+          toggle_class(
+            b,
+            "show",
+            /*show*/
+            ctx2[0]
+          );
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(header_slot, local);
+        transition_in(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(header_slot, local);
+        transition_out(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(b);
+        }
+        if (header_slot)
+          header_slot.d(detaching);
+        if (default_slot)
+          default_slot.d(detaching);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function instance18($$self, $$props, $$invalidate) {
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { show = false } = $$props;
+    function handleClick(e) {
+      if (e.target === e.currentTarget) {
+        $$invalidate(0, show = false);
+      }
+    }
+    function clickX() {
+      $$invalidate(0, show = false);
+    }
+    $$self.$$set = ($$props2) => {
+      if ("show" in $$props2)
+        $$invalidate(0, show = $$props2.show);
+      if ("$$scope" in $$props2)
+        $$invalidate(3, $$scope = $$props2.$$scope);
+    };
+    return [show, handleClick, clickX, $$scope, slots];
+  }
+  var Modal = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance18, create_fragment23, safe_not_equal, { show: 0 });
+    }
+  };
+  var Modal_default = Modal;
 
   // src/libs/Icon.svelte
   init_define_process();
-  function create_fragment23(ctx) {
+  function create_fragment24(ctx) {
     let svg;
     let path;
     return {
@@ -5897,7 +6103,7 @@
       }
     };
   }
-  function instance18($$self, $$props, $$invalidate) {
+  function instance19($$self, $$props, $$invalidate) {
     let { id } = $$props;
     let { src } = $$props;
     let { size = 1 } = $$props;
@@ -5916,10 +6122,312 @@
   var Icon = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance18, create_fragment23, safe_not_equal, { id: 0, src: 1, size: 4 });
+      init(this, options, instance19, create_fragment24, safe_not_equal, { id: 0, src: 1, size: 4 });
     }
   };
   var Icon_default = Icon;
+
+  // src/libs/Select.svelte
+  init_define_process();
+  function get_each_context3(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[10] = list[i];
+    return child_ctx;
+  }
+  function create_if_block4(ctx) {
+    let span;
+    let each_value = ensure_array_like(
+      /*filteredItems*/
+      ctx[2]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block3(get_each_context3(ctx, each_value, i));
+    }
+    return {
+      c() {
+        span = element("span");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        attr(span, "class", "svelte-zkhzei");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(span, null);
+          }
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*filteredItems, setSelected*/
+        12) {
+          each_value = ensure_array_like(
+            /*filteredItems*/
+            ctx2[2]
+          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context3(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block3(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(span, null);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block3(ctx) {
+    let a;
+    let t_value = (
+      /*item*/
+      ctx[10].label + ""
+    );
+    let t;
+    let a_data_value_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        a = element("a");
+        t = text(t_value);
+        attr(a, "data-value", a_data_value_value = /*item*/
+        ctx[10].value);
+        attr(a, "class", "svelte-zkhzei");
+      },
+      m(target, anchor) {
+        insert(target, a, anchor);
+        append(a, t);
+        if (!mounted) {
+          dispose = listen(
+            a,
+            "click",
+            /*setSelected*/
+            ctx[3]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*filteredItems*/
+        4 && t_value !== (t_value = /*item*/
+        ctx2[10].label + ""))
+          set_data(t, t_value);
+        if (dirty & /*filteredItems*/
+        4 && a_data_value_value !== (a_data_value_value = /*item*/
+        ctx2[10].value)) {
+          attr(a, "data-value", a_data_value_value);
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(a);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_fragment25(ctx) {
+    let div;
+    let input;
+    let t;
+    let mounted;
+    let dispose;
+    let if_block = (
+      /*filteredItems*/
+      ctx[2] && create_if_block4(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        attr(input, "class", "input svelte-zkhzei");
+        attr(input, "placeholder", "Cari user (min 2 huruf)");
+        toggle_class(
+          input,
+          "focused",
+          /*focused*/
+          ctx[1]
+        );
+        attr(div, "class", "select svelte-zkhzei");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, input);
+        set_input_value(
+          input,
+          /*value*/
+          ctx[0]
+        );
+        append(div, t);
+        if (if_block)
+          if_block.m(div, null);
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler*/
+            ctx[7]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & /*value*/
+        1 && input.value !== /*value*/
+        ctx2[0]) {
+          set_input_value(
+            input,
+            /*value*/
+            ctx2[0]
+          );
+        }
+        if (dirty & /*focused*/
+        2) {
+          toggle_class(
+            input,
+            "focused",
+            /*focused*/
+            ctx2[1]
+          );
+        }
+        if (
+          /*filteredItems*/
+          ctx2[2]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block4(ctx2);
+            if_block.c();
+            if_block.m(div, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        if (if_block)
+          if_block.d();
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function instance20($$self, $$props, $$invalidate) {
+    let { items } = $$props;
+    let { start = 1 } = $$props;
+    let { result = [] } = $$props;
+    let focused = 0;
+    let value = "";
+    let filteredItems = items;
+    function setSelected(e) {
+      e.preventDefault();
+      let el = e.target;
+      if (el.classList.contains("selected")) {
+        el.classList.remove("selected");
+        $$invalidate(4, result = result.filter((it) => {
+          return it.value !== el.getAttribute("data-value");
+        }));
+      } else {
+        el.classList.add("selected");
+        $$invalidate(4, result = [
+          ...result,
+          {
+            value: el.getAttribute("data-value").trim(),
+            label: el.innerText.trim(),
+            role: "Anggota"
+          }
+        ]);
+      }
+    }
+    function doFilter() {
+      if (value.length >= start) {
+        $$invalidate(2, filteredItems = items.filter((item) => {
+          let it;
+          if (item.label) {
+            let idUser2 = Number(localStorage.getItem("id"));
+            let itemLabel = item.label.toLowerCase();
+            let itemValue = item.value;
+            let valueLabel = value.toLowerCase();
+            it = itemLabel.includes(valueLabel) && itemValue !== idUser2;
+          }
+          return it;
+        }));
+      } else {
+        $$invalidate(2, filteredItems = items);
+      }
+    }
+    function clickOutside(e) {
+      let el = e.target;
+      if (el.tagName !== "A" && el.tagName !== "INPUT") {
+        $$invalidate(0, value = "");
+        $$invalidate(1, focused = 0);
+      }
+    }
+    document.querySelector("body").addEventListener("click", clickOutside);
+    function input_input_handler() {
+      value = this.value;
+      $$invalidate(0, value);
+    }
+    $$self.$$set = ($$props2) => {
+      if ("items" in $$props2)
+        $$invalidate(5, items = $$props2.items);
+      if ("start" in $$props2)
+        $$invalidate(6, start = $$props2.start);
+      if ("result" in $$props2)
+        $$invalidate(4, result = $$props2.result);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & /*value, start*/
+      65) {
+        $:
+          value, $$invalidate(1, focused = value.length >= start ? 1 : 0), doFilter();
+      }
+    };
+    return [
+      value,
+      focused,
+      filteredItems,
+      setSelected,
+      result,
+      items,
+      start,
+      input_input_handler
+    ];
+  }
+  var Select = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance20, create_fragment25, safe_not_equal, { items: 5, start: 6, result: 4 });
+    }
+  };
+  var Select_default = Select;
 
   // src/store/icons.js
   init_define_process();
@@ -5935,8 +6443,7362 @@
   var copyright = "M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m11-9c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11M9.525 9.526a3.5 3.5 0 0 0 4.95 4.95l.707-.708l1.414 1.415l-.707.707a5.5 5.5 0 1 1 0-7.778l.707.707l-1.414 1.414l-.707-.707a3.5 3.5 0 0 0-4.95 0";
   var edit = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z";
 
-  // src/pages/admin/home.svelte
+  // src/pages/admin/detailproposal.svelte
+  function get_each_context4(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[114] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_1(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[117] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_2(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[120] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_3(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[123] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_4(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[126] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_5(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[129] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_6(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[132] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_9(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[135] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_10(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[138] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_7(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[135] = list[i];
+    return child_ctx;
+  }
+  function get_each_context_8(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[138] = list[i];
+    child_ctx[140] = i;
+    return child_ctx;
+  }
+  function create_if_block5(ctx) {
+    let article;
+    let current;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot6] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(article.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const article_changes = {};
+        if (dirty[0] & /*dataPHKI, dataPPB, dataPPub, dataPD, dataPM, dataPP, status, kpkSelected, ka_pusat_kajian, reviewerSelected, reviewer, klppmSelected, ka_lppm, kdeptSelected, ka_departemen, itemsRCR, comment, jenisSkema, abstrak, judul, anggotaTim, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal, data, showModalErrorInputEvaluator, showModalError*/
+        2147483647 | dirty[1] & /*judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap, uidProposal, fileRab, filePpm*/
+        2147483647 | dirty[2] & /*tab2, items, view, tab1*/
+        15 | dirty[4] & /*$$scope*/
+        2097152) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(article, detaching);
+      }
+    };
+  }
+  function create_default_slot_44(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.innerHTML = `<b>Catatan Revisi</b> masih kosong! <br/> Isi catatan revisi sebagai
+            acuan peneliti untuk memperbaiki kesalahan!`;
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_default_slot_43(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "Masukkan evaluator proposal terlebih dahulu sebelum di proses";
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_if_block_10(ctx) {
+    let div0;
+    let current_block_type_index;
+    let if_block0;
+    let t0;
+    let div1;
+    let h3;
+    let t2;
+    let hr;
+    let t3;
+    let field0;
+    let updating_value;
+    let updating_selected;
+    let t4;
+    let br0;
+    let t5;
+    let field1;
+    let updating_value_1;
+    let updating_selected_1;
+    let t6;
+    let br1;
+    let t7;
+    let field2;
+    let updating_value_2;
+    let updating_selected_2;
+    let t8;
+    let br2;
+    let t9;
+    let field3;
+    let updating_value_3;
+    let updating_selected_3;
+    let t10;
+    let div2;
+    let t11;
+    let t12;
+    let current;
+    const if_block_creators = [create_if_block_14, create_else_block_2];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (!/*view*/
+      ctx2[63])
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type(ctx, [-1, -1, -1, -1, -1]);
+    if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    function field0_value_binding(value) {
+      ctx[93](value);
+    }
+    function field0_selected_binding(value) {
+      ctx[94](value);
+    }
+    let field0_props = {
+      id: "evaluatorKdept",
+      name: "Ka. Departemen",
+      select: true,
+      view: true,
+      userId: (
+        /*kdeptSelected*/
+        ctx[27]
+      )
+    };
+    if (
+      /*ka_departemen*/
+      ctx[23] !== void 0
+    ) {
+      field0_props.value = /*ka_departemen*/
+      ctx[23];
+    }
+    if (
+      /*kdeptSelected*/
+      ctx[27] !== void 0
+    ) {
+      field0_props.selected = /*kdeptSelected*/
+      ctx[27];
+    }
+    field0 = new Field_default({ props: field0_props });
+    binding_callbacks.push(() => bind(field0, "value", field0_value_binding));
+    binding_callbacks.push(() => bind(field0, "selected", field0_selected_binding));
+    function field1_value_binding(value) {
+      ctx[95](value);
+    }
+    function field1_selected_binding(value) {
+      ctx[96](value);
+    }
+    let field1_props = {
+      id: "evaluatorKlppm",
+      name: "Ka. LPPM",
+      select: true,
+      view: true,
+      userId: (
+        /*klppmSelected*/
+        ctx[28]
+      )
+    };
+    if (
+      /*ka_lppm*/
+      ctx[24] !== void 0
+    ) {
+      field1_props.value = /*ka_lppm*/
+      ctx[24];
+    }
+    if (
+      /*klppmSelected*/
+      ctx[28] !== void 0
+    ) {
+      field1_props.selected = /*klppmSelected*/
+      ctx[28];
+    }
+    field1 = new Field_default({ props: field1_props });
+    binding_callbacks.push(() => bind(field1, "value", field1_value_binding));
+    binding_callbacks.push(() => bind(field1, "selected", field1_selected_binding));
+    function field2_value_binding(value) {
+      ctx[97](value);
+    }
+    function field2_selected_binding(value) {
+      ctx[98](value);
+    }
+    let field2_props = {
+      id: "evaluatorReviewer",
+      name: "Reviewer",
+      select: true,
+      view: true,
+      userId: (
+        /*reviewerSelected*/
+        ctx[30]
+      )
+    };
+    if (
+      /*reviewer*/
+      ctx[25] !== void 0
+    ) {
+      field2_props.value = /*reviewer*/
+      ctx[25];
+    }
+    if (
+      /*reviewerSelected*/
+      ctx[30] !== void 0
+    ) {
+      field2_props.selected = /*reviewerSelected*/
+      ctx[30];
+    }
+    field2 = new Field_default({ props: field2_props });
+    binding_callbacks.push(() => bind(field2, "value", field2_value_binding));
+    binding_callbacks.push(() => bind(field2, "selected", field2_selected_binding));
+    function field3_value_binding(value) {
+      ctx[99](value);
+    }
+    function field3_selected_binding(value) {
+      ctx[100](value);
+    }
+    let field3_props = {
+      id: "evaluatorKpk",
+      name: "Ka. Pusat Kajian",
+      select: true,
+      view: true,
+      userId: (
+        /*kpkSelected*/
+        ctx[29]
+      )
+    };
+    if (
+      /*ka_pusat_kajian*/
+      ctx[26] !== void 0
+    ) {
+      field3_props.value = /*ka_pusat_kajian*/
+      ctx[26];
+    }
+    if (
+      /*kpkSelected*/
+      ctx[29] !== void 0
+    ) {
+      field3_props.selected = /*kpkSelected*/
+      ctx[29];
+    }
+    field3 = new Field_default({ props: field3_props });
+    binding_callbacks.push(() => bind(field3, "value", field3_value_binding));
+    binding_callbacks.push(() => bind(field3, "selected", field3_selected_binding));
+    let if_block1 = (
+      /*status*/
+      (ctx[21] === 2 || /*status*/
+      ctx[21] === 4 || /*status*/
+      ctx[21] === 6 || /*status*/
+      ctx[21] === 8) && create_if_block_13(ctx)
+    );
+    let if_block2 = (
+      /*status*/
+      ctx[21] === 10 && create_if_block_122(ctx)
+    );
+    let if_block3 = (
+      /*status*/
+      (ctx[21] === 1 || /*status*/
+      ctx[21] === 3 || /*status*/
+      ctx[21] === 5 || /*status*/
+      ctx[21] === 7 || /*status*/
+      ctx[21] === 9) && create_if_block_11(ctx)
+    );
+    return {
+      c() {
+        div0 = element("div");
+        if_block0.c();
+        t0 = space();
+        div1 = element("div");
+        h3 = element("h3");
+        h3.textContent = "Evaluator";
+        t2 = space();
+        hr = element("hr");
+        t3 = space();
+        create_component(field0.$$.fragment);
+        t4 = space();
+        br0 = element("br");
+        t5 = space();
+        create_component(field1.$$.fragment);
+        t6 = space();
+        br1 = element("br");
+        t7 = space();
+        create_component(field2.$$.fragment);
+        t8 = space();
+        br2 = element("br");
+        t9 = space();
+        create_component(field3.$$.fragment);
+        t10 = space();
+        div2 = element("div");
+        if (if_block1)
+          if_block1.c();
+        t11 = space();
+        if (if_block2)
+          if_block2.c();
+        t12 = space();
+        if (if_block3)
+          if_block3.c();
+        attr(div0, "class", "box");
+        attr(h3, "class", "title is-3");
+        attr(div1, "class", "box");
+        attr(div2, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        insert(target, div0, anchor);
+        if_blocks[current_block_type_index].m(div0, null);
+        insert(target, t0, anchor);
+        insert(target, div1, anchor);
+        append(div1, h3);
+        append(div1, t2);
+        append(div1, hr);
+        append(div1, t3);
+        mount_component(field0, div1, null);
+        append(div1, t4);
+        append(div1, br0);
+        append(div1, t5);
+        mount_component(field1, div1, null);
+        append(div1, t6);
+        append(div1, br1);
+        append(div1, t7);
+        mount_component(field2, div1, null);
+        append(div1, t8);
+        append(div1, br2);
+        append(div1, t9);
+        mount_component(field3, div1, null);
+        insert(target, t10, anchor);
+        insert(target, div2, anchor);
+        if (if_block1)
+          if_block1.m(div2, null);
+        append(div2, t11);
+        if (if_block2)
+          if_block2.m(div2, null);
+        append(div2, t12);
+        if (if_block3)
+          if_block3.m(div2, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          group_outros();
+          transition_out(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          check_outros();
+          if_block0 = if_blocks[current_block_type_index];
+          if (!if_block0) {
+            if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
+            if_block0.c();
+          } else {
+            if_block0.p(ctx2, dirty);
+          }
+          transition_in(if_block0, 1);
+          if_block0.m(div0, null);
+        }
+        const field0_changes = {};
+        if (dirty[0] & /*kdeptSelected*/
+        134217728)
+          field0_changes.userId = /*kdeptSelected*/
+          ctx2[27];
+        if (!updating_value && dirty[0] & /*ka_departemen*/
+        8388608) {
+          updating_value = true;
+          field0_changes.value = /*ka_departemen*/
+          ctx2[23];
+          add_flush_callback(() => updating_value = false);
+        }
+        if (!updating_selected && dirty[0] & /*kdeptSelected*/
+        134217728) {
+          updating_selected = true;
+          field0_changes.selected = /*kdeptSelected*/
+          ctx2[27];
+          add_flush_callback(() => updating_selected = false);
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[0] & /*klppmSelected*/
+        268435456)
+          field1_changes.userId = /*klppmSelected*/
+          ctx2[28];
+        if (!updating_value_1 && dirty[0] & /*ka_lppm*/
+        16777216) {
+          updating_value_1 = true;
+          field1_changes.value = /*ka_lppm*/
+          ctx2[24];
+          add_flush_callback(() => updating_value_1 = false);
+        }
+        if (!updating_selected_1 && dirty[0] & /*klppmSelected*/
+        268435456) {
+          updating_selected_1 = true;
+          field1_changes.selected = /*klppmSelected*/
+          ctx2[28];
+          add_flush_callback(() => updating_selected_1 = false);
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[0] & /*reviewerSelected*/
+        1073741824)
+          field2_changes.userId = /*reviewerSelected*/
+          ctx2[30];
+        if (!updating_value_2 && dirty[0] & /*reviewer*/
+        33554432) {
+          updating_value_2 = true;
+          field2_changes.value = /*reviewer*/
+          ctx2[25];
+          add_flush_callback(() => updating_value_2 = false);
+        }
+        if (!updating_selected_2 && dirty[0] & /*reviewerSelected*/
+        1073741824) {
+          updating_selected_2 = true;
+          field2_changes.selected = /*reviewerSelected*/
+          ctx2[30];
+          add_flush_callback(() => updating_selected_2 = false);
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[0] & /*kpkSelected*/
+        536870912)
+          field3_changes.userId = /*kpkSelected*/
+          ctx2[29];
+        if (!updating_value_3 && dirty[0] & /*ka_pusat_kajian*/
+        67108864) {
+          updating_value_3 = true;
+          field3_changes.value = /*ka_pusat_kajian*/
+          ctx2[26];
+          add_flush_callback(() => updating_value_3 = false);
+        }
+        if (!updating_selected_3 && dirty[0] & /*kpkSelected*/
+        536870912) {
+          updating_selected_3 = true;
+          field3_changes.selected = /*kpkSelected*/
+          ctx2[29];
+          add_flush_callback(() => updating_selected_3 = false);
+        }
+        field3.$set(field3_changes);
+        if (
+          /*status*/
+          ctx2[21] === 2 || /*status*/
+          ctx2[21] === 4 || /*status*/
+          ctx2[21] === 6 || /*status*/
+          ctx2[21] === 8
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_13(ctx2);
+            if_block1.c();
+            if_block1.m(div2, t11);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*status*/
+          ctx2[21] === 10
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_122(ctx2);
+            if_block2.c();
+            if_block2.m(div2, t12);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*status*/
+          ctx2[21] === 1 || /*status*/
+          ctx2[21] === 3 || /*status*/
+          ctx2[21] === 5 || /*status*/
+          ctx2[21] === 7 || /*status*/
+          ctx2[21] === 9
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_11(ctx2);
+            if_block3.c();
+            if_block3.m(div2, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block0);
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block0);
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div0);
+          detach(t0);
+          detach(div1);
+          detach(t10);
+          detach(div2);
+        }
+        if_blocks[current_block_type_index].d();
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+      }
+    };
+  }
+  function create_else_block_2(ctx) {
+    let field0;
+    let t0;
+    let field1;
+    let t1;
+    let field2;
+    let t2;
+    let field3;
+    let t3;
+    let field4;
+    let t4;
+    let field5;
+    let t5;
+    let field6;
+    let t6;
+    let field7;
+    let t7;
+    let field8;
+    let t8;
+    let br;
+    let t9;
+    let table;
+    let thead;
+    let t13;
+    let tbody;
+    let t14;
+    let hr0;
+    let t15;
+    let field9;
+    let t16;
+    let field10;
+    let t17;
+    let field11;
+    let t18;
+    let t19;
+    let hr1;
+    let t20;
+    let field12;
+    let t21;
+    let field13;
+    let current;
+    field0 = new Field_default({
+      props: {
+        name: "Jenis Proposal",
+        $$slots: { default: [create_default_slot_42] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jenis Kegiatan",
+        $$slots: { default: [create_default_slot_41] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "Jenis Skema",
+        $$slots: { default: [create_default_slot_40] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "Kelompok Keahlian",
+        $$slots: { default: [create_default_slot_39] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Topik",
+        $$slots: { default: [create_default_slot_38] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Tanggal Mulai",
+        $$slots: { default: [create_default_slot_37] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Tanggal Selesai",
+        $$slots: { default: [create_default_slot_36] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Biaya Penelitian",
+        $$slots: { default: [create_default_slot_35] },
+        $$scope: { ctx }
+      }
+    });
+    field8 = new Field_default({
+      props: {
+        name: "Anggota Tim",
+        $$slots: { default: [create_default_slot_34] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block0 = (
+      /*anggotaTim*/
+      ctx[17].length > 0 && create_if_block_222(ctx)
+    );
+    field9 = new Field_default({
+      props: {
+        name: "Judul",
+        $$slots: { default: [create_default_slot_33] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "abstrak",
+        $$slots: { default: [create_default_slot_32] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "File Proposal",
+        $$slots: { default: [create_default_slot_31] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*jenisSkema*/
+      (ctx[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+      ctx[11] === "Riset Terapan" || /*jenisSkema*/
+      ctx[11] === "Riset Kerjasama" || /*jenisSkema*/
+      ctx[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+      ctx[11] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_21(ctx)
+    );
+    field12 = new Field_default({
+      props: {
+        name: "Catatan Revisi",
+        $$slots: { default: [create_default_slot_29] },
+        $$scope: { ctx }
+      }
+    });
+    field13 = new Field_default({
+      props: {
+        name: "Riwayat Revisi",
+        $$slots: { default: [create_default_slot_28] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field0.$$.fragment);
+        t0 = space();
+        create_component(field1.$$.fragment);
+        t1 = space();
+        create_component(field2.$$.fragment);
+        t2 = space();
+        create_component(field3.$$.fragment);
+        t3 = space();
+        create_component(field4.$$.fragment);
+        t4 = space();
+        create_component(field5.$$.fragment);
+        t5 = space();
+        create_component(field6.$$.fragment);
+        t6 = space();
+        create_component(field7.$$.fragment);
+        t7 = space();
+        create_component(field8.$$.fragment);
+        t8 = space();
+        br = element("br");
+        t9 = space();
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
+        t13 = space();
+        tbody = element("tbody");
+        if (if_block0)
+          if_block0.c();
+        t14 = space();
+        hr0 = element("hr");
+        t15 = space();
+        create_component(field9.$$.fragment);
+        t16 = space();
+        create_component(field10.$$.fragment);
+        t17 = space();
+        create_component(field11.$$.fragment);
+        t18 = space();
+        if (if_block1)
+          if_block1.c();
+        t19 = space();
+        hr1 = element("hr");
+        t20 = space();
+        create_component(field12.$$.fragment);
+        t21 = space();
+        create_component(field13.$$.fragment);
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        mount_component(field0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t1, anchor);
+        mount_component(field2, target, anchor);
+        insert(target, t2, anchor);
+        mount_component(field3, target, anchor);
+        insert(target, t3, anchor);
+        mount_component(field4, target, anchor);
+        insert(target, t4, anchor);
+        mount_component(field5, target, anchor);
+        insert(target, t5, anchor);
+        mount_component(field6, target, anchor);
+        insert(target, t6, anchor);
+        mount_component(field7, target, anchor);
+        insert(target, t7, anchor);
+        mount_component(field8, target, anchor);
+        insert(target, t8, anchor);
+        insert(target, br, anchor);
+        insert(target, t9, anchor);
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t13);
+        append(table, tbody);
+        if (if_block0)
+          if_block0.m(tbody, null);
+        insert(target, t14, anchor);
+        insert(target, hr0, anchor);
+        insert(target, t15, anchor);
+        mount_component(field9, target, anchor);
+        insert(target, t16, anchor);
+        mount_component(field10, target, anchor);
+        insert(target, t17, anchor);
+        mount_component(field11, target, anchor);
+        insert(target, t18, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t19, anchor);
+        insert(target, hr1, anchor);
+        insert(target, t20, anchor);
+        mount_component(field12, target, anchor);
+        insert(target, t21, anchor);
+        mount_component(field13, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty[0] & /*jenisProposal*/
+        512 | dirty[4] & /*$$scope*/
+        2097152) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[0] & /*jenisKegiatan*/
+        1024 | dirty[4] & /*$$scope*/
+        2097152) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[0] & /*jenisSkema*/
+        2048 | dirty[4] & /*$$scope*/
+        2097152) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[0] & /*kelompokKeahlian*/
+        4096 | dirty[4] & /*$$scope*/
+        2097152) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[0] & /*topik*/
+        8192 | dirty[4] & /*$$scope*/
+        2097152) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[0] & /*tanggalMulai*/
+        16384 | dirty[4] & /*$$scope*/
+        2097152) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[0] & /*tanggalSelesai*/
+        32768 | dirty[4] & /*$$scope*/
+        2097152) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[0] & /*biayaPenelitian*/
+        65536 | dirty[4] & /*$$scope*/
+        2097152) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        const field8_changes = {};
+        if (dirty[4] & /*$$scope*/
+        2097152) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        if (
+          /*anggotaTim*/
+          ctx2[17].length > 0
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_222(ctx2);
+            if_block0.c();
+            if_block0.m(tbody, null);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        const field9_changes = {};
+        if (dirty[0] & /*data*/
+        1 | dirty[4] & /*$$scope*/
+        2097152) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[0] & /*data*/
+        1 | dirty[4] & /*$$scope*/
+        2097152) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[4] & /*$$scope*/
+        2097152) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+        if (
+          /*jenisSkema*/
+          ctx2[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+          ctx2[11] === "Riset Terapan" || /*jenisSkema*/
+          ctx2[11] === "Riset Kerjasama" || /*jenisSkema*/
+          ctx2[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+          ctx2[11] === "Pengabdian Masyarakat UMKM Binaan"
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty[0] & /*jenisSkema*/
+            2048) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block_21(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(t19.parentNode, t19);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+        const field12_changes = {};
+        if (dirty[0] & /*comment*/
+        1048576 | dirty[4] & /*$$scope*/
+        2097152) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
+        const field13_changes = {};
+        if (dirty[0] & /*itemsRCR*/
+        4194304 | dirty[4] & /*$$scope*/
+        2097152) {
+          field13_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field13.$set(field13_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(field8.$$.fragment, local);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        transition_in(if_block1);
+        transition_in(field12.$$.fragment, local);
+        transition_in(field13.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(field8.$$.fragment, local);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        transition_out(if_block1);
+        transition_out(field12.$$.fragment, local);
+        transition_out(field13.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+          detach(t3);
+          detach(t4);
+          detach(t5);
+          detach(t6);
+          detach(t7);
+          detach(t8);
+          detach(br);
+          detach(t9);
+          detach(table);
+          detach(t14);
+          detach(hr0);
+          detach(t15);
+          detach(t16);
+          detach(t17);
+          detach(t18);
+          detach(t19);
+          detach(hr1);
+          detach(t20);
+          detach(t21);
+        }
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        destroy_component(field2, detaching);
+        destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+        destroy_component(field5, detaching);
+        destroy_component(field6, detaching);
+        destroy_component(field7, detaching);
+        destroy_component(field8, detaching);
+        if (if_block0)
+          if_block0.d();
+        destroy_component(field9, detaching);
+        destroy_component(field10, detaching);
+        destroy_component(field11, detaching);
+        if (if_block1)
+          if_block1.d(detaching);
+        destroy_component(field12, detaching);
+        destroy_component(field13, detaching);
+      }
+    };
+  }
+  function create_if_block_14(ctx) {
+    let field0;
+    let t0;
+    let field1;
+    let t1;
+    let field2;
+    let t2;
+    let field3;
+    let t3;
+    let field4;
+    let t4;
+    let field5;
+    let t5;
+    let field6;
+    let t6;
+    let field7;
+    let t7;
+    let field8;
+    let t8;
+    let br;
+    let t9;
+    let table;
+    let thead;
+    let t14;
+    let tbody;
+    let t15;
+    let hr0;
+    let t16;
+    let field9;
+    let t17;
+    let field10;
+    let t18;
+    let field11;
+    let t19;
+    let t20;
+    let hr1;
+    let t21;
+    let field12;
+    let t22;
+    let field13;
+    let current;
+    field0 = new Field_default({
+      props: {
+        name: "Jenis Proposal",
+        $$slots: { default: [create_default_slot_27] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jenis Kegiatan",
+        $$slots: { default: [create_default_slot_26] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "Jenis Skema",
+        $$slots: { default: [create_default_slot_25] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "Kelompok Keahlian",
+        $$slots: { default: [create_default_slot_24] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Topik",
+        $$slots: { default: [create_default_slot_23] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Tanggal Mulai",
+        $$slots: { default: [create_default_slot_222] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Tanggal Selesai",
+        $$slots: { default: [create_default_slot_21] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Biaya Penelitian",
+        $$slots: { default: [create_default_slot_20] },
+        $$scope: { ctx }
+      }
+    });
+    field8 = new Field_default({
+      props: {
+        name: "Anggota Tim",
+        $$slots: { default: [create_default_slot_19] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block0 = (
+      /*anggotaTim*/
+      ctx[17].length > 0 && create_if_block_17(ctx)
+    );
+    field9 = new Field_default({
+      props: {
+        name: "Judul",
+        $$slots: { default: [create_default_slot_18] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "Abstrak",
+        $$slots: { default: [create_default_slot_17] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "Proposal",
+        $$slots: { default: [create_default_slot_16] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*jenisSkema*/
+      (ctx[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+      ctx[11] === "Riset Terapan" || /*jenisSkema*/
+      ctx[11] === "Riset Kerjasama" || /*jenisSkema*/
+      ctx[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+      ctx[11] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_16(ctx)
+    );
+    field12 = new Field_default({
+      props: {
+        name: "Catatan Revisi",
+        $$slots: { default: [create_default_slot_14] },
+        $$scope: { ctx }
+      }
+    });
+    field13 = new Field_default({
+      props: {
+        name: "Riwayat Revisi",
+        $$slots: { default: [create_default_slot_13] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field0.$$.fragment);
+        t0 = space();
+        create_component(field1.$$.fragment);
+        t1 = space();
+        create_component(field2.$$.fragment);
+        t2 = space();
+        create_component(field3.$$.fragment);
+        t3 = space();
+        create_component(field4.$$.fragment);
+        t4 = space();
+        create_component(field5.$$.fragment);
+        t5 = space();
+        create_component(field6.$$.fragment);
+        t6 = space();
+        create_component(field7.$$.fragment);
+        t7 = space();
+        create_component(field8.$$.fragment);
+        t8 = space();
+        br = element("br");
+        t9 = space();
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:65px"></th> <th class="is-narrow">Role</th> <th>Nama</th></tr>`;
+        t14 = space();
+        tbody = element("tbody");
+        if (if_block0)
+          if_block0.c();
+        t15 = space();
+        hr0 = element("hr");
+        t16 = space();
+        create_component(field9.$$.fragment);
+        t17 = space();
+        create_component(field10.$$.fragment);
+        t18 = space();
+        create_component(field11.$$.fragment);
+        t19 = space();
+        if (if_block1)
+          if_block1.c();
+        t20 = space();
+        hr1 = element("hr");
+        t21 = space();
+        create_component(field12.$$.fragment);
+        t22 = space();
+        create_component(field13.$$.fragment);
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        mount_component(field0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t1, anchor);
+        mount_component(field2, target, anchor);
+        insert(target, t2, anchor);
+        mount_component(field3, target, anchor);
+        insert(target, t3, anchor);
+        mount_component(field4, target, anchor);
+        insert(target, t4, anchor);
+        mount_component(field5, target, anchor);
+        insert(target, t5, anchor);
+        mount_component(field6, target, anchor);
+        insert(target, t6, anchor);
+        mount_component(field7, target, anchor);
+        insert(target, t7, anchor);
+        mount_component(field8, target, anchor);
+        insert(target, t8, anchor);
+        insert(target, br, anchor);
+        insert(target, t9, anchor);
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t14);
+        append(table, tbody);
+        if (if_block0)
+          if_block0.m(tbody, null);
+        insert(target, t15, anchor);
+        insert(target, hr0, anchor);
+        insert(target, t16, anchor);
+        mount_component(field9, target, anchor);
+        insert(target, t17, anchor);
+        mount_component(field10, target, anchor);
+        insert(target, t18, anchor);
+        mount_component(field11, target, anchor);
+        insert(target, t19, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t20, anchor);
+        insert(target, hr1, anchor);
+        insert(target, t21, anchor);
+        mount_component(field12, target, anchor);
+        insert(target, t22, anchor);
+        mount_component(field13, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty[0] & /*jenisProposal*/
+        512 | dirty[4] & /*$$scope*/
+        2097152) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[0] & /*jenisKegiatan*/
+        1024 | dirty[4] & /*$$scope*/
+        2097152) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[0] & /*jenisSkema, jenisKegiatan*/
+        3072 | dirty[4] & /*$$scope*/
+        2097152) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[0] & /*kelompokKeahlian*/
+        4096 | dirty[4] & /*$$scope*/
+        2097152) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[0] & /*topik*/
+        8192 | dirty[4] & /*$$scope*/
+        2097152) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[0] & /*tanggalMulai*/
+        16384 | dirty[4] & /*$$scope*/
+        2097152) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[0] & /*tanggalSelesai*/
+        32768 | dirty[4] & /*$$scope*/
+        2097152) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[0] & /*biayaPenelitian*/
+        65536 | dirty[4] & /*$$scope*/
+        2097152) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        const field8_changes = {};
+        if (dirty[0] & /*anggotaTim*/
+        131072 | dirty[2] & /*items*/
+        1 | dirty[4] & /*$$scope*/
+        2097152) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        if (
+          /*anggotaTim*/
+          ctx2[17].length > 0
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+            if (dirty[0] & /*anggotaTim*/
+            131072) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_17(ctx2);
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(tbody, null);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
+        const field9_changes = {};
+        if (dirty[0] & /*judul*/
+        262144 | dirty[4] & /*$$scope*/
+        2097152) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[0] & /*abstrak*/
+        524288 | dirty[4] & /*$$scope*/
+        2097152) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[1] & /*filePpm*/
+        1073741824 | dirty[4] & /*$$scope*/
+        2097152) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+        if (
+          /*jenisSkema*/
+          ctx2[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+          ctx2[11] === "Riset Terapan" || /*jenisSkema*/
+          ctx2[11] === "Riset Kerjasama" || /*jenisSkema*/
+          ctx2[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+          ctx2[11] === "Pengabdian Masyarakat UMKM Binaan"
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty[0] & /*jenisSkema*/
+            2048) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block_16(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(t20.parentNode, t20);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+        const field12_changes = {};
+        if (dirty[0] & /*comment*/
+        1048576 | dirty[4] & /*$$scope*/
+        2097152) {
+          field12_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field12.$set(field12_changes);
+        const field13_changes = {};
+        if (dirty[0] & /*itemsRCR*/
+        4194304 | dirty[4] & /*$$scope*/
+        2097152) {
+          field13_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field13.$set(field13_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(field8.$$.fragment, local);
+        transition_in(if_block0);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        transition_in(if_block1);
+        transition_in(field12.$$.fragment, local);
+        transition_in(field13.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(field8.$$.fragment, local);
+        transition_out(if_block0);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        transition_out(if_block1);
+        transition_out(field12.$$.fragment, local);
+        transition_out(field13.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+          detach(t3);
+          detach(t4);
+          detach(t5);
+          detach(t6);
+          detach(t7);
+          detach(t8);
+          detach(br);
+          detach(t9);
+          detach(table);
+          detach(t15);
+          detach(hr0);
+          detach(t16);
+          detach(t17);
+          detach(t18);
+          detach(t19);
+          detach(t20);
+          detach(hr1);
+          detach(t21);
+          detach(t22);
+        }
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        destroy_component(field2, detaching);
+        destroy_component(field3, detaching);
+        destroy_component(field4, detaching);
+        destroy_component(field5, detaching);
+        destroy_component(field6, detaching);
+        destroy_component(field7, detaching);
+        destroy_component(field8, detaching);
+        if (if_block0)
+          if_block0.d();
+        destroy_component(field9, detaching);
+        destroy_component(field10, detaching);
+        destroy_component(field11, detaching);
+        if (if_block1)
+          if_block1.d(detaching);
+        destroy_component(field12, detaching);
+        destroy_component(field13, detaching);
+      }
+    };
+  }
+  function create_default_slot_42(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jenisProposal*/
+          ctx[9]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisProposal*/
+        512)
+          set_data(
+            t,
+            /*jenisProposal*/
+            ctx2[9]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_41(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jenisKegiatan*/
+          ctx[10]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisKegiatan*/
+        1024)
+          set_data(
+            t,
+            /*jenisKegiatan*/
+            ctx2[10]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_40(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jenisSkema*/
+          ctx[11]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisSkema*/
+        2048)
+          set_data(
+            t,
+            /*jenisSkema*/
+            ctx2[11]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_39(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*kelompokKeahlian*/
+          ctx[12]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*kelompokKeahlian*/
+        4096)
+          set_data(
+            t,
+            /*kelompokKeahlian*/
+            ctx2[12]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_38(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*topik*/
+          ctx[13]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*topik*/
+        8192)
+          set_data(
+            t,
+            /*topik*/
+            ctx2[13]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_37(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tanggalMulai*/
+          ctx[14]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*tanggalMulai*/
+        16384)
+          set_data(
+            t,
+            /*tanggalMulai*/
+            ctx2[14]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_36(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*tanggalSelesai*/
+          ctx[15]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*tanggalSelesai*/
+        32768)
+          set_data(
+            t,
+            /*tanggalSelesai*/
+            ctx2[15]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_35(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*biayaPenelitian*/
+          ctx[16]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*biayaPenelitian*/
+        65536)
+          set_data(
+            t,
+            /*biayaPenelitian*/
+            ctx2[16]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_34(ctx) {
+    let span;
+    return {
+      c() {
+        span = element("span");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+      }
+    };
+  }
+  function create_if_block_222(ctx) {
+    let each_1_anchor;
+    let each_value_10 = ensure_array_like(
+      /*anggotaTim*/
+      ctx[17]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_10.length; i += 1) {
+      each_blocks[i] = create_each_block_10(get_each_context_10(ctx, each_value_10, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*anggotaTim*/
+        131072) {
+          each_value_10 = ensure_array_like(
+            /*anggotaTim*/
+            ctx2[17]
+          );
+          let i;
+          for (i = 0; i < each_value_10.length; i += 1) {
+            const child_ctx = get_each_context_10(ctx2, each_value_10, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_10(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_10.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_10(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*member*/
+      ctx[138].role + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*member*/
+      ctx[138].label + ""
+    );
+    let t2;
+    let t3;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*anggotaTim*/
+        131072 && t0_value !== (t0_value = /*member*/
+        ctx2[138].role + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*anggotaTim*/
+        131072 && t2_value !== (t2_value = /*member*/
+        ctx2[138].label + ""))
+          set_data(t2, t2_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_33(ctx) {
+    let t_value = (
+      /*data*/
+      ctx[0].judul + ""
+    );
+    let t;
+    return {
+      c() {
+        t = text(t_value);
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*data*/
+        1 && t_value !== (t_value = /*data*/
+        ctx2[0].judul + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_32(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*data*/
+      ctx[0].abstrak + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*data*/
+        1 && raw_value !== (raw_value = /*data*/
+        ctx2[0].abstrak + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(html_anchor);
+          html_tag.d();
+        }
+      }
+    };
+  }
+  function create_default_slot_31(ctx) {
+    let button;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        button = element("button");
+        button.textContent = "Download Proposal";
+        attr(button, "class", "button is-link button");
+      },
+      m(target, anchor) {
+        insert(target, button, anchor);
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*handleDownloadPpm*/
+            ctx[72]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(button);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_21(ctx) {
+    let field;
+    let current;
+    field = new Field_default({
+      props: {
+        name: "File RAB",
+        $$slots: { default: [create_default_slot_30] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(field, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field_changes = {};
+        if (dirty[4] & /*$$scope*/
+        2097152) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(field, detaching);
+      }
+    };
+  }
+  function create_default_slot_30(ctx) {
+    let button;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        button = element("button");
+        button.textContent = "Download RAB";
+        attr(button, "class", "button is-link button");
+      },
+      m(target, anchor) {
+        insert(target, button, anchor);
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*handleDownloadRab*/
+            ctx[71]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(button);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_29(ctx) {
+    let textarea;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        textarea = element("textarea");
+        attr(textarea, "class", "textarea");
+        attr(textarea, "name", "komentar");
+        attr(textarea, "id", "komentar");
+      },
+      m(target, anchor) {
+        insert(target, textarea, anchor);
+        set_input_value(
+          textarea,
+          /*comment*/
+          ctx[20]
+        );
+        if (!mounted) {
+          dispose = listen(
+            textarea,
+            "input",
+            /*textarea_input_handler_1*/
+            ctx[92]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*comment*/
+        1048576) {
+          set_input_value(
+            textarea,
+            /*comment*/
+            ctx2[20]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(textarea);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_20(ctx) {
+    let tbody;
+    let each_value_9 = ensure_array_like(
+      /*itemsRCR*/
+      ctx[22]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_9.length; i += 1) {
+      each_blocks[i] = create_each_block_9(get_each_context_9(ctx, each_value_9, i));
+    }
+    return {
+      c() {
+        tbody = element("tbody");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+      },
+      m(target, anchor) {
+        insert(target, tbody, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(tbody, null);
+          }
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*itemsRCR*/
+        4194304) {
+          each_value_9 = ensure_array_like(
+            /*itemsRCR*/
+            ctx2[22]
+          );
+          let i;
+          for (i = 0; i < each_value_9.length; i += 1) {
+            const child_ctx = get_each_context_9(ctx2, each_value_9, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_9(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(tbody, null);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_9.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tbody);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_9(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*item*/
+      ctx[135].comment + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*item*/
+      ctx[135].evaluator + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*item*/
+      ctx[135].time + ""
+    );
+    let t4;
+    let t5;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t0_value !== (t0_value = /*item*/
+        ctx2[135].comment + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t2_value !== (t2_value = /*item*/
+        ctx2[135].evaluator + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t4_value !== (t4_value = /*item*/
+        ctx2[135].time + ""))
+          set_data(t4, t4_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_28(ctx) {
+    let table;
+    let thead;
+    let t5;
+    let if_block = (
+      /*itemsRCR*/
+      ctx[22] && create_if_block_20(ctx)
+    );
+    return {
+      c() {
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Catatan Revisi</th> <th>Evalutor</th> <th class="is-narrow">Waktu</th></tr>`;
+        t5 = space();
+        if (if_block)
+          if_block.c();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t5);
+        if (if_block)
+          if_block.m(table, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*itemsRCR*/
+          ctx2[22]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_20(ctx2);
+            if_block.c();
+            if_block.m(table, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(table);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_default_slot_27(ctx) {
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jenis Proposal";
+        option1 = element("option");
+        option1.textContent = "Proposal Awal";
+        option2 = element("option");
+        option2.textContent = "Proposal Lanjutan";
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "Proposal Awal";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Proposal Lanjutan";
+        set_input_value(option2, option2.__value);
+        if (
+          /*jenisProposal*/
+          ctx[9] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler*/
+            ctx[78].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        select_option(
+          select,
+          /*jenisProposal*/
+          ctx[9],
+          true
+        );
+        if (!mounted) {
+          dispose = listen(
+            select,
+            "change",
+            /*select_change_handler*/
+            ctx[78]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisProposal*/
+        512) {
+          select_option(
+            select,
+            /*jenisProposal*/
+            ctx2[9]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_26(ctx) {
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jenis Kegiatan";
+        option1 = element("option");
+        option1.textContent = "Penelitian";
+        option2 = element("option");
+        option2.textContent = "Pengabdian Masyarakat";
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "Penelitian";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Pengabdian Masyarakat";
+        set_input_value(option2, option2.__value);
+        if (
+          /*jenisKegiatan*/
+          ctx[10] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler_1*/
+            ctx[79].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        select_option(
+          select,
+          /*jenisKegiatan*/
+          ctx[10],
+          true
+        );
+        if (!mounted) {
+          dispose = listen(
+            select,
+            "change",
+            /*select_change_handler_1*/
+            ctx[79]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*jenisKegiatan*/
+        1024) {
+          select_option(
+            select,
+            /*jenisKegiatan*/
+            ctx2[10]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_else_block_1(ctx) {
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    return {
+      c() {
+        option0 = element("option");
+        option0.textContent = "Pengabdian Masyarakat Desa Binaan";
+        option1 = element("option");
+        option1.textContent = "Pengabdian Masyarakat UMKM Binaan";
+        option2 = element("option");
+        option2.textContent = "Pengabdian Masyarakat Mandiri";
+        option3 = element("option");
+        option3.textContent = "Pengabdian Masyarakat Hibah Eksternal";
+        option0.__value = "Pengabdian Masyarakat Desa Binaan";
+        set_input_value(option0, option0.__value);
+        option1.__value = "Pengabdian Masyarakat UMKM Binaan";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Pengabdian Masyarakat Mandiri";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Pengabdian Masyarakat Hibah Eksternal";
+        set_input_value(option3, option3.__value);
+      },
+      m(target, anchor) {
+        insert(target, option0, anchor);
+        insert(target, option1, anchor);
+        insert(target, option2, anchor);
+        insert(target, option3, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(option0);
+          detach(option1);
+          detach(option2);
+          detach(option3);
+        }
+      }
+    };
+  }
+  function create_if_block_19(ctx) {
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    return {
+      c() {
+        option0 = element("option");
+        option0.textContent = "Riset Kelompok Keahlian";
+        option1 = element("option");
+        option1.textContent = "Riset Terapan";
+        option2 = element("option");
+        option2.textContent = "Riset Kerjasama";
+        option3 = element("option");
+        option3.textContent = "Riset Mandiri";
+        option4 = element("option");
+        option4.textContent = "Riset Eksternal";
+        option0.__value = "Riset Kelompok Keahlian";
+        set_input_value(option0, option0.__value);
+        option1.__value = "Riset Terapan";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Riset Kerjasama";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Riset Mandiri";
+        set_input_value(option3, option3.__value);
+        option4.__value = "Riset Eksternal";
+        set_input_value(option4, option4.__value);
+      },
+      m(target, anchor) {
+        insert(target, option0, anchor);
+        insert(target, option1, anchor);
+        insert(target, option2, anchor);
+        insert(target, option3, anchor);
+        insert(target, option4, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(option0);
+          detach(option1);
+          detach(option2);
+          detach(option3);
+          detach(option4);
+        }
+      }
+    };
+  }
+  function create_default_slot_25(ctx) {
+    let div;
+    let select;
+    let option;
+    let mounted;
+    let dispose;
+    function select_block_type_1(ctx2, dirty) {
+      if (
+        /*jenisKegiatan*/
+        ctx2[10] === "Penelitian"
+      )
+        return create_if_block_19;
+      return create_else_block_1;
+    }
+    let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1, -1]);
+    let if_block = current_block_type(ctx);
+    return {
+      c() {
+        div = element("div");
+        select = element("select");
+        option = element("option");
+        option.textContent = "Pilih Jenis Skema\r\n                        ";
+        if_block.c();
+        option.__value = "";
+        set_input_value(option, option.__value);
+        option.selected = true;
+        option.disabled = true;
+        option.hidden = true;
+        if (
+          /*jenisSkema*/
+          ctx[11] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler_2*/
+            ctx[80].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option);
+        if_block.m(select, null);
+        select_option(
+          select,
+          /*jenisSkema*/
+          ctx[11],
+          true
+        );
+        if (!mounted) {
+          dispose = listen(
+            select,
+            "change",
+            /*select_change_handler_2*/
+            ctx[80]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (current_block_type !== (current_block_type = select_block_type_1(ctx2, dirty))) {
+          if_block.d(1);
+          if_block = current_block_type(ctx2);
+          if (if_block) {
+            if_block.c();
+            if_block.m(select, null);
+          }
+        }
+        if (dirty[0] & /*jenisSkema*/
+        2048) {
+          select_option(
+            select,
+            /*jenisSkema*/
+            ctx2[11]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        if_block.d();
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_24(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Masukkan Kelompok Keahlian");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*kelompokKeahlian*/
+          ctx[12]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler*/
+            ctx[81]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*kelompokKeahlian*/
+        4096 && input.value !== /*kelompokKeahlian*/
+        ctx2[12]) {
+          set_input_value(
+            input,
+            /*kelompokKeahlian*/
+            ctx2[12]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_23(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Masukkan Topik");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*topik*/
+          ctx[13]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_1*/
+            ctx[82]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*topik*/
+        8192 && input.value !== /*topik*/
+        ctx2[13]) {
+          set_input_value(
+            input,
+            /*topik*/
+            ctx2[13]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_222(ctx) {
+    let div;
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "date");
+        attr(div, "class", "field");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, input);
+        set_input_value(
+          input,
+          /*tanggalMulai*/
+          ctx[14]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_2*/
+            ctx[83]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*tanggalMulai*/
+        16384) {
+          set_input_value(
+            input,
+            /*tanggalMulai*/
+            ctx2[14]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_21(ctx) {
+    let div;
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "date");
+        attr(div, "class", "field");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, input);
+        set_input_value(
+          input,
+          /*tanggalSelesai*/
+          ctx[15]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_3*/
+            ctx[84]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*tanggalSelesai*/
+        32768) {
+          set_input_value(
+            input,
+            /*tanggalSelesai*/
+            ctx2[15]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_20(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Masukkan Biaya Penelitian");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*biayaPenelitian*/
+          ctx[16]
+        );
+        if (!mounted) {
+          dispose = [
+            listen(
+              input,
+              "input",
+              /*input_input_handler_4*/
+              ctx[85]
+            ),
+            listen(
+              input,
+              "keyup",
+              /*keyup_handler*/
+              ctx[86]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*biayaPenelitian*/
+        65536 && input.value !== /*biayaPenelitian*/
+        ctx2[16]) {
+          set_input_value(
+            input,
+            /*biayaPenelitian*/
+            ctx2[16]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot_19(ctx) {
+    let select;
+    let updating_result;
+    let current;
+    function select_result_binding(value) {
+      ctx[87](value);
+    }
+    let select_props = { start: "2", items: (
+      /*items*/
+      ctx[62]
+    ) };
+    if (
+      /*anggotaTim*/
+      ctx[17] !== void 0
+    ) {
+      select_props.result = /*anggotaTim*/
+      ctx[17];
+    }
+    select = new Select_default({ props: select_props });
+    binding_callbacks.push(() => bind(select, "result", select_result_binding));
+    return {
+      c() {
+        create_component(select.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(select, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const select_changes = {};
+        if (dirty[2] & /*items*/
+        1)
+          select_changes.items = /*items*/
+          ctx2[62];
+        if (!updating_result && dirty[0] & /*anggotaTim*/
+        131072) {
+          updating_result = true;
+          select_changes.result = /*anggotaTim*/
+          ctx2[17];
+          add_flush_callback(() => updating_result = false);
+        }
+        select.$set(select_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(select.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(select.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(select, detaching);
+      }
+    };
+  }
+  function create_if_block_17(ctx) {
+    let each_1_anchor;
+    let current;
+    let each_value_8 = ensure_array_like(
+      /*anggotaTim*/
+      ctx[17]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_8.length; i += 1) {
+      each_blocks[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
+    }
+    const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
+      each_blocks[i] = null;
+    });
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*anggotaTim*/
+        131072 | dirty[2] & /*deleteMember*/
+        256) {
+          each_value_8 = ensure_array_like(
+            /*anggotaTim*/
+            ctx2[17]
+          );
+          let i;
+          for (i = 0; i < each_value_8.length; i += 1) {
+            const child_ctx = get_each_context_8(ctx2, each_value_8, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+              transition_in(each_blocks[i], 1);
+            } else {
+              each_blocks[i] = create_each_block_8(child_ctx);
+              each_blocks[i].c();
+              transition_in(each_blocks[i], 1);
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          group_outros();
+          for (i = each_value_8.length; i < each_blocks.length; i += 1) {
+            out(i);
+          }
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        for (let i = 0; i < each_value_8.length; i += 1) {
+          transition_in(each_blocks[i]);
+        }
+        current = true;
+      },
+      o(local) {
+        each_blocks = each_blocks.filter(Boolean);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          transition_out(each_blocks[i]);
+        }
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_if_block_18(ctx) {
+    let button;
+    let span;
+    let icon;
+    let button_data_value_value;
+    let current;
+    let mounted;
+    let dispose;
+    icon = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    return {
+      c() {
+        button = element("button");
+        span = element("span");
+        create_component(icon.$$.fragment);
+        attr(span, "class", "icon");
+        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "data-value", button_data_value_value = /*member*/
+        ctx[138].value);
+      },
+      m(target, anchor) {
+        insert(target, button, anchor);
+        append(button, span);
+        mount_component(icon, span, null);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*deleteMember*/
+            ctx[70]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (!current || dirty[0] & /*anggotaTim*/
+        131072 && button_data_value_value !== (button_data_value_value = /*member*/
+        ctx2[138].value)) {
+          attr(button, "data-value", button_data_value_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(button);
+        }
+        destroy_component(icon);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_each_block_8(ctx) {
+    let tr;
+    let td0;
+    let t0;
+    let td1;
+    let t1_value = (
+      /*member*/
+      ctx[138].role + ""
+    );
+    let t1;
+    let t2;
+    let td2;
+    let t3_value = (
+      /*member*/
+      ctx[138].label + ""
+    );
+    let t3;
+    let t4;
+    let current;
+    let if_block = (
+      /*idx*/
+      ctx[140] > 0 && create_if_block_18(ctx)
+    );
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        if (if_block)
+          if_block.c();
+        t0 = space();
+        td1 = element("td");
+        t1 = text(t1_value);
+        t2 = space();
+        td2 = element("td");
+        t3 = text(t3_value);
+        t4 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        if (if_block)
+          if_block.m(td0, null);
+        append(tr, t0);
+        append(tr, td1);
+        append(td1, t1);
+        append(tr, t2);
+        append(tr, td2);
+        append(td2, t3);
+        append(tr, t4);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (
+          /*idx*/
+          ctx2[140] > 0
+        )
+          if_block.p(ctx2, dirty);
+        if ((!current || dirty[0] & /*anggotaTim*/
+        131072) && t1_value !== (t1_value = /*member*/
+        ctx2[138].role + ""))
+          set_data(t1, t1_value);
+        if ((!current || dirty[0] & /*anggotaTim*/
+        131072) && t3_value !== (t3_value = /*member*/
+        ctx2[138].label + ""))
+          set_data(t3, t3_value);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_default_slot_18(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Masukkan Judul");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*judul*/
+          ctx[18]
+        );
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "input",
+            /*input_input_handler_5*/
+            ctx[88]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*judul*/
+        262144 && input.value !== /*judul*/
+        ctx2[18]) {
+          set_input_value(
+            input,
+            /*judul*/
+            ctx2[18]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_17(ctx) {
+    let textarea;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        textarea = element("textarea");
+        attr(textarea, "class", "textarea");
+      },
+      m(target, anchor) {
+        insert(target, textarea, anchor);
+        set_input_value(
+          textarea,
+          /*abstrak*/
+          ctx[19]
+        );
+        if (!mounted) {
+          dispose = listen(
+            textarea,
+            "input",
+            /*textarea_input_handler*/
+            ctx[89]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*abstrak*/
+        524288) {
+          set_input_value(
+            textarea,
+            /*abstrak*/
+            ctx2[19]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(textarea);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_16(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "accept", "application/pdf");
+        attr(input, "type", "file");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "change",
+            /*change_handler*/
+            ctx[90]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_16(ctx) {
+    let field;
+    let current;
+    field = new Field_default({
+      props: {
+        name: "Rencana Anggaran Biaya",
+        $$slots: { default: [create_default_slot_15] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(field, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const field_changes = {};
+        if (dirty[1] & /*fileRab*/
+        536870912 | dirty[4] & /*$$scope*/
+        2097152) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(field, detaching);
+      }
+    };
+  }
+  function create_default_slot_15(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "class", "input");
+        attr(input, "accept", ".xlsx");
+        attr(input, "type", "file");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        if (!mounted) {
+          dispose = listen(
+            input,
+            "change",
+            /*change_handler_1*/
+            ctx[91]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(input);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_14(ctx) {
+    let div;
+    let t;
+    return {
+      c() {
+        div = element("div");
+        t = text(
+          /*comment*/
+          ctx[20]
+        );
+        attr(div, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*comment*/
+        1048576)
+          set_data(
+            t,
+            /*comment*/
+            ctx2[20]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+      }
+    };
+  }
+  function create_if_block_15(ctx) {
+    let tbody;
+    let each_value_7 = ensure_array_like(
+      /*itemsRCR*/
+      ctx[22]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_7.length; i += 1) {
+      each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
+    }
+    return {
+      c() {
+        tbody = element("tbody");
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+      },
+      m(target, anchor) {
+        insert(target, tbody, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(tbody, null);
+          }
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*itemsRCR*/
+        4194304) {
+          each_value_7 = ensure_array_like(
+            /*itemsRCR*/
+            ctx2[22]
+          );
+          let i;
+          for (i = 0; i < each_value_7.length; i += 1) {
+            const child_ctx = get_each_context_7(ctx2, each_value_7, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_7(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(tbody, null);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_7.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tbody);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_7(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*item*/
+      ctx[135].comment + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*item*/
+      ctx[135].evaluator + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*item*/
+      ctx[135].time + ""
+    );
+    let t4;
+    let t5;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t0_value !== (t0_value = /*item*/
+        ctx2[135].comment + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t2_value !== (t2_value = /*item*/
+        ctx2[135].evaluator + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*itemsRCR*/
+        4194304 && t4_value !== (t4_value = /*item*/
+        ctx2[135].time + ""))
+          set_data(t4, t4_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_13(ctx) {
+    let table;
+    let thead;
+    let t5;
+    let if_block = (
+      /*itemsRCR*/
+      ctx[22] && create_if_block_15(ctx)
+    );
+    return {
+      c() {
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Catatan Revisi</th> <th>Evalutor</th> <th class="is-narrow">Waktu</th></tr>`;
+        t5 = space();
+        if (if_block)
+          if_block.c();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t5);
+        if (if_block)
+          if_block.m(table, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*itemsRCR*/
+          ctx2[22]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_15(ctx2);
+            if_block.c();
+            if_block.m(table, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(table);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_if_block_13(ctx) {
+    let p0;
+    let button0;
+    let t1;
+    let p1;
+    let button1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        p0 = element("p");
+        button0 = element("button");
+        button0.textContent = "Revisi";
+        t1 = space();
+        p1 = element("p");
+        button1 = element("button");
+        button1.textContent = "Proses";
+        attr(button0, "class", "button is-info is-light is-outlined");
+        attr(p0, "class", "control");
+        attr(button1, "class", "button is-info");
+        attr(p1, "class", "control");
+      },
+      m(target, anchor) {
+        insert(target, p0, anchor);
+        append(p0, button0);
+        insert(target, t1, anchor);
+        insert(target, p1, anchor);
+        append(p1, button1);
+        if (!mounted) {
+          dispose = [
+            listen(
+              button0,
+              "click",
+              /*handleRevisi*/
+              ctx[67]
+            ),
+            listen(
+              button1,
+              "click",
+              /*handlePass*/
+              ctx[69]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p0);
+          detach(t1);
+          detach(p1);
+        }
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_122(ctx) {
+    let p0;
+    let button0;
+    let t1;
+    let p1;
+    let button1;
+    let t3;
+    let p2;
+    let button2;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        p0 = element("p");
+        button0 = element("button");
+        button0.textContent = "Revisi";
+        t1 = space();
+        p1 = element("p");
+        button1 = element("button");
+        button1.textContent = "Ditolak";
+        t3 = space();
+        p2 = element("p");
+        button2 = element("button");
+        button2.textContent = "Proses";
+        attr(button0, "class", "button is-info is-light is-outlined");
+        attr(p0, "class", "control");
+        attr(button1, "class", "button is-danger is-light is-outlined");
+        attr(p1, "class", "control");
+        attr(button2, "class", "button is-info");
+        attr(p2, "class", "control");
+      },
+      m(target, anchor) {
+        insert(target, p0, anchor);
+        append(p0, button0);
+        insert(target, t1, anchor);
+        insert(target, p1, anchor);
+        append(p1, button1);
+        insert(target, t3, anchor);
+        insert(target, p2, anchor);
+        append(p2, button2);
+        if (!mounted) {
+          dispose = [
+            listen(
+              button0,
+              "click",
+              /*handleRevisi*/
+              ctx[67]
+            ),
+            listen(
+              button1,
+              "click",
+              /*handleDitolak*/
+              ctx[68]
+            ),
+            listen(
+              button2,
+              "click",
+              /*handlePass*/
+              ctx[69]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p0);
+          detach(t1);
+          detach(p1);
+          detach(t3);
+          detach(p2);
+        }
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_11(ctx) {
+    let p;
+    let button;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        p = element("p");
+        button = element("button");
+        button.textContent = "Remediasi";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, button);
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*remediasi*/
+            ctx[66]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_110(ctx) {
+    let t0;
+    let div0;
+    let field0;
+    let t1;
+    let field1;
+    let t2;
+    let field2;
+    let t3;
+    let field3;
+    let t4;
+    let field4;
+    let t5;
+    let field5;
+    let t6;
+    let field6;
+    let t7;
+    let field7;
+    let t8;
+    let field8;
+    let t9;
+    let field9;
+    let t10;
+    let field10;
+    let t11;
+    let field11;
+    let t12;
+    let div1;
+    let h60;
+    let t14;
+    let table0;
+    let thead0;
+    let t22;
+    let tbody0;
+    let tr1;
+    let th4;
+    let t24;
+    let td0;
+    let t25;
+    let t26;
+    let td1;
+    let t27;
+    let t28;
+    let td2;
+    let t29;
+    let t30;
+    let tr2;
+    let th5;
+    let t32;
+    let td3;
+    let t33;
+    let t34;
+    let td4;
+    let t35;
+    let t36;
+    let td5;
+    let t37;
+    let t38;
+    let tr3;
+    let th6;
+    let t40;
+    let td6;
+    let t41;
+    let t42;
+    let td7;
+    let t43;
+    let t44;
+    let td8;
+    let t45;
+    let t46;
+    let tr4;
+    let th7;
+    let t48;
+    let td9;
+    let t49;
+    let t50;
+    let td10;
+    let t51;
+    let t52;
+    let td11;
+    let t53;
+    let t54;
+    let tr5;
+    let th8;
+    let t56;
+    let td12;
+    let t57;
+    let t58;
+    let td13;
+    let t59;
+    let t60;
+    let td14;
+    let t61;
+    let t62;
+    let div2;
+    let h61;
+    let t64;
+    let table1;
+    let thead1;
+    let t74;
+    let tbody1;
+    let t75;
+    let div3;
+    let h62;
+    let t77;
+    let table2;
+    let thead2;
+    let t87;
+    let tbody2;
+    let t88;
+    let div4;
+    let h63;
+    let t90;
+    let table3;
+    let thead3;
+    let t98;
+    let tbody3;
+    let t99;
+    let div5;
+    let h64;
+    let t101;
+    let table4;
+    let thead4;
+    let t109;
+    let tbody4;
+    let t110;
+    let div6;
+    let h65;
+    let t112;
+    let table5;
+    let thead5;
+    let t122;
+    let tbody5;
+    let t123;
+    let div7;
+    let h66;
+    let t125;
+    let table6;
+    let thead6;
+    let t135;
+    let tbody6;
+    let current;
+    function select_block_type_2(ctx2, dirty) {
+      if (
+        /*status*/
+        ctx2[21] > 10
+      )
+        return create_if_block_9;
+      return create_else_block3;
+    }
+    let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1]);
+    let if_block0 = current_block_type(ctx);
+    field0 = new Field_default({
+      props: {
+        name: "Nama Lengkap",
+        $$slots: { default: [create_default_slot_122] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Jabatan Fungsional",
+        $$slots: { default: [create_default_slot_11] },
+        $$scope: { ctx }
+      }
+    });
+    field2 = new Field_default({
+      props: {
+        name: "NIP",
+        $$slots: { default: [create_default_slot_10] },
+        $$scope: { ctx }
+      }
+    });
+    field3 = new Field_default({
+      props: {
+        name: "NIDN",
+        $$slots: { default: [create_default_slot_9] },
+        $$scope: { ctx }
+      }
+    });
+    field4 = new Field_default({
+      props: {
+        name: "Tempat / Tanggal Lahir",
+        $$slots: { default: [create_default_slot_8] },
+        $$scope: { ctx }
+      }
+    });
+    field5 = new Field_default({
+      props: {
+        name: "Alamat Rumah",
+        $$slots: { default: [create_default_slot_72] },
+        $$scope: { ctx }
+      }
+    });
+    field6 = new Field_default({
+      props: {
+        name: "Telp/Fax Rumah",
+        $$slots: { default: [create_default_slot_62] },
+        $$scope: { ctx }
+      }
+    });
+    field7 = new Field_default({
+      props: {
+        name: "Nomoh Handphone",
+        $$slots: { default: [create_default_slot_52] },
+        $$scope: { ctx }
+      }
+    });
+    field8 = new Field_default({
+      props: {
+        name: "Alamat Kantor",
+        $$slots: { default: [create_default_slot_45] },
+        $$scope: { ctx }
+      }
+    });
+    field9 = new Field_default({
+      props: {
+        name: "Telp/Fax Kantor",
+        $$slots: { default: [create_default_slot_310] },
+        $$scope: { ctx }
+      }
+    });
+    field10 = new Field_default({
+      props: {
+        name: "Email",
+        $$slots: { default: [create_default_slot_210] },
+        $$scope: { ctx }
+      }
+    });
+    field11 = new Field_default({
+      props: {
+        name: "Mata Kuliah",
+        $$slots: { default: [create_default_slot_110] },
+        $$scope: { ctx }
+      }
+    });
+    let if_block1 = (
+      /*dataPP*/
+      ctx[1] && create_if_block_7(ctx)
+    );
+    let if_block2 = (
+      /*dataPM*/
+      ctx[2] && create_if_block_6(ctx)
+    );
+    let if_block3 = (
+      /*dataPD*/
+      ctx[3] && create_if_block_5(ctx)
+    );
+    let if_block4 = (
+      /*dataPPub*/
+      ctx[4] && create_if_block_42(ctx)
+    );
+    let if_block5 = (
+      /*dataPPB*/
+      ctx[5] && create_if_block_32(ctx)
+    );
+    let if_block6 = (
+      /*dataPHKI*/
+      ctx[6] && create_if_block_23(ctx)
+    );
+    return {
+      c() {
+        if_block0.c();
+        t0 = space();
+        div0 = element("div");
+        create_component(field0.$$.fragment);
+        t1 = space();
+        create_component(field1.$$.fragment);
+        t2 = space();
+        create_component(field2.$$.fragment);
+        t3 = space();
+        create_component(field3.$$.fragment);
+        t4 = space();
+        create_component(field4.$$.fragment);
+        t5 = space();
+        create_component(field5.$$.fragment);
+        t6 = space();
+        create_component(field6.$$.fragment);
+        t7 = space();
+        create_component(field7.$$.fragment);
+        t8 = space();
+        create_component(field8.$$.fragment);
+        t9 = space();
+        create_component(field9.$$.fragment);
+        t10 = space();
+        create_component(field10.$$.fragment);
+        t11 = space();
+        create_component(field11.$$.fragment);
+        t12 = space();
+        div1 = element("div");
+        h60 = element("h6");
+        h60.textContent = "Riwayat Pendidikan";
+        t14 = space();
+        table0 = element("table");
+        thead0 = element("thead");
+        thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
+        t22 = space();
+        tbody0 = element("tbody");
+        tr1 = element("tr");
+        th4 = element("th");
+        th4.textContent = "Nama Perguruan Tinggi";
+        t24 = space();
+        td0 = element("td");
+        t25 = text(
+          /*pertiS1*/
+          ctx[44]
+        );
+        t26 = space();
+        td1 = element("td");
+        t27 = text(
+          /*pertiS2*/
+          ctx[45]
+        );
+        t28 = space();
+        td2 = element("td");
+        t29 = text(
+          /*pertiS3*/
+          ctx[46]
+        );
+        t30 = space();
+        tr2 = element("tr");
+        th5 = element("th");
+        th5.textContent = "Bidang Ilmu";
+        t32 = space();
+        td3 = element("td");
+        t33 = text(
+          /*bidangIlmuS1*/
+          ctx[47]
+        );
+        t34 = space();
+        td4 = element("td");
+        t35 = text(
+          /*bidangIlmuS2*/
+          ctx[48]
+        );
+        t36 = space();
+        td5 = element("td");
+        t37 = text(
+          /*bidangIlmuS3*/
+          ctx[49]
+        );
+        t38 = space();
+        tr3 = element("tr");
+        th6 = element("th");
+        th6.textContent = "Tahun Masuk";
+        t40 = space();
+        td6 = element("td");
+        t41 = text(
+          /*tahunMasukS1*/
+          ctx[50]
+        );
+        t42 = space();
+        td7 = element("td");
+        t43 = text(
+          /*tahunMasukS2*/
+          ctx[51]
+        );
+        t44 = space();
+        td8 = element("td");
+        t45 = text(
+          /*tahunMasukS3*/
+          ctx[52]
+        );
+        t46 = space();
+        tr4 = element("tr");
+        th7 = element("th");
+        th7.textContent = "Tahun Lulus";
+        t48 = space();
+        td9 = element("td");
+        t49 = text(
+          /*tahunLulusS1*/
+          ctx[53]
+        );
+        t50 = space();
+        td10 = element("td");
+        t51 = text(
+          /*tahunLulusS2*/
+          ctx[54]
+        );
+        t52 = space();
+        td11 = element("td");
+        t53 = text(
+          /*tahunLulusS3*/
+          ctx[55]
+        );
+        t54 = space();
+        tr5 = element("tr");
+        th8 = element("th");
+        th8.textContent = "Judul Skripsi/Tesis/Disertasi";
+        t56 = space();
+        td12 = element("td");
+        t57 = text(
+          /*judulTugasAkhirS1*/
+          ctx[56]
+        );
+        t58 = space();
+        td13 = element("td");
+        t59 = text(
+          /*judulTugasAkhirS2*/
+          ctx[57]
+        );
+        t60 = space();
+        td14 = element("td");
+        t61 = text(
+          /*judulTugasAkhirS3*/
+          ctx[58]
+        );
+        t62 = space();
+        div2 = element("div");
+        h61 = element("h6");
+        h61.textContent = "Pengalaman Penelitian";
+        t64 = space();
+        table1 = element("table");
+        thead1 = element("thead");
+        thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t74 = space();
+        tbody1 = element("tbody");
+        if (if_block1)
+          if_block1.c();
+        t75 = space();
+        div3 = element("div");
+        h62 = element("h6");
+        h62.textContent = "Pengalaman Pengabdian Masyarakat";
+        t77 = space();
+        table2 = element("table");
+        thead2 = element("thead");
+        thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
+        t87 = space();
+        tbody2 = element("tbody");
+        if (if_block2)
+          if_block2.c();
+        t88 = space();
+        div4 = element("div");
+        h63 = element("h6");
+        h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
+        t90 = space();
+        table3 = element("table");
+        thead3 = element("thead");
+        thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
+        t98 = space();
+        tbody3 = element("tbody");
+        if (if_block3)
+          if_block3.c();
+        t99 = space();
+        div5 = element("div");
+        h64 = element("h6");
+        h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
+        t101 = space();
+        table4 = element("table");
+        thead4 = element("thead");
+        thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
+        t109 = space();
+        tbody4 = element("tbody");
+        if (if_block4)
+          if_block4.c();
+        t110 = space();
+        div6 = element("div");
+        h65 = element("h6");
+        h65.textContent = "Pengalaman Penulisan Buku";
+        t112 = space();
+        table5 = element("table");
+        thead5 = element("thead");
+        thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
+        t122 = space();
+        tbody5 = element("tbody");
+        if (if_block5)
+          if_block5.c();
+        t123 = space();
+        div7 = element("div");
+        h66 = element("h6");
+        h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
+        t125 = space();
+        table6 = element("table");
+        thead6 = element("thead");
+        thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
+        t135 = space();
+        tbody6 = element("tbody");
+        if (if_block6)
+          if_block6.c();
+        attr(div0, "class", "box");
+        attr(h60, "class", "title is-6");
+        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div1, "class", "box");
+        attr(h61, "class", "title is-6");
+        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div2, "class", "box");
+        attr(h62, "class", "title is-6");
+        attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div3, "class", "box");
+        attr(h63, "class", "title is-6");
+        attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div4, "class", "box");
+        attr(h64, "class", "title is-6");
+        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div5, "class", "box");
+        attr(h65, "class", "title is-6");
+        attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div6, "class", "box");
+        attr(h66, "class", "title is-6");
+        attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div7, "class", "box");
+      },
+      m(target, anchor) {
+        if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        insert(target, div0, anchor);
+        mount_component(field0, div0, null);
+        append(div0, t1);
+        mount_component(field1, div0, null);
+        append(div0, t2);
+        mount_component(field2, div0, null);
+        append(div0, t3);
+        mount_component(field3, div0, null);
+        append(div0, t4);
+        mount_component(field4, div0, null);
+        append(div0, t5);
+        mount_component(field5, div0, null);
+        append(div0, t6);
+        mount_component(field6, div0, null);
+        append(div0, t7);
+        mount_component(field7, div0, null);
+        append(div0, t8);
+        mount_component(field8, div0, null);
+        append(div0, t9);
+        mount_component(field9, div0, null);
+        append(div0, t10);
+        mount_component(field10, div0, null);
+        append(div0, t11);
+        mount_component(field11, div0, null);
+        insert(target, t12, anchor);
+        insert(target, div1, anchor);
+        append(div1, h60);
+        append(div1, t14);
+        append(div1, table0);
+        append(table0, thead0);
+        append(table0, t22);
+        append(table0, tbody0);
+        append(tbody0, tr1);
+        append(tr1, th4);
+        append(tr1, t24);
+        append(tr1, td0);
+        append(td0, t25);
+        append(tr1, t26);
+        append(tr1, td1);
+        append(td1, t27);
+        append(tr1, t28);
+        append(tr1, td2);
+        append(td2, t29);
+        append(tbody0, t30);
+        append(tbody0, tr2);
+        append(tr2, th5);
+        append(tr2, t32);
+        append(tr2, td3);
+        append(td3, t33);
+        append(tr2, t34);
+        append(tr2, td4);
+        append(td4, t35);
+        append(tr2, t36);
+        append(tr2, td5);
+        append(td5, t37);
+        append(tbody0, t38);
+        append(tbody0, tr3);
+        append(tr3, th6);
+        append(tr3, t40);
+        append(tr3, td6);
+        append(td6, t41);
+        append(tr3, t42);
+        append(tr3, td7);
+        append(td7, t43);
+        append(tr3, t44);
+        append(tr3, td8);
+        append(td8, t45);
+        append(tbody0, t46);
+        append(tbody0, tr4);
+        append(tr4, th7);
+        append(tr4, t48);
+        append(tr4, td9);
+        append(td9, t49);
+        append(tr4, t50);
+        append(tr4, td10);
+        append(td10, t51);
+        append(tr4, t52);
+        append(tr4, td11);
+        append(td11, t53);
+        append(tbody0, t54);
+        append(tbody0, tr5);
+        append(tr5, th8);
+        append(tr5, t56);
+        append(tr5, td12);
+        append(td12, t57);
+        append(tr5, t58);
+        append(tr5, td13);
+        append(td13, t59);
+        append(tr5, t60);
+        append(tr5, td14);
+        append(td14, t61);
+        insert(target, t62, anchor);
+        insert(target, div2, anchor);
+        append(div2, h61);
+        append(div2, t64);
+        append(div2, table1);
+        append(table1, thead1);
+        append(table1, t74);
+        append(table1, tbody1);
+        if (if_block1)
+          if_block1.m(tbody1, null);
+        insert(target, t75, anchor);
+        insert(target, div3, anchor);
+        append(div3, h62);
+        append(div3, t77);
+        append(div3, table2);
+        append(table2, thead2);
+        append(table2, t87);
+        append(table2, tbody2);
+        if (if_block2)
+          if_block2.m(tbody2, null);
+        insert(target, t88, anchor);
+        insert(target, div4, anchor);
+        append(div4, h63);
+        append(div4, t90);
+        append(div4, table3);
+        append(table3, thead3);
+        append(table3, t98);
+        append(table3, tbody3);
+        if (if_block3)
+          if_block3.m(tbody3, null);
+        insert(target, t99, anchor);
+        insert(target, div5, anchor);
+        append(div5, h64);
+        append(div5, t101);
+        append(div5, table4);
+        append(table4, thead4);
+        append(table4, t109);
+        append(table4, tbody4);
+        if (if_block4)
+          if_block4.m(tbody4, null);
+        insert(target, t110, anchor);
+        insert(target, div6, anchor);
+        append(div6, h65);
+        append(div6, t112);
+        append(div6, table5);
+        append(table5, thead5);
+        append(table5, t122);
+        append(table5, tbody5);
+        if (if_block5)
+          if_block5.m(tbody5, null);
+        insert(target, t123, anchor);
+        insert(target, div7, anchor);
+        append(div7, h66);
+        append(div7, t125);
+        append(div7, table6);
+        append(table6, thead6);
+        append(table6, t135);
+        append(table6, tbody6);
+        if (if_block6)
+          if_block6.m(tbody6, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (current_block_type === (current_block_type = select_block_type_2(ctx2, dirty)) && if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0.d(1);
+          if_block0 = current_block_type(ctx2);
+          if (if_block0) {
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        }
+        const field0_changes = {};
+        if (dirty[1] & /*namaLengkap*/
+        1 | dirty[4] & /*$$scope*/
+        2097152) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty[1] & /*jabatanFungsional*/
+        2 | dirty[4] & /*$$scope*/
+        2097152) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+        const field2_changes = {};
+        if (dirty[1] & /*nip*/
+        4 | dirty[4] & /*$$scope*/
+        2097152) {
+          field2_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field2.$set(field2_changes);
+        const field3_changes = {};
+        if (dirty[1] & /*nidn*/
+        8 | dirty[4] & /*$$scope*/
+        2097152) {
+          field3_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field3.$set(field3_changes);
+        const field4_changes = {};
+        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        48 | dirty[4] & /*$$scope*/
+        2097152) {
+          field4_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field4.$set(field4_changes);
+        const field5_changes = {};
+        if (dirty[1] & /*alamatRumah*/
+        64 | dirty[4] & /*$$scope*/
+        2097152) {
+          field5_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field5.$set(field5_changes);
+        const field6_changes = {};
+        if (dirty[1] & /*telpFaxRumah*/
+        128 | dirty[4] & /*$$scope*/
+        2097152) {
+          field6_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field6.$set(field6_changes);
+        const field7_changes = {};
+        if (dirty[1] & /*nomorHandphone*/
+        256 | dirty[4] & /*$$scope*/
+        2097152) {
+          field7_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field7.$set(field7_changes);
+        const field8_changes = {};
+        if (dirty[1] & /*alamatKantor*/
+        512 | dirty[4] & /*$$scope*/
+        2097152) {
+          field8_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field8.$set(field8_changes);
+        const field9_changes = {};
+        if (dirty[1] & /*telpFaxKantor*/
+        1024 | dirty[4] & /*$$scope*/
+        2097152) {
+          field9_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field9.$set(field9_changes);
+        const field10_changes = {};
+        if (dirty[1] & /*email*/
+        2048 | dirty[4] & /*$$scope*/
+        2097152) {
+          field10_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field10.$set(field10_changes);
+        const field11_changes = {};
+        if (dirty[1] & /*mataKuliah*/
+        4096 | dirty[4] & /*$$scope*/
+        2097152) {
+          field11_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field11.$set(field11_changes);
+        if (!current || dirty[1] & /*pertiS1*/
+        8192)
+          set_data(
+            t25,
+            /*pertiS1*/
+            ctx2[44]
+          );
+        if (!current || dirty[1] & /*pertiS2*/
+        16384)
+          set_data(
+            t27,
+            /*pertiS2*/
+            ctx2[45]
+          );
+        if (!current || dirty[1] & /*pertiS3*/
+        32768)
+          set_data(
+            t29,
+            /*pertiS3*/
+            ctx2[46]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS1*/
+        65536)
+          set_data(
+            t33,
+            /*bidangIlmuS1*/
+            ctx2[47]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS2*/
+        131072)
+          set_data(
+            t35,
+            /*bidangIlmuS2*/
+            ctx2[48]
+          );
+        if (!current || dirty[1] & /*bidangIlmuS3*/
+        262144)
+          set_data(
+            t37,
+            /*bidangIlmuS3*/
+            ctx2[49]
+          );
+        if (!current || dirty[1] & /*tahunMasukS1*/
+        524288)
+          set_data(
+            t41,
+            /*tahunMasukS1*/
+            ctx2[50]
+          );
+        if (!current || dirty[1] & /*tahunMasukS2*/
+        1048576)
+          set_data(
+            t43,
+            /*tahunMasukS2*/
+            ctx2[51]
+          );
+        if (!current || dirty[1] & /*tahunMasukS3*/
+        2097152)
+          set_data(
+            t45,
+            /*tahunMasukS3*/
+            ctx2[52]
+          );
+        if (!current || dirty[1] & /*tahunLulusS1*/
+        4194304)
+          set_data(
+            t49,
+            /*tahunLulusS1*/
+            ctx2[53]
+          );
+        if (!current || dirty[1] & /*tahunLulusS2*/
+        8388608)
+          set_data(
+            t51,
+            /*tahunLulusS2*/
+            ctx2[54]
+          );
+        if (!current || dirty[1] & /*tahunLulusS3*/
+        16777216)
+          set_data(
+            t53,
+            /*tahunLulusS3*/
+            ctx2[55]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS1*/
+        33554432)
+          set_data(
+            t57,
+            /*judulTugasAkhirS1*/
+            ctx2[56]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS2*/
+        67108864)
+          set_data(
+            t59,
+            /*judulTugasAkhirS2*/
+            ctx2[57]
+          );
+        if (!current || dirty[1] & /*judulTugasAkhirS3*/
+        134217728)
+          set_data(
+            t61,
+            /*judulTugasAkhirS3*/
+            ctx2[58]
+          );
+        if (
+          /*dataPP*/
+          ctx2[1]
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_7(ctx2);
+            if_block1.c();
+            if_block1.m(tbody1, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*dataPM*/
+          ctx2[2]
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_6(ctx2);
+            if_block2.c();
+            if_block2.m(tbody2, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*dataPD*/
+          ctx2[3]
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_5(ctx2);
+            if_block3.c();
+            if_block3.m(tbody3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (
+          /*dataPPub*/
+          ctx2[4]
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_42(ctx2);
+            if_block4.c();
+            if_block4.m(tbody4, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
+        }
+        if (
+          /*dataPPB*/
+          ctx2[5]
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block_32(ctx2);
+            if_block5.c();
+            if_block5.m(tbody5, null);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+        if (
+          /*dataPHKI*/
+          ctx2[6]
+        ) {
+          if (if_block6) {
+            if_block6.p(ctx2, dirty);
+          } else {
+            if_block6 = create_if_block_23(ctx2);
+            if_block6.c();
+            if_block6.m(tbody6, null);
+          }
+        } else if (if_block6) {
+          if_block6.d(1);
+          if_block6 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        transition_in(field2.$$.fragment, local);
+        transition_in(field3.$$.fragment, local);
+        transition_in(field4.$$.fragment, local);
+        transition_in(field5.$$.fragment, local);
+        transition_in(field6.$$.fragment, local);
+        transition_in(field7.$$.fragment, local);
+        transition_in(field8.$$.fragment, local);
+        transition_in(field9.$$.fragment, local);
+        transition_in(field10.$$.fragment, local);
+        transition_in(field11.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        transition_out(field2.$$.fragment, local);
+        transition_out(field3.$$.fragment, local);
+        transition_out(field4.$$.fragment, local);
+        transition_out(field5.$$.fragment, local);
+        transition_out(field6.$$.fragment, local);
+        transition_out(field7.$$.fragment, local);
+        transition_out(field8.$$.fragment, local);
+        transition_out(field9.$$.fragment, local);
+        transition_out(field10.$$.fragment, local);
+        transition_out(field11.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(div0);
+          detach(t12);
+          detach(div1);
+          detach(t62);
+          detach(div2);
+          detach(t75);
+          detach(div3);
+          detach(t88);
+          detach(div4);
+          detach(t99);
+          detach(div5);
+          detach(t110);
+          detach(div6);
+          detach(t123);
+          detach(div7);
+        }
+        if_block0.d(detaching);
+        destroy_component(field0);
+        destroy_component(field1);
+        destroy_component(field2);
+        destroy_component(field3);
+        destroy_component(field4);
+        destroy_component(field5);
+        destroy_component(field6);
+        destroy_component(field7);
+        destroy_component(field8);
+        destroy_component(field9);
+        destroy_component(field10);
+        destroy_component(field11);
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+        if (if_block4)
+          if_block4.d();
+        if (if_block5)
+          if_block5.d();
+        if (if_block6)
+          if_block6.d();
+      }
+    };
+  }
+  function create_else_block3(ctx) {
+    let div;
+    let p;
+    let strong0;
+    let t1;
+    let a;
+    let strong1;
+    let a_href_value;
+    return {
+      c() {
+        div = element("div");
+        p = element("p");
+        strong0 = element("strong");
+        strong0.textContent = "Biodata";
+        t1 = text(" sebagai salah satu syarat dalam\r\n                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan\r\n                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,\r\n                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik\r\n                  ");
+        a = element("a");
+        strong1 = element("strong");
+        strong1.textContent = "Disini!";
+        attr(a, "href", a_href_value = "/admin/profile/" + /*uidProposal*/
+        ctx[59]);
+        set_style(p, "text-align", "justify");
+        attr(div, "class", "notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, strong0);
+        append(p, t1);
+        append(p, a);
+        append(a, strong1);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*uidProposal*/
+        268435456 && a_href_value !== (a_href_value = "/admin/profile/" + /*uidProposal*/
+        ctx2[59])) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+      }
+    };
+  }
+  function create_if_block_9(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.innerHTML = `<p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
+                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
+                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
+                  sanksinya.</p>`;
+        attr(div, "class", "notification is-danger is-light");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+      }
+    };
+  }
+  function create_default_slot_122(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*namaLengkap*/
+          ctx[31]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*namaLengkap*/
+        1)
+          set_data(
+            t,
+            /*namaLengkap*/
+            ctx2[31]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_11(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*jabatanFungsional*/
+          ctx[32]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*jabatanFungsional*/
+        2)
+          set_data(
+            t,
+            /*jabatanFungsional*/
+            ctx2[32]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_10(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nip*/
+          ctx[33]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nip*/
+        4)
+          set_data(
+            t,
+            /*nip*/
+            ctx2[33]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_9(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nidn*/
+          ctx[34]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nidn*/
+        8)
+          set_data(
+            t,
+            /*nidn*/
+            ctx2[34]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_8(ctx) {
+    let t0;
+    let t1;
+    let t2;
+    return {
+      c() {
+        t0 = text(
+          /*tempatLahir*/
+          ctx[35]
+        );
+        t1 = text(" / ");
+        t2 = text(
+          /*tanggalLahir*/
+          ctx[36]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t0, anchor);
+        insert(target, t1, anchor);
+        insert(target, t2, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*tempatLahir*/
+        16)
+          set_data(
+            t0,
+            /*tempatLahir*/
+            ctx2[35]
+          );
+        if (dirty[1] & /*tanggalLahir*/
+        32)
+          set_data(
+            t2,
+            /*tanggalLahir*/
+            ctx2[36]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(t2);
+        }
+      }
+    };
+  }
+  function create_default_slot_72(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatRumah*/
+          ctx[37]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatRumah*/
+        64)
+          set_data(
+            t,
+            /*alamatRumah*/
+            ctx2[37]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_62(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxRumah*/
+          ctx[38]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxRumah*/
+        128)
+          set_data(
+            t,
+            /*telpFaxRumah*/
+            ctx2[38]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_52(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*nomorHandphone*/
+          ctx[39]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*nomorHandphone*/
+        256)
+          set_data(
+            t,
+            /*nomorHandphone*/
+            ctx2[39]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_45(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*alamatKantor*/
+          ctx[40]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*alamatKantor*/
+        512)
+          set_data(
+            t,
+            /*alamatKantor*/
+            ctx2[40]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_310(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*telpFaxKantor*/
+          ctx[41]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*telpFaxKantor*/
+        1024)
+          set_data(
+            t,
+            /*telpFaxKantor*/
+            ctx2[41]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_210(ctx) {
+    let t;
+    return {
+      c() {
+        t = text(
+          /*email*/
+          ctx[42]
+        );
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*email*/
+        2048)
+          set_data(
+            t,
+            /*email*/
+            ctx2[42]
+          );
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_if_block_8(ctx) {
+    let each_1_anchor;
+    let each_value_6 = ensure_array_like(
+      /*mataKuliah*/
+      ctx[43]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_6.length; i += 1) {
+      each_blocks[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        4096) {
+          each_value_6 = ensure_array_like(
+            /*mataKuliah*/
+            ctx2[43]
+          );
+          let i;
+          for (i = 0; i < each_value_6.length; i += 1) {
+            const child_ctx = get_each_context_6(ctx2, each_value_6, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_6(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_6.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_6(ctx) {
+    let tr;
+    let td;
+    let t0_value = (
+      /*matkul*/
+      ctx[132].label + ""
+    );
+    let t0;
+    let t1;
+    return {
+      c() {
+        tr = element("tr");
+        td = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td);
+        append(td, t0);
+        append(tr, t1);
+      },
+      p(ctx2, dirty) {
+        if (dirty[1] & /*mataKuliah*/
+        4096 && t0_value !== (t0_value = /*matkul*/
+        ctx2[132].label + ""))
+          set_data(t0, t0_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_default_slot_110(ctx) {
+    let table;
+    let thead;
+    let t1;
+    let tbody;
+    let if_block = (
+      /*mataKuliah*/
+      ctx[43] && /*mataKuliah*/
+      ctx[43].length > 0 && create_if_block_8(ctx)
+    );
+    return {
+      c() {
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Mata Kuliah</th></tr>`;
+        t1 = space();
+        tbody = element("tbody");
+        if (if_block)
+          if_block.c();
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+      },
+      m(target, anchor) {
+        insert(target, table, anchor);
+        append(table, thead);
+        append(table, t1);
+        append(table, tbody);
+        if (if_block)
+          if_block.m(tbody, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*mataKuliah*/
+          ctx2[43] && /*mataKuliah*/
+          ctx2[43].length > 0
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_8(ctx2);
+            if_block.c();
+            if_block.m(tbody, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(table);
+        }
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_if_block_7(ctx) {
+    let each_1_anchor;
+    let each_value_5 = ensure_array_like(
+      /*dataPP*/
+      ctx[1]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_5.length; i += 1) {
+      each_blocks[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        2) {
+          each_value_5 = ensure_array_like(
+            /*dataPP*/
+            ctx2[1]
+          );
+          let i;
+          for (i = 0; i < each_value_5.length; i += 1) {
+            const child_ctx = get_each_context_5(ctx2, each_value_5, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_5(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_5.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_5(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PP*/
+      ctx[129].tahun_penelitian + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PP*/
+      ctx[129].judul_penelitian + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PP*/
+      ctx[129].role_penelitian + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PP*/
+      ctx[129].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PP*/
+      ctx[129].jumlah + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPP*/
+        2 && t0_value !== (t0_value = /*PP*/
+        ctx2[129].tahun_penelitian + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t2_value !== (t2_value = /*PP*/
+        ctx2[129].judul_penelitian + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t4_value !== (t4_value = /*PP*/
+        ctx2[129].role_penelitian + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t6_value !== (t6_value = /*PP*/
+        ctx2[129].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPP*/
+        2 && t8_value !== (t8_value = /*PP*/
+        ctx2[129].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_6(ctx) {
+    let each_1_anchor;
+    let each_value_4 = ensure_array_like(
+      /*dataPM*/
+      ctx[2]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_4.length; i += 1) {
+      each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        4) {
+          each_value_4 = ensure_array_like(
+            /*dataPM*/
+            ctx2[2]
+          );
+          let i;
+          for (i = 0; i < each_value_4.length; i += 1) {
+            const child_ctx = get_each_context_4(ctx2, each_value_4, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_4(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_4.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_4(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PM*/
+      ctx[126].tahun_pengmas + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PM*/
+      ctx[126].judul_pengmas + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PM*/
+      ctx[126].role_pengmas + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PM*/
+      ctx[126].sumber_dana + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PM*/
+      ctx[126].jumlah + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPM*/
+        4 && t0_value !== (t0_value = /*PM*/
+        ctx2[126].tahun_pengmas + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t2_value !== (t2_value = /*PM*/
+        ctx2[126].judul_pengmas + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t4_value !== (t4_value = /*PM*/
+        ctx2[126].role_pengmas + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t6_value !== (t6_value = /*PM*/
+        ctx2[126].sumber_dana + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPM*/
+        4 && t8_value !== (t8_value = /*PM*/
+        ctx2[126].jumlah + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_5(ctx) {
+    let each_1_anchor;
+    let each_value_3 = ensure_array_like(
+      /*dataPD*/
+      ctx[3]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_3.length; i += 1) {
+      each_blocks[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        8) {
+          each_value_3 = ensure_array_like(
+            /*dataPD*/
+            ctx2[3]
+          );
+          let i;
+          for (i = 0; i < each_value_3.length; i += 1) {
+            const child_ctx = get_each_context_3(ctx2, each_value_3, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_3(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_3.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_3(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PD*/
+      ctx[123].tahun_diseminasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PD*/
+      ctx[123].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PD*/
+      ctx[123].nama_pemakalah + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PD*/
+      ctx[123].nama_pertemuan + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPD*/
+        8 && t0_value !== (t0_value = /*PD*/
+        ctx2[123].tahun_diseminasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t2_value !== (t2_value = /*PD*/
+        ctx2[123].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t4_value !== (t4_value = /*PD*/
+        ctx2[123].nama_pemakalah + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPD*/
+        8 && t6_value !== (t6_value = /*PD*/
+        ctx2[123].nama_pertemuan + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_42(ctx) {
+    let each_1_anchor;
+    let each_value_2 = ensure_array_like(
+      /*dataPPub*/
+      ctx[4]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_2.length; i += 1) {
+      each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        16) {
+          each_value_2 = ensure_array_like(
+            /*dataPPub*/
+            ctx2[4]
+          );
+          let i;
+          for (i = 0; i < each_value_2.length; i += 1) {
+            const child_ctx = get_each_context_2(ctx2, each_value_2, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_2(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_2.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_2(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPub*/
+      ctx[120].tahun_publikasi + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPub*/
+      ctx[120].judul_artikel + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPub*/
+      ctx[120].nama_jurnal + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPub*/
+      ctx[120].impact + ""
+    );
+    let t6;
+    let t7;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPub*/
+        16 && t0_value !== (t0_value = /*PPub*/
+        ctx2[120].tahun_publikasi + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t2_value !== (t2_value = /*PPub*/
+        ctx2[120].judul_artikel + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t4_value !== (t4_value = /*PPub*/
+        ctx2[120].nama_jurnal + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPub*/
+        16 && t6_value !== (t6_value = /*PPub*/
+        ctx2[120].impact + ""))
+          set_data(t6, t6_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_32(ctx) {
+    let each_1_anchor;
+    let each_value_1 = ensure_array_like(
+      /*dataPPB*/
+      ctx[5]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_1.length; i += 1) {
+      each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        32) {
+          each_value_1 = ensure_array_like(
+            /*dataPPB*/
+            ctx2[5]
+          );
+          let i;
+          for (i = 0; i < each_value_1.length; i += 1) {
+            const child_ctx = get_each_context_1(ctx2, each_value_1, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_1(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_1.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block_1(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PPB*/
+      ctx[117].tahun_buku + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PPB*/
+      ctx[117].judul_buku + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PPB*/
+      ctx[117].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PPB*/
+      ctx[117].penerbit + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PPB*/
+      ctx[117].isbn + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPPB*/
+        32 && t0_value !== (t0_value = /*PPB*/
+        ctx2[117].tahun_buku + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t2_value !== (t2_value = /*PPB*/
+        ctx2[117].judul_buku + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t4_value !== (t4_value = /*PPB*/
+        ctx2[117].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t6_value !== (t6_value = /*PPB*/
+        ctx2[117].penerbit + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPPB*/
+        32 && t8_value !== (t8_value = /*PPB*/
+        ctx2[117].isbn + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
+  function create_if_block_23(ctx) {
+    let each_1_anchor;
+    let each_value = ensure_array_like(
+      /*dataPHKI*/
+      ctx[6]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block4(get_each_context4(ctx, each_value, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        64) {
+          each_value = ensure_array_like(
+            /*dataPHKI*/
+            ctx2[6]
+          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context4(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block4(child_ctx);
+              each_blocks[i].c();
+              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(each_1_anchor);
+        }
+        destroy_each(each_blocks, detaching);
+      }
+    };
+  }
+  function create_each_block4(ctx) {
+    let tr;
+    let td0;
+    let t0_value = (
+      /*PHKI*/
+      ctx[114].tahun_hki + ""
+    );
+    let t0;
+    let t1;
+    let td1;
+    let t2_value = (
+      /*PHKI*/
+      ctx[114].judul_hki + ""
+    );
+    let t2;
+    let t3;
+    let td2;
+    let t4_value = (
+      /*PHKI*/
+      ctx[114].nama_penulis + ""
+    );
+    let t4;
+    let t5;
+    let td3;
+    let t6_value = (
+      /*PHKI*/
+      ctx[114].jenis_hki + ""
+    );
+    let t6;
+    let t7;
+    let td4;
+    let t8_value = (
+      /*PHKI*/
+      ctx[114].no_hki + ""
+    );
+    let t8;
+    let t9;
+    return {
+      c() {
+        tr = element("tr");
+        td0 = element("td");
+        t0 = text(t0_value);
+        t1 = space();
+        td1 = element("td");
+        t2 = text(t2_value);
+        t3 = space();
+        td2 = element("td");
+        t4 = text(t4_value);
+        t5 = space();
+        td3 = element("td");
+        t6 = text(t6_value);
+        t7 = space();
+        td4 = element("td");
+        t8 = text(t8_value);
+        t9 = space();
+      },
+      m(target, anchor) {
+        insert(target, tr, anchor);
+        append(tr, td0);
+        append(td0, t0);
+        append(tr, t1);
+        append(tr, td1);
+        append(td1, t2);
+        append(tr, t3);
+        append(tr, td2);
+        append(td2, t4);
+        append(tr, t5);
+        append(tr, td3);
+        append(td3, t6);
+        append(tr, t7);
+        append(tr, td4);
+        append(td4, t8);
+        append(tr, t9);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*dataPHKI*/
+        64 && t0_value !== (t0_value = /*PHKI*/
+        ctx2[114].tahun_hki + ""))
+          set_data(t0, t0_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t2_value !== (t2_value = /*PHKI*/
+        ctx2[114].judul_hki + ""))
+          set_data(t2, t2_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t4_value !== (t4_value = /*PHKI*/
+        ctx2[114].nama_penulis + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t6_value !== (t6_value = /*PHKI*/
+        ctx2[114].jenis_hki + ""))
+          set_data(t6, t6_value);
+        if (dirty[0] & /*dataPHKI*/
+        64 && t8_value !== (t8_value = /*PHKI*/
+        ctx2[114].no_hki + ""))
+          set_data(t8, t8_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(tr);
+        }
+      }
+    };
+  }
   function create_default_slot6(ctx) {
+    let modalerror0;
+    let updating_show;
+    let t0;
+    let modalerror1;
+    let updating_show_1;
+    let t1;
+    let h1;
+    let t3;
+    let div;
+    let ul;
+    let li0;
+    let t5;
+    let li1;
+    let t7;
+    let t8;
+    let if_block1_anchor;
+    let current;
+    let mounted;
+    let dispose;
+    function modalerror0_show_binding(value) {
+      ctx[76](value);
+    }
+    let modalerror0_props = {
+      $$slots: { default: [create_default_slot_44] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalError*/
+      ctx[7] !== void 0
+    ) {
+      modalerror0_props.show = /*showModalError*/
+      ctx[7];
+    }
+    modalerror0 = new Modalerror_default({ props: modalerror0_props });
+    binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
+    function modalerror1_show_binding(value) {
+      ctx[77](value);
+    }
+    let modalerror1_props = {
+      $$slots: { default: [create_default_slot_43] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalErrorInputEvaluator*/
+      ctx[8] !== void 0
+    ) {
+      modalerror1_props.show = /*showModalErrorInputEvaluator*/
+      ctx[8];
+    }
+    modalerror1 = new Modalerror_default({ props: modalerror1_props });
+    binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
+    let if_block0 = (
+      /*tab1*/
+      ctx[64] === true && create_if_block_10(ctx)
+    );
+    let if_block1 = (
+      /*tab2*/
+      ctx[65] === true && create_if_block_110(ctx)
+    );
+    return {
+      c() {
+        create_component(modalerror0.$$.fragment);
+        t0 = space();
+        create_component(modalerror1.$$.fragment);
+        t1 = space();
+        h1 = element("h1");
+        h1.textContent = "Detail Proposal";
+        t3 = space();
+        div = element("div");
+        ul = element("ul");
+        li0 = element("li");
+        li0.innerHTML = `<a><span>Identitas PPM</span></a>`;
+        t5 = space();
+        li1 = element("li");
+        li1.innerHTML = `<a><span>Biodata Peneliti</span></a>`;
+        t7 = space();
+        if (if_block0)
+          if_block0.c();
+        t8 = space();
+        if (if_block1)
+          if_block1.c();
+        if_block1_anchor = empty();
+        attr(h1, "class", "title is-1");
+        toggle_class(
+          li0,
+          "is-active",
+          /*tab1*/
+          ctx[64]
+        );
+        toggle_class(
+          li1,
+          "is-active",
+          /*tab2*/
+          ctx[65]
+        );
+        attr(div, "class", "tabs is-boxed");
+      },
+      m(target, anchor) {
+        mount_component(modalerror0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(modalerror1, target, anchor);
+        insert(target, t1, anchor);
+        insert(target, h1, anchor);
+        insert(target, t3, anchor);
+        insert(target, div, anchor);
+        append(div, ul);
+        append(ul, li0);
+        append(ul, t5);
+        append(ul, li1);
+        insert(target, t7, anchor);
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t8, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, if_block1_anchor, anchor);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              li0,
+              "click",
+              /*clicktab1*/
+              ctx[73]
+            ),
+            listen(
+              li1,
+              "click",
+              /*clicktab2*/
+              ctx[74]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const modalerror0_changes = {};
+        if (dirty[4] & /*$$scope*/
+        2097152) {
+          modalerror0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        if (!updating_show && dirty[0] & /*showModalError*/
+        128) {
+          updating_show = true;
+          modalerror0_changes.show = /*showModalError*/
+          ctx2[7];
+          add_flush_callback(() => updating_show = false);
+        }
+        modalerror0.$set(modalerror0_changes);
+        const modalerror1_changes = {};
+        if (dirty[4] & /*$$scope*/
+        2097152) {
+          modalerror1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        if (!updating_show_1 && dirty[0] & /*showModalErrorInputEvaluator*/
+        256) {
+          updating_show_1 = true;
+          modalerror1_changes.show = /*showModalErrorInputEvaluator*/
+          ctx2[8];
+          add_flush_callback(() => updating_show_1 = false);
+        }
+        modalerror1.$set(modalerror1_changes);
+        if (!current || dirty[2] & /*tab1*/
+        4) {
+          toggle_class(
+            li0,
+            "is-active",
+            /*tab1*/
+            ctx2[64]
+          );
+        }
+        if (!current || dirty[2] & /*tab2*/
+        8) {
+          toggle_class(
+            li1,
+            "is-active",
+            /*tab2*/
+            ctx2[65]
+          );
+        }
+        if (
+          /*tab1*/
+          ctx2[64] === true
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+            if (dirty[2] & /*tab1*/
+            4) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_10(ctx2);
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(t8.parentNode, t8);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*tab2*/
+          ctx2[65] === true
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty[2] & /*tab2*/
+            8) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block_110(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(modalerror0.$$.fragment, local);
+        transition_in(modalerror1.$$.fragment, local);
+        transition_in(if_block0);
+        transition_in(if_block1);
+        current = true;
+      },
+      o(local) {
+        transition_out(modalerror0.$$.fragment, local);
+        transition_out(modalerror1.$$.fragment, local);
+        transition_out(if_block0);
+        transition_out(if_block1);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(h1);
+          detach(t3);
+          detach(div);
+          detach(t7);
+          detach(t8);
+          detach(if_block1_anchor);
+        }
+        destroy_component(modalerror0, detaching);
+        destroy_component(modalerror1, detaching);
+        if (if_block0)
+          if_block0.d(detaching);
+        if (if_block1)
+          if_block1.d(detaching);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_fragment26(ctx) {
+    let if_block_anchor;
+    let current;
+    let if_block = (
+      /*data*/
+      ctx[0] && create_if_block5(ctx)
+    );
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (
+          /*data*/
+          ctx2[0]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+            if (dirty[0] & /*data*/
+            1) {
+              transition_in(if_block, 1);
+            }
+          } else {
+            if_block = create_if_block5(ctx2);
+            if_block.c();
+            transition_in(if_block, 1);
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          group_outros();
+          transition_out(if_block, 1, 1, () => {
+            if_block = null;
+          });
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(if_block_anchor);
+        }
+        if (if_block)
+          if_block.d(detaching);
+      }
+    };
+  }
+  function isEdit(code) {
+    const edit2 = [0, 1, 3, 5, 7, 9];
+    return edit2.some((x) => x === code);
+  }
+  function formatRupiah(angka, prefix) {
+    var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    if (ribuan) {
+      separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+    rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
+    return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
+  }
+  function instance21($$self, $$props, $$invalidate) {
+    let $apiURL;
+    let $route;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(105, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(106, $route = $$value));
+    let { params } = $$props;
+    const id = params["1"];
+    const idEvaluator = localStorage.getItem("id");
+    let data2, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
+    let showModalError = false;
+    let showModalErrorInputEvaluator = false;
+    let jenisProposal;
+    let jenisKegiatan;
+    let jenisSkema;
+    let kelompokKeahlian;
+    let topik;
+    let tanggalMulai;
+    let tanggalSelesai;
+    let biayaPenelitian;
+    let anggotaTim = [];
+    let judul;
+    let abstrak;
+    let isi;
+    let comment;
+    let status;
+    let itemsRCR;
+    let ka_departemen;
+    let ka_lppm;
+    let reviewer;
+    let ka_pusat_kajian;
+    let kdeptSelected2;
+    let klppmSelected2;
+    let kpkSelected2;
+    let reviewerSelected2;
+    let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email, mataKuliah = [];
+    let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
+    let uidProposal;
+    let fileRab;
+    let filePpm;
+    let items = [];
+    let file;
+    let view;
+    const accessToken = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    };
+    onMount(async () => {
+      $$invalidate(23, ka_departemen = await findRole(11));
+      $$invalidate(24, ka_lppm = await findRole(12));
+      $$invalidate(26, ka_pusat_kajian = await findRole(13));
+      $$invalidate(25, reviewer = await findRole(10));
+      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
+      const result = await response.json();
+      $$invalidate(63, view = !isEdit(result.status));
+      if (result.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(0, data2 = result);
+          ppmId = data2.id;
+          $$invalidate(59, uidProposal = data2.uid);
+          $$invalidate(9, jenisProposal = data2.jenis_proposal);
+          $$invalidate(10, jenisKegiatan = data2.jenis_kegiatan);
+          $$invalidate(11, jenisSkema = data2.jenis_skema);
+          $$invalidate(12, kelompokKeahlian = data2.kelompok_keahlian);
+          $$invalidate(13, topik = data2.topik);
+          $$invalidate(14, tanggalMulai = data2.tanggal_mulai);
+          $$invalidate(15, tanggalSelesai = data2.tanggal_selesai);
+          $$invalidate(16, biayaPenelitian = data2.biaya_penelitian);
+          $$invalidate(17, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(18, judul = data2.judul);
+          $$invalidate(19, abstrak = data2.abstrak);
+          isi = data2.isi;
+          $$invalidate(20, comment = data2.comment);
+          $$invalidate(21, status = data2.status);
+          $$invalidate(27, kdeptSelected2 = data2.uid_kdept);
+          $$invalidate(28, klppmSelected2 = data2.uid_klppm);
+          $$invalidate(29, kpkSelected2 = data2.uid_kpk);
+          $$invalidate(30, reviewerSelected2 = data2.uid_reviewer);
+          randomRabFileName = data2.random_rab_file_name;
+          randomPpmFileName = data2.random_ppm_file_name;
+        }
+      }
+      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers });
+      const resultEvl = await responseEvl.json();
+      if (resultEvl.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseEvl.ok) {
+          dataEvl = resultEvl;
+          namaLengkapEvl = dataEvl.nama_lengkap;
+        }
+      }
+      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
+      const dataRCR = await responseRCR.json();
+      if (dataRCR.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRCR.ok) {
+          $$invalidate(22, itemsRCR = dataRCR.dbData);
+        }
+      }
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
+      const resultGP = await responseGP.json();
+      if (resultGP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseGP.ok) {
+          dataGP = resultGP;
+          idProfile = dataGP.id;
+          idUser = dataGP.uid;
+          $$invalidate(31, namaLengkap = dataGP.nama_lengkap);
+          $$invalidate(32, jabatanFungsional = dataGP.jabatan_fungsional);
+          $$invalidate(33, nip = dataGP.nip);
+          $$invalidate(34, nidn = dataGP.nidn);
+          $$invalidate(35, tempatLahir = dataGP.tempat_lahir);
+          $$invalidate(36, tanggalLahir = dataGP.tanggal_lahir);
+          $$invalidate(37, alamatRumah = dataGP.alamat_rumah);
+          $$invalidate(38, telpFaxRumah = dataGP.telp_fax_rumah);
+          $$invalidate(39, nomorHandphone = dataGP.nomor_handphone);
+          $$invalidate(40, alamatKantor = dataGP.alamat_kantor);
+          $$invalidate(41, telpFaxKantor = dataGP.telp_fax_kantor);
+          $$invalidate(42, email = dataGP.email);
+          $$invalidate(43, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
+        }
+      }
+      const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
+      const dataRP = await responseRP.json();
+      if (dataRP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseRP.ok) {
+          $$invalidate(44, pertiS1 = dataRP.nama_perti_s1);
+          $$invalidate(45, pertiS2 = dataRP.nama_perti_s2);
+          $$invalidate(46, pertiS3 = dataRP.nama_perti_s3);
+          $$invalidate(47, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
+          $$invalidate(48, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
+          $$invalidate(49, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
+          $$invalidate(50, tahunMasukS1 = dataRP.tahun_masuk_s1);
+          $$invalidate(51, tahunMasukS2 = dataRP.tahun_masuk_s2);
+          $$invalidate(52, tahunMasukS3 = dataRP.tahun_masuk_s3);
+          $$invalidate(53, tahunLulusS1 = dataRP.tahun_lulus_s1);
+          $$invalidate(54, tahunLulusS2 = dataRP.tahun_lulus_s2);
+          $$invalidate(55, tahunLulusS3 = dataRP.tahun_lulus_s3);
+          $$invalidate(56, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
+          $$invalidate(57, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
+          $$invalidate(58, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
+        }
+      }
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
+      const resultPP = await responsePP.json();
+      if (resultPP.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePP.ok) {
+          $$invalidate(1, dataPP = resultPP.dbData);
+        } else {
+          console.log(responsePP);
+        }
+      }
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
+      const resultPM = await responsePM.json();
+      if (resultPM.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePM.ok) {
+          $$invalidate(2, dataPM = resultPM.dbData);
+        } else {
+          console.log(responsePM);
+        }
+      }
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
+      const resultPD = await responsePD.json();
+      if (resultPD.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePD.ok) {
+          $$invalidate(3, dataPD = resultPD.dbData);
+        } else {
+          console.log(responsePD);
+        }
+      }
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
+      const resultPPub = await responsePPub.json();
+      if (resultPPub.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePPub.ok) {
+          $$invalidate(4, dataPPub = resultPPub.dbData);
+        } else {
+          console.log(responsePPub);
+        }
+      }
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
+      const resultPPB = await responsePPB.json();
+      if (resultPPB.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePPB.ok) {
+          $$invalidate(5, dataPPB = resultPPB.dbData);
+        } else {
+          console.log(responsePPB);
+        }
+      }
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
+      const resultPHKI = await responsePHKI.json();
+      if (resultPHKI.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePHKI.ok) {
+          $$invalidate(6, dataPHKI = resultPHKI.dbData);
+        } else {
+          console.log(responsePHKI);
+        }
+      }
+      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
+      const results = await responsee.json();
+      if (results.statusCode != 200) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsee.ok) {
+          listUser = results;
+          for (const [key, value] of Object.entries(listUser)) {
+            $$invalidate(62, items = [
+              ...items,
+              {
+                value: value.uid,
+                label: value.nama_lengkap
+              }
+            ]);
+          }
+        } else {
+          console.log(responsee);
+        }
+      }
+    });
+    async function remediasi() {
+      const accessToken2 = localStorage.getItem("token");
+      const readerRab = new FileReader();
+      const readerPpm = new FileReader();
+      readerRab.onloadend = async () => {
+        const base64Data = readerRab.result.split(",")[1];
+        const payloadRabFile = {
+          fileRab: {
+            name: fileRab.name,
+            type: fileRab.type,
+            data: base64Data
+          },
+          randomRabFileName
+        };
+        try {
+          const response2 = await fetch($apiURL + "/uploadRab", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${accessToken2}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payloadRabFile)
+          });
+          const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      };
+      if (fileRab)
+        readerRab.readAsDataURL(fileRab);
+      readerPpm.onloadend = async () => {
+        const base64Data = readerPpm.result.split(",")[1];
+        const payloadPpmFile = {
+          filePpm: {
+            name: filePpm.name,
+            type: filePpm.type,
+            data: base64Data
+          },
+          randomPpmFileName
+        };
+        try {
+          const response2 = await fetch($apiURL + "/uploadPpm", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${accessToken2}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payloadPpmFile)
+          });
+          const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      };
+      if (filePpm)
+        readerPpm.readAsDataURL(filePpm);
+      const payload = {
+        jenisProposal,
+        jenisKegiatan,
+        jenisSkema,
+        kelompokKeahlian,
+        topik,
+        tanggalMulai,
+        tanggalSelesai,
+        biayaPenelitian,
+        anggotaTim,
+        id,
+        judul,
+        abstrak,
+        isi,
+        comment: "",
+        status: Number(data2.status) + 1,
+        kdeptSelected: kdeptSelected2,
+        klppmSelected: klppmSelected2,
+        kpkSelected: kpkSelected2,
+        reviewerSelected: reviewerSelected2,
+        randomRabFileName,
+        randomPpmFileName
+      };
+      const response = await fetch($apiURL + "/ppm", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken2}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $route("/admin/proposalmanagement");
+        } else {
+          console.log(response);
+        }
+      }
+    }
+    async function handleRevisi() {
+      const komentar = document.getElementById("komentar");
+      const payloadCttnRevisi = { ppmId, comment, namaLengkapEvl };
+      if (komentar.value === "" || komentar.value == null) {
+        $$invalidate(7, showModalError = true);
+      } else {
+        const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payloadCttnRevisi)
+        });
+        const resultRev = await responseRev.json();
+        if (responseRev.status === 401) {
+          location.pathname = "/tokenexpired";
+        }
+        const payload = {
+          jenisProposal,
+          jenisKegiatan,
+          jenisSkema,
+          kelompokKeahlian,
+          topik,
+          tanggalMulai,
+          tanggalSelesai,
+          biayaPenelitian,
+          anggotaTim,
+          id,
+          judul,
+          abstrak,
+          isi,
+          comment,
+          status: Number(data2.status) - 1,
+          kdeptSelected: kdeptSelected2,
+          klppmSelected: klppmSelected2,
+          kpkSelected: kpkSelected2,
+          reviewerSelected: reviewerSelected2,
+          randomRabFileName,
+          randomPpmFileName
+        };
+        const response = await fetch($apiURL + "/ppm", {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          if (response.ok) {
+            $route("/admin/proposalmanagement");
+          } else {
+            console.log(response);
+          }
+        }
+      }
+    }
+    async function handleDitolak() {
+      const payload = {
+        jenisProposal,
+        jenisKegiatan,
+        jenisSkema,
+        kelompokKeahlian,
+        topik,
+        tanggalMulai,
+        tanggalSelesai,
+        biayaPenelitian,
+        anggotaTim,
+        id,
+        judul,
+        abstrak,
+        isi,
+        comment: "",
+        status: Number(data2.status) + 1,
+        kdeptSelected: kdeptSelected2,
+        klppmSelected: klppmSelected2,
+        kpkSelected: kpkSelected2,
+        reviewerSelected: reviewerSelected2,
+        randomRabFileName,
+        randomPpmFileName
+      };
+      const response = await fetch($apiURL + "/ppm", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $route("/admin/proposalmanagement");
+        } else {
+          console.log(response);
+        }
+      }
+    }
+    async function handlePass() {
+      const evaluatorKdept = document.getElementById("evaluatorKdept");
+      const evaluatorKlppm = document.getElementById("evaluatorKlppm");
+      const evaluatorReviewer = document.getElementById("evaluatorReviewer");
+      const evaluatorKpk = document.getElementById("evaluatorKpk");
+      if (evaluatorKdept.value === "" || evaluatorKdept.value == null || evaluatorKlppm.value === "" || evaluatorKlppm.value == null || evaluatorReviewer.value === "" || evaluatorReviewer.value == null || evaluatorKpk.value === "" || evaluatorKpk.value == null) {
+        $$invalidate(8, showModalErrorInputEvaluator = true);
+      } else {
+        const payload = {
+          jenisProposal,
+          jenisKegiatan,
+          jenisSkema,
+          kelompokKeahlian,
+          topik,
+          tanggalMulai,
+          tanggalSelesai,
+          biayaPenelitian,
+          anggotaTim,
+          id,
+          judul,
+          abstrak,
+          isi,
+          comment: "",
+          status: Number(data2.status) + 2,
+          kdeptSelected: kdeptSelected2,
+          klppmSelected: klppmSelected2,
+          kpkSelected: kpkSelected2,
+          reviewerSelected: reviewerSelected2,
+          randomRabFileName,
+          randomPpmFileName
+        };
+        const response = await fetch($apiURL + "/ppm", {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          if (response.ok) {
+            $route("/admin/proposalmanagement");
+          } else {
+            console.log(response);
+          }
+        }
+      }
+    }
+    function deleteMember(e) {
+      let uid = e.target.getAttribute("data-value");
+      $$invalidate(17, anggotaTim = anggotaTim.filter((member) => {
+        return member.value !== uid;
+      }));
+    }
+    async function handleDownloadRab(e) {
+      const accessToken2 = localStorage.getItem("token");
+      const headers2 = {
+        Authorization: `Bearer ${accessToken2}`,
+        "Content-Type": "application/json"
+      };
+      let filename = "rab.xlsx";
+      try {
+        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers: headers2 });
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
+      } catch (error) {
+        console.error("Error downloading file:", error);
+      }
+    }
+    async function handleDownloadPpm(e) {
+      const accessToken2 = localStorage.getItem("token");
+      const headers2 = {
+        Authorization: `Bearer ${accessToken2}`,
+        "Content-Type": "application/json"
+      };
+      let filename = "proposal.pdf";
+      try {
+        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers: headers2 });
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
+      } catch (error) {
+        console.error("Error downloading file:", error);
+      }
+    }
+    let options;
+    async function findRole(role) {
+      const response = await fetch($apiURL + "/role/" + role, { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          options = result;
+          return options;
+        } else {
+          console.log(response);
+        }
+      }
+    }
+    let tab1 = true;
+    let tab2;
+    let tab4;
+    function clicktab1() {
+      $$invalidate(64, tab1 = true);
+      $$invalidate(65, tab2 = false);
+    }
+    function clicktab2() {
+      $$invalidate(64, tab1 = false);
+      $$invalidate(65, tab2 = true);
+    }
+    function modalerror0_show_binding(value) {
+      showModalError = value;
+      $$invalidate(7, showModalError);
+    }
+    function modalerror1_show_binding(value) {
+      showModalErrorInputEvaluator = value;
+      $$invalidate(8, showModalErrorInputEvaluator);
+    }
+    function select_change_handler() {
+      jenisProposal = select_value(this);
+      $$invalidate(9, jenisProposal);
+    }
+    function select_change_handler_1() {
+      jenisKegiatan = select_value(this);
+      $$invalidate(10, jenisKegiatan);
+    }
+    function select_change_handler_2() {
+      jenisSkema = select_value(this);
+      $$invalidate(11, jenisSkema);
+    }
+    function input_input_handler() {
+      kelompokKeahlian = this.value;
+      $$invalidate(12, kelompokKeahlian);
+    }
+    function input_input_handler_1() {
+      topik = this.value;
+      $$invalidate(13, topik);
+    }
+    function input_input_handler_2() {
+      tanggalMulai = this.value;
+      $$invalidate(14, tanggalMulai);
+    }
+    function input_input_handler_3() {
+      tanggalSelesai = this.value;
+      $$invalidate(15, tanggalSelesai);
+    }
+    function input_input_handler_4() {
+      biayaPenelitian = this.value;
+      $$invalidate(16, biayaPenelitian);
+    }
+    const keyup_handler = () => $$invalidate(16, biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "));
+    function select_result_binding(value) {
+      anggotaTim = value;
+      $$invalidate(17, anggotaTim);
+    }
+    function input_input_handler_5() {
+      judul = this.value;
+      $$invalidate(18, judul);
+    }
+    function textarea_input_handler() {
+      abstrak = this.value;
+      $$invalidate(19, abstrak);
+    }
+    const change_handler = (e) => $$invalidate(61, filePpm = e.target.files[0]);
+    const change_handler_1 = (e) => $$invalidate(60, fileRab = e.target.files[0]);
+    function textarea_input_handler_1() {
+      comment = this.value;
+      $$invalidate(20, comment);
+    }
+    function field0_value_binding(value) {
+      ka_departemen = value;
+      $$invalidate(23, ka_departemen);
+    }
+    function field0_selected_binding(value) {
+      kdeptSelected2 = value;
+      $$invalidate(27, kdeptSelected2);
+    }
+    function field1_value_binding(value) {
+      ka_lppm = value;
+      $$invalidate(24, ka_lppm);
+    }
+    function field1_selected_binding(value) {
+      klppmSelected2 = value;
+      $$invalidate(28, klppmSelected2);
+    }
+    function field2_value_binding(value) {
+      reviewer = value;
+      $$invalidate(25, reviewer);
+    }
+    function field2_selected_binding(value) {
+      reviewerSelected2 = value;
+      $$invalidate(30, reviewerSelected2);
+    }
+    function field3_value_binding(value) {
+      ka_pusat_kajian = value;
+      $$invalidate(26, ka_pusat_kajian);
+    }
+    function field3_selected_binding(value) {
+      kpkSelected2 = value;
+      $$invalidate(29, kpkSelected2);
+    }
+    $$self.$$set = ($$props2) => {
+      if ("params" in $$props2)
+        $$invalidate(75, params = $$props2.params);
+    };
+    return [
+      data2,
+      dataPP,
+      dataPM,
+      dataPD,
+      dataPPub,
+      dataPPB,
+      dataPHKI,
+      showModalError,
+      showModalErrorInputEvaluator,
+      jenisProposal,
+      jenisKegiatan,
+      jenisSkema,
+      kelompokKeahlian,
+      topik,
+      tanggalMulai,
+      tanggalSelesai,
+      biayaPenelitian,
+      anggotaTim,
+      judul,
+      abstrak,
+      comment,
+      status,
+      itemsRCR,
+      ka_departemen,
+      ka_lppm,
+      reviewer,
+      ka_pusat_kajian,
+      kdeptSelected2,
+      klppmSelected2,
+      kpkSelected2,
+      reviewerSelected2,
+      namaLengkap,
+      jabatanFungsional,
+      nip,
+      nidn,
+      tempatLahir,
+      tanggalLahir,
+      alamatRumah,
+      telpFaxRumah,
+      nomorHandphone,
+      alamatKantor,
+      telpFaxKantor,
+      email,
+      mataKuliah,
+      pertiS1,
+      pertiS2,
+      pertiS3,
+      bidangIlmuS1,
+      bidangIlmuS2,
+      bidangIlmuS3,
+      tahunMasukS1,
+      tahunMasukS2,
+      tahunMasukS3,
+      tahunLulusS1,
+      tahunLulusS2,
+      tahunLulusS3,
+      judulTugasAkhirS1,
+      judulTugasAkhirS2,
+      judulTugasAkhirS3,
+      uidProposal,
+      fileRab,
+      filePpm,
+      items,
+      view,
+      tab1,
+      tab2,
+      remediasi,
+      handleRevisi,
+      handleDitolak,
+      handlePass,
+      deleteMember,
+      handleDownloadRab,
+      handleDownloadPpm,
+      clicktab1,
+      clicktab2,
+      params,
+      modalerror0_show_binding,
+      modalerror1_show_binding,
+      select_change_handler,
+      select_change_handler_1,
+      select_change_handler_2,
+      input_input_handler,
+      input_input_handler_1,
+      input_input_handler_2,
+      input_input_handler_3,
+      input_input_handler_4,
+      keyup_handler,
+      select_result_binding,
+      input_input_handler_5,
+      textarea_input_handler,
+      change_handler,
+      change_handler_1,
+      textarea_input_handler_1,
+      field0_value_binding,
+      field0_selected_binding,
+      field1_value_binding,
+      field1_selected_binding,
+      field2_value_binding,
+      field2_selected_binding,
+      field3_value_binding,
+      field3_selected_binding
+    ];
+  }
+  var Detailproposal = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance21, create_fragment26, safe_not_equal, { params: 75 }, null, [-1, -1, -1, -1, -1]);
+    }
+  };
+  var detailproposal_default = Detailproposal;
+
+  // src/pages/admin/home.svelte
+  init_define_process();
+  function create_default_slot7(ctx) {
     let h1;
     let t1;
     let hr;
@@ -6156,12 +14018,12 @@
       }
     };
   }
-  function create_fragment24(ctx) {
+  function create_fragment27(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot6] },
+        $$slots: { default: [create_default_slot7] },
         $$scope: { ctx }
       }
     });
@@ -6196,7 +14058,7 @@
       }
     };
   }
-  function instance19($$self, $$props, $$invalidate) {
+  function instance22($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
     let penelitianCounter, pengmasCounter;
@@ -6234,14 +14096,14 @@
   var Home = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance19, create_fragment24, safe_not_equal, {});
+      init(this, options, instance22, create_fragment27, safe_not_equal, {});
     }
   };
   var home_default = Home;
 
   // src/pages/admin/pengumuman.svelte
   init_define_process();
-  function create_default_slot7(ctx) {
+  function create_default_slot8(ctx) {
     let h1;
     let t1;
     let hr;
@@ -6394,12 +14256,12 @@
       }
     };
   }
-  function create_fragment25(ctx) {
+  function create_fragment28(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot7] },
+        $$slots: { default: [create_default_slot8] },
         $$scope: { ctx }
       }
     });
@@ -6440,257 +14302,49 @@
   var Pengumuman2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment25, safe_not_equal, {});
+      init(this, options, null, create_fragment28, safe_not_equal, {});
     }
   };
   var pengumuman_default = Pengumuman2;
 
   // src/pages/admin/profile.svelte
   init_define_process();
-
-  // src/libs/Modal.svelte
-  init_define_process();
-  var get_header_slot_changes = (dirty) => ({});
-  var get_header_slot_context = (ctx) => ({});
-  function create_fragment26(ctx) {
-    let b;
-    let div;
-    let span1;
-    let span0;
-    let t1;
-    let t2;
-    let hr;
-    let t3;
-    let current;
-    let mounted;
-    let dispose;
-    const header_slot_template = (
-      /*#slots*/
-      ctx[4].header
-    );
-    const header_slot = create_slot(
-      header_slot_template,
-      ctx,
-      /*$$scope*/
-      ctx[3],
-      get_header_slot_context
-    );
-    const default_slot_template = (
-      /*#slots*/
-      ctx[4].default
-    );
-    const default_slot = create_slot(
-      default_slot_template,
-      ctx,
-      /*$$scope*/
-      ctx[3],
-      null
-    );
-    return {
-      c() {
-        b = element("b");
-        div = element("div");
-        span1 = element("span");
-        span0 = element("span");
-        span0.textContent = "\xD7";
-        t1 = space();
-        if (header_slot)
-          header_slot.c();
-        t2 = space();
-        hr = element("hr");
-        t3 = space();
-        if (default_slot)
-          default_slot.c();
-        attr(span0, "class", "close svelte-gcisbw");
-        attr(div, "class", "svelte-gcisbw");
-        attr(b, "class", "svelte-gcisbw");
-        toggle_class(
-          b,
-          "show",
-          /*show*/
-          ctx[0]
-        );
-      },
-      m(target, anchor) {
-        insert(target, b, anchor);
-        append(b, div);
-        append(div, span1);
-        append(span1, span0);
-        append(span1, t1);
-        if (header_slot) {
-          header_slot.m(span1, null);
-        }
-        append(div, t2);
-        append(div, hr);
-        append(div, t3);
-        if (default_slot) {
-          default_slot.m(div, null);
-        }
-        current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              span0,
-              "click",
-              /*clickX*/
-              ctx[2]
-            ),
-            listen(
-              b,
-              "click",
-              /*handleClick*/
-              ctx[1]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (header_slot) {
-          if (header_slot.p && (!current || dirty & /*$$scope*/
-          8)) {
-            update_slot_base(
-              header_slot,
-              header_slot_template,
-              ctx2,
-              /*$$scope*/
-              ctx2[3],
-              !current ? get_all_dirty_from_scope(
-                /*$$scope*/
-                ctx2[3]
-              ) : get_slot_changes(
-                header_slot_template,
-                /*$$scope*/
-                ctx2[3],
-                dirty,
-                get_header_slot_changes
-              ),
-              get_header_slot_context
-            );
-          }
-        }
-        if (default_slot) {
-          if (default_slot.p && (!current || dirty & /*$$scope*/
-          8)) {
-            update_slot_base(
-              default_slot,
-              default_slot_template,
-              ctx2,
-              /*$$scope*/
-              ctx2[3],
-              !current ? get_all_dirty_from_scope(
-                /*$$scope*/
-                ctx2[3]
-              ) : get_slot_changes(
-                default_slot_template,
-                /*$$scope*/
-                ctx2[3],
-                dirty,
-                null
-              ),
-              null
-            );
-          }
-        }
-        if (!current || dirty & /*show*/
-        1) {
-          toggle_class(
-            b,
-            "show",
-            /*show*/
-            ctx2[0]
-          );
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(header_slot, local);
-        transition_in(default_slot, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(header_slot, local);
-        transition_out(default_slot, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(b);
-        }
-        if (header_slot)
-          header_slot.d(detaching);
-        if (default_slot)
-          default_slot.d(detaching);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function instance20($$self, $$props, $$invalidate) {
-    let { $$slots: slots = {}, $$scope } = $$props;
-    let { show = false } = $$props;
-    function handleClick(e) {
-      if (e.target === e.currentTarget) {
-        $$invalidate(0, show = false);
-      }
-    }
-    function clickX() {
-      $$invalidate(0, show = false);
-    }
-    $$self.$$set = ($$props2) => {
-      if ("show" in $$props2)
-        $$invalidate(0, show = $$props2.show);
-      if ("$$scope" in $$props2)
-        $$invalidate(3, $$scope = $$props2.$$scope);
-    };
-    return [show, handleClick, clickX, $$scope, slots];
-  }
-  var Modal = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance20, create_fragment26, safe_not_equal, { show: 0 });
-    }
-  };
-  var Modal_default = Modal;
-
-  // src/pages/admin/profile.svelte
-  function get_each_context3(ctx, list, i) {
+  function get_each_context5(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[175] = list[i];
     return child_ctx;
   }
-  function get_each_context_1(ctx, list, i) {
+  function get_each_context_12(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[178] = list[i];
     return child_ctx;
   }
-  function get_each_context_2(ctx, list, i) {
+  function get_each_context_22(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[181] = list[i];
     return child_ctx;
   }
-  function get_each_context_3(ctx, list, i) {
+  function get_each_context_32(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[184] = list[i];
     return child_ctx;
   }
-  function get_each_context_4(ctx, list, i) {
+  function get_each_context_42(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[187] = list[i];
     return child_ctx;
   }
-  function get_each_context_5(ctx, list, i) {
+  function get_each_context_52(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[190] = list[i];
     return child_ctx;
   }
-  function get_each_context_6(ctx, list, i) {
+  function get_each_context_62(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[193] = list[i];
     return child_ctx;
   }
-  function create_if_block_8(ctx) {
+  function create_if_block_82(ctx) {
     let div0;
     let field0;
     let t0;
@@ -6739,63 +14393,63 @@
     field1 = new Field_default({
       props: {
         name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_45] },
+        $$slots: { default: [create_default_slot_452] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "NIP",
-        $$slots: { default: [create_default_slot_44] },
+        $$slots: { default: [create_default_slot_442] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "NIDN",
-        $$slots: { default: [create_default_slot_43] },
+        $$slots: { default: [create_default_slot_432] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Tempat / Tanggal Lahir",
-        $$slots: { default: [create_default_slot_42] },
+        $$slots: { default: [create_default_slot_422] },
         $$scope: { ctx }
       }
     });
     field5 = new Field_default({
       props: {
         name: "Alamat Rumah",
-        $$slots: { default: [create_default_slot_41] },
+        $$slots: { default: [create_default_slot_412] },
         $$scope: { ctx }
       }
     });
     field6 = new Field_default({
       props: {
         name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_40] },
+        $$slots: { default: [create_default_slot_402] },
         $$scope: { ctx }
       }
     });
     field7 = new Field_default({
       props: {
         name: "Nomor Handphone",
-        $$slots: { default: [create_default_slot_39] },
+        $$slots: { default: [create_default_slot_392] },
         $$scope: { ctx }
       }
     });
     field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_38] },
+        $$slots: { default: [create_default_slot_382] },
         $$scope: { ctx }
       }
     });
     field9 = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_37] },
+        $$slots: { default: [create_default_slot_372] },
         $$scope: { ctx }
       }
     });
@@ -6803,21 +14457,21 @@
       props: {
         class: "input",
         name: "Email",
-        $$slots: { default: [create_default_slot_36] },
+        $$slots: { default: [create_default_slot_362] },
         $$scope: { ctx }
       }
     });
     field11 = new Field_default({
       props: {
         name: "Mata Kuliah",
-        $$slots: { default: [create_default_slot_35] },
+        $$slots: { default: [create_default_slot_352] },
         $$scope: { ctx }
       }
     });
     let if_block = (
       /*mataKuliah*/
       ctx[47] && /*mataKuliah*/
-      ctx[47].length > 0 && create_if_block_9(ctx)
+      ctx[47].length > 0 && create_if_block_92(ctx)
     );
     return {
       c() {
@@ -7012,7 +14666,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_9(ctx2);
+            if_block = create_if_block_92(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(tbody, null);
@@ -7141,7 +14795,7 @@
       }
     };
   }
-  function create_default_slot_45(ctx) {
+  function create_default_slot_452(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7188,7 +14842,7 @@
       }
     };
   }
-  function create_default_slot_44(ctx) {
+  function create_default_slot_442(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7235,7 +14889,7 @@
       }
     };
   }
-  function create_default_slot_43(ctx) {
+  function create_default_slot_432(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7282,7 +14936,7 @@
       }
     };
   }
-  function create_default_slot_42(ctx) {
+  function create_default_slot_422(ctx) {
     let div2;
     let div0;
     let input0;
@@ -7370,7 +15024,7 @@
       }
     };
   }
-  function create_default_slot_41(ctx) {
+  function create_default_slot_412(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7417,7 +15071,7 @@
       }
     };
   }
-  function create_default_slot_40(ctx) {
+  function create_default_slot_402(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7464,7 +15118,7 @@
       }
     };
   }
-  function create_default_slot_39(ctx) {
+  function create_default_slot_392(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7511,7 +15165,7 @@
       }
     };
   }
-  function create_default_slot_38(ctx) {
+  function create_default_slot_382(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7558,7 +15212,7 @@
       }
     };
   }
-  function create_default_slot_37(ctx) {
+  function create_default_slot_372(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7605,7 +15259,7 @@
       }
     };
   }
-  function create_default_slot_36(ctx) {
+  function create_default_slot_362(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -7652,7 +15306,7 @@
       }
     };
   }
-  function create_default_slot_35(ctx) {
+  function create_default_slot_352(ctx) {
     let div;
     let p0;
     let input;
@@ -7763,7 +15417,7 @@
       }
     };
   }
-  function create_if_block_9(ctx) {
+  function create_if_block_92(ctx) {
     let each_1_anchor;
     let current;
     let each_value_6 = ensure_array_like(
@@ -7772,7 +15426,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_6.length; i += 1) {
-      each_blocks[i] = create_each_block_6(get_each_context_6(ctx, each_value_6, i));
+      each_blocks[i] = create_each_block_62(get_each_context_62(ctx, each_value_6, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -7803,12 +15457,12 @@
           );
           let i;
           for (i = 0; i < each_value_6.length; i += 1) {
-            const child_ctx = get_each_context_6(ctx2, each_value_6, i);
+            const child_ctx = get_each_context_62(ctx2, each_value_6, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_6(child_ctx);
+              each_blocks[i] = create_each_block_62(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -7844,7 +15498,7 @@
       }
     };
   }
-  function create_each_block_6(ctx) {
+  function create_each_block_62(ctx) {
     let tr;
     let td0;
     let button;
@@ -7931,7 +15585,7 @@
       }
     };
   }
-  function create_if_block_7(ctx) {
+  function create_if_block_72(ctx) {
     let div0;
     let table;
     let thead;
@@ -8503,7 +16157,7 @@
       }
     };
   }
-  function create_if_block4(ctx) {
+  function create_if_block6(ctx) {
     let modal0;
     let updating_show;
     let t0;
@@ -8632,7 +16286,7 @@
     let modal0_props = {
       $$slots: {
         header: [create_header_slot_5],
-        default: [create_default_slot_29]
+        default: [create_default_slot_292]
       },
       $$scope: { ctx }
     };
@@ -8648,7 +16302,7 @@
     icon0 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block0 = (
       /*dataPP*/
-      ctx[0] && create_if_block_6(ctx)
+      ctx[0] && create_if_block_62(ctx)
     );
     function modal1_show_binding(value) {
       ctx[139](value);
@@ -8656,7 +16310,7 @@
     let modal1_props = {
       $$slots: {
         header: [create_header_slot_4],
-        default: [create_default_slot_23]
+        default: [create_default_slot_232]
       },
       $$scope: { ctx }
     };
@@ -8672,7 +16326,7 @@
     icon1 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block1 = (
       /*dataPM*/
-      ctx[1] && create_if_block_5(ctx)
+      ctx[1] && create_if_block_52(ctx)
     );
     function modal2_show_binding(value) {
       ctx[144](value);
@@ -8680,7 +16334,7 @@
     let modal2_props = {
       $$slots: {
         header: [create_header_slot_3],
-        default: [create_default_slot_18]
+        default: [create_default_slot_182]
       },
       $$scope: { ctx }
     };
@@ -8696,7 +16350,7 @@
     icon2 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block2 = (
       /*dataPD*/
-      ctx[2] && create_if_block_42(ctx)
+      ctx[2] && create_if_block_43(ctx)
     );
     function modal3_show_binding(value) {
       ctx[149](value);
@@ -8704,7 +16358,7 @@
     let modal3_props = {
       $$slots: {
         header: [create_header_slot_2],
-        default: [create_default_slot_13]
+        default: [create_default_slot_132]
       },
       $$scope: { ctx }
     };
@@ -8720,7 +16374,7 @@
     icon3 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block3 = (
       /*dataPPub*/
-      ctx[3] && create_if_block_32(ctx)
+      ctx[3] && create_if_block_33(ctx)
     );
     function modal4_show_binding(value) {
       ctx[155](value);
@@ -8728,7 +16382,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_1],
-        default: [create_default_slot_72]
+        default: [create_default_slot_73]
       },
       $$scope: { ctx }
     };
@@ -8744,7 +16398,7 @@
     icon4 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block4 = (
       /*dataPPB*/
-      ctx[4] && create_if_block_23(ctx)
+      ctx[4] && create_if_block_24(ctx)
     );
     function modal5_show_binding(value) {
       ctx[161](value);
@@ -8752,7 +16406,7 @@
     let modal5_props = {
       $$slots: {
         header: [create_header_slot],
-        default: [create_default_slot_110]
+        default: [create_default_slot_111]
       },
       $$scope: { ctx }
     };
@@ -8768,7 +16422,7 @@
     icon5 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block5 = (
       /*dataPHKI*/
-      ctx[5] && create_if_block_13(ctx)
+      ctx[5] && create_if_block_111(ctx)
     );
     return {
       c() {
@@ -9159,7 +16813,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_6(ctx2);
+            if_block0 = create_if_block_62(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(tbody0, null);
@@ -9196,7 +16850,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_5(ctx2);
+            if_block1 = create_if_block_52(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(tbody1, null);
@@ -9233,7 +16887,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_42(ctx2);
+            if_block2 = create_if_block_43(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(tbody2, null);
@@ -9270,7 +16924,7 @@
               transition_in(if_block3, 1);
             }
           } else {
-            if_block3 = create_if_block_32(ctx2);
+            if_block3 = create_if_block_33(ctx2);
             if_block3.c();
             transition_in(if_block3, 1);
             if_block3.m(tbody3, null);
@@ -9307,7 +16961,7 @@
               transition_in(if_block4, 1);
             }
           } else {
-            if_block4 = create_if_block_23(ctx2);
+            if_block4 = create_if_block_24(ctx2);
             if_block4.c();
             transition_in(if_block4, 1);
             if_block4.m(tbody4, null);
@@ -9345,7 +16999,7 @@
               transition_in(if_block5, 1);
             }
           } else {
-            if_block5 = create_if_block_13(ctx2);
+            if_block5 = create_if_block_111(ctx2);
             if_block5.c();
             transition_in(if_block5, 1);
             if_block5.m(tbody5, null);
@@ -9451,7 +17105,7 @@
       }
     };
   }
-  function create_default_slot_34(ctx) {
+  function create_default_slot_342(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -9498,7 +17152,7 @@
       }
     };
   }
-  function create_default_slot_33(ctx) {
+  function create_default_slot_332(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -9545,7 +17199,7 @@
       }
     };
   }
-  function create_default_slot_32(ctx) {
+  function create_default_slot_322(ctx) {
     let div;
     let select;
     let option0;
@@ -9623,7 +17277,7 @@
       }
     };
   }
-  function create_default_slot_31(ctx) {
+  function create_default_slot_312(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -9670,7 +17324,7 @@
       }
     };
   }
-  function create_default_slot_30(ctx) {
+  function create_default_slot_302(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -9726,7 +17380,7 @@
       }
     };
   }
-  function create_default_slot_29(ctx) {
+  function create_default_slot_292(ctx) {
     let field0;
     let t0;
     let field1;
@@ -9748,35 +17402,35 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_34] },
+        $$slots: { default: [create_default_slot_342] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Penelitian",
-        $$slots: { default: [create_default_slot_33] },
+        $$slots: { default: [create_default_slot_332] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Ketua/Anggota",
-        $$slots: { default: [create_default_slot_32] },
+        $$slots: { default: [create_default_slot_322] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Sumber Dana",
-        $$slots: { default: [create_default_slot_31] },
+        $$slots: { default: [create_default_slot_312] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Jumlah Rp.",
-        $$slots: { default: [create_default_slot_30] },
+        $$slots: { default: [create_default_slot_302] },
         $$scope: { ctx }
       }
     });
@@ -9925,7 +17579,7 @@
       }
     };
   }
-  function create_if_block_6(ctx) {
+  function create_if_block_62(ctx) {
     let each_1_anchor;
     let current;
     let each_value_5 = ensure_array_like(
@@ -9934,7 +17588,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_5.length; i += 1) {
-      each_blocks[i] = create_each_block_5(get_each_context_5(ctx, each_value_5, i));
+      each_blocks[i] = create_each_block_52(get_each_context_52(ctx, each_value_5, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -9965,12 +17619,12 @@
           );
           let i;
           for (i = 0; i < each_value_5.length; i += 1) {
-            const child_ctx = get_each_context_5(ctx2, each_value_5, i);
+            const child_ctx = get_each_context_52(ctx2, each_value_5, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_5(child_ctx);
+              each_blocks[i] = create_each_block_52(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -10006,7 +17660,7 @@
       }
     };
   }
-  function create_each_block_5(ctx) {
+  function create_each_block_52(ctx) {
     let tr;
     let td0;
     let button;
@@ -10161,7 +17815,7 @@
       }
     };
   }
-  function create_default_slot_28(ctx) {
+  function create_default_slot_282(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10208,7 +17862,7 @@
       }
     };
   }
-  function create_default_slot_27(ctx) {
+  function create_default_slot_272(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10255,7 +17909,7 @@
       }
     };
   }
-  function create_default_slot_26(ctx) {
+  function create_default_slot_262(ctx) {
     let div;
     let select;
     let option0;
@@ -10333,7 +17987,7 @@
       }
     };
   }
-  function create_default_slot_25(ctx) {
+  function create_default_slot_252(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10380,7 +18034,7 @@
       }
     };
   }
-  function create_default_slot_24(ctx) {
+  function create_default_slot_242(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10436,7 +18090,7 @@
       }
     };
   }
-  function create_default_slot_23(ctx) {
+  function create_default_slot_232(ctx) {
     let field0;
     let t0;
     let field1;
@@ -10458,35 +18112,35 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_28] },
+        $$slots: { default: [create_default_slot_282] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Pengmas",
-        $$slots: { default: [create_default_slot_27] },
+        $$slots: { default: [create_default_slot_272] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Ketua/Anggota",
-        $$slots: { default: [create_default_slot_26] },
+        $$slots: { default: [create_default_slot_262] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Sumber Dana",
-        $$slots: { default: [create_default_slot_25] },
+        $$slots: { default: [create_default_slot_252] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Jumlah Rp.",
-        $$slots: { default: [create_default_slot_24] },
+        $$slots: { default: [create_default_slot_242] },
         $$scope: { ctx }
       }
     });
@@ -10635,7 +18289,7 @@
       }
     };
   }
-  function create_if_block_5(ctx) {
+  function create_if_block_52(ctx) {
     let each_1_anchor;
     let current;
     let each_value_4 = ensure_array_like(
@@ -10644,7 +18298,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_4.length; i += 1) {
-      each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
+      each_blocks[i] = create_each_block_42(get_each_context_42(ctx, each_value_4, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -10675,12 +18329,12 @@
           );
           let i;
           for (i = 0; i < each_value_4.length; i += 1) {
-            const child_ctx = get_each_context_4(ctx2, each_value_4, i);
+            const child_ctx = get_each_context_42(ctx2, each_value_4, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_4(child_ctx);
+              each_blocks[i] = create_each_block_42(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -10716,7 +18370,7 @@
       }
     };
   }
-  function create_each_block_4(ctx) {
+  function create_each_block_42(ctx) {
     let tr;
     let td0;
     let button;
@@ -10871,7 +18525,7 @@
       }
     };
   }
-  function create_default_slot_222(ctx) {
+  function create_default_slot_223(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10918,7 +18572,7 @@
       }
     };
   }
-  function create_default_slot_21(ctx) {
+  function create_default_slot_212(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -10965,7 +18619,7 @@
       }
     };
   }
-  function create_default_slot_20(ctx) {
+  function create_default_slot_202(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11012,7 +18666,7 @@
       }
     };
   }
-  function create_default_slot_19(ctx) {
+  function create_default_slot_192(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11059,7 +18713,7 @@
       }
     };
   }
-  function create_default_slot_18(ctx) {
+  function create_default_slot_182(ctx) {
     let field0;
     let t0;
     let field1;
@@ -11079,28 +18733,28 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_222] },
+        $$slots: { default: [create_default_slot_223] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Artikel",
-        $$slots: { default: [create_default_slot_21] },
+        $$slots: { default: [create_default_slot_212] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Nama Pemakalah",
-        $$slots: { default: [create_default_slot_20] },
+        $$slots: { default: [create_default_slot_202] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Nama Pertemuan Ilmiah/Pameran",
-        $$slots: { default: [create_default_slot_19] },
+        $$slots: { default: [create_default_slot_192] },
         $$scope: { ctx }
       }
     });
@@ -11234,7 +18888,7 @@
       }
     };
   }
-  function create_if_block_42(ctx) {
+  function create_if_block_43(ctx) {
     let each_1_anchor;
     let current;
     let each_value_3 = ensure_array_like(
@@ -11243,7 +18897,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_3.length; i += 1) {
-      each_blocks[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+      each_blocks[i] = create_each_block_32(get_each_context_32(ctx, each_value_3, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -11274,12 +18928,12 @@
           );
           let i;
           for (i = 0; i < each_value_3.length; i += 1) {
-            const child_ctx = get_each_context_3(ctx2, each_value_3, i);
+            const child_ctx = get_each_context_32(ctx2, each_value_3, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_3(child_ctx);
+              each_blocks[i] = create_each_block_32(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -11315,7 +18969,7 @@
       }
     };
   }
-  function create_each_block_3(ctx) {
+  function create_each_block_32(ctx) {
     let tr;
     let td0;
     let button;
@@ -11453,7 +19107,7 @@
       }
     };
   }
-  function create_default_slot_17(ctx) {
+  function create_default_slot_172(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11500,7 +19154,7 @@
       }
     };
   }
-  function create_default_slot_16(ctx) {
+  function create_default_slot_162(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11547,7 +19201,7 @@
       }
     };
   }
-  function create_default_slot_15(ctx) {
+  function create_default_slot_152(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11594,7 +19248,7 @@
       }
     };
   }
-  function create_default_slot_14(ctx) {
+  function create_default_slot_142(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -11641,7 +19295,7 @@
       }
     };
   }
-  function create_default_slot_13(ctx) {
+  function create_default_slot_132(ctx) {
     let field0;
     let t0;
     let field1;
@@ -11661,28 +19315,28 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_17] },
+        $$slots: { default: [create_default_slot_172] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Artikel",
-        $$slots: { default: [create_default_slot_16] },
+        $$slots: { default: [create_default_slot_162] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Nama Jurnal, Vol., No Issue/No Artikel, Halaman",
-        $$slots: { default: [create_default_slot_15] },
+        $$slots: { default: [create_default_slot_152] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Nama Pertemuan Ilmiah/Pameran",
-        $$slots: { default: [create_default_slot_14] },
+        $$slots: { default: [create_default_slot_142] },
         $$scope: { ctx }
       }
     });
@@ -11816,7 +19470,7 @@
       }
     };
   }
-  function create_if_block_32(ctx) {
+  function create_if_block_33(ctx) {
     let each_1_anchor;
     let current;
     let each_value_2 = ensure_array_like(
@@ -11825,7 +19479,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_2.length; i += 1) {
-      each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+      each_blocks[i] = create_each_block_22(get_each_context_22(ctx, each_value_2, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -11856,12 +19510,12 @@
           );
           let i;
           for (i = 0; i < each_value_2.length; i += 1) {
-            const child_ctx = get_each_context_2(ctx2, each_value_2, i);
+            const child_ctx = get_each_context_22(ctx2, each_value_2, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_2(child_ctx);
+              each_blocks[i] = create_each_block_22(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -11897,7 +19551,7 @@
       }
     };
   }
-  function create_each_block_2(ctx) {
+  function create_each_block_22(ctx) {
     let tr;
     let td0;
     let button;
@@ -12035,7 +19689,7 @@
       }
     };
   }
-  function create_default_slot_122(ctx) {
+  function create_default_slot_123(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12082,7 +19736,7 @@
       }
     };
   }
-  function create_default_slot_11(ctx) {
+  function create_default_slot_112(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12129,7 +19783,7 @@
       }
     };
   }
-  function create_default_slot_10(ctx) {
+  function create_default_slot_102(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12176,7 +19830,7 @@
       }
     };
   }
-  function create_default_slot_9(ctx) {
+  function create_default_slot_92(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12223,7 +19877,7 @@
       }
     };
   }
-  function create_default_slot_8(ctx) {
+  function create_default_slot_82(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12270,7 +19924,7 @@
       }
     };
   }
-  function create_default_slot_72(ctx) {
+  function create_default_slot_73(ctx) {
     let field0;
     let t0;
     let field1;
@@ -12292,35 +19946,35 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_122] },
+        $$slots: { default: [create_default_slot_123] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul Buku",
-        $$slots: { default: [create_default_slot_11] },
+        $$slots: { default: [create_default_slot_112] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_10] },
+        $$slots: { default: [create_default_slot_102] },
         $$scope: { ctx }
       }
     });
     field3 = new Field_default({
       props: {
         name: "Penerbit",
-        $$slots: { default: [create_default_slot_9] },
+        $$slots: { default: [create_default_slot_92] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "ISBN",
-        $$slots: { default: [create_default_slot_8] },
+        $$slots: { default: [create_default_slot_82] },
         $$scope: { ctx }
       }
     });
@@ -12469,7 +20123,7 @@
       }
     };
   }
-  function create_if_block_23(ctx) {
+  function create_if_block_24(ctx) {
     let each_1_anchor;
     let current;
     let each_value_1 = ensure_array_like(
@@ -12478,7 +20132,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value_1.length; i += 1) {
-      each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+      each_blocks[i] = create_each_block_12(get_each_context_12(ctx, each_value_1, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -12509,12 +20163,12 @@
           );
           let i;
           for (i = 0; i < each_value_1.length; i += 1) {
-            const child_ctx = get_each_context_1(ctx2, each_value_1, i);
+            const child_ctx = get_each_context_12(ctx2, each_value_1, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block_1(child_ctx);
+              each_blocks[i] = create_each_block_12(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -12550,7 +20204,7 @@
       }
     };
   }
-  function create_each_block_1(ctx) {
+  function create_each_block_12(ctx) {
     let tr;
     let td0;
     let button;
@@ -12705,7 +20359,7 @@
       }
     };
   }
-  function create_default_slot_62(ctx) {
+  function create_default_slot_63(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12752,7 +20406,7 @@
       }
     };
   }
-  function create_default_slot_52(ctx) {
+  function create_default_slot_53(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12846,7 +20500,7 @@
       }
     };
   }
-  function create_default_slot_310(ctx) {
+  function create_default_slot_311(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12893,7 +20547,7 @@
       }
     };
   }
-  function create_default_slot_210(ctx) {
+  function create_default_slot_211(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -12940,7 +20594,7 @@
       }
     };
   }
-  function create_default_slot_110(ctx) {
+  function create_default_slot_111(ctx) {
     let field0;
     let t0;
     let field1;
@@ -12962,14 +20616,14 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_62] },
+        $$slots: { default: [create_default_slot_63] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Judul HKI",
-        $$slots: { default: [create_default_slot_52] },
+        $$slots: { default: [create_default_slot_53] },
         $$scope: { ctx }
       }
     });
@@ -12983,14 +20637,14 @@
     field3 = new Field_default({
       props: {
         name: "Penerbit",
-        $$slots: { default: [create_default_slot_310] },
+        $$slots: { default: [create_default_slot_311] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "ISBN",
-        $$slots: { default: [create_default_slot_210] },
+        $$slots: { default: [create_default_slot_211] },
         $$scope: { ctx }
       }
     });
@@ -13139,7 +20793,7 @@
       }
     };
   }
-  function create_if_block_13(ctx) {
+  function create_if_block_111(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -13148,7 +20802,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block3(get_each_context3(ctx, each_value, i));
+      each_blocks[i] = create_each_block5(get_each_context5(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -13179,12 +20833,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context3(ctx2, each_value, i);
+            const child_ctx = get_each_context5(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block3(child_ctx);
+              each_blocks[i] = create_each_block5(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -13220,7 +20874,7 @@
       }
     };
   }
-  function create_each_block3(ctx) {
+  function create_each_block5(ctx) {
     let tr;
     let td0;
     let button;
@@ -13375,7 +21029,7 @@
       }
     };
   }
-  function create_default_slot8(ctx) {
+  function create_default_slot9(ctx) {
     let h1;
     let t1;
     let div;
@@ -13394,15 +21048,15 @@
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[69] === true && create_if_block_8(ctx)
+      ctx[69] === true && create_if_block_82(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[70] === true && create_if_block_7(ctx)
+      ctx[70] === true && create_if_block_72(ctx)
     );
     let if_block2 = (
       /*tab3*/
-      ctx[71] === true && create_if_block4(ctx)
+      ctx[71] === true && create_if_block6(ctx)
     );
     return {
       c() {
@@ -13534,7 +21188,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_8(ctx2);
+            if_block0 = create_if_block_82(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t8.parentNode, t8);
@@ -13553,7 +21207,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_7(ctx2);
+            if_block1 = create_if_block_72(ctx2);
             if_block1.c();
             if_block1.m(t9.parentNode, t9);
           }
@@ -13572,7 +21226,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block4(ctx2);
+            if_block2 = create_if_block6(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
@@ -13618,12 +21272,12 @@
       }
     };
   }
-  function create_fragment27(ctx) {
+  function create_fragment29(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot8] },
+        $$slots: { default: [create_default_slot9] },
         $$scope: { ctx }
       }
     });
@@ -13661,7 +21315,7 @@
       }
     };
   }
-  function formatRupiah(angka, prefix) {
+  function formatRupiah2(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
     if (ribuan) {
       separator = sisa ? "." : "";
@@ -13670,7 +21324,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance21($$self, $$props, $$invalidate) {
+  function instance23($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(164, $apiURL = $$value));
@@ -14404,7 +22058,7 @@
       biayaPP = this.value;
       $$invalidate(7, biayaPP);
     }
-    const keyup_handler = () => $$invalidate(7, biayaPP = formatRupiah(biayaPP, "Rp. "));
+    const keyup_handler = () => $$invalidate(7, biayaPP = formatRupiah2(biayaPP, "Rp. "));
     function modal0_show_binding(value) {
       showModalPenelitian = value;
       $$invalidate(63, showModalPenelitian);
@@ -14429,7 +22083,7 @@
       biayaPengmas = this.value;
       $$invalidate(12, biayaPengmas);
     }
-    const keyup_handler_1 = () => $$invalidate(12, biayaPengmas = formatRupiah(biayaPengmas, "Rp. "));
+    const keyup_handler_1 = () => $$invalidate(12, biayaPengmas = formatRupiah2(biayaPengmas, "Rp. "));
     function modal1_show_binding(value) {
       showModalPengmas = value;
       $$invalidate(64, showModalPengmas);
@@ -14694,17 +22348,17 @@
   var Profile = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance21, create_fragment27, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance23, create_fragment29, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default = Profile;
 
-  // src/pages/admin/proposal.svelte
+  // src/pages/admin/proposalmanagement.svelte
   init_define_process();
 
   // src/modules/Status.svelte
   init_define_process();
-  function create_if_block_122(ctx) {
+  function create_if_block_123(ctx) {
     let span;
     return {
       c() {
@@ -14722,7 +22376,7 @@
       }
     };
   }
-  function create_if_block_11(ctx) {
+  function create_if_block_112(ctx) {
     let span;
     return {
       c() {
@@ -14740,7 +22394,7 @@
       }
     };
   }
-  function create_if_block_10(ctx) {
+  function create_if_block_102(ctx) {
     let span;
     return {
       c() {
@@ -14758,7 +22412,7 @@
       }
     };
   }
-  function create_if_block_92(ctx) {
+  function create_if_block_93(ctx) {
     let span;
     return {
       c() {
@@ -14776,7 +22430,7 @@
       }
     };
   }
-  function create_if_block_82(ctx) {
+  function create_if_block_83(ctx) {
     let span;
     return {
       c() {
@@ -14794,7 +22448,7 @@
       }
     };
   }
-  function create_if_block_72(ctx) {
+  function create_if_block_73(ctx) {
     let span;
     return {
       c() {
@@ -14812,7 +22466,7 @@
       }
     };
   }
-  function create_if_block_62(ctx) {
+  function create_if_block_63(ctx) {
     let span;
     return {
       c() {
@@ -14830,7 +22484,7 @@
       }
     };
   }
-  function create_if_block_52(ctx) {
+  function create_if_block_53(ctx) {
     let span;
     return {
       c() {
@@ -14848,7 +22502,7 @@
       }
     };
   }
-  function create_if_block_43(ctx) {
+  function create_if_block_44(ctx) {
     let span;
     return {
       c() {
@@ -14866,7 +22520,7 @@
       }
     };
   }
-  function create_if_block_33(ctx) {
+  function create_if_block_34(ctx) {
     let span;
     return {
       c() {
@@ -14884,7 +22538,7 @@
       }
     };
   }
-  function create_if_block_24(ctx) {
+  function create_if_block_25(ctx) {
     let span;
     return {
       c() {
@@ -14902,7 +22556,7 @@
       }
     };
   }
-  function create_if_block_14(ctx) {
+  function create_if_block_113(ctx) {
     let span;
     return {
       c() {
@@ -14920,7 +22574,7 @@
       }
     };
   }
-  function create_if_block5(ctx) {
+  function create_if_block7(ctx) {
     let span;
     return {
       c() {
@@ -14938,74 +22592,74 @@
       }
     };
   }
-  function create_fragment28(ctx) {
+  function create_fragment30(ctx) {
     let if_block_anchor;
     function select_block_type(ctx2, dirty) {
       if (
         /*code*/
         ctx2[0] === 0
       )
-        return create_if_block5;
+        return create_if_block7;
       if (
         /*code*/
         ctx2[0] === 1
       )
-        return create_if_block_14;
+        return create_if_block_113;
       if (
         /*code*/
         ctx2[0] === 2
       )
-        return create_if_block_24;
+        return create_if_block_25;
       if (
         /*code*/
         ctx2[0] === 3
       )
-        return create_if_block_33;
+        return create_if_block_34;
       if (
         /*code*/
         ctx2[0] === 4
       )
-        return create_if_block_43;
+        return create_if_block_44;
       if (
         /*code*/
         ctx2[0] === 5
       )
-        return create_if_block_52;
+        return create_if_block_53;
       if (
         /*code*/
         ctx2[0] === 6
       )
-        return create_if_block_62;
+        return create_if_block_63;
       if (
         /*code*/
         ctx2[0] === 7
       )
-        return create_if_block_72;
+        return create_if_block_73;
       if (
         /*code*/
         ctx2[0] === 8
       )
-        return create_if_block_82;
+        return create_if_block_83;
       if (
         /*code*/
         ctx2[0] === 9
       )
-        return create_if_block_92;
+        return create_if_block_93;
       if (
         /*code*/
         ctx2[0] === 10
       )
-        return create_if_block_10;
+        return create_if_block_102;
       if (
         /*code*/
         ctx2[0] === 11
       )
-        return create_if_block_11;
+        return create_if_block_112;
       if (
         /*code*/
         ctx2[0] === 12
       )
-        return create_if_block_122;
+        return create_if_block_123;
     }
     let current_block_type = select_block_type(ctx, -1);
     let if_block = current_block_type && current_block_type(ctx);
@@ -15043,7 +22697,7 @@
       }
     };
   }
-  function instance22($$self, $$props, $$invalidate) {
+  function instance24($$self, $$props, $$invalidate) {
     let { code } = $$props;
     $$self.$$set = ($$props2) => {
       if ("code" in $$props2)
@@ -15054,7669 +22708,12 @@
   var Status = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance22, create_fragment28, safe_not_equal, { code: 0 });
+      init(this, options, instance24, create_fragment30, safe_not_equal, { code: 0 });
     }
   };
   var Status_default = Status;
 
-  // src/libs/Select.svelte
-  init_define_process();
-  function get_each_context4(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[10] = list[i];
-    return child_ctx;
-  }
-  function create_if_block6(ctx) {
-    let span;
-    let each_value = ensure_array_like(
-      /*filteredItems*/
-      ctx[2]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block4(get_each_context4(ctx, each_value, i));
-    }
-    return {
-      c() {
-        span = element("span");
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        attr(span, "class", "svelte-zkhzei");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(span, null);
-          }
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*filteredItems, setSelected*/
-        12) {
-          each_value = ensure_array_like(
-            /*filteredItems*/
-            ctx2[2]
-          );
-          let i;
-          for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context4(ctx2, each_value, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block4(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(span, null);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(span);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block4(ctx) {
-    let a;
-    let t_value = (
-      /*item*/
-      ctx[10].label + ""
-    );
-    let t;
-    let a_data_value_value;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        a = element("a");
-        t = text(t_value);
-        attr(a, "data-value", a_data_value_value = /*item*/
-        ctx[10].value);
-        attr(a, "class", "svelte-zkhzei");
-      },
-      m(target, anchor) {
-        insert(target, a, anchor);
-        append(a, t);
-        if (!mounted) {
-          dispose = listen(
-            a,
-            "click",
-            /*setSelected*/
-            ctx[3]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*filteredItems*/
-        4 && t_value !== (t_value = /*item*/
-        ctx2[10].label + ""))
-          set_data(t, t_value);
-        if (dirty & /*filteredItems*/
-        4 && a_data_value_value !== (a_data_value_value = /*item*/
-        ctx2[10].value)) {
-          attr(a, "data-value", a_data_value_value);
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(a);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_fragment29(ctx) {
-    let div;
-    let input;
-    let t;
-    let mounted;
-    let dispose;
-    let if_block = (
-      /*filteredItems*/
-      ctx[2] && create_if_block6(ctx)
-    );
-    return {
-      c() {
-        div = element("div");
-        input = element("input");
-        t = space();
-        if (if_block)
-          if_block.c();
-        attr(input, "class", "input svelte-zkhzei");
-        attr(input, "placeholder", "Cari user (min 2 huruf)");
-        toggle_class(
-          input,
-          "focused",
-          /*focused*/
-          ctx[1]
-        );
-        attr(div, "class", "select svelte-zkhzei");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, input);
-        set_input_value(
-          input,
-          /*value*/
-          ctx[0]
-        );
-        append(div, t);
-        if (if_block)
-          if_block.m(div, null);
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler*/
-            ctx[7]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (dirty & /*value*/
-        1 && input.value !== /*value*/
-        ctx2[0]) {
-          set_input_value(
-            input,
-            /*value*/
-            ctx2[0]
-          );
-        }
-        if (dirty & /*focused*/
-        2) {
-          toggle_class(
-            input,
-            "focused",
-            /*focused*/
-            ctx2[1]
-          );
-        }
-        if (
-          /*filteredItems*/
-          ctx2[2]
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block6(ctx2);
-            if_block.c();
-            if_block.m(div, null);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-      },
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        if (if_block)
-          if_block.d();
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function instance23($$self, $$props, $$invalidate) {
-    let { items } = $$props;
-    let { start = 1 } = $$props;
-    let { result = [] } = $$props;
-    let focused = 0;
-    let value = "";
-    let filteredItems = items;
-    function setSelected(e) {
-      e.preventDefault();
-      let el = e.target;
-      if (el.classList.contains("selected")) {
-        el.classList.remove("selected");
-        $$invalidate(4, result = result.filter((it) => {
-          return it.value !== el.getAttribute("data-value");
-        }));
-      } else {
-        el.classList.add("selected");
-        $$invalidate(4, result = [
-          ...result,
-          {
-            value: el.getAttribute("data-value").trim(),
-            label: el.innerText.trim(),
-            role: "Anggota"
-          }
-        ]);
-      }
-    }
-    function doFilter() {
-      if (value.length >= start) {
-        $$invalidate(2, filteredItems = items.filter((item) => {
-          let it;
-          if (item.label) {
-            let idUser2 = Number(localStorage.getItem("id"));
-            let itemLabel = item.label.toLowerCase();
-            let itemValue = item.value;
-            let valueLabel = value.toLowerCase();
-            it = itemLabel.includes(valueLabel) && itemValue !== idUser2;
-          }
-          return it;
-        }));
-      } else {
-        $$invalidate(2, filteredItems = items);
-      }
-    }
-    function clickOutside(e) {
-      let el = e.target;
-      if (el.tagName !== "A" && el.tagName !== "INPUT") {
-        $$invalidate(0, value = "");
-        $$invalidate(1, focused = 0);
-      }
-    }
-    document.querySelector("body").addEventListener("click", clickOutside);
-    function input_input_handler() {
-      value = this.value;
-      $$invalidate(0, value);
-    }
-    $$self.$$set = ($$props2) => {
-      if ("items" in $$props2)
-        $$invalidate(5, items = $$props2.items);
-      if ("start" in $$props2)
-        $$invalidate(6, start = $$props2.start);
-      if ("result" in $$props2)
-        $$invalidate(4, result = $$props2.result);
-    };
-    $$self.$$.update = () => {
-      if ($$self.$$.dirty & /*value, start*/
-      65) {
-        $:
-          value, $$invalidate(1, focused = value.length >= start ? 1 : 0), doFilter();
-      }
-    };
-    return [
-      value,
-      focused,
-      filteredItems,
-      setSelected,
-      result,
-      items,
-      start,
-      input_input_handler
-    ];
-  }
-  var Select = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance23, create_fragment29, safe_not_equal, { items: 5, start: 6, result: 4 });
-    }
-  };
-  var Select_default = Select;
-
-  // src/pages/admin/proposal.svelte
-  function get_each_context5(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[115] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_12(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[118] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_22(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[121] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_32(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[124] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_42(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[127] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_52(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[130] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_62(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[133] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_9(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[136] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_10(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[139] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_7(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[136] = list[i];
-    return child_ctx;
-  }
-  function get_each_context_8(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[139] = list[i];
-    child_ctx[141] = i;
-    return child_ctx;
-  }
-  function create_if_block7(ctx) {
-    let article;
-    let current;
-    article = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot_111] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(article.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(article, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const article_changes = {};
-        if (dirty[0] & /*dataPHKI, dataPPB, dataPPub, dataPD, dataPM, dataPP, status, kpkSelected, ka_pusat_kajian, reviewer, klppmSelected, ka_lppm, kdeptSelected, ka_departemen, itemsRCR, comment, jenisSkema, abstrak, judul, anggotaTim, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal, data, showModalErrorInputEvaluator, showModalError*/
-        2013265919 | dirty[1] & /*judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap, uidProposal, reviewerSelected, fileRab*/
-        2147483647 | dirty[2] & /*tab2, filePpm, items, view, tab1*/
-        31 | dirty[4] & /*$$scope*/
-        4194304) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        article.$set(article_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(article.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(article.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(article, detaching);
-      }
-    };
-  }
-  function create_default_slot_452(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.innerHTML = `<b>Catatan Revisi</b> masih kosong! <br/> Isi catatan revisi sebagai
-            acuan peneliti untuk memperbaiki kesalahan!`;
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_default_slot_442(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.textContent = "Masukkan evaluator proposal terlebih dahulu sebelum di proses";
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_if_block_102(ctx) {
-    let div0;
-    let current_block_type_index;
-    let if_block0;
-    let t0;
-    let div1;
-    let h3;
-    let t2;
-    let hr;
-    let t3;
-    let field0;
-    let updating_value;
-    let updating_selected;
-    let t4;
-    let br0;
-    let t5;
-    let field1;
-    let updating_value_1;
-    let updating_selected_1;
-    let t6;
-    let br1;
-    let t7;
-    let field2;
-    let updating_value_2;
-    let updating_selected_2;
-    let t8;
-    let br2;
-    let t9;
-    let field3;
-    let updating_value_3;
-    let updating_selected_3;
-    let t10;
-    let div2;
-    let t11;
-    let t12;
-    let current;
-    const if_block_creators = [create_if_block_142, create_else_block_2];
-    const if_blocks = [];
-    function select_block_type(ctx2, dirty) {
-      if (!/*view*/
-      ctx2[64])
-        return 0;
-      return 1;
-    }
-    current_block_type_index = select_block_type(ctx, [-1, -1, -1, -1, -1]);
-    if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    function field0_value_binding(value) {
-      ctx[94](value);
-    }
-    function field0_selected_binding(value) {
-      ctx[95](value);
-    }
-    let field0_props = {
-      id: "evaluatorKdept",
-      name: "Ka. Departemen",
-      select: true,
-      view: true,
-      userId: (
-        /*kdeptSelected*/
-        ctx[28]
-      )
-    };
-    if (
-      /*ka_departemen*/
-      ctx[23] !== void 0
-    ) {
-      field0_props.value = /*ka_departemen*/
-      ctx[23];
-    }
-    if (
-      /*kdeptSelected*/
-      ctx[28] !== void 0
-    ) {
-      field0_props.selected = /*kdeptSelected*/
-      ctx[28];
-    }
-    field0 = new Field_default({ props: field0_props });
-    binding_callbacks.push(() => bind(field0, "value", field0_value_binding));
-    binding_callbacks.push(() => bind(field0, "selected", field0_selected_binding));
-    function field1_value_binding(value) {
-      ctx[96](value);
-    }
-    function field1_selected_binding(value) {
-      ctx[97](value);
-    }
-    let field1_props = {
-      id: "evaluatorKlppm",
-      name: "Ka. LPPM",
-      select: true,
-      view: true,
-      userId: (
-        /*klppmSelected*/
-        ctx[29]
-      )
-    };
-    if (
-      /*ka_lppm*/
-      ctx[24] !== void 0
-    ) {
-      field1_props.value = /*ka_lppm*/
-      ctx[24];
-    }
-    if (
-      /*klppmSelected*/
-      ctx[29] !== void 0
-    ) {
-      field1_props.selected = /*klppmSelected*/
-      ctx[29];
-    }
-    field1 = new Field_default({ props: field1_props });
-    binding_callbacks.push(() => bind(field1, "value", field1_value_binding));
-    binding_callbacks.push(() => bind(field1, "selected", field1_selected_binding));
-    function field2_value_binding(value) {
-      ctx[98](value);
-    }
-    function field2_selected_binding(value) {
-      ctx[99](value);
-    }
-    let field2_props = {
-      id: "evaluatorReviewer",
-      name: "Reviewer",
-      select: true,
-      view: true,
-      userId: (
-        /*reviewerSelected*/
-        ctx[31]
-      )
-    };
-    if (
-      /*reviewer*/
-      ctx[25] !== void 0
-    ) {
-      field2_props.value = /*reviewer*/
-      ctx[25];
-    }
-    if (
-      /*reviewerSelected*/
-      ctx[31] !== void 0
-    ) {
-      field2_props.selected = /*reviewerSelected*/
-      ctx[31];
-    }
-    field2 = new Field_default({ props: field2_props });
-    binding_callbacks.push(() => bind(field2, "value", field2_value_binding));
-    binding_callbacks.push(() => bind(field2, "selected", field2_selected_binding));
-    function field3_value_binding(value) {
-      ctx[100](value);
-    }
-    function field3_selected_binding(value) {
-      ctx[101](value);
-    }
-    let field3_props = {
-      id: "evaluatorKpk",
-      name: "Ka. Pusat Kajian",
-      select: true,
-      view: true,
-      userId: (
-        /*kpkSelected*/
-        ctx[30]
-      )
-    };
-    if (
-      /*ka_pusat_kajian*/
-      ctx[26] !== void 0
-    ) {
-      field3_props.value = /*ka_pusat_kajian*/
-      ctx[26];
-    }
-    if (
-      /*kpkSelected*/
-      ctx[30] !== void 0
-    ) {
-      field3_props.selected = /*kpkSelected*/
-      ctx[30];
-    }
-    field3 = new Field_default({ props: field3_props });
-    binding_callbacks.push(() => bind(field3, "value", field3_value_binding));
-    binding_callbacks.push(() => bind(field3, "selected", field3_selected_binding));
-    let if_block1 = (
-      /*status*/
-      (ctx[21] === 2 || /*status*/
-      ctx[21] === 4 || /*status*/
-      ctx[21] === 6 || /*status*/
-      ctx[21] === 8) && create_if_block_132(ctx)
-    );
-    let if_block2 = (
-      /*status*/
-      ctx[21] === 10 && create_if_block_123(ctx)
-    );
-    let if_block3 = (
-      /*status*/
-      (ctx[21] === 1 || /*status*/
-      ctx[21] === 3 || /*status*/
-      ctx[21] === 5 || /*status*/
-      ctx[21] === 7 || /*status*/
-      ctx[21] === 9) && create_if_block_112(ctx)
-    );
-    return {
-      c() {
-        div0 = element("div");
-        if_block0.c();
-        t0 = space();
-        div1 = element("div");
-        h3 = element("h3");
-        h3.textContent = "Evaluator";
-        t2 = space();
-        hr = element("hr");
-        t3 = space();
-        create_component(field0.$$.fragment);
-        t4 = space();
-        br0 = element("br");
-        t5 = space();
-        create_component(field1.$$.fragment);
-        t6 = space();
-        br1 = element("br");
-        t7 = space();
-        create_component(field2.$$.fragment);
-        t8 = space();
-        br2 = element("br");
-        t9 = space();
-        create_component(field3.$$.fragment);
-        t10 = space();
-        div2 = element("div");
-        if (if_block1)
-          if_block1.c();
-        t11 = space();
-        if (if_block2)
-          if_block2.c();
-        t12 = space();
-        if (if_block3)
-          if_block3.c();
-        attr(div0, "class", "box");
-        attr(h3, "class", "title is-3");
-        attr(div1, "class", "box");
-        attr(div2, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        insert(target, div0, anchor);
-        if_blocks[current_block_type_index].m(div0, null);
-        insert(target, t0, anchor);
-        insert(target, div1, anchor);
-        append(div1, h3);
-        append(div1, t2);
-        append(div1, hr);
-        append(div1, t3);
-        mount_component(field0, div1, null);
-        append(div1, t4);
-        append(div1, br0);
-        append(div1, t5);
-        mount_component(field1, div1, null);
-        append(div1, t6);
-        append(div1, br1);
-        append(div1, t7);
-        mount_component(field2, div1, null);
-        append(div1, t8);
-        append(div1, br2);
-        append(div1, t9);
-        mount_component(field3, div1, null);
-        insert(target, t10, anchor);
-        insert(target, div2, anchor);
-        if (if_block1)
-          if_block1.m(div2, null);
-        append(div2, t11);
-        if (if_block2)
-          if_block2.m(div2, null);
-        append(div2, t12);
-        if (if_block3)
-          if_block3.m(div2, null);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        let previous_block_index = current_block_type_index;
-        current_block_type_index = select_block_type(ctx2, dirty);
-        if (current_block_type_index === previous_block_index) {
-          if_blocks[current_block_type_index].p(ctx2, dirty);
-        } else {
-          group_outros();
-          transition_out(if_blocks[previous_block_index], 1, 1, () => {
-            if_blocks[previous_block_index] = null;
-          });
-          check_outros();
-          if_block0 = if_blocks[current_block_type_index];
-          if (!if_block0) {
-            if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
-            if_block0.c();
-          } else {
-            if_block0.p(ctx2, dirty);
-          }
-          transition_in(if_block0, 1);
-          if_block0.m(div0, null);
-        }
-        const field0_changes = {};
-        if (dirty[0] & /*kdeptSelected*/
-        268435456)
-          field0_changes.userId = /*kdeptSelected*/
-          ctx2[28];
-        if (!updating_value && dirty[0] & /*ka_departemen*/
-        8388608) {
-          updating_value = true;
-          field0_changes.value = /*ka_departemen*/
-          ctx2[23];
-          add_flush_callback(() => updating_value = false);
-        }
-        if (!updating_selected && dirty[0] & /*kdeptSelected*/
-        268435456) {
-          updating_selected = true;
-          field0_changes.selected = /*kdeptSelected*/
-          ctx2[28];
-          add_flush_callback(() => updating_selected = false);
-        }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty[0] & /*klppmSelected*/
-        536870912)
-          field1_changes.userId = /*klppmSelected*/
-          ctx2[29];
-        if (!updating_value_1 && dirty[0] & /*ka_lppm*/
-        16777216) {
-          updating_value_1 = true;
-          field1_changes.value = /*ka_lppm*/
-          ctx2[24];
-          add_flush_callback(() => updating_value_1 = false);
-        }
-        if (!updating_selected_1 && dirty[0] & /*klppmSelected*/
-        536870912) {
-          updating_selected_1 = true;
-          field1_changes.selected = /*klppmSelected*/
-          ctx2[29];
-          add_flush_callback(() => updating_selected_1 = false);
-        }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty[1] & /*reviewerSelected*/
-        1)
-          field2_changes.userId = /*reviewerSelected*/
-          ctx2[31];
-        if (!updating_value_2 && dirty[0] & /*reviewer*/
-        33554432) {
-          updating_value_2 = true;
-          field2_changes.value = /*reviewer*/
-          ctx2[25];
-          add_flush_callback(() => updating_value_2 = false);
-        }
-        if (!updating_selected_2 && dirty[1] & /*reviewerSelected*/
-        1) {
-          updating_selected_2 = true;
-          field2_changes.selected = /*reviewerSelected*/
-          ctx2[31];
-          add_flush_callback(() => updating_selected_2 = false);
-        }
-        field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty[0] & /*kpkSelected*/
-        1073741824)
-          field3_changes.userId = /*kpkSelected*/
-          ctx2[30];
-        if (!updating_value_3 && dirty[0] & /*ka_pusat_kajian*/
-        67108864) {
-          updating_value_3 = true;
-          field3_changes.value = /*ka_pusat_kajian*/
-          ctx2[26];
-          add_flush_callback(() => updating_value_3 = false);
-        }
-        if (!updating_selected_3 && dirty[0] & /*kpkSelected*/
-        1073741824) {
-          updating_selected_3 = true;
-          field3_changes.selected = /*kpkSelected*/
-          ctx2[30];
-          add_flush_callback(() => updating_selected_3 = false);
-        }
-        field3.$set(field3_changes);
-        if (
-          /*status*/
-          ctx2[21] === 2 || /*status*/
-          ctx2[21] === 4 || /*status*/
-          ctx2[21] === 6 || /*status*/
-          ctx2[21] === 8
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_132(ctx2);
-            if_block1.c();
-            if_block1.m(div2, t11);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*status*/
-          ctx2[21] === 10
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_123(ctx2);
-            if_block2.c();
-            if_block2.m(div2, t12);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (
-          /*status*/
-          ctx2[21] === 1 || /*status*/
-          ctx2[21] === 3 || /*status*/
-          ctx2[21] === 5 || /*status*/
-          ctx2[21] === 7 || /*status*/
-          ctx2[21] === 9
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_112(ctx2);
-            if_block3.c();
-            if_block3.m(div2, null);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block0);
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block0);
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div0);
-          detach(t0);
-          detach(div1);
-          detach(t10);
-          detach(div2);
-        }
-        if_blocks[current_block_type_index].d();
-        destroy_component(field0);
-        destroy_component(field1);
-        destroy_component(field2);
-        destroy_component(field3);
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-        if (if_block3)
-          if_block3.d();
-      }
-    };
-  }
-  function create_else_block_2(ctx) {
-    let field0;
-    let t0;
-    let field1;
-    let t1;
-    let field2;
-    let t2;
-    let field3;
-    let t3;
-    let field4;
-    let t4;
-    let field5;
-    let t5;
-    let field6;
-    let t6;
-    let field7;
-    let t7;
-    let field8;
-    let t8;
-    let br;
-    let t9;
-    let table;
-    let thead;
-    let t13;
-    let tbody;
-    let t14;
-    let hr0;
-    let t15;
-    let field9;
-    let t16;
-    let field10;
-    let t17;
-    let field11;
-    let t18;
-    let t19;
-    let hr1;
-    let t20;
-    let field12;
-    let t21;
-    let field13;
-    let current;
-    field0 = new Field_default({
-      props: {
-        name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_432] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_422] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_412] },
-        $$scope: { ctx }
-      }
-    });
-    field3 = new Field_default({
-      props: {
-        name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_402] },
-        $$scope: { ctx }
-      }
-    });
-    field4 = new Field_default({
-      props: {
-        name: "Topik",
-        $$slots: { default: [create_default_slot_392] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Mulai",
-        $$slots: { default: [create_default_slot_382] },
-        $$scope: { ctx }
-      }
-    });
-    field6 = new Field_default({
-      props: {
-        name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_372] },
-        $$scope: { ctx }
-      }
-    });
-    field7 = new Field_default({
-      props: {
-        name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_362] },
-        $$scope: { ctx }
-      }
-    });
-    field8 = new Field_default({
-      props: {
-        name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_352] },
-        $$scope: { ctx }
-      }
-    });
-    let if_block0 = (
-      /*anggotaTim*/
-      ctx[17].length > 0 && create_if_block_222(ctx)
-    );
-    field9 = new Field_default({
-      props: {
-        name: "Judul",
-        $$slots: { default: [create_default_slot_342] },
-        $$scope: { ctx }
-      }
-    });
-    field10 = new Field_default({
-      props: {
-        name: "abstrak",
-        $$slots: { default: [create_default_slot_332] },
-        $$scope: { ctx }
-      }
-    });
-    field11 = new Field_default({
-      props: {
-        name: "File Proposal",
-        $$slots: { default: [create_default_slot_322] },
-        $$scope: { ctx }
-      }
-    });
-    let if_block1 = (
-      /*jenisSkema*/
-      (ctx[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[11] === "Riset Terapan" || /*jenisSkema*/
-      ctx[11] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[11] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_21(ctx)
-    );
-    field12 = new Field_default({
-      props: {
-        name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_302] },
-        $$scope: { ctx }
-      }
-    });
-    field13 = new Field_default({
-      props: {
-        name: "Riwayat Revisi",
-        $$slots: { default: [create_default_slot_292] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field0.$$.fragment);
-        t0 = space();
-        create_component(field1.$$.fragment);
-        t1 = space();
-        create_component(field2.$$.fragment);
-        t2 = space();
-        create_component(field3.$$.fragment);
-        t3 = space();
-        create_component(field4.$$.fragment);
-        t4 = space();
-        create_component(field5.$$.fragment);
-        t5 = space();
-        create_component(field6.$$.fragment);
-        t6 = space();
-        create_component(field7.$$.fragment);
-        t7 = space();
-        create_component(field8.$$.fragment);
-        t8 = space();
-        br = element("br");
-        t9 = space();
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
-        t13 = space();
-        tbody = element("tbody");
-        if (if_block0)
-          if_block0.c();
-        t14 = space();
-        hr0 = element("hr");
-        t15 = space();
-        create_component(field9.$$.fragment);
-        t16 = space();
-        create_component(field10.$$.fragment);
-        t17 = space();
-        create_component(field11.$$.fragment);
-        t18 = space();
-        if (if_block1)
-          if_block1.c();
-        t19 = space();
-        hr1 = element("hr");
-        t20 = space();
-        create_component(field12.$$.fragment);
-        t21 = space();
-        create_component(field13.$$.fragment);
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-      },
-      m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        insert(target, br, anchor);
-        insert(target, t9, anchor);
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t13);
-        append(table, tbody);
-        if (if_block0)
-          if_block0.m(tbody, null);
-        insert(target, t14, anchor);
-        insert(target, hr0, anchor);
-        insert(target, t15, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t16, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t17, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t18, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t19, anchor);
-        insert(target, hr1, anchor);
-        insert(target, t20, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t21, anchor);
-        mount_component(field13, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const field0_changes = {};
-        if (dirty[0] & /*jenisProposal*/
-        512 | dirty[4] & /*$$scope*/
-        4194304) {
-          field0_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty[0] & /*jenisKegiatan*/
-        1024 | dirty[4] & /*$$scope*/
-        4194304) {
-          field1_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty[0] & /*jenisSkema*/
-        2048 | dirty[4] & /*$$scope*/
-        4194304) {
-          field2_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty[0] & /*kelompokKeahlian*/
-        4096 | dirty[4] & /*$$scope*/
-        4194304) {
-          field3_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field3.$set(field3_changes);
-        const field4_changes = {};
-        if (dirty[0] & /*topik*/
-        8192 | dirty[4] & /*$$scope*/
-        4194304) {
-          field4_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field4.$set(field4_changes);
-        const field5_changes = {};
-        if (dirty[0] & /*tanggalMulai*/
-        16384 | dirty[4] & /*$$scope*/
-        4194304) {
-          field5_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field5.$set(field5_changes);
-        const field6_changes = {};
-        if (dirty[0] & /*tanggalSelesai*/
-        32768 | dirty[4] & /*$$scope*/
-        4194304) {
-          field6_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field6.$set(field6_changes);
-        const field7_changes = {};
-        if (dirty[0] & /*biayaPenelitian*/
-        65536 | dirty[4] & /*$$scope*/
-        4194304) {
-          field7_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field7.$set(field7_changes);
-        const field8_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          field8_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field8.$set(field8_changes);
-        if (
-          /*anggotaTim*/
-          ctx2[17].length > 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_222(ctx2);
-            if_block0.c();
-            if_block0.m(tbody, null);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        const field9_changes = {};
-        if (dirty[0] & /*data*/
-        1 | dirty[4] & /*$$scope*/
-        4194304) {
-          field9_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field9.$set(field9_changes);
-        const field10_changes = {};
-        if (dirty[0] & /*data*/
-        1 | dirty[4] & /*$$scope*/
-        4194304) {
-          field10_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field10.$set(field10_changes);
-        const field11_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          field11_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field11.$set(field11_changes);
-        if (
-          /*jenisSkema*/
-          ctx2[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[11] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[11] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[11] === "Pengabdian Masyarakat UMKM Binaan"
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*jenisSkema*/
-            2048) {
-              transition_in(if_block1, 1);
-            }
-          } else {
-            if_block1 = create_if_block_21(ctx2);
-            if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(t19.parentNode, t19);
-          }
-        } else if (if_block1) {
-          group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
-          check_outros();
-        }
-        const field12_changes = {};
-        if (dirty[0] & /*comment*/
-        1048576 | dirty[4] & /*$$scope*/
-        4194304) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
-        const field13_changes = {};
-        if (dirty[0] & /*itemsRCR*/
-        4194304 | dirty[4] & /*$$scope*/
-        4194304) {
-          field13_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field13.$set(field13_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
-        transition_in(field4.$$.fragment, local);
-        transition_in(field5.$$.fragment, local);
-        transition_in(field6.$$.fragment, local);
-        transition_in(field7.$$.fragment, local);
-        transition_in(field8.$$.fragment, local);
-        transition_in(field9.$$.fragment, local);
-        transition_in(field10.$$.fragment, local);
-        transition_in(field11.$$.fragment, local);
-        transition_in(if_block1);
-        transition_in(field12.$$.fragment, local);
-        transition_in(field13.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
-        transition_out(field4.$$.fragment, local);
-        transition_out(field5.$$.fragment, local);
-        transition_out(field6.$$.fragment, local);
-        transition_out(field7.$$.fragment, local);
-        transition_out(field8.$$.fragment, local);
-        transition_out(field9.$$.fragment, local);
-        transition_out(field10.$$.fragment, local);
-        transition_out(field11.$$.fragment, local);
-        transition_out(if_block1);
-        transition_out(field12.$$.fragment, local);
-        transition_out(field13.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(br);
-          detach(t9);
-          detach(table);
-          detach(t14);
-          detach(hr0);
-          detach(t15);
-          detach(t16);
-          detach(t17);
-          detach(t18);
-          detach(t19);
-          detach(hr1);
-          detach(t20);
-          detach(t21);
-        }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        if (if_block0)
-          if_block0.d();
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
-        if (if_block1)
-          if_block1.d(detaching);
-        destroy_component(field12, detaching);
-        destroy_component(field13, detaching);
-      }
-    };
-  }
-  function create_if_block_142(ctx) {
-    let field0;
-    let t0;
-    let field1;
-    let t1;
-    let field2;
-    let t2;
-    let field3;
-    let t3;
-    let field4;
-    let t4;
-    let field5;
-    let t5;
-    let field6;
-    let t6;
-    let field7;
-    let t7;
-    let field8;
-    let t8;
-    let br;
-    let t9;
-    let table;
-    let thead;
-    let t14;
-    let tbody;
-    let t15;
-    let hr0;
-    let t16;
-    let field9;
-    let t17;
-    let field10;
-    let t18;
-    let field11;
-    let t19;
-    let t20;
-    let hr1;
-    let t21;
-    let field12;
-    let t22;
-    let field13;
-    let current;
-    field0 = new Field_default({
-      props: {
-        name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_282] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Jenis Kegiatan",
-        $$slots: { default: [create_default_slot_272] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "Jenis Skema",
-        $$slots: { default: [create_default_slot_262] },
-        $$scope: { ctx }
-      }
-    });
-    field3 = new Field_default({
-      props: {
-        name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_252] },
-        $$scope: { ctx }
-      }
-    });
-    field4 = new Field_default({
-      props: {
-        name: "Topik",
-        $$slots: { default: [create_default_slot_242] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Tanggal Mulai",
-        $$slots: { default: [create_default_slot_232] },
-        $$scope: { ctx }
-      }
-    });
-    field6 = new Field_default({
-      props: {
-        name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_223] },
-        $$scope: { ctx }
-      }
-    });
-    field7 = new Field_default({
-      props: {
-        name: "Biaya Penelitian",
-        $$slots: { default: [create_default_slot_212] },
-        $$scope: { ctx }
-      }
-    });
-    field8 = new Field_default({
-      props: {
-        name: "Anggota Tim",
-        $$slots: { default: [create_default_slot_202] },
-        $$scope: { ctx }
-      }
-    });
-    let if_block0 = (
-      /*anggotaTim*/
-      ctx[17].length > 0 && create_if_block_17(ctx)
-    );
-    field9 = new Field_default({
-      props: {
-        name: "Judul",
-        $$slots: { default: [create_default_slot_192] },
-        $$scope: { ctx }
-      }
-    });
-    field10 = new Field_default({
-      props: {
-        name: "Abstrak",
-        $$slots: { default: [create_default_slot_182] },
-        $$scope: { ctx }
-      }
-    });
-    field11 = new Field_default({
-      props: {
-        name: "Proposal",
-        $$slots: { default: [create_default_slot_172] },
-        $$scope: { ctx }
-      }
-    });
-    let if_block1 = (
-      /*jenisSkema*/
-      (ctx[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[11] === "Riset Terapan" || /*jenisSkema*/
-      ctx[11] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[11] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_16(ctx)
-    );
-    field12 = new Field_default({
-      props: {
-        name: "Catatan Revisi",
-        $$slots: { default: [create_default_slot_152] },
-        $$scope: { ctx }
-      }
-    });
-    field13 = new Field_default({
-      props: {
-        name: "Riwayat Revisi",
-        $$slots: { default: [create_default_slot_142] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field0.$$.fragment);
-        t0 = space();
-        create_component(field1.$$.fragment);
-        t1 = space();
-        create_component(field2.$$.fragment);
-        t2 = space();
-        create_component(field3.$$.fragment);
-        t3 = space();
-        create_component(field4.$$.fragment);
-        t4 = space();
-        create_component(field5.$$.fragment);
-        t5 = space();
-        create_component(field6.$$.fragment);
-        t6 = space();
-        create_component(field7.$$.fragment);
-        t7 = space();
-        create_component(field8.$$.fragment);
-        t8 = space();
-        br = element("br");
-        t9 = space();
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th class="is-narrow" style="width:65px"></th> <th class="is-narrow">Role</th> <th>Nama</th></tr>`;
-        t14 = space();
-        tbody = element("tbody");
-        if (if_block0)
-          if_block0.c();
-        t15 = space();
-        hr0 = element("hr");
-        t16 = space();
-        create_component(field9.$$.fragment);
-        t17 = space();
-        create_component(field10.$$.fragment);
-        t18 = space();
-        create_component(field11.$$.fragment);
-        t19 = space();
-        if (if_block1)
-          if_block1.c();
-        t20 = space();
-        hr1 = element("hr");
-        t21 = space();
-        create_component(field12.$$.fragment);
-        t22 = space();
-        create_component(field13.$$.fragment);
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-      },
-      m(target, anchor) {
-        mount_component(field0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(field1, target, anchor);
-        insert(target, t1, anchor);
-        mount_component(field2, target, anchor);
-        insert(target, t2, anchor);
-        mount_component(field3, target, anchor);
-        insert(target, t3, anchor);
-        mount_component(field4, target, anchor);
-        insert(target, t4, anchor);
-        mount_component(field5, target, anchor);
-        insert(target, t5, anchor);
-        mount_component(field6, target, anchor);
-        insert(target, t6, anchor);
-        mount_component(field7, target, anchor);
-        insert(target, t7, anchor);
-        mount_component(field8, target, anchor);
-        insert(target, t8, anchor);
-        insert(target, br, anchor);
-        insert(target, t9, anchor);
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t14);
-        append(table, tbody);
-        if (if_block0)
-          if_block0.m(tbody, null);
-        insert(target, t15, anchor);
-        insert(target, hr0, anchor);
-        insert(target, t16, anchor);
-        mount_component(field9, target, anchor);
-        insert(target, t17, anchor);
-        mount_component(field10, target, anchor);
-        insert(target, t18, anchor);
-        mount_component(field11, target, anchor);
-        insert(target, t19, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t20, anchor);
-        insert(target, hr1, anchor);
-        insert(target, t21, anchor);
-        mount_component(field12, target, anchor);
-        insert(target, t22, anchor);
-        mount_component(field13, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const field0_changes = {};
-        if (dirty[0] & /*jenisProposal*/
-        512 | dirty[4] & /*$$scope*/
-        4194304) {
-          field0_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty[0] & /*jenisKegiatan*/
-        1024 | dirty[4] & /*$$scope*/
-        4194304) {
-          field1_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty[0] & /*jenisSkema, jenisKegiatan*/
-        3072 | dirty[4] & /*$$scope*/
-        4194304) {
-          field2_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty[0] & /*kelompokKeahlian*/
-        4096 | dirty[4] & /*$$scope*/
-        4194304) {
-          field3_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field3.$set(field3_changes);
-        const field4_changes = {};
-        if (dirty[0] & /*topik*/
-        8192 | dirty[4] & /*$$scope*/
-        4194304) {
-          field4_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field4.$set(field4_changes);
-        const field5_changes = {};
-        if (dirty[0] & /*tanggalMulai*/
-        16384 | dirty[4] & /*$$scope*/
-        4194304) {
-          field5_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field5.$set(field5_changes);
-        const field6_changes = {};
-        if (dirty[0] & /*tanggalSelesai*/
-        32768 | dirty[4] & /*$$scope*/
-        4194304) {
-          field6_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field6.$set(field6_changes);
-        const field7_changes = {};
-        if (dirty[0] & /*biayaPenelitian*/
-        65536 | dirty[4] & /*$$scope*/
-        4194304) {
-          field7_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field7.$set(field7_changes);
-        const field8_changes = {};
-        if (dirty[0] & /*anggotaTim*/
-        131072 | dirty[2] & /*items*/
-        2 | dirty[4] & /*$$scope*/
-        4194304) {
-          field8_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field8.$set(field8_changes);
-        if (
-          /*anggotaTim*/
-          ctx2[17].length > 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-            if (dirty[0] & /*anggotaTim*/
-            131072) {
-              transition_in(if_block0, 1);
-            }
-          } else {
-            if_block0 = create_if_block_17(ctx2);
-            if_block0.c();
-            transition_in(if_block0, 1);
-            if_block0.m(tbody, null);
-          }
-        } else if (if_block0) {
-          group_outros();
-          transition_out(if_block0, 1, 1, () => {
-            if_block0 = null;
-          });
-          check_outros();
-        }
-        const field9_changes = {};
-        if (dirty[0] & /*judul*/
-        262144 | dirty[4] & /*$$scope*/
-        4194304) {
-          field9_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field9.$set(field9_changes);
-        const field10_changes = {};
-        if (dirty[0] & /*abstrak*/
-        524288 | dirty[4] & /*$$scope*/
-        4194304) {
-          field10_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field10.$set(field10_changes);
-        const field11_changes = {};
-        if (dirty[2] & /*filePpm*/
-        1 | dirty[4] & /*$$scope*/
-        4194304) {
-          field11_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field11.$set(field11_changes);
-        if (
-          /*jenisSkema*/
-          ctx2[11] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[11] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[11] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[11] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[11] === "Pengabdian Masyarakat UMKM Binaan"
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*jenisSkema*/
-            2048) {
-              transition_in(if_block1, 1);
-            }
-          } else {
-            if_block1 = create_if_block_16(ctx2);
-            if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(t20.parentNode, t20);
-          }
-        } else if (if_block1) {
-          group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
-          check_outros();
-        }
-        const field12_changes = {};
-        if (dirty[0] & /*comment*/
-        1048576 | dirty[4] & /*$$scope*/
-        4194304) {
-          field12_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field12.$set(field12_changes);
-        const field13_changes = {};
-        if (dirty[0] & /*itemsRCR*/
-        4194304 | dirty[4] & /*$$scope*/
-        4194304) {
-          field13_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field13.$set(field13_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
-        transition_in(field4.$$.fragment, local);
-        transition_in(field5.$$.fragment, local);
-        transition_in(field6.$$.fragment, local);
-        transition_in(field7.$$.fragment, local);
-        transition_in(field8.$$.fragment, local);
-        transition_in(if_block0);
-        transition_in(field9.$$.fragment, local);
-        transition_in(field10.$$.fragment, local);
-        transition_in(field11.$$.fragment, local);
-        transition_in(if_block1);
-        transition_in(field12.$$.fragment, local);
-        transition_in(field13.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
-        transition_out(field4.$$.fragment, local);
-        transition_out(field5.$$.fragment, local);
-        transition_out(field6.$$.fragment, local);
-        transition_out(field7.$$.fragment, local);
-        transition_out(field8.$$.fragment, local);
-        transition_out(if_block0);
-        transition_out(field9.$$.fragment, local);
-        transition_out(field10.$$.fragment, local);
-        transition_out(field11.$$.fragment, local);
-        transition_out(if_block1);
-        transition_out(field12.$$.fragment, local);
-        transition_out(field13.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-          detach(t3);
-          detach(t4);
-          detach(t5);
-          detach(t6);
-          detach(t7);
-          detach(t8);
-          detach(br);
-          detach(t9);
-          detach(table);
-          detach(t15);
-          detach(hr0);
-          detach(t16);
-          detach(t17);
-          detach(t18);
-          detach(t19);
-          detach(t20);
-          detach(hr1);
-          detach(t21);
-          detach(t22);
-        }
-        destroy_component(field0, detaching);
-        destroy_component(field1, detaching);
-        destroy_component(field2, detaching);
-        destroy_component(field3, detaching);
-        destroy_component(field4, detaching);
-        destroy_component(field5, detaching);
-        destroy_component(field6, detaching);
-        destroy_component(field7, detaching);
-        destroy_component(field8, detaching);
-        if (if_block0)
-          if_block0.d();
-        destroy_component(field9, detaching);
-        destroy_component(field10, detaching);
-        destroy_component(field11, detaching);
-        if (if_block1)
-          if_block1.d(detaching);
-        destroy_component(field12, detaching);
-        destroy_component(field13, detaching);
-      }
-    };
-  }
-  function create_default_slot_432(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jenisProposal*/
-          ctx[9]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisProposal*/
-        512)
-          set_data(
-            t,
-            /*jenisProposal*/
-            ctx2[9]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_422(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jenisKegiatan*/
-          ctx[10]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisKegiatan*/
-        1024)
-          set_data(
-            t,
-            /*jenisKegiatan*/
-            ctx2[10]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_412(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jenisSkema*/
-          ctx[11]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisSkema*/
-        2048)
-          set_data(
-            t,
-            /*jenisSkema*/
-            ctx2[11]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_402(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*kelompokKeahlian*/
-          ctx[12]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*kelompokKeahlian*/
-        4096)
-          set_data(
-            t,
-            /*kelompokKeahlian*/
-            ctx2[12]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_392(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*topik*/
-          ctx[13]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*topik*/
-        8192)
-          set_data(
-            t,
-            /*topik*/
-            ctx2[13]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_382(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*tanggalMulai*/
-          ctx[14]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tanggalMulai*/
-        16384)
-          set_data(
-            t,
-            /*tanggalMulai*/
-            ctx2[14]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_372(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*tanggalSelesai*/
-          ctx[15]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tanggalSelesai*/
-        32768)
-          set_data(
-            t,
-            /*tanggalSelesai*/
-            ctx2[15]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_362(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*biayaPenelitian*/
-          ctx[16]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*biayaPenelitian*/
-        65536)
-          set_data(
-            t,
-            /*biayaPenelitian*/
-            ctx2[16]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_352(ctx) {
-    let span;
-    return {
-      c() {
-        span = element("span");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(span);
-        }
-      }
-    };
-  }
-  function create_if_block_222(ctx) {
-    let each_1_anchor;
-    let each_value_10 = ensure_array_like(
-      /*anggotaTim*/
-      ctx[17]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_10.length; i += 1) {
-      each_blocks[i] = create_each_block_10(get_each_context_10(ctx, each_value_10, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim*/
-        131072) {
-          each_value_10 = ensure_array_like(
-            /*anggotaTim*/
-            ctx2[17]
-          );
-          let i;
-          for (i = 0; i < each_value_10.length; i += 1) {
-            const child_ctx = get_each_context_10(ctx2, each_value_10, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_10(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_10.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_10(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*member*/
-      ctx[139].role + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*member*/
-      ctx[139].label + ""
-    );
-    let t2;
-    let t3;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim*/
-        131072 && t0_value !== (t0_value = /*member*/
-        ctx2[139].role + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*anggotaTim*/
-        131072 && t2_value !== (t2_value = /*member*/
-        ctx2[139].label + ""))
-          set_data(t2, t2_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_default_slot_342(ctx) {
-    let t_value = (
-      /*data*/
-      ctx[0].judul + ""
-    );
-    let t;
-    return {
-      c() {
-        t = text(t_value);
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*data*/
-        1 && t_value !== (t_value = /*data*/
-        ctx2[0].judul + ""))
-          set_data(t, t_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_332(ctx) {
-    let html_tag;
-    let raw_value = (
-      /*data*/
-      ctx[0].abstrak + ""
-    );
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*data*/
-        1 && raw_value !== (raw_value = /*data*/
-        ctx2[0].abstrak + ""))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(html_anchor);
-          html_tag.d();
-        }
-      }
-    };
-  }
-  function create_default_slot_322(ctx) {
-    let button;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        button = element("button");
-        button.textContent = "Download Proposal";
-        attr(button, "class", "button is-link button");
-      },
-      m(target, anchor) {
-        insert(target, button, anchor);
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*handleDownloadPpm*/
-            ctx[73]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(button);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_21(ctx) {
-    let field;
-    let current;
-    field = new Field_default({
-      props: {
-        name: "File RAB",
-        $$slots: { default: [create_default_slot_312] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(field, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const field_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(field, detaching);
-      }
-    };
-  }
-  function create_default_slot_312(ctx) {
-    let button;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        button = element("button");
-        button.textContent = "Download RAB";
-        attr(button, "class", "button is-link button");
-      },
-      m(target, anchor) {
-        insert(target, button, anchor);
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*handleDownloadRab*/
-            ctx[72]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(button);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_302(ctx) {
-    let textarea;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        textarea = element("textarea");
-        attr(textarea, "class", "textarea");
-        attr(textarea, "name", "komentar");
-        attr(textarea, "id", "komentar");
-      },
-      m(target, anchor) {
-        insert(target, textarea, anchor);
-        set_input_value(
-          textarea,
-          /*comment*/
-          ctx[20]
-        );
-        if (!mounted) {
-          dispose = listen(
-            textarea,
-            "input",
-            /*textarea_input_handler_1*/
-            ctx[93]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*comment*/
-        1048576) {
-          set_input_value(
-            textarea,
-            /*comment*/
-            ctx2[20]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(textarea);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_20(ctx) {
-    let tbody;
-    let each_value_9 = ensure_array_like(
-      /*itemsRCR*/
-      ctx[22]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_9.length; i += 1) {
-      each_blocks[i] = create_each_block_9(get_each_context_9(ctx, each_value_9, i));
-    }
-    return {
-      c() {
-        tbody = element("tbody");
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-      },
-      m(target, anchor) {
-        insert(target, tbody, anchor);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(tbody, null);
-          }
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*itemsRCR*/
-        4194304) {
-          each_value_9 = ensure_array_like(
-            /*itemsRCR*/
-            ctx2[22]
-          );
-          let i;
-          for (i = 0; i < each_value_9.length; i += 1) {
-            const child_ctx = get_each_context_9(ctx2, each_value_9, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_9(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(tbody, null);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_9.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tbody);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_9(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*item*/
-      ctx[136].comment + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*item*/
-      ctx[136].evaluator + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*item*/
-      ctx[136].time + ""
-    );
-    let t4;
-    let t5;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t0_value !== (t0_value = /*item*/
-        ctx2[136].comment + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t2_value !== (t2_value = /*item*/
-        ctx2[136].evaluator + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t4_value !== (t4_value = /*item*/
-        ctx2[136].time + ""))
-          set_data(t4, t4_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_default_slot_292(ctx) {
-    let table;
-    let thead;
-    let t5;
-    let if_block = (
-      /*itemsRCR*/
-      ctx[22] && create_if_block_20(ctx)
-    );
-    return {
-      c() {
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Catatan Revisi</th> <th>Evalutor</th> <th class="is-narrow">Waktu</th></tr>`;
-        t5 = space();
-        if (if_block)
-          if_block.c();
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-      },
-      m(target, anchor) {
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t5);
-        if (if_block)
-          if_block.m(table, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*itemsRCR*/
-          ctx2[22]
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_20(ctx2);
-            if_block.c();
-            if_block.m(table, null);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(table);
-        }
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_default_slot_282(ctx) {
-    let div;
-    let select;
-    let option0;
-    let option1;
-    let option2;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        select = element("select");
-        option0 = element("option");
-        option0.textContent = "Pilih Jenis Proposal";
-        option1 = element("option");
-        option1.textContent = "Proposal Awal";
-        option2 = element("option");
-        option2.textContent = "Proposal Lanjutan";
-        option0.__value = "";
-        set_input_value(option0, option0.__value);
-        option0.selected = true;
-        option0.disabled = true;
-        option0.hidden = true;
-        option1.__value = "Proposal Awal";
-        set_input_value(option1, option1.__value);
-        option2.__value = "Proposal Lanjutan";
-        set_input_value(option2, option2.__value);
-        if (
-          /*jenisProposal*/
-          ctx[9] === void 0
-        )
-          add_render_callback(() => (
-            /*select_change_handler*/
-            ctx[79].call(select)
-          ));
-        attr(div, "class", "select is-fullwidth");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, select);
-        append(select, option0);
-        append(select, option1);
-        append(select, option2);
-        select_option(
-          select,
-          /*jenisProposal*/
-          ctx[9],
-          true
-        );
-        if (!mounted) {
-          dispose = listen(
-            select,
-            "change",
-            /*select_change_handler*/
-            ctx[79]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisProposal*/
-        512) {
-          select_option(
-            select,
-            /*jenisProposal*/
-            ctx2[9]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_272(ctx) {
-    let div;
-    let select;
-    let option0;
-    let option1;
-    let option2;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        select = element("select");
-        option0 = element("option");
-        option0.textContent = "Pilih Jenis Kegiatan";
-        option1 = element("option");
-        option1.textContent = "Penelitian";
-        option2 = element("option");
-        option2.textContent = "Pengabdian Masyarakat";
-        option0.__value = "";
-        set_input_value(option0, option0.__value);
-        option0.selected = true;
-        option0.disabled = true;
-        option0.hidden = true;
-        option1.__value = "Penelitian";
-        set_input_value(option1, option1.__value);
-        option2.__value = "Pengabdian Masyarakat";
-        set_input_value(option2, option2.__value);
-        if (
-          /*jenisKegiatan*/
-          ctx[10] === void 0
-        )
-          add_render_callback(() => (
-            /*select_change_handler_1*/
-            ctx[80].call(select)
-          ));
-        attr(div, "class", "select is-fullwidth");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, select);
-        append(select, option0);
-        append(select, option1);
-        append(select, option2);
-        select_option(
-          select,
-          /*jenisKegiatan*/
-          ctx[10],
-          true
-        );
-        if (!mounted) {
-          dispose = listen(
-            select,
-            "change",
-            /*select_change_handler_1*/
-            ctx[80]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*jenisKegiatan*/
-        1024) {
-          select_option(
-            select,
-            /*jenisKegiatan*/
-            ctx2[10]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_else_block_1(ctx) {
-    let option0;
-    let option1;
-    let option2;
-    let option3;
-    return {
-      c() {
-        option0 = element("option");
-        option0.textContent = "Pengabdian Masyarakat Desa Binaan";
-        option1 = element("option");
-        option1.textContent = "Pengabdian Masyarakat UMKM Binaan";
-        option2 = element("option");
-        option2.textContent = "Pengabdian Masyarakat Mandiri";
-        option3 = element("option");
-        option3.textContent = "Pengabdian Masyarakat Hibah Eksternal";
-        option0.__value = "Pengabdian Masyarakat Desa Binaan";
-        set_input_value(option0, option0.__value);
-        option1.__value = "Pengabdian Masyarakat UMKM Binaan";
-        set_input_value(option1, option1.__value);
-        option2.__value = "Pengabdian Masyarakat Mandiri";
-        set_input_value(option2, option2.__value);
-        option3.__value = "Pengabdian Masyarakat Hibah Eksternal";
-        set_input_value(option3, option3.__value);
-      },
-      m(target, anchor) {
-        insert(target, option0, anchor);
-        insert(target, option1, anchor);
-        insert(target, option2, anchor);
-        insert(target, option3, anchor);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(option0);
-          detach(option1);
-          detach(option2);
-          detach(option3);
-        }
-      }
-    };
-  }
-  function create_if_block_19(ctx) {
-    let option0;
-    let option1;
-    let option2;
-    let option3;
-    let option4;
-    return {
-      c() {
-        option0 = element("option");
-        option0.textContent = "Riset Kelompok Keahlian";
-        option1 = element("option");
-        option1.textContent = "Riset Terapan";
-        option2 = element("option");
-        option2.textContent = "Riset Kerjasama";
-        option3 = element("option");
-        option3.textContent = "Riset Mandiri";
-        option4 = element("option");
-        option4.textContent = "Riset Eksternal";
-        option0.__value = "Riset Kelompok Keahlian";
-        set_input_value(option0, option0.__value);
-        option1.__value = "Riset Terapan";
-        set_input_value(option1, option1.__value);
-        option2.__value = "Riset Kerjasama";
-        set_input_value(option2, option2.__value);
-        option3.__value = "Riset Mandiri";
-        set_input_value(option3, option3.__value);
-        option4.__value = "Riset Eksternal";
-        set_input_value(option4, option4.__value);
-      },
-      m(target, anchor) {
-        insert(target, option0, anchor);
-        insert(target, option1, anchor);
-        insert(target, option2, anchor);
-        insert(target, option3, anchor);
-        insert(target, option4, anchor);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(option0);
-          detach(option1);
-          detach(option2);
-          detach(option3);
-          detach(option4);
-        }
-      }
-    };
-  }
-  function create_default_slot_262(ctx) {
-    let div;
-    let select;
-    let option;
-    let mounted;
-    let dispose;
-    function select_block_type_1(ctx2, dirty) {
-      if (
-        /*jenisKegiatan*/
-        ctx2[10] === "Penelitian"
-      )
-        return create_if_block_19;
-      return create_else_block_1;
-    }
-    let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1, -1]);
-    let if_block = current_block_type(ctx);
-    return {
-      c() {
-        div = element("div");
-        select = element("select");
-        option = element("option");
-        option.textContent = "Pilih Jenis Skema\r\n                        ";
-        if_block.c();
-        option.__value = "";
-        set_input_value(option, option.__value);
-        option.selected = true;
-        option.disabled = true;
-        option.hidden = true;
-        if (
-          /*jenisSkema*/
-          ctx[11] === void 0
-        )
-          add_render_callback(() => (
-            /*select_change_handler_2*/
-            ctx[81].call(select)
-          ));
-        attr(div, "class", "select is-fullwidth");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, select);
-        append(select, option);
-        if_block.m(select, null);
-        select_option(
-          select,
-          /*jenisSkema*/
-          ctx[11],
-          true
-        );
-        if (!mounted) {
-          dispose = listen(
-            select,
-            "change",
-            /*select_change_handler_2*/
-            ctx[81]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (current_block_type !== (current_block_type = select_block_type_1(ctx2, dirty))) {
-          if_block.d(1);
-          if_block = current_block_type(ctx2);
-          if (if_block) {
-            if_block.c();
-            if_block.m(select, null);
-          }
-        }
-        if (dirty[0] & /*jenisSkema*/
-        2048) {
-          select_option(
-            select,
-            /*jenisSkema*/
-            ctx2[11]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        if_block.d();
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_252(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Kelompok Keahlian");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*kelompokKeahlian*/
-          ctx[12]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler*/
-            ctx[82]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*kelompokKeahlian*/
-        4096 && input.value !== /*kelompokKeahlian*/
-        ctx2[12]) {
-          set_input_value(
-            input,
-            /*kelompokKeahlian*/
-            ctx2[12]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_242(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Topik");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*topik*/
-          ctx[13]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_1*/
-            ctx[83]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*topik*/
-        8192 && input.value !== /*topik*/
-        ctx2[13]) {
-          set_input_value(
-            input,
-            /*topik*/
-            ctx2[13]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_232(ctx) {
-    let div;
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "date");
-        attr(div, "class", "field");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, input);
-        set_input_value(
-          input,
-          /*tanggalMulai*/
-          ctx[14]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_2*/
-            ctx[84]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tanggalMulai*/
-        16384) {
-          set_input_value(
-            input,
-            /*tanggalMulai*/
-            ctx2[14]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_223(ctx) {
-    let div;
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "date");
-        attr(div, "class", "field");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, input);
-        set_input_value(
-          input,
-          /*tanggalSelesai*/
-          ctx[15]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_3*/
-            ctx[85]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*tanggalSelesai*/
-        32768) {
-          set_input_value(
-            input,
-            /*tanggalSelesai*/
-            ctx2[15]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_212(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Biaya Penelitian");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*biayaPenelitian*/
-          ctx[16]
-        );
-        if (!mounted) {
-          dispose = [
-            listen(
-              input,
-              "input",
-              /*input_input_handler_4*/
-              ctx[86]
-            ),
-            listen(
-              input,
-              "keyup",
-              /*keyup_handler*/
-              ctx[87]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*biayaPenelitian*/
-        65536 && input.value !== /*biayaPenelitian*/
-        ctx2[16]) {
-          set_input_value(
-            input,
-            /*biayaPenelitian*/
-            ctx2[16]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_default_slot_202(ctx) {
-    let select;
-    let updating_result;
-    let current;
-    function select_result_binding(value) {
-      ctx[88](value);
-    }
-    let select_props = { start: "2", items: (
-      /*items*/
-      ctx[63]
-    ) };
-    if (
-      /*anggotaTim*/
-      ctx[17] !== void 0
-    ) {
-      select_props.result = /*anggotaTim*/
-      ctx[17];
-    }
-    select = new Select_default({ props: select_props });
-    binding_callbacks.push(() => bind(select, "result", select_result_binding));
-    return {
-      c() {
-        create_component(select.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(select, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const select_changes = {};
-        if (dirty[2] & /*items*/
-        2)
-          select_changes.items = /*items*/
-          ctx2[63];
-        if (!updating_result && dirty[0] & /*anggotaTim*/
-        131072) {
-          updating_result = true;
-          select_changes.result = /*anggotaTim*/
-          ctx2[17];
-          add_flush_callback(() => updating_result = false);
-        }
-        select.$set(select_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(select.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(select.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(select, detaching);
-      }
-    };
-  }
-  function create_if_block_17(ctx) {
-    let each_1_anchor;
-    let current;
-    let each_value_8 = ensure_array_like(
-      /*anggotaTim*/
-      ctx[17]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_8.length; i += 1) {
-      each_blocks[i] = create_each_block_8(get_each_context_8(ctx, each_value_8, i));
-    }
-    const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
-      each_blocks[i] = null;
-    });
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*anggotaTim*/
-        131072 | dirty[2] & /*deleteMember*/
-        512) {
-          each_value_8 = ensure_array_like(
-            /*anggotaTim*/
-            ctx2[17]
-          );
-          let i;
-          for (i = 0; i < each_value_8.length; i += 1) {
-            const child_ctx = get_each_context_8(ctx2, each_value_8, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-              transition_in(each_blocks[i], 1);
-            } else {
-              each_blocks[i] = create_each_block_8(child_ctx);
-              each_blocks[i].c();
-              transition_in(each_blocks[i], 1);
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          group_outros();
-          for (i = each_value_8.length; i < each_blocks.length; i += 1) {
-            out(i);
-          }
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        for (let i = 0; i < each_value_8.length; i += 1) {
-          transition_in(each_blocks[i]);
-        }
-        current = true;
-      },
-      o(local) {
-        each_blocks = each_blocks.filter(Boolean);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          transition_out(each_blocks[i]);
-        }
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_if_block_18(ctx) {
-    let button;
-    let span;
-    let icon;
-    let button_data_value_value;
-    let current;
-    let mounted;
-    let dispose;
-    icon = new Icon_default({ props: { id: "delete", src: deleteIcon } });
-    return {
-      c() {
-        button = element("button");
-        span = element("span");
-        create_component(icon.$$.fragment);
-        attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
-        attr(button, "data-value", button_data_value_value = /*member*/
-        ctx[139].value);
-      },
-      m(target, anchor) {
-        insert(target, button, anchor);
-        append(button, span);
-        mount_component(icon, span, null);
-        current = true;
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*deleteMember*/
-            ctx[71]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (!current || dirty[0] & /*anggotaTim*/
-        131072 && button_data_value_value !== (button_data_value_value = /*member*/
-        ctx2[139].value)) {
-          attr(button, "data-value", button_data_value_value);
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(icon.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(icon.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(button);
-        }
-        destroy_component(icon);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_each_block_8(ctx) {
-    let tr;
-    let td0;
-    let t0;
-    let td1;
-    let t1_value = (
-      /*member*/
-      ctx[139].role + ""
-    );
-    let t1;
-    let t2;
-    let td2;
-    let t3_value = (
-      /*member*/
-      ctx[139].label + ""
-    );
-    let t3;
-    let t4;
-    let current;
-    let if_block = (
-      /*idx*/
-      ctx[141] > 0 && create_if_block_18(ctx)
-    );
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        if (if_block)
-          if_block.c();
-        t0 = space();
-        td1 = element("td");
-        t1 = text(t1_value);
-        t2 = space();
-        td2 = element("td");
-        t3 = text(t3_value);
-        t4 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        if (if_block)
-          if_block.m(td0, null);
-        append(tr, t0);
-        append(tr, td1);
-        append(td1, t1);
-        append(tr, t2);
-        append(tr, td2);
-        append(td2, t3);
-        append(tr, t4);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (
-          /*idx*/
-          ctx2[141] > 0
-        )
-          if_block.p(ctx2, dirty);
-        if ((!current || dirty[0] & /*anggotaTim*/
-        131072) && t1_value !== (t1_value = /*member*/
-        ctx2[139].role + ""))
-          set_data(t1, t1_value);
-        if ((!current || dirty[0] & /*anggotaTim*/
-        131072) && t3_value !== (t3_value = /*member*/
-        ctx2[139].label + ""))
-          set_data(t3, t3_value);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_default_slot_192(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
-        attr(input, "placeholder", "Masukkan Judul");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
-          /*judul*/
-          ctx[18]
-        );
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_5*/
-            ctx[89]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*judul*/
-        262144 && input.value !== /*judul*/
-        ctx2[18]) {
-          set_input_value(
-            input,
-            /*judul*/
-            ctx2[18]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_182(ctx) {
-    let textarea;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        textarea = element("textarea");
-        attr(textarea, "class", "textarea");
-      },
-      m(target, anchor) {
-        insert(target, textarea, anchor);
-        set_input_value(
-          textarea,
-          /*abstrak*/
-          ctx[19]
-        );
-        if (!mounted) {
-          dispose = listen(
-            textarea,
-            "input",
-            /*textarea_input_handler*/
-            ctx[90]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*abstrak*/
-        524288) {
-          set_input_value(
-            textarea,
-            /*abstrak*/
-            ctx2[19]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(textarea);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_172(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "accept", "application/pdf");
-        attr(input, "type", "file");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "change",
-            /*change_handler*/
-            ctx[91]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_16(ctx) {
-    let field;
-    let current;
-    field = new Field_default({
-      props: {
-        name: "Rencana Anggaran Biaya",
-        $$slots: { default: [create_default_slot_162] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(field.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(field, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        const field_changes = {};
-        if (dirty[1] & /*fileRab*/
-        1073741824 | dirty[4] & /*$$scope*/
-        4194304) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(field, detaching);
-      }
-    };
-  }
-  function create_default_slot_162(ctx) {
-    let input;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        input = element("input");
-        attr(input, "class", "input");
-        attr(input, "accept", ".xlsx");
-        attr(input, "type", "file");
-      },
-      m(target, anchor) {
-        insert(target, input, anchor);
-        if (!mounted) {
-          dispose = listen(
-            input,
-            "change",
-            /*change_handler_1*/
-            ctx[92]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(input);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot_152(ctx) {
-    let div;
-    let t;
-    return {
-      c() {
-        div = element("div");
-        t = text(
-          /*comment*/
-          ctx[20]
-        );
-        attr(div, "class", "box");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*comment*/
-        1048576)
-          set_data(
-            t,
-            /*comment*/
-            ctx2[20]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-      }
-    };
-  }
-  function create_if_block_15(ctx) {
-    let tbody;
-    let each_value_7 = ensure_array_like(
-      /*itemsRCR*/
-      ctx[22]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_7.length; i += 1) {
-      each_blocks[i] = create_each_block_7(get_each_context_7(ctx, each_value_7, i));
-    }
-    return {
-      c() {
-        tbody = element("tbody");
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-      },
-      m(target, anchor) {
-        insert(target, tbody, anchor);
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(tbody, null);
-          }
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*itemsRCR*/
-        4194304) {
-          each_value_7 = ensure_array_like(
-            /*itemsRCR*/
-            ctx2[22]
-          );
-          let i;
-          for (i = 0; i < each_value_7.length; i += 1) {
-            const child_ctx = get_each_context_7(ctx2, each_value_7, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_7(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(tbody, null);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_7.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tbody);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_7(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*item*/
-      ctx[136].comment + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*item*/
-      ctx[136].evaluator + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*item*/
-      ctx[136].time + ""
-    );
-    let t4;
-    let t5;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t0_value !== (t0_value = /*item*/
-        ctx2[136].comment + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t2_value !== (t2_value = /*item*/
-        ctx2[136].evaluator + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*itemsRCR*/
-        4194304 && t4_value !== (t4_value = /*item*/
-        ctx2[136].time + ""))
-          set_data(t4, t4_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_default_slot_142(ctx) {
-    let table;
-    let thead;
-    let t5;
-    let if_block = (
-      /*itemsRCR*/
-      ctx[22] && create_if_block_15(ctx)
-    );
-    return {
-      c() {
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Catatan Revisi</th> <th>Evalutor</th> <th class="is-narrow">Waktu</th></tr>`;
-        t5 = space();
-        if (if_block)
-          if_block.c();
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-      },
-      m(target, anchor) {
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t5);
-        if (if_block)
-          if_block.m(table, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*itemsRCR*/
-          ctx2[22]
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_15(ctx2);
-            if_block.c();
-            if_block.m(table, null);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(table);
-        }
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_if_block_132(ctx) {
-    let p0;
-    let button0;
-    let t1;
-    let p1;
-    let button1;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        p0 = element("p");
-        button0 = element("button");
-        button0.textContent = "Revisi";
-        t1 = space();
-        p1 = element("p");
-        button1 = element("button");
-        button1.textContent = "Proses";
-        attr(button0, "class", "button is-info is-light is-outlined");
-        attr(p0, "class", "control");
-        attr(button1, "class", "button is-info");
-        attr(p1, "class", "control");
-      },
-      m(target, anchor) {
-        insert(target, p0, anchor);
-        append(p0, button0);
-        insert(target, t1, anchor);
-        insert(target, p1, anchor);
-        append(p1, button1);
-        if (!mounted) {
-          dispose = [
-            listen(
-              button0,
-              "click",
-              /*handleRevisi*/
-              ctx[68]
-            ),
-            listen(
-              button1,
-              "click",
-              /*handlePass*/
-              ctx[70]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p0);
-          detach(t1);
-          detach(p1);
-        }
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_if_block_123(ctx) {
-    let p0;
-    let button0;
-    let t1;
-    let p1;
-    let button1;
-    let t3;
-    let p2;
-    let button2;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        p0 = element("p");
-        button0 = element("button");
-        button0.textContent = "Revisi";
-        t1 = space();
-        p1 = element("p");
-        button1 = element("button");
-        button1.textContent = "Ditolak";
-        t3 = space();
-        p2 = element("p");
-        button2 = element("button");
-        button2.textContent = "Proses";
-        attr(button0, "class", "button is-info is-light is-outlined");
-        attr(p0, "class", "control");
-        attr(button1, "class", "button is-danger is-light is-outlined");
-        attr(p1, "class", "control");
-        attr(button2, "class", "button is-info");
-        attr(p2, "class", "control");
-      },
-      m(target, anchor) {
-        insert(target, p0, anchor);
-        append(p0, button0);
-        insert(target, t1, anchor);
-        insert(target, p1, anchor);
-        append(p1, button1);
-        insert(target, t3, anchor);
-        insert(target, p2, anchor);
-        append(p2, button2);
-        if (!mounted) {
-          dispose = [
-            listen(
-              button0,
-              "click",
-              /*handleRevisi*/
-              ctx[68]
-            ),
-            listen(
-              button1,
-              "click",
-              /*handleDitolak*/
-              ctx[69]
-            ),
-            listen(
-              button2,
-              "click",
-              /*handlePass*/
-              ctx[70]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p0);
-          detach(t1);
-          detach(p1);
-          detach(t3);
-          detach(p2);
-        }
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_if_block_112(ctx) {
-    let p;
-    let button;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        p = element("p");
-        button = element("button");
-        button.textContent = "Remediasi";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-        append(p, button);
-        if (!mounted) {
-          dispose = listen(
-            button,
-            "click",
-            /*remediasi*/
-            ctx[67]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_110(ctx) {
-    let t0;
-    let div0;
-    let field0;
-    let t1;
-    let field1;
-    let t2;
-    let field2;
-    let t3;
-    let field3;
-    let t4;
-    let field4;
-    let t5;
-    let field5;
-    let t6;
-    let field6;
-    let t7;
-    let field7;
-    let t8;
-    let field8;
-    let t9;
-    let field9;
-    let t10;
-    let field10;
-    let t11;
-    let field11;
-    let t12;
-    let div1;
-    let h60;
-    let t14;
-    let table0;
-    let thead0;
-    let t22;
-    let tbody0;
-    let tr1;
-    let th4;
-    let t24;
-    let td0;
-    let t25;
-    let t26;
-    let td1;
-    let t27;
-    let t28;
-    let td2;
-    let t29;
-    let t30;
-    let tr2;
-    let th5;
-    let t32;
-    let td3;
-    let t33;
-    let t34;
-    let td4;
-    let t35;
-    let t36;
-    let td5;
-    let t37;
-    let t38;
-    let tr3;
-    let th6;
-    let t40;
-    let td6;
-    let t41;
-    let t42;
-    let td7;
-    let t43;
-    let t44;
-    let td8;
-    let t45;
-    let t46;
-    let tr4;
-    let th7;
-    let t48;
-    let td9;
-    let t49;
-    let t50;
-    let td10;
-    let t51;
-    let t52;
-    let td11;
-    let t53;
-    let t54;
-    let tr5;
-    let th8;
-    let t56;
-    let td12;
-    let t57;
-    let t58;
-    let td13;
-    let t59;
-    let t60;
-    let td14;
-    let t61;
-    let t62;
-    let div2;
-    let h61;
-    let t64;
-    let table1;
-    let thead1;
-    let t74;
-    let tbody1;
-    let t75;
-    let div3;
-    let h62;
-    let t77;
-    let table2;
-    let thead2;
-    let t87;
-    let tbody2;
-    let t88;
-    let div4;
-    let h63;
-    let t90;
-    let table3;
-    let thead3;
-    let t98;
-    let tbody3;
-    let t99;
-    let div5;
-    let h64;
-    let t101;
-    let table4;
-    let thead4;
-    let t109;
-    let tbody4;
-    let t110;
-    let div6;
-    let h65;
-    let t112;
-    let table5;
-    let thead5;
-    let t122;
-    let tbody5;
-    let t123;
-    let div7;
-    let h66;
-    let t125;
-    let table6;
-    let thead6;
-    let t135;
-    let tbody6;
-    let current;
-    function select_block_type_2(ctx2, dirty) {
-      if (
-        /*status*/
-        ctx2[21] > 10
-      )
-        return create_if_block_93;
-      return create_else_block3;
-    }
-    let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1]);
-    let if_block0 = current_block_type(ctx);
-    field0 = new Field_default({
-      props: {
-        name: "Nama Lengkap",
-        $$slots: { default: [create_default_slot_132] },
-        $$scope: { ctx }
-      }
-    });
-    field1 = new Field_default({
-      props: {
-        name: "Jabatan Fungsional",
-        $$slots: { default: [create_default_slot_123] },
-        $$scope: { ctx }
-      }
-    });
-    field2 = new Field_default({
-      props: {
-        name: "NIP",
-        $$slots: { default: [create_default_slot_112] },
-        $$scope: { ctx }
-      }
-    });
-    field3 = new Field_default({
-      props: {
-        name: "NIDN",
-        $$slots: { default: [create_default_slot_102] },
-        $$scope: { ctx }
-      }
-    });
-    field4 = new Field_default({
-      props: {
-        name: "Tempat / Tanggal Lahir",
-        $$slots: { default: [create_default_slot_92] },
-        $$scope: { ctx }
-      }
-    });
-    field5 = new Field_default({
-      props: {
-        name: "Alamat Rumah",
-        $$slots: { default: [create_default_slot_82] },
-        $$scope: { ctx }
-      }
-    });
-    field6 = new Field_default({
-      props: {
-        name: "Telp/Fax Rumah",
-        $$slots: { default: [create_default_slot_73] },
-        $$scope: { ctx }
-      }
-    });
-    field7 = new Field_default({
-      props: {
-        name: "Nomoh Handphone",
-        $$slots: { default: [create_default_slot_63] },
-        $$scope: { ctx }
-      }
-    });
-    field8 = new Field_default({
-      props: {
-        name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_53] },
-        $$scope: { ctx }
-      }
-    });
-    field9 = new Field_default({
-      props: {
-        name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_48] },
-        $$scope: { ctx }
-      }
-    });
-    field10 = new Field_default({
-      props: {
-        name: "Email",
-        $$slots: { default: [create_default_slot_311] },
-        $$scope: { ctx }
-      }
-    });
-    field11 = new Field_default({
-      props: {
-        name: "Mata Kuliah",
-        $$slots: { default: [create_default_slot_211] },
-        $$scope: { ctx }
-      }
-    });
-    let if_block1 = (
-      /*dataPP*/
-      ctx[1] && create_if_block_73(ctx)
-    );
-    let if_block2 = (
-      /*dataPM*/
-      ctx[2] && create_if_block_63(ctx)
-    );
-    let if_block3 = (
-      /*dataPD*/
-      ctx[3] && create_if_block_53(ctx)
-    );
-    let if_block4 = (
-      /*dataPPub*/
-      ctx[4] && create_if_block_44(ctx)
-    );
-    let if_block5 = (
-      /*dataPPB*/
-      ctx[5] && create_if_block_34(ctx)
-    );
-    let if_block6 = (
-      /*dataPHKI*/
-      ctx[6] && create_if_block_25(ctx)
-    );
-    return {
-      c() {
-        if_block0.c();
-        t0 = space();
-        div0 = element("div");
-        create_component(field0.$$.fragment);
-        t1 = space();
-        create_component(field1.$$.fragment);
-        t2 = space();
-        create_component(field2.$$.fragment);
-        t3 = space();
-        create_component(field3.$$.fragment);
-        t4 = space();
-        create_component(field4.$$.fragment);
-        t5 = space();
-        create_component(field5.$$.fragment);
-        t6 = space();
-        create_component(field6.$$.fragment);
-        t7 = space();
-        create_component(field7.$$.fragment);
-        t8 = space();
-        create_component(field8.$$.fragment);
-        t9 = space();
-        create_component(field9.$$.fragment);
-        t10 = space();
-        create_component(field10.$$.fragment);
-        t11 = space();
-        create_component(field11.$$.fragment);
-        t12 = space();
-        div1 = element("div");
-        h60 = element("h6");
-        h60.textContent = "Riwayat Pendidikan";
-        t14 = space();
-        table0 = element("table");
-        thead0 = element("thead");
-        thead0.innerHTML = `<tr><th class="is-narrow">Program</th> <th class="is-narrow">S1</th> <th class="is-narrow">S2</th> <th class="is-narrow">S3</th></tr>`;
-        t22 = space();
-        tbody0 = element("tbody");
-        tr1 = element("tr");
-        th4 = element("th");
-        th4.textContent = "Nama Perguruan Tinggi";
-        t24 = space();
-        td0 = element("td");
-        t25 = text(
-          /*pertiS1*/
-          ctx[45]
-        );
-        t26 = space();
-        td1 = element("td");
-        t27 = text(
-          /*pertiS2*/
-          ctx[46]
-        );
-        t28 = space();
-        td2 = element("td");
-        t29 = text(
-          /*pertiS3*/
-          ctx[47]
-        );
-        t30 = space();
-        tr2 = element("tr");
-        th5 = element("th");
-        th5.textContent = "Bidang Ilmu";
-        t32 = space();
-        td3 = element("td");
-        t33 = text(
-          /*bidangIlmuS1*/
-          ctx[48]
-        );
-        t34 = space();
-        td4 = element("td");
-        t35 = text(
-          /*bidangIlmuS2*/
-          ctx[49]
-        );
-        t36 = space();
-        td5 = element("td");
-        t37 = text(
-          /*bidangIlmuS3*/
-          ctx[50]
-        );
-        t38 = space();
-        tr3 = element("tr");
-        th6 = element("th");
-        th6.textContent = "Tahun Masuk";
-        t40 = space();
-        td6 = element("td");
-        t41 = text(
-          /*tahunMasukS1*/
-          ctx[51]
-        );
-        t42 = space();
-        td7 = element("td");
-        t43 = text(
-          /*tahunMasukS2*/
-          ctx[52]
-        );
-        t44 = space();
-        td8 = element("td");
-        t45 = text(
-          /*tahunMasukS3*/
-          ctx[53]
-        );
-        t46 = space();
-        tr4 = element("tr");
-        th7 = element("th");
-        th7.textContent = "Tahun Lulus";
-        t48 = space();
-        td9 = element("td");
-        t49 = text(
-          /*tahunLulusS1*/
-          ctx[54]
-        );
-        t50 = space();
-        td10 = element("td");
-        t51 = text(
-          /*tahunLulusS2*/
-          ctx[55]
-        );
-        t52 = space();
-        td11 = element("td");
-        t53 = text(
-          /*tahunLulusS3*/
-          ctx[56]
-        );
-        t54 = space();
-        tr5 = element("tr");
-        th8 = element("th");
-        th8.textContent = "Judul Skripsi/Tesis/Disertasi";
-        t56 = space();
-        td12 = element("td");
-        t57 = text(
-          /*judulTugasAkhirS1*/
-          ctx[57]
-        );
-        t58 = space();
-        td13 = element("td");
-        t59 = text(
-          /*judulTugasAkhirS2*/
-          ctx[58]
-        );
-        t60 = space();
-        td14 = element("td");
-        t61 = text(
-          /*judulTugasAkhirS3*/
-          ctx[59]
-        );
-        t62 = space();
-        div2 = element("div");
-        h61 = element("h6");
-        h61.textContent = "Pengalaman Penelitian";
-        t64 = space();
-        table1 = element("table");
-        thead1 = element("thead");
-        thead1.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Penelitian</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t74 = space();
-        tbody1 = element("tbody");
-        if (if_block1)
-          if_block1.c();
-        t75 = space();
-        div3 = element("div");
-        h62 = element("h6");
-        h62.textContent = "Pengalaman Pengabdian Masyarakat";
-        t77 = space();
-        table2 = element("table");
-        thead2 = element("thead");
-        thead2.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Pengabdian Masyarakat</th> <th class="is-narrow">Ketua / Anggota</th> <th class="is-narrow">Sumber Dana</th> <th class="is-narrow">Jumlah Rp.</th></tr>`;
-        t87 = space();
-        tbody2 = element("tbody");
-        if (if_block2)
-          if_block2.c();
-        t88 = space();
-        div4 = element("div");
-        h63 = element("h6");
-        h63.textContent = "Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran";
-        t90 = space();
-        table3 = element("table");
-        thead3 = element("thead");
-        thead3.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Pemakalah</th> <th class="is-narrow">Nama Pertemuan Ilmiah / Pameran</th></tr>`;
-        t98 = space();
-        tbody3 = element("tbody");
-        if (if_block3)
-          if_block3.c();
-        t99 = space();
-        div5 = element("div");
-        h64 = element("h6");
-        h64.textContent = "Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)";
-        t101 = space();
-        table4 = element("table");
-        thead4 = element("thead");
-        thead4.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Artikel</th> <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
-        t109 = space();
-        tbody4 = element("tbody");
-        if (if_block4)
-          if_block4.c();
-        t110 = space();
-        div6 = element("div");
-        h65 = element("h6");
-        h65.textContent = "Pengalaman Penulisan Buku";
-        t112 = space();
-        table5 = element("table");
-        thead5 = element("thead");
-        thead5.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul Buku</th> <th>Nama Penulis</th> <th>Penerbit</th> <th>ISBN</th></tr>`;
-        t122 = space();
-        tbody5 = element("tbody");
-        if (if_block5)
-          if_block5.c();
-        t123 = space();
-        div7 = element("div");
-        h66 = element("h6");
-        h66.textContent = "Pengalaman Hak Kekayaan Intelektual";
-        t125 = space();
-        table6 = element("table");
-        thead6 = element("thead");
-        thead6.innerHTML = `<tr><th class="is-narrow">Tahun</th> <th>Judul HKI</th> <th>Nama Penulis</th> <th>Jenis HKI</th> <th>No HKI</th></tr>`;
-        t135 = space();
-        tbody6 = element("tbody");
-        if (if_block6)
-          if_block6.c();
-        attr(div0, "class", "box");
-        attr(h60, "class", "title is-6");
-        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div1, "class", "box");
-        attr(h61, "class", "title is-6");
-        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div2, "class", "box");
-        attr(h62, "class", "title is-6");
-        attr(table2, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div3, "class", "box");
-        attr(h63, "class", "title is-6");
-        attr(table3, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div4, "class", "box");
-        attr(h64, "class", "title is-6");
-        attr(table4, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div5, "class", "box");
-        attr(h65, "class", "title is-6");
-        attr(table5, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div6, "class", "box");
-        attr(h66, "class", "title is-6");
-        attr(table6, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div7, "class", "box");
-      },
-      m(target, anchor) {
-        if_block0.m(target, anchor);
-        insert(target, t0, anchor);
-        insert(target, div0, anchor);
-        mount_component(field0, div0, null);
-        append(div0, t1);
-        mount_component(field1, div0, null);
-        append(div0, t2);
-        mount_component(field2, div0, null);
-        append(div0, t3);
-        mount_component(field3, div0, null);
-        append(div0, t4);
-        mount_component(field4, div0, null);
-        append(div0, t5);
-        mount_component(field5, div0, null);
-        append(div0, t6);
-        mount_component(field6, div0, null);
-        append(div0, t7);
-        mount_component(field7, div0, null);
-        append(div0, t8);
-        mount_component(field8, div0, null);
-        append(div0, t9);
-        mount_component(field9, div0, null);
-        append(div0, t10);
-        mount_component(field10, div0, null);
-        append(div0, t11);
-        mount_component(field11, div0, null);
-        insert(target, t12, anchor);
-        insert(target, div1, anchor);
-        append(div1, h60);
-        append(div1, t14);
-        append(div1, table0);
-        append(table0, thead0);
-        append(table0, t22);
-        append(table0, tbody0);
-        append(tbody0, tr1);
-        append(tr1, th4);
-        append(tr1, t24);
-        append(tr1, td0);
-        append(td0, t25);
-        append(tr1, t26);
-        append(tr1, td1);
-        append(td1, t27);
-        append(tr1, t28);
-        append(tr1, td2);
-        append(td2, t29);
-        append(tbody0, t30);
-        append(tbody0, tr2);
-        append(tr2, th5);
-        append(tr2, t32);
-        append(tr2, td3);
-        append(td3, t33);
-        append(tr2, t34);
-        append(tr2, td4);
-        append(td4, t35);
-        append(tr2, t36);
-        append(tr2, td5);
-        append(td5, t37);
-        append(tbody0, t38);
-        append(tbody0, tr3);
-        append(tr3, th6);
-        append(tr3, t40);
-        append(tr3, td6);
-        append(td6, t41);
-        append(tr3, t42);
-        append(tr3, td7);
-        append(td7, t43);
-        append(tr3, t44);
-        append(tr3, td8);
-        append(td8, t45);
-        append(tbody0, t46);
-        append(tbody0, tr4);
-        append(tr4, th7);
-        append(tr4, t48);
-        append(tr4, td9);
-        append(td9, t49);
-        append(tr4, t50);
-        append(tr4, td10);
-        append(td10, t51);
-        append(tr4, t52);
-        append(tr4, td11);
-        append(td11, t53);
-        append(tbody0, t54);
-        append(tbody0, tr5);
-        append(tr5, th8);
-        append(tr5, t56);
-        append(tr5, td12);
-        append(td12, t57);
-        append(tr5, t58);
-        append(tr5, td13);
-        append(td13, t59);
-        append(tr5, t60);
-        append(tr5, td14);
-        append(td14, t61);
-        insert(target, t62, anchor);
-        insert(target, div2, anchor);
-        append(div2, h61);
-        append(div2, t64);
-        append(div2, table1);
-        append(table1, thead1);
-        append(table1, t74);
-        append(table1, tbody1);
-        if (if_block1)
-          if_block1.m(tbody1, null);
-        insert(target, t75, anchor);
-        insert(target, div3, anchor);
-        append(div3, h62);
-        append(div3, t77);
-        append(div3, table2);
-        append(table2, thead2);
-        append(table2, t87);
-        append(table2, tbody2);
-        if (if_block2)
-          if_block2.m(tbody2, null);
-        insert(target, t88, anchor);
-        insert(target, div4, anchor);
-        append(div4, h63);
-        append(div4, t90);
-        append(div4, table3);
-        append(table3, thead3);
-        append(table3, t98);
-        append(table3, tbody3);
-        if (if_block3)
-          if_block3.m(tbody3, null);
-        insert(target, t99, anchor);
-        insert(target, div5, anchor);
-        append(div5, h64);
-        append(div5, t101);
-        append(div5, table4);
-        append(table4, thead4);
-        append(table4, t109);
-        append(table4, tbody4);
-        if (if_block4)
-          if_block4.m(tbody4, null);
-        insert(target, t110, anchor);
-        insert(target, div6, anchor);
-        append(div6, h65);
-        append(div6, t112);
-        append(div6, table5);
-        append(table5, thead5);
-        append(table5, t122);
-        append(table5, tbody5);
-        if (if_block5)
-          if_block5.m(tbody5, null);
-        insert(target, t123, anchor);
-        insert(target, div7, anchor);
-        append(div7, h66);
-        append(div7, t125);
-        append(div7, table6);
-        append(table6, thead6);
-        append(table6, t135);
-        append(table6, tbody6);
-        if (if_block6)
-          if_block6.m(tbody6, null);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (current_block_type === (current_block_type = select_block_type_2(ctx2, dirty)) && if_block0) {
-          if_block0.p(ctx2, dirty);
-        } else {
-          if_block0.d(1);
-          if_block0 = current_block_type(ctx2);
-          if (if_block0) {
-            if_block0.c();
-            if_block0.m(t0.parentNode, t0);
-          }
-        }
-        const field0_changes = {};
-        if (dirty[1] & /*namaLengkap*/
-        2 | dirty[4] & /*$$scope*/
-        4194304) {
-          field0_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field0.$set(field0_changes);
-        const field1_changes = {};
-        if (dirty[1] & /*jabatanFungsional*/
-        4 | dirty[4] & /*$$scope*/
-        4194304) {
-          field1_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field1.$set(field1_changes);
-        const field2_changes = {};
-        if (dirty[1] & /*nip*/
-        8 | dirty[4] & /*$$scope*/
-        4194304) {
-          field2_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field2.$set(field2_changes);
-        const field3_changes = {};
-        if (dirty[1] & /*nidn*/
-        16 | dirty[4] & /*$$scope*/
-        4194304) {
-          field3_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field3.$set(field3_changes);
-        const field4_changes = {};
-        if (dirty[1] & /*tanggalLahir, tempatLahir*/
-        96 | dirty[4] & /*$$scope*/
-        4194304) {
-          field4_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field4.$set(field4_changes);
-        const field5_changes = {};
-        if (dirty[1] & /*alamatRumah*/
-        128 | dirty[4] & /*$$scope*/
-        4194304) {
-          field5_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field5.$set(field5_changes);
-        const field6_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
-        256 | dirty[4] & /*$$scope*/
-        4194304) {
-          field6_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field6.$set(field6_changes);
-        const field7_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
-        512 | dirty[4] & /*$$scope*/
-        4194304) {
-          field7_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field7.$set(field7_changes);
-        const field8_changes = {};
-        if (dirty[1] & /*alamatKantor*/
-        1024 | dirty[4] & /*$$scope*/
-        4194304) {
-          field8_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field8.$set(field8_changes);
-        const field9_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
-        2048 | dirty[4] & /*$$scope*/
-        4194304) {
-          field9_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field9.$set(field9_changes);
-        const field10_changes = {};
-        if (dirty[1] & /*email*/
-        4096 | dirty[4] & /*$$scope*/
-        4194304) {
-          field10_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field10.$set(field10_changes);
-        const field11_changes = {};
-        if (dirty[1] & /*mataKuliah*/
-        8192 | dirty[4] & /*$$scope*/
-        4194304) {
-          field11_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field11.$set(field11_changes);
-        if (!current || dirty[1] & /*pertiS1*/
-        16384)
-          set_data(
-            t25,
-            /*pertiS1*/
-            ctx2[45]
-          );
-        if (!current || dirty[1] & /*pertiS2*/
-        32768)
-          set_data(
-            t27,
-            /*pertiS2*/
-            ctx2[46]
-          );
-        if (!current || dirty[1] & /*pertiS3*/
-        65536)
-          set_data(
-            t29,
-            /*pertiS3*/
-            ctx2[47]
-          );
-        if (!current || dirty[1] & /*bidangIlmuS1*/
-        131072)
-          set_data(
-            t33,
-            /*bidangIlmuS1*/
-            ctx2[48]
-          );
-        if (!current || dirty[1] & /*bidangIlmuS2*/
-        262144)
-          set_data(
-            t35,
-            /*bidangIlmuS2*/
-            ctx2[49]
-          );
-        if (!current || dirty[1] & /*bidangIlmuS3*/
-        524288)
-          set_data(
-            t37,
-            /*bidangIlmuS3*/
-            ctx2[50]
-          );
-        if (!current || dirty[1] & /*tahunMasukS1*/
-        1048576)
-          set_data(
-            t41,
-            /*tahunMasukS1*/
-            ctx2[51]
-          );
-        if (!current || dirty[1] & /*tahunMasukS2*/
-        2097152)
-          set_data(
-            t43,
-            /*tahunMasukS2*/
-            ctx2[52]
-          );
-        if (!current || dirty[1] & /*tahunMasukS3*/
-        4194304)
-          set_data(
-            t45,
-            /*tahunMasukS3*/
-            ctx2[53]
-          );
-        if (!current || dirty[1] & /*tahunLulusS1*/
-        8388608)
-          set_data(
-            t49,
-            /*tahunLulusS1*/
-            ctx2[54]
-          );
-        if (!current || dirty[1] & /*tahunLulusS2*/
-        16777216)
-          set_data(
-            t51,
-            /*tahunLulusS2*/
-            ctx2[55]
-          );
-        if (!current || dirty[1] & /*tahunLulusS3*/
-        33554432)
-          set_data(
-            t53,
-            /*tahunLulusS3*/
-            ctx2[56]
-          );
-        if (!current || dirty[1] & /*judulTugasAkhirS1*/
-        67108864)
-          set_data(
-            t57,
-            /*judulTugasAkhirS1*/
-            ctx2[57]
-          );
-        if (!current || dirty[1] & /*judulTugasAkhirS2*/
-        134217728)
-          set_data(
-            t59,
-            /*judulTugasAkhirS2*/
-            ctx2[58]
-          );
-        if (!current || dirty[1] & /*judulTugasAkhirS3*/
-        268435456)
-          set_data(
-            t61,
-            /*judulTugasAkhirS3*/
-            ctx2[59]
-          );
-        if (
-          /*dataPP*/
-          ctx2[1]
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_73(ctx2);
-            if_block1.c();
-            if_block1.m(tbody1, null);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*dataPM*/
-          ctx2[2]
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_63(ctx2);
-            if_block2.c();
-            if_block2.m(tbody2, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (
-          /*dataPD*/
-          ctx2[3]
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_53(ctx2);
-            if_block3.c();
-            if_block3.m(tbody3, null);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-        if (
-          /*dataPPub*/
-          ctx2[4]
-        ) {
-          if (if_block4) {
-            if_block4.p(ctx2, dirty);
-          } else {
-            if_block4 = create_if_block_44(ctx2);
-            if_block4.c();
-            if_block4.m(tbody4, null);
-          }
-        } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
-        }
-        if (
-          /*dataPPB*/
-          ctx2[5]
-        ) {
-          if (if_block5) {
-            if_block5.p(ctx2, dirty);
-          } else {
-            if_block5 = create_if_block_34(ctx2);
-            if_block5.c();
-            if_block5.m(tbody5, null);
-          }
-        } else if (if_block5) {
-          if_block5.d(1);
-          if_block5 = null;
-        }
-        if (
-          /*dataPHKI*/
-          ctx2[6]
-        ) {
-          if (if_block6) {
-            if_block6.p(ctx2, dirty);
-          } else {
-            if_block6 = create_if_block_25(ctx2);
-            if_block6.c();
-            if_block6.m(tbody6, null);
-          }
-        } else if (if_block6) {
-          if_block6.d(1);
-          if_block6 = null;
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field0.$$.fragment, local);
-        transition_in(field1.$$.fragment, local);
-        transition_in(field2.$$.fragment, local);
-        transition_in(field3.$$.fragment, local);
-        transition_in(field4.$$.fragment, local);
-        transition_in(field5.$$.fragment, local);
-        transition_in(field6.$$.fragment, local);
-        transition_in(field7.$$.fragment, local);
-        transition_in(field8.$$.fragment, local);
-        transition_in(field9.$$.fragment, local);
-        transition_in(field10.$$.fragment, local);
-        transition_in(field11.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field0.$$.fragment, local);
-        transition_out(field1.$$.fragment, local);
-        transition_out(field2.$$.fragment, local);
-        transition_out(field3.$$.fragment, local);
-        transition_out(field4.$$.fragment, local);
-        transition_out(field5.$$.fragment, local);
-        transition_out(field6.$$.fragment, local);
-        transition_out(field7.$$.fragment, local);
-        transition_out(field8.$$.fragment, local);
-        transition_out(field9.$$.fragment, local);
-        transition_out(field10.$$.fragment, local);
-        transition_out(field11.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(div0);
-          detach(t12);
-          detach(div1);
-          detach(t62);
-          detach(div2);
-          detach(t75);
-          detach(div3);
-          detach(t88);
-          detach(div4);
-          detach(t99);
-          detach(div5);
-          detach(t110);
-          detach(div6);
-          detach(t123);
-          detach(div7);
-        }
-        if_block0.d(detaching);
-        destroy_component(field0);
-        destroy_component(field1);
-        destroy_component(field2);
-        destroy_component(field3);
-        destroy_component(field4);
-        destroy_component(field5);
-        destroy_component(field6);
-        destroy_component(field7);
-        destroy_component(field8);
-        destroy_component(field9);
-        destroy_component(field10);
-        destroy_component(field11);
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-        if (if_block3)
-          if_block3.d();
-        if (if_block4)
-          if_block4.d();
-        if (if_block5)
-          if_block5.d();
-        if (if_block6)
-          if_block6.d();
-      }
-    };
-  }
-  function create_else_block3(ctx) {
-    let div;
-    let p;
-    let strong0;
-    let t1;
-    let a;
-    let strong1;
-    let a_href_value;
-    return {
-      c() {
-        div = element("div");
-        p = element("p");
-        strong0 = element("strong");
-        strong0.textContent = "Biodata";
-        t1 = text(" sebagai salah satu syarat dalam\r\n                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan\r\n                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,\r\n                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik\r\n                  ");
-        a = element("a");
-        strong1 = element("strong");
-        strong1.textContent = "Disini!";
-        attr(a, "href", a_href_value = "/admin/profile/" + /*uidProposal*/
-        ctx[60]);
-        set_style(p, "text-align", "justify");
-        attr(div, "class", "notification is-danger is-light");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, strong0);
-        append(p, t1);
-        append(p, a);
-        append(a, strong1);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*uidProposal*/
-        536870912 && a_href_value !== (a_href_value = "/admin/profile/" + /*uidProposal*/
-        ctx2[60])) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-      }
-    };
-  }
-  function create_if_block_93(ctx) {
-    let div;
-    return {
-      c() {
-        div = element("div");
-        div.innerHTML = `<p style="text-align: justify;"><strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                  sanksinya.</p>`;
-        attr(div, "class", "notification is-danger is-light");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-      }
-    };
-  }
-  function create_default_slot_132(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*namaLengkap*/
-          ctx[32]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*namaLengkap*/
-        2)
-          set_data(
-            t,
-            /*namaLengkap*/
-            ctx2[32]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_123(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*jabatanFungsional*/
-          ctx[33]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*jabatanFungsional*/
-        4)
-          set_data(
-            t,
-            /*jabatanFungsional*/
-            ctx2[33]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_112(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*nip*/
-          ctx[34]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*nip*/
-        8)
-          set_data(
-            t,
-            /*nip*/
-            ctx2[34]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_102(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*nidn*/
-          ctx[35]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*nidn*/
-        16)
-          set_data(
-            t,
-            /*nidn*/
-            ctx2[35]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_92(ctx) {
-    let t0;
-    let t1;
-    let t2;
-    return {
-      c() {
-        t0 = text(
-          /*tempatLahir*/
-          ctx[36]
-        );
-        t1 = text(" / ");
-        t2 = text(
-          /*tanggalLahir*/
-          ctx[37]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t0, anchor);
-        insert(target, t1, anchor);
-        insert(target, t2, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*tempatLahir*/
-        32)
-          set_data(
-            t0,
-            /*tempatLahir*/
-            ctx2[36]
-          );
-        if (dirty[1] & /*tanggalLahir*/
-        64)
-          set_data(
-            t2,
-            /*tanggalLahir*/
-            ctx2[37]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(t2);
-        }
-      }
-    };
-  }
-  function create_default_slot_82(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*alamatRumah*/
-          ctx[38]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*alamatRumah*/
-        128)
-          set_data(
-            t,
-            /*alamatRumah*/
-            ctx2[38]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_73(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*telpFaxRumah*/
-          ctx[39]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*telpFaxRumah*/
-        256)
-          set_data(
-            t,
-            /*telpFaxRumah*/
-            ctx2[39]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_63(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*nomorHandphone*/
-          ctx[40]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*nomorHandphone*/
-        512)
-          set_data(
-            t,
-            /*nomorHandphone*/
-            ctx2[40]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_53(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*alamatKantor*/
-          ctx[41]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*alamatKantor*/
-        1024)
-          set_data(
-            t,
-            /*alamatKantor*/
-            ctx2[41]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_48(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*telpFaxKantor*/
-          ctx[42]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*telpFaxKantor*/
-        2048)
-          set_data(
-            t,
-            /*telpFaxKantor*/
-            ctx2[42]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_default_slot_311(ctx) {
-    let t;
-    return {
-      c() {
-        t = text(
-          /*email*/
-          ctx[43]
-        );
-      },
-      m(target, anchor) {
-        insert(target, t, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*email*/
-        4096)
-          set_data(
-            t,
-            /*email*/
-            ctx2[43]
-          );
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-      }
-    };
-  }
-  function create_if_block_83(ctx) {
-    let each_1_anchor;
-    let each_value_6 = ensure_array_like(
-      /*mataKuliah*/
-      ctx[44]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_6.length; i += 1) {
-      each_blocks[i] = create_each_block_62(get_each_context_62(ctx, each_value_6, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*mataKuliah*/
-        8192) {
-          each_value_6 = ensure_array_like(
-            /*mataKuliah*/
-            ctx2[44]
-          );
-          let i;
-          for (i = 0; i < each_value_6.length; i += 1) {
-            const child_ctx = get_each_context_62(ctx2, each_value_6, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_62(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_6.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_62(ctx) {
-    let tr;
-    let td;
-    let t0_value = (
-      /*matkul*/
-      ctx[133].label + ""
-    );
-    let t0;
-    let t1;
-    return {
-      c() {
-        tr = element("tr");
-        td = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td);
-        append(td, t0);
-        append(tr, t1);
-      },
-      p(ctx2, dirty) {
-        if (dirty[1] & /*mataKuliah*/
-        8192 && t0_value !== (t0_value = /*matkul*/
-        ctx2[133].label + ""))
-          set_data(t0, t0_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_default_slot_211(ctx) {
-    let table;
-    let thead;
-    let t1;
-    let tbody;
-    let if_block = (
-      /*mataKuliah*/
-      ctx[44] && /*mataKuliah*/
-      ctx[44].length > 0 && create_if_block_83(ctx)
-    );
-    return {
-      c() {
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Mata Kuliah</th></tr>`;
-        t1 = space();
-        tbody = element("tbody");
-        if (if_block)
-          if_block.c();
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-      },
-      m(target, anchor) {
-        insert(target, table, anchor);
-        append(table, thead);
-        append(table, t1);
-        append(table, tbody);
-        if (if_block)
-          if_block.m(tbody, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*mataKuliah*/
-          ctx2[44] && /*mataKuliah*/
-          ctx2[44].length > 0
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_83(ctx2);
-            if_block.c();
-            if_block.m(tbody, null);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(table);
-        }
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_if_block_73(ctx) {
-    let each_1_anchor;
-    let each_value_5 = ensure_array_like(
-      /*dataPP*/
-      ctx[1]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_5.length; i += 1) {
-      each_blocks[i] = create_each_block_52(get_each_context_52(ctx, each_value_5, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPP*/
-        2) {
-          each_value_5 = ensure_array_like(
-            /*dataPP*/
-            ctx2[1]
-          );
-          let i;
-          for (i = 0; i < each_value_5.length; i += 1) {
-            const child_ctx = get_each_context_52(ctx2, each_value_5, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_52(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_5.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_52(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PP*/
-      ctx[130].tahun_penelitian + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PP*/
-      ctx[130].judul_penelitian + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PP*/
-      ctx[130].role_penelitian + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PP*/
-      ctx[130].sumber_dana + ""
-    );
-    let t6;
-    let t7;
-    let td4;
-    let t8_value = (
-      /*PP*/
-      ctx[130].jumlah + ""
-    );
-    let t8;
-    let t9;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-        td4 = element("td");
-        t8 = text(t8_value);
-        t9 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-        append(tr, td4);
-        append(td4, t8);
-        append(tr, t9);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPP*/
-        2 && t0_value !== (t0_value = /*PP*/
-        ctx2[130].tahun_penelitian + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPP*/
-        2 && t2_value !== (t2_value = /*PP*/
-        ctx2[130].judul_penelitian + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPP*/
-        2 && t4_value !== (t4_value = /*PP*/
-        ctx2[130].role_penelitian + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPP*/
-        2 && t6_value !== (t6_value = /*PP*/
-        ctx2[130].sumber_dana + ""))
-          set_data(t6, t6_value);
-        if (dirty[0] & /*dataPP*/
-        2 && t8_value !== (t8_value = /*PP*/
-        ctx2[130].jumlah + ""))
-          set_data(t8, t8_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_if_block_63(ctx) {
-    let each_1_anchor;
-    let each_value_4 = ensure_array_like(
-      /*dataPM*/
-      ctx[2]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_4.length; i += 1) {
-      each_blocks[i] = create_each_block_42(get_each_context_42(ctx, each_value_4, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPM*/
-        4) {
-          each_value_4 = ensure_array_like(
-            /*dataPM*/
-            ctx2[2]
-          );
-          let i;
-          for (i = 0; i < each_value_4.length; i += 1) {
-            const child_ctx = get_each_context_42(ctx2, each_value_4, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_42(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_4.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_42(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PM*/
-      ctx[127].tahun_pengmas + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PM*/
-      ctx[127].judul_pengmas + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PM*/
-      ctx[127].role_pengmas + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PM*/
-      ctx[127].sumber_dana + ""
-    );
-    let t6;
-    let t7;
-    let td4;
-    let t8_value = (
-      /*PM*/
-      ctx[127].jumlah + ""
-    );
-    let t8;
-    let t9;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-        td4 = element("td");
-        t8 = text(t8_value);
-        t9 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-        append(tr, td4);
-        append(td4, t8);
-        append(tr, t9);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPM*/
-        4 && t0_value !== (t0_value = /*PM*/
-        ctx2[127].tahun_pengmas + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPM*/
-        4 && t2_value !== (t2_value = /*PM*/
-        ctx2[127].judul_pengmas + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPM*/
-        4 && t4_value !== (t4_value = /*PM*/
-        ctx2[127].role_pengmas + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPM*/
-        4 && t6_value !== (t6_value = /*PM*/
-        ctx2[127].sumber_dana + ""))
-          set_data(t6, t6_value);
-        if (dirty[0] & /*dataPM*/
-        4 && t8_value !== (t8_value = /*PM*/
-        ctx2[127].jumlah + ""))
-          set_data(t8, t8_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_if_block_53(ctx) {
-    let each_1_anchor;
-    let each_value_3 = ensure_array_like(
-      /*dataPD*/
-      ctx[3]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_3.length; i += 1) {
-      each_blocks[i] = create_each_block_32(get_each_context_32(ctx, each_value_3, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPD*/
-        8) {
-          each_value_3 = ensure_array_like(
-            /*dataPD*/
-            ctx2[3]
-          );
-          let i;
-          for (i = 0; i < each_value_3.length; i += 1) {
-            const child_ctx = get_each_context_32(ctx2, each_value_3, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_32(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_3.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_32(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PD*/
-      ctx[124].tahun_diseminasi + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PD*/
-      ctx[124].judul_artikel + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PD*/
-      ctx[124].nama_pemakalah + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PD*/
-      ctx[124].nama_pertemuan + ""
-    );
-    let t6;
-    let t7;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPD*/
-        8 && t0_value !== (t0_value = /*PD*/
-        ctx2[124].tahun_diseminasi + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPD*/
-        8 && t2_value !== (t2_value = /*PD*/
-        ctx2[124].judul_artikel + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPD*/
-        8 && t4_value !== (t4_value = /*PD*/
-        ctx2[124].nama_pemakalah + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPD*/
-        8 && t6_value !== (t6_value = /*PD*/
-        ctx2[124].nama_pertemuan + ""))
-          set_data(t6, t6_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_if_block_44(ctx) {
-    let each_1_anchor;
-    let each_value_2 = ensure_array_like(
-      /*dataPPub*/
-      ctx[4]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_2.length; i += 1) {
-      each_blocks[i] = create_each_block_22(get_each_context_22(ctx, each_value_2, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPPub*/
-        16) {
-          each_value_2 = ensure_array_like(
-            /*dataPPub*/
-            ctx2[4]
-          );
-          let i;
-          for (i = 0; i < each_value_2.length; i += 1) {
-            const child_ctx = get_each_context_22(ctx2, each_value_2, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_22(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_2.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_22(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PPub*/
-      ctx[121].tahun_publikasi + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PPub*/
-      ctx[121].judul_artikel + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PPub*/
-      ctx[121].nama_jurnal + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PPub*/
-      ctx[121].impact + ""
-    );
-    let t6;
-    let t7;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPPub*/
-        16 && t0_value !== (t0_value = /*PPub*/
-        ctx2[121].tahun_publikasi + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPPub*/
-        16 && t2_value !== (t2_value = /*PPub*/
-        ctx2[121].judul_artikel + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPPub*/
-        16 && t4_value !== (t4_value = /*PPub*/
-        ctx2[121].nama_jurnal + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPPub*/
-        16 && t6_value !== (t6_value = /*PPub*/
-        ctx2[121].impact + ""))
-          set_data(t6, t6_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_if_block_34(ctx) {
-    let each_1_anchor;
-    let each_value_1 = ensure_array_like(
-      /*dataPPB*/
-      ctx[5]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value_1.length; i += 1) {
-      each_blocks[i] = create_each_block_12(get_each_context_12(ctx, each_value_1, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPPB*/
-        32) {
-          each_value_1 = ensure_array_like(
-            /*dataPPB*/
-            ctx2[5]
-          );
-          let i;
-          for (i = 0; i < each_value_1.length; i += 1) {
-            const child_ctx = get_each_context_12(ctx2, each_value_1, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block_12(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value_1.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block_12(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PPB*/
-      ctx[118].tahun_buku + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PPB*/
-      ctx[118].judul_buku + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PPB*/
-      ctx[118].nama_penulis + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PPB*/
-      ctx[118].penerbit + ""
-    );
-    let t6;
-    let t7;
-    let td4;
-    let t8_value = (
-      /*PPB*/
-      ctx[118].isbn + ""
-    );
-    let t8;
-    let t9;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-        td4 = element("td");
-        t8 = text(t8_value);
-        t9 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-        append(tr, td4);
-        append(td4, t8);
-        append(tr, t9);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPPB*/
-        32 && t0_value !== (t0_value = /*PPB*/
-        ctx2[118].tahun_buku + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPPB*/
-        32 && t2_value !== (t2_value = /*PPB*/
-        ctx2[118].judul_buku + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPPB*/
-        32 && t4_value !== (t4_value = /*PPB*/
-        ctx2[118].nama_penulis + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPPB*/
-        32 && t6_value !== (t6_value = /*PPB*/
-        ctx2[118].penerbit + ""))
-          set_data(t6, t6_value);
-        if (dirty[0] & /*dataPPB*/
-        32 && t8_value !== (t8_value = /*PPB*/
-        ctx2[118].isbn + ""))
-          set_data(t8, t8_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_if_block_25(ctx) {
-    let each_1_anchor;
-    let each_value = ensure_array_like(
-      /*dataPHKI*/
-      ctx[6]
-    );
-    let each_blocks = [];
-    for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block5(get_each_context5(ctx, each_value, i));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPHKI*/
-        64) {
-          each_value = ensure_array_like(
-            /*dataPHKI*/
-            ctx2[6]
-          );
-          let i;
-          for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context5(ctx2, each_value, i);
-            if (each_blocks[i]) {
-              each_blocks[i].p(child_ctx, dirty);
-            } else {
-              each_blocks[i] = create_each_block5(child_ctx);
-              each_blocks[i].c();
-              each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-            }
-          }
-          for (; i < each_blocks.length; i += 1) {
-            each_blocks[i].d(1);
-          }
-          each_blocks.length = each_value.length;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(each_1_anchor);
-        }
-        destroy_each(each_blocks, detaching);
-      }
-    };
-  }
-  function create_each_block5(ctx) {
-    let tr;
-    let td0;
-    let t0_value = (
-      /*PHKI*/
-      ctx[115].tahun_hki + ""
-    );
-    let t0;
-    let t1;
-    let td1;
-    let t2_value = (
-      /*PHKI*/
-      ctx[115].judul_hki + ""
-    );
-    let t2;
-    let t3;
-    let td2;
-    let t4_value = (
-      /*PHKI*/
-      ctx[115].nama_penulis + ""
-    );
-    let t4;
-    let t5;
-    let td3;
-    let t6_value = (
-      /*PHKI*/
-      ctx[115].jenis_hki + ""
-    );
-    let t6;
-    let t7;
-    let td4;
-    let t8_value = (
-      /*PHKI*/
-      ctx[115].no_hki + ""
-    );
-    let t8;
-    let t9;
-    return {
-      c() {
-        tr = element("tr");
-        td0 = element("td");
-        t0 = text(t0_value);
-        t1 = space();
-        td1 = element("td");
-        t2 = text(t2_value);
-        t3 = space();
-        td2 = element("td");
-        t4 = text(t4_value);
-        t5 = space();
-        td3 = element("td");
-        t6 = text(t6_value);
-        t7 = space();
-        td4 = element("td");
-        t8 = text(t8_value);
-        t9 = space();
-      },
-      m(target, anchor) {
-        insert(target, tr, anchor);
-        append(tr, td0);
-        append(td0, t0);
-        append(tr, t1);
-        append(tr, td1);
-        append(td1, t2);
-        append(tr, t3);
-        append(tr, td2);
-        append(td2, t4);
-        append(tr, t5);
-        append(tr, td3);
-        append(td3, t6);
-        append(tr, t7);
-        append(tr, td4);
-        append(td4, t8);
-        append(tr, t9);
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*dataPHKI*/
-        64 && t0_value !== (t0_value = /*PHKI*/
-        ctx2[115].tahun_hki + ""))
-          set_data(t0, t0_value);
-        if (dirty[0] & /*dataPHKI*/
-        64 && t2_value !== (t2_value = /*PHKI*/
-        ctx2[115].judul_hki + ""))
-          set_data(t2, t2_value);
-        if (dirty[0] & /*dataPHKI*/
-        64 && t4_value !== (t4_value = /*PHKI*/
-        ctx2[115].nama_penulis + ""))
-          set_data(t4, t4_value);
-        if (dirty[0] & /*dataPHKI*/
-        64 && t6_value !== (t6_value = /*PHKI*/
-        ctx2[115].jenis_hki + ""))
-          set_data(t6, t6_value);
-        if (dirty[0] & /*dataPHKI*/
-        64 && t8_value !== (t8_value = /*PHKI*/
-        ctx2[115].no_hki + ""))
-          set_data(t8, t8_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(tr);
-        }
-      }
-    };
-  }
-  function create_default_slot_111(ctx) {
-    let modalerror0;
-    let updating_show;
-    let t0;
-    let modalerror1;
-    let updating_show_1;
-    let t1;
-    let h1;
-    let t3;
-    let div;
-    let ul;
-    let li0;
-    let t5;
-    let li1;
-    let t7;
-    let t8;
-    let if_block1_anchor;
-    let current;
-    let mounted;
-    let dispose;
-    function modalerror0_show_binding(value) {
-      ctx[77](value);
-    }
-    let modalerror0_props = {
-      $$slots: { default: [create_default_slot_452] },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModalError*/
-      ctx[7] !== void 0
-    ) {
-      modalerror0_props.show = /*showModalError*/
-      ctx[7];
-    }
-    modalerror0 = new Modalerror_default({ props: modalerror0_props });
-    binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
-    function modalerror1_show_binding(value) {
-      ctx[78](value);
-    }
-    let modalerror1_props = {
-      $$slots: { default: [create_default_slot_442] },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModalErrorInputEvaluator*/
-      ctx[8] !== void 0
-    ) {
-      modalerror1_props.show = /*showModalErrorInputEvaluator*/
-      ctx[8];
-    }
-    modalerror1 = new Modalerror_default({ props: modalerror1_props });
-    binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
-    let if_block0 = (
-      /*tab1*/
-      ctx[65] === true && create_if_block_102(ctx)
-    );
-    let if_block1 = (
-      /*tab2*/
-      ctx[66] === true && create_if_block_110(ctx)
-    );
-    return {
-      c() {
-        create_component(modalerror0.$$.fragment);
-        t0 = space();
-        create_component(modalerror1.$$.fragment);
-        t1 = space();
-        h1 = element("h1");
-        h1.textContent = "Detail Proposal";
-        t3 = space();
-        div = element("div");
-        ul = element("ul");
-        li0 = element("li");
-        li0.innerHTML = `<a><span>Identitas PPM</span></a>`;
-        t5 = space();
-        li1 = element("li");
-        li1.innerHTML = `<a><span>Biodata Peneliti</span></a>`;
-        t7 = space();
-        if (if_block0)
-          if_block0.c();
-        t8 = space();
-        if (if_block1)
-          if_block1.c();
-        if_block1_anchor = empty();
-        attr(h1, "class", "title is-1");
-        toggle_class(
-          li0,
-          "is-active",
-          /*tab1*/
-          ctx[65]
-        );
-        toggle_class(
-          li1,
-          "is-active",
-          /*tab2*/
-          ctx[66]
-        );
-        attr(div, "class", "tabs is-boxed");
-      },
-      m(target, anchor) {
-        mount_component(modalerror0, target, anchor);
-        insert(target, t0, anchor);
-        mount_component(modalerror1, target, anchor);
-        insert(target, t1, anchor);
-        insert(target, h1, anchor);
-        insert(target, t3, anchor);
-        insert(target, div, anchor);
-        append(div, ul);
-        append(ul, li0);
-        append(ul, t5);
-        append(ul, li1);
-        insert(target, t7, anchor);
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t8, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, if_block1_anchor, anchor);
-        current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              li0,
-              "click",
-              /*clicktab1*/
-              ctx[74]
-            ),
-            listen(
-              li1,
-              "click",
-              /*clicktab2*/
-              ctx[75]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        const modalerror0_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          modalerror0_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show && dirty[0] & /*showModalError*/
-        128) {
-          updating_show = true;
-          modalerror0_changes.show = /*showModalError*/
-          ctx2[7];
-          add_flush_callback(() => updating_show = false);
-        }
-        modalerror0.$set(modalerror0_changes);
-        const modalerror1_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          modalerror1_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show_1 && dirty[0] & /*showModalErrorInputEvaluator*/
-        256) {
-          updating_show_1 = true;
-          modalerror1_changes.show = /*showModalErrorInputEvaluator*/
-          ctx2[8];
-          add_flush_callback(() => updating_show_1 = false);
-        }
-        modalerror1.$set(modalerror1_changes);
-        if (!current || dirty[2] & /*tab1*/
-        8) {
-          toggle_class(
-            li0,
-            "is-active",
-            /*tab1*/
-            ctx2[65]
-          );
-        }
-        if (!current || dirty[2] & /*tab2*/
-        16) {
-          toggle_class(
-            li1,
-            "is-active",
-            /*tab2*/
-            ctx2[66]
-          );
-        }
-        if (
-          /*tab1*/
-          ctx2[65] === true
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-            if (dirty[2] & /*tab1*/
-            8) {
-              transition_in(if_block0, 1);
-            }
-          } else {
-            if_block0 = create_if_block_102(ctx2);
-            if_block0.c();
-            transition_in(if_block0, 1);
-            if_block0.m(t8.parentNode, t8);
-          }
-        } else if (if_block0) {
-          group_outros();
-          transition_out(if_block0, 1, 1, () => {
-            if_block0 = null;
-          });
-          check_outros();
-        }
-        if (
-          /*tab2*/
-          ctx2[66] === true
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty[2] & /*tab2*/
-            16) {
-              transition_in(if_block1, 1);
-            }
-          } else {
-            if_block1 = create_if_block_110(ctx2);
-            if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
-          }
-        } else if (if_block1) {
-          group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(modalerror0.$$.fragment, local);
-        transition_in(modalerror1.$$.fragment, local);
-        transition_in(if_block0);
-        transition_in(if_block1);
-        current = true;
-      },
-      o(local) {
-        transition_out(modalerror0.$$.fragment, local);
-        transition_out(modalerror1.$$.fragment, local);
-        transition_out(if_block0);
-        transition_out(if_block1);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(t1);
-          detach(h1);
-          detach(t3);
-          detach(div);
-          detach(t7);
-          detach(t8);
-          detach(if_block1_anchor);
-        }
-        destroy_component(modalerror0, detaching);
-        destroy_component(modalerror1, detaching);
-        if (if_block0)
-          if_block0.d(detaching);
-        if (if_block1)
-          if_block1.d(detaching);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_default_slot9(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.textContent = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores fuga\r\n      odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est\r\n      delectus soluta iusto odio architecto impedit maxime non asperiores\r\n      eligendi?";
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_header_slot2(ctx) {
-    let h2;
-    return {
-      c() {
-        h2 = element("h2");
-        h2.textContent = "Find Approval";
-        attr(h2, "slot", "header");
-      },
-      m(target, anchor) {
-        insert(target, h2, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(h2);
-        }
-      }
-    };
-  }
-  function create_fragment30(ctx) {
-    let t;
-    let modal;
-    let updating_show;
-    let current;
-    let if_block = (
-      /*data*/
-      ctx[0] && create_if_block7(ctx)
-    );
-    function modal_show_binding(value) {
-      ctx[102](value);
-    }
-    let modal_props = {
-      $$slots: {
-        header: [create_header_slot2],
-        default: [create_default_slot9]
-      },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModal*/
-      ctx[27] !== void 0
-    ) {
-      modal_props.show = /*showModal*/
-      ctx[27];
-    }
-    modal = new Modal_default({ props: modal_props });
-    binding_callbacks.push(() => bind(modal, "show", modal_show_binding));
-    return {
-      c() {
-        if (if_block)
-          if_block.c();
-        t = space();
-        create_component(modal.$$.fragment);
-      },
-      m(target, anchor) {
-        if (if_block)
-          if_block.m(target, anchor);
-        insert(target, t, anchor);
-        mount_component(modal, target, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (
-          /*data*/
-          ctx2[0]
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-            if (dirty[0] & /*data*/
-            1) {
-              transition_in(if_block, 1);
-            }
-          } else {
-            if_block = create_if_block7(ctx2);
-            if_block.c();
-            transition_in(if_block, 1);
-            if_block.m(t.parentNode, t);
-          }
-        } else if (if_block) {
-          group_outros();
-          transition_out(if_block, 1, 1, () => {
-            if_block = null;
-          });
-          check_outros();
-        }
-        const modal_changes = {};
-        if (dirty[4] & /*$$scope*/
-        4194304) {
-          modal_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show && dirty[0] & /*showModal*/
-        134217728) {
-          updating_show = true;
-          modal_changes.show = /*showModal*/
-          ctx2[27];
-          add_flush_callback(() => updating_show = false);
-        }
-        modal.$set(modal_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block);
-        transition_in(modal.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block);
-        transition_out(modal.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t);
-        }
-        if (if_block)
-          if_block.d(detaching);
-        destroy_component(modal, detaching);
-      }
-    };
-  }
-  function isEdit(code) {
-    const edit2 = [0, 1, 3, 5, 7, 9];
-    return edit2.some((x) => x === code);
-  }
-  function formatRupiah2(angka, prefix) {
-    var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-    if (ribuan) {
-      separator = sisa ? "." : "";
-      rupiah += separator + ribuan.join(".");
-    }
-    rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
-    return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
-  }
-  function instance24($$self, $$props, $$invalidate) {
-    let $apiURL;
-    let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(107, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(108, $route = $$value));
-    let { params } = $$props;
-    const id = params["1"];
-    const idEvaluator = localStorage.getItem("id");
-    let data2, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
-    let showModalError = false;
-    let showModalErrorInputEvaluator = false;
-    let jenisProposal;
-    let jenisKegiatan;
-    let jenisSkema;
-    let kelompokKeahlian;
-    let topik;
-    let tanggalMulai;
-    let tanggalSelesai;
-    let biayaPenelitian;
-    let anggotaTim = [];
-    let judul;
-    let abstrak;
-    let isi;
-    let comment;
-    let status;
-    let itemsRCR;
-    let ka_departemen;
-    let ka_lppm;
-    let reviewer;
-    let ka_pusat_kajian;
-    let showModal = false;
-    let kdeptSelected2;
-    let klppmSelected2;
-    let kpkSelected2;
-    let reviewerSelected2;
-    let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email, mataKuliah = [];
-    let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
-    let uidProposal;
-    let fileRab;
-    let filePpm;
-    let items = [];
-    let file;
-    let view;
-    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json"
-      };
-      $$invalidate(23, ka_departemen = await findRole(11));
-      $$invalidate(24, ka_lppm = await findRole(12));
-      $$invalidate(26, ka_pusat_kajian = await findRole(13));
-      $$invalidate(25, reviewer = await findRole(10));
-      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
-      const result = await response.json();
-      $$invalidate(64, view = !isEdit(result.status));
-      if (result.statusCode != 200) {
-        location.pathname = "/tokenexpired";
-      } else {
-        if (response.ok) {
-          $$invalidate(0, data2 = result);
-          ppmId = data2.id;
-          $$invalidate(60, uidProposal = data2.uid);
-          $$invalidate(9, jenisProposal = data2.jenis_proposal);
-          $$invalidate(10, jenisKegiatan = data2.jenis_kegiatan);
-          $$invalidate(11, jenisSkema = data2.jenis_skema);
-          $$invalidate(12, kelompokKeahlian = data2.kelompok_keahlian);
-          $$invalidate(13, topik = data2.topik);
-          $$invalidate(14, tanggalMulai = data2.tanggal_mulai);
-          $$invalidate(15, tanggalSelesai = data2.tanggal_selesai);
-          $$invalidate(16, biayaPenelitian = data2.biaya_penelitian);
-          $$invalidate(17, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
-          $$invalidate(18, judul = data2.judul);
-          $$invalidate(19, abstrak = data2.abstrak);
-          isi = data2.isi;
-          $$invalidate(20, comment = data2.comment);
-          $$invalidate(21, status = data2.status);
-          $$invalidate(28, kdeptSelected2 = data2.uid_kdept);
-          $$invalidate(29, klppmSelected2 = data2.uid_klppm);
-          $$invalidate(30, kpkSelected2 = data2.uid_kpk);
-          $$invalidate(31, reviewerSelected2 = data2.uid_reviewer);
-          randomRabFileName = data2.random_rab_file_name;
-          randomPpmFileName = data2.random_ppm_file_name;
-        }
-      }
-      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers });
-      const resultEvl = await responseEvl.json();
-      if (responseEvl.ok) {
-        dataEvl = resultEvl;
-        namaLengkapEvl = dataEvl.nama_lengkap;
-      }
-      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
-      const dataRCR = await responseRCR.json();
-      if (responseRCR.ok) {
-        $$invalidate(22, itemsRCR = dataRCR.dbData);
-      }
-      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
-      const resultGP = await responseGP.json();
-      console.log(resultGP);
-      if (responseGP.ok) {
-        dataGP = resultGP;
-        idProfile = dataGP.id;
-        idUser = dataGP.uid;
-        $$invalidate(32, namaLengkap = dataGP.nama_lengkap);
-        $$invalidate(33, jabatanFungsional = dataGP.jabatan_fungsional);
-        $$invalidate(34, nip = dataGP.nip);
-        $$invalidate(35, nidn = dataGP.nidn);
-        $$invalidate(36, tempatLahir = dataGP.tempat_lahir);
-        $$invalidate(37, tanggalLahir = dataGP.tanggal_lahir);
-        $$invalidate(38, alamatRumah = dataGP.alamat_rumah);
-        $$invalidate(39, telpFaxRumah = dataGP.telp_fax_rumah);
-        $$invalidate(40, nomorHandphone = dataGP.nomor_handphone);
-        $$invalidate(41, alamatKantor = dataGP.alamat_kantor);
-        $$invalidate(42, telpFaxKantor = dataGP.telp_fax_kantor);
-        $$invalidate(43, email = dataGP.email);
-        $$invalidate(44, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
-      }
-      const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
-      const dataRP = await responseRP.json();
-      if (responseRP.ok) {
-        $$invalidate(45, pertiS1 = dataRP.nama_perti_s1);
-        $$invalidate(46, pertiS2 = dataRP.nama_perti_s2);
-        $$invalidate(47, pertiS3 = dataRP.nama_perti_s3);
-        $$invalidate(48, bidangIlmuS1 = dataRP.bidang_ilmu_s1);
-        $$invalidate(49, bidangIlmuS2 = dataRP.bidang_ilmu_s2);
-        $$invalidate(50, bidangIlmuS3 = dataRP.bidang_ilmu_s3);
-        $$invalidate(51, tahunMasukS1 = dataRP.tahun_masuk_s1);
-        $$invalidate(52, tahunMasukS2 = dataRP.tahun_masuk_s2);
-        $$invalidate(53, tahunMasukS3 = dataRP.tahun_masuk_s3);
-        $$invalidate(54, tahunLulusS1 = dataRP.tahun_lulus_s1);
-        $$invalidate(55, tahunLulusS2 = dataRP.tahun_lulus_s2);
-        $$invalidate(56, tahunLulusS3 = dataRP.tahun_lulus_s3);
-        $$invalidate(57, judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1);
-        $$invalidate(58, judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2);
-        $$invalidate(59, judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3);
-      }
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
-      const resultPP = await responsePP.json();
-      if (responsePP.ok) {
-        $$invalidate(1, dataPP = resultPP.dbData);
-      } else {
-        console.log(responsePP);
-      }
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
-      const resultPM = await responsePM.json();
-      if (responsePM.ok) {
-        $$invalidate(2, dataPM = resultPM.dbData);
-      } else {
-        console.log(responsePM);
-      }
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
-      const resultPD = await responsePD.json();
-      if (responsePD.ok) {
-        $$invalidate(3, dataPD = resultPD.dbData);
-      } else {
-        console.log(responsePD);
-      }
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
-      const resultPPub = await responsePPub.json();
-      if (responsePPub.ok) {
-        $$invalidate(4, dataPPub = resultPPub.dbData);
-      } else {
-        console.log(responsePPub);
-      }
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
-      const resultPPB = await responsePPB.json();
-      if (responsePPB.ok) {
-        $$invalidate(5, dataPPB = resultPPB.dbData);
-      } else {
-        console.log(responsePPB);
-      }
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
-      const resultPHKI = await responsePHKI.json();
-      if (responsePHKI.ok) {
-        $$invalidate(6, dataPHKI = resultPHKI.dbData);
-      } else {
-        console.log(responsePHKI);
-      }
-      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
-      const results = await responsee.json();
-      console.log(results);
-      result;
-      if (result.statusCode != 200) {
-        location.pathname = "/tokenexpired";
-      } else {
-        if (responsee.ok) {
-          listUser = results;
-          for (const [key, value] of Object.entries(listUser)) {
-            $$invalidate(63, items = [
-              ...items,
-              {
-                value: value.uid,
-                label: value.nama_lengkap
-              }
-            ]);
-          }
-        } else {
-          console.log(responsee);
-        }
-      }
-    });
-    async function remediasi() {
-      const accessToken = localStorage.getItem("token");
-      const readerRab = new FileReader();
-      const readerPpm = new FileReader();
-      readerRab.onloadend = async () => {
-        const base64Data = readerRab.result.split(",")[1];
-        const payloadRabFile = {
-          fileRab: {
-            name: fileRab.name,
-            type: fileRab.type,
-            data: base64Data
-          },
-          randomRabFileName
-        };
-        try {
-          const response2 = await fetch($apiURL + "/uploadRab", {
-            method: "POST",
-            headers: {
-              Authorization: `${accessToken}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payloadRabFile)
-          });
-          const result2 = await response2.json();
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        }
-      };
-      if (fileRab)
-        readerRab.readAsDataURL(fileRab);
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
-            data: base64Data
-          },
-          randomPpmFileName
-        };
-        try {
-          const response2 = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers: {
-              Authorization: `${accessToken}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result2 = await response2.json();
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        }
-      };
-      if (filePpm)
-        readerPpm.readAsDataURL(filePpm);
-      const payload = {
-        jenisProposal,
-        jenisKegiatan,
-        jenisSkema,
-        kelompokKeahlian,
-        topik,
-        tanggalMulai,
-        tanggalSelesai,
-        biayaPenelitian,
-        anggotaTim,
-        id,
-        judul,
-        abstrak,
-        isi,
-        comment: "",
-        status: Number(data2.status) + 1,
-        kdeptSelected: kdeptSelected2,
-        klppmSelected: klppmSelected2,
-        kpkSelected: kpkSelected2,
-        reviewerSelected: reviewerSelected2,
-        randomRabFileName,
-        randomPpmFileName
-      };
-      const response = await fetch($apiURL + "/ppm", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json();
-      if (response.ok) {
-        $route("/admin/proposalmanagement");
-      } else {
-        console.log(response);
-      }
-    }
-    async function handleRevisi() {
-      const komentar = document.getElementById("komentar");
-      const payloadCttnRevisi = { ppmId, comment, namaLengkapEvl };
-      if (komentar.value === "" || komentar.value == null) {
-        $$invalidate(7, showModalError = true);
-      } else {
-        const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payloadCttnRevisi)
-        });
-        const resultRev = await responseRev.json();
-        const payload = {
-          jenisProposal,
-          jenisKegiatan,
-          jenisSkema,
-          kelompokKeahlian,
-          topik,
-          tanggalMulai,
-          tanggalSelesai,
-          biayaPenelitian,
-          anggotaTim,
-          id,
-          judul,
-          abstrak,
-          isi,
-          comment,
-          status: Number(data2.status) - 1,
-          kdeptSelected: kdeptSelected2,
-          klppmSelected: klppmSelected2,
-          kpkSelected: kpkSelected2,
-          reviewerSelected: reviewerSelected2,
-          randomRabFileName,
-          randomPpmFileName
-        };
-        const response = await fetch($apiURL + "/ppm", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-        if (response.ok) {
-          $route("/admin/proposalmanagement");
-        } else {
-          console.log(response);
-        }
-      }
-    }
-    async function handleDitolak() {
-      const payload = {
-        jenisProposal,
-        jenisKegiatan,
-        jenisSkema,
-        kelompokKeahlian,
-        topik,
-        tanggalMulai,
-        tanggalSelesai,
-        biayaPenelitian,
-        anggotaTim,
-        id,
-        judul,
-        abstrak,
-        isi,
-        comment: "",
-        status: Number(data2.status) + 1,
-        kdeptSelected: kdeptSelected2,
-        klppmSelected: klppmSelected2,
-        kpkSelected: kpkSelected2,
-        reviewerSelected: reviewerSelected2,
-        randomRabFileName,
-        randomPpmFileName
-      };
-      const response = await fetch($apiURL + "/ppm", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json();
-      if (response.ok) {
-        $route("/admin/proposalmanagement");
-      } else {
-        console.log(response);
-      }
-    }
-    async function handlePass() {
-      const evaluatorKdept = document.getElementById("evaluatorKdept");
-      const evaluatorKlppm = document.getElementById("evaluatorKlppm");
-      const evaluatorReviewer = document.getElementById("evaluatorReviewer");
-      const evaluatorKpk = document.getElementById("evaluatorKpk");
-      if (evaluatorKdept.value === "" || evaluatorKdept.value == null || evaluatorKlppm.value === "" || evaluatorKlppm.value == null || evaluatorReviewer.value === "" || evaluatorReviewer.value == null || evaluatorKpk.value === "" || evaluatorKpk.value == null) {
-        $$invalidate(8, showModalErrorInputEvaluator = true);
-      } else {
-        const payload = {
-          jenisProposal,
-          jenisKegiatan,
-          jenisSkema,
-          kelompokKeahlian,
-          topik,
-          tanggalMulai,
-          tanggalSelesai,
-          biayaPenelitian,
-          anggotaTim,
-          id,
-          judul,
-          abstrak,
-          isi,
-          comment: "",
-          status: Number(data2.status) + 2,
-          kdeptSelected: kdeptSelected2,
-          klppmSelected: klppmSelected2,
-          kpkSelected: kpkSelected2,
-          reviewerSelected: reviewerSelected2,
-          randomRabFileName,
-          randomPpmFileName
-        };
-        const response = await fetch($apiURL + "/ppm", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-        if (response.ok) {
-          $route("/admin/proposalmanagement");
-        } else {
-          console.log(response);
-        }
-      }
-    }
-    function deleteMember(e) {
-      let uid = e.target.getAttribute("data-value");
-      $$invalidate(17, anggotaTim = anggotaTim.filter((member) => {
-        return member.value !== uid;
-      }));
-    }
-    async function handleDownloadRab(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-        Authorization: `${accessToken}`,
-        "Content-Type": "application/json"
-      };
-      let filename = "rab.xlsx";
-      try {
-        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-      } catch (error) {
-        console.error("Error downloading file:", error);
-      }
-    }
-    async function handleDownloadPpm(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-        Authorization: `${accessToken}`,
-        "Content-Type": "application/json"
-      };
-      let filename = "proposal.pdf";
-      try {
-        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-      } catch (error) {
-        console.error("Error downloading file:", error);
-      }
-    }
-    async function searchUser(ev) {
-      const response = await fetch($apiURL + "/user");
-      const result = await response.json();
-      if (response.ok) {
-        $$invalidate(27, showModal = true);
-      }
-    }
-    let options;
-    async function findRole(role) {
-      const response = await fetch($apiURL + "/role/" + role);
-      const result = await response.json();
-      if (response.ok) {
-        options = result;
-        return options;
-      } else {
-        console.log(response);
-      }
-    }
-    let tab1 = true;
-    let tab2;
-    let tab4;
-    function clicktab1() {
-      $$invalidate(65, tab1 = true);
-      $$invalidate(66, tab2 = false);
-    }
-    function clicktab2() {
-      $$invalidate(65, tab1 = false);
-      $$invalidate(66, tab2 = true);
-    }
-    function modalerror0_show_binding(value) {
-      showModalError = value;
-      $$invalidate(7, showModalError);
-    }
-    function modalerror1_show_binding(value) {
-      showModalErrorInputEvaluator = value;
-      $$invalidate(8, showModalErrorInputEvaluator);
-    }
-    function select_change_handler() {
-      jenisProposal = select_value(this);
-      $$invalidate(9, jenisProposal);
-    }
-    function select_change_handler_1() {
-      jenisKegiatan = select_value(this);
-      $$invalidate(10, jenisKegiatan);
-    }
-    function select_change_handler_2() {
-      jenisSkema = select_value(this);
-      $$invalidate(11, jenisSkema);
-    }
-    function input_input_handler() {
-      kelompokKeahlian = this.value;
-      $$invalidate(12, kelompokKeahlian);
-    }
-    function input_input_handler_1() {
-      topik = this.value;
-      $$invalidate(13, topik);
-    }
-    function input_input_handler_2() {
-      tanggalMulai = this.value;
-      $$invalidate(14, tanggalMulai);
-    }
-    function input_input_handler_3() {
-      tanggalSelesai = this.value;
-      $$invalidate(15, tanggalSelesai);
-    }
-    function input_input_handler_4() {
-      biayaPenelitian = this.value;
-      $$invalidate(16, biayaPenelitian);
-    }
-    const keyup_handler = () => $$invalidate(16, biayaPenelitian = formatRupiah2(biayaPenelitian, "Rp. "));
-    function select_result_binding(value) {
-      anggotaTim = value;
-      $$invalidate(17, anggotaTim);
-    }
-    function input_input_handler_5() {
-      judul = this.value;
-      $$invalidate(18, judul);
-    }
-    function textarea_input_handler() {
-      abstrak = this.value;
-      $$invalidate(19, abstrak);
-    }
-    const change_handler = (e) => $$invalidate(62, filePpm = e.target.files[0]);
-    const change_handler_1 = (e) => $$invalidate(61, fileRab = e.target.files[0]);
-    function textarea_input_handler_1() {
-      comment = this.value;
-      $$invalidate(20, comment);
-    }
-    function field0_value_binding(value) {
-      ka_departemen = value;
-      $$invalidate(23, ka_departemen);
-    }
-    function field0_selected_binding(value) {
-      kdeptSelected2 = value;
-      $$invalidate(28, kdeptSelected2);
-    }
-    function field1_value_binding(value) {
-      ka_lppm = value;
-      $$invalidate(24, ka_lppm);
-    }
-    function field1_selected_binding(value) {
-      klppmSelected2 = value;
-      $$invalidate(29, klppmSelected2);
-    }
-    function field2_value_binding(value) {
-      reviewer = value;
-      $$invalidate(25, reviewer);
-    }
-    function field2_selected_binding(value) {
-      reviewerSelected2 = value;
-      $$invalidate(31, reviewerSelected2);
-    }
-    function field3_value_binding(value) {
-      ka_pusat_kajian = value;
-      $$invalidate(26, ka_pusat_kajian);
-    }
-    function field3_selected_binding(value) {
-      kpkSelected2 = value;
-      $$invalidate(30, kpkSelected2);
-    }
-    function modal_show_binding(value) {
-      showModal = value;
-      $$invalidate(27, showModal);
-    }
-    $$self.$$set = ($$props2) => {
-      if ("params" in $$props2)
-        $$invalidate(76, params = $$props2.params);
-    };
-    return [
-      data2,
-      dataPP,
-      dataPM,
-      dataPD,
-      dataPPub,
-      dataPPB,
-      dataPHKI,
-      showModalError,
-      showModalErrorInputEvaluator,
-      jenisProposal,
-      jenisKegiatan,
-      jenisSkema,
-      kelompokKeahlian,
-      topik,
-      tanggalMulai,
-      tanggalSelesai,
-      biayaPenelitian,
-      anggotaTim,
-      judul,
-      abstrak,
-      comment,
-      status,
-      itemsRCR,
-      ka_departemen,
-      ka_lppm,
-      reviewer,
-      ka_pusat_kajian,
-      showModal,
-      kdeptSelected2,
-      klppmSelected2,
-      kpkSelected2,
-      reviewerSelected2,
-      namaLengkap,
-      jabatanFungsional,
-      nip,
-      nidn,
-      tempatLahir,
-      tanggalLahir,
-      alamatRumah,
-      telpFaxRumah,
-      nomorHandphone,
-      alamatKantor,
-      telpFaxKantor,
-      email,
-      mataKuliah,
-      pertiS1,
-      pertiS2,
-      pertiS3,
-      bidangIlmuS1,
-      bidangIlmuS2,
-      bidangIlmuS3,
-      tahunMasukS1,
-      tahunMasukS2,
-      tahunMasukS3,
-      tahunLulusS1,
-      tahunLulusS2,
-      tahunLulusS3,
-      judulTugasAkhirS1,
-      judulTugasAkhirS2,
-      judulTugasAkhirS3,
-      uidProposal,
-      fileRab,
-      filePpm,
-      items,
-      view,
-      tab1,
-      tab2,
-      remediasi,
-      handleRevisi,
-      handleDitolak,
-      handlePass,
-      deleteMember,
-      handleDownloadRab,
-      handleDownloadPpm,
-      clicktab1,
-      clicktab2,
-      params,
-      modalerror0_show_binding,
-      modalerror1_show_binding,
-      select_change_handler,
-      select_change_handler_1,
-      select_change_handler_2,
-      input_input_handler,
-      input_input_handler_1,
-      input_input_handler_2,
-      input_input_handler_3,
-      input_input_handler_4,
-      keyup_handler,
-      select_result_binding,
-      input_input_handler_5,
-      textarea_input_handler,
-      change_handler,
-      change_handler_1,
-      textarea_input_handler_1,
-      field0_value_binding,
-      field0_selected_binding,
-      field1_value_binding,
-      field1_selected_binding,
-      field2_value_binding,
-      field2_selected_binding,
-      field3_value_binding,
-      field3_selected_binding,
-      modal_show_binding
-    ];
-  }
-  var Proposal = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance24, create_fragment30, safe_not_equal, { params: 76 }, null, [-1, -1, -1, -1, -1]);
-    }
-  };
-  var proposal_default = Proposal;
-
   // src/pages/admin/proposalmanagement.svelte
-  init_define_process();
   function get_each_context6(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[4] = list[i];
@@ -23125,7 +23122,7 @@
     });
     async function handleReview(ev) {
       const id = ev.target.getAttribute("uid");
-      $route("/admin/proposal/" + id);
+      $route("/admin/detailproposal/" + id);
     }
     return [items, handleReview];
   }
@@ -23319,7 +23316,7 @@
       }
     };
   }
-  function create_header_slot3(ctx) {
+  function create_header_slot2(ctx) {
     let h4;
     return {
       c() {
@@ -23383,7 +23380,7 @@
     }
     let modal_props = {
       $$slots: {
-        header: [create_header_slot3],
+        header: [create_header_slot2],
         default: [create_default_slot_113]
       },
       $$scope: { ctx }
@@ -23667,7 +23664,7 @@
     let current;
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block_111(ctx)
+      ctx[0] && create_if_block_114(ctx)
     );
     return {
       c() {
@@ -23693,7 +23690,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_111(ctx2);
+            if_block = create_if_block_114(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -23725,7 +23722,7 @@
       }
     };
   }
-  function create_if_block_111(ctx) {
+  function create_if_block_114(ctx) {
     let h1;
     let t1;
     let hr;
@@ -24402,7 +24399,7 @@
       }
     };
   }
-  function create_if_block_113(ctx) {
+  function create_if_block_115(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -24561,7 +24558,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block10, create_if_block_113, create_else_block5];
+    const if_block_creators = [create_if_block10, create_if_block_115, create_else_block5];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -24688,7 +24685,7 @@
       }
     };
   }
-  function create_if_block_114(ctx) {
+  function create_if_block_116(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -24793,7 +24790,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block11, create_if_block_114, create_else_block6];
+    const if_block_creators = [create_if_block11, create_if_block_116, create_else_block6];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -24916,7 +24913,7 @@
   __export(dosen_exports, {
     approvalmanagement: () => approvalmanagement_default,
     detailapproval: () => detailapproval_default,
-    detailproposal: () => detailproposal_default,
+    detailproposal: () => detailproposal_default2,
     home: () => home_default2,
     pendaftaranproposal: () => pendaftaranproposal_default,
     ppmongoing: () => ppmongoing_default,
@@ -24973,7 +24970,7 @@
     );
     let if_block3 = (
       /*role*/
-      ctx[1] === "Ka.Departemen" && create_if_block_115(ctx)
+      ctx[1] === "Ka.Departemen" && create_if_block_117(ctx)
     );
     return {
       c() {
@@ -25987,7 +25984,7 @@
       }
     };
   }
-  function create_if_block_115(ctx) {
+  function create_if_block_117(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -26457,47 +26454,47 @@
   init_define_process();
   function get_each_context9(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[89] = list[i];
+    child_ctx[90] = list[i];
     return child_ctx;
   }
   function get_each_context_14(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[92] = list[i];
+    child_ctx[93] = list[i];
     return child_ctx;
   }
   function get_each_context_24(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[95] = list[i];
+    child_ctx[96] = list[i];
     return child_ctx;
   }
   function get_each_context_34(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[98] = list[i];
+    child_ctx[99] = list[i];
     return child_ctx;
   }
   function get_each_context_43(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[101] = list[i];
+    child_ctx[102] = list[i];
     return child_ctx;
   }
   function get_each_context_53(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[104] = list[i];
+    child_ctx[105] = list[i];
     return child_ctx;
   }
   function get_each_context_63(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[107] = list[i];
+    child_ctx[108] = list[i];
     return child_ctx;
   }
   function get_each_context_72(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[110] = list[i];
+    child_ctx[111] = list[i];
     return child_ctx;
   }
   function get_each_context_82(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[113] = list[i];
+    child_ctx[114] = list[i];
     return child_ctx;
   }
   function create_if_block13(ctx) {
@@ -26522,7 +26519,7 @@
         if (dirty[0] & /*dataPHKI, dataPPB, dataPPub, dataPD, dataPM, dataPP, judulTugasAkhirS3, judulTugasAkhirS2, judulTugasAkhirS1, tahunLulusS3, tahunLulusS2, tahunLulusS1, tahunMasukS3, tahunMasukS2, tahunMasukS1, bidangIlmuS3, bidangIlmuS2, bidangIlmuS1, pertiS3, pertiS2, pertiS1, alamatRumah, tanggalLahir, tempatLahir, nidn, nip, jabatanFungsional, namaLengkap, itemsRCR, data, showModalError*/
         2147483647 | dirty[1] & /*mataKuliah, email, telpFaxKantor, alamatKantor, nomorHandphone, telpFaxRumah, tab2, status, comment, $penilaianFile, jenisSkema, anggotaTim, biayaPenelitian, tanggalSelesai, tanggalMulai, topik, kelompokKeahlian, jenisKegiatan, jenisProposal, tab1*/
         1048575 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -26733,7 +26730,7 @@
     );
     let if_block4 = (
       /*role*/
-      ctx[51] === "Ka.LPPM" && create_if_block_143(ctx)
+      ctx[51] === "Ka.LPPM" && create_if_block_142(ctx)
     );
     let if_block5 = (
       /*role*/
@@ -26876,62 +26873,62 @@
         const field0_changes = {};
         if (dirty[1] & /*jenisProposal*/
         64 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[1] & /*jenisKegiatan*/
         128 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[1] & /*jenisSkema*/
         256 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[1] & /*kelompokKeahlian*/
         512 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[1] & /*topik*/
         1024 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (dirty[1] & /*tanggalMulai*/
         2048 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[1] & /*tanggalSelesai*/
         4096 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
         if (dirty[1] & /*biayaPenelitian*/
         8192 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
@@ -26953,20 +26950,20 @@
         const field9_changes = {};
         if (dirty[0] & /*data*/
         2 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[0] & /*data*/
         2 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
@@ -27027,14 +27024,14 @@
         const field12_changes = {};
         if (dirty[1] & /*comment*/
         32768 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field12_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field12.$set(field12_changes);
         const field13_changes = {};
         if (dirty[0] & /*itemsRCR*/
         256 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field13_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field13.$set(field13_changes);
@@ -27442,14 +27439,14 @@
     let td0;
     let t0_value = (
       /*member*/
-      ctx[113].role + ""
+      ctx[114].role + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*member*/
-      ctx[113].label + ""
+      ctx[114].label + ""
     );
     let t2;
     let t3;
@@ -27475,11 +27472,11 @@
       p(ctx2, dirty) {
         if (dirty[1] & /*anggotaTim*/
         16384 && t0_value !== (t0_value = /*member*/
-        ctx2[113].role + ""))
+        ctx2[114].role + ""))
           set_data(t0, t0_value);
         if (dirty[1] & /*anggotaTim*/
         16384 && t2_value !== (t2_value = /*member*/
-        ctx2[113].label + ""))
+        ctx2[114].label + ""))
           set_data(t2, t2_value);
       },
       d(detaching) {
@@ -27599,7 +27596,7 @@
       p(ctx2, dirty) {
         const field_changes = {};
         if (dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field.$set(field_changes);
@@ -27775,7 +27772,7 @@
         const field_changes = {};
         if (dirty[1] & /*$penilaianFile*/
         524288 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field.$set(field_changes);
@@ -27939,7 +27936,7 @@
       p(ctx2, dirty) {
         const field_changes = {};
         if (dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field.$set(field_changes);
@@ -28100,21 +28097,21 @@
     let td0;
     let t0_value = (
       /*item*/
-      ctx[110].comment + ""
+      ctx[111].comment + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*item*/
-      ctx[110].evaluator + ""
+      ctx[111].evaluator + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*item*/
-      ctx[110].time + ""
+      ctx[111].time + ""
     );
     let t4;
     let t5;
@@ -28146,15 +28143,15 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*itemsRCR*/
         256 && t0_value !== (t0_value = /*item*/
-        ctx2[110].comment + ""))
+        ctx2[111].comment + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*itemsRCR*/
         256 && t2_value !== (t2_value = /*item*/
-        ctx2[110].evaluator + ""))
+        ctx2[111].evaluator + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*itemsRCR*/
         256 && t4_value !== (t4_value = /*item*/
-        ctx2[110].time + ""))
+        ctx2[111].time + ""))
           set_data(t4, t4_value);
       },
       d(detaching) {
@@ -28298,7 +28295,7 @@
       }
     };
   }
-  function create_if_block_143(ctx) {
+  function create_if_block_142(ctx) {
     let if_block_anchor;
     let if_block = (
       /*status*/
@@ -28405,7 +28402,7 @@
     let if_block_anchor;
     let if_block = (
       /*status*/
-      ctx[47] === 8 && create_if_block_133(ctx)
+      ctx[47] === 8 && create_if_block_132(ctx)
     );
     return {
       c() {
@@ -28426,7 +28423,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_133(ctx2);
+            if_block = create_if_block_132(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -28444,7 +28441,7 @@
       }
     };
   }
-  function create_if_block_133(ctx) {
+  function create_if_block_132(ctx) {
     let div;
     let p;
     let button;
@@ -28488,7 +28485,7 @@
     let if_block_anchor;
     let if_block = (
       /*status*/
-      ctx[47] === 10 && create_if_block_116(ctx)
+      ctx[47] === 10 && create_if_block_118(ctx)
     );
     return {
       c() {
@@ -28509,7 +28506,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_116(ctx2);
+            if_block = create_if_block_118(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -28527,7 +28524,7 @@
       }
     };
   }
-  function create_if_block_116(ctx) {
+  function create_if_block_118(ctx) {
     let div;
     let p0;
     let button0;
@@ -28605,7 +28602,7 @@
       }
     };
   }
-  function create_if_block_117(ctx) {
+  function create_if_block_119(ctx) {
     let div0;
     let field0;
     let t0;
@@ -28805,7 +28802,7 @@
     field8 = new Field_default({
       props: {
         name: "Alamat Kantor",
-        $$slots: { default: [create_default_slot_49] },
+        $$slots: { default: [create_default_slot_48] },
         $$scope: { ctx }
       }
     });
@@ -29252,84 +29249,84 @@
         const field0_changes = {};
         if (dirty[0] & /*namaLengkap*/
         16777216 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
         if (dirty[0] & /*jabatanFungsional*/
         33554432 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
         if (dirty[0] & /*nip*/
         67108864 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
         if (dirty[0] & /*nidn*/
         134217728 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
         if (dirty[0] & /*tanggalLahir, tempatLahir*/
         805306368 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
         if (dirty[0] & /*alamatRumah*/
         1073741824 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
         if (dirty[1] & /*telpFaxRumah*/
         1 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
         if (dirty[1] & /*nomorHandphone*/
         2 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
         if (dirty[1] & /*alamatKantor*/
         4 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
         if (dirty[1] & /*telpFaxKantor*/
         8 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
         if (dirty[1] & /*email*/
         16 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
         if (dirty[1] & /*mataKuliah*/
         32 | dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field11.$set(field11_changes);
@@ -29848,7 +29845,7 @@
       }
     };
   }
-  function create_default_slot_49(ctx) {
+  function create_default_slot_48(ctx) {
     let t;
     return {
       c() {
@@ -29994,7 +29991,7 @@
     let td;
     let t0_value = (
       /*matkul*/
-      ctx[107].label + ""
+      ctx[108].label + ""
     );
     let t0;
     let t1;
@@ -30014,7 +30011,7 @@
       p(ctx2, dirty) {
         if (dirty[1] & /*mataKuliah*/
         32 && t0_value !== (t0_value = /*matkul*/
-        ctx2[107].label + ""))
+        ctx2[108].label + ""))
           set_data(t0, t0_value);
       },
       d(detaching) {
@@ -30142,35 +30139,35 @@
     let td0;
     let t0_value = (
       /*PP*/
-      ctx[104].tahun_penelitian + ""
+      ctx[105].tahun_penelitian + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PP*/
-      ctx[104].judul_penelitian + ""
+      ctx[105].judul_penelitian + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PP*/
-      ctx[104].role_penelitian + ""
+      ctx[105].role_penelitian + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PP*/
-      ctx[104].sumber_dana + ""
+      ctx[105].sumber_dana + ""
     );
     let t6;
     let t7;
     let td4;
     let t8_value = (
       /*PP*/
-      ctx[104].jumlah + ""
+      ctx[105].jumlah + ""
     );
     let t8;
     let t9;
@@ -30214,23 +30211,23 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPP*/
         4 && t0_value !== (t0_value = /*PP*/
-        ctx2[104].tahun_penelitian + ""))
+        ctx2[105].tahun_penelitian + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPP*/
         4 && t2_value !== (t2_value = /*PP*/
-        ctx2[104].judul_penelitian + ""))
+        ctx2[105].judul_penelitian + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPP*/
         4 && t4_value !== (t4_value = /*PP*/
-        ctx2[104].role_penelitian + ""))
+        ctx2[105].role_penelitian + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPP*/
         4 && t6_value !== (t6_value = /*PP*/
-        ctx2[104].sumber_dana + ""))
+        ctx2[105].sumber_dana + ""))
           set_data(t6, t6_value);
         if (dirty[0] & /*dataPP*/
         4 && t8_value !== (t8_value = /*PP*/
-        ctx2[104].jumlah + ""))
+        ctx2[105].jumlah + ""))
           set_data(t8, t8_value);
       },
       d(detaching) {
@@ -30302,35 +30299,35 @@
     let td0;
     let t0_value = (
       /*PM*/
-      ctx[101].tahun_pengmas + ""
+      ctx[102].tahun_pengmas + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PM*/
-      ctx[101].judul_pengmas + ""
+      ctx[102].judul_pengmas + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PM*/
-      ctx[101].role_pengmas + ""
+      ctx[102].role_pengmas + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PM*/
-      ctx[101].sumber_dana + ""
+      ctx[102].sumber_dana + ""
     );
     let t6;
     let t7;
     let td4;
     let t8_value = (
       /*PM*/
-      ctx[101].jumlah + ""
+      ctx[102].jumlah + ""
     );
     let t8;
     let t9;
@@ -30374,23 +30371,23 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPM*/
         8 && t0_value !== (t0_value = /*PM*/
-        ctx2[101].tahun_pengmas + ""))
+        ctx2[102].tahun_pengmas + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPM*/
         8 && t2_value !== (t2_value = /*PM*/
-        ctx2[101].judul_pengmas + ""))
+        ctx2[102].judul_pengmas + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPM*/
         8 && t4_value !== (t4_value = /*PM*/
-        ctx2[101].role_pengmas + ""))
+        ctx2[102].role_pengmas + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPM*/
         8 && t6_value !== (t6_value = /*PM*/
-        ctx2[101].sumber_dana + ""))
+        ctx2[102].sumber_dana + ""))
           set_data(t6, t6_value);
         if (dirty[0] & /*dataPM*/
         8 && t8_value !== (t8_value = /*PM*/
-        ctx2[101].jumlah + ""))
+        ctx2[102].jumlah + ""))
           set_data(t8, t8_value);
       },
       d(detaching) {
@@ -30462,28 +30459,28 @@
     let td0;
     let t0_value = (
       /*PD*/
-      ctx[98].tahun_diseminasi + ""
+      ctx[99].tahun_diseminasi + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PD*/
-      ctx[98].judul_artikel + ""
+      ctx[99].judul_artikel + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PD*/
-      ctx[98].nama_pemakalah + ""
+      ctx[99].nama_pemakalah + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PD*/
-      ctx[98].nama_pertemuan + ""
+      ctx[99].nama_pertemuan + ""
     );
     let t6;
     let t7;
@@ -30521,19 +30518,19 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPD*/
         16 && t0_value !== (t0_value = /*PD*/
-        ctx2[98].tahun_diseminasi + ""))
+        ctx2[99].tahun_diseminasi + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPD*/
         16 && t2_value !== (t2_value = /*PD*/
-        ctx2[98].judul_artikel + ""))
+        ctx2[99].judul_artikel + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPD*/
         16 && t4_value !== (t4_value = /*PD*/
-        ctx2[98].nama_pemakalah + ""))
+        ctx2[99].nama_pemakalah + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPD*/
         16 && t6_value !== (t6_value = /*PD*/
-        ctx2[98].nama_pertemuan + ""))
+        ctx2[99].nama_pertemuan + ""))
           set_data(t6, t6_value);
       },
       d(detaching) {
@@ -30605,28 +30602,28 @@
     let td0;
     let t0_value = (
       /*PPub*/
-      ctx[95].tahun_publikasi + ""
+      ctx[96].tahun_publikasi + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PPub*/
-      ctx[95].judul_artikel + ""
+      ctx[96].judul_artikel + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PPub*/
-      ctx[95].nama_jurnal + ""
+      ctx[96].nama_jurnal + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PPub*/
-      ctx[95].impact + ""
+      ctx[96].impact + ""
     );
     let t6;
     let t7;
@@ -30664,19 +30661,19 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPub*/
         32 && t0_value !== (t0_value = /*PPub*/
-        ctx2[95].tahun_publikasi + ""))
+        ctx2[96].tahun_publikasi + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPPub*/
         32 && t2_value !== (t2_value = /*PPub*/
-        ctx2[95].judul_artikel + ""))
+        ctx2[96].judul_artikel + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPPub*/
         32 && t4_value !== (t4_value = /*PPub*/
-        ctx2[95].nama_jurnal + ""))
+        ctx2[96].nama_jurnal + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPPub*/
         32 && t6_value !== (t6_value = /*PPub*/
-        ctx2[95].impact + ""))
+        ctx2[96].impact + ""))
           set_data(t6, t6_value);
       },
       d(detaching) {
@@ -30748,35 +30745,35 @@
     let td0;
     let t0_value = (
       /*PPB*/
-      ctx[92].tahun_buku + ""
+      ctx[93].tahun_buku + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PPB*/
-      ctx[92].judul_buku + ""
+      ctx[93].judul_buku + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PPB*/
-      ctx[92].nama_penulis + ""
+      ctx[93].nama_penulis + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PPB*/
-      ctx[92].penerbit + ""
+      ctx[93].penerbit + ""
     );
     let t6;
     let t7;
     let td4;
     let t8_value = (
       /*PPB*/
-      ctx[92].isbn + ""
+      ctx[93].isbn + ""
     );
     let t8;
     let t9;
@@ -30820,23 +30817,23 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPPB*/
         64 && t0_value !== (t0_value = /*PPB*/
-        ctx2[92].tahun_buku + ""))
+        ctx2[93].tahun_buku + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPPB*/
         64 && t2_value !== (t2_value = /*PPB*/
-        ctx2[92].judul_buku + ""))
+        ctx2[93].judul_buku + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPPB*/
         64 && t4_value !== (t4_value = /*PPB*/
-        ctx2[92].nama_penulis + ""))
+        ctx2[93].nama_penulis + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPPB*/
         64 && t6_value !== (t6_value = /*PPB*/
-        ctx2[92].penerbit + ""))
+        ctx2[93].penerbit + ""))
           set_data(t6, t6_value);
         if (dirty[0] & /*dataPPB*/
         64 && t8_value !== (t8_value = /*PPB*/
-        ctx2[92].isbn + ""))
+        ctx2[93].isbn + ""))
           set_data(t8, t8_value);
       },
       d(detaching) {
@@ -30908,35 +30905,35 @@
     let td0;
     let t0_value = (
       /*PHKI*/
-      ctx[89].tahun_hki + ""
+      ctx[90].tahun_hki + ""
     );
     let t0;
     let t1;
     let td1;
     let t2_value = (
       /*PHKI*/
-      ctx[89].judul_hki + ""
+      ctx[90].judul_hki + ""
     );
     let t2;
     let t3;
     let td2;
     let t4_value = (
       /*PHKI*/
-      ctx[89].nama_penulis + ""
+      ctx[90].nama_penulis + ""
     );
     let t4;
     let t5;
     let td3;
     let t6_value = (
       /*PHKI*/
-      ctx[89].jenis_hki + ""
+      ctx[90].jenis_hki + ""
     );
     let t6;
     let t7;
     let td4;
     let t8_value = (
       /*PHKI*/
-      ctx[89].no_hki + ""
+      ctx[90].no_hki + ""
     );
     let t8;
     let t9;
@@ -30980,23 +30977,23 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*dataPHKI*/
         128 && t0_value !== (t0_value = /*PHKI*/
-        ctx2[89].tahun_hki + ""))
+        ctx2[90].tahun_hki + ""))
           set_data(t0, t0_value);
         if (dirty[0] & /*dataPHKI*/
         128 && t2_value !== (t2_value = /*PHKI*/
-        ctx2[89].judul_hki + ""))
+        ctx2[90].judul_hki + ""))
           set_data(t2, t2_value);
         if (dirty[0] & /*dataPHKI*/
         128 && t4_value !== (t4_value = /*PHKI*/
-        ctx2[89].nama_penulis + ""))
+        ctx2[90].nama_penulis + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*dataPHKI*/
         128 && t6_value !== (t6_value = /*PHKI*/
-        ctx2[89].jenis_hki + ""))
+        ctx2[90].jenis_hki + ""))
           set_data(t6, t6_value);
         if (dirty[0] & /*dataPHKI*/
         128 && t8_value !== (t8_value = /*PHKI*/
-        ctx2[89].no_hki + ""))
+        ctx2[90].no_hki + ""))
           set_data(t8, t8_value);
       },
       d(detaching) {
@@ -31045,7 +31042,7 @@
     );
     let if_block1 = (
       /*tab2*/
-      ctx[49] === true && create_if_block_117(ctx)
+      ctx[49] === true && create_if_block_119(ctx)
     );
     return {
       c() {
@@ -31122,7 +31119,7 @@
       p(ctx2, dirty) {
         const modalerror_changes = {};
         if (dirty[3] & /*$$scope*/
-        8388608) {
+        16777216) {
           modalerror_changes.$$scope = { dirty, ctx: ctx2 };
         }
         if (!updating_show && dirty[0] & /*showModalError*/
@@ -31185,7 +31182,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_117(ctx2);
+            if_block1 = create_if_block_119(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -31316,11 +31313,11 @@
     let ka_departemen, ka_lppm, reviewer, ka_pusat_kajian;
     let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tanggalMulai, tanggalSelesai, biayaPenelitian, anggotaTim, rab, judul, abstrak, comment, status, kdeptSelected2, klppmSelected2, kpkSelected2, reviewerSelected2;
     const accessToken = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    };
     onMount(async () => {
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json"
-      };
       ka_departemen = await findRole(11);
       ka_lppm = await findRole(12);
       ka_pusat_kajian = await findRole(13);
@@ -31612,6 +31609,9 @@
               body: JSON.stringify(payloadPenilaianFile)
             });
             const resultUpload = await responseUpload.json();
+            if (responseUpload.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
           } catch (error) {
             console.error("Error uploading file:", error);
           }
@@ -31652,65 +31652,81 @@
     }
     let options;
     async function findRole(role2) {
-      const response = await fetch($apiURL + "/role/" + role2);
+      const response = await fetch($apiURL + "/role/" + role2, { method: "GET", headers });
       const result = await response.json();
-      if (response.ok) {
-        options = result;
-        return options;
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
       } else {
-        console.log(response);
+        if (response.ok) {
+          options = result;
+          return options;
+        } else {
+          console.log(response);
+        }
       }
     }
     async function handleDownloadRab(e) {
       const accessToken2 = localStorage.getItem("token");
-      const headers = {
+      const headers2 = {
         Authorization: `Bearer ${accessToken2}`,
         "Content-Type": "application/json"
       };
       let filename = "rab.xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers: headers2 });
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
       } catch (error) {
         console.error("Error downloading file:", error);
       }
     }
     async function handleDownloadPpm(e) {
       const accessToken2 = localStorage.getItem("token");
-      const headers = {
+      const headers2 = {
         Authorization: `Bearer ${accessToken2}`,
         "Content-Type": "application/json"
       };
       let filename = "proposal.pdf";
       try {
-        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers: headers2 });
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
       } catch (error) {
         console.error("Error downloading file:", error);
       }
     }
     async function handleDownloadPenilaian(e) {
       const accessToken2 = localStorage.getItem("token");
-      const headers = {
+      const headers2 = {
         Authorization: `Bearer ${accessToken2}`,
         "Content-Type": "application/json"
       };
       let filename = "penilaian.xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers: headers2 });
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
       } catch (error) {
         console.error("Error downloading file:", error);
       }
@@ -31930,7 +31946,7 @@
     current_block_type_index = select_block_type(ctx, [-1, -1, -1, -1]);
     if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     let if_block1 = !/*view*/
-    ctx[1] && create_if_block_134(ctx);
+    ctx[1] && create_if_block_133(ctx);
     return {
       c() {
         div0 = element("div");
@@ -31977,7 +31993,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_134(ctx2);
+            if_block1 = create_if_block_133(ctx2);
             if_block1.c();
             if_block1.m(div1, null);
           }
@@ -34756,14 +34772,14 @@
       }
     };
   }
-  function create_if_block_134(ctx) {
+  function create_if_block_133(ctx) {
     let if_block_anchor;
     function select_block_type_2(ctx2, dirty) {
       if (
         /*status*/
         ctx2[38] === 0
       )
-        return create_if_block_144;
+        return create_if_block_143;
       return create_else_block_22;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1]);
@@ -34833,7 +34849,7 @@
       }
     };
   }
-  function create_if_block_144(ctx) {
+  function create_if_block_143(ctx) {
     let p0;
     let button0;
     let t1;
@@ -34907,7 +34923,7 @@
       }
     };
   }
-  function create_if_block_118(ctx) {
+  function create_if_block_120(ctx) {
     let t0;
     let div0;
     let field0;
@@ -35054,7 +35070,7 @@
     let if_block0 = (
       /*uidProposal*/
       ctx[25] === /*own_id*/
-      ctx[57] && create_if_block_119(ctx)
+      ctx[57] && create_if_block_1110(ctx)
     );
     field0 = new Field_default({
       props: {
@@ -35582,7 +35598,7 @@
         ) {
           if (if_block0) {
           } else {
-            if_block0 = create_if_block_119(ctx2);
+            if_block0 = create_if_block_1110(ctx2);
             if_block0.c();
             if_block0.m(t0.parentNode, t0);
           }
@@ -35976,7 +35992,7 @@
       }
     };
   }
-  function create_if_block_119(ctx) {
+  function create_if_block_1110(ctx) {
     let div;
     return {
       c() {
@@ -36315,7 +36331,7 @@
     field = new Field_default({
       props: {
         name: "Telp/Fax Kantor",
-        $$slots: { default: [create_default_slot_410] },
+        $$slots: { default: [create_default_slot_49] },
         $$scope: { ctx }
       }
     });
@@ -36368,7 +36384,7 @@
       }
     };
   }
-  function create_default_slot_410(ctx) {
+  function create_default_slot_49(ctx) {
     let t;
     return {
       c() {
@@ -37618,7 +37634,7 @@
     );
     let if_block1 = (
       /*tab2*/
-      ctx[56] === true && create_if_block_118(ctx)
+      ctx[56] === true && create_if_block_120(ctx)
     );
     return {
       c() {
@@ -37741,7 +37757,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_118(ctx2);
+            if_block1 = create_if_block_120(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -37923,7 +37939,7 @@
       }
       const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
-      if (result.statusCode != 200) {
+      if (dataRCR.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseRCR.ok) {
@@ -37932,7 +37948,7 @@
       }
       const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
-      if (result.statusCode != 200) {
+      if (resultGP.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseGP.ok) {
@@ -37956,7 +37972,7 @@
       }
       const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + uidProposal, { method: "GET", headers });
       const dataRP = await responseRP.json();
-      if (result.statusCode != 200) {
+      if (dataRP.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responseRP.ok) {
@@ -37979,7 +37995,7 @@
       }
       const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
-      if (result.statusCode != 200) {
+      if (resultPP.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePP.ok) {
@@ -37990,7 +38006,7 @@
       }
       const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
-      if (result.statusCode != 200) {
+      if (resultPM.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePM.ok) {
@@ -38001,7 +38017,7 @@
       }
       const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
-      if (result.statusCode != 200) {
+      if (resultPD.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePD.ok) {
@@ -38012,7 +38028,7 @@
       }
       const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
-      if (result.statusCode != 200) {
+      if (resultPPub.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePPub.ok) {
@@ -38023,7 +38039,7 @@
       }
       const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
-      if (result.statusCode != 200) {
+      if (resultPPB.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePPB.ok) {
@@ -38034,7 +38050,7 @@
       }
       const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
-      if (result.statusCode != 200) {
+      if (resultPHKI.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsePHKI.ok) {
@@ -38045,7 +38061,7 @@
       }
       const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
-      if (result.statusCode != 200) {
+      if (results.statusCode != 200) {
         location.pathname = "/tokenexpired";
       } else {
         if (responsee.ok) {
@@ -38073,11 +38089,15 @@
       let filename = "rab.xlsx";
       try {
         const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
       } catch (error) {
         console.error("Error downloading file:", error);
       }
@@ -38091,11 +38111,15 @@
       let filename = "proposal.pdf";
       try {
         const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
-        const blob = await response.blob();
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
+        if (response.status === 401) {
+          location.pathname = "/tokenexpired";
+        } else {
+          const blob = await response.blob();
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        }
       } catch (error) {
         console.error("Error downloading file:", error);
       }
@@ -38124,6 +38148,9 @@
             body: JSON.stringify(payloadRabFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38150,6 +38177,9 @@
             body: JSON.stringify(payloadPpmFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38222,6 +38252,9 @@
             body: JSON.stringify(payloadRabFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38248,6 +38281,9 @@
             body: JSON.stringify(payloadPpmFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38320,6 +38356,9 @@
             body: JSON.stringify(payloadRabFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38346,6 +38385,9 @@
             body: JSON.stringify(payloadPpmFile)
           });
           const result2 = await response2.json();
+          if (response2.status === 401) {
+            location.pathname = "/tokenexpired";
+          }
         } catch (error) {
           console.error("Error uploading file:", error);
         }
@@ -38544,13 +38586,13 @@
       change_handler_1
     ];
   }
-  var Detailproposal = class extends SvelteComponent {
+  var Detailproposal2 = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance32, create_fragment39, safe_not_equal, { params: 66 }, null, [-1, -1, -1, -1]);
     }
   };
-  var detailproposal_default = Detailproposal;
+  var detailproposal_default2 = Detailproposal2;
 
   // src/pages/dosen/home.svelte
   init_define_process();
@@ -39196,7 +39238,7 @@
       }
     };
   }
-  function create_if_block_135(ctx) {
+  function create_if_block_134(ctx) {
     let field0;
     let t0;
     let field1;
@@ -39325,7 +39367,7 @@
       ctx[8] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
       ctx[8] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_154(ctx)
     );
-    let if_block3 = warningFormText === true && create_if_block_145(ctx);
+    let if_block3 = warningFormText === true && create_if_block_144(ctx);
     return {
       c() {
         create_component(field0.$$.fragment);
@@ -40956,7 +40998,7 @@
       }
     };
   }
-  function create_if_block_145(ctx) {
+  function create_if_block_144(ctx) {
     let div;
     return {
       c() {
@@ -40991,7 +41033,7 @@
     let dispose;
     let if_block0 = (
       /*tab1Step2*/
-      ctx[87] === true && create_if_block_1110(ctx)
+      ctx[87] === true && create_if_block_1111(ctx)
     );
     let if_block1 = (
       /*tab2Step2*/
@@ -41125,7 +41167,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_1110(ctx2);
+            if_block0 = create_if_block_1111(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t6.parentNode, t6);
@@ -41207,7 +41249,7 @@
       }
     };
   }
-  function create_if_block_1110(ctx) {
+  function create_if_block_1111(ctx) {
     let field0;
     let t0;
     let field1;
@@ -43258,7 +43300,7 @@
     }
     let modal5_props = {
       $$slots: {
-        header: [create_header_slot4],
+        header: [create_header_slot3],
         default: [create_default_slot_119]
       },
       $$scope: { ctx }
@@ -47344,7 +47386,7 @@
       }
     };
   }
-  function create_default_slot_411(ctx) {
+  function create_default_slot_410(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -47521,7 +47563,7 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_411] },
+        $$slots: { default: [create_default_slot_410] },
         $$scope: { ctx }
       }
     });
@@ -47664,7 +47706,7 @@
       }
     };
   }
-  function create_header_slot4(ctx) {
+  function create_header_slot3(ctx) {
     let h4;
     return {
       c() {
@@ -47920,7 +47962,7 @@
       }
     };
   }
-  function create_if_block_120(ctx) {
+  function create_if_block_121(ctx) {
     let div;
     let p;
     let button;
@@ -48147,7 +48189,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[85] === true && create_if_block_135(ctx)
+      ctx[85] === true && create_if_block_134(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -48155,7 +48197,7 @@
     );
     let if_block2 = (
       /*tab1*/
-      ctx[85] === true && create_if_block_120(ctx)
+      ctx[85] === true && create_if_block_121(ctx)
     );
     let if_block3 = (
       /*tab2*/
@@ -48361,7 +48403,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_135(ctx2);
+            if_block0 = create_if_block_134(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div2, t17);
@@ -48403,7 +48445,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_120(ctx2);
+            if_block2 = create_if_block_121(ctx2);
             if_block2.c();
             if_block2.m(t19.parentNode, t19);
           }
@@ -52149,7 +52191,7 @@
     }
     let modal5_props = {
       $$slots: {
-        header: [create_header_slot5],
+        header: [create_header_slot4],
         default: [create_default_slot_120]
       },
       $$scope: { ctx }
@@ -52166,7 +52208,7 @@
     icon5 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block5 = (
       /*dataPHKI*/
-      ctx[5] && create_if_block_121(ctx)
+      ctx[5] && create_if_block_127(ctx)
     );
     return {
       c() {
@@ -52767,7 +52809,7 @@
               transition_in(if_block5, 1);
             }
           } else {
-            if_block5 = create_if_block_121(ctx2);
+            if_block5 = create_if_block_127(ctx2);
             if_block5.c();
             transition_in(if_block5, 1);
             if_block5.m(tbody5, null);
@@ -56233,7 +56275,7 @@
       }
     };
   }
-  function create_default_slot_416(ctx) {
+  function create_default_slot_411(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -56410,7 +56452,7 @@
     field2 = new Field_default({
       props: {
         name: "Nama Penulis",
-        $$slots: { default: [create_default_slot_416] },
+        $$slots: { default: [create_default_slot_411] },
         $$scope: { ctx }
       }
     });
@@ -56553,7 +56595,7 @@
       }
     };
   }
-  function create_header_slot5(ctx) {
+  function create_header_slot4(ctx) {
     let h4;
     return {
       c() {
@@ -56573,7 +56615,7 @@
       }
     };
   }
-  function create_if_block_121(ctx) {
+  function create_if_block_127(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -59037,7 +59079,7 @@
       }
     };
   }
-  function create_if_block_127(ctx) {
+  function create_if_block_128(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -59196,7 +59238,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block19, create_if_block_127, create_else_block10];
+    const if_block_creators = [create_if_block19, create_if_block_128, create_else_block10];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -59419,7 +59461,7 @@
       }
     };
   }
-  function create_if_block_128(ctx) {
+  function create_if_block_129(ctx) {
     let ul;
     return {
       c() {
@@ -59488,7 +59530,7 @@
       (ctx[1] === "Ka.Departemen" || /*role*/
       ctx[1] === "Ka.LPPM" || /*role*/
       ctx[1] === "Ka.PusatKajian" || /*role*/
-      ctx[1] === "reviewer") && create_if_block_128(ctx)
+      ctx[1] === "reviewer") && create_if_block_129(ctx)
     );
     let if_block1 = (
       /*role*/
@@ -59912,7 +59954,7 @@
   var Navbarmenu_default = Navbarmenu;
 
   // src/App.svelte
-  function create_if_block_129(ctx) {
+  function create_if_block_130(ctx) {
     let sidebar;
     let current;
     sidebar = new Sidebar_default({});
@@ -60028,7 +60070,7 @@
     let if_block0 = (
       /*token*/
       ctx[2] && !/*inBeranda*/
-      ctx[3] && create_if_block_129(ctx)
+      ctx[3] && create_if_block_130(ctx)
     );
     let if_block1 = (
       /*cmp*/
@@ -60068,7 +60110,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_129(ctx2);
+            if_block0 = create_if_block_130(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t1.parentNode, t1);

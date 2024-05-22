@@ -1746,17 +1746,6 @@ button.svelte-ivfnq6 {
   box-shadow: 0px 6px 18px -5px rgb(247, 145, 138);
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/home.esbuild-svelte-fake-css */
-.box.svelte-lfygnb {
-  display: flex;
-}
-.flex-item-left.svelte-lfygnb {
-  flex: 50%;
-}
-.flex-item-right.svelte-lfygnb {
-  flex: 50%;
-}
-
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Modal.esbuild-svelte-fake-css */
 .close.svelte-gcisbw {
   color: #aaaaaa;
@@ -1828,6 +1817,17 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 .focused.svelte-zkhzei + span.svelte-zkhzei {
   display: block;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/home.esbuild-svelte-fake-css */
+.box.svelte-lfygnb {
+  display: flex;
+}
+.flex-item-left.svelte-lfygnb {
+  flex: 50%;
+}
+.flex-item-right.svelte-lfygnb {
+  flex: 50%;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/proposalmanagement.esbuild-svelte-fake-css */

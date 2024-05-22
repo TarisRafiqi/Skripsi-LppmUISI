@@ -71,13 +71,13 @@
       reviewerSelected;
 
    const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
+
    // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
       ka_departemen = await findRole(11);
       ka_lppm = await findRole(12);
       ka_pusat_kajian = await findRole(13);
@@ -559,6 +559,10 @@
                );
 
                const resultUpload = await responseUpload.json();
+
+               if (responseUpload.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
             } catch (error) {
                console.error("Error uploading file:", error);
             }
@@ -609,14 +613,22 @@
    let options;
 
    async function findRole(role) {
-      const response = await fetch($apiURL + "/role/" + role);
+      // const response = await fetch($apiURL + "/role/" + role);
+      const response = await fetch($apiURL + "/role/" + role, {
+         method: "GET",
+         headers: headers,
+      });
       const result = await response.json();
 
-      if (response.ok) {
-         options = result;
-         return options;
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
       } else {
-         console.log(response);
+         if (response.ok) {
+            options = result;
+            return options;
+         } else {
+            console.log(response);
+         }
       }
    }
 
@@ -637,11 +649,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
@@ -664,11 +681,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
@@ -691,11 +713,16 @@
                headers: headers,
             }
          );
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
       } catch (error) {
          console.error("Error downloading file:", error);
       }

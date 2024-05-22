@@ -36,7 +36,7 @@
 
    async function handleReview(ev) {
       const id = ev.target.getAttribute("uid");
-      $route("/admin/proposal/" + id);
+      $route("/admin/detailproposal/" + id);
    }
 
    async function handleApproval(ev) {
