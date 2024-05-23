@@ -6,11 +6,14 @@
    import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
    import { deleteIcon, add } from "../../store/icons";
+   import Modalerror from "../../libs/Modalerror.svelte";
 
    const id = localStorage.getItem("id");
-   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
-
    let vmataKuliah;
+   let error = {};
+   let showModalErrorIdentitas = false;
+
+   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
    let biayaPP,
       tahunPenelitian,
@@ -609,43 +612,68 @@
       }
    }
 
+   const validateFormIdentitas = () => {
+      error = {};
+      if (!namaLengkap) error.namaLengkap = "Nama Lengkap is required.";
+      if (!jabatanFungsional)
+         error.jabatanFungsional = "Jabatan Fungsional is required.";
+      if (!nip) error.nip = "Nip is required.";
+      if (!nidn) error.nidn = "Nidn is required.";
+      if (!tempatLahir) error.tempatLahir = "Tempat Lahir is required.";
+      if (!tanggalLahir) error.tanggalLahir = "Tanggal Lahir is required.";
+      if (!alamatRumah) error.alamatRumah = "Alamat Rumah is required.";
+      if (!telpFaxRumah) error.telpFaxRumah = "Telp/Fax Rumah is required.";
+      if (!nomorHandphone)
+         error.nomorHandphone = "Nomor Handphone is required.";
+      if (!alamatKantor) error.alamatKantor = "Alamat Kantor is required.";
+      if (!telpFaxKantor) error.telpFaxKantor = "Telp/Fax Kantor is required.";
+      if (!email) error.email = "Email is required.";
+      if (mataKuliah.length === 0) error.mataKuliah = "Tambahkan Mata Kuliah";
+   };
+
    async function simpanIdentitas() {
-      const payload = {
-         idProfile,
-         namaLengkap,
-         jabatanFungsional,
-         nip,
-         nidn,
-         tempatLahir,
-         tanggalLahir,
-         alamatRumah,
-         telpFaxRumah,
-         nomorHandphone,
-         alamatKantor,
-         telpFaxKantor,
-         email,
-         mataKuliah,
-      };
+      validateFormIdentitas();
 
-      const response = await fetch($apiURL + "/userprofile", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorIdentitas = true;
       } else {
-         if (response.ok) {
-            $route("/dosen");
+         const payload = {
+            idProfile,
+            namaLengkap,
+            jabatanFungsional,
+            nip,
+            nidn,
+            tempatLahir,
+            tanggalLahir,
+            alamatRumah,
+            telpFaxRumah,
+            nomorHandphone,
+            alamatKantor,
+            telpFaxKantor,
+            email,
+            mataKuliah,
+         };
+
+         const response = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -899,63 +927,93 @@
       <div class="box">
          <Field name="Nama Lengkap">
             <input class="input" type="text" bind:value={namaLengkap} />
-            <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
+            <!-- <p class="help is-info">Masukkan nama lengkap dengan gelar</p> -->
+            {#if error.namaLengkap}
+               <span class="help error is-danger">{error.namaLengkap}</span>
+            {/if}
          </Field>
 
          <Field name="Jabatan Fungsional">
-            <input
-               class="input"
-               type="text"
-               bind:value={jabatanFungsional}
-            /></Field
-         >
+            <input class="input" type="text" bind:value={jabatanFungsional} />
+            {#if error.jabatanFungsional}
+               <span class="help error is-danger"
+                  >{error.jabatanFungsional}</span
+               >
+            {/if}
+         </Field>
 
          <Field name="NIP">
-            <input class="input" type="number" bind:value={nip} /></Field
-         >
+            <input class="input" type="number" bind:value={nip} />
+            {#if error.nip}
+               <span class="help error is-danger">{error.nip}</span>
+            {/if}
+         </Field>
          <Field name="NIDN">
-            <input class="input" type="number" bind:value={nidn} /></Field
+            <input class="input" type="number" bind:value={nidn} />
+            {#if error.nidn}
+               <span class="help error is-danger">{error.nidn}</span>
+            {/if}</Field
          >
 
          <Field name="Tempat / Tanggal Lahir">
             <div class="field-body">
                <div class="field">
                   <input class="input" type="text" bind:value={tempatLahir} />
+                  {#if error.tempatLahir}
+                     <span class="help error is-danger"
+                        >{error.tempatLahir}</span
+                     >
+                  {/if}
                </div>
                <div class="field">
                   <input class="input" type="date" bind:value={tanggalLahir} />
+                  {#if error.tanggalLahir}
+                     <span class="help error is-danger"
+                        >{error.tanggalLahir}</span
+                     >
+                  {/if}
                </div>
             </div>
          </Field>
 
          <Field name="Alamat Rumah">
             <input class="input" type="text" bind:value={alamatRumah} />
+            {#if error.alamatRumah}
+               <span class="help error is-danger">{error.alamatRumah}</span>
+            {/if}
          </Field>
 
          <Field name="Telp/Fax Rumah">
             <input class="input" type="number" bind:value={telpFaxRumah} />
+            {#if error.telpFaxRumah}
+               <span class="help error is-danger">{error.telpFaxRumah}</span>
+            {/if}
          </Field>
 
          <Field name="Nomor Handphone">
-            <input
-               class="input"
-               type="number"
-               bind:value={nomorHandphone}
-            /></Field
+            <input class="input" type="number" bind:value={nomorHandphone} />
+            {#if error.nomorHandphone}
+               <span class="help error is-danger">{error.nomorHandphone}</span>
+            {/if}</Field
          >
          <Field name="Alamat Kantor">
-            <input class="input" type="text" bind:value={alamatKantor} /></Field
+            <input class="input" type="text" bind:value={alamatKantor} />
+            {#if error.alamatKantor}
+               <span class="help error is-danger">{error.alamatKantor}</span>
+            {/if}</Field
          >
 
          <Field name="Telp/Fax Kantor">
-            <input
-               class="input"
-               type="number"
-               bind:value={telpFaxKantor}
-            /></Field
+            <input class="input" type="number" bind:value={telpFaxKantor} />
+            {#if error.telpFaxKantor}
+               <span class="help error is-danger">{error.telpFaxKantor}</span>
+            {/if}</Field
          >
          <Field class="input" name="Email">
             <input class="input" type="text" bind:value={email} />
+            {#if error.email}
+               <span class="help error is-danger">{error.email}</span>
+            {/if}
          </Field>
 
          <Field name="Mata Kuliah">
@@ -967,6 +1025,10 @@
                      placeholder="Tambahkan mata kuliah yang diampu"
                      bind:value={vmataKuliah}
                   />
+                  {#if error.mataKuliah}
+                     <span class="help error is-danger">{error.mataKuliah}</span
+                     >
+                  {/if}
                </p>
                <p class="control">
                   <button
@@ -1161,60 +1223,8 @@
 
    {#if tab3 === true}
       <!-- ------------------------------------------------------------------------>
-      <!-- Table Pengalaman Penelitian -->
+      <!-- Pengalaman Pengalaman Penelitian -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalPenelitian}>
-         <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunPenelitian} />
-         </Field>
-
-         <Field name="Judul Penelitian">
-            <input class="input" type="text" bind:value={judulPenelitian} />
-         </Field>
-
-         <Field name="Role">
-            <div class="select is-fullwidth">
-               <select bind:value={rolePenelitian}>
-                  <option value="" disabled selected hidden
-                     >Pilih peran dalam kegiatan</option
-                  >
-                  <option value="Ketua">Ketua</option>
-                  <option value="Anggota">Anggota</option>
-               </select>
-            </div>
-         </Field>
-
-         <Field name="Sumber Dana">
-            <input
-               class="input"
-               type="text"
-               bind:value={sumberDanaPenelitian}
-            />
-         </Field>
-
-         <Field name="Jumlah Rp.">
-            <input
-               class="input"
-               type="text"
-               placeholder="Masukkan Biaya Penelitian"
-               bind:value={biayaPP}
-               on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
-            />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPP}>Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1280,59 +1290,8 @@
       <br />
 
       <!-- ------------------------------------------------------------------------>
-      <!-- Table Pengabdian Masyarakat -->
+      <!-- Pengalaman Pengabdian Masyarakat -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalPengmas}>
-         <h4 class="title is-4" slot="header">
-            Pengalaman Pengabdian Masyarakat
-         </h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunPengmas} />
-         </Field>
-
-         <Field name="Judul Pengmas">
-            <input class="input" type="text" bind:value={judulPengmas} />
-         </Field>
-
-         <Field name="Role">
-            <div class="select is-fullwidth">
-               <select bind:value={rolePengmas}>
-                  <option value="" disabled selected hidden
-                     >Pilih peran dalam kegiatan</option
-                  >
-                  <option value="Ketua">Ketua</option>
-                  <option value="Anggota">Anggota</option>
-               </select>
-            </div>
-         </Field>
-
-         <Field name="Sumber Dana">
-            <input class="input" type="text" bind:value={sumberDanaPengmas} />
-         </Field>
-
-         <Field name="Jumlah Rp.">
-            <input
-               class="input"
-               type="text"
-               placeholder="Masukkan Biaya Pengmas"
-               bind:value={biayaPengmas}
-               on:keyup={() =>
-                  (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
-            />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPM}>Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1395,48 +1354,8 @@
       <br />
 
       <!-- ------------------------------------------------------------------------>
-      <!--  Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran -->
+      <!-- Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalDiseminasi}>
-         <h4 class="title is-4" slot="header">
-            Pengalaman Diseminasi Ilmiah dalam<br />Pertemuan / Pameran
-         </h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunDiseminasi} />
-         </Field>
-
-         <Field name="Judul Artikel">
-            <input class="input" type="text" bind:value={judulDiseminasi} />
-         </Field>
-
-         <Field name="Nama Pemakalah">
-            <input
-               class="input"
-               type="text"
-               bind:value={namaPemakalahDiseminasi}
-            />
-         </Field>
-
-         <Field name="Nama Pertemuan Ilmiah/Pameran">
-            <input
-               class="input"
-               type="text"
-               bind:value={namaPertemuanDiseminasi}
-            />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPD}>Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1504,39 +1423,6 @@
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding" -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalPublikasi}>
-         <h4 class="title is-4" slot="header">
-            Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
-         </h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunPublikasi} />
-         </Field>
-
-         <Field name="Judul Artikel">
-            <input class="input" type="text" bind:value={judulPublikasi} />
-         </Field>
-
-         <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
-            <input class="input" type="text" bind:value={namaJurnal} />
-         </Field>
-
-         <Field name="Nama Pertemuan Ilmiah/Pameran">
-            <input class="input" type="text" bind:value={impactFactor} />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPPublikasi}
-                  >Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1601,41 +1487,6 @@
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Penulisan Buku -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalPenulisanBuku}>
-         <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunBuku} />
-         </Field>
-
-         <Field name="Judul Buku">
-            <input class="input" type="text" bind:value={JudulBuku} />
-         </Field>
-
-         <Field name="Nama Penulis">
-            <input class="input" type="text" bind:value={namaPenulisBuku} />
-         </Field>
-
-         <Field name="Penerbit">
-            <input class="input" type="text" bind:value={PenerbitBuku} />
-         </Field>
-
-         <Field name="ISBN">
-            <input class="input" type="text" bind:value={Isbn} />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPPB}
-                  >Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1703,43 +1554,6 @@
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Hak Kekayaan Intelektual -->
       <!-- ------------------------------------------------------------------------>
-
-      <Modal bind:show={showModalHKI}>
-         <h4 class="title is-4" slot="header">
-            Pengalaman Hak Kekayaan Intelektual
-         </h4>
-
-         <Field name="Tahun">
-            <input class="input" type="number" bind:value={tahunHKI} />
-         </Field>
-
-         <Field name="Judul HKI">
-            <input class="input" type="text" bind:value={JudulHKI} />
-         </Field>
-
-         <Field name="Nama Penulis">
-            <input class="input" type="text" bind:value={namaPenulisHKI} />
-         </Field>
-
-         <Field name="Penerbit">
-            <input class="input" type="text" bind:value={jenisHKI} />
-         </Field>
-
-         <Field name="ISBN">
-            <input class="input" type="text" bind:value={noHKI} />
-         </Field>
-
-         <hr />
-
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanPHKI}
-                  >Simpan</button
-               >
-            </p>
-         </div>
-      </Modal>
-
       <div class="box">
          <nav class="level">
             <!-- Left side -->
@@ -1804,3 +1618,246 @@
       <br />
    {/if}
 </Article>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Penelitian -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPenelitian}>
+   <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPenelitian} />
+   </Field>
+
+   <Field name="Judul Penelitian">
+      <input class="input" type="text" bind:value={judulPenelitian} />
+   </Field>
+
+   <Field name="Role">
+      <div class="select is-fullwidth">
+         <select bind:value={rolePenelitian}>
+            <option value="" disabled selected hidden
+               >Pilih peran dalam kegiatan</option
+            >
+            <option value="Ketua">Ketua</option>
+            <option value="Anggota">Anggota</option>
+         </select>
+      </div>
+   </Field>
+
+   <Field name="Sumber Dana">
+      <input class="input" type="text" bind:value={sumberDanaPenelitian} />
+   </Field>
+
+   <Field name="Jumlah Rp.">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan Biaya Penelitian"
+         bind:value={biayaPP}
+         on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
+      />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPP}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Pengmas -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPengmas}>
+   <h4 class="title is-4" slot="header">Pengalaman Pengabdian Masyarakat</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPengmas} />
+   </Field>
+
+   <Field name="Judul Pengmas">
+      <input class="input" type="text" bind:value={judulPengmas} />
+   </Field>
+
+   <Field name="Role">
+      <div class="select is-fullwidth">
+         <select bind:value={rolePengmas}>
+            <option value="" disabled selected hidden
+               >Pilih peran dalam kegiatan</option
+            >
+            <option value="Ketua">Ketua</option>
+            <option value="Anggota">Anggota</option>
+         </select>
+      </div>
+   </Field>
+
+   <Field name="Sumber Dana">
+      <input class="input" type="text" bind:value={sumberDanaPengmas} />
+   </Field>
+
+   <Field name="Jumlah Rp.">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan Biaya Pengmas"
+         bind:value={biayaPengmas}
+         on:keyup={() => (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
+      />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPM}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Diseminasi Ilmiah -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalDiseminasi}>
+   <h4 class="title is-4" slot="header">
+      Pengalaman Diseminasi Ilmiah dalam<br />Pertemuan / Pameran
+   </h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunDiseminasi} />
+   </Field>
+
+   <Field name="Judul Artikel">
+      <input class="input" type="text" bind:value={judulDiseminasi} />
+   </Field>
+
+   <Field name="Nama Pemakalah">
+      <input class="input" type="text" bind:value={namaPemakalahDiseminasi} />
+   </Field>
+
+   <Field name="Nama Pertemuan Ilmiah/Pameran">
+      <input class="input" type="text" bind:value={namaPertemuanDiseminasi} />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPD}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Publikasi Ilmiah dalam Jurnal -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPublikasi}>
+   <h4 class="title is-4" slot="header">
+      Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
+   </h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPublikasi} />
+   </Field>
+
+   <Field name="Judul Artikel">
+      <input class="input" type="text" bind:value={judulPublikasi} />
+   </Field>
+
+   <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
+      <input class="input" type="text" bind:value={namaJurnal} />
+   </Field>
+
+   <Field name="Nama Pertemuan Ilmiah/Pameran">
+      <input class="input" type="text" bind:value={impactFactor} />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPPublikasi}
+            >Simpan</button
+         >
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Penulisan Buku -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPenulisanBuku}>
+   <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunBuku} />
+   </Field>
+
+   <Field name="Judul Buku">
+      <input class="input" type="text" bind:value={JudulBuku} />
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulisBuku} />
+   </Field>
+
+   <Field name="Penerbit">
+      <input class="input" type="text" bind:value={PenerbitBuku} />
+   </Field>
+
+   <Field name="ISBN">
+      <input class="input" type="text" bind:value={Isbn} />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPPB}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Hak Kekayaan Intelektual -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalHKI}>
+   <h4 class="title is-4" slot="header">Pengalaman Hak Kekayaan Intelektual</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunHKI} />
+   </Field>
+
+   <Field name="Judul HKI">
+      <input class="input" type="text" bind:value={JudulHKI} />
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulisHKI} />
+   </Field>
+
+   <Field name="Penerbit">
+      <input class="input" type="text" bind:value={jenisHKI} />
+   </Field>
+
+   <Field name="ISBN">
+      <input class="input" type="text" bind:value={noHKI} />
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPHKI}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Error Simpan Identitas -->
+<!-- ------------------------------------------------------------------------>
+<Modalerror bind:show={showModalErrorIdentitas}>
+   <p>Lengkapi semua form sebelum disimpan</p>
+</Modalerror>

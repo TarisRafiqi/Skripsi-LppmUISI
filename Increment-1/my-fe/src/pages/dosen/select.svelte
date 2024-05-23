@@ -3,105 +3,65 @@
    import Article from "../../libs/Article.svelte";
    import { route, apiURL } from "../../store";
 
-   let file;
+   let username = "";
+   let email = "";
+   // const error = {};
+   let error = {};
 
-   async function handleDownload(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `${accessToken}`,
-         "Content-Type": "application/json",
-      };
-      let filename = "rab.xlsx";
-      try {
-         const response = await fetch(`/api/upload/${randomFileName}`, {
-            method: "GET",
-            headers: headers,
-         });
-         const blob = await response.blob();
-         const link = document.createElement("a");
-         link.href = window.URL.createObjectURL(blob);
-         link.download = filename;
-         link.click();
-      } catch (error) {
-         console.error("Error downloading file:", error);
+   const form = {
+      username,
+      email,
+   };
+
+   // function handleSubmit() {
+   //    for (const [key, value] of Object.entries(form)) {
+   //       if (!form[key]) {
+   //          error[key] = `${key} harus diisi`;
+   //       } else {
+   //          console.log("Sukses...");
+   //       }
+   //    }
+   // }
+
+   const validateForm = () => {
+      error = {};
+      if (!username) error.username = "username is required.";
+      if (!email) error.email = "Email is required.";
+   };
+
+   const handleSubmit = (event) => {
+      // event.preventDefault();
+      validateForm();
+
+      if (Object.keys(error).length === 0) {
+         // console.log("Form submitted", { username, email });
+         $route("/dosen/proposalmanagement");
+      } else {
+         console.log("Form has error", error);
       }
-   }
-
-   async function handleFileUpload() {
-      const accessToken = localStorage.getItem("token");
-
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-         const base64Data = reader.result.split(",")[1];
-         const payloadfile = {
-            file: {
-               name: file.name,
-               type: file.type,
-               data: base64Data,
-            },
-            randomFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: {
-                  Authorization: `${accessToken}`,
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify(payloadfile),
-            });
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-      reader.readAsDataURL(file);
-   }
-
-   // --------------------------------------------------------------
-   let isLoading = false;
-
-   function handleClick() {
-      isLoading = true;
-      // Simulate loading delay, you can replace this with your actual async operation
-      setTimeout(() => {
-         isLoading = false;
-      }, 2000); // 2 seconds
-   }
-
-   // Optional: If you want to reset loading state when component is mounted
-   onMount(() => {
-      isLoading = false;
-   });
+   };
 </script>
 
 <Article>
-   <button
-      class="button is-info {isLoading ? 'is-loading' : ''}"
-      on:click={handleClick}
-   >
-      <span>Click Me</span>
-   </button>
+   <div class="box">
+      <div>
+         <label for="username">Username</label>
+         <input class="input" type="text" id="username" bind:value={username} />
+         {#if error.username}
+            <span class="error has-text-danger">{error.username}</span>
+         {/if}
+      </div>
 
-   <br />
-
-   <!-- <input
-      class="input"
-      accept=".xlsx"
-      type="file"
-      on:change={(e) => (file = e.target.files[0])}
-   />
-
-   <br />
-   <br />
-
-   <button on:click={handleFileUpload}>Upload File</button>
-
-   <br />
-   <br />
-
-   <button on:click={handleDownload}>Download</button> -->
+      <div>
+         <label for="email">Email</label>
+         <input class="input" type="text" id="email" bind:value={email} />
+         {#if error.email}
+            <span class="error has-text-danger">{error.email}</span>
+         {/if}
+      </div>
+      <br />
+      <button class="button is-info" on:click={handleSubmit}>Submit</button>
+   </div>
 </Article>
 
 <style>

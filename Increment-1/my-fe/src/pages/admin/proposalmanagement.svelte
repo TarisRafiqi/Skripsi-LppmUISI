@@ -30,6 +30,7 @@
       } else {
          if (response.ok) {
             items = result.dbData;
+            console.log(items);
          }
       }
    });

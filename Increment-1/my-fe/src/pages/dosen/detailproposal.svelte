@@ -107,7 +107,7 @@
                   ? JSON.parse(data.anggota_tim)
                   : data.anggota_tim;
 
-            // console.log(anggotaTim);
+            console.log(anggotaTim);
             // let ccx = anggotaTim.map(function (obj) {
             //    return obj.value;
             // });
