@@ -7,46 +7,40 @@
    let createUsername, createPassword, createEmail, createRole;
    let selectedActivation = "";
    let jenisRole = "";
+   let error = {};
    let showModalError = false;
    let showModalErrorEmptyForm = false;
    const role = localStorage.getItem("role");
+   const accessToken = localStorage.getItem("token");
 
    function kembali() {
       $route("/admin/usersmanagement");
    }
 
+   const validateFormCreateUser = () => {
+      error = {};
+      if (!createUsername) error.createUsername = "Username is required.";
+      if (!createPassword) error.createPassword = "Password is required.";
+      if (!createEmail) error.createEmail = "Email is required.";
+      if (!jenisRole) error.jenisRole = "Role is required.";
+      if (!selectedActivation)
+         error.selectedActivation = "Activation is required.";
+   };
+
    async function HandleCreateUser() {
-      const formUsername = document.getElementById("username");
-      const formPassword = document.getElementById("password");
-      const formEmail = document.getElementById("email");
-      const formActive = document.getElementById("selectedActivation");
-      const formRole = document.getElementById("jenisRole");
-      const accessToken = localStorage.getItem("token");
-      let payload = {
-         createUsername,
-         createPassword,
-         createEmail,
-         selectedActivation,
-         jenisRole,
-      };
+      validateFormCreateUser();
 
-      // console.log(payload);
-      // return;
-
-      if (
-         formUsername.value === "" ||
-         formUsername.value === null ||
-         formPassword.value === "" ||
-         formPassword.value === null ||
-         formEmail.value === "" ||
-         formEmail.value === null ||
-         formActive.value === "" ||
-         formActive.value === null ||
-         formRole.value === "" ||
-         formRole.value === null
-      ) {
+      if (Object.keys(error).length > 0) {
          showModalErrorEmptyForm = true;
       } else {
+         let payload = {
+            createUsername,
+            createPassword,
+            createEmail,
+            selectedActivation,
+            jenisRole,
+         };
+
          try {
             const response = await fetch($apiURL + "/createUser", {
                method: "POST",
@@ -74,7 +68,6 @@
          }
       }
    }
-   // $: console.log(showModalError);
 </script>
 
 <Article>
@@ -101,6 +94,9 @@
                placeholder="Masukkan username"
                bind:value={createUsername}
             />
+            {#if error.createUsername}
+               <span class="help error is-danger">{error.createUsername}</span>
+            {/if}
          </Field>
 
          <Field name="Password">
@@ -111,6 +107,9 @@
                placeholder="Masukkan password"
                bind:value={createPassword}
             />
+            {#if error.createPassword}
+               <span class="help error is-danger">{error.createPassword}</span>
+            {/if}
          </Field>
 
          <Field name="Email">
@@ -121,6 +120,9 @@
                placeholder="Masukkan email"
                bind:value={createEmail}
             />
+            {#if error.createEmail}
+               <span class="help error is-danger">{error.createEmail}</span>
+            {/if}
          </Field>
 
          <Field name="Role">
@@ -136,6 +138,9 @@
                   <option value="13">Kepala Pusat Kajian</option>
                </select>
             </div>
+            {#if error.jenisRole}
+               <span class="help error is-danger">{error.jenisRole}</span>
+            {/if}
          </Field>
 
          <Field name="Active">
@@ -161,6 +166,11 @@
                   No
                </label>
             </div>
+            {#if error.selectedActivation}
+               <span class="help error is-danger"
+                  >{error.selectedActivation}</span
+               >
+            {/if}
          </Field>
 
          <br />
