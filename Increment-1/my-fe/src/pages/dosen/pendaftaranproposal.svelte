@@ -107,6 +107,7 @@
    let isLoading = false;
 
    const accessToken = localStorage.getItem("token");
+
    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
@@ -462,6 +463,36 @@
    // Button Simpan Proposal
    //----------------------------//
    async function simpanProposal() {
+      error = {};
+      // -------------------------------------------------------------------//
+      // Upload File Proposal
+      // -------------------------------------------------------------------//
+      const readerPpm = new FileReader();
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerPpm.readAsDataURL(filePpm);
       // -------------------------------//
       // Upload File RAB
       // -------------------------------//
@@ -501,41 +532,9 @@
          };
          readerRab.readAsDataURL(fileRab);
       }
-      // -------------------------------------------------------------------//
-      // Upload File PPM
-      // -------------------------------------------------------------------//
-      const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      readerPpm.readAsDataURL(filePpm);
 
       // -----------------------------------------------------------//
-      // Post Proposal                                              //
+      // Post Proposal & Identitas
       // -----------------------------------------------------------//
       let payloadProposal = {
          id,
@@ -555,18 +554,6 @@
          randomPpmFileName,
       };
 
-      const responseProposal = await fetch($apiURL + "/ppm", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payloadProposal),
-      });
-
-      // ----------------------------------------------------//
-      // Post Identitas                                      //
-      // ----------------------------------------------------//
       let payloadIdentitas = {
          idProfile,
          namaLengkap,
@@ -584,33 +571,44 @@
          mataKuliah,
       };
 
-      const responseIdentitas = await fetch($apiURL + "/userprofile", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payloadIdentitas),
-      });
+      for (const [key, value] of Object.entries(payloadIdentitas)) {
+         if (!payloadIdentitas[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      // ----------------------------------------------------
-      // Response
-      // ----------------------------------------------------
-      const resultProposal = await responseProposal.json();
-      const resultIdentitas = await responseIdentitas.json();
+      // console.log(error);
 
-      if (
-         resultProposal.statusCode != 200 ||
-         resultIdentitas.statusCode !== 200
-      ) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (responseProposal.ok && responseIdentitas.ok) {
-            $route("/dosen/proposalmanagement");
+         //
+         const responseProposal = await fetch($apiURL + "/ppm", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payloadProposal),
+         });
+         const resultProposal = await responseProposal.json();
+
+         const responseIdentitas = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payloadIdentitas),
+         });
+         const resultIdentitas = await responseIdentitas.json();
+
+         if (
+            resultProposal.statusCode !== 200 ||
+            resultIdentitas.statusCode !== 200
+         ) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(responseProposal.msg);
-            console.log(responseIdentitas.msg);
+            if (responseProposal.ok && responseIdentitas.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(responseProposal.msg);
+               console.log(responseIdentitas.msg);
+            }
          }
       }
    }
@@ -619,6 +617,7 @@
    // Button Submit Proposal
    //------------------------------
    async function submitProposal() {
+      error = {};
       isLoading = true;
       // --------------------------------------//
       // Upload File RAB
@@ -691,7 +690,6 @@
       };
 
       readerPpm.readAsDataURL(filePpm);
-
       // --------------------------------------------------------------------//
       // Post Proposal                                                       //
       // --------------------------------------------------------------------//
@@ -817,7 +815,6 @@
          anggotaTim,
          judul,
          myAbstract,
-         status: 0,
          randomRabFileName,
          randomPpmFileName,
       };
@@ -846,8 +843,6 @@
             error["fileRAB"] = `*`;
          }
       }
-
-      console.log(error);
 
       if (Object.keys(error).length > 0) {
          showModalErrorProposal = true;
@@ -1690,7 +1685,9 @@
                   placeholder="Masukkan nama lengkap dengan gelar"
                   bind:value={namaLengkap}
                />
-               <!-- <p class="help is-info">Masukkan nama lengkap dengan gelar</p> -->
+               {#if error.namaLengkap}
+                  <p class="help error is-danger">{error.namaLengkap}</p>
+               {/if}
             </Field>
 
             <Field name="Jabatan Fungsional">
@@ -1699,25 +1696,24 @@
                   class="input"
                   type="text"
                   bind:value={jabatanFungsional}
-               /></Field
+               />
+               {#if error.jabatanFungsional}
+                  <p class="help error is-danger">{error.jabatanFungsional}</p>
+               {/if}</Field
             >
 
             <Field name="NIP">
-               <input
-                  id="nip"
-                  class="input"
-                  type="number"
-                  bind:value={nip}
-               /></Field
-            >
+               <input id="nip" class="input" type="number" bind:value={nip} />
+               {#if error.nip}
+                  <p class="help error is-danger">{error.nip}</p>
+               {/if}
+            </Field>
             <Field name="NIDN">
-               <input
-                  id="nidn"
-                  class="input"
-                  type="number"
-                  bind:value={nidn}
-               /></Field
-            >
+               <input id="nidn" class="input" type="number" bind:value={nidn} />
+               {#if error.nidn}
+                  <p class="help error is-danger">{error.nidn}</p>
+               {/if}
+            </Field>
 
             <Field name="Tempat / Tanggal Lahir">
                <div class="field-body">
@@ -1728,6 +1724,9 @@
                         type="text"
                         bind:value={tempatLahir}
                      />
+                     {#if error.tempatLahir}
+                        <p class="help error is-danger">{error.tempatLahir}</p>
+                     {/if}
                   </div>
                   <div class="field">
                      <input
@@ -1736,6 +1735,9 @@
                         type="date"
                         bind:value={tanggalLahir}
                      />
+                     {#if error.tanggalLahir}
+                        <p class="help error is-danger">{error.tanggalLahir}</p>
+                     {/if}
                   </div>
                </div>
             </Field>
@@ -1747,6 +1749,9 @@
                   type="text"
                   bind:value={alamatRumah}
                />
+               {#if error.alamatRumah}
+                  <p class="help error is-danger">{error.alamatRumah}</p>
+               {/if}
             </Field>
 
             <Field name="Telp/Fax Rumah">
@@ -1756,6 +1761,9 @@
                   type="number"
                   bind:value={telpFaxRumah}
                />
+               {#if error.telpFaxRumah}
+                  <p class="help error is-danger">{error.telpFaxRumah}</p>
+               {/if}
             </Field>
 
             <Field name="Nomor Handphone">
@@ -1764,16 +1772,22 @@
                   class="input"
                   type="number"
                   bind:value={nomorHandphone}
-               /></Field
-            >
+               />
+               {#if error.nomorHandphone}
+                  <p class="help error is-danger">{error.nomorHandphone}</p>
+               {/if}
+            </Field>
             <Field name="Alamat Kantor">
                <input
                   id="alamatKantor"
                   class="input"
                   type="text"
                   bind:value={alamatKantor}
-               /></Field
-            >
+               />
+               {#if error.alamatKantor}
+                  <p class="help error is-danger">{error.alamatKantor}</p>
+               {/if}
+            </Field>
 
             <Field name="Telp/Fax Kantor">
                <input
@@ -1781,10 +1795,16 @@
                   class="input"
                   type="number"
                   bind:value={telpFaxKantor}
-               /></Field
-            >
+               />
+               {#if error.telpFaxKantor}
+                  <p class="help error is-danger">{error.telpFaxKantor}</p>
+               {/if}
+            </Field>
             <Field class="input" name="Email">
                <input id="email" class="input" type="text" bind:value={email} />
+               {#if error.email}
+                  <p class="help error is-danger">{error.email}</p>
+               {/if}
             </Field>
 
             <Field name="Mata Kuliah">
@@ -1796,6 +1816,9 @@
                         placeholder="Tambahkan mata kuliah yang diampu"
                         bind:value={vmataKuliah}
                      />
+                     {#if error.mataKuliah}
+                        <p class="help error is-danger">{error.mataKuliah}</p>
+                     {/if}
                   </p>
                   <p class="control">
                      <button

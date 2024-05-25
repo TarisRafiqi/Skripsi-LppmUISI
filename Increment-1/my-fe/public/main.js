@@ -39529,7 +39529,7 @@
       }
     };
   }
-  function create_if_block_135(ctx) {
+  function create_if_block_262(ctx) {
     let field0;
     let t0;
     let field1;
@@ -39623,11 +39623,11 @@
     });
     let if_block0 = (
       /*items*/
-      ctx[6].length && create_if_block_243(ctx)
+      ctx[6].length && create_if_block_372(ctx)
     );
     let if_block1 = (
       /*anggotaTim*/
-      ctx[16].length > 0 && create_if_block_225(ctx)
+      ctx[16].length > 0 && create_if_block_352(ctx)
     );
     field8 = new Field_default({
       props: {
@@ -39656,9 +39656,9 @@
       ctx[9] === "Riset Terapan" || /*jenisSkema*/
       ctx[9] === "Riset Kerjasama" || /*jenisSkema*/
       ctx[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_154(ctx)
+      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_282(ctx)
     );
-    let if_block3 = warningFormText === true && create_if_block_144(ctx);
+    let if_block3 = warningFormText === true && create_if_block_272(ctx);
     return {
       c() {
         create_component(field0.$$.fragment);
@@ -39819,7 +39819,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_243(ctx2);
+            if_block0 = create_if_block_372(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t8.parentNode, t8);
@@ -39842,7 +39842,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_225(ctx2);
+            if_block1 = create_if_block_352(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(tbody, null);
@@ -39891,7 +39891,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_154(ctx2);
+            if_block2 = create_if_block_282(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(t20.parentNode, t20);
@@ -39985,7 +39985,7 @@
       }
     };
   }
-  function create_if_block_342(ctx) {
+  function create_if_block_472(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40027,7 +40027,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].jenisProposal && create_if_block_342(ctx)
+      ctx[0].jenisProposal && create_if_block_472(ctx)
     );
     return {
       c() {
@@ -40105,7 +40105,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_342(ctx2);
+            if_block = create_if_block_472(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40127,7 +40127,7 @@
       }
     };
   }
-  function create_if_block_332(ctx) {
+  function create_if_block_462(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40169,7 +40169,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].jenisKegiatan && create_if_block_332(ctx)
+      ctx[0].jenisKegiatan && create_if_block_462(ctx)
     );
     return {
       c() {
@@ -40247,7 +40247,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_332(ctx2);
+            if_block = create_if_block_462(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40309,7 +40309,7 @@
       }
     };
   }
-  function create_if_block_322(ctx) {
+  function create_if_block_452(ctx) {
     let option0;
     let option1;
     let option2;
@@ -40356,7 +40356,7 @@
       }
     };
   }
-  function create_if_block_31(ctx) {
+  function create_if_block_442(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40399,14 +40399,14 @@
         /*jenisKegiatan*/
         ctx2[7] === "Penelitian"
       )
-        return create_if_block_322;
+        return create_if_block_452;
       return create_else_block_23;
     }
     let current_block_type = select_block_type(ctx, [-1, -1, -1, -1, -1, -1, -1, -1, -1]);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*error*/
-      ctx[0].jenisSkema && create_if_block_31(ctx)
+      ctx[0].jenisSkema && create_if_block_442(ctx)
     );
     return {
       c() {
@@ -40484,7 +40484,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_31(ctx2);
+            if_block1 = create_if_block_442(ctx2);
             if_block1.c();
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
           }
@@ -40507,7 +40507,7 @@
       }
     };
   }
-  function create_if_block_30(ctx) {
+  function create_if_block_432(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40545,7 +40545,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].kelompokKeahlian && create_if_block_30(ctx)
+      ctx[0].kelompokKeahlian && create_if_block_432(ctx)
     );
     return {
       c() {
@@ -40597,7 +40597,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_30(ctx2);
+            if_block = create_if_block_432(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40619,7 +40619,7 @@
       }
     };
   }
-  function create_if_block_292(ctx) {
+  function create_if_block_422(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40657,7 +40657,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].topik && create_if_block_292(ctx)
+      ctx[0].topik && create_if_block_422(ctx)
     );
     return {
       c() {
@@ -40709,7 +40709,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_292(ctx2);
+            if_block = create_if_block_422(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40731,7 +40731,7 @@
       }
     };
   }
-  function create_if_block_282(ctx) {
+  function create_if_block_41(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40769,7 +40769,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].tanggalMulai && create_if_block_282(ctx)
+      ctx[0].tanggalMulai && create_if_block_41(ctx)
     );
     return {
       c() {
@@ -40819,7 +40819,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_282(ctx2);
+            if_block = create_if_block_41(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40841,7 +40841,7 @@
       }
     };
   }
-  function create_if_block_272(ctx) {
+  function create_if_block_40(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40879,7 +40879,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].tanggalSelesai && create_if_block_272(ctx)
+      ctx[0].tanggalSelesai && create_if_block_40(ctx)
     );
     return {
       c() {
@@ -40929,7 +40929,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_272(ctx2);
+            if_block = create_if_block_40(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -40951,7 +40951,7 @@
       }
     };
   }
-  function create_if_block_262(ctx) {
+  function create_if_block_39(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -40989,7 +40989,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].biayaPenelitian && create_if_block_262(ctx)
+      ctx[0].biayaPenelitian && create_if_block_39(ctx)
     );
     return {
       c() {
@@ -41049,7 +41049,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_262(ctx2);
+            if_block = create_if_block_39(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -41071,7 +41071,7 @@
       }
     };
   }
-  function create_if_block_243(ctx) {
+  function create_if_block_372(ctx) {
     let field;
     let current;
     field = new Field_default({
@@ -41113,7 +41113,7 @@
       }
     };
   }
-  function create_if_block_252(ctx) {
+  function create_if_block_382(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -41171,7 +41171,7 @@
     binding_callbacks.push(() => bind(select, "result", select_result_binding));
     let if_block = (
       /*error*/
-      ctx[0].anggotaTim && create_if_block_252(ctx)
+      ctx[0].anggotaTim && create_if_block_382(ctx)
     );
     return {
       c() {
@@ -41210,7 +41210,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_252(ctx2);
+            if_block = create_if_block_382(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -41240,7 +41240,7 @@
       }
     };
   }
-  function create_if_block_225(ctx) {
+  function create_if_block_352(ctx) {
     let each_1_anchor;
     let current;
     let each_value_7 = ensure_array_like(
@@ -41321,7 +41321,7 @@
       }
     };
   }
-  function create_if_block_233(ctx) {
+  function create_if_block_362(ctx) {
     let button;
     let span;
     let icon;
@@ -41403,7 +41403,7 @@
     let current;
     let if_block = (
       /*idx*/
-      ctx[247] > 0 && create_if_block_233(ctx)
+      ctx[247] > 0 && create_if_block_362(ctx)
     );
     return {
       c() {
@@ -41467,7 +41467,7 @@
       }
     };
   }
-  function create_if_block_214(ctx) {
+  function create_if_block_342(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -41505,7 +41505,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].judul && create_if_block_214(ctx)
+      ctx[0].judul && create_if_block_342(ctx)
     );
     return {
       c() {
@@ -41557,7 +41557,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_214(ctx2);
+            if_block = create_if_block_342(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -41579,7 +41579,7 @@
       }
     };
   }
-  function create_if_block_204(ctx) {
+  function create_if_block_332(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -41617,7 +41617,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[0].myAbstract && create_if_block_204(ctx)
+      ctx[0].myAbstract && create_if_block_332(ctx)
     );
     return {
       c() {
@@ -41667,7 +41667,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_204(ctx2);
+            if_block = create_if_block_332(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -41706,7 +41706,7 @@
       }
     };
   }
-  function create_if_block_194(ctx) {
+  function create_if_block_322(ctx) {
     let t_value = (
       /*$ppmFile*/
       ctx[92].name + ""
@@ -41732,7 +41732,7 @@
       }
     };
   }
-  function create_if_block_184(ctx) {
+  function create_if_block_31(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -41777,14 +41777,14 @@
         /*$ppmFile*/
         ctx2[92]?.name
       )
-        return create_if_block_194;
+        return create_if_block_322;
       return create_else_block_13;
     }
     let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1, -1, -1, -1, -1, -1]);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*error*/
-      ctx[0].fileProposal && create_if_block_184(ctx)
+      ctx[0].fileProposal && create_if_block_31(ctx)
     );
     return {
       c() {
@@ -41847,7 +41847,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_184(ctx2);
+            if_block1 = create_if_block_31(ctx2);
             if_block1.c();
             if_block1.m(span, null);
           }
@@ -41870,7 +41870,7 @@
       }
     };
   }
-  function create_if_block_154(ctx) {
+  function create_if_block_282(ctx) {
     let field;
     let current;
     field = new Field_default({
@@ -41930,7 +41930,7 @@
       }
     };
   }
-  function create_if_block_174(ctx) {
+  function create_if_block_30(ctx) {
     let t_value = (
       /*$rabFile*/
       ctx[91].name + ""
@@ -41956,7 +41956,7 @@
       }
     };
   }
-  function create_if_block_164(ctx) {
+  function create_if_block_292(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -42001,14 +42001,14 @@
         /*$rabFile*/
         ctx2[91]?.name
       )
-        return create_if_block_174;
+        return create_if_block_30;
       return create_else_block9;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1, -1, -1, -1, -1]);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*error*/
-      ctx[0].fileRAB && create_if_block_164(ctx)
+      ctx[0].fileRAB && create_if_block_292(ctx)
     );
     return {
       c() {
@@ -42071,7 +42071,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_164(ctx2);
+            if_block1 = create_if_block_292(ctx2);
             if_block1.c();
             if_block1.m(span, null);
           }
@@ -42094,7 +42094,7 @@
       }
     };
   }
-  function create_if_block_144(ctx) {
+  function create_if_block_272(ctx) {
     let div;
     return {
       c() {
@@ -42137,7 +42137,7 @@
     );
     let if_block2 = (
       /*tab3Step2*/
-      ctx[90] === true && create_if_block_39(ctx)
+      ctx[90] === true && create_if_block_310(ctx)
     );
     return {
       c() {
@@ -42301,7 +42301,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_39(ctx2);
+            if_block2 = create_if_block_310(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
@@ -42541,85 +42541,96 @@
       },
       p(ctx2, dirty) {
         const field0_changes = {};
-        if (dirty[1] & /*namaLengkap*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*namaLengkap*/
         2 | dirty[8] & /*$$scope*/
         1) {
           field0_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field0.$set(field0_changes);
         const field1_changes = {};
-        if (dirty[1] & /*jabatanFungsional*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*jabatanFungsional*/
         4 | dirty[8] & /*$$scope*/
         1) {
           field1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field1.$set(field1_changes);
         const field2_changes = {};
-        if (dirty[1] & /*nip*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*nip*/
         8 | dirty[8] & /*$$scope*/
         1) {
           field2_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field2.$set(field2_changes);
         const field3_changes = {};
-        if (dirty[1] & /*nidn*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*nidn*/
         16 | dirty[8] & /*$$scope*/
         1) {
           field3_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field3.$set(field3_changes);
         const field4_changes = {};
-        if (dirty[1] & /*tanggalLahir, tempatLahir*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*tanggalLahir, tempatLahir*/
         96 | dirty[8] & /*$$scope*/
         1) {
           field4_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field4.$set(field4_changes);
         const field5_changes = {};
-        if (dirty[1] & /*alamatRumah*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*alamatRumah*/
         128 | dirty[8] & /*$$scope*/
         1) {
           field5_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field5.$set(field5_changes);
         const field6_changes = {};
-        if (dirty[1] & /*telpFaxRumah*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*telpFaxRumah*/
         256 | dirty[8] & /*$$scope*/
         1) {
           field6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field6.$set(field6_changes);
         const field7_changes = {};
-        if (dirty[1] & /*nomorHandphone*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*nomorHandphone*/
         512 | dirty[8] & /*$$scope*/
         1) {
           field7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field7.$set(field7_changes);
         const field8_changes = {};
-        if (dirty[1] & /*alamatKantor*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*alamatKantor*/
         1024 | dirty[8] & /*$$scope*/
         1) {
           field8_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field8.$set(field8_changes);
         const field9_changes = {};
-        if (dirty[1] & /*telpFaxKantor*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*telpFaxKantor*/
         2048 | dirty[8] & /*$$scope*/
         1) {
           field9_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field9.$set(field9_changes);
         const field10_changes = {};
-        if (dirty[1] & /*email*/
+        if (dirty[0] & /*error*/
+        1 | dirty[1] & /*email*/
         4096 | dirty[8] & /*$$scope*/
         1) {
           field10_changes.$$scope = { dirty, ctx: ctx2 };
         }
         field10.$set(field10_changes);
         const field11_changes = {};
-        if (dirty[0] & /*vmataKuliah*/
-        32 | dirty[8] & /*$$scope*/
+        if (dirty[0] & /*vmataKuliah, error*/
+        33 | dirty[8] & /*$$scope*/
         1) {
           field11_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -42718,13 +42729,53 @@
       }
     };
   }
+  function create_if_block_252(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].namaLengkap + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].namaLengkap + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_462(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].namaLengkap && create_if_block_252(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "namaLengkap");
         attr(input, "class", "input");
         attr(input, "type", "text");
@@ -42737,6 +42788,10 @@
           /*namaLengkap*/
           ctx[32]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -42757,23 +42812,82 @@
             ctx2[32]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].namaLengkap
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_252(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_243(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].jabatanFungsional + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].jabatanFungsional + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_453(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].jabatanFungsional && create_if_block_243(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "jabatanFungsional");
         attr(input, "class", "input");
         attr(input, "type", "text");
@@ -42785,6 +42899,10 @@
           /*jabatanFungsional*/
           ctx[33]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -42805,23 +42923,82 @@
             ctx2[33]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].jabatanFungsional
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_243(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_233(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].nip + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].nip + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_443(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].nip && create_if_block_233(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "nip");
         attr(input, "class", "input");
         attr(input, "type", "number");
@@ -42833,6 +43010,10 @@
           /*nip*/
           ctx[34]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -42853,23 +43034,82 @@
             ctx2[34]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].nip
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_233(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_225(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].nidn + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].nidn + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_433(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].nidn && create_if_block_225(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "nidn");
         attr(input, "class", "input");
         attr(input, "type", "number");
@@ -42881,6 +43121,10 @@
           /*nidn*/
           ctx[35]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -42901,13 +43145,92 @@
             ctx2[35]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].nidn
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_225(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
+      }
+    };
+  }
+  function create_if_block_214(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].tempatLahir + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].tempatLahir + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_if_block_204(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].tanggalLahir + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].tanggalLahir + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
       }
     };
   }
@@ -42915,19 +43238,35 @@
     let div2;
     let div0;
     let input0;
-    let t;
+    let t0;
+    let t1;
     let div1;
     let input1;
+    let t2;
     let mounted;
     let dispose;
+    let if_block0 = (
+      /*error*/
+      ctx[0].tempatLahir && create_if_block_214(ctx)
+    );
+    let if_block1 = (
+      /*error*/
+      ctx[0].tanggalLahir && create_if_block_204(ctx)
+    );
     return {
       c() {
         div2 = element("div");
         div0 = element("div");
         input0 = element("input");
-        t = space();
+        t0 = space();
+        if (if_block0)
+          if_block0.c();
+        t1 = space();
         div1 = element("div");
         input1 = element("input");
+        t2 = space();
+        if (if_block1)
+          if_block1.c();
         attr(input0, "id", "tempatLahir");
         attr(input0, "class", "input");
         attr(input0, "type", "text");
@@ -42947,7 +43286,10 @@
           /*tempatLahir*/
           ctx[36]
         );
-        append(div2, t);
+        append(div0, t0);
+        if (if_block0)
+          if_block0.m(div0, null);
+        append(div2, t1);
         append(div2, div1);
         append(div1, input1);
         set_input_value(
@@ -42955,6 +43297,9 @@
           /*tanggalLahir*/
           ctx[37]
         );
+        append(div1, t2);
+        if (if_block1)
+          if_block1.m(div1, null);
         if (!mounted) {
           dispose = [
             listen(
@@ -42983,6 +43328,21 @@
             ctx2[36]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].tempatLahir
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_214(ctx2);
+            if_block0.c();
+            if_block0.m(div0, null);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
         if (dirty[1] & /*tanggalLahir*/
         64) {
           set_input_value(
@@ -42991,23 +43351,82 @@
             ctx2[37]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].tanggalLahir
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_204(ctx2);
+            if_block1.c();
+            if_block1.m(div1, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(div2);
         }
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
         mounted = false;
         run_all(dispose);
       }
     };
   }
+  function create_if_block_194(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].alamatRumah + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].alamatRumah + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_414(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].alamatRumah && create_if_block_194(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "alamatRumah");
         attr(input, "class", "input");
         attr(input, "type", "text");
@@ -43019,6 +43438,10 @@
           /*alamatRumah*/
           ctx[38]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43039,23 +43462,82 @@
             ctx2[38]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].alamatRumah
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_194(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_184(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].telpFaxRumah + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].telpFaxRumah + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_404(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].telpFaxRumah && create_if_block_184(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "telpFaxRumah");
         attr(input, "class", "input");
         attr(input, "type", "number");
@@ -43067,6 +43549,10 @@
           /*telpFaxRumah*/
           ctx[39]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43087,23 +43573,82 @@
             ctx2[39]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].telpFaxRumah
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_184(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_174(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].nomorHandphone + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].nomorHandphone + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_394(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].nomorHandphone && create_if_block_174(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "nomorHandphone");
         attr(input, "class", "input");
         attr(input, "type", "number");
@@ -43115,6 +43660,10 @@
           /*nomorHandphone*/
           ctx[40]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43135,23 +43684,82 @@
             ctx2[40]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].nomorHandphone
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_174(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_164(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].alamatKantor + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].alamatKantor + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_384(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].alamatKantor && create_if_block_164(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "alamatKantor");
         attr(input, "class", "input");
         attr(input, "type", "text");
@@ -43163,6 +43771,10 @@
           /*alamatKantor*/
           ctx[41]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43183,23 +43795,82 @@
             ctx2[41]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].alamatKantor
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_164(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_154(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].telpFaxKantor + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].telpFaxKantor + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_374(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].telpFaxKantor && create_if_block_154(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "telpFaxKantor");
         attr(input, "class", "input");
         attr(input, "type", "number");
@@ -43211,6 +43882,10 @@
           /*telpFaxKantor*/
           ctx[42]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43231,23 +43906,82 @@
             ctx2[42]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].telpFaxKantor
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_154(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
+  function create_if_block_144(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].email + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].email + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_default_slot_364(ctx) {
     let input;
+    let t;
+    let if_block_anchor;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].email && create_if_block_144(ctx)
+    );
     return {
       c() {
         input = element("input");
+        t = space();
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
         attr(input, "id", "email");
         attr(input, "class", "input");
         attr(input, "type", "text");
@@ -43259,6 +43993,10 @@
           /*email*/
           ctx[43]
         );
+        insert(target, t, anchor);
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
             input,
@@ -43279,13 +44017,62 @@
             ctx2[43]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].email
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_144(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(input);
+          detach(t);
+          detach(if_block_anchor);
         }
+        if (if_block)
+          if_block.d(detaching);
         mounted = false;
         dispose();
+      }
+    };
+  }
+  function create_if_block_135(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].mataKuliah + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "help error is-danger svelte-l1rc18");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].mataKuliah + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
       }
     };
   }
@@ -43294,16 +44081,21 @@
     let p0;
     let input;
     let t0;
+    let t1;
     let p1;
     let button;
     let span0;
     let icon;
-    let t1;
+    let t2;
     let span1;
     let button_disabled_value;
     let current;
     let mounted;
     let dispose;
+    let if_block = (
+      /*error*/
+      ctx[0].mataKuliah && create_if_block_135(ctx)
+    );
     icon = new Icon_default({ props: { id: "orang", src: add } });
     return {
       c() {
@@ -43311,11 +44103,14 @@
         p0 = element("p");
         input = element("input");
         t0 = space();
+        if (if_block)
+          if_block.c();
+        t1 = space();
         p1 = element("p");
         button = element("button");
         span0 = element("span");
         create_component(icon.$$.fragment);
-        t1 = space();
+        t2 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Tambah</a>`;
         attr(input, "class", "input");
@@ -43338,12 +44133,15 @@
           /*vmataKuliah*/
           ctx[5]
         );
-        append(div, t0);
+        append(p0, t0);
+        if (if_block)
+          if_block.m(p0, null);
+        append(div, t1);
         append(div, p1);
         append(p1, button);
         append(button, span0);
         mount_component(icon, span0, null);
-        append(button, t1);
+        append(button, t2);
         append(button, span1);
         current = true;
         if (!mounted) {
@@ -43374,6 +44172,21 @@
             ctx2[5]
           );
         }
+        if (
+          /*error*/
+          ctx2[0].mataKuliah
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_135(ctx2);
+            if_block.c();
+            if_block.m(p0, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
         if (!current || dirty[0] & /*vmataKuliah*/
         32 && button_disabled_value !== (button_disabled_value = /*vmataKuliah*/
         ctx2[5] ? false : true)) {
@@ -43394,6 +44207,8 @@
         if (detaching) {
           detach(div);
         }
+        if (if_block)
+          if_block.d();
         destroy_component(icon);
         mounted = false;
         run_all(dispose);
@@ -44127,7 +44942,7 @@
       }
     };
   }
-  function create_if_block_39(ctx) {
+  function create_if_block_310(ctx) {
     let modal0;
     let updating_show;
     let t0;
@@ -49276,7 +50091,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[86] === true && create_if_block_135(ctx)
+      ctx[86] === true && create_if_block_262(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -49490,7 +50305,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_135(ctx2);
+            if_block0 = create_if_block_262(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div2, t17);
@@ -49924,6 +50739,30 @@
       }));
     }
     async function simpanProposal() {
+      $$invalidate(0, error = {});
+      const readerPpm = new FileReader();
+      readerPpm.onloadend = async () => {
+        const base64Data = readerPpm.result.split(",")[1];
+        const payloadPpmFile = {
+          filePpm: {
+            name: filePpm.name,
+            type: filePpm.type,
+            data: base64Data
+          },
+          randomPpmFileName: randomPpmFileName2
+        };
+        try {
+          const response = await fetch($apiURL + "/uploadPpm", {
+            method: "POST",
+            headers,
+            body: JSON.stringify(payloadPpmFile)
+          });
+          const result = await response.json();
+        } catch (error2) {
+          console.error("Error uploading file:", error2);
+        }
+      };
+      readerPpm.readAsDataURL(filePpm);
       const readerRab = new FileReader();
       if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
         readerRab.onloadend = async () => {
@@ -49952,32 +50791,6 @@
         };
         readerRab.readAsDataURL(fileRab);
       }
-      const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
-            data: base64Data
-          },
-          randomPpmFileName: randomPpmFileName2
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      readerPpm.readAsDataURL(filePpm);
       let payloadProposal = {
         id,
         jenisProposal,
@@ -49995,14 +50808,6 @@
         randomRabFileName: randomRabFileName2,
         randomPpmFileName: randomPpmFileName2
       };
-      const responseProposal = await fetch($apiURL + "/ppm", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payloadProposal)
-      });
       let payloadIdentitas = {
         idProfile,
         namaLengkap,
@@ -50019,28 +50824,40 @@
         email: email3,
         mataKuliah
       };
-      const responseIdentitas = await fetch($apiURL + "/userprofile", {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payloadIdentitas)
-      });
-      const resultProposal = await responseProposal.json();
-      const resultIdentitas = await responseIdentitas.json();
-      if (resultProposal.statusCode != 200 || resultIdentitas.statusCode !== 200) {
-        location.pathname = "/tokenexpired";
+      for (const [key, value2] of Object.entries(payloadIdentitas)) {
+        if (!payloadIdentitas[key]) {
+          $$invalidate(0, error[key] = `This field is required`, error);
+        }
+      }
+      if (Object.keys(error).length > 0) {
+        showModalErrorForm = true;
       } else {
-        if (responseProposal.ok && responseIdentitas.ok) {
-          $route("/dosen/proposalmanagement");
+        const responseProposal = await fetch($apiURL + "/ppm", {
+          method: "POST",
+          headers,
+          body: JSON.stringify(payloadProposal)
+        });
+        const resultProposal = await responseProposal.json();
+        const responseIdentitas = await fetch($apiURL + "/userprofile", {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify(payloadIdentitas)
+        });
+        const resultIdentitas = await responseIdentitas.json();
+        if (resultProposal.statusCode !== 200 || resultIdentitas.statusCode !== 200) {
+          location.pathname = "/tokenexpired";
         } else {
-          console.log(responseProposal.msg);
-          console.log(responseIdentitas.msg);
+          if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/proposalmanagement");
+          } else {
+            console.log(responseProposal.msg);
+            console.log(responseIdentitas.msg);
+          }
         }
       }
     }
     async function submitProposal() {
+      $$invalidate(0, error = {});
       $$invalidate(85, isLoading = true);
       const readerRab = new FileReader();
       if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
@@ -50186,7 +51003,6 @@
         anggotaTim,
         judul,
         myAbstract,
-        status: 0,
         randomRabFileName: randomRabFileName2,
         randomPpmFileName: randomPpmFileName2
       };
@@ -50203,7 +51019,6 @@
           $$invalidate(0, error["fileRAB"] = `*`, error);
         }
       }
-      console.log(error);
       if (Object.keys(error).length > 0) {
         $$invalidate(1, showModalErrorProposal = true);
       } else {
@@ -51191,7 +52006,7 @@
     child_ctx[197] = list[i];
     return child_ctx;
   }
-  function create_if_block_372(ctx) {
+  function create_if_block_373(ctx) {
     let div0;
     let field0;
     let t0;
@@ -51327,7 +52142,7 @@
     let if_block = (
       /*mataKuliah*/
       ctx[50] && /*mataKuliah*/
-      ctx[50].length > 0 && create_if_block_382(ctx)
+      ctx[50].length > 0 && create_if_block_383(ctx)
     );
     return {
       c() {
@@ -51545,7 +52360,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_382(ctx2);
+            if_block = create_if_block_383(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(tbody, null);
@@ -52061,7 +52876,7 @@
       }
     };
   }
-  function create_if_block_472(ctx) {
+  function create_if_block_473(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52099,7 +52914,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tempatLahir && create_if_block_472(ctx)
+      ctx[1].tempatLahir && create_if_block_473(ctx)
     );
     return {
       c() {
@@ -52149,7 +52964,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_472(ctx2);
+            if_block = create_if_block_473(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52171,7 +52986,7 @@
       }
     };
   }
-  function create_if_block_462(ctx) {
+  function create_if_block_463(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52209,7 +53024,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tanggalLahir && create_if_block_462(ctx)
+      ctx[1].tanggalLahir && create_if_block_463(ctx)
     );
     return {
       c() {
@@ -52258,7 +53073,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_462(ctx2);
+            if_block = create_if_block_463(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52280,7 +53095,7 @@
       }
     };
   }
-  function create_if_block_452(ctx) {
+  function create_if_block_453(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52318,7 +53133,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].alamatRumah && create_if_block_452(ctx)
+      ctx[1].alamatRumah && create_if_block_453(ctx)
     );
     return {
       c() {
@@ -52368,7 +53183,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_452(ctx2);
+            if_block = create_if_block_453(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52390,7 +53205,7 @@
       }
     };
   }
-  function create_if_block_442(ctx) {
+  function create_if_block_443(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52428,7 +53243,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].telpFaxRumah && create_if_block_442(ctx)
+      ctx[1].telpFaxRumah && create_if_block_443(ctx)
     );
     return {
       c() {
@@ -52478,7 +53293,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_442(ctx2);
+            if_block = create_if_block_443(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52500,7 +53315,7 @@
       }
     };
   }
-  function create_if_block_432(ctx) {
+  function create_if_block_433(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52538,7 +53353,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].nomorHandphone && create_if_block_432(ctx)
+      ctx[1].nomorHandphone && create_if_block_433(ctx)
     );
     return {
       c() {
@@ -52588,7 +53403,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_432(ctx2);
+            if_block = create_if_block_433(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52610,7 +53425,7 @@
       }
     };
   }
-  function create_if_block_422(ctx) {
+  function create_if_block_423(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52648,7 +53463,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].alamatKantor && create_if_block_422(ctx)
+      ctx[1].alamatKantor && create_if_block_423(ctx)
     );
     return {
       c() {
@@ -52698,7 +53513,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_422(ctx2);
+            if_block = create_if_block_423(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52720,7 +53535,7 @@
       }
     };
   }
-  function create_if_block_41(ctx) {
+  function create_if_block_412(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52758,7 +53573,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].telpFaxKantor && create_if_block_41(ctx)
+      ctx[1].telpFaxKantor && create_if_block_412(ctx)
     );
     return {
       c() {
@@ -52808,7 +53623,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_41(ctx2);
+            if_block = create_if_block_412(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -52830,7 +53645,7 @@
       }
     };
   }
-  function create_if_block_40(ctx) {
+  function create_if_block_402(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -52868,7 +53683,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].email && create_if_block_40(ctx)
+      ctx[1].email && create_if_block_402(ctx)
     );
     return {
       c() {
@@ -52918,7 +53733,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_40(ctx2);
+            if_block = create_if_block_402(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -53109,7 +53924,7 @@
       }
     };
   }
-  function create_if_block_382(ctx) {
+  function create_if_block_383(ctx) {
     let each_1_anchor;
     let current;
     let each_value_6 = ensure_array_like(
@@ -53277,7 +54092,7 @@
       }
     };
   }
-  function create_if_block_362(ctx) {
+  function create_if_block_363(ctx) {
     let div0;
     let table;
     let thead;
@@ -53969,7 +54784,7 @@
     icon0 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block0 = (
       /*dataPP*/
-      ctx[3] && create_if_block_352(ctx)
+      ctx[3] && create_if_block_353(ctx)
     );
     icon1 = new Icon_default({ props: { id: "orang", src: add } });
     let if_block1 = (
@@ -54371,7 +55186,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_352(ctx2);
+            if_block0 = create_if_block_353(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(tbody0, null);
@@ -54580,7 +55395,7 @@
       }
     };
   }
-  function create_if_block_352(ctx) {
+  function create_if_block_353(ctx) {
     let each_1_anchor;
     let current;
     let each_value_5 = ensure_array_like(
@@ -55998,11 +56813,11 @@
     let dispose;
     let if_block0 = (
       /*tab1*/
-      ctx[72] === true && create_if_block_372(ctx)
+      ctx[72] === true && create_if_block_373(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[73] === true && create_if_block_362(ctx)
+      ctx[73] === true && create_if_block_363(ctx)
     );
     let if_block2 = (
       /*tab3*/
@@ -56138,7 +56953,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_372(ctx2);
+            if_block0 = create_if_block_373(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t8.parentNode, t8);
@@ -56157,7 +56972,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_362(ctx2);
+            if_block1 = create_if_block_363(ctx2);
             if_block1.c();
             if_block1.m(t9.parentNode, t9);
           }
@@ -60025,7 +60840,7 @@
       }
     };
   }
-  function create_if_block_310(ctx) {
+  function create_if_block_311(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -60063,7 +60878,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].JudulHKI && create_if_block_310(ctx)
+      ctx[1].JudulHKI && create_if_block_311(ctx)
     );
     return {
       c() {
@@ -60113,7 +60928,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_310(ctx2);
+            if_block = create_if_block_311(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -61055,7 +61870,7 @@
     const id = localStorage.getItem("id");
     let vmataKuliah;
     let error = {};
-    let showModalErrorForm = false;
+    let showModalErrorForm2 = false;
     let data2, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
     let biayaPP, tahunPenelitian, judulPenelitian, rolePenelitian, sumberDanaPenelitian;
     let biayaPengmas, tahunPengmas, judulPengmas, rolePengmas, sumberDanaPengmas;
@@ -61251,7 +62066,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
@@ -61289,7 +62104,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanPenelitian", {
           method: "POST",
@@ -61333,7 +62148,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanPengmas", {
           method: "POST",
@@ -61376,7 +62191,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanDiseminasi", {
           method: "POST",
@@ -61419,7 +62234,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanPublikasi", {
           method: "POST",
@@ -61463,7 +62278,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
           method: "POST",
@@ -61507,7 +62322,7 @@
         }
       }
       if (Object.keys(error).length > 0) {
-        $$invalidate(2, showModalErrorForm = true);
+        $$invalidate(2, showModalErrorForm2 = true);
       } else {
         const response = await fetch($apiURL + "/pengalamanHKI", {
           method: "POST",
@@ -61977,13 +62792,13 @@
       $$invalidate(71, showModalHKI);
     }
     function modalerror_show_binding(value) {
-      showModalErrorForm = value;
-      $$invalidate(2, showModalErrorForm);
+      showModalErrorForm2 = value;
+      $$invalidate(2, showModalErrorForm2);
     }
     return [
       vmataKuliah,
       error,
-      showModalErrorForm,
+      showModalErrorForm2,
       dataPP,
       dataPM,
       dataPD,
