@@ -11,7 +11,7 @@
    const id = localStorage.getItem("id");
    let vmataKuliah;
    let error = {};
-   let showModalErrorIdentitas = false;
+   let showModalErrorForm = false;
 
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
@@ -28,7 +28,7 @@
       namaPemakalahDiseminasi,
       namaPertemuanDiseminasi;
 
-   let tahunPublikasi, judulPublikasi, namaJurnal, impactFactor;
+   let tahunPublikasi, judulPublikasi, namaPenulis, namaJurnal, impactFactor;
 
    let tahunBuku, JudulBuku, namaPenulisBuku, PenerbitBuku, Isbn;
 
@@ -114,7 +114,6 @@
       // console.log(result);
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -151,7 +150,6 @@
       const dataRP = await responseRP.json();
 
       if (dataRP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRP.ok) {
@@ -197,7 +195,6 @@
       const resultPP = await responsePP.json();
 
       if (resultPP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -220,7 +217,6 @@
       const resultPM = await responsePM.json();
 
       if (resultPM.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -243,7 +239,6 @@
       const resultPD = await responsePD.json();
 
       if (resultPD.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -266,7 +261,6 @@
       const resultPPub = await responsePPub.json();
 
       if (resultPPub.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -292,7 +286,6 @@
       const resultPPB = await responsePPB.json();
 
       if (resultPPB.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -315,7 +308,6 @@
       const resultPHKI = await responsePHKI.json();
 
       if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -326,130 +318,68 @@
       }
    }
 
-   // -----------------------------------------------
-   // Tombol Simpan
-   // -----------------------------------------------
-   async function simpanPHKI() {
-      const payload = {
-         tahunHKI,
-         JudulHKI,
-         namaPenulisHKI,
-         jenisHKI,
-         noHKI,
-         id,
+   // ------------------------------------------------------------
+   // Simpan Identitas
+   // ------------------------------------------------------------
+   async function simpanIdentitas() {
+      error = {};
+
+      let payload = {
+         idProfile,
+         namaLengkap,
+         jabatanFungsional,
+         nip,
+         nidn,
+         tempatLahir,
+         tanggalLahir,
+         alamatRumah,
+         telpFaxRumah,
+         nomorHandphone,
+         alamatKantor,
+         telpFaxKantor,
+         email,
+         mataKuliah,
       };
 
-      const response = await fetch($apiURL + "/pengalamanHKI", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalHKI = false;
-            tahunHKI = "";
-            JudulHKI = "";
-            namaPenulisHKI = "";
-            jenisHKI = "";
-            noHKI = "";
-            getPengalamanHKI();
+         const response = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
 
-   async function simpanPPB() {
-      const payload = {
-         tahunBuku,
-         JudulBuku,
-         namaPenulisBuku,
-         PenerbitBuku,
-         Isbn,
-         id,
-      };
-
-      const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
-      } else {
-         if (response.ok) {
-            showModalPenulisanBuku = false;
-
-            tahunBuku = "";
-            JudulBuku = "";
-            namaPenulisBuku = "";
-            PenerbitBuku = "";
-            Isbn = "";
-
-            getPengalamanPenulisanBuku();
-         } else {
-            console.log(response);
-         }
-      }
-   }
-
-   async function simpanPPublikasi() {
-      const payload = {
-         tahunPublikasi,
-         judulPublikasi,
-         namaJurnal,
-         impactFactor,
-         id,
-      };
-
-      const response = await fetch($apiURL + "/pengalamanPublikasi", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
-      } else {
-         if (response.ok) {
-            showModalPublikasi = false;
-
-            tahunPublikasi = "";
-            judulPublikasi = "";
-            namaJurnal = "";
-            impactFactor = "";
-
-            getPengalamanPublikasi();
-         } else {
-            console.log(response);
-         }
-      }
-   }
-
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Penelitian
+   // ------------------------------------------------------------
    async function simpanPP() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunPenelitian,
          judulPenelitian,
          rolePenelitian,
@@ -458,39 +388,51 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPenelitian", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPenelitian = false;
+         const response = await fetch($apiURL + "/pengalamanPenelitian", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
 
-            tahunPenelitian = "";
-            judulPenelitian = "";
-            rolePenelitian = "";
-            sumberDanaPenelitian = "";
-            biayaPP = "";
+         const result = await response.json();
 
-            getPengalamanPenelitian();
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPenelitian = false;
+               payload.tahunPenelitian = "";
+               payload.judulPenelitian = "";
+               payload.rolePenelitian = "";
+               payload.sumberDanaPenelitian = "";
+               payload.biayaPP = "";
+               getPengalamanPenelitian();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
 
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Pengabdian Masyarakat
+   // ------------------------------------------------------------
    async function simpanPM() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunPengmas,
          judulPengmas,
          rolePengmas,
@@ -499,39 +441,51 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPengmas", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPengmas = false;
+         const response = await fetch($apiURL + "/pengalamanPengmas", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
 
-            tahunPengmas = "";
-            judulPengmas = "";
-            rolePengmas = "";
-            sumberDanaPengmas = "";
-            biayaPengmas = "";
+         const result = await response.json();
 
-            getPengalamanPengmas();
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPengmas = false;
+               payload.tahunPengmas = "";
+               payload.judulPengmas = "";
+               payload.rolePengmas = "";
+               payload.sumberDanaPengmas = "";
+               payload.biayaPengmas = "";
+               getPengalamanPengmas();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
 
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Diseminasi
+   // ------------------------------------------------------------
    async function simpanPD() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunDiseminasi,
          judulDiseminasi,
          namaPemakalahDiseminasi,
@@ -539,36 +493,205 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanDiseminasi", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalDiseminasi = false;
+         const response = await fetch($apiURL + "/pengalamanDiseminasi", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
 
-            tahunDiseminasi = "";
-            judulDiseminasi = "";
-            namaPemakalahDiseminasi = "";
-            namaPertemuanDiseminasi = "";
+         const result = await response.json();
 
-            getPengalamanDiseminasi();
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalDiseminasi = false;
+               payload.tahunDiseminasi = "";
+               payload.judulDiseminasi = "";
+               payload.namaPemakalahDiseminasi = "";
+               payload.namaPertemuanDiseminasi = "";
+               getPengalamanDiseminasi();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
 
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Publikasi
+   // ------------------------------------------------------------
+   async function simpanPPublikasi() {
+      error = {};
+
+      let payload = {
+         tahunPublikasi,
+         judulPublikasi,
+         namaPenulis,
+         namaJurnal,
+         impactFactor,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/pengalamanPublikasi", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalPublikasi = false;
+               payload.tahunPublikasi = "";
+               payload.judulPublikasi = "";
+               payload.namaPenulis = "";
+               payload.namaJurnal = "";
+               payload.impactFactor = "";
+               getPengalamanPublikasi();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Penulisan Buku
+   // ------------------------------------------------------------
+   async function simpanPPB() {
+      error = {};
+
+      let payload = {
+         tahunBuku,
+         JudulBuku,
+         namaPenulisBuku,
+         PenerbitBuku,
+         Isbn,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalPenulisanBuku = false;
+               payload.tahunBuku = "";
+               payload.JudulBuku = "";
+               payload.namaPenulisBuku = "";
+               payload.PenerbitBuku = "";
+               payload.Isbn = "";
+               getPengalamanPenulisanBuku();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
+   // ------------------------------------------------------------
+   // Simpan Pengalaman Hak Kekayaan Intelektual
+   // ------------------------------------------------------------
+   async function simpanPHKI() {
+      error = {};
+
+      let payload = {
+         tahunHKI,
+         JudulHKI,
+         namaPenulisHKI,
+         jenisHKI,
+         noHKI,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/pengalamanHKI", {
+            method: "POST",
+            headers: {
+               Authorization: `Bearer ${accessToken}`,
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalHKI = false;
+               payload.tahunHKI = "";
+               payload.JudulHKI = "";
+               payload.namaPenulisHKI = "";
+               payload.jenisHKI = "";
+               payload.noHKI = "";
+               getPengalamanHKI();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
+   // ------------------------------------------------------------
+   // Simpan Riwayat Pendidikan
+   // ------------------------------------------------------------
    async function simpanRiwayatPendidikan() {
       const payload = {
          pertiS1,
@@ -601,79 +724,12 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
             $route("/dosen");
          } else {
             console.log(response);
-         }
-      }
-   }
-
-   const validateFormIdentitas = () => {
-      error = {};
-      if (!namaLengkap) error.namaLengkap = "Nama Lengkap is required.";
-      if (!jabatanFungsional)
-         error.jabatanFungsional = "Jabatan Fungsional is required.";
-      if (!nip) error.nip = "Nip is required.";
-      if (!nidn) error.nidn = "Nidn is required.";
-      if (!tempatLahir) error.tempatLahir = "Tempat Lahir is required.";
-      if (!tanggalLahir) error.tanggalLahir = "Tanggal Lahir is required.";
-      if (!alamatRumah) error.alamatRumah = "Alamat Rumah is required.";
-      if (!telpFaxRumah) error.telpFaxRumah = "Telp/Fax Rumah is required.";
-      if (!nomorHandphone)
-         error.nomorHandphone = "Nomor Handphone is required.";
-      if (!alamatKantor) error.alamatKantor = "Alamat Kantor is required.";
-      if (!telpFaxKantor) error.telpFaxKantor = "Telp/Fax Kantor is required.";
-      if (!email) error.email = "Email is required.";
-      if (mataKuliah.length === 0) error.mataKuliah = "Tambahkan Mata Kuliah";
-   };
-
-   async function simpanIdentitas() {
-      validateFormIdentitas();
-
-      if (Object.keys(error).length > 0) {
-         showModalErrorIdentitas = true;
-      } else {
-         const payload = {
-            idProfile,
-            namaLengkap,
-            jabatanFungsional,
-            nip,
-            nidn,
-            tempatLahir,
-            tanggalLahir,
-            alamatRumah,
-            telpFaxRumah,
-            nomorHandphone,
-            alamatKantor,
-            telpFaxKantor,
-            email,
-            mataKuliah,
-         };
-
-         const response = await fetch($apiURL + "/userprofile", {
-            method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-         });
-
-         const result = await response.json();
-
-         if (result.statusCode != 200) {
-            // localStorage.clear();
-            location.pathname = "/tokenexpired";
-         } else {
-            if (response.ok) {
-               $route("/dosen");
-            } else {
-               console.log(response);
-            }
          }
       }
    }
@@ -725,7 +781,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -750,7 +805,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -775,7 +829,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -800,7 +853,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -828,7 +880,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -853,7 +904,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -921,98 +971,90 @@
    </div>
 
    {#if tab1 === true}
-      <!-- <Field name="Id Profile">{idProfile}</Field> -->
-      <!-- <Field name="Id User">{idUser}</Field> -->
-
       <div class="box">
          <Field name="Nama Lengkap">
-            <input class="input" type="text" bind:value={namaLengkap} />
-            <!-- <p class="help is-info">Masukkan nama lengkap dengan gelar</p> -->
+            <input
+               class="input"
+               type="text"
+               placeholder="Masukkan nama lengkap dengan gelar"
+               bind:value={namaLengkap}
+            />
             {#if error.namaLengkap}
-               <span class="help error is-danger">{error.namaLengkap}</span>
+               <p class="help error is-danger">{error.namaLengkap}</p>
             {/if}
          </Field>
 
          <Field name="Jabatan Fungsional">
             <input class="input" type="text" bind:value={jabatanFungsional} />
             {#if error.jabatanFungsional}
-               <span class="help error is-danger"
-                  >{error.jabatanFungsional}</span
-               >
+               <p class="help error is-danger">{error.jabatanFungsional}</p>
             {/if}
          </Field>
 
          <Field name="NIP">
             <input class="input" type="number" bind:value={nip} />
             {#if error.nip}
-               <span class="help error is-danger">{error.nip}</span>
+               <p class="help error is-danger">{error.nip}</p>
             {/if}
          </Field>
          <Field name="NIDN">
             <input class="input" type="number" bind:value={nidn} />
             {#if error.nidn}
-               <span class="help error is-danger">{error.nidn}</span>
+               <p class="help error is-danger">{error.nidn}</p>
             {/if}</Field
          >
 
-         <Field name="Tempat / Tanggal Lahir">
-            <div class="field-body">
-               <div class="field">
-                  <input class="input" type="text" bind:value={tempatLahir} />
-                  {#if error.tempatLahir}
-                     <span class="help error is-danger"
-                        >{error.tempatLahir}</span
-                     >
-                  {/if}
-               </div>
-               <div class="field">
-                  <input class="input" type="date" bind:value={tanggalLahir} />
-                  {#if error.tanggalLahir}
-                     <span class="help error is-danger"
-                        >{error.tanggalLahir}</span
-                     >
-                  {/if}
-               </div>
-            </div>
+         <Field name="Tempat Lahir">
+            <input class="input" type="text" bind:value={tempatLahir} />
+            {#if error.tempatLahir}
+               <p class="help error is-danger">{error.tempatLahir}</p>
+            {/if}
+         </Field>
+
+         <Field name="Tanggal Lahir">
+            <input class="input" type="date" bind:value={tanggalLahir} />
+            {#if error.tanggalLahir}
+               <p class="help error is-danger">{error.tanggalLahir}</p>
+            {/if}
          </Field>
 
          <Field name="Alamat Rumah">
             <input class="input" type="text" bind:value={alamatRumah} />
             {#if error.alamatRumah}
-               <span class="help error is-danger">{error.alamatRumah}</span>
+               <p class="help error is-danger">{error.alamatRumah}</p>
             {/if}
          </Field>
 
          <Field name="Telp/Fax Rumah">
             <input class="input" type="number" bind:value={telpFaxRumah} />
             {#if error.telpFaxRumah}
-               <span class="help error is-danger">{error.telpFaxRumah}</span>
+               <p class="help error is-danger">{error.telpFaxRumah}</p>
             {/if}
          </Field>
 
          <Field name="Nomor Handphone">
             <input class="input" type="number" bind:value={nomorHandphone} />
             {#if error.nomorHandphone}
-               <span class="help error is-danger">{error.nomorHandphone}</span>
+               <p class="help error is-danger">{error.nomorHandphone}</p>
             {/if}</Field
          >
          <Field name="Alamat Kantor">
             <input class="input" type="text" bind:value={alamatKantor} />
             {#if error.alamatKantor}
-               <span class="help error is-danger">{error.alamatKantor}</span>
+               <p class="help error is-danger">{error.alamatKantor}</p>
             {/if}</Field
          >
 
          <Field name="Telp/Fax Kantor">
             <input class="input" type="number" bind:value={telpFaxKantor} />
             {#if error.telpFaxKantor}
-               <span class="help error is-danger">{error.telpFaxKantor}</span>
+               <p class="help error is-danger">{error.telpFaxKantor}</p>
             {/if}</Field
          >
          <Field class="input" name="Email">
             <input class="input" type="text" bind:value={email} />
             {#if error.email}
-               <span class="help error is-danger">{error.email}</span>
+               <p class="help error is-danger">{error.email}</p>
             {/if}
          </Field>
 
@@ -1026,8 +1068,7 @@
                      bind:value={vmataKuliah}
                   />
                   {#if error.mataKuliah}
-                     <span class="help error is-danger">{error.mataKuliah}</span
-                     >
+                     <p class="help error is-danger">{error.mataKuliah}</p>
                   {/if}
                </p>
                <p class="control">
@@ -1454,6 +1495,7 @@
                   <th class="is-narrow"></th>
                   <th class="is-narrow">Tahun</th>
                   <th>Judul Artikel</th>
+                  <th>Nama Penulis</th>
                   <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th>
                   <th>Impact Factor/Scopus Quarter/Akreditasi</th>
                </tr>
@@ -1474,6 +1516,7 @@
                         >
                         <td>{PPub.tahun_publikasi}</td>
                         <td>{PPub.judul_artikel}</td>
+                        <td>{PPub.nama_penulis}</td>
                         <td>{PPub.nama_jurnal}</td>
                         <td>{PPub.impact}</td>
                      </tr>
@@ -1627,10 +1670,16 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunPenelitian} />
+      {#if error.tahunPenelitian}
+         <p class="help error is-danger">{error.tahunPenelitian}</p>
+      {/if}
    </Field>
 
    <Field name="Judul Penelitian">
       <input class="input" type="text" bind:value={judulPenelitian} />
+      {#if error.judulPenelitian}
+         <p class="help error is-danger">{error.judulPenelitian}</p>
+      {/if}
    </Field>
 
    <Field name="Role">
@@ -1643,10 +1692,16 @@
             <option value="Anggota">Anggota</option>
          </select>
       </div>
+      {#if error.rolePenelitian}
+         <p class="help error is-danger">{error.rolePenelitian}</p>
+      {/if}
    </Field>
 
    <Field name="Sumber Dana">
       <input class="input" type="text" bind:value={sumberDanaPenelitian} />
+      {#if error.sumberDanaPenelitian}
+         <p class="help error is-danger">{error.sumberDanaPenelitian}</p>
+      {/if}
    </Field>
 
    <Field name="Jumlah Rp.">
@@ -1657,6 +1712,9 @@
          bind:value={biayaPP}
          on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
       />
+      {#if error.biayaPP}
+         <p class="help error is-danger">{error.biayaPP}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1676,10 +1734,16 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunPengmas} />
+      {#if error.tahunPengmas}
+         <p class="help error is-danger">{error.tahunPengmas}</p>
+      {/if}
    </Field>
 
    <Field name="Judul Pengmas">
       <input class="input" type="text" bind:value={judulPengmas} />
+      {#if error.judulPengmas}
+         <p class="help error is-danger">{error.judulPengmas}</p>
+      {/if}
    </Field>
 
    <Field name="Role">
@@ -1692,10 +1756,16 @@
             <option value="Anggota">Anggota</option>
          </select>
       </div>
+      {#if error.rolePengmas}
+         <p class="help error is-danger">{error.rolePengmas}</p>
+      {/if}
    </Field>
 
    <Field name="Sumber Dana">
       <input class="input" type="text" bind:value={sumberDanaPengmas} />
+      {#if error.sumberDanaPengmas}
+         <p class="help error is-danger">{error.sumberDanaPengmas}</p>
+      {/if}
    </Field>
 
    <Field name="Jumlah Rp.">
@@ -1706,6 +1776,9 @@
          bind:value={biayaPengmas}
          on:keyup={() => (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
       />
+      {#if error.biayaPengmas}
+         <p class="help error is-danger">{error.biayaPengmas}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1727,18 +1800,30 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunDiseminasi} />
+      {#if error.tahunDiseminasi}
+         <p class="help error is-danger">{error.tahunDiseminasi}</p>
+      {/if}
    </Field>
 
    <Field name="Judul Artikel">
       <input class="input" type="text" bind:value={judulDiseminasi} />
+      {#if error.judulDiseminasi}
+         <p class="help error is-danger">{error.judulDiseminasi}</p>
+      {/if}
    </Field>
 
    <Field name="Nama Pemakalah">
       <input class="input" type="text" bind:value={namaPemakalahDiseminasi} />
+      {#if error.namaPemakalahDiseminasi}
+         <p class="help error is-danger">{error.namaPemakalahDiseminasi}</p>
+      {/if}
    </Field>
 
    <Field name="Nama Pertemuan Ilmiah/Pameran">
       <input class="input" type="text" bind:value={namaPertemuanDiseminasi} />
+      {#if error.namaPertemuanDiseminasi}
+         <p class="help error is-danger">{error.namaPertemuanDiseminasi}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1760,18 +1845,37 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunPublikasi} />
+      {#if error.tahunPublikasi}
+         <p class="help error is-danger">{error.tahunPublikasi}</p>
+      {/if}
    </Field>
 
    <Field name="Judul Artikel">
       <input class="input" type="text" bind:value={judulPublikasi} />
+      {#if error.judulPublikasi}
+         <p class="help error is-danger">{error.judulPublikasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulis} />
+      {#if error.namaPenulis}
+         <p class="help error is-danger">{error.namaPenulis}</p>
+      {/if}
    </Field>
 
    <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
       <input class="input" type="text" bind:value={namaJurnal} />
+      {#if error.namaJurnal}
+         <p class="help error is-danger">{error.namaJurnal}</p>
+      {/if}
    </Field>
 
-   <Field name="Nama Pertemuan Ilmiah/Pameran">
+   <Field name="Impact Factor/Scopus Quarter/Akreditasi">
       <input class="input" type="text" bind:value={impactFactor} />
+      {#if error.impactFactor}
+         <p class="help error is-danger">{error.impactFactor}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1793,22 +1897,37 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunBuku} />
+      {#if error.tahunBuku}
+         <p class="help error is-danger">{error.tahunBuku}</p>
+      {/if}
    </Field>
 
    <Field name="Judul Buku">
       <input class="input" type="text" bind:value={JudulBuku} />
+      {#if error.JudulBuku}
+         <p class="help error is-danger">{error.JudulBuku}</p>
+      {/if}
    </Field>
 
    <Field name="Nama Penulis">
       <input class="input" type="text" bind:value={namaPenulisBuku} />
+      {#if error.namaPenulisBuku}
+         <p class="help error is-danger">{error.namaPenulisBuku}</p>
+      {/if}
    </Field>
 
    <Field name="Penerbit">
       <input class="input" type="text" bind:value={PenerbitBuku} />
+      {#if error.PenerbitBuku}
+         <p class="help error is-danger">{error.PenerbitBuku}</p>
+      {/if}
    </Field>
 
    <Field name="ISBN">
       <input class="input" type="text" bind:value={Isbn} />
+      {#if error.Isbn}
+         <p class="help error is-danger">{error.Isbn}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1828,22 +1947,37 @@
 
    <Field name="Tahun">
       <input class="input" type="number" bind:value={tahunHKI} />
+      {#if error.tahunHKI}
+         <p class="help error is-danger">{error.tahunHKI}</p>
+      {/if}
    </Field>
 
    <Field name="Judul HKI">
       <input class="input" type="text" bind:value={JudulHKI} />
+      {#if error.JudulHKI}
+         <p class="help error is-danger">{error.JudulHKI}</p>
+      {/if}
    </Field>
 
    <Field name="Nama Penulis">
       <input class="input" type="text" bind:value={namaPenulisHKI} />
+      {#if error.namaPenulisHKI}
+         <p class="help error is-danger">{error.namaPenulisHKI}</p>
+      {/if}
    </Field>
 
-   <Field name="Penerbit">
+   <Field name="Jenis HKI">
       <input class="input" type="text" bind:value={jenisHKI} />
+      {#if error.jenisHKI}
+         <span class="help error is-danger">{error.jenisHKI}</span>
+      {/if}
    </Field>
 
-   <Field name="ISBN">
+   <Field name="No HKI">
       <input class="input" type="text" bind:value={noHKI} />
+      {#if error.noHKI}
+         <p class="help error is-danger">{error.noHKI}</p>
+      {/if}
    </Field>
 
    <hr />
@@ -1858,6 +1992,13 @@
 <!-- ------------------------------------------------------------------------>
 <!-- Modal Error Simpan Identitas -->
 <!-- ------------------------------------------------------------------------>
-<Modalerror bind:show={showModalErrorIdentitas}>
+<Modalerror bind:show={showModalErrorForm}>
    <p>Lengkapi semua form sebelum disimpan</p>
 </Modalerror>
+
+<style>
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
+   }
+</style>

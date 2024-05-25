@@ -107,7 +107,6 @@
                   ? JSON.parse(data.anggota_tim)
                   : data.anggota_tim;
 
-            console.log(anggotaTim);
             // let ccx = anggotaTim.map(function (obj) {
             //    return obj.value;
             // });
@@ -559,7 +558,7 @@
       if (filePpm) readerPpm.readAsDataURL(filePpm);
 
       // ------------------------------------------------------------------------
-      const payload = {
+      let payload = {
          jenisProposal,
          jenisKegiatan,
          jenisSkema,
@@ -681,7 +680,7 @@
       if (filePpm) readerPpm.readAsDataURL(filePpm);
 
       // -----------------------------------------------------------------------------//
-      const payload = {
+      let payload = {
          jenisProposal,
          jenisKegiatan,
          jenisSkema,
@@ -804,7 +803,7 @@
       if (filePpm) readerPpm.readAsDataURL(filePpm);
 
       // -----------------------------------------------------------------------------//
-      const payload = {
+      let payload = {
          jenisProposal,
          jenisKegiatan,
          jenisSkema,
@@ -852,64 +851,16 @@
 
    let tab1 = true;
    let tab2;
-   // let tab3;
-   // let tab4;
-   // let tab5;
-   // let tab6;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
    }
-
-   // function clicktab3() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = true;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = false;
-   // }
-
-   // function clicktab4() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = true;
-   //    tab5 = false;
-   //    tab6 = false;
-   // }
-
-   // function clicktab5() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = true;
-   //    tab6 = false;
-   // }
-
-   // function clicktab6() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = true;
-   // }
 
    function addLogbook() {
       // $route("/dosen/addlogbook");
@@ -948,38 +899,6 @@
                   <span>Biodata Peneliti</span>
                </a>
             </li>
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Status</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Logbook</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Monev</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Laporan</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
          </ul>
       </div>
 
@@ -987,10 +906,10 @@
       {#if tab1 === true}
          <div class="box">
             {#if !view}
-               <p id="days"></p>
+               <!-- <p id="days"></p>
                <p id="hours"></p>
                <p id="mins"></p>
-               <p id="secs"></p>
+               <p id="secs"></p> -->
                <Field name="Jenis Proposal">
                   <div class="select is-fullwidth">
                      <select bind:value={jenisProposal}>
@@ -1654,86 +1573,8 @@
             </table>
          </div>
       {/if}
-
-      <!-- Tab Status -->
-      <!-- {#if tab3 === true}
-         <div class="box">
-            <Field name="Status PPM">
-               <Status code={data.status} />
-            </Field>
-
-            <Field name="Status Pendanaan">. . .</Field>
-         </div>
-      {/if} -->
-
-      <!-- Tab Logbook -->
-      <!-- {#if tab4 === true}
-         <div class="columns notification is-info is-light">
-            <div class="column is-4">
-               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  suscipit placeat amet.
-               </p>
-            </div>
-
-            <div class="column">
-               <button class="button is-info" on:click={addLogbook}>
-                  <span class="icon">
-                     <Icon id="logbook" src={addProposal} />
-                  </span>
-                  <span><a>Create Logbook</a></span>
-               </button>
-            </div>
-         </div>
-      {/if} -->
-
-      <!-- Tab Monev -->
-      <!-- {#if tab5 === true}
-         <div class="columns notification is-success is-light">
-            <div class="column is-4">
-               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  suscipit placeat amet.
-               </p>
-            </div>
-
-            <div class="column">
-               <button class="button is-success" on:click={addLogbook}>
-                  <span class="icon">
-                     <Icon id="monev" src={addProposal} />
-                  </span>
-                  <span><a>Create Monev</a></span>
-               </button>
-            </div>
-         </div>
-      {/if} -->
-
-      <!-- Tab Laporan -->
-      <!-- {#if tab6 === true}
-         <div class="columns notification is-info is-light">
-            <div class="column is-4">
-               <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                  suscipit placeat amet.
-               </p>
-            </div>
-
-            <div class="column">
-               <button class="button is-info" on:click={addLogbook}>
-                  <span class="icon">
-                     <Icon id="laporan" src={addProposal} />
-                  </span>
-                  <span><a>Create Laporan</a></span>
-               </button>
-            </div>
-         </div>
-      {/if} -->
    </Article>
 {/if}
 
 <style>
-   /* .box-padding { 
-      padding: 4.724rem;
-   }
-   */
 </style>

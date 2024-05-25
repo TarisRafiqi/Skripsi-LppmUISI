@@ -7,16 +7,15 @@
    import { infoOutline } from "../../store/icons";
 
    let items;
+   const accessToken = localStorage.getItem("token");
+
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
 
    // Pakai akses token, Hanya role admin yang bisa mengakses halaman ini
    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
       const response = await fetch($apiURL + "/ppm", {
          method: "GET",
          headers: headers,
@@ -30,7 +29,7 @@
       } else {
          if (response.ok) {
             items = result.dbData;
-            console.log(items);
+            // console.log(items);
          }
       }
    });

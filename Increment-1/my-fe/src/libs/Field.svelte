@@ -119,10 +119,10 @@
       margin-top: 0.5rem;
    }
 
-   div a,
+   /* div a,
    :not(.view) b {
       line-height: 38px;
-   }
+   } */
 
    div > :global(span) {
       display: inline-flex;

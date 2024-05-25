@@ -7,3 +7,4 @@ export { default as ppmongoing } from "./ppmongoing.svelte";
 export { default as profile } from "./profile.svelte";
 export { default as proposalmanagement } from "./proposalmanagement.svelte";
 export { default as select } from "./select.svelte";
+export { default as testform } from "./testform.svelte";

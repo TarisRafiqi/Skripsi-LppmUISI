@@ -1658,44 +1658,40 @@ button.svelte-f1u2iy.svelte-f1u2iy {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Field.esbuild-svelte-fake-css */
-p.select.svelte-a4hyjq select.svelte-a4hyjq {
+p.select.svelte-1oy4l94 select.svelte-1oy4l94 {
   width: 100%;
 }
-input[type=month].svelte-a4hyjq.svelte-a4hyjq {
+input[type=month].svelte-1oy4l94.svelte-1oy4l94 {
   background-color: #5ca7f1;
   color: #ffffff;
   border: none;
   outline: none;
 }
-.svelte-a4hyjq.svelte-a4hyjq::-webkit-calendar-picker-indicator {
+.svelte-1oy4l94.svelte-1oy4l94::-webkit-calendar-picker-indicator {
   background-color: #ffffff;
   padding: 6px;
   cursor: pointer;
   border-radius: 20px;
 }
-div.svelte-a4hyjq.svelte-a4hyjq {
+div.svelte-1oy4l94.svelte-1oy4l94 {
   display: grid;
   grid-template-columns: 12rem auto;
   gap: 1rem;
   line-height: 2.5;
 }
-div.svelte-a4hyjq + div {
+div.svelte-1oy4l94 + div {
   margin-top: 0.5rem;
 }
-div.svelte-a4hyjq a.svelte-a4hyjq,
-.svelte-a4hyjq:not(.view) b.svelte-a4hyjq {
-  line-height: 38px;
-}
-div.svelte-a4hyjq > span {
+div.svelte-1oy4l94 > span {
   display: inline-flex;
   align-items: center;
   min-height: 2.375rem;
   column-gap: 0.35rem;
 }
-div.svelte-a4hyjq > span * {
+div.svelte-1oy4l94 > span * {
   margin: 0;
 }
-[href].svelte-a4hyjq.svelte-a4hyjq {
+[href].svelte-1oy4l94.svelte-1oy4l94 {
   color: #35f;
 }
 
@@ -1954,14 +1950,22 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-kpqjr6.svelte-kpqjr6 {
+.inputf__wrapper.svelte-l1rc18.svelte-l1rc18 {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-kpqjr6 input.svelte-kpqjr6 {
+.inputf__wrapper.svelte-l1rc18 input.svelte-l1rc18 {
   width: 0;
   height: 0;
   opacity: 0;
+}
+.help.svelte-l1rc18.svelte-l1rc18 {
+  margin: -6px 0px 0px 0px;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/profile.esbuild-svelte-fake-css */
+.help.svelte-1lhj3n7 {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Modalroute.esbuild-svelte-fake-css */
@@ -2029,6 +2033,21 @@ button.svelte-5cn8hs {
   padding-right: 20px;
   scrollbar-width: thin;
   overflow-y: scroll;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
+.field.svelte-k7u2xx {
+  padding-bottom: 10px;
+}
+.red-asterisk.svelte-k7u2xx {
+  color: red;
+  font-weight: bold;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */
+.column.svelte-qz2r6m {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */

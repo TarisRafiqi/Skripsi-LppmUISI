@@ -12,7 +12,7 @@
    const id = Number(localStorage.getItem("id"));
    const localStorage_id = localStorage.getItem("id");
    const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
-
+   let error = {};
    let showModalErrorProposal = false;
    let showModalErrorBiodata = false;
    let showModalErrorBiodata2 = false;
@@ -136,23 +136,6 @@
       showModalHKI = true;
    }
 
-   // function getDataStep() {
-   //    const currentStep = 1 + "";
-   //    let dataSteps = document.querySelectorAll("[data-step]");
-
-   //    if (dataSteps) {
-   //       // loop sebanyak data-step yg diperoleh.
-   //       dataSteps.forEach((dataStep) => {
-   //          const step = dataStep.dataset.step;
-   //          if (step === currentStep) {
-   //             dataStep.classList.add("is-active");
-   //          } else {
-   //             dataStep.classList.remove("is-active");
-   //          }
-   //       });
-   //    }
-   // }
-
    let inputFilePPM;
 
    onMount(async () => {
@@ -167,7 +150,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
          // localStorage.clear();
@@ -196,7 +178,6 @@
       });
 
       const resultGP = await responseGP.json();
-      // console.log(resultGP);
 
       if (resultGP.statusCode != 200) {
          // localStorage.clear();
@@ -204,7 +185,6 @@
       } else {
          if (responseGP.ok) {
             data = resultGP;
-
             idProfile = data.id;
             idUser = data.uid;
             namaLengkap = data.nama_lengkap;
@@ -235,7 +215,6 @@
       });
 
       const dataRP = await responseRP.json();
-      // console.log(dataRP);
 
       if (dataRP.statusCode != 200) {
          // localStorage.clear();
@@ -308,7 +287,6 @@
       });
 
       const resultPP = await responsePP.json();
-      // console.log(resultPP);
 
       if (resultPP.statusCode != 200) {
          // localStorage.clear();
@@ -332,7 +310,6 @@
       });
 
       const resultPM = await responsePM.json();
-      // console.log(resultPM);
 
       if (resultPM.statusCode != 200) {
          // localStorage.clear();
@@ -356,7 +333,6 @@
       });
 
       const resultPD = await responsePD.json();
-      // console.log(resultPD);
 
       if (resultPD.statusCode != 200) {
          // localStorage.clear();
@@ -380,7 +356,6 @@
       });
 
       const resultPPub = await responsePPub.json();
-      // console.log(resultPPub);
 
       if (resultPPub.statusCode != 200) {
          // localStorage.clear();
@@ -407,7 +382,6 @@
       );
 
       const resultPPB = await responsePPB.json();
-      // console.log(resultPPB);
 
       if (resultPPB.statusCode != 200) {
          // localStorage.clear();
@@ -431,7 +405,6 @@
       });
 
       const resultPHKI = await responsePHKI.json();
-      // console.log(resultPHKI);
 
       if (resultPHKI.statusCode != 200) {
          // localStorage.clear();
@@ -485,15 +458,13 @@
       return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 
-   //------------------------------------------------------------
+   //----------------------------//
    // Button Simpan Proposal
-   //------------------------------------------------------------
+   //----------------------------//
    async function simpanProposal() {
-      const accessToken = localStorage.getItem("token");
-
-      // -------------------------------------------------------------------//
+      // -------------------------------//
       // Upload File RAB
-      // -------------------------------------------------------------------//
+      // -------------------------------//
       const readerRab = new FileReader();
       if (
          jenisSkema === "Riset Kelompok Keahlian" ||
@@ -562,143 +533,96 @@
       };
 
       readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
-      const idnamaLengkap = document.getElementById("namaLengkap");
-      const idjabatanFungsional = document.getElementById("jabatanFungsional");
-      const idnip = document.getElementById("nip");
-      const idnidn = document.getElementById("nidn");
-      const idtempatLahir = document.getElementById("tempatLahir");
-      const idtanggalLahir = document.getElementById("tanggalLahir");
-      const idalamatRumah = document.getElementById("alamatRumah");
-      const idtelpFaxRumah = document.getElementById("telpFaxRumah");
-      const idnomorHandphone = document.getElementById("nomorHandphone");
-      const idalamatKantor = document.getElementById("alamatKantor");
-      const idtelpFaxKantor = document.getElementById("telpFaxKantor");
-      const idemail = document.getElementById("email");
+
+      // -----------------------------------------------------------//
+      // Post Proposal                                              //
+      // -----------------------------------------------------------//
+      let payloadProposal = {
+         id,
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         judul,
+         myAbstract,
+         status: 0,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      const responseProposal = await fetch($apiURL + "/ppm", {
+         method: "POST",
+         headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payloadProposal),
+      });
+
+      // ----------------------------------------------------//
+      // Post Identitas                                      //
+      // ----------------------------------------------------//
+      let payloadIdentitas = {
+         idProfile,
+         namaLengkap,
+         jabatanFungsional,
+         nip,
+         nidn,
+         tempatLahir,
+         tanggalLahir,
+         alamatRumah,
+         telpFaxRumah,
+         nomorHandphone,
+         alamatKantor,
+         telpFaxKantor,
+         email,
+         mataKuliah,
+      };
+
+      const responseIdentitas = await fetch($apiURL + "/userprofile", {
+         method: "PATCH",
+         headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payloadIdentitas),
+      });
+
+      // ----------------------------------------------------
+      // Response
+      // ----------------------------------------------------
+      const resultProposal = await responseProposal.json();
+      const resultIdentitas = await responseIdentitas.json();
 
       if (
-         idnamaLengkap.value === "" ||
-         idnamaLengkap.value == null ||
-         idjabatanFungsional.value === "" ||
-         idjabatanFungsional.value == null ||
-         idnip.value === "" ||
-         idnip.value == null ||
-         idnidn.value === "" ||
-         idnidn.value == null ||
-         idtempatLahir.value === "" ||
-         idtempatLahir.value == null ||
-         idtanggalLahir.value === "" ||
-         idtanggalLahir.value == null ||
-         idalamatRumah.value === "" ||
-         idalamatRumah.value == null ||
-         idtelpFaxRumah.value === "" ||
-         idtelpFaxRumah.value == null ||
-         idnomorHandphone.value === "" ||
-         idnomorHandphone.value == null ||
-         idalamatKantor.value === "" ||
-         idalamatKantor.value == null ||
-         idtelpFaxKantor.value === "" ||
-         idtelpFaxKantor.value == null ||
-         idemail.value === "" ||
-         idemail.value == null ||
-         mataKuliah.length === 0
+         resultProposal.statusCode != 200 ||
+         resultIdentitas.statusCode !== 200
       ) {
-         showModalErrorBiodata2 = true;
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         // ----------------------------------------------------//
-         // Post Proposal                                       //
-         // ----------------------------------------------------//
-         let payloadProposal = {
-            id,
-            jenisProposal,
-            jenisKegiatan,
-            jenisSkema,
-            kelompokKeahlian,
-            topik,
-            tanggalMulai,
-            tanggalSelesai,
-            biayaPenelitian,
-            anggotaTim,
-            judul,
-            myAbstract,
-            status: 0,
-            randomRabFileName,
-            randomPpmFileName,
-         };
-
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payloadProposal),
-         });
-
-         // ----------------------------------------------------//
-         // Post Identitas                                      //
-         // ----------------------------------------------------//
-         let payloadIdentitas = {
-            idProfile,
-            namaLengkap,
-            jabatanFungsional,
-            nip,
-            nidn,
-            tempatLahir,
-            tanggalLahir,
-            alamatRumah,
-            telpFaxRumah,
-            nomorHandphone,
-            alamatKantor,
-            telpFaxKantor,
-            email,
-            mataKuliah,
-         };
-
-         const responseIdentitas = await fetch($apiURL + "/userprofile", {
-            method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payloadIdentitas),
-         });
-
-         // ----------------------------------------------------
-         // Response
-         // ----------------------------------------------------
-         const resultProposal = await responseProposal.json();
-         const resultIdentitas = await responseIdentitas.json();
-         console.log(resultProposal);
-         console.log(resultIdentitas);
-
-         if (
-            resultProposal.statusCode != 200 ||
-            resultIdentitas.statusCode !== 200
-         ) {
-            // localStorage.clear();
-            location.pathname = "/tokenexpired";
+         if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/proposalmanagement");
          } else {
-            if (responseProposal.ok && responseIdentitas.ok) {
-               $route("/dosen/proposalmanagement");
-            } else {
-               console.log(responseProposal.msg);
-               console.log(responseIdentitas.msg);
-            }
+            console.log(responseProposal.msg);
+            console.log(responseIdentitas.msg);
          }
       }
    }
 
-   //------------------------------------------------------------
+   //------------------------------
    // Button Submit Proposal
-   //------------------------------------------------------------
+   //------------------------------
    async function submitProposal() {
       isLoading = true;
-      const accessToken = localStorage.getItem("token");
-
-      // -------------------------------------------------------------------//
+      // --------------------------------------//
       // Upload File RAB
-      // -------------------------------------------------------------------//
+      // --------------------------------------//
       const readerRab = new FileReader();
       if (
          jenisSkema === "Riset Kelompok Keahlian" ||
@@ -767,132 +691,87 @@
       };
 
       readerPpm.readAsDataURL(filePpm);
-      // -----------------------------------------------------------------------------//
-      const idnamaLengkap = document.getElementById("namaLengkap");
-      const idjabatanFungsional = document.getElementById("jabatanFungsional");
-      const idnip = document.getElementById("nip");
-      const idnidn = document.getElementById("nidn");
-      const idtempatLahir = document.getElementById("tempatLahir");
-      const idtanggalLahir = document.getElementById("tanggalLahir");
-      const idalamatRumah = document.getElementById("alamatRumah");
-      const idtelpFaxRumah = document.getElementById("telpFaxRumah");
-      const idnomorHandphone = document.getElementById("nomorHandphone");
-      const idalamatKantor = document.getElementById("alamatKantor");
-      const idtelpFaxKantor = document.getElementById("telpFaxKantor");
-      const idemail = document.getElementById("email");
+
+      // --------------------------------------------------------------------//
+      // Post Proposal                                                       //
+      // --------------------------------------------------------------------//
+      let payloadProposal = {
+         id,
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         judul,
+         myAbstract,
+         status: 2,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      const responseProposal = await fetch($apiURL + "/ppm", {
+         method: "POST",
+         headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payloadProposal),
+      });
+
+      // ----------------------------------------------------//
+      // Post Identitas                                      //
+      // ----------------------------------------------------//
+      let payloadIdentitas = {
+         idProfile,
+         namaLengkap,
+         jabatanFungsional,
+         nip,
+         nidn,
+         tempatLahir,
+         tanggalLahir,
+         alamatRumah,
+         telpFaxRumah,
+         nomorHandphone,
+         alamatKantor,
+         telpFaxKantor,
+         email,
+         mataKuliah,
+      };
+
+      const responseIdentitas = await fetch($apiURL + "/userprofile", {
+         method: "PATCH",
+         headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify(payloadIdentitas),
+      });
+
+      // ----------------------------------------------------
+      // Response
+      // ----------------------------------------------------
+      const resultProposal = await responseProposal.json();
+      const resultIdentitas = await responseIdentitas.json();
 
       if (
-         idnamaLengkap.value === "" ||
-         idnamaLengkap.value == null ||
-         idjabatanFungsional.value === "" ||
-         idjabatanFungsional.value == null ||
-         idnip.value === "" ||
-         idnip.value == null ||
-         idnidn.value === "" ||
-         idnidn.value == null ||
-         idtempatLahir.value === "" ||
-         idtempatLahir.value == null ||
-         idtanggalLahir.value === "" ||
-         idtanggalLahir.value == null ||
-         idalamatRumah.value === "" ||
-         idalamatRumah.value == null ||
-         idtelpFaxRumah.value === "" ||
-         idtelpFaxRumah.value == null ||
-         idnomorHandphone.value === "" ||
-         idnomorHandphone.value == null ||
-         idalamatKantor.value === "" ||
-         idalamatKantor.value == null ||
-         idtelpFaxKantor.value === "" ||
-         idtelpFaxKantor.value == null ||
-         idemail.value === "" ||
-         idemail.value == null ||
-         mataKuliah.length === 0
+         resultProposal.statusCode != 200 ||
+         resultIdentitas.statusCode !== 200
       ) {
-         showModalErrorBiodata = true;
+         // localStorage.clear();
+         location.pathname = "/tokenexpired";
       } else {
-         // ----------------------------------------------------//
-         // Post Proposal                                       //
-         // ----------------------------------------------------//
-         let payloadProposal = {
-            id,
-            jenisProposal,
-            jenisKegiatan,
-            jenisSkema,
-            kelompokKeahlian,
-            topik,
-            tanggalMulai,
-            tanggalSelesai,
-            biayaPenelitian,
-            anggotaTim,
-            judul,
-            myAbstract,
-            status: 2,
-            randomRabFileName,
-            randomPpmFileName,
-         };
-
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payloadProposal),
-         });
-
-         // ----------------------------------------------------//
-         // Post Identitas                                      //
-         // ----------------------------------------------------//
-         let payloadIdentitas = {
-            idProfile,
-            namaLengkap,
-            jabatanFungsional,
-            nip,
-            nidn,
-            tempatLahir,
-            tanggalLahir,
-            alamatRumah,
-            telpFaxRumah,
-            nomorHandphone,
-            alamatKantor,
-            telpFaxKantor,
-            email,
-            mataKuliah,
-         };
-
-         const responseIdentitas = await fetch($apiURL + "/userprofile", {
-            method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payloadIdentitas),
-         });
-
-         // ----------------------------------------------------
-         // Response
-         // ----------------------------------------------------
-         const resultProposal = await responseProposal.json();
-         const resultIdentitas = await responseIdentitas.json();
-         console.log(resultProposal);
-         console.log(resultIdentitas);
-
-         if (
-            resultProposal.statusCode != 200 ||
-            resultIdentitas.statusCode !== 200
-         ) {
-            // localStorage.clear();
-            location.pathname = "/tokenexpired";
+         if (responseProposal.ok && responseIdentitas.ok) {
+            $route("/dosen/proposalmanagement");
          } else {
-            if (responseProposal.ok && responseIdentitas.ok) {
-               $route("/dosen/proposalmanagement");
-            } else {
-               console.log(responseProposal.msg);
-               console.log(responseIdentitas.msg);
-            }
+            console.log(responseProposal.msg);
+            console.log(responseIdentitas.msg);
          }
-         isLoading = false;
       }
+      isLoading = false;
    }
 
    function goSelect(el) {
@@ -905,16 +784,6 @@
          return member.value !== uid;
       });
    }
-
-   // -----------------------------------------------
-   // Stepper Function
-   // -----------------------------------------------
-   // afterUpdate(() => {
-   //    const ppmInput = $ppmFile;
-   //    if (ppmInput.name) {
-   //       console.log($ppmFile);
-   //    }
-   // });
 
    function isObjectEmpty(objectName) {
       return (
@@ -933,48 +802,59 @@
    }
 
    function clicktab2() {
-      const idjenisProposal = document.getElementById("jenisProposal");
-      const idjenisKegiatan = document.getElementById("jenisKegiatan");
-      const idjenisSkema = document.getElementById("jenisSkema");
-      const idkelompokKeahlian = document.getElementById("kelompokKeahlian");
-      const idtopik = document.getElementById("topik");
-      const idtanggalMulai = document.getElementById("tanggalMulai");
-      const idtanggalSelesai = document.getElementById("tanggalSelesai");
-      const idbiayaPenelitian = document.getElementById("biayaPenelitian");
-      const idjudul = document.getElementById("judul");
-      const idmyAbstract = document.getElementById("myAbstract");
+      error = {};
+
+      let payloadProposal = {
+         id,
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         judul,
+         myAbstract,
+         status: 0,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      for (const [key, value] of Object.entries(payloadProposal)) {
+         if (
+            !value ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (isObjectEmpty($ppmFile)) {
+         error["fileProposal"] = `*`;
+      }
 
       if (
-         idjenisProposal.value === "" ||
-         idjenisProposal.value == null ||
-         idjenisKegiatan.value === "" ||
-         idjenisKegiatan.value == null ||
-         idjenisSkema.value === "" ||
-         idjenisSkema.value == null ||
-         idkelompokKeahlian.value === "" ||
-         idkelompokKeahlian.value == null ||
-         idtopik.value === "" ||
-         idtopik.value == null ||
-         idtanggalMulai.value === "" ||
-         idtanggalMulai.value == null ||
-         idtanggalSelesai.value === "" ||
-         idtanggalSelesai.value == null ||
-         idbiayaPenelitian.value === "" ||
-         idbiayaPenelitian.value == null ||
-         anggotaTim.length === 1 ||
-         idjudul.value === "" ||
-         idjudul.value == null ||
-         idmyAbstract.value === "" ||
-         idmyAbstract.value == null ||
-         isObjectEmpty($ppmFile)
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
       ) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
+
+      console.log(error);
+
+      if (Object.keys(error).length > 0) {
          showModalErrorProposal = true;
       } else {
          tab1 = false;
          tab2 = true;
       }
-      // tab1 = false;
-      // tab2 = true;
    }
 
    // -----------------------------------------------
@@ -1507,6 +1387,9 @@
                   <option value="Proposal Lanjutan">Proposal Lanjutan</option>
                </select>
             </div>
+            {#if error.jenisProposal}
+               <p class="help error is-danger">{error.jenisProposal}</p>
+            {/if}
          </Field>
 
          <Field name="Jenis Kegiatan">
@@ -1521,6 +1404,9 @@
                   >
                </select>
             </div>
+            {#if error.jenisKegiatan}
+               <p class="help error is-danger">{error.jenisKegiatan}</p>
+            {/if}
          </Field>
 
          <Field name="Jenis Skema">
@@ -1557,6 +1443,9 @@
                   {/if}
                </select>
             </div>
+            {#if error.jenisSkema}
+               <p class="help error is-danger">{error.jenisSkema}</p>
+            {/if}
          </Field>
 
          <Field name="Kelompok Keahlian">
@@ -1567,6 +1456,9 @@
                placeholder="Masukkan kelompok keahlian"
                bind:value={kelompokKeahlian}
             />
+            {#if error.kelompokKeahlian}
+               <p class="help error is-danger">{error.kelompokKeahlian}</p>
+            {/if}
          </Field>
 
          <Field name="Topik">
@@ -1577,28 +1469,33 @@
                placeholder="Masukkan topik"
                bind:value={topik}
             />
+            {#if error.topik}
+               <p class="help error is-danger">{error.topik}</p>
+            {/if}
          </Field>
 
          <Field name="Tanggal Mulai">
-            <div class="field">
-               <input
-                  id="tanggalMulai"
-                  class="input"
-                  type="date"
-                  bind:value={tanggalMulai}
-               />
-            </div>
+            <input
+               id="tanggalMulai"
+               class="input"
+               type="date"
+               bind:value={tanggalMulai}
+            />
+            {#if error.tanggalMulai}
+               <p class="help error is-danger">{error.tanggalMulai}</p>
+            {/if}
          </Field>
 
          <Field name="Tanggal Selesai">
-            <div class="field">
-               <input
-                  id="tanggalSelesai"
-                  class="input"
-                  type="date"
-                  bind:value={tanggalSelesai}
-               />
-            </div>
+            <input
+               id="tanggalSelesai"
+               class="input"
+               type="date"
+               bind:value={tanggalSelesai}
+            />
+            {#if error.tanggalSelesai}
+               <p class="help error is-danger">{error.tanggalSelesai}</p>
+            {/if}
          </Field>
 
          <Field name="Biaya Penelitian">
@@ -1611,6 +1508,9 @@
                on:keyup={() =>
                   (biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "))}
             />
+            {#if error.biayaPenelitian}
+               <p class="help error is-danger">{error.biayaPenelitian}</p>
+            {/if}
          </Field>
 
          {#if items.length}
@@ -1621,6 +1521,9 @@
                   {items}
                   bind:result={anggotaTim}
                />
+               {#if error.anggotaTim}
+                  <p class="help error is-danger">{error.anggotaTim}</p>
+               {/if}
             </Field>
          {/if}
 
@@ -1668,6 +1571,9 @@
                placeholder="Masukkan judul"
                bind:value={judul}
             />
+            {#if error.judul}
+               <p class="help error is-danger">{error.judul}</p>
+            {/if}
          </Field>
 
          <Field name="Abstrak">
@@ -1677,6 +1583,9 @@
                bind:value={myAbstract}
                placeholder="Masukkan abstrak"
             ></textarea>
+            {#if error.myAbstract}
+               <p class="help error is-danger">{error.myAbstract}</p>
+            {/if}
          </Field>
 
          <Field name="Proposal">
@@ -1695,6 +1604,9 @@
                      Choose File
                   {/if}
                </label>
+               {#if error.fileProposal}
+                  <p class="error has-text-danger">{error.fileProposal}</p>
+               {/if}
             </span>
             <p class="help is-info">File Type: pdf</p>
          </Field>
@@ -1716,6 +1628,9 @@
                         Choose File
                      {/if}
                   </label>
+                  {#if error.fileRAB}
+                     <p class="error has-text-danger">{error.fileRAB}</p>
+                  {/if}
                </span>
                <p class="help is-info">File Type: xlsx</p>
             </Field>
@@ -1772,9 +1687,10 @@
                   id="namaLengkap"
                   class="input"
                   type="text"
+                  placeholder="Masukkan nama lengkap dengan gelar"
                   bind:value={namaLengkap}
                />
-               <p class="help is-info">Masukkan nama lengkap dengan gelar</p>
+               <!-- <p class="help is-info">Masukkan nama lengkap dengan gelar</p> -->
             </Field>
 
             <Field name="Jabatan Fungsional">
@@ -2215,7 +2131,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Table Pengabdian Masyarakat -->
             <!-- ------------------------------------------------------------------------>
-
             <Modal bind:show={showModalPengmas}>
                <h4 class="title is-4" slot="header">
                   Pengalaman Pengabdian Masyarakat
@@ -2463,7 +2378,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding" -->
             <!-- ------------------------------------------------------------------------>
-
             <Modal bind:show={showModalPublikasi}>
                <h4 class="title is-4" slot="header">
                   Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
@@ -2572,7 +2486,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Pengalaman Penulisan Buku -->
             <!-- ------------------------------------------------------------------------>
-
             <Modal bind:show={showModalPenulisanBuku}>
                <h4 class="title is-4" slot="header">
                   Pengalaman Penulisan Buku
@@ -2861,5 +2774,10 @@
       width: 0;
       height: 0;
       opacity: 0;
+   }
+
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
    }
 </style>
