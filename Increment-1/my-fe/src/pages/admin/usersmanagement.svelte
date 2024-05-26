@@ -2,7 +2,7 @@
    import { route, apiURL } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { accountAdd } from "../../store/icons";
+   import { accountAdd, searchIcon } from "../../store/icons";
 
    export let params;
 
@@ -146,7 +146,7 @@
          <h1 class="title is-1">User Management</h1>
          <hr />
 
-         <div class="notification is-info is-light">
+         <!-- <div class="notification is-info is-light">
             <div class="columns">
                <div class="column is-4">
                   <p>
@@ -155,19 +155,49 @@
                   </p>
                </div>
 
-               <div class="column">
+               <div class="column"> 
                   <button class="button is-info" on:click={addUser}>
                      <span class="icon">
                         <Icon id="orang" src={accountAdd} />
                      </span>
-                     <!-- svelte-ignore a11y-missing-attribute -->
                      <span><a>Create User</a></span>
                   </button>
                </div>
             </div>
-         </div>
+         </div> -->
 
          <div class="box parent">
+            <div class="columns">
+               <div class="column">
+                  <button class="button is-info" on:click={addUser}>
+                     <span class="icon">
+                        <Icon id="accountAdd" src={accountAdd} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Create user</a></span>
+                  </button>
+               </div>
+
+               <div class="column">
+                  <div class="field has-addons">
+                     <div class="control is-expanded">
+                        <input
+                           class="input"
+                           type="text"
+                           placeholder="Search user"
+                        />
+                     </div>
+                     <div class="control">
+                        <button class="button is-outlined">
+                           <span class="icon">
+                              <Icon id="searchIcon" src={searchIcon} />
+                           </span></button
+                        >
+                     </div>
+                  </div>
+               </div>
+            </div>
+
             <div class="child">
                <table class="table is-fullwidth is-striped is-hoverable">
                   <thead>

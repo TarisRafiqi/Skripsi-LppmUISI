@@ -27,13 +27,9 @@ const dosen = [
       href: "/dosen/proposalmanagement",
    },
    {
-      title: "Penelitian & Pengmas",
+      title: "PPM Ongoing",
       href: "/dosen/ppmongoing",
    },
-   // {
-   //    title: "Approval Management",
-   //    href: "/dosen/approval",
-   // },
 ];
 export default {
    admin,

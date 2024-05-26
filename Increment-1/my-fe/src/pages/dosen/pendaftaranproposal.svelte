@@ -464,9 +464,10 @@
    //----------------------------//
    async function simpanProposal() {
       error = {};
-      // -------------------------------------------------------------------//
+      isLoading = true;
+      // ------------------------------//
       // Upload File Proposal
-      // -------------------------------------------------------------------//
+      // ------------------------------//
       const readerPpm = new FileReader();
       readerPpm.onloadend = async () => {
          const base64Data = readerPpm.result.split(",")[1];
@@ -534,8 +535,24 @@
       }
 
       // -----------------------------------------------------------//
-      // Post Proposal & Identitas
+      // Patch Identitas & Post Proposal
       // -----------------------------------------------------------//
+      let payloadIdentitas = {
+         idProfile,
+         namaLengkap,
+         jabatanFungsional,
+         nip,
+         nidn,
+         tempatLahir,
+         tanggalLahir,
+         alamatRumah,
+         telpFaxRumah,
+         nomorHandphone,
+         alamatKantor,
+         telpFaxKantor,
+         email,
+         mataKuliah,
+      };
       let payloadProposal = {
          id,
          jenisProposal,
@@ -554,63 +571,60 @@
          randomPpmFileName,
       };
 
-      let payloadIdentitas = {
-         idProfile,
-         namaLengkap,
-         jabatanFungsional,
-         nip,
-         nidn,
-         tempatLahir,
-         tanggalLahir,
-         alamatRumah,
-         telpFaxRumah,
-         nomorHandphone,
-         alamatKantor,
-         telpFaxKantor,
-         email,
-         mataKuliah,
-      };
-
       for (const [key, value] of Object.entries(payloadIdentitas)) {
          if (!payloadIdentitas[key]) {
             error[key] = `This field is required`;
          }
       }
-
-      // console.log(error);
-
       if (Object.keys(error).length > 0) {
          showModalErrorForm = true;
       } else {
-         //
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadProposal),
-         });
-         const resultProposal = await responseProposal.json();
-
          const responseIdentitas = await fetch($apiURL + "/userprofile", {
             method: "PATCH",
             headers: headers,
             body: JSON.stringify(payloadIdentitas),
          });
+
          const resultIdentitas = await responseIdentitas.json();
 
-         if (
-            resultProposal.statusCode !== 200 ||
-            resultIdentitas.statusCode !== 200
-         ) {
+         if (resultIdentitas.statusCode != 200) {
             location.pathname = "/tokenexpired";
          } else {
-            if (responseProposal.ok && responseIdentitas.ok) {
-               $route("/dosen/proposalmanagement");
-            } else {
-               console.log(responseProposal.msg);
-               console.log(responseIdentitas.msg);
+            if (!responseIdentitas.ok) {
+               console.log(responseIdentitas.msg, error);
+               // return;
+               // Lakukan sesuatu untuk memberhentikan function disini
             }
          }
       }
+
+      for (const [key, value] of Object.entries(payloadProposal)) {
+         if (!payloadProposal[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const responseProposal = await fetch($apiURL + "/ppm", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payloadProposal),
+         });
+
+         const resultProposal = await responseProposal.json();
+
+         if (resultProposal.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (responseProposal.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(responseProposal.msg, error);
+            }
+         }
+      }
+      isLoading = false;
    }
 
    //------------------------------
@@ -691,8 +705,24 @@
 
       readerPpm.readAsDataURL(filePpm);
       // --------------------------------------------------------------------//
-      // Post Proposal                                                       //
+      // Patch Identitas & Post Proposal                                                       //
       // --------------------------------------------------------------------//
+      let payloadIdentitas = {
+         idProfile,
+         namaLengkap,
+         jabatanFungsional,
+         nip,
+         nidn,
+         tempatLahir,
+         tanggalLahir,
+         alamatRumah,
+         telpFaxRumah,
+         nomorHandphone,
+         alamatKantor,
+         telpFaxKantor,
+         email,
+         mataKuliah,
+      };
       let payloadProposal = {
          id,
          jenisProposal,
@@ -711,64 +741,60 @@
          randomPpmFileName,
       };
 
-      const responseProposal = await fetch($apiURL + "/ppm", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payloadProposal),
-      });
-
-      // ----------------------------------------------------//
-      // Post Identitas                                      //
-      // ----------------------------------------------------//
-      let payloadIdentitas = {
-         idProfile,
-         namaLengkap,
-         jabatanFungsional,
-         nip,
-         nidn,
-         tempatLahir,
-         tanggalLahir,
-         alamatRumah,
-         telpFaxRumah,
-         nomorHandphone,
-         alamatKantor,
-         telpFaxKantor,
-         email,
-         mataKuliah,
-      };
-
-      const responseIdentitas = await fetch($apiURL + "/userprofile", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payloadIdentitas),
-      });
-
-      // ----------------------------------------------------
-      // Response
-      // ----------------------------------------------------
-      const resultProposal = await responseProposal.json();
-      const resultIdentitas = await responseIdentitas.json();
-
-      if (
-         resultProposal.statusCode != 200 ||
-         resultIdentitas.statusCode !== 200
-      ) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseProposal.ok && responseIdentitas.ok) {
-            $route("/dosen/proposalmanagement");
-         } else {
-            console.log(responseProposal.msg);
-            console.log(responseIdentitas.msg);
+      for (const [key, value] of Object.entries(payloadIdentitas)) {
+         if (!payloadIdentitas[key]) {
+            error[key] = `This field is required`;
          }
       }
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const responseIdentitas = await fetch($apiURL + "/userprofile", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payloadIdentitas),
+         });
+
+         const resultIdentitas = await responseIdentitas.json();
+
+         if (resultIdentitas.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (!responseIdentitas.ok) {
+               console.log(responseIdentitas.msg, error);
+               // return;
+               // Lakukan sesuatu untuk memberhentikan function disini
+            }
+         }
+      }
+
+      for (const [key, value] of Object.entries(payloadProposal)) {
+         if (!payloadProposal[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const responseProposal = await fetch($apiURL + "/ppm", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payloadProposal),
+         });
+
+         const resultProposal = await responseProposal.json();
+
+         if (resultProposal.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (responseProposal.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(responseProposal.msg, error);
+            }
+         }
+      }
+
       isLoading = false;
    }
 

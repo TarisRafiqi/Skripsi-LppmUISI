@@ -4992,24 +4992,26 @@
     };
   }
   function create_if_block3(ctx) {
-    let div3;
-    let field0;
-    let t0;
-    let field1;
-    let t1;
-    let field2;
-    let t2;
-    let field3;
-    let t3;
-    let field4;
-    let t4;
-    let br;
-    let t5;
-    let div2;
+    let div4;
     let div0;
-    let button0;
+    let t1;
+    let field0;
+    let t2;
+    let field1;
+    let t3;
+    let field2;
+    let t4;
+    let field3;
+    let t5;
+    let field4;
+    let t6;
+    let br;
     let t7;
+    let div3;
     let div1;
+    let button0;
+    let t9;
+    let div2;
     let button1;
     let current;
     let mounted;
@@ -5051,54 +5053,60 @@
     });
     return {
       c() {
-        div3 = element("div");
-        create_component(field0.$$.fragment);
-        t0 = space();
-        create_component(field1.$$.fragment);
-        t1 = space();
-        create_component(field2.$$.fragment);
-        t2 = space();
-        create_component(field3.$$.fragment);
-        t3 = space();
-        create_component(field4.$$.fragment);
-        t4 = space();
-        br = element("br");
-        t5 = space();
-        div2 = element("div");
+        div4 = element("div");
         div0 = element("div");
+        div0.innerHTML = `<p>Untuk Dosen / Reviewer dari luar UISI!</p>`;
+        t1 = space();
+        create_component(field0.$$.fragment);
+        t2 = space();
+        create_component(field1.$$.fragment);
+        t3 = space();
+        create_component(field2.$$.fragment);
+        t4 = space();
+        create_component(field3.$$.fragment);
+        t5 = space();
+        create_component(field4.$$.fragment);
+        t6 = space();
+        br = element("br");
+        t7 = space();
+        div3 = element("div");
+        div1 = element("div");
         button0 = element("button");
         button0.textContent = "Kembali";
-        t7 = space();
-        div1 = element("div");
+        t9 = space();
+        div2 = element("div");
         button1 = element("button");
         button1.textContent = "Create";
+        attr(div0, "class", "notification is-warning is-light");
         attr(button0, "class", "button is-info is-light");
-        attr(div0, "class", "control");
-        attr(button1, "class", "button is-info");
         attr(div1, "class", "control");
-        attr(div2, "class", "field is-grouped is-grouped-right");
-        attr(div3, "class", "box");
+        attr(button1, "class", "button is-info");
+        attr(div2, "class", "control");
+        attr(div3, "class", "field is-grouped is-grouped-right");
+        attr(div4, "class", "box");
       },
       m(target, anchor) {
-        insert(target, div3, anchor);
-        mount_component(field0, div3, null);
-        append(div3, t0);
-        mount_component(field1, div3, null);
-        append(div3, t1);
-        mount_component(field2, div3, null);
-        append(div3, t2);
-        mount_component(field3, div3, null);
-        append(div3, t3);
-        mount_component(field4, div3, null);
-        append(div3, t4);
-        append(div3, br);
-        append(div3, t5);
+        insert(target, div4, anchor);
+        append(div4, div0);
+        append(div4, t1);
+        mount_component(field0, div4, null);
+        append(div4, t2);
+        mount_component(field1, div4, null);
+        append(div4, t3);
+        mount_component(field2, div4, null);
+        append(div4, t4);
+        mount_component(field3, div4, null);
+        append(div4, t5);
+        mount_component(field4, div4, null);
+        append(div4, t6);
+        append(div4, br);
+        append(div4, t7);
+        append(div4, div3);
+        append(div3, div1);
+        append(div1, button0);
+        append(div3, t9);
         append(div3, div2);
-        append(div2, div0);
-        append(div0, button0);
-        append(div2, t7);
-        append(div2, div1);
-        append(div1, button1);
+        append(div2, button1);
         current = true;
         if (!mounted) {
           dispose = [
@@ -5170,7 +5178,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(div3);
+          detach(div4);
         }
         destroy_component(field0);
         destroy_component(field1);
@@ -6761,6 +6769,7 @@
   var accountAdd = "M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7H4m11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1Z";
   var accountEdit = "M2 17v3h8v-1.89H3.9V17c0-.64 3.13-2.1 6.1-2.1c.96.01 1.91.14 2.83.38l1.52-1.52c-1.4-.47-2.85-.73-4.35-.76c-2.67 0-8 1.33-8 4m8-13C7.79 4 6 5.79 6 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4m0 6c-1.1 0-2-.89-2-2s.9-2 2-2s2 .9 2 2s-.89 2-2 2m11.7 3.35l-1 1l-2.05-2l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2l-6 6.07H12z";
   var infoOutline = "M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z";
+  var addProposal = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.7q-.475-.225-.975-.387T19 11.075V5H5v14h6.05q.075.55.238 1.05t.387.95H5Zm0-3v1V5v6.075V11v7Zm2-1h4.075q.075-.525.238-1.025t.362-.975H7v2Zm0-4h6.1q.8-.75 1.788-1.25T17 11.075V11H7v2Zm0-4h10V7H7v2Zm11 14q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23Zm-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5V21Z";
   var add = "M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z";
   var deleteIcon = "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z";
   var penelitian = "M15.5 12c2.5 0 4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5m0 2a2.5 2.5 0 0 0-2.5 2.5a2.5 2.5 0 0 0 2.5 2.5a2.5 2.5 0 0 0 2.5-2.5a2.5 2.5 0 0 0-2.5-2.5M5 3h14c1.11 0 2 .89 2 2v8.03c-.5-.8-1.19-1.49-2-2.03V5H5v14h4.5c.31.75.76 1.42 1.31 2H5c-1.11 0-2-.89-2-2V5c0-1.11.89-2 2-2m2 4h10v2H7zm0 4h5.03c-.8.5-1.49 1.19-2.03 2H7zm0 4h2.17c-.11.5-.17 1-.17 1.5v.5H7z";
@@ -6768,6 +6777,7 @@
   var jurnal = "M12.04 6.017a4.75 4.75 0 1 0 .335-.012h-.01a1.35 1.35 0 0 0-.326.012m-1.622 1.835c-.226.677-.368 1.506-.407 2.398h-1.1a3.5 3.5 0 0 1 1.507-2.398m-.374 3.898a8.43 8.43 0 0 0 .379 1.91a3.507 3.507 0 0 1-1.405-1.91zm3.966 2.1l.003-.008c.22-.587.373-1.306.443-2.092h1.276a3.51 3.51 0 0 1-1.722 2.1m-1.061-2.1a6.556 6.556 0 0 1-.34 1.565c-.118.313-.24.514-.336.623a.914.914 0 0 1-.023.025a.914.914 0 0 1-.023-.025c-.097-.11-.218-.31-.335-.623c-.154-.41-.276-.947-.341-1.565zm.039-1.5h-1.476c.042-.828.185-1.547.38-2.065c.117-.313.238-.514.335-.623a.79.79 0 0 1 .023-.025a.79.79 0 0 1 .023.025c.097.11.218.31.335.623c.195.518.338 1.237.38 2.065m1.501 0c-.043-.978-.21-1.88-.475-2.588a3.503 3.503 0 0 1 1.825 2.588zm-2.182-2.76l-.004.002zm-.113 0l.003.002a.014.014 0 0 0-.004-.003zM6.5 2A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h13.25a.75.75 0 0 0 0-1.5H6.5a1 1 0 0 1-1-1h14.25a.75.75 0 0 0 .75-.75V4.5A2.5 2.5 0 0 0 18 2zM19 4.5V18H5.5V4.5a1 1 0 0 1 1-1H18a1 1 0 0 1 1 1m-6.697 9.509a.019.019 0 0 1 .004.002Z";
   var copyright = "M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m11-9c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11M9.525 9.526a3.5 3.5 0 0 0 4.95 4.95l.707-.708l1.414 1.415l-.707.707a5.5 5.5 0 1 1 0-7.778l.707.707l-1.414 1.414l-.707-.707a3.5 3.5 0 0 0-4.95 0";
   var edit = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z";
+  var searchIcon = "m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14";
 
   // src/pages/admin/detailproposal.svelte
   function get_each_context4(ctx, list, i) {
@@ -24053,27 +24063,38 @@
     let t1;
     let hr;
     let t2;
-    let div3;
-    let div2;
-    let div0;
-    let t7;
-    let div1;
-    let button;
-    let span0;
-    let icon;
-    let t8;
-    let span1;
-    let t10;
+    let div7;
     let div5;
+    let div0;
+    let button0;
+    let span0;
+    let icon0;
+    let t3;
+    let span1;
+    let t5;
     let div4;
+    let div3;
+    let div1;
+    let t6;
+    let div2;
+    let button1;
+    let span2;
+    let icon1;
+    let t7;
+    let div6;
     let table;
     let thead;
-    let t18;
+    let t15;
     let tbody;
     let current;
     let mounted;
     let dispose;
-    icon = new Icon_default({ props: { id: "orang", src: accountAdd } });
+    icon0 = new Icon_default({
+      props: { id: "accountAdd", src: accountAdd }
+    });
+    icon1 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
     let each_value = ensure_array_like(
       /*items*/
       ctx[0]
@@ -24089,61 +24110,77 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        div3 = element("div");
-        div2 = element("div");
-        div0 = element("div");
-        div0.innerHTML = `<p>Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br/>buat akun disini</p>`;
-        t7 = space();
-        div1 = element("div");
-        button = element("button");
-        span0 = element("span");
-        create_component(icon.$$.fragment);
-        t8 = space();
-        span1 = element("span");
-        span1.innerHTML = `<a>Create User</a>`;
-        t10 = space();
+        div7 = element("div");
         div5 = element("div");
+        div0 = element("div");
+        button0 = element("button");
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t3 = space();
+        span1 = element("span");
+        span1.innerHTML = `<a>Create user</a>`;
+        t5 = space();
         div4 = element("div");
+        div3 = element("div");
+        div1 = element("div");
+        div1.innerHTML = `<input class="input" type="text" placeholder="Search user"/>`;
+        t6 = space();
+        div2 = element("div");
+        button1 = element("button");
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
+        t7 = space();
+        div6 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Username</th> <th>Email</th> <th class="is-narrow">Role</th> <th class="is-narrow">Active</th></tr>`;
-        t18 = space();
+        t15 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
         }
         attr(h1, "class", "title is-1");
-        attr(div0, "class", "column is-4");
         attr(span0, "class", "icon");
-        attr(button, "class", "button is-info");
-        attr(div1, "class", "column");
-        attr(div2, "class", "columns");
-        attr(div3, "class", "notification is-info is-light");
+        attr(button0, "class", "button is-info");
+        attr(div0, "class", "column");
+        attr(div1, "class", "control is-expanded");
+        attr(span2, "class", "icon");
+        attr(button1, "class", "button is-outlined");
+        attr(div2, "class", "control");
+        attr(div3, "class", "field has-addons");
+        attr(div4, "class", "column");
+        attr(div5, "class", "columns");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
-        attr(div4, "class", "child svelte-1amf2xn");
-        attr(div5, "class", "box parent svelte-1amf2xn");
+        attr(div6, "class", "child svelte-1amf2xn");
+        attr(div7, "class", "box parent svelte-1amf2xn");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div3, anchor);
-        append(div3, div2);
-        append(div2, div0);
-        append(div2, t7);
-        append(div2, div1);
-        append(div1, button);
-        append(button, span0);
-        mount_component(icon, span0, null);
-        append(button, t8);
-        append(button, span1);
-        insert(target, t10, anchor);
-        insert(target, div5, anchor);
+        insert(target, div7, anchor);
+        append(div7, div5);
+        append(div5, div0);
+        append(div0, button0);
+        append(button0, span0);
+        mount_component(icon0, span0, null);
+        append(button0, t3);
+        append(button0, span1);
+        append(div5, t5);
         append(div5, div4);
-        append(div4, table);
+        append(div4, div3);
+        append(div3, div1);
+        append(div3, t6);
+        append(div3, div2);
+        append(div2, button1);
+        append(button1, span2);
+        mount_component(icon1, span2, null);
+        append(div7, t7);
+        append(div7, div6);
+        append(div6, table);
         append(table, thead);
-        append(table, t18);
+        append(table, t15);
         append(table, tbody);
         for (let i = 0; i < each_blocks.length; i += 1) {
           if (each_blocks[i]) {
@@ -24153,7 +24190,7 @@
         current = true;
         if (!mounted) {
           dispose = listen(
-            button,
+            button0,
             "click",
             /*addUser*/
             ctx[4]
@@ -24188,11 +24225,13 @@
       i(local) {
         if (current)
           return;
-        transition_in(icon.$$.fragment, local);
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
         current = true;
       },
       o(local) {
-        transition_out(icon.$$.fragment, local);
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -24201,11 +24240,10 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(div3);
-          detach(t10);
-          detach(div5);
+          detach(div7);
         }
-        destroy_component(icon);
+        destroy_component(icon0);
+        destroy_component(icon1);
         destroy_each(each_blocks, detaching);
         mounted = false;
         dispose();
@@ -50740,6 +50778,7 @@
     }
     async function simpanProposal() {
       $$invalidate(0, error = {});
+      $$invalidate(85, isLoading = true);
       const readerPpm = new FileReader();
       readerPpm.onloadend = async () => {
         const base64Data = readerPpm.result.split(",")[1];
@@ -50791,6 +50830,22 @@
         };
         readerRab.readAsDataURL(fileRab);
       }
+      let payloadIdentitas = {
+        idProfile,
+        namaLengkap,
+        jabatanFungsional,
+        nip,
+        nidn,
+        tempatLahir,
+        tanggalLahir,
+        alamatRumah,
+        telpFaxRumah,
+        nomorHandphone,
+        alamatKantor,
+        telpFaxKantor,
+        email: email3,
+        mataKuliah
+      };
       let payloadProposal = {
         id,
         jenisProposal,
@@ -50808,24 +50863,30 @@
         randomRabFileName: randomRabFileName2,
         randomPpmFileName: randomPpmFileName2
       };
-      let payloadIdentitas = {
-        idProfile,
-        namaLengkap,
-        jabatanFungsional,
-        nip,
-        nidn,
-        tempatLahir,
-        tanggalLahir,
-        alamatRumah,
-        telpFaxRumah,
-        nomorHandphone,
-        alamatKantor,
-        telpFaxKantor,
-        email: email3,
-        mataKuliah
-      };
       for (const [key, value2] of Object.entries(payloadIdentitas)) {
         if (!payloadIdentitas[key]) {
+          $$invalidate(0, error[key] = `This field is required`, error);
+        }
+      }
+      if (Object.keys(error).length > 0) {
+        showModalErrorForm = true;
+      } else {
+        const responseIdentitas = await fetch($apiURL + "/userprofile", {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify(payloadIdentitas)
+        });
+        const resultIdentitas = await responseIdentitas.json();
+        if (resultIdentitas.statusCode != 200) {
+          location.pathname = "/tokenexpired";
+        } else {
+          if (!responseIdentitas.ok) {
+            console.log(responseIdentitas.msg, error);
+          }
+        }
+      }
+      for (const [key, value2] of Object.entries(payloadProposal)) {
+        if (!payloadProposal[key]) {
           $$invalidate(0, error[key] = `This field is required`, error);
         }
       }
@@ -50838,23 +50899,17 @@
           body: JSON.stringify(payloadProposal)
         });
         const resultProposal = await responseProposal.json();
-        const responseIdentitas = await fetch($apiURL + "/userprofile", {
-          method: "PATCH",
-          headers,
-          body: JSON.stringify(payloadIdentitas)
-        });
-        const resultIdentitas = await responseIdentitas.json();
-        if (resultProposal.statusCode !== 200 || resultIdentitas.statusCode !== 200) {
+        if (resultProposal.statusCode != 200) {
           location.pathname = "/tokenexpired";
         } else {
-          if (responseProposal.ok && responseIdentitas.ok) {
+          if (responseProposal.ok) {
             $route("/dosen/proposalmanagement");
           } else {
-            console.log(responseProposal.msg);
-            console.log(responseIdentitas.msg);
+            console.log(responseProposal.msg, error);
           }
         }
       }
+      $$invalidate(85, isLoading = false);
     }
     async function submitProposal() {
       $$invalidate(0, error = {});
@@ -50913,6 +50968,22 @@
         }
       };
       readerPpm.readAsDataURL(filePpm);
+      let payloadIdentitas = {
+        idProfile,
+        namaLengkap,
+        jabatanFungsional,
+        nip,
+        nidn,
+        tempatLahir,
+        tanggalLahir,
+        alamatRumah,
+        telpFaxRumah,
+        nomorHandphone,
+        alamatKantor,
+        telpFaxKantor,
+        email: email3,
+        mataKuliah
+      };
       let payloadProposal = {
         id,
         jenisProposal,
@@ -50930,48 +51001,50 @@
         randomRabFileName: randomRabFileName2,
         randomPpmFileName: randomPpmFileName2
       };
-      const responseProposal = await fetch($apiURL + "/ppm", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payloadProposal)
-      });
-      let payloadIdentitas = {
-        idProfile,
-        namaLengkap,
-        jabatanFungsional,
-        nip,
-        nidn,
-        tempatLahir,
-        tanggalLahir,
-        alamatRumah,
-        telpFaxRumah,
-        nomorHandphone,
-        alamatKantor,
-        telpFaxKantor,
-        email: email3,
-        mataKuliah
-      };
-      const responseIdentitas = await fetch($apiURL + "/userprofile", {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payloadIdentitas)
-      });
-      const resultProposal = await responseProposal.json();
-      const resultIdentitas = await responseIdentitas.json();
-      if (resultProposal.statusCode != 200 || resultIdentitas.statusCode !== 200) {
-        location.pathname = "/tokenexpired";
+      for (const [key, value2] of Object.entries(payloadIdentitas)) {
+        if (!payloadIdentitas[key]) {
+          $$invalidate(0, error[key] = `This field is required`, error);
+        }
+      }
+      if (Object.keys(error).length > 0) {
+        showModalErrorForm = true;
       } else {
-        if (responseProposal.ok && responseIdentitas.ok) {
-          $route("/dosen/proposalmanagement");
+        const responseIdentitas = await fetch($apiURL + "/userprofile", {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify(payloadIdentitas)
+        });
+        const resultIdentitas = await responseIdentitas.json();
+        if (resultIdentitas.statusCode != 200) {
+          location.pathname = "/tokenexpired";
         } else {
-          console.log(responseProposal.msg);
-          console.log(responseIdentitas.msg);
+          if (!responseIdentitas.ok) {
+            console.log(responseIdentitas.msg, error);
+          }
+        }
+      }
+      for (const [key, value2] of Object.entries(payloadProposal)) {
+        if (!payloadProposal[key]) {
+          $$invalidate(0, error[key] = `This field is required`, error);
+        }
+      }
+      if (Object.keys(error).length > 0) {
+        showModalErrorForm = true;
+      } else {
+        const responseProposal = await fetch($apiURL + "/ppm", {
+          method: "POST",
+          headers,
+          body: JSON.stringify(payloadProposal)
+        });
+        const resultProposal = await responseProposal.json();
+        if (resultProposal.statusCode != 200) {
+          location.pathname = "/tokenexpired";
+        } else {
+          if (responseProposal.ok) {
+            $route("/dosen/proposalmanagement");
+          } else {
+            console.log(responseProposal.msg, error);
+          }
         }
       }
       $$invalidate(85, isLoading = false);
@@ -51901,7 +51974,7 @@
     return {
       c() {
         h1 = element("h1");
-        h1.textContent = "Penelitian & Pengabdian Masyarakat";
+        h1.textContent = "PPM Ongoing";
         t1 = space();
         hr = element("hr");
         attr(h1, "class", "title is-1");
@@ -63403,19 +63476,25 @@
     let modalroute;
     let updating_show;
     let t3;
-    let div3;
-    let div2;
-    let div0;
-    let t5;
-    let div1;
-    let button;
-    let span0;
-    let icon;
-    let t6;
-    let span1;
-    let t8;
+    let div7;
     let div5;
+    let div0;
+    let button0;
+    let span0;
+    let icon0;
+    let t4;
+    let span1;
+    let t6;
     let div4;
+    let div3;
+    let div1;
+    let t7;
+    let div2;
+    let button1;
+    let span2;
+    let icon1;
+    let t8;
+    let div6;
     let table;
     let thead;
     let t18;
@@ -63438,8 +63517,11 @@
     }
     modalroute = new Modalroute_default({ props: modalroute_props });
     binding_callbacks.push(() => bind(modalroute, "show", modalroute_show_binding));
-    icon = new Icon_default({
-      props: { id: "accountAdd", src: accountAdd }
+    icon0 = new Icon_default({
+      props: { id: "addProposal", src: addProposal }
+    });
+    icon1 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
     });
     let if_block = (
       /*items*/
@@ -63454,21 +63536,27 @@
         t2 = space();
         create_component(modalroute.$$.fragment);
         t3 = space();
-        div3 = element("div");
-        div2 = element("div");
+        div7 = element("div");
+        div5 = element("div");
         div0 = element("div");
-        div0.innerHTML = `<p>Daftarkan proposal anda, klik disini!</p>`;
-        t5 = space();
-        div1 = element("div");
-        button = element("button");
+        button0 = element("button");
         span0 = element("span");
-        create_component(icon.$$.fragment);
-        t6 = space();
+        create_component(icon0.$$.fragment);
+        t4 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Buat Proposal</a>`;
-        t8 = space();
-        div5 = element("div");
+        t6 = space();
         div4 = element("div");
+        div3 = element("div");
+        div1 = element("div");
+        div1.innerHTML = `<input class="input" type="text" placeholder="Search proposal penelitian / pengabdian masyarakat"/>`;
+        t7 = space();
+        div2 = element("div");
+        button1 = element("button");
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
+        t8 = space();
+        div6 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
@@ -63476,15 +63564,19 @@
         if (if_block)
           if_block.c();
         attr(h1, "class", "title is-1");
-        attr(div0, "class", "column is-narrow");
         attr(span0, "class", "icon");
-        attr(button, "class", "button is-info is-small");
-        attr(div1, "class", "column");
-        attr(div2, "class", "columns");
-        attr(div3, "class", "box");
+        attr(button0, "class", "button is-info");
+        attr(div0, "class", "column");
+        attr(div1, "class", "control is-expanded");
+        attr(span2, "class", "icon");
+        attr(button1, "class", "button is-outlined");
+        attr(div2, "class", "control");
+        attr(div3, "class", "field has-addons");
+        attr(div4, "class", "column");
+        attr(div5, "class", "columns");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
-        attr(div4, "class", "child svelte-1mtjhz7");
-        attr(div5, "class", "box parent svelte-1mtjhz7");
+        attr(div6, "class", "child svelte-1mtjhz7");
+        attr(div7, "class", "box parent svelte-1mtjhz7");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
@@ -63493,20 +63585,26 @@
         insert(target, t2, anchor);
         mount_component(modalroute, target, anchor);
         insert(target, t3, anchor);
-        insert(target, div3, anchor);
-        append(div3, div2);
-        append(div2, div0);
-        append(div2, t5);
-        append(div2, div1);
-        append(div1, button);
-        append(button, span0);
-        mount_component(icon, span0, null);
-        append(button, t6);
-        append(button, span1);
-        insert(target, t8, anchor);
-        insert(target, div5, anchor);
+        insert(target, div7, anchor);
+        append(div7, div5);
+        append(div5, div0);
+        append(div0, button0);
+        append(button0, span0);
+        mount_component(icon0, span0, null);
+        append(button0, t4);
+        append(button0, span1);
+        append(div5, t6);
         append(div5, div4);
-        append(div4, table);
+        append(div4, div3);
+        append(div3, div1);
+        append(div3, t7);
+        append(div3, div2);
+        append(div2, button1);
+        append(button1, span2);
+        mount_component(icon1, span2, null);
+        append(div7, t8);
+        append(div7, div6);
+        append(div6, table);
         append(table, thead);
         append(table, t18);
         if (if_block)
@@ -63514,9 +63612,9 @@
         current = true;
         if (!mounted) {
           dispose = listen(
-            button,
+            button0,
             "click",
-            /*addProposal*/
+            /*HandleAddProposal*/
             ctx[2]
           );
           mounted = true;
@@ -63564,13 +63662,15 @@
         if (current)
           return;
         transition_in(modalroute.$$.fragment, local);
-        transition_in(icon.$$.fragment, local);
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
       o(local) {
         transition_out(modalroute.$$.fragment, local);
-        transition_out(icon.$$.fragment, local);
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -63581,12 +63681,11 @@
           detach(hr);
           detach(t2);
           detach(t3);
-          detach(div3);
-          detach(t8);
-          detach(div5);
+          detach(div7);
         }
         destroy_component(modalroute, detaching);
-        destroy_component(icon);
+        destroy_component(icon0);
+        destroy_component(icon1);
         if (if_block)
           if_block.d();
         mounted = false;
@@ -63683,7 +63782,7 @@
         }
       }
     });
-    function addProposal2() {
+    function HandleAddProposal() {
       if (localStorage_namaLengkap === null || localStorage_namaLengkap === "") {
         $$invalidate(0, showModalError = true);
       } else {
@@ -63694,7 +63793,7 @@
       showModalError = value;
       $$invalidate(0, showModalError);
     }
-    return [showModalError, items, addProposal2, modalroute_show_binding];
+    return [showModalError, items, HandleAddProposal, modalroute_show_binding];
   }
   var Proposalmanagement2 = class extends SvelteComponent {
     constructor(options) {
@@ -63759,26 +63858,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[1].username
+          ctx[2].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_2*/
-            ctx[5]
+            /*input_input_handler_1*/
+            ctx[6]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        2 && input.value !== /*form*/
-        ctx2[1].username) {
+        4 && input.value !== /*form*/
+        ctx2[2].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[1].username
+            ctx2[2].username
           );
         }
       },
@@ -63816,26 +63915,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[1].username
+          ctx[2].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_1*/
-            ctx[4]
+            /*input_input_handler*/
+            ctx[5]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        2 && input.value !== /*form*/
-        ctx2[1].username) {
+        4 && input.value !== /*form*/
+        ctx2[2].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[1].username
+            ctx2[2].username
           );
         }
       },
@@ -63855,14 +63954,16 @@
     let div0;
     let label;
     let t1;
-    let input;
+    let input0;
     let t2;
     let t3;
     let div1;
     let t4;
     let br;
     let t5;
-    let button;
+    let button0;
+    let t7;
+    let div5;
     let mounted;
     let dispose;
     let if_block0 = (
@@ -63886,7 +63987,7 @@
         label = element("label");
         label.textContent = "Email";
         t1 = space();
-        input = element("input");
+        input0 = element("input");
         t2 = space();
         if (if_block0)
           if_block0.c();
@@ -63896,26 +63997,36 @@
         t4 = space();
         br = element("br");
         t5 = space();
-        button = element("button");
-        button.textContent = "Submit";
+        button0 = element("button");
+        button0.textContent = "Submit";
+        t7 = space();
+        div5 = element("div");
+        div5.innerHTML = `<div class="control is-expanded"><input class="input" type="text"/></div> <div class="control"><button type="submit" class="button is-info">Search</button></div>`;
         attr(label, "for", "email");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
+        attr(input0, "class", "input");
+        attr(input0, "type", "text");
         attr(div0, "class", "field svelte-k7u2xx");
         attr(div1, "class", "field svelte-k7u2xx");
-        attr(button, "class", "button is-info");
+        attr(button0, "class", "button is-info");
+        toggle_class(
+          button0,
+          "is-loading",
+          /*isLoading*/
+          ctx[1]
+        );
         attr(div2, "class", "box");
+        attr(div5, "class", "field has-addons svelte-k7u2xx");
       },
       m(target, anchor) {
         insert(target, div2, anchor);
         append(div2, div0);
         append(div0, label);
         append(div0, t1);
-        append(div0, input);
+        append(div0, input0);
         set_input_value(
-          input,
+          input0,
           /*form*/
-          ctx[1].email
+          ctx[2].email
         );
         append(div0, t2);
         if (if_block0)
@@ -63926,20 +64037,22 @@
         append(div2, t4);
         append(div2, br);
         append(div2, t5);
-        append(div2, button);
+        append(div2, button0);
+        insert(target, t7, anchor);
+        insert(target, div5, anchor);
         if (!mounted) {
           dispose = [
             listen(
-              input,
+              input0,
               "input",
-              /*input_input_handler*/
-              ctx[3]
+              /*input0_input_handler*/
+              ctx[4]
             ),
             listen(
-              button,
+              button0,
               "click",
               /*handleSubmit*/
-              ctx[2]
+              ctx[3]
             )
           ];
           mounted = true;
@@ -63947,12 +64060,12 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        2 && input.value !== /*form*/
-        ctx2[1].email) {
+        4 && input0.value !== /*form*/
+        ctx2[2].email) {
           set_input_value(
-            input,
+            input0,
             /*form*/
-            ctx2[1].email
+            ctx2[2].email
           );
         }
         if (
@@ -63980,10 +64093,21 @@
             if_block1.m(div1, null);
           }
         }
+        if (dirty & /*isLoading*/
+        2) {
+          toggle_class(
+            button0,
+            "is-loading",
+            /*isLoading*/
+            ctx2[1]
+          );
+        }
       },
       d(detaching) {
         if (detaching) {
           detach(div2);
+          detach(t7);
+          detach(div5);
         }
         if (if_block0)
           if_block0.d();
@@ -64012,8 +64136,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, form, error*/
-        67) {
+        if (dirty & /*$$scope, isLoading, form, error*/
+        135) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -64037,36 +64161,46 @@
   var email = "";
   function instance38($$self, $$props, $$invalidate) {
     let error = {};
+    let isLoading = false;
     const form = { username, email };
     function handleSubmit() {
       $$invalidate(0, error = {});
+      $$invalidate(1, isLoading = true);
       for (const [key, value] of Object.entries(form)) {
         if (!form[key]) {
           $$invalidate(0, error[key] = "This field is required", error);
         } else {
-          console.log("Sukses...");
+          console.log("Sukses Cek Form Error");
         }
       }
+      if (Object.keys(error).length > 0) {
+        console.log("Error, Lengkapi semua form");
+      } else {
+        $$invalidate(1, isLoading = false);
+        console.log("Sukses");
+        return;
+      }
+    }
+    function input0_input_handler() {
+      form.email = this.value;
+      $$invalidate(2, form);
     }
     function input_input_handler() {
-      form.email = this.value;
-      $$invalidate(1, form);
+      form.username = this.value;
+      $$invalidate(2, form);
     }
     function input_input_handler_1() {
       form.username = this.value;
-      $$invalidate(1, form);
-    }
-    function input_input_handler_2() {
-      form.username = this.value;
-      $$invalidate(1, form);
+      $$invalidate(2, form);
     }
     return [
       error,
+      isLoading,
       form,
       handleSubmit,
+      input0_input_handler,
       input_input_handler,
-      input_input_handler_1,
-      input_input_handler_2
+      input_input_handler_1
     ];
   }
   var Select2 = class extends SvelteComponent {
@@ -64501,13 +64635,9 @@
       href: "/dosen/proposalmanagement"
     },
     {
-      title: "Penelitian & Pengmas",
+      title: "PPM Ongoing",
       href: "/dosen/ppmongoing"
     }
-    // {
-    //    title: "Approval Management",
-    //    href: "/dosen/approval",
-    // },
   ];
   var menu_default = {
     admin,
@@ -64541,8 +64671,8 @@
         ctx[2].title === "Dashboard" ? "dashboard" : null);
         attr(a, "href", a_href_value = /*item*/
         ctx[2].href);
-        attr(a, "class", "svelte-1lfjw54");
-        attr(ul, "class", "menu-list svelte-1lfjw54");
+        attr(a, "class", "svelte-l83cqz");
+        attr(ul, "class", "menu-list svelte-l83cqz");
       },
       m(target, anchor) {
         insert(target, ul, anchor);
@@ -64578,8 +64708,8 @@
     return {
       c() {
         ul = element("ul");
-        ul.innerHTML = `<li><a href="/dosen/approvalmanagement" class="svelte-1lfjw54">Approval Management</a></li>`;
-        attr(ul, "class", "menu-list svelte-1lfjw54");
+        ul.innerHTML = `<li><a href="/dosen/approvalmanagement" class="svelte-l83cqz">Approval Management</a></li>`;
+        attr(ul, "class", "menu-list svelte-l83cqz");
       },
       m(target, anchor) {
         insert(target, ul, anchor);
@@ -64601,9 +64731,9 @@
         p.textContent = "Website Settings";
         t1 = space();
         ul = element("ul");
-        ul.innerHTML = `<li><a href="/admin/pengumuman" class="svelte-1lfjw54">Pengumuman</a></li> <li><a href="/admin/aboutuisi" class="svelte-1lfjw54">About UISI</a></li> <li><a href="/admin/template" class="svelte-1lfjw54">Template</a></li>`;
-        attr(p, "class", "menu-label svelte-1lfjw54");
-        attr(ul, "class", "menu-list svelte-1lfjw54");
+        ul.innerHTML = `<li><a href="/admin/pengumuman" class="svelte-l83cqz">Pengumuman</a></li> <li><a href="/admin/aboutuisi" class="svelte-l83cqz">About UISI</a></li> <li><a href="/admin/template" class="svelte-l83cqz">Template</a></li>`;
+        attr(p, "class", "menu-label svelte-l83cqz");
+        attr(ul, "class", "menu-list svelte-l83cqz");
       },
       m(target, anchor) {
         insert(target, p, anchor);
@@ -64668,9 +64798,9 @@
         t5 = space();
         ul = element("ul");
         ul.innerHTML = `<button class="button is-light is-fullwidth" href="/logout">Logout</button>`;
-        attr(p, "class", "menu-label svelte-1lfjw54");
+        attr(p, "class", "menu-label svelte-l83cqz");
         attr(ul, "class", "menu-list");
-        attr(aside, "class", "menu svelte-1lfjw54");
+        attr(aside, "class", "menu svelte-l83cqz");
       },
       m(target, anchor) {
         insert(target, aside, anchor);

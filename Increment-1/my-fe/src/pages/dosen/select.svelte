@@ -6,6 +6,7 @@
    let username = "";
    let email = "";
    let error = {};
+   let isLoading = false;
 
    const form = {
       username,
@@ -14,12 +15,21 @@
 
    function handleSubmit() {
       error = {};
+      isLoading = true;
       for (const [key, value] of Object.entries(form)) {
          if (!form[key]) {
             error[key] = "This field is required";
          } else {
-            console.log("Sukses...");
+            console.log("Sukses Cek Form Error");
          }
+      }
+
+      if (Object.keys(error).length > 0) {
+         console.log("Error, Lengkapi semua form");
+      } else {
+         isLoading = false;
+         console.log("Sukses");
+         return;
       }
    }
 </script>
@@ -51,7 +61,20 @@
       </div>
 
       <br />
-      <button class="button is-info" on:click={handleSubmit}>Submit</button>
+      <button
+         class="button is-info"
+         on:click={handleSubmit}
+         class:is-loading={isLoading}>Submit</button
+      >
+   </div>
+
+   <div class="field has-addons">
+      <div class="control is-expanded">
+         <input class="input" type="text" />
+      </div>
+      <div class="control">
+         <button type="submit" class="button is-info">Search</button>
+      </div>
    </div>
 </Article>
 

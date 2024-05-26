@@ -86,6 +86,10 @@
 
    {#if role === "admin"}
       <div class="box">
+         <div class="notification is-warning is-light">
+            <p>Untuk Dosen / Reviewer dari luar UISI!</p>
+         </div>
+
          <Field name="Username">
             <input
                id="username"

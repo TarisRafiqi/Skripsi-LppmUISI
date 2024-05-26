@@ -3,7 +3,12 @@
    import { route, apiURL } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { accountAdd, infoOutline } from "../../store/icons";
+   import {
+      accountAdd,
+      infoOutline,
+      addProposal,
+      searchIcon,
+   } from "../../store/icons";
    import Status from "../../modules/Status.svelte";
    import Modalroute from "../../libs/Modalroute.svelte";
 
@@ -75,7 +80,7 @@
       location.href = "/dosen/detailproposal/" + propId;
    }
 
-   function addProposal() {
+   function HandleAddProposal() {
       if (
          localStorage_namaLengkap === null ||
          localStorage_namaLengkap === ""
@@ -95,24 +100,38 @@
       <p>Lengkapi profile anda terlebih dahulu</p>
    </Modalroute>
 
-   <div class="box">
+   <div class="box parent">
       <div class="columns">
-         <div class="column is-narrow">
-            <p>Daftarkan proposal anda, klik disini!</p>
-         </div>
          <div class="column">
-            <button class="button is-info is-small" on:click={addProposal}>
+            <button class="button is-info" on:click={HandleAddProposal}>
                <span class="icon">
-                  <Icon id="accountAdd" src={accountAdd} />
+                  <Icon id="addProposal" src={addProposal} />
                </span>
                <!-- svelte-ignore a11y-missing-attribute -->
                <span><a>Buat Proposal</a></span>
             </button>
          </div>
-      </div>
-   </div>
 
-   <div class="box parent">
+         <div class="column">
+            <div class="field has-addons">
+               <div class="control is-expanded">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Search proposal penelitian / pengabdian masyarakat"
+                  />
+               </div>
+               <div class="control">
+                  <button class="button is-outlined">
+                     <span class="icon">
+                        <Icon id="searchIcon" src={searchIcon} />
+                     </span></button
+                  >
+               </div>
+            </div>
+         </div>
+      </div>
+
       <div class="child">
          <table class="table is-fullwidth is-striped is-hoverable">
             <thead>
