@@ -103,7 +103,10 @@
    <div class="box parent">
       <div class="columns">
          <div class="column">
-            <button class="button is-info" on:click={HandleAddProposal}>
+            <button
+               class="button is-info is-rounded"
+               on:click={HandleAddProposal}
+            >
                <span class="icon">
                   <Icon id="addProposal" src={addProposal} />
                </span>
@@ -113,20 +116,16 @@
          </div>
 
          <div class="column">
-            <div class="field has-addons">
-               <div class="control is-expanded">
+            <div class="field">
+               <div class="control has-icons-left">
                   <input
-                     class="input"
+                     class="input is-rounded"
                      type="text"
-                     placeholder="Search proposal penelitian / pengabdian masyarakat"
+                     placeholder="Search judul"
                   />
-               </div>
-               <div class="control">
-                  <button class="button is-outlined">
-                     <span class="icon">
-                        <Icon id="searchIcon" src={searchIcon} />
-                     </span></button
-                  >
+                  <span class="icon is-left">
+                     <Icon id="searchIcon" src={searchIcon} />
+                  </span>
                </div>
             </div>
          </div>

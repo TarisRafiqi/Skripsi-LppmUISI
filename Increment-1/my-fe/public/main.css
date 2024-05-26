@@ -1679,6 +1679,11 @@ button.svelte-ivfnq6 {
   box-shadow: 0px 6px 18px -5px rgb(247, 145, 138);
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/createuser.esbuild-svelte-fake-css */
+.help.svelte-1lhj3n7 {
+  margin: -6px 0px 0px 0px;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/libs/Modal.esbuild-svelte-fake-css */
 .close.svelte-gcisbw {
   color: #aaaaaa;
@@ -1850,14 +1855,17 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/detailapproval.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-zw0hh6.svelte-zw0hh6 {
+.inputf__wrapper.svelte-14mnqgg.svelte-14mnqgg {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-zw0hh6 input.svelte-zw0hh6 {
+.inputf__wrapper.svelte-14mnqgg input.svelte-14mnqgg {
   width: 0;
   height: 0;
   opacity: 0;
+}
+.help.svelte-14mnqgg.svelte-14mnqgg {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
@@ -1887,16 +1895,16 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-l1rc18.svelte-l1rc18 {
+.inputf__wrapper.svelte-zdesaq.svelte-zdesaq {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-l1rc18 input.svelte-l1rc18 {
+.inputf__wrapper.svelte-zdesaq input.svelte-zdesaq {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-l1rc18.svelte-l1rc18 {
+.help.svelte-zdesaq.svelte-zdesaq {
   margin: -6px 0px 0px 0px;
 }
 

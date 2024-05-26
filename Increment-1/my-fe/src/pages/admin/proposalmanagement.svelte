@@ -4,7 +4,7 @@
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Status from "../../modules/Status.svelte";
-   import { infoOutline } from "../../store/icons";
+   import { infoOutline, searchIcon } from "../../store/icons";
 
    let items;
    const accessToken = localStorage.getItem("token");
@@ -50,6 +50,19 @@
       <hr />
 
       <div class="box parent">
+         <div class="field">
+            <div class="control has-icons-left">
+               <input
+                  class="input is-rounded"
+                  type="text"
+                  placeholder="Search judul"
+               />
+               <span class="icon is-left">
+                  <Icon id="searchIcon" src={searchIcon} />
+               </span>
+            </div>
+         </div>
+
          <div class="child">
             <table class="table is-fullwidth is-striped is-hoverable">
                <thead>

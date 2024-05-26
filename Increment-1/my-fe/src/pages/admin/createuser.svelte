@@ -176,23 +176,28 @@
                >
             {/if}
          </Field>
+      </div>
 
-         <br />
-
-         <div class="field is-grouped is-grouped-right">
-            <div class="control">
-               <button class="button is-info is-light" on:click={kembali}
-                  >Kembali</button
-               >
-            </div>
-            <div class="control">
-               <button class="button is-info" on:click={HandleCreateUser}
-                  >Create</button
-               >
-            </div>
+      <div class="field is-grouped is-grouped-right">
+         <div class="control">
+            <button class="button is-info is-light" on:click={kembali}
+               >Kembali</button
+            >
+         </div>
+         <div class="control">
+            <button class="button is-info" on:click={HandleCreateUser}
+               >Create</button
+            >
          </div>
       </div>
    {:else}
       <h4 class="title is-4">Anda tidak memiliki hak akses halaman ini!</h4>
    {/if}
 </Article>
+
+<style>
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
+   }
+</style>

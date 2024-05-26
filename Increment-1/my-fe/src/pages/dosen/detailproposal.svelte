@@ -1110,50 +1110,6 @@
                      />
                   </Field>
                {/if}
-
-               <br /><br />
-
-               <hr />
-
-               <div class="columns notification is-danger is-light">
-                  <div class="column">
-                     <p style="text-align: justify;">
-                        <strong>Perhatikan</strong> catatan revisi dari evaluator
-                        untuk detail yang akan direvisi!
-                     </p>
-                  </div>
-               </div>
-
-               <Field name="Catatan Revisi">
-                  <div class="box">
-                     {comment}
-                  </div>
-               </Field>
-
-               <Field name="Riwayat Revisi">
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th>Catatan Revisi</th>
-                           <th>Evaluator</th>
-                           <th class="is-narrow">Waktu</th>
-                        </tr>
-                     </thead>
-                     {#if itemsRCR}
-                        <tbody>
-                           {#each itemsRCR as item}
-                              <tr>
-                                 <td>{item.comment}</td>
-                                 <td>{item.evaluator}</td>
-                                 <td>{item.time}</td>
-                              </tr>
-                           {/each}
-                        </tbody>
-                     {/if}
-                  </table>
-               </Field>
             {:else}
                <Field name="Jenis Proposal">
                   {jenisProposal}
@@ -1222,12 +1178,6 @@
                   {@html data.abstrak}
                </Field>
 
-               <!-- <Field name="Isi">
-               <div class="box box-padding">
-                  {@html data.isi}
-               </div>
-            </Field> -->
-
                <Field name="File Proposal">
                   <button
                      class="button is-link button"
@@ -1245,6 +1195,49 @@
                {/if}
             {/if}
          </div>
+
+         {#if !view}
+            <div class="box">
+               <div class="notification is-danger is-light">
+                  <p>
+                     <strong>Perhatikan</strong> catatan revisi dari evaluator untuk
+                     detail yang akan direvisi!
+                  </p>
+               </div>
+
+               <Field name="Catatan Revisi">
+                  {comment}
+               </Field>
+
+               <hr />
+
+               <div class="field is-grouped is-grouped-centered">
+                  <h5 class="title is-5">Riwayat Catatan Revisi</h5>
+               </div>
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 70%;">Catatan Revisi</th>
+                        <th style="width: 15%;">Evaluator</th>
+                        <th style="width: 15%;">Waktu</th>
+                     </tr>
+                  </thead>
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
+            </div>
+         {/if}
 
          <div class="field is-grouped is-grouped-right">
             {#if !view}

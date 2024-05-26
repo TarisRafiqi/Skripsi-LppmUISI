@@ -14,6 +14,7 @@
    const role = localStorage.getItem("role");
    const idEvaluator = localStorage.getItem("id");
    let showModal = false;
+   let error = {};
 
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let itemsRCR;
@@ -403,17 +404,28 @@
    });
 
    async function handleRevisi() {
-      const komentar = document.getElementById("komentar");
-      // -------------------------
-      //    API RiwayatCttnRevisi
-      // -------------------------
-      const payloadCttnRevisi = {
+      error = {};
+      let payloadCttnRevisi = {
          ppmId,
          comment,
          namaLengkapEvl,
       };
 
-      if (komentar.value === "" || komentar.value == null) {
+      let payload = {
+         comment,
+         status: Number(data.status) - 1,
+         id,
+      };
+      // -------------------------
+      //    API RiwayatCttnRevisi
+      // -------------------------
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+      console.log(error);
+      if (Object.keys(error).length > 0) {
          showModalError = true;
       } else {
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
@@ -427,15 +439,16 @@
 
          const resultRev = await responseRev.json();
 
+         if (resultRev.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (!responseRev.ok) {
+               console.log(responseRev);
+            }
+         }
          // -----------------------------
          //          API PPM
          // -----------------------------
-         const payload = {
-            comment,
-            status: Number(data.status) - 1,
-            id,
-         };
-
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: {
@@ -447,14 +460,12 @@
 
          const result = await response.json();
 
-         if (resultRev.statusCode != 200 || result.statusCode != 200) {
-            // localStorage.clear();
+         if (result.statusCode != 200) {
             location.pathname = "/tokenexpired";
          } else {
-            if (responseRev.ok && response.ok) {
+            if (response.ok) {
                $route("/dosen/approvalmanagement");
             } else {
-               console.log(responseRev);
                console.log(response);
             }
          }
@@ -944,7 +955,7 @@
          </Field> -->
             <Field name="Proposal">
                <button
-                  class="button is-link is-rounded button is-small"
+                  class="button is-link button"
                   on:click={handleDownloadPpm}>Download Proposal</button
                >
             </Field>
@@ -952,7 +963,7 @@
             {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                <Field name="Rencana Anggaran Biaya">
                   <button
-                     class="button is-link is-rounded button is-small"
+                     class="button is-link button"
                      on:click={handleDownloadRab}>Download RAB</button
                   >
                </Field>
@@ -984,15 +995,19 @@
                {#if status > 8}
                   <Field name="Penilaian Proposal">
                      <button
-                        class="button is-link is-rounded button is-small"
+                        class="button is-link button"
                         on:click={handleDownloadPenilaian}
                         >Download Form Penilaian</button
                      >
                   </Field>
                {/if}
             {/if}
+         </div>
 
-            <hr />
+         <div class="box">
+            <div class="notification is-warning is-light">
+               <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+            </div>
 
             <Field name="Catatan Revisi">
                <textarea
@@ -1001,33 +1016,39 @@
                   name="komentar"
                   id="komentar"
                ></textarea>
+               {#if error.comment}
+                  <p class="help error is-danger">{error.comment}</p>
+               {/if}
             </Field>
 
-            <Field name="Riwayat Revisi">
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th>Catatan Revisi</th>
-                        <th>Evalutor</th>
-                        <th class="is-narrow">Waktu</th>
-                     </tr>
-                  </thead>
+            <hr />
 
-                  {#if itemsRCR}
-                     <tbody>
-                        {#each itemsRCR as item}
-                           <tr>
-                              <td>{item.comment}</td>
-                              <td>{item.evaluator}</td>
-                              <td>{item.time}</td>
-                           </tr>
-                        {/each}
-                     </tbody>
-                  {/if}
-               </table>
-            </Field>
+            <div class="field is-grouped is-grouped-centered">
+               <h5 class="title is-5">Riwayat Catatan Revisi</h5>
+            </div>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th style="width: 70%;">Catatan Revisi</th>
+                     <th style="width: 15%;">Evaluator</th>
+                     <th style="width: 15%;">Waktu</th>
+                  </tr>
+               </thead>
+               {#if itemsRCR}
+                  <tbody>
+                     {#each itemsRCR as item}
+                        <tr>
+                           <td>{item.comment}</td>
+                           <td>{item.evaluator}</td>
+                           <td>{item.time}</td>
+                        </tr>
+                     {/each}
+                  </tbody>
+               {/if}
+            </table>
          </div>
 
          {#if role === "Ka.Departemen"}
@@ -1389,5 +1410,9 @@
       width: 0;
       height: 0;
       opacity: 0;
+   }
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
    }
 </style>

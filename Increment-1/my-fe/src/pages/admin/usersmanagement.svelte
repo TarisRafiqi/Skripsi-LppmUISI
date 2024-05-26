@@ -146,30 +146,10 @@
          <h1 class="title is-1">User Management</h1>
          <hr />
 
-         <!-- <div class="notification is-info is-light">
-            <div class="columns">
-               <div class="column is-4">
-                  <p>
-                     Untuk <strong>Dosen / Reviewer</strong> dari luar UISI<br
-                     />buat akun disini
-                  </p>
-               </div>
-
-               <div class="column"> 
-                  <button class="button is-info" on:click={addUser}>
-                     <span class="icon">
-                        <Icon id="orang" src={accountAdd} />
-                     </span>
-                     <span><a>Create User</a></span>
-                  </button>
-               </div>
-            </div>
-         </div> -->
-
          <div class="box parent">
             <div class="columns">
                <div class="column">
-                  <button class="button is-info" on:click={addUser}>
+                  <button class="button is-info is-rounded" on:click={addUser}>
                      <span class="icon">
                         <Icon id="accountAdd" src={accountAdd} />
                      </span>
@@ -179,20 +159,16 @@
                </div>
 
                <div class="column">
-                  <div class="field has-addons">
-                     <div class="control is-expanded">
+                  <div class="field">
+                     <div class="control has-icons-left">
                         <input
-                           class="input"
+                           class="input is-rounded"
                            type="text"
-                           placeholder="Search user"
+                           placeholder="Search judul"
                         />
-                     </div>
-                     <div class="control">
-                        <button class="button is-outlined">
-                           <span class="icon">
-                              <Icon id="searchIcon" src={searchIcon} />
-                           </span></button
-                        >
+                        <span class="icon is-left">
+                           <Icon id="searchIcon" src={searchIcon} />
+                        </span>
                      </div>
                   </div>
                </div>

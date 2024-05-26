@@ -4,7 +4,7 @@
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Status from "../../modules/Status.svelte";
-   import { infoOutline } from "../../store/icons";
+   import { infoOutline, searchIcon } from "../../store/icons";
 
    const id = localStorage.id;
    let role = localStorage.role;
@@ -50,17 +50,20 @@
    <hr />
 
    {#if items}
-      <!-- <div class="notification is-info is-light">
-         <p>
-            Berikut adalah list <strong
-               >Penelitian / Pengabdian Masyarakat</strong
-            >
-            yang diberikan kepada anda untuk mendapatkan approval. Cek PPM dengan
-            teliti sebelum memberikan approval!
-         </p>
-      </div> -->
-
       <div class="box parent">
+         <div class="field">
+            <div class="control has-icons-left">
+               <input
+                  class="input is-rounded"
+                  type="text"
+                  placeholder="Search judul"
+               />
+               <span class="icon is-left">
+                  <Icon id="searchIcon" src={searchIcon} />
+               </span>
+            </div>
+         </div>
+
          <div class="child">
             <table class="table is-fullwidth is-striped is-hoverable">
                <thead>
