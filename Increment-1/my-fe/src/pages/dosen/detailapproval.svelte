@@ -3,18 +3,20 @@
    import { route, apiURL, penilaianFile } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
-   import Status from "../../modules/Status.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Icon from "../../libs/Icon.svelte";
+   import { downloadIcon } from "../../store/icons";
 
    export let params;
 
    let randomPenilaianFileName = "";
    let showModalError = false;
+   let showModalErrorReviewer = false;
    const id = params["1"];
    const role = localStorage.getItem("role");
    const idEvaluator = localStorage.getItem("id");
-   let showModal = false;
    let error = {};
+   let filePenilaian;
 
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let itemsRCR;
@@ -430,10 +432,7 @@
       } else {
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
+            headers: headers,
             body: JSON.stringify(payloadCttnRevisi),
          });
 
@@ -451,10 +450,7 @@
          // -----------------------------
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
+            headers: headers,
             body: JSON.stringify(payload),
          });
 
@@ -481,10 +477,7 @@
 
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
          body: JSON.stringify(payload),
       });
 
@@ -511,10 +504,7 @@
 
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
          body: JSON.stringify(payload),
       });
 
@@ -533,81 +523,81 @@
    }
 
    async function handlePassReviewer() {
-      const accessToken = localStorage.getItem("token");
+      error = {};
+      const readerPenilaian = new FileReader();
       // -------------------------------------------------------------------//
       // Upload File Penilaian
       // -------------------------------------------------------------------//
-      const readerPenilaian = new FileReader();
-      if (
-         jenisSkema === "Riset Kelompok Keahlian" ||
-         jenisSkema === "Riset Terapan" ||
-         jenisSkema === "Riset Kerjasama" ||
-         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-      ) {
-         readerPenilaian.onloadend = async () => {
-            const base64Data = readerPenilaian.result.split(",")[1];
-            const payloadPenilaianFile = {
-               filePenilaian: {
-                  name: filePenilaian.name,
-                  type: filePenilaian.type,
-                  data: base64Data,
-               },
-               randomPenilaianFileName,
-            };
-
-            try {
-               const responseUpload = await fetch(
-                  $apiURL + "/uploadPenilaian",
-                  {
-                     method: "POST",
-                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                        "Content-Type": "application/json",
-                     },
-                     body: JSON.stringify(payloadPenilaianFile),
-                  }
-               );
-
-               const resultUpload = await responseUpload.json();
-
-               if (responseUpload.status === 401) {
-                  location.pathname = "/tokenexpired";
-               }
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-         readerPenilaian.readAsDataURL(filePenilaian);
+      if (isObjectEmpty($penilaianFile)) {
+         error["filePenilaian"] = `*`;
       }
-      // -------------------------------------------------------------------//
 
-      const payload = {
-         comment: "",
-         status: Number(data.status) + 2,
-         randomPenilaianFileName,
-         id,
-      };
-
-      const response = await fetch($apiURL + "/handleEvaluatorAction", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorReviewer = true;
       } else {
-         if (response.ok) {
-            $route("/dosen/approvalmanagement");
+         if (
+            jenisSkema === "Riset Kelompok Keahlian" ||
+            jenisSkema === "Riset Terapan" ||
+            jenisSkema === "Riset Kerjasama" ||
+            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+         ) {
+            readerPenilaian.onloadend = async () => {
+               const base64Data = readerPenilaian.result.split(",")[1];
+               const payloadPenilaianFile = {
+                  filePenilaian: {
+                     name: filePenilaian.name,
+                     type: filePenilaian.type,
+                     data: base64Data,
+                  },
+                  randomPenilaianFileName,
+               };
+
+               try {
+                  const responseUpload = await fetch(
+                     $apiURL + "/uploadPenilaian",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadPenilaianFile),
+                     }
+                  );
+
+                  const resultUpload = await responseUpload.json();
+
+                  if (responseUpload.status === 401) {
+                     location.pathname = "/tokenexpired";
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+               }
+            };
+            readerPenilaian.readAsDataURL(filePenilaian);
+         }
+         // -------------------------------------------------------------------//
+         const payload = {
+            comment: "",
+            status: Number(data.status) + 2,
+            randomPenilaianFileName,
+            id,
+         };
+
+         const response = await fetch($apiURL + "/handleEvaluatorAction", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen/approvalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -776,6 +766,10 @@
          </p>
       </Modalerror>
 
+      <Modalerror bind:show={showModalErrorReviewer}>
+         <p>Anda belum mengupload file penilaian proposal</p>
+      </Modalerror>
+
       <h1 class="title is-1">Detail Proposal</h1>
 
       <div class="tabs is-boxed">
@@ -896,19 +890,39 @@
                         <input
                            id="filePenilaian"
                            class="inputf custom-file-input"
-                           accept=".xlsx"
+                           accept="application/pdf"
                            type="file"
                            on:change={filePenilaianChange}
                         />
-                        <label for="filePenilaian" class="button">
-                           {#if $penilaianFile?.name}
-                              {$penilaianFile.name}
-                           {:else}
-                              Choose File
-                           {/if}
-                        </label>
+                        <div class="file has-name is-success">
+                           <label class="file-label" for="filePenilaian">
+                              <input
+                                 class="file-input"
+                                 type="file"
+                                 name="resume"
+                              />
+                              <span class="file-cta">
+                                 <span class="file-icon">
+                                    <Icon id="download" src={downloadIcon} />
+                                 </span>
+                                 <span class="file-label"> Choose a file</span>
+                              </span>
+                              {#if $penilaianFile?.name}
+                                 <span class="file-name">
+                                    {$penilaianFile.name}</span
+                                 >
+                              {:else}
+                                 <span class="file-name">No file chosen</span>
+                              {/if}
+                           </label>
+                        </div>
+                        {#if error.filePenilaian}
+                           <p class="error has-text-danger">
+                              {error.filePenilaian}
+                           </p>
+                        {/if}
                      </span>
-                     <p class="help is-info">File Type: xlsx</p>
+                     <p class="help">File Type: pdf</p>
                   </Field>
                {/if}
 

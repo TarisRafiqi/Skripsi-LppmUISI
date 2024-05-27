@@ -1,17 +1,22 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL } from "../../store";
+   import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import Modalerror from "../../libs/Modalerror.svelte";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
-   import Status from "../../modules/Status.svelte";
-   import Wysiwyg from "../../libs/Wysiwyg.svelte";
    import Select from "../../libs/Select.svelte";
-   import { addProposal, deleteIcon } from "../../store/icons";
+   import {
+      deleteIcon,
+      edit,
+      downloadIcon,
+      cancelIcon,
+   } from "../../store/icons";
 
    export let params;
    const own_id = Number(localStorage.getItem("id"));
 
+   let error = {};
    let items = [];
    let view;
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
@@ -67,15 +72,19 @@
    let fileRab;
    let filePpm;
    let isLoading = false;
+   let editModeProposal = false;
+   let editModeRAB = false;
+   let showModalError = false;
+
+   const accessToken = localStorage.getItem("token");
+
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
 
    onMount(async () => {
       isLoading = false;
-      const accessToken = localStorage.getItem("token");
-
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
 
       const response = await fetch($apiURL + "/ppm/" + id, {
          method: "GET",
@@ -400,6 +409,24 @@
       }
    });
 
+   function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      $ppmFile = e.target.files[0];
+   }
+
+   function fileRabChange(e) {
+      fileRab = e.target.files[0];
+      $rabFile = e.target.files[0];
+   }
+
+   function toggleEditModeProposal() {
+      editModeProposal = !editModeProposal;
+   }
+
+   function toggleEditModeRAB() {
+      editModeRAB = !editModeRAB;
+   }
+
    function isEdit(code) {
       const edit = [0, 1, 3, 5, 7, 9];
       return edit.some((x) => x === code);
@@ -422,11 +449,6 @@
    }
 
    async function handleDownloadRab(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
       let filename = "rab.xlsx";
       try {
          const response = await fetch(
@@ -452,11 +474,6 @@
    }
 
    async function handleDownloadPpm(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
       let filename = "proposal.pdf";
       try {
          const response = await fetch(
@@ -482,7 +499,7 @@
    }
 
    async function remediasi() {
-      const accessToken = localStorage.getItem("token");
+      error = {};
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -502,10 +519,7 @@
          try {
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadRabFile),
             });
 
@@ -520,7 +534,6 @@
       };
 
       if (fileRab) readerRab.readAsDataURL(fileRab);
-
       // -------------------------------------------------------------------//
       // Upload File PPM
       // -------------------------------------------------------------------//
@@ -538,10 +551,7 @@
          try {
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadPpmFile),
             });
 
@@ -581,32 +591,41 @@
          randomPpmFileName,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (
+            (!["comment"].includes(key) && !value) ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalError = true;
       } else {
-         if (response.ok) {
-            $route("/dosen/proposalmanagement");
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
 
    async function submitProposal() {
+      error = {};
       isLoading = true;
-      const accessToken = localStorage.getItem("token");
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -626,10 +645,7 @@
          try {
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadRabFile),
             });
 
@@ -661,10 +677,7 @@
          try {
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadPpmFile),
             });
 
@@ -703,25 +716,34 @@
          randomPpmFileName,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (
+            (!["comment"].includes(key) && !value) ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalError = true;
       } else {
-         if (response.ok) {
-            $route("/dosen/proposalmanagement");
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
 
@@ -729,7 +751,7 @@
    }
 
    async function simpanProposal() {
-      const accessToken = localStorage.getItem("token");
+      error = {};
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -749,10 +771,7 @@
          try {
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadRabFile),
             });
 
@@ -784,10 +803,7 @@
          try {
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadPpmFile),
             });
 
@@ -800,6 +816,7 @@
             console.error("Error uploading file:", error);
          }
       };
+
       if (filePpm) readerPpm.readAsDataURL(filePpm);
 
       // -----------------------------------------------------------------------------//
@@ -826,25 +843,34 @@
          randomPpmFileName,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (
+            (!["comment", "status"].includes(key) && !value) ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalError = true;
       } else {
-         if (response.ok) {
-            $route("/dosen/proposalmanagement");
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/dosen/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -906,10 +932,6 @@
       {#if tab1 === true}
          <div class="box">
             {#if !view}
-               <!-- <p id="days"></p>
-               <p id="hours"></p>
-               <p id="mins"></p>
-               <p id="secs"></p> -->
                <Field name="Jenis Proposal">
                   <div class="select is-fullwidth">
                      <select bind:value={jenisProposal}>
@@ -924,6 +946,9 @@
                         >
                      </select>
                   </div>
+                  {#if error.jenisProposal}
+                     <p class="help error is-danger">{error.jenisProposal}</p>
+                  {/if}
                </Field>
 
                <Field name="Jenis Kegiatan">
@@ -938,6 +963,9 @@
                         >
                      </select>
                   </div>
+                  {#if error.jenisKegiatan}
+                     <p class="help error is-danger">{error.jenisKegiatan}</p>
+                  {/if}
                </Field>
 
                <Field name="Jenis Skema">
@@ -978,6 +1006,9 @@
                         {/if}
                      </select>
                   </div>
+                  {#if error.jenisSkema}
+                     <p class="help error is-danger">{error.jenisSkema}</p>
+                  {/if}
                </Field>
 
                <Field name="Kelompok Keahlian">
@@ -987,6 +1018,11 @@
                      placeholder="Masukkan Kelompok Keahlian"
                      bind:value={kelompokKeahlian}
                   />
+                  {#if error.kelompokKeahlian}
+                     <p class="help error is-danger">
+                        {error.kelompokKeahlian}
+                     </p>
+                  {/if}
                </Field>
 
                <Field name="Topik">
@@ -996,26 +1032,27 @@
                      placeholder="Masukkan Topik"
                      bind:value={topik}
                   />
+                  {#if error.topik}
+                     <p class="help error is-danger">{error.topik}</p>
+                  {/if}
                </Field>
 
                <Field name="Tanggal Mulai">
-                  <div class="field">
-                     <input
-                        class="input"
-                        type="date"
-                        bind:value={tanggalMulai}
-                     />
-                  </div>
+                  <input class="input" type="date" bind:value={tanggalMulai} />
+                  {#if error.tanggalMulai}
+                     <p class="help error is-danger">{error.tanggalMulai}</p>
+                  {/if}
                </Field>
 
                <Field name="Tanggal Selesai">
-                  <div class="field">
-                     <input
-                        class="input"
-                        type="date"
-                        bind:value={tanggalSelesai}
-                     />
-                  </div>
+                  <input
+                     class="input"
+                     type="date"
+                     bind:value={tanggalSelesai}
+                  />
+                  {#if error.tanggalSelesai}
+                     <p class="help error is-danger">{error.tanggalSelesai}</p>
+                  {/if}
                </Field>
 
                <Field name="Biaya Penelitian">
@@ -1030,10 +1067,16 @@
                            "Rp. "
                         ))}
                   />
+                  {#if error.biayaPenelitian}
+                     <p class="help error is-danger">{error.biayaPenelitian}</p>
+                  {/if}
                </Field>
 
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
+                  {#if error.anggotaTim}
+                     <p class="help error is-danger">{error.anggotaTim}</p>
+                  {/if}
                </Field>
 
                <br />
@@ -1081,10 +1124,16 @@
                      placeholder="Masukkan Judul"
                      bind:value={judul}
                   />
+                  {#if error.judul}
+                     <p class="help error is-danger">{error.judul}</p>
+                  {/if}
                </Field>
 
                <Field name="Abstrak">
                   <textarea class="textarea" bind:value={abstrak}></textarea>
+                  {#if error.abstrak}
+                     <p class="help error is-danger">{error.abstrak}</p>
+                  {/if}
                </Field>
 
                <!-- <Field name="Isi">
@@ -1092,22 +1141,142 @@
                </Field> -->
 
                <Field name="Proposal">
-                  <input
-                     class="input"
-                     accept="application/pdf"
-                     type="file"
-                     on:change={(e) => (filePpm = e.target.files[0])}
-                  />
+                  {#if !editModeProposal}
+                     <button
+                        class="button is-link button"
+                        on:click={handleDownloadPpm}>Download Proposal</button
+                     >
+                     <button
+                        class="button is-link is-light"
+                        on:click={toggleEditModeProposal}
+                        title="Change files"
+                        ><span class="icon">
+                           <Icon id="edit" src={edit} />
+                        </span></button
+                     >
+                  {:else}
+                     <span class="inputf__wrapper">
+                        <input
+                           id="filePpm"
+                           class="inputf custom-file-input"
+                           accept="application/pdf"
+                           type="file"
+                           on:change={filePpmChange}
+                        />
+                        <div class="file has-name is-success">
+                           <label class="file-label" for="filePpm">
+                              <input
+                                 class="file-input"
+                                 type="file"
+                                 name="resume"
+                              />
+                              <span class="file-cta">
+                                 <span class="file-icon">
+                                    <Icon id="download" src={downloadIcon} />
+                                 </span>
+                                 <span class="file-label"> Choose a file</span>
+                              </span>
+                              {#if $ppmFile?.name}
+                                 <span class="file-name"> {$ppmFile.name}</span>
+                              {:else}
+                                 <span class="file-name">No file chosen</span>
+                              {/if}
+                           </label>
+                        </div>
+                        {#if error.fileProposal}
+                           <p class="error has-text-danger">
+                              {error.fileProposal}
+                           </p>
+                        {/if}
+                        <button
+                           class="button is-danger is-light"
+                           on:click={toggleEditModeProposal}
+                           title="Cancel"
+                           ><span class="icon">
+                              <Icon id="cancel" src={cancelIcon} />
+                           </span></button
+                        >
+                        {#if error.fileProposal}
+                           <p class="error has-text-danger">
+                              {error.fileProposal}
+                           </p>
+                        {/if}
+                     </span>
+                     <p class="help">File Type: pdf</p>
+                  {/if}
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                   <Field name="Rencana Anggaran Biaya">
-                     <input
-                        class="input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={(e) => (fileRab = e.target.files[0])}
-                     />
+                     {#if !editModeRAB}
+                        <button
+                           class="button is-link button"
+                           on:click={handleDownloadRab}>Download RAB</button
+                        >
+                        <button
+                           class="button is-link is-light"
+                           on:click={toggleEditModeRAB}
+                           title="Change files"
+                           ><span class="icon">
+                              <Icon id="edit" src={edit} />
+                           </span></button
+                        >
+                     {:else}
+                        <!-- <input
+                           class="input"
+                           accept=".xlsx"
+                           type="file"
+                           on:change={(e) => (fileRab = e.target.files[0])}
+                        /> -->
+                        <span class="inputf__wrapper">
+                           <input
+                              id="fileRab"
+                              class="inputf custom-file-input"
+                              accept=".xlsx"
+                              type="file"
+                              on:change={fileRabChange}
+                           />
+                           <div class="file has-name is-success">
+                              <label class="file-label" for="fileRab">
+                                 <input
+                                    class="file-input"
+                                    type="file"
+                                    name="resume"
+                                 />
+                                 <span class="file-cta">
+                                    <span class="file-icon">
+                                       <Icon id="download" src={downloadIcon} />
+                                    </span>
+                                    <span class="file-label">
+                                       Choose a file</span
+                                    >
+                                 </span>
+                                 {#if $rabFile?.name}
+                                    <span class="file-name">
+                                       {$rabFile?.name}</span
+                                    >
+                                 {:else}
+                                    <span class="file-name">No file chosen</span
+                                    >
+                                 {/if}
+                              </label>
+                           </div>
+                           <button
+                              class="button is-danger is-light"
+                              on:click={toggleEditModeRAB}
+                              title="Cancel"
+                              ><span class="icon">
+                                 <Icon id="cancel" src={cancelIcon} />
+                              </span></button
+                           >
+                           {#if error.fileRAB}
+                              <p class="error has-text-danger">
+                                 {error.fileRAB}
+                              </p>
+                           {/if}
+                        </span>
+                        <p class="help">File Type: xlsx</p>
+                     {/if}
                   </Field>
                {/if}
             {:else}
@@ -1178,7 +1347,7 @@
                   {@html data.abstrak}
                </Field>
 
-               <Field name="File Proposal">
+               <Field name="Proposal">
                   <button
                      class="button is-link button"
                      on:click={handleDownloadPpm}>Download Proposal</button
@@ -1186,7 +1355,7 @@
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="File RAB">
+                  <Field name="Rencana Anggaran Biaya">
                      <button
                         class="button is-link button"
                         on:click={handleDownloadRab}>Download RAB</button
@@ -1569,5 +1738,22 @@
    </Article>
 {/if}
 
+<Modalerror bind:show={showModalError}>
+   <p>Lengkapi semua form</p>
+</Modalerror>
+
 <style>
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
+   }
 </style>

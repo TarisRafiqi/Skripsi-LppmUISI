@@ -1,6 +1,7 @@
 <script>
    import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import Icon from "../../libs/Icon.svelte";
    import {
       deleteIcon,
       penelitian,
@@ -9,7 +10,6 @@
       downloadIcon,
    } from "../../store/icons";
    import Article from "../../libs/Article.svelte";
-   import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
    import Select from "../../libs/Select.svelte";
    import Modal from "../../libs/Modal.svelte";
@@ -21,7 +21,6 @@
    let error = {};
    let showModalErrorProposal = false;
    let showModalErrorBiodata = false;
-   let showModalErrorBiodata2 = false;
    let warningFormText = false;
    let value;
    let label;
@@ -142,8 +141,6 @@
    async function clickModalHKI() {
       showModalHKI = true;
    }
-
-   let inputFilePPM;
 
    onMount(async () => {
       isLoading = false;
@@ -583,7 +580,7 @@
          }
       }
       if (Object.keys(error).length > 0) {
-         showModalErrorForm = true;
+         showModalErrorBiodata = true;
       } else {
          const responseIdentitas = await fetch($apiURL + "/userprofile", {
             method: "PATCH",
@@ -610,7 +607,7 @@
          }
       }
       if (Object.keys(error).length > 0) {
-         showModalErrorForm = true;
+         // showModalErrorProposal = true;
       } else {
          const responseProposal = await fetch($apiURL + "/ppm", {
             method: "POST",
@@ -639,10 +636,10 @@
    async function submitProposal() {
       error = {};
       isLoading = true;
+      const readerRab = new FileReader();
       // --------------------------------------//
       // Upload File RAB
       // --------------------------------------//
-      const readerRab = new FileReader();
       if (
          jenisSkema === "Riset Kelompok Keahlian" ||
          jenisSkema === "Riset Terapan" ||
@@ -753,7 +750,7 @@
          }
       }
       if (Object.keys(error).length > 0) {
-         showModalErrorForm = true;
+         showModalErrorBiodata = true;
       } else {
          const responseIdentitas = await fetch($apiURL + "/userprofile", {
             method: "PATCH",
@@ -780,7 +777,7 @@
          }
       }
       if (Object.keys(error).length > 0) {
-         showModalErrorForm = true;
+         // showModalErrorProposal = true;
       } else {
          const responseProposal = await fetch($apiURL + "/ppm", {
             method: "POST",
@@ -1343,21 +1340,6 @@
    <h1 class="title is-1">Pendaftaran Proposal</h1>
    <hr />
 
-   <Modalerror bind:show={showModalErrorProposal}>
-      <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>
-   </Modalerror>
-
-   <Modalerror bind:show={showModalErrorBiodata}>
-      <p>Lengkapi semua form biodata untuk submit proposal!</p>
-   </Modalerror>
-
-   <Modalerror bind:show={showModalErrorBiodata2}>
-      <p>Lengkapi semua form biodata untuk simpan proposal!</p>
-   </Modalerror>
-
-   <!-- ---------------------------------------------------- -->
-   <!-- Bulma Stepper -->
-   <!-- ---------------------------------------------------- -->
    <div class="box">
       <ul class="steps is-medium has-content-centered">
          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -2805,6 +2787,14 @@
       </div>
    {/if}
 </Article>
+
+<Modalerror bind:show={showModalErrorProposal}>
+   <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorBiodata}>
+   <p>Lengkapi semua form biodata untuk submit proposal!</p>
+</Modalerror>
 
 <style>
    .inputf__wrapper {

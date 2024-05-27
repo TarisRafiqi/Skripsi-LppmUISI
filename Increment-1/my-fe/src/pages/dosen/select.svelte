@@ -29,6 +29,9 @@
    }
 
    function handleSubmit() {
+      console.log(filePpm);
+      console.log(filePpm.name);
+      console.log(filePpm.type);
       error = {};
       isLoading = true;
       for (const [key, value] of Object.entries(form)) {
