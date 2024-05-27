@@ -741,64 +741,16 @@
 
    let tab1 = true;
    let tab2;
-   // let tab3;
-   // let tab4;
-   // let tab5;
-   // let tab6;
 
    function clicktab1() {
       tab1 = true;
       tab2 = false;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
    }
 
    function clicktab2() {
       tab1 = false;
       tab2 = true;
-      // tab3 = false;
-      // tab4 = false;
-      // tab5 = false;
-      // tab6 = false;
    }
-
-   // function clicktab3() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = true;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = false;
-   // }
-
-   // function clicktab4() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = true;
-   //    tab5 = false;
-   //    tab6 = false;
-   // }
-
-   // function clicktab5() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = true;
-   //    tab6 = false;
-   // }
-
-   // function clicktab6() {
-   //    tab1 = false;
-   //    tab2 = false;
-   //    tab3 = false;
-   //    tab4 = false;
-   //    tab5 = false;
-   //    tab6 = true;
-   // }
 
    function filePenilaianChange(e) {
       filePenilaian = e.target.files[0];
@@ -844,38 +796,6 @@
                   <span>Biodata Peneliti</span>
                </a>
             </li>
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab3} class:is-active={tab3}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Status</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab4} class:is-active={tab4}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Logbook</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab5} class:is-active={tab5}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Monev</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- <li on:click={clicktab6} class:is-active={tab6}> -->
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <!-- <a> -->
-            <!-- <span>Laporan</span> -->
-            <!-- </a> -->
-            <!-- </li> -->
          </ul>
       </div>
 

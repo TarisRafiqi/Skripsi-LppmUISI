@@ -49,21 +49,16 @@
 
    <hr />
 
+   <div class="field">
+      <div class="control has-icons-left">
+         <input class="input" type="text" placeholder="Search judul" />
+         <span class="icon is-left">
+            <Icon id="searchIcon" src={searchIcon} />
+         </span>
+      </div>
+   </div>
    {#if items}
       <div class="box parent">
-         <div class="field">
-            <div class="control has-icons-left">
-               <input
-                  class="input is-rounded"
-                  type="text"
-                  placeholder="Search judul"
-               />
-               <span class="icon is-left">
-                  <Icon id="searchIcon" src={searchIcon} />
-               </span>
-            </div>
-         </div>
-
          <div class="child">
             <table class="table is-fullwidth is-striped is-hoverable">
                <thead>
@@ -97,11 +92,11 @@
                               </td>
                               <td class="review"
                                  ><button
-                                    class="button is-info is-rounded is-small"
+                                    class="button is-info is-small"
                                     pid={item.id}
                                     on:click={detail}
                                     ><span class="icon">
-                                       <Icon id="orang" src={infoOutline} />
+                                       <Icon id="info" src={infoOutline} />
                                     </span></button
                                  ></td
                               >
@@ -124,7 +119,7 @@
                               </td>
                               <td class="review"
                                  ><button
-                                    class="button is-info is-rounded is-small"
+                                    class="button is-info is-small"
                                     pid={item.id}
                                     on:click={detail}
                                     ><span class="icon">
@@ -151,7 +146,7 @@
                               </td>
                               <td class="review"
                                  ><button
-                                    class="button is-info is-rounded is-small"
+                                    class="button is-info is-small"
                                     pid={item.id}
                                     on:click={detail}
                                     ><span class="icon">
@@ -178,7 +173,7 @@
                               </td>
                               <td class="review"
                                  ><button
-                                    class="button is-info is-rounded is-small"
+                                    class="button is-info is-small"
                                     pid={item.id}
                                     on:click={detail}
                                     ><span class="icon">

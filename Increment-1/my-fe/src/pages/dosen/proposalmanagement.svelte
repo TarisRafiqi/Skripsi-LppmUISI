@@ -100,37 +100,30 @@
       <p>Lengkapi profile anda terlebih dahulu</p>
    </Modalroute>
 
-   <div class="box parent">
-      <div class="columns">
-         <div class="column">
-            <button
-               class="button is-info is-rounded"
-               on:click={HandleAddProposal}
-            >
-               <span class="icon">
-                  <Icon id="addProposal" src={addProposal} />
-               </span>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <span><a>Buat Proposal</a></span>
-            </button>
-         </div>
+   <div class="columns">
+      <div class="column">
+         <button class="button is-info" on:click={HandleAddProposal}>
+            <span class="icon">
+               <Icon id="addProposal" src={addProposal} />
+            </span>
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <span><a>Buat Proposal</a></span>
+         </button>
+      </div>
 
-         <div class="column">
-            <div class="field">
-               <div class="control has-icons-left">
-                  <input
-                     class="input is-rounded"
-                     type="text"
-                     placeholder="Search judul"
-                  />
-                  <span class="icon is-left">
-                     <Icon id="searchIcon" src={searchIcon} />
-                  </span>
-               </div>
+      <div class="column">
+         <div class="field">
+            <div class="control has-icons-left">
+               <input class="input" type="text" placeholder="Search judul" />
+               <span class="icon is-left">
+                  <Icon id="searchIcon" src={searchIcon} />
+               </span>
             </div>
          </div>
       </div>
+   </div>
 
+   <div class="box parent">
       <div class="child">
          <table class="table is-fullwidth is-striped is-hoverable">
             <thead>
@@ -159,7 +152,7 @@
                         </td>
                         <td class="review"
                            ><button
-                              class="button is-info is-rounded is-small"
+                              class="button is-info is-small"
                               pid={item.id}
                               on:click={detail}
                               ><span class="icon">

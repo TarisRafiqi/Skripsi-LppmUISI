@@ -1981,12 +1981,24 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.field.svelte-k7u2xx {
+.field.svelte-jtr2u8.svelte-jtr2u8 {
   padding-bottom: 10px;
 }
-.red-asterisk.svelte-k7u2xx {
+.red-asterisk.svelte-jtr2u8.svelte-jtr2u8 {
   color: red;
   font-weight: bold;
+}
+.inputf__wrapper.svelte-jtr2u8.svelte-jtr2u8 {
+  position: relative;
+  display: flex;
+}
+.inputf__wrapper.svelte-jtr2u8 input.svelte-jtr2u8 {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.help.svelte-jtr2u8.svelte-jtr2u8 {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */

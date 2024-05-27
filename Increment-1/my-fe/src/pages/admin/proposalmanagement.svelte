@@ -49,20 +49,16 @@
       <h1 class="title is-1">Proposal Management</h1>
       <hr />
 
-      <div class="box parent">
-         <div class="field">
-            <div class="control has-icons-left">
-               <input
-                  class="input is-rounded"
-                  type="text"
-                  placeholder="Search judul"
-               />
-               <span class="icon is-left">
-                  <Icon id="searchIcon" src={searchIcon} />
-               </span>
-            </div>
+      <div class="field">
+         <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="Search judul" />
+            <span class="icon is-left">
+               <Icon id="searchIcon" src={searchIcon} />
+            </span>
          </div>
+      </div>
 
+      <div class="box parent">
          <div class="child">
             <table class="table is-fullwidth is-striped is-hoverable">
                <thead>
@@ -90,7 +86,7 @@
                         <td class="status"><Status code={item.status} /></td>
                         <td class="review"
                            ><button
-                              class="button is-info is-rounded is-small"
+                              class="button is-info is-small"
                               uid={item.id}
                               on:click={handleReview}
                            >

@@ -1055,7 +1055,7 @@
                               <td>
                                  {#if idx > 0}
                                     <button
-                                       class="button is-danger is-rounded is-small"
+                                       class="button is-danger is-small"
                                        data-value={member.value}
                                        on:click={deleteMember}
                                        ><span class="icon">

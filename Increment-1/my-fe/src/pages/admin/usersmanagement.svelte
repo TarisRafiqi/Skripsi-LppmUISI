@@ -146,34 +146,34 @@
          <h1 class="title is-1">User Management</h1>
          <hr />
 
-         <div class="box parent">
-            <div class="columns">
-               <div class="column">
-                  <button class="button is-info is-rounded" on:click={addUser}>
-                     <span class="icon">
-                        <Icon id="accountAdd" src={accountAdd} />
-                     </span>
-                     <!-- svelte-ignore a11y-missing-attribute -->
-                     <span><a>Create user</a></span>
-                  </button>
-               </div>
+         <div class="columns">
+            <div class="column">
+               <button class="button is-info" on:click={addUser}>
+                  <span class="icon">
+                     <Icon id="accountAdd" src={accountAdd} />
+                  </span>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <span><a>Create user</a></span>
+               </button>
+            </div>
 
-               <div class="column">
-                  <div class="field">
-                     <div class="control has-icons-left">
-                        <input
-                           class="input is-rounded"
-                           type="text"
-                           placeholder="Search judul"
-                        />
-                        <span class="icon is-left">
-                           <Icon id="searchIcon" src={searchIcon} />
-                        </span>
-                     </div>
+            <div class="column">
+               <div class="field">
+                  <div class="control has-icons-left">
+                     <input
+                        class="input"
+                        type="text"
+                        placeholder="Search judul"
+                     />
+                     <span class="icon is-left">
+                        <Icon id="searchIcon" src={searchIcon} />
+                     </span>
                   </div>
                </div>
             </div>
+         </div>
 
+         <div class="box parent">
             <div class="child">
                <table class="table is-fullwidth is-striped is-hoverable">
                   <thead>

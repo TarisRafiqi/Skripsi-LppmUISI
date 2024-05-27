@@ -1,7 +1,13 @@
 <script>
    import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import { route, apiURL, ppmFile, rabFile } from "../../store";
-   import { deleteIcon, penelitian, accountEdit, add } from "../../store/icons";
+   import {
+      deleteIcon,
+      penelitian,
+      accountEdit,
+      add,
+      downloadIcon,
+   } from "../../store/icons";
    import Article from "../../libs/Article.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Field from "../../libs/Field.svelte";
@@ -1618,18 +1624,27 @@
                   type="file"
                   on:change={filePpmChange}
                />
-               <label for="filePpm" class="button">
-                  {#if $ppmFile?.name}
-                     {$ppmFile.name}
-                  {:else}
-                     Choose File
-                  {/if}
-               </label>
+               <div class="file has-name is-success">
+                  <label class="file-label" for="filePpm">
+                     <input class="file-input" type="file" name="resume" />
+                     <span class="file-cta">
+                        <span class="file-icon">
+                           <Icon id="download" src={downloadIcon} />
+                        </span>
+                        <span class="file-label"> Choose a file</span>
+                     </span>
+                     {#if $ppmFile?.name}
+                        <span class="file-name"> {$ppmFile.name}</span>
+                     {:else}
+                        <span class="file-name">No file chosen</span>
+                     {/if}
+                  </label>
+               </div>
                {#if error.fileProposal}
                   <p class="error has-text-danger">{error.fileProposal}</p>
                {/if}
             </span>
-            <p class="help is-info">File Type: pdf</p>
+            <p class="help">File Type: pdf</p>
          </Field>
 
          {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
@@ -1642,18 +1657,27 @@
                      type="file"
                      on:change={fileRabChange}
                   />
-                  <label for="fileRab" class="button">
-                     {#if $rabFile?.name}
-                        {$rabFile.name}
-                     {:else}
-                        Choose File
-                     {/if}
-                  </label>
+                  <div class="file has-name is-success">
+                     <label class="file-label" for="fileRab">
+                        <input class="file-input" type="file" name="resume" />
+                        <span class="file-cta">
+                           <span class="file-icon">
+                              <Icon id="download" src={downloadIcon} />
+                           </span>
+                           <span class="file-label"> Choose a file</span>
+                        </span>
+                        {#if $rabFile?.name}
+                           <span class="file-name"> {$rabFile?.name}</span>
+                        {:else}
+                           <span class="file-name">No file chosen</span>
+                        {/if}
+                     </label>
+                  </div>
                   {#if error.fileRAB}
                      <p class="error has-text-danger">{error.fileRAB}</p>
                   {/if}
                </span>
-               <p class="help is-info">File Type: xlsx</p>
+               <p class="help">File Type: xlsx</p>
             </Field>
          {/if}
 

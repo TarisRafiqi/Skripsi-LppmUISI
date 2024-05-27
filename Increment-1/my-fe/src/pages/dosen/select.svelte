@@ -1,17 +1,32 @@
 <script>
    import { onMount } from "svelte";
    import Article from "../../libs/Article.svelte";
-   import { route, apiURL } from "../../store";
+   import { route, apiURL, ppmFile } from "../../store";
+   import Field from "../../libs/Field.svelte";
+   import Icon from "../../libs/Icon.svelte";
+   import { cancelIcon, edit, downloadIcon } from "../../store/icons";
 
    let username = "";
    let email = "";
    let error = {};
    let isLoading = false;
-
-   const form = {
+   let editMode = false;
+   let form = {
       username,
       email,
    };
+
+   function toggleEditMode() {
+      editMode = !editMode;
+   }
+
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
 
    function handleSubmit() {
       error = {};
@@ -24,6 +39,10 @@
          }
       }
 
+      if (isObjectEmpty($ppmFile)) {
+         error["fileProposal"] = `*`;
+      }
+
       if (Object.keys(error).length > 0) {
          console.log("Error, Lengkapi semua form");
       } else {
@@ -31,6 +50,11 @@
          console.log("Sukses");
          return;
       }
+   }
+
+   function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      $ppmFile = e.target.files[0];
    }
 </script>
 
@@ -68,14 +92,60 @@
       >
    </div>
 
-   <div class="field has-addons">
-      <div class="control is-expanded">
-         <input class="input" type="text" />
-      </div>
-      <div class="control">
-         <button type="submit" class="button is-info">Search</button>
-      </div>
-   </div>
+   <!-- ----------------------------------------------------------------------------- -->
+   <Field name="Proposal">
+      {#if !editMode}
+         <button class="button is-link button">Download Proposal</button>
+         <button
+            class="button is-link is-light"
+            on:click={toggleEditMode}
+            title="Change files"
+            ><span class="icon">
+               <Icon id="edit" src={edit} />
+            </span></button
+         >
+      {:else}
+         <span class="inputf__wrapper">
+            <input
+               id="filePpm"
+               class="inputf custom-file-input"
+               accept="application/pdf"
+               type="file"
+               on:change={filePpmChange}
+            />
+
+            <div class="file has-name">
+               <label class="file-label" for="filePpm">
+                  <input class="file-input" type="file" name="resume" />
+                  <span class="file-cta">
+                     <span class="file-icon">
+                        <Icon id="download" src={downloadIcon} />
+                     </span>
+                     <span class="file-label"> Choose a file</span>
+                  </span>
+                  {#if $ppmFile?.name}
+                     <span class="file-name"> {$ppmFile.name}</span>
+                  {:else}
+                     <span class="file-name">...</span>
+                  {/if}
+               </label>
+            </div>
+            {#if error.fileProposal}
+               <p class="error has-text-danger">{error.fileProposal}</p>
+            {/if}
+            <button
+               class="button is-danger is-light"
+               on:click={toggleEditMode}
+               title="Cancel"
+               ><span class="icon">
+                  <Icon id="cancel" src={cancelIcon} />
+               </span></button
+            >
+         </span>
+
+         <p class="help is-info">File Type: pdf</p>
+      {/if}
+   </Field>
 </Article>
 
 <style>
@@ -85,5 +155,20 @@
    .red-asterisk {
       color: red;
       font-weight: bold;
+   }
+
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
    }
 </style>

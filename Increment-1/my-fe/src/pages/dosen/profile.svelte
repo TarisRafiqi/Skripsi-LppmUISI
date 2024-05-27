@@ -1101,7 +1101,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               data-value={matkul.label}
                               on:click={deleteMatkul}
                               ><span class="icon">
@@ -1309,7 +1309,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PP.id}
                               on:click={delrowPP}
                               ><span class="icon">
@@ -1373,7 +1373,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PM.id}
                               on:click={delrowPM}
                               ><span class="icon">
@@ -1441,7 +1441,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PD.id}
                               on:click={delrowPD}
                               ><span class="icon">
@@ -1506,7 +1506,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PPub.id}
                               on:click={delrowPPub}
                               ><span class="icon">
@@ -1573,7 +1573,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PPB.id}
                               on:click={delrowPPB}
                               ><span class="icon">
@@ -1639,7 +1639,7 @@
                      <tr>
                         <td
                            ><button
-                              class="button is-danger is-rounded is-small"
+                              class="button is-danger is-small"
                               pid={PHKI.id}
                               on:click={delrowPHKI}
                               ><span class="icon">

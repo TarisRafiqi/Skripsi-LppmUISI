@@ -6774,6 +6774,8 @@
   var copyright = "M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m11-9c0 6.075-4.925 11-11 11S1 18.075 1 12S5.925 1 12 1s11 4.925 11 11M9.525 9.526a3.5 3.5 0 0 0 4.95 4.95l.707-.708l1.414 1.415l-.707.707a5.5 5.5 0 1 1 0-7.778l.707.707l-1.414 1.414l-.707-.707a3.5 3.5 0 0 0-4.95 0";
   var edit = "M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z";
   var searchIcon = "m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14";
+  var cancelIcon = "M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 16H5V5h14zM17 8.4L13.4 12l3.6 3.6l-1.4 1.4l-3.6-3.6L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7z";
+  var downloadIcon = "m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z";
 
   // src/pages/admin/detailproposal.svelte
   function get_each_context4(ctx, list, i) {
@@ -13387,7 +13389,7 @@
     let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
     let uidProposal;
     let fileRab;
-    let filePpm;
+    let filePpm2;
     let items = [];
     let file;
     let view;
@@ -13623,8 +13625,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName
@@ -13646,8 +13648,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      if (filePpm)
-        readerPpm.readAsDataURL(filePpm);
+      if (filePpm2)
+        readerPpm.readAsDataURL(filePpm2);
       const payload = {
         jenisProposal,
         jenisKegiatan,
@@ -13974,7 +13976,7 @@
       abstrak = this.value;
       $$invalidate(19, abstrak);
     }
-    const change_handler = (e) => $$invalidate(61, filePpm = e.target.files[0]);
+    const change_handler = (e) => $$invalidate(61, filePpm2 = e.target.files[0]);
     const change_handler_1 = (e) => $$invalidate(60, fileRab = e.target.files[0]);
     function textarea_input_handler_1() {
       comment = this.value;
@@ -14078,7 +14080,7 @@
       judulTugasAkhirS3,
       uidProposal,
       fileRab,
-      filePpm,
+      filePpm2,
       items,
       view,
       tab1,
@@ -14440,37 +14442,50 @@
     let t1;
     let hr;
     let t2;
+    let div4;
+    let div0;
     let button0;
     let span0;
     let icon0;
     let t3;
     let span1;
     let t5;
+    let div3;
+    let div2;
     let div1;
+    let input;
+    let t6;
+    let span2;
+    let icon1;
+    let t7;
+    let div6;
     let table;
     let thead;
-    let t8;
+    let t10;
     let tbody;
     let tr1;
     let td0;
-    let t10;
+    let t12;
     let td1;
-    let div0;
+    let div5;
     let p0;
     let button1;
-    let span2;
-    let icon1;
-    let t11;
-    let p1;
-    let button2;
     let span3;
     let icon2;
+    let t13;
+    let p1;
+    let button2;
+    let span4;
+    let icon3;
     let current;
     let mounted;
     let dispose;
-    icon0 = new Icon_default({ props: { id: "add", src: add } });
-    icon1 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
-    icon2 = new Icon_default({ props: { id: "edit", src: edit } });
+    icon0 = new Icon_default({ props: { id: "accountAdd", src: add } });
+    icon1 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
+    icon2 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    icon3 = new Icon_default({ props: { id: "edit", src: edit } });
     return {
       c() {
         h1 = element("h1");
@@ -14478,6 +14493,8 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
+        div4 = element("div");
+        div0 = element("div");
         button0 = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
@@ -14485,70 +14502,97 @@
         span1 = element("span");
         span1.innerHTML = `<a>Buat Pengumuman</a>`;
         t5 = space();
+        div3 = element("div");
+        div2 = element("div");
         div1 = element("div");
+        input = element("input");
+        t6 = space();
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
+        t7 = space();
+        div6 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow"></th></tr>`;
-        t8 = space();
+        t10 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         td0 = element("td");
         td0.textContent = "Contoh Nama Pengumuman 1";
-        t10 = space();
+        t12 = space();
         td1 = element("td");
-        div0 = element("div");
+        div5 = element("div");
         p0 = element("p");
         button1 = element("button");
-        span2 = element("span");
-        create_component(icon1.$$.fragment);
-        t11 = space();
-        p1 = element("p");
-        button2 = element("button");
         span3 = element("span");
         create_component(icon2.$$.fragment);
+        t13 = space();
+        p1 = element("p");
+        button2 = element("button");
+        span4 = element("span");
+        create_component(icon3.$$.fragment);
         attr(h1, "class", "title is-1");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
-        attr(span2, "class", "icon");
-        attr(button1, "class", "button is-danger is-rounded is-outlined is-small");
-        attr(p0, "class", "control");
+        attr(div0, "class", "column");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Search judul");
+        attr(span2, "class", "icon is-left");
+        attr(div1, "class", "control has-icons-left");
+        attr(div2, "class", "field");
+        attr(div3, "class", "column");
+        attr(div4, "class", "columns");
         attr(span3, "class", "icon");
-        attr(button2, "class", "button is-link is-rounded is-outlined is-small");
+        attr(button1, "class", "button is-danger is-outlined is-small");
+        attr(p0, "class", "control");
+        attr(span4, "class", "icon");
+        attr(button2, "class", "button is-link is-outlined is-small");
         attr(p1, "class", "control");
-        attr(div0, "class", "field is-grouped");
+        attr(div5, "class", "field is-grouped");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
-        attr(div1, "class", "box");
+        attr(div6, "class", "box");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, button0, anchor);
+        insert(target, div4, anchor);
+        append(div4, div0);
+        append(div0, button0);
         append(button0, span0);
         mount_component(icon0, span0, null);
         append(button0, t3);
         append(button0, span1);
-        insert(target, t5, anchor);
-        insert(target, div1, anchor);
-        append(div1, table);
+        append(div4, t5);
+        append(div4, div3);
+        append(div3, div2);
+        append(div2, div1);
+        append(div1, input);
+        append(div1, t6);
+        append(div1, span2);
+        mount_component(icon1, span2, null);
+        insert(target, t7, anchor);
+        insert(target, div6, anchor);
+        append(div6, table);
         append(table, thead);
-        append(table, t8);
+        append(table, t10);
         append(table, tbody);
         append(tbody, tr1);
         append(tr1, td0);
-        append(tr1, t10);
+        append(tr1, t12);
         append(tr1, td1);
-        append(td1, div0);
-        append(div0, p0);
+        append(td1, div5);
+        append(div5, p0);
         append(p0, button1);
-        append(button1, span2);
-        mount_component(icon1, span2, null);
-        append(div0, t11);
-        append(div0, p1);
-        append(p1, button2);
-        append(button2, span3);
+        append(button1, span3);
         mount_component(icon2, span3, null);
+        append(div5, t13);
+        append(div5, p1);
+        append(p1, button2);
+        append(button2, span4);
+        mount_component(icon3, span4, null);
         current = true;
         if (!mounted) {
           dispose = listen(button0, "click", addPengumuman);
@@ -14562,12 +14606,14 @@
         transition_in(icon0.$$.fragment, local);
         transition_in(icon1.$$.fragment, local);
         transition_in(icon2.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(icon0.$$.fragment, local);
         transition_out(icon1.$$.fragment, local);
         transition_out(icon2.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
         current = false;
       },
       d(detaching) {
@@ -14576,13 +14622,14 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(button0);
-          detach(t5);
-          detach(div1);
+          detach(div4);
+          detach(t7);
+          detach(div6);
         }
         destroy_component(icon0);
         destroy_component(icon1);
         destroy_component(icon2);
+        destroy_component(icon3);
         mounted = false;
         dispose();
       }
@@ -22696,7 +22743,7 @@
       c() {
         span = element("span");
         span.textContent = "Proposal Diterima";
-        attr(span, "class", "tag is-link is-success is-rounded");
+        attr(span, "class", "tag is-link is-success");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22714,7 +22761,7 @@
       c() {
         span = element("span");
         span.textContent = "Proposal Ditolak";
-        attr(span, "class", "tag is-danger is-rounded");
+        attr(span, "class", "tag is-danger");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22732,7 +22779,7 @@
       c() {
         span = element("span");
         span.textContent = "Review Ka. Pusat Kajian";
-        attr(span, "class", "tag is-warning is-rounded");
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22750,7 +22797,7 @@
       c() {
         span = element("span");
         span.textContent = "Revisi Ka. Pusat Kajian";
-        attr(span, "class", "tag is-danger is-light is-rounded");
+        attr(span, "class", "tag is-danger is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22768,7 +22815,7 @@
       c() {
         span = element("span");
         span.textContent = "Review Reviewer";
-        attr(span, "class", "tag is-warning is-rounded");
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22786,7 +22833,7 @@
       c() {
         span = element("span");
         span.textContent = "Revisi Reviewer";
-        attr(span, "class", "tag is-danger is-light is-rounded");
+        attr(span, "class", "tag is-danger is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22804,7 +22851,7 @@
       c() {
         span = element("span");
         span.textContent = "Review Ka. LPPM";
-        attr(span, "class", "tag is-warning is-rounded");
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22822,7 +22869,7 @@
       c() {
         span = element("span");
         span.textContent = "Revisi Ka. LPPM";
-        attr(span, "class", "tag is-danger is-light is-rounded");
+        attr(span, "class", "tag is-danger is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22840,7 +22887,7 @@
       c() {
         span = element("span");
         span.textContent = "Review Ka. Departemen";
-        attr(span, "class", "tag is-warning is-rounded");
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22858,7 +22905,7 @@
       c() {
         span = element("span");
         span.textContent = "Revisi Ka.Departemen";
-        attr(span, "class", "tag is-danger is-light is-rounded");
+        attr(span, "class", "tag is-danger is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22876,7 +22923,7 @@
       c() {
         span = element("span");
         span.textContent = "Review Administrasi";
-        attr(span, "class", "tag is-warning is-rounded");
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22894,7 +22941,7 @@
       c() {
         span = element("span");
         span.textContent = "Revisi Proposal";
-        attr(span, "class", "tag is-danger is-light is-rounded");
+        attr(span, "class", "tag is-danger is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -22912,7 +22959,7 @@
       c() {
         span = element("span");
         span.textContent = "Draft Proposal";
-        attr(span, "class", "tag is-warning is-light is-rounded");
+        attr(span, "class", "tag is-warning is-light");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -23164,7 +23211,7 @@
         attr(td2, "class", "skema svelte-1lg2tz8");
         attr(td3, "class", "status svelte-1lg2tz8");
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "uid", button_uid_value = /*item*/
         ctx[6].id);
         attr(td4, "class", "review svelte-1lg2tz8");
@@ -23255,7 +23302,6 @@
     let t1;
     let hr;
     let t2;
-    let div3;
     let div1;
     let div0;
     let input;
@@ -23263,6 +23309,7 @@
     let span;
     let icon;
     let t4;
+    let div3;
     let div2;
     let table;
     let thead;
@@ -23290,7 +23337,6 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        div3 = element("div");
         div1 = element("div");
         div0 = element("div");
         input = element("input");
@@ -23298,6 +23344,7 @@
         span = element("span");
         create_component(icon.$$.fragment);
         t4 = space();
+        div3 = element("div");
         div2 = element("div");
         table = element("table");
         thead = element("thead");
@@ -23308,7 +23355,7 @@
           each_blocks[i].c();
         }
         attr(h1, "class", "title is-1");
-        attr(input, "class", "input is-rounded");
+        attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Search judul");
         attr(span, "class", "icon is-left");
@@ -23323,14 +23370,14 @@
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div3, anchor);
-        append(div3, div1);
+        insert(target, div1, anchor);
         append(div1, div0);
         append(div0, input);
         append(div0, t3);
         append(div0, span);
         mount_component(icon, span, null);
-        append(div3, t4);
+        insert(target, t4, anchor);
+        insert(target, div3, anchor);
         append(div3, div2);
         append(div2, table);
         append(table, thead);
@@ -23393,6 +23440,8 @@
           detach(t1);
           detach(hr);
           detach(t2);
+          detach(div1);
+          detach(t4);
           detach(div3);
         }
         destroy_component(icon);
@@ -23502,6 +23551,218 @@
   // src/pages/admin/template.svelte
   init_define_process();
   function create_default_slot_313(ctx) {
+    let h1;
+    let t1;
+    let hr;
+    let t2;
+    let div4;
+    let div0;
+    let button0;
+    let span0;
+    let icon0;
+    let t3;
+    let span1;
+    let t5;
+    let div3;
+    let div2;
+    let div1;
+    let input;
+    let t6;
+    let span2;
+    let icon1;
+    let t7;
+    let div6;
+    let table;
+    let thead;
+    let t11;
+    let tbody;
+    let tr1;
+    let td0;
+    let t13;
+    let td1;
+    let button1;
+    let t15;
+    let td2;
+    let div5;
+    let p0;
+    let button2;
+    let span3;
+    let icon2;
+    let t16;
+    let p1;
+    let button3;
+    let span4;
+    let icon3;
+    let current;
+    let mounted;
+    let dispose;
+    icon0 = new Icon_default({ props: { id: "accountAdd", src: add } });
+    icon1 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
+    icon2 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    icon3 = new Icon_default({ props: { id: "edit", src: edit } });
+    return {
+      c() {
+        h1 = element("h1");
+        h1.textContent = "Template";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div4 = element("div");
+        div0 = element("div");
+        button0 = element("button");
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t3 = space();
+        span1 = element("span");
+        span1.innerHTML = `<a>Tambah Template</a>`;
+        t5 = space();
+        div3 = element("div");
+        div2 = element("div");
+        div1 = element("div");
+        input = element("input");
+        t6 = space();
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
+        t7 = space();
+        div6 = element("div");
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Nama Template</th> <th class="is-narrow"></th> <th class="is-narrow"></th></tr>`;
+        t11 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        td0 = element("td");
+        td0.textContent = "Contoh Template Penelitian Internal";
+        t13 = space();
+        td1 = element("td");
+        button1 = element("button");
+        button1.textContent = "Download";
+        t15 = space();
+        td2 = element("td");
+        div5 = element("div");
+        p0 = element("p");
+        button2 = element("button");
+        span3 = element("span");
+        create_component(icon2.$$.fragment);
+        t16 = space();
+        p1 = element("p");
+        button3 = element("button");
+        span4 = element("span");
+        create_component(icon3.$$.fragment);
+        attr(h1, "class", "title is-1");
+        attr(span0, "class", "icon");
+        attr(button0, "class", "button is-info");
+        attr(div0, "class", "column");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Search judul");
+        attr(span2, "class", "icon is-left");
+        attr(div1, "class", "control has-icons-left");
+        attr(div2, "class", "field");
+        attr(div3, "class", "column");
+        attr(div4, "class", "columns");
+        attr(button1, "class", "button is-link button is-small");
+        attr(span3, "class", "icon");
+        attr(button2, "class", "button is-danger is-outlined is-small");
+        attr(p0, "class", "control");
+        attr(span4, "class", "icon");
+        attr(button3, "class", "button is-link is-outlined is-small");
+        attr(p1, "class", "control");
+        attr(div5, "class", "field is-grouped");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div6, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, h1, anchor);
+        insert(target, t1, anchor);
+        insert(target, hr, anchor);
+        insert(target, t2, anchor);
+        insert(target, div4, anchor);
+        append(div4, div0);
+        append(div0, button0);
+        append(button0, span0);
+        mount_component(icon0, span0, null);
+        append(button0, t3);
+        append(button0, span1);
+        append(div4, t5);
+        append(div4, div3);
+        append(div3, div2);
+        append(div2, div1);
+        append(div1, input);
+        append(div1, t6);
+        append(div1, span2);
+        mount_component(icon1, span2, null);
+        insert(target, t7, anchor);
+        insert(target, div6, anchor);
+        append(div6, table);
+        append(table, thead);
+        append(table, t11);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tr1, td0);
+        append(tr1, t13);
+        append(tr1, td1);
+        append(td1, button1);
+        append(tr1, t15);
+        append(tr1, td2);
+        append(td2, div5);
+        append(div5, p0);
+        append(p0, button2);
+        append(button2, span3);
+        mount_component(icon2, span3, null);
+        append(div5, t16);
+        append(div5, p1);
+        append(p1, button3);
+        append(button3, span4);
+        mount_component(icon3, span4, null);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(button0, "click", simpanTemplate),
+            listen(button1, "click", handleDownloadTemplate)
+          ];
+          mounted = true;
+        }
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h1);
+          detach(t1);
+          detach(hr);
+          detach(t2);
+          detach(div4);
+          detach(t7);
+          detach(div6);
+        }
+        destroy_component(icon0);
+        destroy_component(icon1);
+        destroy_component(icon2);
+        destroy_component(icon3);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot_213(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -23523,7 +23784,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[4]
+            ctx[3]
           );
           mounted = true;
         }
@@ -23548,7 +23809,7 @@
       }
     };
   }
-  function create_default_slot_213(ctx) {
+  function create_default_slot_113(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -23566,7 +23827,7 @@
             input,
             "change",
             /*change_handler*/
-            ctx[5]
+            ctx[4]
           );
           mounted = true;
         }
@@ -23581,7 +23842,7 @@
       }
     };
   }
-  function create_default_slot_113(ctx) {
+  function create_default_slot11(ctx) {
     let field0;
     let t0;
     let field1;
@@ -23597,14 +23858,14 @@
     field0 = new Field_default({
       props: {
         name: "Nama Template",
-        $$slots: { default: [create_default_slot_313] },
+        $$slots: { default: [create_default_slot_213] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "File Template",
-        $$slots: { default: [create_default_slot_213] },
+        $$slots: { default: [create_default_slot_113] },
         $$scope: { ctx }
       }
     });
@@ -23701,52 +23962,25 @@
       }
     };
   }
-  function create_default_slot11(ctx) {
-    let h1;
-    let t1;
-    let hr;
-    let t2;
+  function create_fragment32(ctx) {
+    let article;
+    let t;
     let modal;
     let updating_show;
-    let t3;
-    let button0;
-    let span0;
-    let icon0;
-    let t4;
-    let span1;
-    let t6;
-    let div1;
-    let table;
-    let thead;
-    let t10;
-    let tbody;
-    let tr1;
-    let td0;
-    let t12;
-    let td1;
-    let button1;
-    let t14;
-    let td2;
-    let div0;
-    let p0;
-    let button2;
-    let span2;
-    let icon1;
-    let t15;
-    let p1;
-    let button3;
-    let span3;
-    let icon2;
     let current;
-    let mounted;
-    let dispose;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot_313] },
+        $$scope: { ctx }
+      }
+    });
     function modal_show_binding(value) {
-      ctx[6](value);
+      ctx[5](value);
     }
     let modal_props = {
       $$slots: {
         header: [create_header_slot2],
-        default: [create_default_slot_113]
+        default: [create_default_slot11]
       },
       $$scope: { ctx }
     };
@@ -23759,114 +23993,25 @@
     }
     modal = new Modal_default({ props: modal_props });
     binding_callbacks.push(() => bind(modal, "show", modal_show_binding));
-    icon0 = new Icon_default({ props: { id: "add", src: add } });
-    icon1 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
-    icon2 = new Icon_default({ props: { id: "edit", src: edit } });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Template";
-        t1 = space();
-        hr = element("hr");
-        t2 = space();
+        create_component(article.$$.fragment);
+        t = space();
         create_component(modal.$$.fragment);
-        t3 = space();
-        button0 = element("button");
-        span0 = element("span");
-        create_component(icon0.$$.fragment);
-        t4 = space();
-        span1 = element("span");
-        span1.innerHTML = `<a>Tambah Template</a>`;
-        t6 = space();
-        div1 = element("div");
-        table = element("table");
-        thead = element("thead");
-        thead.innerHTML = `<tr><th>Nama Template</th> <th class="is-narrow"></th> <th class="is-narrow"></th></tr>`;
-        t10 = space();
-        tbody = element("tbody");
-        tr1 = element("tr");
-        td0 = element("td");
-        td0.textContent = "Contoh Template Penelitian Internal";
-        t12 = space();
-        td1 = element("td");
-        button1 = element("button");
-        button1.textContent = "Download";
-        t14 = space();
-        td2 = element("td");
-        div0 = element("div");
-        p0 = element("p");
-        button2 = element("button");
-        span2 = element("span");
-        create_component(icon1.$$.fragment);
-        t15 = space();
-        p1 = element("p");
-        button3 = element("button");
-        span3 = element("span");
-        create_component(icon2.$$.fragment);
-        attr(h1, "class", "title is-1");
-        attr(span0, "class", "icon");
-        attr(button0, "class", "button is-info");
-        attr(button1, "class", "button is-link is-rounded button is-small");
-        attr(span2, "class", "icon");
-        attr(button2, "class", "button is-danger is-rounded is-outlined is-small");
-        attr(p0, "class", "control");
-        attr(span3, "class", "icon");
-        attr(button3, "class", "button is-link is-rounded is-outlined is-small");
-        attr(p1, "class", "control");
-        attr(div0, "class", "field is-grouped");
-        attr(table, "class", "table is-fullwidth is-striped is-hoverable");
-        attr(div1, "class", "box");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
-        insert(target, t1, anchor);
-        insert(target, hr, anchor);
-        insert(target, t2, anchor);
+        mount_component(article, target, anchor);
+        insert(target, t, anchor);
         mount_component(modal, target, anchor);
-        insert(target, t3, anchor);
-        insert(target, button0, anchor);
-        append(button0, span0);
-        mount_component(icon0, span0, null);
-        append(button0, t4);
-        append(button0, span1);
-        insert(target, t6, anchor);
-        insert(target, div1, anchor);
-        append(div1, table);
-        append(table, thead);
-        append(table, t10);
-        append(table, tbody);
-        append(tbody, tr1);
-        append(tr1, td0);
-        append(tr1, t12);
-        append(tr1, td1);
-        append(td1, button1);
-        append(tr1, t14);
-        append(tr1, td2);
-        append(td2, div0);
-        append(div0, p0);
-        append(p0, button2);
-        append(button2, span2);
-        mount_component(icon1, span2, null);
-        append(div0, t15);
-        append(div0, p1);
-        append(p1, button3);
-        append(button3, span3);
-        mount_component(icon2, span3, null);
         current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              button0,
-              "click",
-              /*clickModalTambahTemplate*/
-              ctx[3]
-            ),
-            listen(button1, "click", handleDownloadTemplate)
-          ];
-          mounted = true;
-        }
       },
-      p(ctx2, dirty) {
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope*/
+        128) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
         const modal_changes = {};
         if (dirty & /*$$scope, file, namaTemplate*/
         131) {
@@ -23884,76 +24029,21 @@
       i(local) {
         if (current)
           return;
-        transition_in(modal.$$.fragment, local);
-        transition_in(icon0.$$.fragment, local);
-        transition_in(icon1.$$.fragment, local);
-        transition_in(icon2.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(modal.$$.fragment, local);
-        transition_out(icon0.$$.fragment, local);
-        transition_out(icon1.$$.fragment, local);
-        transition_out(icon2.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(h1);
-          detach(t1);
-          detach(hr);
-          detach(t2);
-          detach(t3);
-          detach(button0);
-          detach(t6);
-          detach(div1);
-        }
-        destroy_component(modal, detaching);
-        destroy_component(icon0);
-        destroy_component(icon1);
-        destroy_component(icon2);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_fragment32(ctx) {
-    let article;
-    let current;
-    article = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot11] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(article.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(article, target, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
-        const article_changes = {};
-        if (dirty & /*$$scope, showModalTambahTemplate, file, namaTemplate*/
-        135) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        article.$set(article_changes);
-      },
-      i(local) {
-        if (current)
-          return;
         transition_in(article.$$.fragment, local);
+        transition_in(modal.$$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(article.$$.fragment, local);
+        transition_out(modal.$$.fragment, local);
         current = false;
       },
       d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
         destroy_component(article, detaching);
+        destroy_component(modal, detaching);
       }
     };
   }
@@ -23981,7 +24071,6 @@
       namaTemplate,
       file,
       showModalTambahTemplate,
-      clickModalTambahTemplate,
       input_input_handler,
       change_handler,
       modal_show_binding
@@ -24092,7 +24181,6 @@
     let t1;
     let hr;
     let t2;
-    let div6;
     let div4;
     let div0;
     let button;
@@ -24109,6 +24197,7 @@
     let span2;
     let icon1;
     let t7;
+    let div6;
     let div5;
     let table;
     let thead;
@@ -24138,7 +24227,6 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        div6 = element("div");
         div4 = element("div");
         div0 = element("div");
         button = element("button");
@@ -24156,6 +24244,7 @@
         span2 = element("span");
         create_component(icon1.$$.fragment);
         t7 = space();
+        div6 = element("div");
         div5 = element("div");
         table = element("table");
         thead = element("thead");
@@ -24167,9 +24256,9 @@
         }
         attr(h1, "class", "title is-1");
         attr(span0, "class", "icon");
-        attr(button, "class", "button is-info is-rounded");
+        attr(button, "class", "button is-info");
         attr(div0, "class", "column");
-        attr(input, "class", "input is-rounded");
+        attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Search judul");
         attr(span2, "class", "icon is-left");
@@ -24186,8 +24275,7 @@
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div6, anchor);
-        append(div6, div4);
+        insert(target, div4, anchor);
         append(div4, div0);
         append(div0, button);
         append(button, span0);
@@ -24202,7 +24290,8 @@
         append(div1, t6);
         append(div1, span2);
         mount_component(icon1, span2, null);
-        append(div6, t7);
+        insert(target, t7, anchor);
+        insert(target, div6, anchor);
         append(div6, div5);
         append(div5, table);
         append(table, thead);
@@ -24266,6 +24355,8 @@
           detach(t1);
           detach(hr);
           detach(t2);
+          detach(div4);
+          detach(t7);
           detach(div6);
         }
         destroy_component(icon0);
@@ -25337,26 +25428,16 @@
     return child_ctx;
   }
   function create_if_block12(ctx) {
-    let div3;
     let div1;
     let div0;
-    let input;
-    let t0;
-    let span;
-    let icon;
-    let t1;
-    let div2;
     let table;
     let thead;
-    let t11;
+    let t9;
     let tbody;
+    let t10;
+    let t11;
     let t12;
-    let t13;
-    let t14;
     let current;
-    icon = new Icon_default({
-      props: { id: "searchIcon", src: searchIcon }
-    });
     let if_block0 = (
       /*role*/
       ctx[1] === "Ka.PusatKajian" && create_if_block_74(ctx)
@@ -25375,64 +25456,44 @@
     );
     return {
       c() {
-        div3 = element("div");
         div1 = element("div");
         div0 = element("div");
-        input = element("input");
-        t0 = space();
-        span = element("span");
-        create_component(icon.$$.fragment);
-        t1 = space();
-        div2 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
-        t11 = space();
+        t9 = space();
         tbody = element("tbody");
         if (if_block0)
           if_block0.c();
-        t12 = space();
+        t10 = space();
         if (if_block1)
           if_block1.c();
-        t13 = space();
+        t11 = space();
         if (if_block2)
           if_block2.c();
-        t14 = space();
+        t12 = space();
         if (if_block3)
           if_block3.c();
-        attr(input, "class", "input is-rounded");
-        attr(input, "type", "text");
-        attr(input, "placeholder", "Search judul");
-        attr(span, "class", "icon is-left");
-        attr(div0, "class", "control has-icons-left");
-        attr(div1, "class", "field");
         attr(table, "class", "table is-fullwidth is-striped is-hoverable");
-        attr(div2, "class", "child svelte-1mtjhz7");
-        attr(div3, "class", "box parent svelte-1mtjhz7");
+        attr(div0, "class", "child svelte-1mtjhz7");
+        attr(div1, "class", "box parent svelte-1mtjhz7");
       },
       m(target, anchor) {
-        insert(target, div3, anchor);
-        append(div3, div1);
+        insert(target, div1, anchor);
         append(div1, div0);
-        append(div0, input);
-        append(div0, t0);
-        append(div0, span);
-        mount_component(icon, span, null);
-        append(div3, t1);
-        append(div3, div2);
-        append(div2, table);
+        append(div0, table);
         append(table, thead);
-        append(table, t11);
+        append(table, t9);
         append(table, tbody);
         if (if_block0)
           if_block0.m(tbody, null);
-        append(tbody, t12);
+        append(tbody, t10);
         if (if_block1)
           if_block1.m(tbody, null);
-        append(tbody, t13);
+        append(tbody, t11);
         if (if_block2)
           if_block2.m(tbody, null);
-        append(tbody, t14);
+        append(tbody, t12);
         if (if_block3)
           if_block3.m(tbody, null);
         current = true;
@@ -25462,7 +25523,6 @@
       i(local) {
         if (current)
           return;
-        transition_in(icon.$$.fragment, local);
         transition_in(if_block0);
         transition_in(if_block1);
         transition_in(if_block2);
@@ -25470,7 +25530,6 @@
         current = true;
       },
       o(local) {
-        transition_out(icon.$$.fragment, local);
         transition_out(if_block0);
         transition_out(if_block1);
         transition_out(if_block2);
@@ -25479,9 +25538,8 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(div3);
+          detach(div1);
         }
-        destroy_component(icon);
         if (if_block0)
           if_block0.d();
         if (if_block1)
@@ -25615,7 +25673,7 @@
       /*item*/
       ctx[6].status
     ) } });
-    icon = new Icon_default({ props: { id: "orang", src: infoOutline } });
+    icon = new Icon_default({ props: { id: "info", src: infoOutline } });
     return {
       c() {
         tr = element("tr");
@@ -25645,7 +25703,7 @@
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
         attr(td4, "class", "review svelte-1mtjhz7");
@@ -25950,7 +26008,7 @@
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
         attr(td4, "class", "review svelte-1mtjhz7");
@@ -26255,7 +26313,7 @@
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
         attr(td4, "class", "review svelte-1mtjhz7");
@@ -26560,7 +26618,7 @@
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[6].id);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[6].id);
         attr(td4, "class", "review svelte-1mtjhz7");
@@ -26718,8 +26776,18 @@
     let t1;
     let hr;
     let t2;
+    let div1;
+    let div0;
+    let input;
+    let t3;
+    let span;
+    let icon;
+    let t4;
     let if_block_anchor;
     let current;
+    icon = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
     let if_block = (
       /*items*/
       ctx[0] && create_if_block12(ctx)
@@ -26731,16 +26799,36 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
+        div1 = element("div");
+        div0 = element("div");
+        input = element("input");
+        t3 = space();
+        span = element("span");
+        create_component(icon.$$.fragment);
+        t4 = space();
         if (if_block)
           if_block.c();
         if_block_anchor = empty();
         attr(h1, "class", "title is-1");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Search judul");
+        attr(span, "class", "icon is-left");
+        attr(div0, "class", "control has-icons-left");
+        attr(div1, "class", "field");
       },
       m(target, anchor) {
         insert(target, h1, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
+        insert(target, div1, anchor);
+        append(div1, div0);
+        append(div0, input);
+        append(div0, t3);
+        append(div0, span);
+        mount_component(icon, span, null);
+        insert(target, t4, anchor);
         if (if_block)
           if_block.m(target, anchor);
         insert(target, if_block_anchor, anchor);
@@ -26774,10 +26862,12 @@
       i(local) {
         if (current)
           return;
+        transition_in(icon.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
       o(local) {
+        transition_out(icon.$$.fragment, local);
         transition_out(if_block);
         current = false;
       },
@@ -26787,8 +26877,11 @@
           detach(t1);
           detach(hr);
           detach(t2);
+          detach(div1);
+          detach(t4);
           detach(if_block_anchor);
         }
+        destroy_component(icon);
         if (if_block)
           if_block.d(detaching);
       }
@@ -34644,7 +34737,7 @@
         span = element("span");
         create_component(icon.$$.fragment);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "data-value", button_data_value_value = /*member*/
         ctx[111].value);
       },
@@ -38364,7 +38457,7 @@
     const id = params["1"];
     let file;
     let fileRab;
-    let filePpm;
+    let filePpm2;
     let isLoading = false;
     onMount(async () => {
       $$invalidate(54, isLoading = false);
@@ -38630,8 +38723,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName
@@ -38653,8 +38746,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      if (filePpm)
-        readerPpm.readAsDataURL(filePpm);
+      if (filePpm2)
+        readerPpm.readAsDataURL(filePpm2);
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -38734,8 +38827,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName
@@ -38757,8 +38850,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      if (filePpm)
-        readerPpm.readAsDataURL(filePpm);
+      if (filePpm2)
+        readerPpm.readAsDataURL(filePpm2);
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -38838,8 +38931,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName
@@ -38861,8 +38954,8 @@
           console.error("Error uploading file:", error);
         }
       };
-      if (filePpm)
-        readerPpm.readAsDataURL(filePpm);
+      if (filePpm2)
+        readerPpm.readAsDataURL(filePpm2);
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -38965,7 +39058,7 @@
       abstrak = this.value;
       $$invalidate(36, abstrak);
     }
-    const change_handler = (e) => $$invalidate(53, filePpm = e.target.files[0]);
+    const change_handler = (e) => $$invalidate(53, filePpm2 = e.target.files[0]);
     const change_handler_1 = (e) => $$invalidate(52, fileRab = e.target.files[0]);
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
@@ -39025,7 +39118,7 @@
       email3,
       mataKuliah,
       fileRab,
-      filePpm,
+      filePpm2,
       isLoading,
       tab1,
       tab2,
@@ -41868,23 +41961,26 @@
     };
   }
   function create_else_block_13(ctx) {
-    let t;
+    let span;
     return {
       c() {
-        t = text("Choose File");
+        span = element("span");
+        span.textContent = "No file chosen";
+        attr(span, "class", "file-name");
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, span, anchor);
       },
       p: noop,
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(span);
         }
       }
     };
   }
   function create_if_block_322(ctx) {
+    let span;
     let t_value = (
       /*$ppmFile*/
       ctx[92].name + ""
@@ -41892,10 +41988,13 @@
     let t;
     return {
       c() {
+        span = element("span");
         t = text(t_value);
+        attr(span, "class", "file-name");
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, span, anchor);
+        append(span, t);
       },
       p(ctx2, dirty) {
         if (dirty[2] & /*$ppmFile*/
@@ -41905,7 +42004,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(span);
         }
       }
     };
@@ -41941,15 +42040,28 @@
     };
   }
   function create_default_slot_482(ctx) {
-    let span;
-    let input;
+    let span3;
+    let input0;
     let t0;
+    let div;
     let label_1;
+    let input1;
     let t1;
+    let span2;
+    let span0;
+    let icon;
     let t2;
+    let span1;
+    let t4;
+    let t5;
+    let t6;
     let p;
+    let current;
     let mounted;
     let dispose;
+    icon = new Icon_default({
+      props: { id: "download", src: downloadIcon }
+    });
     function select_block_type_1(ctx2, dirty) {
       if (
         /*$ppmFile*/
@@ -41966,40 +42078,67 @@
     );
     return {
       c() {
-        span = element("span");
-        input = element("input");
+        span3 = element("span");
+        input0 = element("input");
         t0 = space();
+        div = element("div");
         label_1 = element("label");
-        if_block0.c();
+        input1 = element("input");
         t1 = space();
+        span2 = element("span");
+        span0 = element("span");
+        create_component(icon.$$.fragment);
+        t2 = space();
+        span1 = element("span");
+        span1.textContent = "Choose a file";
+        t4 = space();
+        if_block0.c();
+        t5 = space();
         if (if_block1)
           if_block1.c();
-        t2 = space();
+        t6 = space();
         p = element("p");
         p.textContent = "File Type: pdf";
-        attr(input, "id", "filePpm");
-        attr(input, "class", "inputf custom-file-input svelte-zdesaq");
-        attr(input, "accept", "application/pdf");
-        attr(input, "type", "file");
+        attr(input0, "id", "filePpm");
+        attr(input0, "class", "inputf custom-file-input svelte-zdesaq");
+        attr(input0, "accept", "application/pdf");
+        attr(input0, "type", "file");
+        attr(input1, "class", "file-input svelte-zdesaq");
+        attr(input1, "type", "file");
+        attr(input1, "name", "resume");
+        attr(span0, "class", "file-icon");
+        attr(span1, "class", "file-label");
+        attr(span2, "class", "file-cta");
+        attr(label_1, "class", "file-label");
         attr(label_1, "for", "filePpm");
-        attr(label_1, "class", "button");
-        attr(span, "class", "inputf__wrapper svelte-zdesaq");
-        attr(p, "class", "help is-info svelte-zdesaq");
+        attr(div, "class", "file has-name is-success");
+        attr(span3, "class", "inputf__wrapper svelte-zdesaq");
+        attr(p, "class", "help svelte-zdesaq");
       },
       m(target, anchor) {
-        insert(target, span, anchor);
-        append(span, input);
-        append(span, t0);
-        append(span, label_1);
+        insert(target, span3, anchor);
+        append(span3, input0);
+        append(span3, t0);
+        append(span3, div);
+        append(div, label_1);
+        append(label_1, input1);
+        append(label_1, t1);
+        append(label_1, span2);
+        append(span2, span0);
+        mount_component(icon, span0, null);
+        append(span2, t2);
+        append(span2, span1);
+        append(label_1, t4);
         if_block0.m(label_1, null);
-        append(span, t1);
+        append(span3, t5);
         if (if_block1)
-          if_block1.m(span, null);
-        insert(target, t2, anchor);
+          if_block1.m(span3, null);
+        insert(target, t6, anchor);
         insert(target, p, anchor);
+        current = true;
         if (!mounted) {
           dispose = listen(
-            input,
+            input0,
             "change",
             /*filePpmChange*/
             ctx[121]
@@ -42027,19 +42166,30 @@
           } else {
             if_block1 = create_if_block_31(ctx2);
             if_block1.c();
-            if_block1.m(span, null);
+            if_block1.m(span3, null);
           }
         } else if (if_block1) {
           if_block1.d(1);
           if_block1 = null;
         }
       },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
-          detach(span);
-          detach(t2);
+          detach(span3);
+          detach(t6);
           detach(p);
         }
+        destroy_component(icon);
         if_block0.d();
         if (if_block1)
           if_block1.d();
@@ -42092,44 +42242,50 @@
     };
   }
   function create_else_block9(ctx) {
-    let t;
+    let span;
     return {
       c() {
-        t = text("Choose File");
+        span = element("span");
+        span.textContent = "No file chosen";
+        attr(span, "class", "file-name");
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, span, anchor);
       },
       p: noop,
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(span);
         }
       }
     };
   }
   function create_if_block_30(ctx) {
+    let span;
     let t_value = (
       /*$rabFile*/
-      ctx[91].name + ""
+      ctx[91]?.name + ""
     );
     let t;
     return {
       c() {
+        span = element("span");
         t = text(t_value);
+        attr(span, "class", "file-name");
       },
       m(target, anchor) {
-        insert(target, t, anchor);
+        insert(target, span, anchor);
+        append(span, t);
       },
       p(ctx2, dirty) {
         if (dirty[2] & /*$rabFile*/
         536870912 && t_value !== (t_value = /*$rabFile*/
-        ctx2[91].name + ""))
+        ctx2[91]?.name + ""))
           set_data(t, t_value);
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(span);
         }
       }
     };
@@ -42165,15 +42321,28 @@
     };
   }
   function create_default_slot_472(ctx) {
-    let span;
-    let input;
+    let span3;
+    let input0;
     let t0;
+    let div;
     let label_1;
+    let input1;
     let t1;
+    let span2;
+    let span0;
+    let icon;
     let t2;
+    let span1;
+    let t4;
+    let t5;
+    let t6;
     let p;
+    let current;
     let mounted;
     let dispose;
+    icon = new Icon_default({
+      props: { id: "download", src: downloadIcon }
+    });
     function select_block_type_2(ctx2, dirty) {
       if (
         /*$rabFile*/
@@ -42190,40 +42359,67 @@
     );
     return {
       c() {
-        span = element("span");
-        input = element("input");
+        span3 = element("span");
+        input0 = element("input");
         t0 = space();
+        div = element("div");
         label_1 = element("label");
-        if_block0.c();
+        input1 = element("input");
         t1 = space();
+        span2 = element("span");
+        span0 = element("span");
+        create_component(icon.$$.fragment);
+        t2 = space();
+        span1 = element("span");
+        span1.textContent = "Choose a file";
+        t4 = space();
+        if_block0.c();
+        t5 = space();
         if (if_block1)
           if_block1.c();
-        t2 = space();
+        t6 = space();
         p = element("p");
         p.textContent = "File Type: xlsx";
-        attr(input, "id", "fileRab");
-        attr(input, "class", "inputf custom-file-input svelte-zdesaq");
-        attr(input, "accept", ".xlsx");
-        attr(input, "type", "file");
+        attr(input0, "id", "fileRab");
+        attr(input0, "class", "inputf custom-file-input svelte-zdesaq");
+        attr(input0, "accept", ".xlsx");
+        attr(input0, "type", "file");
+        attr(input1, "class", "file-input svelte-zdesaq");
+        attr(input1, "type", "file");
+        attr(input1, "name", "resume");
+        attr(span0, "class", "file-icon");
+        attr(span1, "class", "file-label");
+        attr(span2, "class", "file-cta");
+        attr(label_1, "class", "file-label");
         attr(label_1, "for", "fileRab");
-        attr(label_1, "class", "button");
-        attr(span, "class", "inputf__wrapper svelte-zdesaq");
-        attr(p, "class", "help is-info svelte-zdesaq");
+        attr(div, "class", "file has-name is-success");
+        attr(span3, "class", "inputf__wrapper svelte-zdesaq");
+        attr(p, "class", "help svelte-zdesaq");
       },
       m(target, anchor) {
-        insert(target, span, anchor);
-        append(span, input);
-        append(span, t0);
-        append(span, label_1);
+        insert(target, span3, anchor);
+        append(span3, input0);
+        append(span3, t0);
+        append(span3, div);
+        append(div, label_1);
+        append(label_1, input1);
+        append(label_1, t1);
+        append(label_1, span2);
+        append(span2, span0);
+        mount_component(icon, span0, null);
+        append(span2, t2);
+        append(span2, span1);
+        append(label_1, t4);
         if_block0.m(label_1, null);
-        append(span, t1);
+        append(span3, t5);
         if (if_block1)
-          if_block1.m(span, null);
-        insert(target, t2, anchor);
+          if_block1.m(span3, null);
+        insert(target, t6, anchor);
         insert(target, p, anchor);
+        current = true;
         if (!mounted) {
           dispose = listen(
-            input,
+            input0,
             "change",
             /*fileRabChange*/
             ctx[122]
@@ -42251,19 +42447,30 @@
           } else {
             if_block1 = create_if_block_292(ctx2);
             if_block1.c();
-            if_block1.m(span, null);
+            if_block1.m(span3, null);
           }
         } else if (if_block1) {
           if_block1.d(1);
           if_block1 = null;
         }
       },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
-          detach(span);
-          detach(t2);
+          detach(span3);
+          detach(t6);
           detach(p);
         }
+        destroy_component(icon);
         if_block0.d();
         if (if_block1)
           if_block1.d();
@@ -50681,7 +50888,7 @@
     let vmataKuliah;
     let items = [];
     let fileRab;
-    let filePpm;
+    let filePpm2;
     let jenisKegiatan = "";
     let jenisProposal = "";
     let jenisSkema = "";
@@ -50924,8 +51131,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName: randomPpmFileName2
@@ -50941,7 +51148,7 @@
           console.error("Error uploading file:", error2);
         }
       };
-      readerPpm.readAsDataURL(filePpm);
+      readerPpm.readAsDataURL(filePpm2);
       const readerRab = new FileReader();
       if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
         readerRab.onloadend = async () => {
@@ -51087,8 +51294,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm.name,
-            type: filePpm.type,
+            name: filePpm2.name,
+            type: filePpm2.type,
             data: base64Data
           },
           randomPpmFileName: randomPpmFileName2
@@ -51107,7 +51314,7 @@
           console.error("Error uploading file:", error2);
         }
       };
-      readerPpm.readAsDataURL(filePpm);
+      readerPpm.readAsDataURL(filePpm2);
       let payloadIdentitas = {
         idProfile,
         namaLengkap,
@@ -51578,7 +51785,7 @@
       }
     }
     function filePpmChange(e) {
-      filePpm = e.target.files[0];
+      filePpm2 = e.target.files[0];
       set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
     }
     function fileRabChange(e) {
@@ -54249,7 +54456,7 @@
         t1 = text(t1_value);
         t2 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "data-value", button_data_value_value = /*matkul*/
         ctx[197].label);
       },
@@ -55760,7 +55967,7 @@
         t9 = text(t9_value);
         t10 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PP*/
         ctx[194].id);
       },
@@ -55996,7 +56203,7 @@
         t9 = text(t9_value);
         t10 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PM*/
         ctx[191].id);
       },
@@ -56222,7 +56429,7 @@
         t7 = text(t7_value);
         t8 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PD*/
         ctx[188].id);
       },
@@ -56451,7 +56658,7 @@
         t9 = text(t9_value);
         t10 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PPub*/
         ctx[185].id);
       },
@@ -56687,7 +56894,7 @@
         t9 = text(t9_value);
         t10 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PPB*/
         ctx[182].id);
       },
@@ -56923,7 +57130,7 @@
         t9 = text(t9_value);
         t10 = space();
         attr(span, "class", "icon");
-        attr(button, "class", "button is-danger is-rounded is-small");
+        attr(button, "class", "button is-danger is-small");
         attr(button, "pid", button_pid_value = /*PHKI*/
         ctx[179].id);
       },
@@ -63522,7 +63729,7 @@
         attr(td3, "pid", td3_pid_value = /*item*/
         ctx[7].id);
         attr(span, "class", "icon");
-        attr(button, "class", "button is-info is-rounded is-small");
+        attr(button, "class", "button is-info is-small");
         attr(button, "pid", button_pid_value = /*item*/
         ctx[7].id);
         attr(td4, "class", "review svelte-1mtjhz7");
@@ -63616,7 +63823,6 @@
     let modalroute;
     let updating_show;
     let t3;
-    let div6;
     let div4;
     let div0;
     let button;
@@ -63633,6 +63839,7 @@
     let span2;
     let icon1;
     let t8;
+    let div6;
     let div5;
     let table;
     let thead;
@@ -63675,7 +63882,6 @@
         t2 = space();
         create_component(modalroute.$$.fragment);
         t3 = space();
-        div6 = element("div");
         div4 = element("div");
         div0 = element("div");
         button = element("button");
@@ -63693,6 +63899,7 @@
         span2 = element("span");
         create_component(icon1.$$.fragment);
         t8 = space();
+        div6 = element("div");
         div5 = element("div");
         table = element("table");
         thead = element("thead");
@@ -63702,9 +63909,9 @@
           if_block.c();
         attr(h1, "class", "title is-1");
         attr(span0, "class", "icon");
-        attr(button, "class", "button is-info is-rounded");
+        attr(button, "class", "button is-info");
         attr(div0, "class", "column");
-        attr(input, "class", "input is-rounded");
+        attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Search judul");
         attr(span2, "class", "icon is-left");
@@ -63723,8 +63930,7 @@
         insert(target, t2, anchor);
         mount_component(modalroute, target, anchor);
         insert(target, t3, anchor);
-        insert(target, div6, anchor);
-        append(div6, div4);
+        insert(target, div4, anchor);
         append(div4, div0);
         append(div0, button);
         append(button, span0);
@@ -63739,7 +63945,8 @@
         append(div1, t7);
         append(div1, span2);
         mount_component(icon1, span2, null);
-        append(div6, t8);
+        insert(target, t8, anchor);
+        insert(target, div6, anchor);
         append(div6, div5);
         append(div5, table);
         append(table, thead);
@@ -63818,6 +64025,8 @@
           detach(hr);
           detach(t2);
           detach(t3);
+          detach(div4);
+          detach(t8);
           detach(div6);
         }
         destroy_component(modalroute, detaching);
@@ -63942,7 +64151,7 @@
 
   // src/pages/dosen/select.svelte
   init_define_process();
-  function create_if_block_129(ctx) {
+  function create_if_block_411(ctx) {
     let span;
     let t_value = (
       /*error*/
@@ -63953,7 +64162,7 @@
       c() {
         span = element("span");
         t = text(t_value);
-        attr(span, "class", "help error has-text-danger");
+        attr(span, "class", "help error has-text-danger svelte-jtr2u8");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -63972,7 +64181,7 @@
       }
     };
   }
-  function create_else_block10(ctx) {
+  function create_else_block_24(ctx) {
     let label;
     let t1;
     let input;
@@ -63995,26 +64204,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[2].username
+          ctx[3].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_1*/
-            ctx[6]
+            /*input_input_handler_2*/
+            ctx[10]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        4 && input.value !== /*form*/
-        ctx2[2].username) {
+        8 && input.value !== /*form*/
+        ctx2[3].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[2].username
+            ctx2[3].username
           );
         }
       },
@@ -64029,7 +64238,7 @@
       }
     };
   }
-  function create_if_block19(ctx) {
+  function create_if_block_313(ctx) {
     let label;
     let t2;
     let input;
@@ -64038,7 +64247,7 @@
     return {
       c() {
         label = element("label");
-        label.innerHTML = `Username<span class="red-asterisk svelte-k7u2xx">*</span>`;
+        label.innerHTML = `Username<span class="red-asterisk svelte-jtr2u8">*</span>`;
         t2 = space();
         input = element("input");
         attr(label, "for", "username");
@@ -64052,26 +64261,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[2].username
+          ctx[3].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
-            /*input_input_handler*/
-            ctx[5]
+            /*input_input_handler_1*/
+            ctx[9]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        4 && input.value !== /*form*/
-        ctx2[2].username) {
+        8 && input.value !== /*form*/
+        ctx2[3].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[2].username
+            ctx2[3].username
           );
         }
       },
@@ -64086,37 +64295,438 @@
       }
     };
   }
+  function create_else_block10(ctx) {
+    let span4;
+    let input0;
+    let t0;
+    let div;
+    let label;
+    let input1;
+    let t1;
+    let span2;
+    let span0;
+    let icon0;
+    let t2;
+    let span1;
+    let t4;
+    let t5;
+    let t6;
+    let button;
+    let span3;
+    let icon1;
+    let t7;
+    let p;
+    let current;
+    let mounted;
+    let dispose;
+    icon0 = new Icon_default({
+      props: { id: "download", src: downloadIcon }
+    });
+    function select_block_type_2(ctx2, dirty) {
+      if (
+        /*$ppmFile*/
+        ctx2[4]?.name
+      )
+        return create_if_block_216;
+      return create_else_block_14;
+    }
+    let current_block_type = select_block_type_2(ctx, -1);
+    let if_block0 = current_block_type(ctx);
+    let if_block1 = (
+      /*error*/
+      ctx[0].fileProposal && create_if_block_129(ctx)
+    );
+    icon1 = new Icon_default({ props: { id: "cancel", src: cancelIcon } });
+    return {
+      c() {
+        span4 = element("span");
+        input0 = element("input");
+        t0 = space();
+        div = element("div");
+        label = element("label");
+        input1 = element("input");
+        t1 = space();
+        span2 = element("span");
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t2 = space();
+        span1 = element("span");
+        span1.textContent = "Choose a file";
+        t4 = space();
+        if_block0.c();
+        t5 = space();
+        if (if_block1)
+          if_block1.c();
+        t6 = space();
+        button = element("button");
+        span3 = element("span");
+        create_component(icon1.$$.fragment);
+        t7 = space();
+        p = element("p");
+        p.textContent = "File Type: pdf";
+        attr(input0, "id", "filePpm");
+        attr(input0, "class", "inputf custom-file-input svelte-jtr2u8");
+        attr(input0, "accept", "application/pdf");
+        attr(input0, "type", "file");
+        attr(input1, "class", "file-input svelte-jtr2u8");
+        attr(input1, "type", "file");
+        attr(input1, "name", "resume");
+        attr(span0, "class", "file-icon");
+        attr(span1, "class", "file-label");
+        attr(span2, "class", "file-cta");
+        attr(label, "class", "file-label");
+        attr(label, "for", "filePpm");
+        attr(div, "class", "file has-name");
+        attr(span3, "class", "icon");
+        attr(button, "class", "button is-danger is-light");
+        attr(button, "title", "Cancel");
+        attr(span4, "class", "inputf__wrapper svelte-jtr2u8");
+        attr(p, "class", "help is-info svelte-jtr2u8");
+      },
+      m(target, anchor) {
+        insert(target, span4, anchor);
+        append(span4, input0);
+        append(span4, t0);
+        append(span4, div);
+        append(div, label);
+        append(label, input1);
+        append(label, t1);
+        append(label, span2);
+        append(span2, span0);
+        mount_component(icon0, span0, null);
+        append(span2, t2);
+        append(span2, span1);
+        append(label, t4);
+        if_block0.m(label, null);
+        append(span4, t5);
+        if (if_block1)
+          if_block1.m(span4, null);
+        append(span4, t6);
+        append(span4, button);
+        append(button, span3);
+        mount_component(icon1, span3, null);
+        insert(target, t7, anchor);
+        insert(target, p, anchor);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              input0,
+              "change",
+              /*filePpmChange*/
+              ctx[7]
+            ),
+            listen(
+              button,
+              "click",
+              /*toggleEditMode*/
+              ctx[5]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (current_block_type === (current_block_type = select_block_type_2(ctx2, dirty)) && if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
+          if_block0.d(1);
+          if_block0 = current_block_type(ctx2);
+          if (if_block0) {
+            if_block0.c();
+            if_block0.m(label, null);
+          }
+        }
+        if (
+          /*error*/
+          ctx2[0].fileProposal
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_129(ctx2);
+            if_block1.c();
+            if_block1.m(span4, t6);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(span4);
+          detach(t7);
+          detach(p);
+        }
+        destroy_component(icon0);
+        if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        destroy_component(icon1);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block19(ctx) {
+    let button0;
+    let t1;
+    let button1;
+    let span;
+    let icon;
+    let current;
+    let mounted;
+    let dispose;
+    icon = new Icon_default({ props: { id: "edit", src: edit } });
+    return {
+      c() {
+        button0 = element("button");
+        button0.textContent = "Download Proposal";
+        t1 = space();
+        button1 = element("button");
+        span = element("span");
+        create_component(icon.$$.fragment);
+        attr(button0, "class", "button is-link button");
+        attr(span, "class", "icon");
+        attr(button1, "class", "button is-link is-light");
+        attr(button1, "title", "Change files");
+      },
+      m(target, anchor) {
+        insert(target, button0, anchor);
+        insert(target, t1, anchor);
+        insert(target, button1, anchor);
+        append(button1, span);
+        mount_component(icon, span, null);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button1,
+            "click",
+            /*toggleEditMode*/
+            ctx[5]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(button0);
+          detach(t1);
+          detach(button1);
+        }
+        destroy_component(icon);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_else_block_14(ctx) {
+    let span;
+    return {
+      c() {
+        span = element("span");
+        span.textContent = "...";
+        attr(span, "class", "file-name");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+      }
+    };
+  }
+  function create_if_block_216(ctx) {
+    let span;
+    let t_value = (
+      /*$ppmFile*/
+      ctx[4].name + ""
+    );
+    let t;
+    return {
+      c() {
+        span = element("span");
+        t = text(t_value);
+        attr(span, "class", "file-name");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+        append(span, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*$ppmFile*/
+        16 && t_value !== (t_value = /*$ppmFile*/
+        ctx2[4].name + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+      }
+    };
+  }
+  function create_if_block_129(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[0].fileProposal + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "error has-text-danger");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*error*/
+        1 && t_value !== (t_value = /*error*/
+        ctx2[0].fileProposal + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_default_slot_128(ctx) {
+    let current_block_type_index;
+    let if_block;
+    let if_block_anchor;
+    let current;
+    const if_block_creators = [create_if_block19, create_else_block10];
+    const if_blocks = [];
+    function select_block_type_1(ctx2, dirty) {
+      if (!/*editMode*/
+      ctx2[2])
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type_1(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    return {
+      c() {
+        if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if_blocks[current_block_type_index].m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type_1(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          group_outros();
+          transition_out(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          check_outros();
+          if_block = if_blocks[current_block_type_index];
+          if (!if_block) {
+            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
+            if_block.c();
+          } else {
+            if_block.p(ctx2, dirty);
+          }
+          transition_in(if_block, 1);
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(if_block_anchor);
+        }
+        if_blocks[current_block_type_index].d(detaching);
+      }
+    };
+  }
   function create_default_slot21(ctx) {
     let div2;
     let div0;
     let label;
     let t1;
-    let input0;
+    let input;
     let t2;
     let t3;
     let div1;
     let t4;
     let br;
     let t5;
-    let button0;
+    let button;
     let t7;
-    let div5;
+    let field;
+    let current;
     let mounted;
     let dispose;
     let if_block0 = (
       /*error*/
-      ctx[0].email && create_if_block_129(ctx)
+      ctx[0].email && create_if_block_411(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (
         /*error*/
         ctx2[0].username
       )
-        return create_if_block19;
-      return create_else_block10;
+        return create_if_block_313;
+      return create_else_block_24;
     }
     let current_block_type = select_block_type(ctx, -1);
     let if_block1 = current_block_type(ctx);
+    field = new Field_default({
+      props: {
+        name: "Proposal",
+        $$slots: { default: [create_default_slot_128] },
+        $$scope: { ctx }
+      }
+    });
     return {
       c() {
         div2 = element("div");
@@ -64124,7 +64734,7 @@
         label = element("label");
         label.textContent = "Email";
         t1 = space();
-        input0 = element("input");
+        input = element("input");
         t2 = space();
         if (if_block0)
           if_block0.c();
@@ -64134,36 +64744,34 @@
         t4 = space();
         br = element("br");
         t5 = space();
-        button0 = element("button");
-        button0.textContent = "Submit";
+        button = element("button");
+        button.textContent = "Submit";
         t7 = space();
-        div5 = element("div");
-        div5.innerHTML = `<div class="control is-expanded"><input class="input" type="text"/></div> <div class="control"><button type="submit" class="button is-info">Search</button></div>`;
+        create_component(field.$$.fragment);
         attr(label, "for", "email");
-        attr(input0, "class", "input");
-        attr(input0, "type", "text");
-        attr(div0, "class", "field svelte-k7u2xx");
-        attr(div1, "class", "field svelte-k7u2xx");
-        attr(button0, "class", "button is-info");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(div0, "class", "field svelte-jtr2u8");
+        attr(div1, "class", "field svelte-jtr2u8");
+        attr(button, "class", "button is-info");
         toggle_class(
-          button0,
+          button,
           "is-loading",
           /*isLoading*/
           ctx[1]
         );
         attr(div2, "class", "box");
-        attr(div5, "class", "field has-addons svelte-k7u2xx");
       },
       m(target, anchor) {
         insert(target, div2, anchor);
         append(div2, div0);
         append(div0, label);
         append(div0, t1);
-        append(div0, input0);
+        append(div0, input);
         set_input_value(
-          input0,
+          input,
           /*form*/
-          ctx[2].email
+          ctx[3].email
         );
         append(div0, t2);
         if (if_block0)
@@ -64174,22 +64782,23 @@
         append(div2, t4);
         append(div2, br);
         append(div2, t5);
-        append(div2, button0);
+        append(div2, button);
         insert(target, t7, anchor);
-        insert(target, div5, anchor);
+        mount_component(field, target, anchor);
+        current = true;
         if (!mounted) {
           dispose = [
             listen(
-              input0,
+              input,
               "input",
-              /*input0_input_handler*/
-              ctx[4]
+              /*input_input_handler*/
+              ctx[8]
             ),
             listen(
-              button0,
+              button,
               "click",
               /*handleSubmit*/
-              ctx[3]
+              ctx[6]
             )
           ];
           mounted = true;
@@ -64197,12 +64806,12 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        4 && input0.value !== /*form*/
-        ctx2[2].email) {
+        8 && input.value !== /*form*/
+        ctx2[3].email) {
           set_input_value(
-            input0,
+            input,
             /*form*/
-            ctx2[2].email
+            ctx2[3].email
           );
         }
         if (
@@ -64212,7 +64821,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_129(ctx2);
+            if_block0 = create_if_block_411(ctx2);
             if_block0.c();
             if_block0.m(div0, null);
           }
@@ -64230,25 +64839,41 @@
             if_block1.m(div1, null);
           }
         }
-        if (dirty & /*isLoading*/
+        if (!current || dirty & /*isLoading*/
         2) {
           toggle_class(
-            button0,
+            button,
             "is-loading",
             /*isLoading*/
             ctx2[1]
           );
         }
+        const field_changes = {};
+        if (dirty & /*$$scope, editMode, error, $ppmFile*/
+        2069) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
       },
       d(detaching) {
         if (detaching) {
           detach(div2);
           detach(t7);
-          detach(div5);
         }
         if (if_block0)
           if_block0.d();
         if_block1.d();
+        destroy_component(field, detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -64273,8 +64898,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, isLoading, form, error*/
-        135) {
+        if (dirty & /*$$scope, editMode, error, $ppmFile, isLoading, form*/
+        2079) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -64296,10 +64921,19 @@
   }
   var username = "";
   var email = "";
+  function isObjectEmpty2(objectName) {
+    return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object;
+  }
   function instance38($$self, $$props, $$invalidate) {
+    let $ppmFile;
+    component_subscribe($$self, ppmFile, ($$value) => $$invalidate(4, $ppmFile = $$value));
     let error = {};
     let isLoading = false;
-    const form = { username, email };
+    let editMode = false;
+    let form = { username, email };
+    function toggleEditMode() {
+      $$invalidate(2, editMode = !editMode);
+    }
     function handleSubmit() {
       $$invalidate(0, error = {});
       $$invalidate(1, isLoading = true);
@@ -64310,6 +64944,9 @@
           console.log("Sukses Cek Form Error");
         }
       }
+      if (isObjectEmpty2($ppmFile)) {
+        $$invalidate(0, error["fileProposal"] = `*`, error);
+      }
       if (Object.keys(error).length > 0) {
         console.log("Error, Lengkapi semua form");
       } else {
@@ -64318,26 +64955,34 @@
         return;
       }
     }
-    function input0_input_handler() {
-      form.email = this.value;
-      $$invalidate(2, form);
+    function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
     }
     function input_input_handler() {
-      form.username = this.value;
-      $$invalidate(2, form);
+      form.email = this.value;
+      $$invalidate(3, form);
     }
     function input_input_handler_1() {
       form.username = this.value;
-      $$invalidate(2, form);
+      $$invalidate(3, form);
+    }
+    function input_input_handler_2() {
+      form.username = this.value;
+      $$invalidate(3, form);
     }
     return [
       error,
       isLoading,
+      editMode,
       form,
+      $ppmFile,
+      toggleEditMode,
       handleSubmit,
-      input0_input_handler,
+      filePpmChange,
       input_input_handler,
-      input_input_handler_1
+      input_input_handler_1,
+      input_input_handler_2
     ];
   }
   var Select2 = class extends SvelteComponent {
