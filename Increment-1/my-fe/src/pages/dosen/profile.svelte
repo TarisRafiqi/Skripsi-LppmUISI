@@ -35,7 +35,6 @@
    let tahunHKI, JudulHKI, namaPenulisHKI, jenisHKI, noHKI;
 
    let idProfile,
-      // idUser,
       namaLengkap,
       jabatanFungsional,
       nip,

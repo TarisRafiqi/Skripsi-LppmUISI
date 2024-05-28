@@ -97,7 +97,7 @@
       namaPemakalahDiseminasi,
       namaPertemuanDiseminasi;
 
-   let tahunPublikasi, judulPublikasi, namaJurnal, impactFactor;
+   let tahunPublikasi, judulPublikasi, namaPenulis, namaJurnal, impactFactor;
 
    let tahunBuku, JudulBuku, namaPenulisBuku, PenerbitBuku, Isbn;
 
@@ -109,6 +109,7 @@
    let showModalPublikasi = false;
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
+   let showModalErrorForm = false;
    let isLoading = false;
 
    const accessToken = localStorage.getItem("token");
@@ -522,10 +523,7 @@
             try {
                const response = await fetch($apiURL + "/uploadRab", {
                   method: "POST",
-                  headers: {
-                     Authorization: `Bearer ${accessToken}`,
-                     "Content-Type": "application/json",
-                  },
+                  headers: headers,
                   body: JSON.stringify(payloadRabFile),
                });
 
@@ -661,10 +659,7 @@
             try {
                const response = await fetch($apiURL + "/uploadRab", {
                   method: "POST",
-                  headers: {
-                     Authorization: `Bearer ${accessToken}`,
-                     "Content-Type": "application/json",
-                  },
+                  headers: headers,
                   body: JSON.stringify(payloadRabFile),
                });
 
@@ -693,10 +688,7 @@
          try {
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadPpmFile),
             });
 
@@ -910,7 +902,9 @@
    // Button Simpan Pengalaman Penelitian
    // -----------------------------------------------
    async function simpanPP() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunPenelitian,
          judulPenelitian,
          rolePenelitian,
@@ -919,31 +913,37 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPenelitian", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPenelitian = false;
-            tahunPenelitian = "";
-            judulPenelitian = "";
-            rolePenelitian = "";
-            sumberDanaPenelitian = "";
-            biayaPP = "";
-            getPengalamanPenelitian();
+         const response = await fetch($apiURL + "/pengalamanPenelitian", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPenelitian = false;
+               tahunPenelitian = "";
+               judulPenelitian = "";
+               rolePenelitian = "";
+               sumberDanaPenelitian = "";
+               biayaPP = "";
+               getPengalamanPenelitian();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -952,7 +952,9 @@
    // Button Simpan Pengalaman Pengmas
    // -----------------------------------------------
    async function simpanPM() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunPengmas,
          judulPengmas,
          rolePengmas,
@@ -961,31 +963,37 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPengmas", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPengmas = false;
-            tahunPengmas = "";
-            judulPengmas = "";
-            rolePengmas = "";
-            sumberDanaPengmas = "";
-            biayaPengmas = "";
-            getPengalamanPengmas();
+         const response = await fetch($apiURL + "/pengalamanPengmas", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPengmas = false;
+               tahunPengmas = "";
+               judulPengmas = "";
+               rolePengmas = "";
+               sumberDanaPengmas = "";
+               biayaPengmas = "";
+               getPengalamanPengmas();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -994,7 +1002,9 @@
    // Button Simpan Pengalaman Diseminasi
    // -----------------------------------------------
    async function simpanPD() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunDiseminasi,
          judulDiseminasi,
          namaPemakalahDiseminasi,
@@ -1002,30 +1012,36 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanDiseminasi", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalDiseminasi = false;
-            tahunDiseminasi = "";
-            judulDiseminasi = "";
-            namaPemakalahDiseminasi = "";
-            namaPertemuanDiseminasi = "";
-            getPengalamanDiseminasi();
+         const response = await fetch($apiURL + "/pengalamanDiseminasi", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalDiseminasi = false;
+               tahunDiseminasi = "";
+               judulDiseminasi = "";
+               namaPemakalahDiseminasi = "";
+               namaPertemuanDiseminasi = "";
+               getPengalamanDiseminasi();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -1034,38 +1050,48 @@
    // Button Simpan Pengalaman Publikasi
    // -----------------------------------------------
    async function simpanPPublikasi() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunPublikasi,
          judulPublikasi,
+         namaPenulis,
          namaJurnal,
          impactFactor,
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPublikasi", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPublikasi = false;
-            tahunPublikasi = "";
-            judulPublikasi = "";
-            namaJurnal = "";
-            impactFactor = "";
-            getPengalamanPublikasi();
+         const response = await fetch($apiURL + "/pengalamanPublikasi", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPublikasi = false;
+               tahunPublikasi = "";
+               judulPublikasi = "";
+               namaPenulis = "";
+               namaJurnal = "";
+               impactFactor = "";
+               getPengalamanPublikasi();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -1074,7 +1100,9 @@
    // Button Simpan Pengalaman Penulisan Buku
    // -----------------------------------------------
    async function simpanPPB() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunBuku,
          JudulBuku,
          namaPenulisBuku,
@@ -1083,31 +1111,37 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalPenulisanBuku = false;
-            tahunBuku = "";
-            JudulBuku = "";
-            namaPenulisBuku = "";
-            PenerbitBuku = "";
-            Isbn = "";
-            getPengalamanPenulisanBuku();
+         const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalPenulisanBuku = false;
+               tahunBuku = "";
+               JudulBuku = "";
+               namaPenulisBuku = "";
+               PenerbitBuku = "";
+               Isbn = "";
+               getPengalamanPenulisanBuku();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -1116,7 +1150,9 @@
    // Button Simpan Pengalaman HKI
    // -----------------------------------------------
    async function simpanPHKI() {
-      const payload = {
+      error = {};
+
+      let payload = {
          tahunHKI,
          JudulHKI,
          namaPenulisHKI,
@@ -1125,31 +1161,38 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/pengalamanHKI", {
-         method: "POST",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      const result = await response.json();
-
-      if (result.statusCode != 200) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
       } else {
-         if (response.ok) {
-            showModalHKI = false;
-            tahunHKI = "";
-            JudulHKI = "";
-            namaPenulisHKI = "";
-            jenisHKI = "";
-            noHKI = "";
-            getPengalamanHKI();
+         const response = await fetch($apiURL + "/pengalamanHKI", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            // localStorage.clear();
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               showModalHKI = false;
+               tahunHKI = "";
+               JudulHKI = "";
+               namaPenulisHKI = "";
+               jenisHKI = "";
+               noHKI = "";
+               getPengalamanHKI();
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -1162,10 +1205,7 @@
 
       const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, {
          method: "DELETE",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
       });
 
       const result = await response.json();
@@ -1190,10 +1230,7 @@
 
       const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, {
          method: "DELETE",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
       });
 
       const result = await response.json();
@@ -1218,10 +1255,7 @@
 
       const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, {
          method: "DELETE",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
       });
 
       const result = await response.json();
@@ -1246,10 +1280,7 @@
 
       const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, {
          method: "DELETE",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
       });
 
       const result = await response.json();
@@ -1276,10 +1307,7 @@
          $apiURL + "/pengalamanPenulisanBuku/" + idPPB,
          {
             method: "DELETE",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
+            headers: headers,
          }
       );
 
@@ -1305,10 +1333,7 @@
 
       const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, {
          method: "DELETE",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
       });
 
       const result = await response.json();
@@ -1884,7 +1909,7 @@
                         <tr>
                            <td
                               ><button
-                                 class="button is-danger is-rounded is-small"
+                                 class="button is-danger is-small"
                                  data-value={matkul.label}
                                  on:click={deleteMatkul}
                                  ><span class="icon">
@@ -2059,65 +2084,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Table Pengalaman Penelitian -->
             <!-- ------------------------------------------------------------------------>
-            <Modal bind:show={showModalPenelitian}>
-               <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
-
-               <Field name="Tahun">
-                  <input
-                     class="input"
-                     type="number"
-                     bind:value={tahunPenelitian}
-                  />
-               </Field>
-
-               <Field name="Judul Penelitian">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={judulPenelitian}
-                  />
-               </Field>
-
-               <Field name="Role">
-                  <div class="select is-fullwidth">
-                     <select bind:value={rolePenelitian}>
-                        <option value="" disabled selected hidden
-                           >Pilih peran dalam kegiatan</option
-                        >
-                        <option value="Ketua">Ketua</option>
-                        <option value="Anggota">Anggota</option>
-                     </select>
-                  </div>
-               </Field>
-
-               <Field name="Sumber Dana">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={sumberDanaPenelitian}
-                  />
-               </Field>
-
-               <Field name="Jumlah Rp.">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Biaya Penelitian"
-                     bind:value={biayaPP}
-                     on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
-                  />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPP}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2162,7 +2128,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PP.id}
                                     on:click={delrowPP}
                                     ><span class="icon">
@@ -2186,64 +2152,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Table Pengabdian Masyarakat -->
             <!-- ------------------------------------------------------------------------>
-            <Modal bind:show={showModalPengmas}>
-               <h4 class="title is-4" slot="header">
-                  Pengalaman Pengabdian Masyarakat
-               </h4>
-
-               <Field name="Tahun">
-                  <input
-                     class="input"
-                     type="number"
-                     bind:value={tahunPengmas}
-                  />
-               </Field>
-
-               <Field name="Judul Pengmas">
-                  <input class="input" type="text" bind:value={judulPengmas} />
-               </Field>
-
-               <Field name="Role">
-                  <div class="select is-fullwidth">
-                     <select bind:value={rolePengmas}>
-                        <option value="" disabled selected hidden
-                           >Pilih peran dalam kegiatan</option
-                        >
-                        <option value="Ketua">Ketua</option>
-                        <option value="Anggota">Anggota</option>
-                     </select>
-                  </div>
-               </Field>
-
-               <Field name="Sumber Dana">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={sumberDanaPengmas}
-                  />
-               </Field>
-
-               <Field name="Jumlah Rp.">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Biaya Pengmas"
-                     bind:value={biayaPengmas}
-                     on:keyup={() =>
-                        (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
-                  />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPM}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2290,7 +2198,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PM.id}
                                     on:click={delrowPM}
                                     ><span class="icon">
@@ -2314,54 +2222,6 @@
             <!-- ------------------------------------------------------------------------>
             <!--  Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran -->
             <!-- ------------------------------------------------------------------------>
-
-            <Modal bind:show={showModalDiseminasi}>
-               <h4 class="title is-4" slot="header">
-                  Pengalaman Diseminasi Ilmiah dalam<br />Pertemuan / Pameran
-               </h4>
-
-               <Field name="Tahun">
-                  <input
-                     class="input"
-                     type="number"
-                     bind:value={tahunDiseminasi}
-                  />
-               </Field>
-
-               <Field name="Judul Artikel">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={judulDiseminasi}
-                  />
-               </Field>
-
-               <Field name="Nama Pemakalah">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={namaPemakalahDiseminasi}
-                  />
-               </Field>
-
-               <Field name="Nama Pertemuan Ilmiah/Pameran">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={namaPertemuanDiseminasi}
-                  />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPD}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2410,7 +2270,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PD.id}
                                     on:click={delrowPD}
                                     ><span class="icon">
@@ -2433,45 +2293,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding" -->
             <!-- ------------------------------------------------------------------------>
-            <Modal bind:show={showModalPublikasi}>
-               <h4 class="title is-4" slot="header">
-                  Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
-               </h4>
-
-               <Field name="Tahun">
-                  <input
-                     class="input"
-                     type="number"
-                     bind:value={tahunPublikasi}
-                  />
-               </Field>
-
-               <Field name="Judul Artikel">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={judulPublikasi}
-                  />
-               </Field>
-
-               <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
-                  <input class="input" type="text" bind:value={namaJurnal} />
-               </Field>
-
-               <Field name="Nama Pertemuan Ilmiah/Pameran">
-                  <input class="input" type="text" bind:value={impactFactor} />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPPublikasi}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2518,7 +2339,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PPub.id}
                                     on:click={delrowPPub}
                                     ><span class="icon">
@@ -2541,45 +2362,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Pengalaman Penulisan Buku -->
             <!-- ------------------------------------------------------------------------>
-            <Modal bind:show={showModalPenulisanBuku}>
-               <h4 class="title is-4" slot="header">
-                  Pengalaman Penulisan Buku
-               </h4>
-
-               <Field name="Tahun">
-                  <input class="input" type="number" bind:value={tahunBuku} />
-               </Field>
-
-               <Field name="Judul Buku">
-                  <input class="input" type="text" bind:value={JudulBuku} />
-               </Field>
-
-               <Field name="Nama Penulis">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={namaPenulisBuku}
-                  />
-               </Field>
-
-               <Field name="Penerbit">
-                  <input class="input" type="text" bind:value={PenerbitBuku} />
-               </Field>
-
-               <Field name="ISBN">
-                  <input class="input" type="text" bind:value={Isbn} />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPPB}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2624,7 +2406,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PPB.id}
                                     on:click={delrowPPB}
                                     ><span class="icon">
@@ -2648,46 +2430,6 @@
             <!-- ------------------------------------------------------------------------>
             <!-- Pengalaman Hak Kekayaan Intelektual -->
             <!-- ------------------------------------------------------------------------>
-
-            <Modal bind:show={showModalHKI}>
-               <h4 class="title is-4" slot="header">
-                  Pengalaman Hak Kekayaan Intelektual
-               </h4>
-
-               <Field name="Tahun">
-                  <input class="input" type="number" bind:value={tahunHKI} />
-               </Field>
-
-               <Field name="Judul HKI">
-                  <input class="input" type="text" bind:value={JudulHKI} />
-               </Field>
-
-               <Field name="Nama Penulis">
-                  <input
-                     class="input"
-                     type="text"
-                     bind:value={namaPenulisHKI}
-                  />
-               </Field>
-
-               <Field name="Penerbit">
-                  <input class="input" type="text" bind:value={jenisHKI} />
-               </Field>
-
-               <Field name="ISBN">
-                  <input class="input" type="text" bind:value={noHKI} />
-               </Field>
-
-               <hr />
-
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button class="button is-info" on:click={simpanPHKI}
-                        >Simpan</button
-                     >
-                  </p>
-               </div>
-            </Modal>
 
             <div class="box">
                <nav class="level">
@@ -2731,7 +2473,7 @@
                            <tr>
                               <td
                                  ><button
-                                    class="button is-danger is-rounded is-small"
+                                    class="button is-danger is-small"
                                     pid={PHKI.id}
                                     on:click={delrowPHKI}
                                     ><span class="icon">
@@ -2787,6 +2529,339 @@
       </div>
    {/if}
 </Article>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Penelitian -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPenelitian}>
+   <h4 class="title is-4" slot="header">Pengalaman Penelitian</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPenelitian} />
+      {#if error.tahunPenelitian}
+         <p class="help error is-danger">{error.tahunPenelitian}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Penelitian">
+      <input class="input" type="text" bind:value={judulPenelitian} />
+      {#if error.judulPenelitian}
+         <p class="help error is-danger">{error.judulPenelitian}</p>
+      {/if}
+   </Field>
+
+   <Field name="Role">
+      <div class="select is-fullwidth">
+         <select bind:value={rolePenelitian}>
+            <option value="" disabled selected hidden
+               >Pilih peran dalam kegiatan</option
+            >
+            <option value="Ketua">Ketua</option>
+            <option value="Anggota">Anggota</option>
+         </select>
+      </div>
+      {#if error.rolePenelitian}
+         <p class="help error is-danger">{error.rolePenelitian}</p>
+      {/if}
+   </Field>
+
+   <Field name="Sumber Dana">
+      <input class="input" type="text" bind:value={sumberDanaPenelitian} />
+      {#if error.sumberDanaPenelitian}
+         <p class="help error is-danger">
+            {error.sumberDanaPenelitian}
+         </p>
+      {/if}
+   </Field>
+
+   <Field name="Jumlah Rp.">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan Biaya Penelitian"
+         bind:value={biayaPP}
+         on:keyup={() => (biayaPP = formatRupiah(biayaPP, "Rp. "))}
+      />
+      {#if error.biayaPP}
+         <p class="help error is-danger">{error.biayaPP}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPP}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Pengmas -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPengmas}>
+   <h4 class="title is-4" slot="header">Pengalaman Pengabdian Masyarakat</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPengmas} />
+      {#if error.tahunPengmas}
+         <p class="help error is-danger">{error.tahunPengmas}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Pengmas">
+      <input class="input" type="text" bind:value={judulPengmas} />
+      {#if error.judulPengmas}
+         <p class="help error is-danger">{error.judulPengmas}</p>
+      {/if}
+   </Field>
+
+   <Field name="Role">
+      <div class="select is-fullwidth">
+         <select bind:value={rolePengmas}>
+            <option value="" disabled selected hidden
+               >Pilih peran dalam kegiatan</option
+            >
+            <option value="Ketua">Ketua</option>
+            <option value="Anggota">Anggota</option>
+         </select>
+      </div>
+      {#if error.rolePengmas}
+         <p class="help error is-danger">{error.rolePengmas}</p>
+      {/if}
+   </Field>
+
+   <Field name="Sumber Dana">
+      <input class="input" type="text" bind:value={sumberDanaPengmas} />
+      {#if error.sumberDanaPengmas}
+         <p class="help error is-danger">{error.sumberDanaPengmas}</p>
+      {/if}
+   </Field>
+
+   <Field name="Jumlah Rp.">
+      <input
+         class="input"
+         type="text"
+         placeholder="Masukkan Biaya Pengmas"
+         bind:value={biayaPengmas}
+         on:keyup={() => (biayaPengmas = formatRupiah(biayaPengmas, "Rp. "))}
+      />
+      {#if error.biayaPengmas}
+         <p class="help error is-danger">{error.biayaPengmas}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPM}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Diseminasi Ilmiah -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalDiseminasi}>
+   <h4 class="title is-4" slot="header">
+      Pengalaman Diseminasi Ilmiah dalam<br />Pertemuan / Pameran
+   </h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunDiseminasi} />
+      {#if error.tahunDiseminasi}
+         <p class="help error is-danger">{error.tahunDiseminasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Artikel">
+      <input class="input" type="text" bind:value={judulDiseminasi} />
+      {#if error.judulDiseminasi}
+         <p class="help error is-danger">{error.judulDiseminasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Pemakalah">
+      <input class="input" type="text" bind:value={namaPemakalahDiseminasi} />
+      {#if error.namaPemakalahDiseminasi}
+         <p class="help error is-danger">{error.namaPemakalahDiseminasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Pertemuan Ilmiah/Pameran">
+      <input class="input" type="text" bind:value={namaPertemuanDiseminasi} />
+      {#if error.namaPertemuanDiseminasi}
+         <p class="help error is-danger">{error.namaPertemuanDiseminasi}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPD}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Publikasi Ilmiah dalam Jurnal -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPublikasi}>
+   <h4 class="title is-4" slot="header">
+      Pengalaman Publikasi Ilmiah <br /> dalam Jurnal (bukan Proceeding)
+   </h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunPublikasi} />
+      {#if error.tahunPublikasi}
+         <p class="help error is-danger">{error.tahunPublikasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Artikel">
+      <input class="input" type="text" bind:value={judulPublikasi} />
+      {#if error.judulPublikasi}
+         <p class="help error is-danger">{error.judulPublikasi}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulis} />
+      {#if error.namaPenulis}
+         <p class="help error is-danger">{error.namaPenulis}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Jurnal, Vol., No Issue/No Artikel, Halaman">
+      <input class="input" type="text" bind:value={namaJurnal} />
+      {#if error.namaJurnal}
+         <p class="help error is-danger">{error.namaJurnal}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Pertemuan Ilmiah/Pameran">
+      <input class="input" type="text" bind:value={impactFactor} />
+      {#if error.impactFactor}
+         <p class="help error is-danger">{error.impactFactor}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPPublikasi}
+            >Simpan</button
+         >
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Penulisan Buku -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalPenulisanBuku}>
+   <h4 class="title is-4" slot="header">Pengalaman Penulisan Buku</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunBuku} />
+      {#if error.tahunBuku}
+         <p class="help error is-danger">{error.tahunBuku}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Buku">
+      <input class="input" type="text" bind:value={JudulBuku} />
+      {#if error.JudulBuku}
+         <p class="help error is-danger">{error.JudulBuku}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulisBuku} />
+      {#if error.namaPenulisBuku}
+         <p class="help error is-danger">{error.namaPenulisBuku}</p>
+      {/if}
+   </Field>
+
+   <Field name="Penerbit">
+      <input class="input" type="text" bind:value={PenerbitBuku} />
+      {#if error.PenerbitBuku}
+         <p class="help error is-danger">{error.PenerbitBuku}</p>
+      {/if}
+   </Field>
+
+   <Field name="ISBN">
+      <input class="input" type="text" bind:value={Isbn} />
+      {#if error.Isbn}
+         <p class="help error is-danger">{error.Isbn}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPPB}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Pengalaman Hak Kekayaan Intelektual -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalHKI}>
+   <h4 class="title is-4" slot="header">Pengalaman Hak Kekayaan Intelektual</h4>
+
+   <Field name="Tahun">
+      <input class="input" type="number" bind:value={tahunHKI} />
+      {#if error.tahunHKI}
+         <p class="help error is-danger">{error.tahunHKI}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul HKI">
+      <input class="input" type="text" bind:value={JudulHKI} />
+      {#if error.JudulHKI}
+         <p class="help error is-danger">{error.JudulHKI}</p>
+      {/if}
+   </Field>
+
+   <Field name="Nama Penulis">
+      <input class="input" type="text" bind:value={namaPenulisHKI} />
+      {#if error.namaPenulisHKI}
+         <p class="help error is-danger">{error.namaPenulisHKI}</p>
+      {/if}
+   </Field>
+
+   <Field name="Jenis HKI">
+      <input class="input" type="text" bind:value={jenisHKI} />
+      {#if error.jenisHKI}
+         <span class="help error is-danger">{error.jenisHKI}</span>
+      {/if}
+   </Field>
+
+   <Field name="No HKI">
+      <input class="input" type="text" bind:value={noHKI} />
+      {#if error.noHKI}
+         <p class="help error is-danger">{error.noHKI}</p>
+      {/if}
+   </Field>
+
+   <hr />
+
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanPHKI}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<Modalerror bind:show={showModalErrorForm}>
+   <p>Lengkapi semua form sebelum disimpan</p>
+</Modalerror>
 
 <Modalerror bind:show={showModalErrorProposal}>
    <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>

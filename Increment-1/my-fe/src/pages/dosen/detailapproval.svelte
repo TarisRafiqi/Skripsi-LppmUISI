@@ -890,7 +890,7 @@
                         <input
                            id="filePenilaian"
                            class="inputf custom-file-input"
-                           accept="application/pdf"
+                           accept=".xlsx"
                            type="file"
                            on:change={filePenilaianChange}
                         />
@@ -922,7 +922,7 @@
                            </p>
                         {/if}
                      </span>
-                     <p class="help">File Type: pdf</p>
+                     <p class="help">File Type: xlsx</p>
                   </Field>
                {/if}
 
