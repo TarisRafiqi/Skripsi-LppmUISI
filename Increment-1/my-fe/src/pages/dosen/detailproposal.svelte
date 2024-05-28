@@ -1654,6 +1654,7 @@
                   <tr>
                      <th class="is-narrow">Tahun</th>
                      <th>Judul Artikel</th>
+                     <th>Nama Penulis</th>
                      <th>Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th>
                      <th>Impact Factor/Scopus Quarter/Akreditasi</th>
                   </tr>
@@ -1664,6 +1665,7 @@
                         <tr>
                            <td>{PPub.tahun_publikasi}</td>
                            <td>{PPub.judul_artikel}</td>
+                           <td>{PPub.nama_penulis}</td>
                            <td>{PPub.nama_jurnal}</td>
                            <td>{PPub.impact}</td>
                         </tr>

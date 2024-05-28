@@ -1,17 +1,16 @@
 <script>
    import { onMount } from "svelte";
    import { route, apiURL } from "../../store";
+   import { deleteIcon, add } from "../../store/icons";
    import Article from "../../libs/Article.svelte";
    import Modal from "../../libs/Modal.svelte";
    import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { deleteIcon, add } from "../../store/icons";
    import Modalerror from "../../libs/Modalerror.svelte";
 
    const id = localStorage.getItem("id");
    let vmataKuliah;
    let error = {};
-   let showModalErrorForm = false;
 
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
 
@@ -71,6 +70,7 @@
    let showModalPublikasi = false;
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
+   let showModalErrorForm = false;
 
    async function clickModalPenelitian() {
       showModalPenelitian = true;
@@ -1989,7 +1989,7 @@
 </Modal>
 
 <!-- ------------------------------------------------------------------------>
-<!-- Modal Error Simpan Identitas -->
+<!-- Modal Error -->
 <!-- ------------------------------------------------------------------------>
 <Modalerror bind:show={showModalErrorForm}>
    <p>Lengkapi semua form sebelum disimpan</p>

@@ -1421,7 +1421,7 @@
       {/if}
 
       {#if tab2 === true}
-         {#if status > 10}
+         <!-- {#if status > 10}
             <div class="notification is-danger is-light">
                <p style="text-align: justify;">
                   <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
@@ -1442,7 +1442,7 @@
                   </a>
                </p>
             </div>
-         {/if}
+         {/if} -->
 
          <div class="box">
             <Field name="Nama Lengkap">{namaLengkap}</Field>
