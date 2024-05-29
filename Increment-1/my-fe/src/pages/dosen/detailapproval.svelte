@@ -761,7 +761,7 @@
    <Article>
       <Modalerror bind:show={showModalError}>
          <p>
-            <b>Catatan Revisi</b> masih kosong! <br /> Isi catatan revisi sebagai
+            Anda belum menambahkan catatan revisi,<br /> Isi catatan revisi sebagai
             acuan peneliti untuk memperbaiki kesalahan!
          </p>
       </Modalerror>

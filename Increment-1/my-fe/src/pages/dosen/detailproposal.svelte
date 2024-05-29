@@ -95,7 +95,6 @@
       view = !isEdit(result.status);
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -150,7 +149,6 @@
       const dataRCR = await responseRCR.json();
 
       if (dataRCR.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
@@ -168,7 +166,6 @@
       const resultGP = await responseGP.json();
 
       if (resultGP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseGP.ok) {
@@ -209,7 +206,6 @@
       const dataRP = await responseRP.json();
 
       if (dataRP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRP.ok) {
@@ -248,7 +244,6 @@
       const resultPP = await responsePP.json();
 
       if (resultPP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -272,7 +267,6 @@
       const resultPM = await responsePM.json();
 
       if (resultPM.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -296,7 +290,6 @@
       const resultPD = await responsePD.json();
 
       if (resultPD.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -320,7 +313,6 @@
       const resultPPub = await responsePPub.json();
 
       if (resultPPub.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -344,7 +336,6 @@
       const resultPPB = await responsePPB.json();
 
       if (resultPPB.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -368,7 +359,6 @@
       const resultPHKI = await responsePHKI.json();
 
       if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -389,7 +379,6 @@
       const results = await responsee.json();
 
       if (results.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsee.ok) {
@@ -408,6 +397,14 @@
          }
       }
    });
+
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
 
    function filePpmChange(e) {
       filePpm = e.target.files[0];
@@ -500,6 +497,18 @@
 
    async function remediasi() {
       error = {};
+
+      if (editModeProposal) {
+         if (isObjectEmpty($ppmFile)) {
+            error["fileProposal"] = `*`;
+         }
+      }
+
+      if (editModeRAB) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // -------------------------------------------------------------------//
@@ -599,6 +608,7 @@
             error[key] = `This field is required`;
          }
       }
+      console.log(error);
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
@@ -1183,11 +1193,6 @@
                               {/if}
                            </label>
                         </div>
-                        {#if error.fileProposal}
-                           <p class="error has-text-danger">
-                              {error.fileProposal}
-                           </p>
-                        {/if}
                         <button
                            class="button is-danger is-light"
                            on:click={toggleEditModeProposal}
@@ -1222,12 +1227,6 @@
                            </span></button
                         >
                      {:else}
-                        <!-- <input
-                           class="input"
-                           accept=".xlsx"
-                           type="file"
-                           on:change={(e) => (fileRab = e.target.files[0])}
-                        /> -->
                         <span class="inputf__wrapper">
                            <input
                               id="fileRab"
@@ -1383,6 +1382,7 @@
                <div class="field is-grouped is-grouped-centered">
                   <h5 class="title is-5">Riwayat Catatan Revisi</h5>
                </div>
+
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >

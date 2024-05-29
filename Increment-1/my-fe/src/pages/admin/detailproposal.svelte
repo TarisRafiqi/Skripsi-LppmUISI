@@ -1,30 +1,36 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL } from "../../store";
+   import { route, apiURL, ppmFile, rabFile } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Modal from "../../libs/Modal.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Select from "../../libs/Select.svelte";
-   import { deleteIcon } from "../../store/icons";
+   import {
+      deleteIcon,
+      edit,
+      cancelIcon,
+      downloadIcon,
+   } from "../../store/icons";
    // import Status from "../../modules/Status.svelte";
    // import Wysiwyg from "../../libs/Wysiwyg.svelte";
 
    export let params;
    const id = params["1"];
+   let error = {};
 
    const idEvaluator = localStorage.getItem("id");
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let showModalError = false;
    let showModalErrorInputEvaluator = false;
+   let showModalErrorReviewer = false;
 
    let jenisProposal;
    let jenisKegiatan;
    let jenisSkema;
    let kelompokKeahlian;
    let topik;
-   // let tahunPelaksanaan;
    let tanggalMulai;
    let tanggalSelesai;
    let biayaPenelitian;
@@ -84,6 +90,8 @@
    let items = [];
    let file;
    let view;
+   let editModeProposal = false;
+   let editModeRAB = false;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -106,7 +114,6 @@
       view = !isEdit(result.status);
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -151,7 +158,6 @@
       const resultEvl = await responseEvl.json();
 
       if (resultEvl.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseEvl.ok) {
@@ -174,7 +180,6 @@
       const dataRCR = await responseRCR.json();
 
       if (dataRCR.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
@@ -193,7 +198,6 @@
       const resultGP = await responseGP.json();
 
       if (resultGP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseGP.ok) {
@@ -233,7 +237,6 @@
       const dataRP = await responseRP.json();
 
       if (dataRP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRP.ok) {
@@ -273,7 +276,6 @@
       const resultPP = await responsePP.json();
 
       if (resultPP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -297,7 +299,6 @@
       const resultPM = await responsePM.json();
 
       if (resultPM.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -321,7 +322,6 @@
       const resultPD = await responsePD.json();
 
       if (resultPD.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -345,7 +345,6 @@
       const resultPPub = await responsePPub.json();
 
       if (resultPPub.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -369,7 +368,6 @@
       const resultPPB = await responsePPB.json();
 
       if (resultPPB.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -393,7 +391,6 @@
       const resultPHKI = await responsePHKI.json();
 
       if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -414,7 +411,6 @@
       const results = await responsee.json();
 
       if (results.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsee.ok) {
@@ -439,11 +435,30 @@
       return edit.some((x) => x === code);
    }
 
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
+
    async function remediasi() {
-      const accessToken = localStorage.getItem("token");
+      error = {};
+
+      if (editModeProposal) {
+         if (isObjectEmpty($ppmFile)) {
+            error["fileProposal"] = `*`;
+         }
+      }
+
+      if (editModeRAB) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
-
       // -------------------------------------------------------------------//
       // Upload File RAB
       // -------------------------------------------------------------------//
@@ -461,10 +476,7 @@
          try {
             const response = await fetch($apiURL + "/uploadRab", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadRabFile),
             });
 
@@ -496,10 +508,7 @@
          try {
             const response = await fetch($apiURL + "/uploadPpm", {
                method: "POST",
-               headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "application/json",
-               },
+               headers: headers,
                body: JSON.stringify(payloadPpmFile),
             });
 
@@ -529,7 +538,6 @@
          id,
          judul,
          abstrak,
-         isi,
          comment: "",
          status: Number(data.status) + 1,
          kdeptSelected,
@@ -540,25 +548,35 @@
          randomPpmFileName,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
-         method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload),
-      });
+      for (const [key, value] of Object.entries(payload)) {
+         if (
+            (!["comment"].includes(key) && !value) ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
+      console.log(error);
 
-      const result = await response.json();
-
-      if (response.status === 401) {
-         // localStorage.clear();
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalError = true;
       } else {
-         if (response.ok) {
-            $route("/admin/proposalmanagement");
+         const response = await fetch($apiURL + "/ppm", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
+            if (response.ok) {
+               $route("/admin/proposalmanagement");
+            } else {
+               console.log(response);
+            }
          }
       }
    }
@@ -575,21 +593,17 @@
       };
 
       if (komentar.value === "" || komentar.value == null) {
-         showModalError = true;
+         showModalErrorReviewer = true;
       } else {
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
+            headers: headers,
             body: JSON.stringify(payloadCttnRevisi),
          });
 
          const resultRev = await responseRev.json();
 
          if (responseRev.status === 401) {
-            // localStorage.clear();
             location.pathname = "/tokenexpired";
          }
 
@@ -622,17 +636,13 @@
 
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
+            headers: headers,
             body: JSON.stringify(payload),
          });
 
          const result = await response.json();
 
          if (response.status === 401) {
-            // localStorage.clear();
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -671,17 +681,13 @@
 
       const response = await fetch($apiURL + "/ppm", {
          method: "PATCH",
-         headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-         },
+         headers: headers,
          body: JSON.stringify(payload),
       });
 
       const result = await response.json();
 
       if (response.status === 401) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -693,99 +699,47 @@
    }
 
    async function handlePass() {
-      const evaluatorKdept = document.getElementById("evaluatorKdept");
-      const evaluatorKlppm = document.getElementById("evaluatorKlppm");
-      const evaluatorReviewer = document.getElementById("evaluatorReviewer");
-      const evaluatorKpk = document.getElementById("evaluatorKpk");
+      const payload = {
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         id,
+         judul,
+         abstrak,
+         isi,
+         comment: "",
+         status: Number(data.status) + 2,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+         randomRabFileName,
+         randomPpmFileName,
+      };
 
-      if (
-         evaluatorKdept.value === "" ||
-         evaluatorKdept.value == null ||
-         evaluatorKlppm.value === "" ||
-         evaluatorKlppm.value == null ||
-         evaluatorReviewer.value === "" ||
-         evaluatorReviewer.value == null ||
-         evaluatorKpk.value === "" ||
-         evaluatorKpk.value == null
-      ) {
-         showModalErrorInputEvaluator = true;
+      const response = await fetch($apiURL + "/ppm", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
       } else {
-         const payload = {
-            jenisProposal,
-            jenisKegiatan,
-            jenisSkema,
-            kelompokKeahlian,
-            topik,
-            tanggalMulai,
-            tanggalSelesai,
-            biayaPenelitian,
-            anggotaTim,
-            id,
-            judul,
-            abstrak,
-            isi,
-            comment: "",
-            status: Number(data.status) + 2,
-            kdeptSelected,
-            klppmSelected,
-            kpkSelected,
-            reviewerSelected,
-            randomRabFileName,
-            randomPpmFileName,
-         };
-
-         const response = await fetch($apiURL + "/ppm", {
-            method: "PATCH",
-            headers: {
-               Authorization: `Bearer ${accessToken}`,
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-         });
-
-         const result = await response.json();
-
-         if (response.status === 401) {
-            // localStorage.clear();
-            location.pathname = "/tokenexpired";
+         if (response.ok) {
+            $route("/admin/proposalmanagement");
          } else {
-            if (response.ok) {
-               $route("/admin/proposalmanagement");
-            } else {
-               console.log(response);
-            }
+            console.log(response);
          }
       }
-   }
-
-   // async function handleSubmitReviewer() {
-   //    // Mengirimkan data reviewer terpilih
-
-   //    const payload = {
-   //       id: id,
-   //       kdeptSelected,
-   //       klppmSelected,
-   //       kpkSelected,
-   //       reviewerSelected,
-   //    };
-   //    const response = await fetch($apiURL + "/submitreviewer", {
-   //       method: "PATCH",
-   //       headers: {
-   //          "Content-Type": "application/json",
-   //       },
-   //       body: JSON.stringify(payload),
-   //    });
-
-   //    const result = await response.json();
-
-   //    if (response.ok) {
-   //    } else {
-   //       console.log(response);
-   //    }
-   // }
-
-   async function handleSubmitDana() {
-      // Mengirimkan data update status pendanaan
    }
 
    function deleteMember(e) {
@@ -902,9 +856,26 @@
       }
    }
 
+   function toggleEditModeProposal() {
+      editModeProposal = !editModeProposal;
+   }
+
+   function toggleEditModeRAB() {
+      editModeRAB = !editModeRAB;
+   }
+
+   function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      $ppmFile = e.target.files[0];
+   }
+
+   function fileRabChange(e) {
+      fileRab = e.target.files[0];
+      $rabFile = e.target.files[0];
+   }
+
    let tab1 = true;
    let tab2;
-   let tab4;
 
    function clicktab1() {
       tab1 = true;
@@ -919,15 +890,19 @@
 
 {#if data}
    <Article>
-      <Modalerror bind:show={showModalError}>
+      <Modalerror bind:show={showModalErrorReviewer}>
          <p>
-            <b>Catatan Revisi</b> masih kosong! <br /> Isi catatan revisi sebagai
+            Anda belum menambahkan catatan revisi,<br /> Isi catatan revisi sebagai
             acuan peneliti untuk memperbaiki kesalahan!
          </p>
       </Modalerror>
 
+      <Modalerror bind:show={showModalError}>
+         <p>Lengkapi semua form</p>
+      </Modalerror>
+
       <Modalerror bind:show={showModalErrorInputEvaluator}>
-         <p>Masukkan evaluator proposal terlebih dahulu sebelum di proses</p>
+         <p>Anda belum menambahkan evaluator pada proposal</p>
       </Modalerror>
 
       <h1 class="title is-1">Detail Proposal</h1>
@@ -969,6 +944,9 @@
                         >
                      </select>
                   </div>
+                  {#if error.jenisProposal}
+                     <p class="help error is-danger">{error.jenisProposal}</p>
+                  {/if}
                </Field>
 
                <Field name="Jenis Kegiatan">
@@ -983,6 +961,9 @@
                         >
                      </select>
                   </div>
+                  {#if error.jenisKegiatan}
+                     <p class="help error is-danger">{error.jenisKegiatan}</p>
+                  {/if}
                </Field>
 
                <Field name="Jenis Skema">
@@ -1023,6 +1004,9 @@
                         {/if}
                      </select>
                   </div>
+                  {#if error.jenisSkema}
+                     <p class="help error is-danger">{error.jenisSkema}</p>
+                  {/if}
                </Field>
 
                <Field name="Kelompok Keahlian">
@@ -1032,6 +1016,11 @@
                      placeholder="Masukkan Kelompok Keahlian"
                      bind:value={kelompokKeahlian}
                   />
+                  {#if error.kelompokKeahlian}
+                     <p class="help error is-danger">
+                        {error.kelompokKeahlian}
+                     </p>
+                  {/if}
                </Field>
 
                <Field name="Topik">
@@ -1041,6 +1030,9 @@
                      placeholder="Masukkan Topik"
                      bind:value={topik}
                   />
+                  {#if error.topik}
+                     <p class="help error is-danger">{error.topik}</p>
+                  {/if}
                </Field>
 
                <Field name="Tanggal Mulai">
@@ -1051,6 +1043,9 @@
                         bind:value={tanggalMulai}
                      />
                   </div>
+                  {#if error.tanggalMulai}
+                     <p class="help error is-danger">{error.tanggalMulai}</p>
+                  {/if}
                </Field>
 
                <Field name="Tanggal Selesai">
@@ -1061,6 +1056,9 @@
                         bind:value={tanggalSelesai}
                      />
                   </div>
+                  {#if error.tanggalSelesai}
+                     <p class="help error is-danger">{error.tanggalSelesai}</p>
+                  {/if}
                </Field>
 
                <Field name="Biaya Penelitian">
@@ -1075,10 +1073,16 @@
                            "Rp. "
                         ))}
                   />
+                  {#if error.biayaPenelitian}
+                     <p class="help error is-danger">{error.biayaPenelitian}</p>
+                  {/if}
                </Field>
 
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
+                  {#if error.anggotaTim}
+                     <p class="help error is-danger">{error.anggotaTim}</p>
+                  {/if}
                </Field>
 
                <br />
@@ -1126,69 +1130,146 @@
                      placeholder="Masukkan Judul"
                      bind:value={judul}
                   />
+                  {#if error.judul}
+                     <p class="help error is-danger">{error.judul}</p>
+                  {/if}
                </Field>
 
                <Field name="Abstrak">
                   <textarea class="textarea" bind:value={abstrak}></textarea>
+                  {#if error.abstrak}
+                     <p class="help error is-danger">{error.abstrak}</p>
+                  {/if}
                </Field>
 
-               <!-- <Field name="Isi Proposal">
-               <Wysiwyg id="isi" content={isi} />
-            </Field> -->
-
                <Field name="Proposal">
-                  <input
-                     class="input"
-                     accept="application/pdf"
-                     type="file"
-                     on:change={(e) => (filePpm = e.target.files[0])}
-                  />
+                  {#if !editModeProposal}
+                     <button
+                        class="button is-link button"
+                        on:click={handleDownloadPpm}>Download Proposal</button
+                     >
+                     <button
+                        class="button is-link is-light"
+                        on:click={toggleEditModeProposal}
+                        title="Change files"
+                        ><span class="icon">
+                           <Icon id="edit" src={edit} />
+                        </span></button
+                     >
+                  {:else}
+                     <span class="inputf__wrapper">
+                        <input
+                           id="filePpm"
+                           class="inputf custom-file-input"
+                           accept="application/pdf"
+                           type="file"
+                           on:change={filePpmChange}
+                        />
+                        <div class="file has-name is-success">
+                           <label class="file-label" for="filePpm">
+                              <input
+                                 class="file-input"
+                                 type="file"
+                                 name="resume"
+                              />
+                              <span class="file-cta">
+                                 <span class="file-icon">
+                                    <Icon id="download" src={downloadIcon} />
+                                 </span>
+                                 <span class="file-label"> Choose a file</span>
+                              </span>
+                              {#if $ppmFile?.name}
+                                 <span class="file-name"> {$ppmFile.name}</span>
+                              {:else}
+                                 <span class="file-name">No file chosen</span>
+                              {/if}
+                           </label>
+                        </div>
+                        <button
+                           class="button is-danger is-light"
+                           on:click={toggleEditModeProposal}
+                           title="Cancel"
+                           ><span class="icon">
+                              <Icon id="cancel" src={cancelIcon} />
+                           </span></button
+                        >
+                        {#if error.fileProposal}
+                           <p class="error has-text-danger">
+                              {error.fileProposal}
+                           </p>
+                        {/if}
+                     </span>
+                     <p class="help">File Type: pdf</p>
+                  {/if}
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                   <Field name="Rencana Anggaran Biaya">
-                     <input
-                        class="input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={(e) => (fileRab = e.target.files[0])}
-                     />
+                     {#if !editModeRAB}
+                        <button
+                           class="button is-link button"
+                           on:click={handleDownloadRab}>Download RAB</button
+                        >
+                        <button
+                           class="button is-link is-light"
+                           on:click={toggleEditModeRAB}
+                           title="Change files"
+                           ><span class="icon">
+                              <Icon id="edit" src={edit} />
+                           </span></button
+                        >
+                     {:else}
+                        <span class="inputf__wrapper">
+                           <input
+                              id="fileRab"
+                              class="inputf custom-file-input"
+                              accept=".xlsx"
+                              type="file"
+                              on:change={fileRabChange}
+                           />
+                           <div class="file has-name is-success">
+                              <label class="file-label" for="fileRab">
+                                 <input
+                                    class="file-input"
+                                    type="file"
+                                    name="resume"
+                                 />
+                                 <span class="file-cta">
+                                    <span class="file-icon">
+                                       <Icon id="download" src={downloadIcon} />
+                                    </span>
+                                    <span class="file-label">
+                                       Choose a file</span
+                                    >
+                                 </span>
+                                 {#if $rabFile?.name}
+                                    <span class="file-name">
+                                       {$rabFile?.name}</span
+                                    >
+                                 {:else}
+                                    <span class="file-name">No file chosen</span
+                                    >
+                                 {/if}
+                              </label>
+                           </div>
+                           <button
+                              class="button is-danger is-light"
+                              on:click={toggleEditModeRAB}
+                              title="Cancel"
+                              ><span class="icon">
+                                 <Icon id="cancel" src={cancelIcon} />
+                              </span></button
+                           >
+                           {#if error.fileRAB}
+                              <p class="error has-text-danger">
+                                 {error.fileRAB}
+                              </p>
+                           {/if}
+                        </span>
+                        <p class="help">File Type: xlsx</p>
+                     {/if}
                   </Field>
                {/if}
-
-               <hr />
-
-               <Field name="Catatan Revisi">
-                  <div class="box">
-                     {comment}
-                  </div>
-               </Field>
-
-               <Field name="Riwayat Revisi">
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th>Catatan Revisi</th>
-                           <th>Evalutor</th>
-                           <th class="is-narrow">Waktu</th>
-                        </tr>
-                     </thead>
-
-                     {#if itemsRCR}
-                        <tbody>
-                           {#each itemsRCR as item}
-                              <tr>
-                                 <td>{item.comment}</td>
-                                 <td>{item.evaluator}</td>
-                                 <td>{item.time}</td>
-                              </tr>
-                           {/each}
-                        </tbody>
-                     {/if}
-                  </table>
-               </Field>
             {:else}
                <Field name="Jenis Proposal">
                   {jenisProposal}
@@ -1267,7 +1348,7 @@
                </div>
             </Field> -->
 
-               <Field name="File Proposal">
+               <Field name="Proposal">
                   <button
                      class="button is-link button"
                      on:click={handleDownloadPpm}>Download Proposal</button
@@ -1275,16 +1356,25 @@
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="File RAB">
+                  <Field name="RAB">
                      <button
                         class="button is-link button"
                         on:click={handleDownloadRab}>Download RAB</button
                      >
                   </Field>
                {/if}
+            {/if}
+         </div>
 
-               <hr />
-
+         <!-- ========================================== -->
+         <!--              Catatan Revisi                -->
+         <!-- ========================================== -->
+         <div class="box">
+            {#if !view}
+               <Field name="Catatan Revisi">
+                  {comment}
+               </Field>
+            {:else}
                <Field name="Catatan Revisi">
                   <textarea
                      class="textarea"
@@ -1293,33 +1383,36 @@
                      id="komentar"
                   ></textarea>
                </Field>
-
-               <Field name="Riwayat Revisi">
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th>Catatan Revisi</th>
-                           <th>Evalutor</th>
-                           <th class="is-narrow">Waktu</th>
-                        </tr>
-                     </thead>
-
-                     {#if itemsRCR}
-                        <tbody>
-                           {#each itemsRCR as item}
-                              <tr>
-                                 <td>{item.comment}</td>
-                                 <td>{item.evaluator}</td>
-                                 <td>{item.time}</td>
-                              </tr>
-                           {/each}
-                        </tbody>
-                     {/if}
-                  </table>
-               </Field>
             {/if}
+
+            <hr />
+
+            <div class="field is-grouped is-grouped-centered">
+               <h5 class="title is-5">Riwayat Catatan Revisi</h5>
+            </div>
+
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th style="width: 70%;">Catatan Revisi</th>
+                     <th style="width: 15%;">Evaluator</th>
+                     <th style="width: 15%;">Waktu</th>
+                  </tr>
+               </thead>
+               {#if itemsRCR}
+                  <tbody>
+                     {#each itemsRCR as item}
+                        <tr>
+                           <td>{item.comment}</td>
+                           <td>{item.evaluator}</td>
+                           <td>{item.time}</td>
+                        </tr>
+                     {/each}
+                  </tbody>
+               {/if}
+            </table>
          </div>
 
          <!-- ========================================== -->
@@ -1369,12 +1462,6 @@
             />
          </div>
 
-         <!-- <div class="field is-grouped is-grouped-right">
-            <button class="button is-info" on:click={handleSubmitReviewer}
-               >Submit</button
-            >
-         </div> -->
-
          <div class="field is-grouped is-grouped-right">
             {#if status === 2 || status === 4 || status === 6 || status === 8}
                <p class="control">
@@ -1421,29 +1508,6 @@
       {/if}
 
       {#if tab2 === true}
-         <!-- {#if status > 10}
-            <div class="notification is-danger is-light">
-               <p style="text-align: justify;">
-                  <strong>Biodata</strong> sebagai salah satu syarat dalam pengajuan
-                  hibah Penelitian dan Pengabdian Masyarakat dan apabila dikemudian
-                  hari ternyata dijumpai ketidak sesuaian, peneliti sanggup menerima
-                  sanksinya.
-               </p>
-            </div>
-         {:else}
-            <div class="notification is-danger is-light">
-               <p style="text-align: justify;">
-                  <strong>Biodata</strong> sebagai salah satu syarat dalam
-                  pengajuan hibah Penelitian dan Pengabdian Masyarakat dan
-                  apabila dikemudian hari ternyata dijumpai ketidak sesuaian,
-                  peneliti sanggup menerima sanksinya. Jika ada perubahan, klik
-                  <a href={"/admin/profile/" + uidProposal}>
-                     <strong>Disini!</strong>
-                  </a>
-               </p>
-            </div>
-         {/if} -->
-
          <div class="box">
             <Field name="Nama Lengkap">{namaLengkap}</Field>
             <Field name="Jabatan Fungsional">{jabatanFungsional}</Field>
@@ -1718,15 +1782,18 @@
    </Article>
 {/if}
 
-<!-- <Modal bind:show={showModal}>
-   <h2 slot="header">Find Approval</h2>
-   <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores fuga
-      odit accusamus, neque nulla vitae! Fugiat, accusamus amet? Cum est
-      delectus soluta iusto odio architecto impedit maxime non asperiores
-      eligendi?
-   </p>
-</Modal> -->
-
 <style>
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
+   }
 </style>

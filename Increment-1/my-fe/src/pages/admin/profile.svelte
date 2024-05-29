@@ -113,7 +113,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -150,7 +149,6 @@
       const dataRP = await responseRP.json();
 
       if (dataRP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseRP.ok) {
@@ -196,7 +194,6 @@
       const resultPP = await responsePP.json();
 
       if (resultPP.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -219,7 +216,6 @@
       const resultPM = await responsePM.json();
 
       if (resultPM.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -242,7 +238,6 @@
       const resultPD = await responsePD.json();
 
       if (resultPD.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -265,7 +260,6 @@
       const resultPPub = await responsePPub.json();
 
       if (resultPPub.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -291,7 +285,6 @@
       const resultPPB = await responsePPB.json();
 
       if (resultPPB.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -314,7 +307,6 @@
       const resultPHKI = await responsePHKI.json();
 
       if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -659,7 +651,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -767,7 +758,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -789,7 +779,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -811,7 +800,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -833,7 +821,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -858,7 +845,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -880,7 +866,6 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
