@@ -11,8 +11,8 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
-         const decodedToken = fastify.jwt.decode(token);
+         // const token = request.headers.authorization;
+         // const decodedToken = fastify.jwt.decode(token);
 
          const randomPenilaianFileName = request.params.randomPenilaianFileName;
 

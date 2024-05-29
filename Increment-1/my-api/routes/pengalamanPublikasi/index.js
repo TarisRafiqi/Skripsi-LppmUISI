@@ -11,7 +11,7 @@ module.exports = async function (fastify, opts) {
          let connection;
 
          const sql =
-            "INSERT INTO pengalaman_publikasi (uid, tahun_publikasi, judul_artikel, nama_jurnal, impact) values (?, ?, ?, ?, ?)";
+            "INSERT INTO pengalaman_publikasi (uid, tahun_publikasi, judul_artikel, nama_penulis, nama_jurnal, impact) values (?, ?, ?, ?, ?, ?)";
 
          try {
             connection = await fastify.mysql.getConnection();
@@ -19,6 +19,7 @@ module.exports = async function (fastify, opts) {
                data.id,
                data.tahunPublikasi,
                data.judulPublikasi,
+               data.namaPenulis,
                data.namaJurnal,
                data.impactFactor,
             ]);
