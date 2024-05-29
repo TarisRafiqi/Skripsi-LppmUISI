@@ -1,6 +1,6 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import { route, apiURL, ppmFile, rabFile, penilaianFile } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Modal from "../../libs/Modal.svelte";
@@ -141,9 +141,9 @@
             klppmSelected = data.uid_klppm;
             kpkSelected = data.uid_kpk;
             reviewerSelected = data.uid_reviewer;
-            // randomFileName = data.random_file_name;
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
+            randomPenilaianFileNamedb = data.random_penilaian_file_name;
          }
       }
 
@@ -766,11 +766,6 @@
    }
 
    async function handleDownloadRab(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
       let filename = "rab.xlsx";
       try {
          const response = await fetch(
@@ -796,11 +791,6 @@
    }
 
    async function handleDownloadPpm(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
       let filename = "proposal.pdf";
 
       try {
@@ -826,14 +816,32 @@
       }
    }
 
-   // async function searchUser(ev) {
-   //    const response = await fetch($apiURL + "/user");
-   //    const result = await response.json();
+   async function handleDownloadPenilaian(e) {
+      let filename = "penilaian.xlsx";
 
-   //    if (response.ok) {
-   //       showModal = true;
-   //    }
-   // }
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+            console.log(response);
+         } else {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
 
    let options;
 
@@ -872,6 +880,11 @@
    function fileRabChange(e) {
       fileRab = e.target.files[0];
       $rabFile = e.target.files[0];
+   }
+
+   function filePenilaianChange(e) {
+      filePenilaian = e.target.files[0];
+      $penilaianFile = e.target.files[0];
    }
 
    let tab1 = true;
@@ -1346,7 +1359,7 @@
                <div class="box box-padding">
                   {@html data.isi}
                </div>
-            </Field> -->
+               </Field> -->
 
                <Field name="Proposal">
                   <button
@@ -1362,6 +1375,63 @@
                         on:click={handleDownloadRab}>Download RAB</button
                      >
                   </Field>
+               {/if}
+
+               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  {#if status === 8}
+                     <Field name="Penilaian Proposal">
+                        <span class="inputf__wrapper">
+                           <input
+                              id="filePenilaian"
+                              class="inputf custom-file-input"
+                              accept=".xlsx"
+                              type="file"
+                              on:change={filePenilaianChange}
+                           />
+                           <div class="file has-name is-success">
+                              <label class="file-label" for="filePenilaian">
+                                 <input
+                                    class="file-input"
+                                    type="file"
+                                    name="resume"
+                                 />
+                                 <span class="file-cta">
+                                    <span class="file-icon">
+                                       <Icon id="download" src={downloadIcon} />
+                                    </span>
+                                    <span class="file-label">
+                                       Choose a file</span
+                                    >
+                                 </span>
+                                 {#if $penilaianFile?.name}
+                                    <span class="file-name">
+                                       {$penilaianFile.name}</span
+                                    >
+                                 {:else}
+                                    <span class="file-name">No file chosen</span
+                                    >
+                                 {/if}
+                              </label>
+                           </div>
+                           {#if error.filePenilaian}
+                              <p class="error has-text-danger">
+                                 {error.filePenilaian}
+                              </p>
+                           {/if}
+                        </span>
+                        <p class="help">File Type: xlsx</p>
+                     </Field>
+                  {/if}
+
+                  {#if status > 8}
+                     <Field name="Penilaian Proposal">
+                        <button
+                           class="button is-link button"
+                           on:click={handleDownloadPenilaian}
+                           >Download Form Penilaian</button
+                        >
+                     </Field>
+                  {/if}
                {/if}
             {/if}
          </div>
@@ -1462,6 +1532,9 @@
             />
          </div>
 
+         <!-- ========================================== -->
+         <!--              Action Button                 -->
+         <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
             {#if status === 2 || status === 4 || status === 6 || status === 8}
                <p class="control">
