@@ -446,7 +446,7 @@
    }
 
    async function handleDownloadRab(e) {
-      let filename = "rab.xlsx";
+      let filename = "RAB_" + judul + ".xlsx";
       try {
          const response = await fetch(
             $apiURL + `/uploadRab/${randomRabFileName}`,
@@ -471,7 +471,7 @@
    }
 
    async function handleDownloadPpm(e) {
-      let filename = "proposal.pdf";
+      let filename = "Proposal_" + judul + ".pdf";
       try {
          const response = await fetch(
             $apiURL + `/uploadPpm/${randomPpmFileName}`,

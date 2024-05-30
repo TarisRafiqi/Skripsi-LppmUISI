@@ -634,13 +634,7 @@
    }
 
    async function handleDownloadRab(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
-      let filename = "rab.xlsx";
+      let filename = "RAB_" + judul + ".xlsx";
 
       try {
          const response = await fetch(
@@ -666,13 +660,7 @@
    }
 
    async function handleDownloadPpm(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
-      let filename = "proposal.pdf";
+      let filename = "Proposal_" + judul + ".pdf";
 
       try {
          const response = await fetch(
@@ -698,13 +686,7 @@
    }
 
    async function handleDownloadPenilaian(e) {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
-      let filename = "penilaian.xlsx";
+      let filename = "Penilaian Proposal_" + judul + ".xlsx";
 
       try {
          const response = await fetch(

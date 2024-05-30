@@ -25,6 +25,7 @@
    let showModalError = false;
    let showModalErrorInputEvaluator = false;
    let showModalErrorReviewer = false;
+   let randomPenilaianFileName = "";
 
    let jenisProposal;
    let jenisKegiatan;
@@ -146,6 +147,20 @@
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
          }
       }
+
+      //------------------------------------------------------------
+      // Generate Penilaian Random Character
+      //------------------------------------------------------------
+      const characters =
+         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let resultPenilaianChar = "";
+
+      for (let i = 0; i < 30; i++) {
+         const randomIndex = Math.floor(Math.random() * characters.length);
+         resultPenilaianChar += characters.charAt(randomIndex);
+      }
+
+      randomPenilaianFileName = resultPenilaianChar;
 
       // -----------------------------------------------------------------------------//
       // Get Nama Lengkap Evaluator
@@ -698,6 +713,88 @@
       }
    }
 
+   async function handlePassReviewer() {
+      error = {};
+      const readerPenilaian = new FileReader();
+      // -------------------------------------------------------------------//
+      // Upload File Penilaian
+      // -------------------------------------------------------------------//
+      if (isObjectEmpty($penilaianFile)) {
+         error["filePenilaian"] = `*`;
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalError = true;
+      } else {
+         if (
+            jenisSkema === "Riset Kelompok Keahlian" ||
+            jenisSkema === "Riset Terapan" ||
+            jenisSkema === "Riset Kerjasama" ||
+            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+         ) {
+            readerPenilaian.onloadend = async () => {
+               const base64Data = readerPenilaian.result.split(",")[1];
+               const payloadPenilaianFile = {
+                  filePenilaian: {
+                     name: filePenilaian.name,
+                     type: filePenilaian.type,
+                     data: base64Data,
+                  },
+                  randomPenilaianFileName,
+               };
+
+               try {
+                  const responseUpload = await fetch(
+                     $apiURL + "/uploadPenilaian",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadPenilaianFile),
+                     }
+                  );
+
+                  const resultUpload = await responseUpload.json();
+
+                  if (responseUpload.status === 401) {
+                     // location.pathname = "/tokenexpired";
+                     console.log(responseUpload);
+                     console.log(resultUpload);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+               }
+            };
+            readerPenilaian.readAsDataURL(filePenilaian);
+         }
+         // -------------------------------------------------------------------//
+         const payload = {
+            comment: "",
+            status: Number(data.status) + 2,
+            randomPenilaianFileName,
+            id,
+         };
+
+         const response = await fetch($apiURL + "/handleEvaluatorAction", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (result.statusCode != 200) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               // $route("/admin/proposalmanagement");
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
    async function handlePass() {
       const payload = {
          jenisProposal,
@@ -766,7 +863,7 @@
    }
 
    async function handleDownloadRab(e) {
-      let filename = "rab.xlsx";
+      let filename = "RAB_" + judul + ".xlsx";
       try {
          const response = await fetch(
             $apiURL + `/uploadRab/${randomRabFileName}`,
@@ -791,7 +888,7 @@
    }
 
    async function handleDownloadPpm(e) {
-      let filename = "proposal.pdf";
+      let filename = "Proposal_" + judul + ".pdf";
 
       try {
          const response = await fetch(
@@ -817,7 +914,7 @@
    }
 
    async function handleDownloadPenilaian(e) {
-      let filename = "penilaian.xlsx";
+      let filename = "Penilaian Proposal_" + judul + ".xlsx";
 
       try {
          const response = await fetch(
@@ -1282,6 +1379,16 @@
                         <p class="help">File Type: xlsx</p>
                      {/if}
                   </Field>
+
+                  {#if status > 8}
+                     <Field name="Penilaian Proposal">
+                        <button
+                           class="button is-link button"
+                           on:click={handleDownloadPenilaian}
+                           >Download Form Penilaian</button
+                        >
+                     </Field>
+                  {/if}
                {/if}
             {:else}
                <Field name="Jenis Proposal">
@@ -1306,7 +1413,7 @@
 
                <!-- <Field name="Tahun Pelaksanaan">
                {tahunPelaksanaan}
-            </Field> -->
+               </Field> -->
 
                <Field name="Tanggal Mulai">
                   {tanggalMulai}
@@ -1422,7 +1529,6 @@
                         <p class="help">File Type: xlsx</p>
                      </Field>
                   {/if}
-
                   {#if status > 8}
                      <Field name="Penilaian Proposal">
                         <button
@@ -1536,7 +1642,7 @@
          <!--              Action Button                 -->
          <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
-            {#if status === 2 || status === 4 || status === 6 || status === 8}
+            {#if status === 2 || status === 4 || status === 6}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
@@ -1545,6 +1651,14 @@
                </p>
                <p class="control">
                   <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 8}
+               <p class="control">
+                  <button class="button is-info" on:click={handlePassReviewer}
                      >Proses</button
                   >
                </p>
