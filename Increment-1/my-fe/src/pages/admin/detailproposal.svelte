@@ -571,7 +571,6 @@
             error[key] = `This field is required`;
          }
       }
-      console.log(error);
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
@@ -757,9 +756,7 @@
                   const resultUpload = await responseUpload.json();
 
                   if (responseUpload.status === 401) {
-                     // location.pathname = "/tokenexpired";
-                     console.log(responseUpload);
-                     console.log(resultUpload);
+                     location.pathname = "/tokenexpired";
                   }
                } catch (error) {
                   console.error("Error uploading file:", error);
@@ -787,7 +784,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               // $route("/admin/proposalmanagement");
+               $route("/admin/proposalmanagement");
             } else {
                console.log(response);
             }
@@ -796,7 +793,7 @@
    }
 
    async function handlePass() {
-      const payload = {
+      let payload = {
          jenisProposal,
          jenisKegiatan,
          jenisSkema,
@@ -927,7 +924,6 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-            console.log(response);
          } else {
             const blob = await response.blob();
             const link = document.createElement("a");
@@ -1037,7 +1033,6 @@
             </li>
          </ul>
       </div>
-
       <!-- Tab Identitas PPM -->
       {#if tab1 === true}
          <div class="box">
@@ -1546,6 +1541,8 @@
          <!--              Catatan Revisi                -->
          <!-- ========================================== -->
          <div class="box">
+            <h4 class="title is-4">Informasi Revisi</h4>
+            <hr />
             {#if !view}
                <Field name="Catatan Revisi">
                   {comment}
@@ -1561,18 +1558,14 @@
                </Field>
             {/if}
 
-            <hr />
-
-            <div class="field is-grouped is-grouped-centered">
-               <h5 class="title is-5">Riwayat Catatan Revisi</h5>
-            </div>
+            <br />
 
             <table
                class="table is-fullwidth is-striped is-hoverable is-bordered"
             >
                <thead>
                   <tr>
-                     <th style="width: 70%;">Catatan Revisi</th>
+                     <th style="width: 70%;">Riwayat Catatan Revisi</th>
                      <th style="width: 15%;">Evaluator</th>
                      <th style="width: 15%;">Waktu</th>
                   </tr>
@@ -1595,7 +1588,7 @@
          <!--              Input Evaluator               -->
          <!-- ========================================== -->
          <div class="box">
-            <h3 class="title is-3">Evaluator</h3>
+            <h4 class="title is-4">Input Evaluator</h4>
             <hr />
             <Field
                id={"evaluatorKdept"}
@@ -1636,19 +1629,32 @@
                view
                userId={kpkSelected}
             />
+            <div class="field is-grouped is-grouped-right">
+               <p class="control">
+                  <button class="button is-success">Submit Evaluator</button>
+               </p>
+            </div>
          </div>
 
          <!-- ========================================== -->
          <!--              Action Button                 -->
          <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
-            {#if status === 2 || status === 4 || status === 6}
+            {#if status === 2 || status === 6}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
                      on:click={handleRevisi}>Revisi</button
                   >
                </p>
+               <p class="control">
+                  <button class="button is-info" on:click={handlePass}
+                     >Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if status === 4}
                <p class="control">
                   <button class="button is-info" on:click={handlePass}
                      >Proses</button

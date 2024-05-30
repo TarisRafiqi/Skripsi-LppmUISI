@@ -71,13 +71,12 @@
    {:else if datepicker && !view}
       <input class="input" type="month" bind:value on:click={onclick} />
    {:else if select && view}
-      <!-- true && !false-->
-      <!-- true && true -->
-      <!-- true -->
       <p class="select">
          <select {id} on:change={fillSelect}>
+            <option value="" selected disabled hidden
+               >Masukkan evaluator...</option
+            >
             {#each value as it}
-               <option value="" selected disabled hidden></option>
                <option value={it.id} use:goSelect>{it.username}</option>
             {/each}
          </select>

@@ -1364,12 +1364,17 @@
             {/if}
          </div>
 
+         <!-- ========================================== -->
+         <!--              Catatan Revisi                -->
+         <!-- ========================================== -->
          {#if !view}
             <div class="box">
+               <h4 class="title is-4">Informasi Revisi</h4>
+               <hr />
                <div class="notification is-danger is-light">
                   <p>
-                     <strong>Perhatikan</strong> catatan revisi dari evaluator untuk
-                     detail yang akan direvisi!
+                     Perhatikan catatan revisi dari evaluator untuk detail yang
+                     akan direvisi!
                   </p>
                </div>
 
@@ -1377,7 +1382,7 @@
                   {comment}
                </Field>
 
-               <hr />
+               <br />
 
                <div class="field is-grouped is-grouped-centered">
                   <h5 class="title is-5">Riwayat Catatan Revisi</h5>

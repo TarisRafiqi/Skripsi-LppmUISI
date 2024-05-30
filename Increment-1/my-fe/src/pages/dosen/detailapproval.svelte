@@ -920,7 +920,13 @@
             {/if}
          </div>
 
+         <!-- ========================================== -->
+         <!--              Catatan Revisi                -->
+         <!-- ========================================== -->
          <div class="box">
+            <h4 class="title is-4">Informasi Revisi</h4>
+            <hr />
+
             <div class="notification is-warning is-light">
                <p>Berikan catatan revisi jika ingin revisi proposal.</p>
             </div>
@@ -937,11 +943,7 @@
                {/if}
             </Field>
 
-            <hr />
-
-            <div class="field is-grouped is-grouped-centered">
-               <h5 class="title is-5">Riwayat Catatan Revisi</h5>
-            </div>
+            <br />
 
             <table
                class="table is-fullwidth is-striped is-hoverable is-bordered"
@@ -967,6 +969,9 @@
             </table>
          </div>
 
+         <!-- ========================================== -->
+         <!--              Action Button                 -->
+         <!-- ========================================== -->
          {#if role === "Ka.Departemen"}
             {#if status === 4}
                <div class="field is-grouped is-grouped-right">
