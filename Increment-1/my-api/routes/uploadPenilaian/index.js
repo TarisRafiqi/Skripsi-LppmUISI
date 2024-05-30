@@ -13,7 +13,6 @@ module.exports = async function (fastify, opts) {
       async function (request, reply) {
          // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-
          const randomPenilaianFileName = request.params.randomPenilaianFileName;
 
          const filepath = path.join(
@@ -39,18 +38,10 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
-         const decodedToken = fastify.jwt.decode(token);
-
+         // const token = request.headers.authorization;
+         // const decodedToken = fastify.jwt.decode(token);
          const fileData = request.body.filePenilaian;
          const randomPenilaianFileName = request.body.randomPenilaianFileName;
-
-         // reply.send({
-         //    fileData,
-         //    randomPenilaianFileName,
-         //    msg: "<<<<<<",
-         // });
-         // return;
 
          const filepath =
             "./upload_penilaian/" + randomPenilaianFileName + ".xlsx";

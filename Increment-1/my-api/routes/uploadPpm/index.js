@@ -11,9 +11,8 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
+         // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-
          const randomPpmFileName = request.params.randomPpmFileName;
 
          const filepath = path.join(
@@ -39,16 +38,10 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
+         // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-
          const fileData = request.body.filePpm;
          const randomPpmFileName = request.body.randomPpmFileName;
-         // reply.send({
-         //    fileData,
-         //    randomPpmFileName,
-         // });
-
          const filepath = "./upload_ppm/" + randomPpmFileName + ".pdf";
 
          try {

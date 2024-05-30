@@ -11,9 +11,8 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
+         // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-
          const randomRabFileName = request.params.randomRabFileName;
 
          const filepath = path.join(
@@ -39,12 +38,10 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const token = request.headers.authorization;
+         // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-
          const fileData = request.body.fileRab;
          const randomRabFileName = request.body.randomRabFileName;
-
          const filepath = "./upload_rab/" + randomRabFileName + ".xlsx";
 
          try {
