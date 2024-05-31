@@ -6776,6 +6776,8 @@
   var searchIcon = "m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14";
   var cancelIcon = "M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 16H5V5h14zM17 8.4L13.4 12l3.6 3.6l-1.4 1.4l-3.6-3.6L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7z";
   var downloadIcon = "m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z";
+  var upArrow = "M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19";
+  var downArrow = "M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z";
 
   // src/pages/admin/detailproposal.svelte
   function get_each_context4(ctx, list, i) {
@@ -73633,22 +73635,972 @@
 
   // src/pages/dosen/testform.svelte
   init_define_process();
-  function create_default_slot22(ctx) {
-    let div10;
+  function create_else_block11(ctx) {
+    let div2;
+    let div0;
+    let t1;
+    let div1;
+    let button;
+    let span0;
+    let icon;
+    let t2;
+    let div3;
+    let ul;
+    let li0;
+    let t4;
+    let li1;
+    let t6;
+    let li2;
+    let t8;
+    let t9;
+    let t10;
+    let if_block2_anchor;
+    let current;
+    let mounted;
+    let dispose;
+    icon = new Icon_default({ props: { id: "upArrow", src: upArrow } });
+    let if_block0 = (
+      /*tab1*/
+      ctx[1] === true && create_if_block_327(ctx)
+    );
+    let if_block1 = (
+      /*tab2*/
+      ctx[2] === true && create_if_block_229(ctx)
+    );
+    let if_block2 = (
+      /*tab3*/
+      ctx[3] === true && create_if_block_138(ctx)
+    );
     return {
       c() {
-        div10 = element("div");
-        div10.innerHTML = `<div class="columns"><div class="column svelte-qz2r6m"><div class="field"><label class="label" for="label">Username</label> <input class="input" type="text" placeholder="Text input"/> <p class="help is-danger">This username is available</p></div></div> <div class="column svelte-qz2r6m"><div class="field"><label class="label" for="label">Username</label> <input class="input" type="text" placeholder="Text input"/> <p class="help is-danger">This username is available</p></div></div></div> <div class="columns"><div class="column svelte-qz2r6m"><div class="field"><label class="label" for="label">Username</label> <input class="input" type="text" placeholder="Text input"/> <p class="help is-danger">This username is available</p></div></div> <div class="column svelte-qz2r6m"><div class="field"><label class="label" for="label">Username</label> <input class="input" type="text" placeholder="Text input"/> <p class="help is-danger">This username is available</p></div></div></div>`;
-        attr(div10, "class", "box");
+        div2 = element("div");
+        div0 = element("div");
+        div0.innerHTML = `<h6 class="subtitle is-6">Tristan Byrne</h6>`;
+        t1 = space();
+        div1 = element("div");
+        button = element("button");
+        span0 = element("span");
+        create_component(icon.$$.fragment);
+        t2 = space();
+        div3 = element("div");
+        ul = element("ul");
+        li0 = element("li");
+        li0.innerHTML = `<a><span>Identitas</span></a>`;
+        t4 = space();
+        li1 = element("li");
+        li1.innerHTML = `<a><span>Riwayat Pendidikan</span></a>`;
+        t6 = space();
+        li2 = element("li");
+        li2.innerHTML = `<a><span>Pengalaman</span></a>`;
+        t8 = space();
+        if (if_block0)
+          if_block0.c();
+        t9 = space();
+        if (if_block1)
+          if_block1.c();
+        t10 = space();
+        if (if_block2)
+          if_block2.c();
+        if_block2_anchor = empty();
+        attr(div0, "class", "column svelte-nrdizu");
+        attr(span0, "class", "icon");
+        attr(button, "class", "button is-info is-small");
+        attr(div1, "class", "column is-1 svelte-nrdizu");
+        attr(div2, "class", "columns svelte-nrdizu");
+        toggle_class(
+          li0,
+          "is-active",
+          /*tab1*/
+          ctx[1]
+        );
+        toggle_class(
+          li1,
+          "is-active",
+          /*tab2*/
+          ctx[2]
+        );
+        toggle_class(
+          li2,
+          "is-active",
+          /*tab3*/
+          ctx[3]
+        );
+        attr(div3, "class", "tabs is-boxed");
       },
       m(target, anchor) {
-        insert(target, div10, anchor);
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div2, t1);
+        append(div2, div1);
+        append(div1, button);
+        append(button, span0);
+        mount_component(icon, span0, null);
+        insert(target, t2, anchor);
+        insert(target, div3, anchor);
+        append(div3, ul);
+        append(ul, li0);
+        append(ul, t4);
+        append(ul, li1);
+        append(ul, t6);
+        append(ul, li2);
+        insert(target, t8, anchor);
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t9, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t10, anchor);
+        if (if_block2)
+          if_block2.m(target, anchor);
+        insert(target, if_block2_anchor, anchor);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              button,
+              "click",
+              /*ProfileBoxOff*/
+              ctx[8]
+            ),
+            listen(
+              li0,
+              "click",
+              /*clicktab1*/
+              ctx[4]
+            ),
+            listen(
+              li1,
+              "click",
+              /*clicktab2*/
+              ctx[5]
+            ),
+            listen(
+              li2,
+              "click",
+              /*clicktab3*/
+              ctx[6]
+            )
+          ];
+          mounted = true;
+        }
       },
-      p: noop,
+      p(ctx2, dirty) {
+        if (!current || dirty & /*tab1*/
+        2) {
+          toggle_class(
+            li0,
+            "is-active",
+            /*tab1*/
+            ctx2[1]
+          );
+        }
+        if (!current || dirty & /*tab2*/
+        4) {
+          toggle_class(
+            li1,
+            "is-active",
+            /*tab2*/
+            ctx2[2]
+          );
+        }
+        if (!current || dirty & /*tab3*/
+        8) {
+          toggle_class(
+            li2,
+            "is-active",
+            /*tab3*/
+            ctx2[3]
+          );
+        }
+        if (
+          /*tab1*/
+          ctx2[1] === true
+        ) {
+          if (if_block0) {
+          } else {
+            if_block0 = create_if_block_327(ctx2);
+            if_block0.c();
+            if_block0.m(t9.parentNode, t9);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*tab2*/
+          ctx2[2] === true
+        ) {
+          if (if_block1) {
+          } else {
+            if_block1 = create_if_block_229(ctx2);
+            if_block1.c();
+            if_block1.m(t10.parentNode, t10);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*tab3*/
+          ctx2[3] === true
+        ) {
+          if (if_block2) {
+          } else {
+            if_block2 = create_if_block_138(ctx2);
+            if_block2.c();
+            if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
-          detach(div10);
+          detach(div2);
+          detach(t2);
+          detach(div3);
+          detach(t8);
+          detach(t9);
+          detach(t10);
+          detach(if_block2_anchor);
         }
+        destroy_component(icon);
+        if (if_block0)
+          if_block0.d(detaching);
+        if (if_block1)
+          if_block1.d(detaching);
+        if (if_block2)
+          if_block2.d(detaching);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block20(ctx) {
+    let div2;
+    let div0;
+    let t1;
+    let div1;
+    let button;
+    let span;
+    let icon;
+    let current;
+    let mounted;
+    let dispose;
+    icon = new Icon_default({
+      props: { id: "downArrow", src: downArrow }
+    });
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        div0.innerHTML = `<h6 class="subtitle is-6">Tristan Byrne</h6>`;
+        t1 = space();
+        div1 = element("div");
+        button = element("button");
+        span = element("span");
+        create_component(icon.$$.fragment);
+        attr(div0, "class", "column svelte-nrdizu");
+        attr(span, "class", "icon");
+        attr(button, "class", "button is-info is-small");
+        attr(div1, "class", "column is-1 svelte-nrdizu");
+        attr(div2, "class", "columns svelte-nrdizu");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div2, t1);
+        append(div2, div1);
+        append(div1, button);
+        append(button, span);
+        mount_component(icon, span, null);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*ProfileBoxOn*/
+            ctx[7]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div2);
+        }
+        destroy_component(icon);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_327(ctx) {
+    let div1;
+    let t2;
+    let div6;
+    let div3;
+    let label1;
+    let t4;
+    let div2;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    let t10;
+    let div4;
+    let t13;
+    let div5;
+    let t16;
+    let div9;
+    return {
+      c() {
+        div1 = element("div");
+        div1.innerHTML = `<div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Nama lengkap</h6></label> <input class="input" placeholder="Masukkan nama lengkap dengan gelar"/></div>`;
+        t2 = space();
+        div6 = element("div");
+        div3 = element("div");
+        label1 = element("label");
+        label1.innerHTML = `<h6 class="title is-6">Jabatan Fungsional</h6>`;
+        t4 = space();
+        div2 = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Tenaga Pengajar";
+        option1 = element("option");
+        option1.textContent = "Asisten Ahli";
+        option2 = element("option");
+        option2.textContent = "Lektor";
+        option3 = element("option");
+        option3.textContent = "Lektor Kepala";
+        option4 = element("option");
+        option4.textContent = "Guru Besar";
+        t10 = space();
+        div4 = element("div");
+        div4.innerHTML = `<label class="label" for="label"><h6 class="title is-6">NIP</h6></label> <input class="input"/>`;
+        t13 = space();
+        div5 = element("div");
+        div5.innerHTML = `<label class="label" for="label"><h6 class="title is-6">NIDN</h6></label> <input class="input"/>`;
+        t16 = space();
+        div9 = element("div");
+        div9.innerHTML = `<div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Tempat Lahir</h6></label> <input class="input"/></div> <div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Tanggal Lahir</h6></label> <input class="input" type="date"/></div>`;
+        attr(div1, "class", "columns svelte-nrdizu");
+        attr(label1, "class", "label");
+        attr(label1, "for", "label");
+        option0.__value = "Tenaga Pengajar";
+        set_input_value(option0, option0.__value);
+        option1.__value = "Asisten Ahli";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Lektor";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Lektor Kepala";
+        set_input_value(option3, option3.__value);
+        option4.__value = "Guru Besar";
+        set_input_value(option4, option4.__value);
+        attr(div2, "class", "select is-fullwidth is-danger");
+        attr(div3, "class", "column svelte-nrdizu");
+        attr(div4, "class", "column svelte-nrdizu");
+        attr(div5, "class", "column svelte-nrdizu");
+        attr(div6, "class", "columns svelte-nrdizu");
+        attr(div9, "class", "columns svelte-nrdizu");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+        insert(target, t2, anchor);
+        insert(target, div6, anchor);
+        append(div6, div3);
+        append(div3, label1);
+        append(div3, t4);
+        append(div3, div2);
+        append(div2, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(select, option3);
+        append(select, option4);
+        append(div6, t10);
+        append(div6, div4);
+        append(div6, t13);
+        append(div6, div5);
+        insert(target, t16, anchor);
+        insert(target, div9, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div1);
+          detach(t2);
+          detach(div6);
+          detach(t16);
+          detach(div9);
+        }
+      }
+    };
+  }
+  function create_if_block_229(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("tes2");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_if_block_138(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("tes3");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot22(ctx) {
+    let h1;
+    let t1;
+    let hr;
+    let t2;
+    let div33;
+    let div21;
+    let div20;
+    let h40;
+    let t4;
+    let br0;
+    let t5;
+    let div6;
+    let div1;
+    let label0;
+    let t8;
+    let div0;
+    let select0;
+    let option0;
+    let option1;
+    let t11;
+    let div3;
+    let label1;
+    let t13;
+    let div2;
+    let select1;
+    let option2;
+    let t15;
+    let div5;
+    let label2;
+    let t17;
+    let div4;
+    let select2;
+    let option3;
+    let t19;
+    let div9;
+    let t25;
+    let div12;
+    let t31;
+    let div14;
+    let t34;
+    let div17;
+    let div16;
+    let label8;
+    let t36;
+    let div15;
+    let select3;
+    let option4;
+    let t38;
+    let div19;
+    let div18;
+    let table;
+    let thead;
+    let t43;
+    let tbody;
+    let tr1;
+    let td0;
+    let button0;
+    let span1;
+    let icon0;
+    let t44;
+    let td1;
+    let t46;
+    let td2;
+    let t48;
+    let tr2;
+    let td3;
+    let button1;
+    let span2;
+    let icon1;
+    let t49;
+    let td4;
+    let t51;
+    let td5;
+    let t53;
+    let tr3;
+    let td6;
+    let button2;
+    let span3;
+    let icon2;
+    let t54;
+    let td7;
+    let t56;
+    let td8;
+    let t58;
+    let div32;
+    let div31;
+    let h41;
+    let t60;
+    let br1;
+    let t61;
+    let div25;
+    let div24;
+    let div22;
+    let t63;
+    let div23;
+    let button3;
+    let span4;
+    let icon3;
+    let t64;
+    let div26;
+    let current_block_type_index;
+    let if_block;
+    let t65;
+    let div30;
+    let div29;
+    let div27;
+    let t67;
+    let div28;
+    let button4;
+    let span5;
+    let icon4;
+    let t68;
+    let div34;
+    let current;
+    icon0 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    icon1 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    icon2 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
+    icon3 = new Icon_default({
+      props: { id: "downArrow", src: downArrow }
+    });
+    const if_block_creators = [create_if_block20, create_else_block11];
+    const if_blocks = [];
+    function select_block_type(ctx2, dirty) {
+      if (!/*profileBox*/
+      ctx2[0])
+        return 0;
+      return 1;
+    }
+    current_block_type_index = select_block_type(ctx, -1);
+    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    icon4 = new Icon_default({
+      props: { id: "downArrow", src: downArrow }
+    });
+    return {
+      c() {
+        h1 = element("h1");
+        h1.textContent = "Pendaftaran Proposal";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div33 = element("div");
+        div21 = element("div");
+        div20 = element("div");
+        h40 = element("h4");
+        h40.textContent = "Detail Proposal";
+        t4 = space();
+        br0 = element("br");
+        t5 = space();
+        div6 = element("div");
+        div1 = element("div");
+        label0 = element("label");
+        label0.innerHTML = `<h6 class="title is-6">Jenis Proposal<span class="has-text-danger">*</span></h6>`;
+        t8 = space();
+        div0 = element("div");
+        select0 = element("select");
+        option0 = element("option");
+        option0.textContent = "Proposal Awal";
+        option1 = element("option");
+        option1.textContent = "Proposal Lanjutan";
+        t11 = space();
+        div3 = element("div");
+        label1 = element("label");
+        label1.innerHTML = `<h6 class="title is-6">Jenis Kegiatan</h6>`;
+        t13 = space();
+        div2 = element("div");
+        select1 = element("select");
+        option2 = element("option");
+        option2.textContent = "Select dropdown";
+        t15 = space();
+        div5 = element("div");
+        label2 = element("label");
+        label2.innerHTML = `<h6 class="title is-6">Jenis Skema</h6>`;
+        t17 = space();
+        div4 = element("div");
+        select2 = element("select");
+        option3 = element("option");
+        option3.textContent = "Select dropdown";
+        t19 = space();
+        div9 = element("div");
+        div9.innerHTML = `<div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Kelompok Keahlian</h6></label> <input class="input" type="text" placeholder="Text input"/></div> <div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Topik</h6></label> <input class="input" type="text" placeholder="Text input"/></div>`;
+        t25 = space();
+        div12 = element("div");
+        div12.innerHTML = `<div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Tanggal Mulai</h6></label> <input class="input" type="date"/></div> <div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Tanggal Selesai</h6></label> <input class="input" type="date"/></div>`;
+        t31 = space();
+        div14 = element("div");
+        div14.innerHTML = `<div class="column svelte-nrdizu"><label class="label" for="label"><h6 class="title is-6">Biaya Penelitian</h6></label> <input class="input" type="text" placeholder="Masukkan biaya penelitian"/></div>`;
+        t34 = space();
+        div17 = element("div");
+        div16 = element("div");
+        label8 = element("label");
+        label8.innerHTML = `<h6 class="title is-6">Anggota Tim</h6>`;
+        t36 = space();
+        div15 = element("div");
+        select3 = element("select");
+        option4 = element("option");
+        option4.textContent = "Select dropdown";
+        t38 = space();
+        div19 = element("div");
+        div18 = element("div");
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th class="is-narrow" style="width:55px"></th> <th class="is-narrow" style="width:86px">Role</th> <th>Nama Anggota</th></tr>`;
+        t43 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        td0 = element("td");
+        button0 = element("button");
+        span1 = element("span");
+        create_component(icon0.$$.fragment);
+        t44 = space();
+        td1 = element("td");
+        td1.textContent = "Ketua";
+        t46 = space();
+        td2 = element("td");
+        td2.textContent = "Taris Rafiqi izatri";
+        t48 = space();
+        tr2 = element("tr");
+        td3 = element("td");
+        button1 = element("button");
+        span2 = element("span");
+        create_component(icon1.$$.fragment);
+        t49 = space();
+        td4 = element("td");
+        td4.textContent = "Anggota";
+        t51 = space();
+        td5 = element("td");
+        td5.textContent = "Tristan Byrne";
+        t53 = space();
+        tr3 = element("tr");
+        td6 = element("td");
+        button2 = element("button");
+        span3 = element("span");
+        create_component(icon2.$$.fragment);
+        t54 = space();
+        td7 = element("td");
+        td7.textContent = "Anggota";
+        t56 = space();
+        td8 = element("td");
+        td8.textContent = "Fariz Ghifari";
+        t58 = space();
+        div32 = element("div");
+        div31 = element("div");
+        h41 = element("h4");
+        h41.textContent = "Biodata Peneliti";
+        t60 = space();
+        br1 = element("br");
+        t61 = space();
+        div25 = element("div");
+        div24 = element("div");
+        div22 = element("div");
+        div22.innerHTML = `<h6 class="subtitle is-6">Taris Rafiqi Izatri</h6>`;
+        t63 = space();
+        div23 = element("div");
+        button3 = element("button");
+        span4 = element("span");
+        create_component(icon3.$$.fragment);
+        t64 = space();
+        div26 = element("div");
+        if_block.c();
+        t65 = space();
+        div30 = element("div");
+        div29 = element("div");
+        div27 = element("div");
+        div27.innerHTML = `<h6 class="subtitle is-6">Fariz Ghifari</h6>`;
+        t67 = space();
+        div28 = element("div");
+        button4 = element("button");
+        span5 = element("span");
+        create_component(icon4.$$.fragment);
+        t68 = space();
+        div34 = element("div");
+        div34.innerHTML = `<h4 class="subtitle is-4">Informasi Revisi</h4> <br/>`;
+        attr(h1, "class", "title is-1");
+        attr(h40, "class", "subtitle is-4");
+        attr(label0, "class", "label");
+        attr(label0, "for", "label");
+        option0.__value = "Proposal Awal";
+        set_input_value(option0, option0.__value);
+        option1.__value = "Proposal Lanjutan";
+        set_input_value(option1, option1.__value);
+        attr(div0, "class", "select is-fullwidth is-danger");
+        attr(div1, "class", "column svelte-nrdizu");
+        attr(label1, "class", "label");
+        attr(label1, "for", "label");
+        option2.__value = "Select dropdown";
+        set_input_value(option2, option2.__value);
+        attr(div2, "class", "select is-fullwidth");
+        attr(div3, "class", "column svelte-nrdizu");
+        attr(label2, "class", "label");
+        attr(label2, "for", "label");
+        option3.__value = "Select dropdown";
+        set_input_value(option3, option3.__value);
+        attr(div4, "class", "select is-fullwidth");
+        attr(div5, "class", "column svelte-nrdizu");
+        attr(div6, "class", "columns svelte-nrdizu");
+        attr(div9, "class", "columns svelte-nrdizu");
+        attr(div12, "class", "columns svelte-nrdizu");
+        attr(div14, "class", "columns svelte-nrdizu");
+        attr(label8, "class", "label");
+        attr(label8, "for", "label");
+        option4.__value = "Select dropdown";
+        set_input_value(option4, option4.__value);
+        attr(div15, "class", "select is-fullwidth");
+        attr(div16, "class", "column svelte-nrdizu");
+        attr(div17, "class", "columns svelte-nrdizu");
+        attr(span1, "class", "icon");
+        attr(button0, "class", "button is-danger is-small");
+        attr(span2, "class", "icon");
+        attr(button1, "class", "button is-danger is-small");
+        attr(span3, "class", "icon");
+        attr(button2, "class", "button is-danger is-small");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div18, "class", "column svelte-nrdizu");
+        attr(div19, "class", "columns svelte-nrdizu");
+        attr(div20, "class", "box svelte-nrdizu");
+        attr(div21, "class", "column svelte-nrdizu");
+        attr(h41, "class", "subtitle is-4");
+        attr(div22, "class", "column svelte-nrdizu");
+        attr(span4, "class", "icon");
+        attr(button3, "class", "button is-info is-small");
+        attr(div23, "class", "column is-1 svelte-nrdizu");
+        attr(div24, "class", "columns svelte-nrdizu");
+        attr(div25, "class", "profileBox svelte-nrdizu");
+        attr(div26, "class", "profileBox svelte-nrdizu");
+        attr(div27, "class", "column svelte-nrdizu");
+        attr(span5, "class", "icon");
+        attr(button4, "class", "button is-info is-small");
+        attr(div28, "class", "column is-1 svelte-nrdizu");
+        attr(div29, "class", "columns svelte-nrdizu");
+        attr(div30, "class", "profileBox svelte-nrdizu");
+        attr(div31, "class", "box svelte-nrdizu");
+        attr(div32, "class", "column svelte-nrdizu");
+        attr(div33, "class", "columns svelte-nrdizu");
+        attr(div34, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, h1, anchor);
+        insert(target, t1, anchor);
+        insert(target, hr, anchor);
+        insert(target, t2, anchor);
+        insert(target, div33, anchor);
+        append(div33, div21);
+        append(div21, div20);
+        append(div20, h40);
+        append(div20, t4);
+        append(div20, br0);
+        append(div20, t5);
+        append(div20, div6);
+        append(div6, div1);
+        append(div1, label0);
+        append(div1, t8);
+        append(div1, div0);
+        append(div0, select0);
+        append(select0, option0);
+        append(select0, option1);
+        append(div6, t11);
+        append(div6, div3);
+        append(div3, label1);
+        append(div3, t13);
+        append(div3, div2);
+        append(div2, select1);
+        append(select1, option2);
+        append(div6, t15);
+        append(div6, div5);
+        append(div5, label2);
+        append(div5, t17);
+        append(div5, div4);
+        append(div4, select2);
+        append(select2, option3);
+        append(div20, t19);
+        append(div20, div9);
+        append(div20, t25);
+        append(div20, div12);
+        append(div20, t31);
+        append(div20, div14);
+        append(div20, t34);
+        append(div20, div17);
+        append(div17, div16);
+        append(div16, label8);
+        append(div16, t36);
+        append(div16, div15);
+        append(div15, select3);
+        append(select3, option4);
+        append(div20, t38);
+        append(div20, div19);
+        append(div19, div18);
+        append(div18, table);
+        append(table, thead);
+        append(table, t43);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tr1, td0);
+        append(td0, button0);
+        append(button0, span1);
+        mount_component(icon0, span1, null);
+        append(tr1, t44);
+        append(tr1, td1);
+        append(tr1, t46);
+        append(tr1, td2);
+        append(tbody, t48);
+        append(tbody, tr2);
+        append(tr2, td3);
+        append(td3, button1);
+        append(button1, span2);
+        mount_component(icon1, span2, null);
+        append(tr2, t49);
+        append(tr2, td4);
+        append(tr2, t51);
+        append(tr2, td5);
+        append(tbody, t53);
+        append(tbody, tr3);
+        append(tr3, td6);
+        append(td6, button2);
+        append(button2, span3);
+        mount_component(icon2, span3, null);
+        append(tr3, t54);
+        append(tr3, td7);
+        append(tr3, t56);
+        append(tr3, td8);
+        append(div33, t58);
+        append(div33, div32);
+        append(div32, div31);
+        append(div31, h41);
+        append(div31, t60);
+        append(div31, br1);
+        append(div31, t61);
+        append(div31, div25);
+        append(div25, div24);
+        append(div24, div22);
+        append(div24, t63);
+        append(div24, div23);
+        append(div23, button3);
+        append(button3, span4);
+        mount_component(icon3, span4, null);
+        append(div31, t64);
+        append(div31, div26);
+        if_blocks[current_block_type_index].m(div26, null);
+        append(div31, t65);
+        append(div31, div30);
+        append(div30, div29);
+        append(div29, div27);
+        append(div29, t67);
+        append(div29, div28);
+        append(div28, button4);
+        append(button4, span5);
+        mount_component(icon4, span5, null);
+        insert(target, t68, anchor);
+        insert(target, div34, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        let previous_block_index = current_block_type_index;
+        current_block_type_index = select_block_type(ctx2, dirty);
+        if (current_block_type_index === previous_block_index) {
+          if_blocks[current_block_type_index].p(ctx2, dirty);
+        } else {
+          group_outros();
+          transition_out(if_blocks[previous_block_index], 1, 1, () => {
+            if_blocks[previous_block_index] = null;
+          });
+          check_outros();
+          if_block = if_blocks[current_block_type_index];
+          if (!if_block) {
+            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
+            if_block.c();
+          } else {
+            if_block.p(ctx2, dirty);
+          }
+          transition_in(if_block, 1);
+          if_block.m(div26, null);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        transition_in(icon2.$$.fragment, local);
+        transition_in(icon3.$$.fragment, local);
+        transition_in(if_block);
+        transition_in(icon4.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        transition_out(icon2.$$.fragment, local);
+        transition_out(icon3.$$.fragment, local);
+        transition_out(if_block);
+        transition_out(icon4.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h1);
+          detach(t1);
+          detach(hr);
+          detach(t2);
+          detach(div33);
+          detach(t68);
+          detach(div34);
+        }
+        destroy_component(icon0);
+        destroy_component(icon1);
+        destroy_component(icon2);
+        destroy_component(icon3);
+        if_blocks[current_block_type_index].d();
+        destroy_component(icon4);
       }
     };
   }
@@ -73671,8 +74623,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope*/
-        8) {
+        if (dirty & /*$$scope, profileBox, tab3, tab2, tab1*/
+        4111) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -73694,7 +74646,7 @@
   }
   var username2 = "";
   var email2 = "";
-  function instance39($$self) {
+  function instance39($$self, $$props, $$invalidate) {
     let error = {};
     const form = { username: username2, email: email2 };
     function handleSubmit() {
@@ -73706,7 +74658,42 @@
         }
       }
     }
-    return [];
+    let profileBox = false;
+    let tab1 = true;
+    let tab2;
+    let tab3;
+    function clicktab1() {
+      $$invalidate(1, tab1 = true);
+      $$invalidate(2, tab2 = false);
+      $$invalidate(3, tab3 = false);
+    }
+    function clicktab2() {
+      $$invalidate(1, tab1 = false);
+      $$invalidate(2, tab2 = true);
+      $$invalidate(3, tab3 = false);
+    }
+    function clicktab3() {
+      $$invalidate(1, tab1 = false);
+      $$invalidate(2, tab2 = false);
+      $$invalidate(3, tab3 = true);
+    }
+    async function ProfileBoxOn() {
+      $$invalidate(0, profileBox = true);
+    }
+    async function ProfileBoxOff() {
+      $$invalidate(0, profileBox = false);
+    }
+    return [
+      profileBox,
+      tab1,
+      tab2,
+      tab3,
+      clicktab1,
+      clicktab2,
+      clicktab3,
+      ProfileBoxOn,
+      ProfileBoxOff
+    ];
   }
   var Testform = class extends SvelteComponent {
     constructor(options) {
@@ -73717,7 +74704,7 @@
   var testform_default = Testform;
 
   // src/pages/dosen/Index.svelte
-  function create_else_block11(ctx) {
+  function create_else_block12(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -73745,7 +74732,7 @@
       }
     };
   }
-  function create_if_block_138(ctx) {
+  function create_if_block_139(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -73824,7 +74811,7 @@
       }
     };
   }
-  function create_if_block20(ctx) {
+  function create_if_block21(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -73904,7 +74891,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block20, create_if_block_138, create_else_block11];
+    const if_block_creators = [create_if_block21, create_if_block_139, create_else_block12];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -74123,7 +75110,7 @@
       }
     };
   }
-  function create_if_block_139(ctx) {
+  function create_if_block_140(ctx) {
     let ul;
     return {
       c() {
@@ -74141,7 +75128,7 @@
       }
     };
   }
-  function create_if_block21(ctx) {
+  function create_if_block22(ctx) {
     let p;
     let t1;
     let ul;
@@ -74192,11 +75179,11 @@
       (ctx[1] === "Ka.Departemen" || /*role*/
       ctx[1] === "Ka.LPPM" || /*role*/
       ctx[1] === "Ka.PusatKajian" || /*role*/
-      ctx[1] === "reviewer") && create_if_block_139(ctx)
+      ctx[1] === "reviewer") && create_if_block_140(ctx)
     );
     let if_block1 = (
       /*role*/
-      ctx[1] === "admin" && create_if_block21(ctx)
+      ctx[1] === "admin" && create_if_block22(ctx)
     );
     return {
       c() {
@@ -74299,7 +75286,7 @@
 
   // src/modules/Navbarmenu.svelte
   init_define_process();
-  function create_else_block12(ctx) {
+  function create_else_block13(ctx) {
     let div1;
     return {
       c() {
@@ -74320,7 +75307,7 @@
       }
     };
   }
-  function create_if_block22(ctx) {
+  function create_if_block23(ctx) {
     let div1;
     let a0;
     let icon;
@@ -74440,7 +75427,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block22, create_else_block12];
+    const if_block_creators = [create_if_block23, create_else_block13];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -74616,7 +75603,7 @@
   var Navbarmenu_default = Navbarmenu;
 
   // src/App.svelte
-  function create_if_block_140(ctx) {
+  function create_if_block_141(ctx) {
     let sidebar;
     let current;
     sidebar = new Sidebar_default({});
@@ -74643,7 +75630,7 @@
       }
     };
   }
-  function create_if_block23(ctx) {
+  function create_if_block24(ctx) {
     let main;
     let switch_instance;
     let current;
@@ -74732,11 +75719,11 @@
     let if_block0 = (
       /*token*/
       ctx[2] && !/*inBeranda*/
-      ctx[3] && create_if_block_140(ctx)
+      ctx[3] && create_if_block_141(ctx)
     );
     let if_block1 = (
       /*cmp*/
-      ctx[0] && create_if_block23(ctx)
+      ctx[0] && create_if_block24(ctx)
     );
     return {
       c() {
@@ -74772,7 +75759,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_140(ctx2);
+            if_block0 = create_if_block_141(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t1.parentNode, t1);
@@ -74795,7 +75782,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block23(ctx2);
+            if_block1 = create_if_block24(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
