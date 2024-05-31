@@ -2035,22 +2035,11 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */
-.profileBox.svelte-nrdizu.svelte-nrdizu {
-  background-color: rgb(250, 250, 250);
-  padding: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.columns.svelte-nrdizu.svelte-nrdizu {
-  display: flex;
-  align-items: stretch;
-}
-.column.svelte-nrdizu.svelte-nrdizu {
-  display: flex;
-  flex-direction: column;
-}
-.column.svelte-nrdizu .box.svelte-nrdizu {
-  flex: 1;
+.box2.svelte-gyuzvk {
+  background-color: rgb(245, 245, 245);
+  border-color: rgb(200, 200, 200);
+  border-style: solid;
+  border-width: 1px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
