@@ -23,6 +23,8 @@
       </ul>
    {/each}
    {#if role === "Ka.Departemen" || role === "Ka.LPPM" || role === "Ka.PusatKajian" || role === "reviewer"}
+      <br />
+      <p class="menu-label">Evaluator</p>
       <ul class="menu-list">
          <!-- svelte-ignore a11y-missing-attribute -->
          <li>

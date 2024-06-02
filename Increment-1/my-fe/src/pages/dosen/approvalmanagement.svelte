@@ -45,7 +45,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Approval Management</h1>
+   <h2 class="title is-2">Approval Management</h2>
 
    <hr />
 

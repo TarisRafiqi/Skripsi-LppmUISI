@@ -59,7 +59,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Dashboard</h1>
+   <h2 class="title is-2">Dashboard</h2>
 
    <hr />
 

@@ -789,7 +789,6 @@
             }
          }
       }
-
       isLoading = false;
    }
 
@@ -1362,7 +1361,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Pendaftaran Proposal</h1>
+   <h2 class="title is-2">Pendaftaran Proposal</h2>
    <hr />
 
    <div class="box">
@@ -2497,10 +2496,9 @@
       {/if}
    </div>
 
-   <!-- --------------------------------------------------- -->
-   <!-- Action Button -->
-   <!-- --------------------------------------------------- -->
-
+   <!-- ============================================== -->
+   <!--                 Action Button                  -->
+   <!-- ============================================== -->
    {#if tab1 === true}
       <div class="field is-grouped is-grouped-right">
          <p class="control">

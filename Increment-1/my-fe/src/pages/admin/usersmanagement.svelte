@@ -143,7 +143,7 @@
 <Article>
    {#if roleFromToken === "admin"}
       {#if items}
-         <h1 class="title is-1">User Management</h1>
+         <h2 class="title is-2">User Management</h2>
          <hr />
 
          <div class="columns">

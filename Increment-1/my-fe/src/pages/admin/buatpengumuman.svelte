@@ -9,7 +9,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Buat Pengumuman</h1>
+   <h2 class="title is-2">Buat Pengumuman</h2>
    <hr />
 
    <div class="box">

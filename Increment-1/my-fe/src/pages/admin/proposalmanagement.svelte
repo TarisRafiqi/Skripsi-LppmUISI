@@ -46,7 +46,7 @@
 
 {#if items}
    <Article>
-      <h1 class="title is-1">Proposal Management</h1>
+      <h2 class="title is-2">Proposal Management</h2>
       <hr />
 
       <div class="field">

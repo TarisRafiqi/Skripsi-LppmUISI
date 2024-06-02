@@ -81,7 +81,7 @@
       <p>Lengkapi seluruh form!</p>
    </Modalerror>
 
-   <h1 class="title is-1">Create User</h1>
+   <h2 class="title is-2">Create User</h2>
    <hr />
 
    {#if role === "admin"}

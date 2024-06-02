@@ -36,7 +36,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">About UISI</h1>
+   <h2 class="title is-2">About UISI</h2>
    <hr />
 
    <div class="tabs is-boxed">

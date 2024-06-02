@@ -20,7 +20,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Template</h1>
+   <h2 class="title is-2">Template</h2>
    <hr />
 
    <div class="columns">

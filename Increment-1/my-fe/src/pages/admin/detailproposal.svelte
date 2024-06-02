@@ -1011,7 +1011,7 @@
          <p>Anda belum menambahkan evaluator pada proposal</p>
       </Modalerror>
 
-      <h1 class="title is-1">Detail Proposal</h1>
+      <h2 class="title is-2">Detail Proposal</h2>
 
       <div class="tabs is-boxed">
          <ul>

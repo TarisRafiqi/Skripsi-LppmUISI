@@ -3,6 +3,6 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">PPM Ongoing</h1>
+   <h2 class="title is-2">Completed Penelitian / Pengabdian Masyarakat</h2>
    <hr />
 </Article>

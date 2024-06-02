@@ -887,7 +887,7 @@
     }
     component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
   }
-  function init(component, options, instance44, create_fragment52, not_equal, props, append_styles = null, dirty = [-1]) {
+  function init(component, options, instance44, create_fragment53, not_equal, props, append_styles = null, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $$ = component.$$ = {
@@ -926,7 +926,7 @@
     $$.update();
     ready = true;
     run_all($$.before_update);
-    $$.fragment = create_fragment52 ? create_fragment52($$.ctx) : false;
+    $$.fragment = create_fragment53 ? create_fragment53($$.ctx) : false;
     if (options.target) {
       if (options.hydrate) {
         start_hydrating();
@@ -4159,7 +4159,7 @@
     };
   }
   function create_default_slot3(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -4191,8 +4191,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "About UISI";
+        h2 = element("h2");
+        h2.textContent = "About UISI";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -4216,7 +4216,7 @@
         if (if_block2)
           if_block2.c();
         if_block2_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -4238,7 +4238,7 @@
         attr(div, "class", "tabs is-boxed");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -4398,7 +4398,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -4592,7 +4592,7 @@
     };
   }
   function create_default_slot4(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -4623,8 +4623,8 @@
     });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Buat Pengumuman";
+        h2 = element("h2");
+        h2.textContent = "Buat Pengumuman";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -4637,14 +4637,14 @@
         p = element("p");
         button = element("button");
         button.textContent = "Simpan";
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(div0, "class", "box");
         attr(button, "class", "button is-info");
         attr(p, "class", "control");
         attr(div1, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -4690,7 +4690,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -5846,7 +5846,7 @@
     let modalerror1;
     let updating_show_1;
     let t1;
-    let h1;
+    let h2;
     let t3;
     let hr;
     let t4;
@@ -5904,21 +5904,21 @@
         t0 = space();
         create_component(modalerror1.$$.fragment);
         t1 = space();
-        h1 = element("h1");
-        h1.textContent = "Create User";
+        h2 = element("h2");
+        h2.textContent = "Create User";
         t3 = space();
         hr = element("hr");
         t4 = space();
         if_block.c();
         if_block_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
       },
       m(target, anchor) {
         mount_component(modalerror0, target, anchor);
         insert(target, t0, anchor);
         mount_component(modalerror1, target, anchor);
         insert(target, t1, anchor);
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t3, anchor);
         insert(target, hr, anchor);
         insert(target, t4, anchor);
@@ -5973,7 +5973,7 @@
         if (detaching) {
           detach(t0);
           detach(t1);
-          detach(h1);
+          detach(h2);
           detach(t3);
           detach(hr);
           detach(t4);
@@ -14979,7 +14979,7 @@
     let modalerror2;
     let updating_show_2;
     let t2;
-    let h1;
+    let h2;
     let t4;
     let div;
     let ul;
@@ -15056,8 +15056,8 @@
         t1 = space();
         create_component(modalerror2.$$.fragment);
         t2 = space();
-        h1 = element("h1");
-        h1.textContent = "Detail Proposal";
+        h2 = element("h2");
+        h2.textContent = "Detail Proposal";
         t4 = space();
         div = element("div");
         ul = element("ul");
@@ -15073,7 +15073,7 @@
         if (if_block1)
           if_block1.c();
         if_block1_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -15095,7 +15095,7 @@
         insert(target, t1, anchor);
         mount_component(modalerror2, target, anchor);
         insert(target, t2, anchor);
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t4, anchor);
         insert(target, div, anchor);
         append(div, ul);
@@ -15256,7 +15256,7 @@
           detach(t0);
           detach(t1);
           detach(t2);
-          detach(h1);
+          detach(h2);
           detach(t4);
           detach(div);
           detach(t8);
@@ -16239,7 +16239,7 @@
   // src/pages/admin/home.svelte
   init_define_process();
   function create_default_slot7(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -16294,8 +16294,8 @@
     });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Dashboard";
+        h2 = element("h2");
+        h2.textContent = "Dashboard";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -16345,7 +16345,7 @@
         t18 = space();
         div13 = element("div");
         div13.innerHTML = `<p class="heading">HKI</p> <p class="title">...</p>`;
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(div0, "class", "flex-item-left svelte-lfygnb");
         attr(p0, "class", "heading");
         attr(p1, "class", "title");
@@ -16369,7 +16369,7 @@
         attr(div16, "class", "columns");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -16445,7 +16445,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -16544,7 +16544,7 @@
   // src/pages/admin/pengumuman.svelte
   init_define_process();
   function create_default_slot8(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -16594,8 +16594,8 @@
     icon3 = new Icon_default({ props: { id: "edit", src: edit } });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Pengumuman";
+        h2 = element("h2");
+        h2.textContent = "Pengumuman";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -16637,7 +16637,7 @@
         button2 = element("button");
         span4 = element("span");
         create_component(icon3.$$.fragment);
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
         attr(div0, "class", "column");
@@ -16660,7 +16660,7 @@
         attr(div6, "class", "box");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -16724,7 +16724,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -21570,7 +21570,7 @@
     };
   }
   function create_default_slot_362(ctx) {
-    let h1;
+    let h2;
     let t1;
     let div;
     let ul;
@@ -21600,8 +21600,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Profile";
+        h2 = element("h2");
+        h2.textContent = "Profile";
         t1 = space();
         div = element("div");
         ul = element("ul");
@@ -21623,7 +21623,7 @@
         if (if_block2)
           if_block2.c();
         if_block2_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -21645,7 +21645,7 @@
         attr(div, "class", "tabs is-boxed");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, div, anchor);
         append(div, ul);
@@ -21793,7 +21793,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(div);
           detach(t7);
@@ -28259,7 +28259,7 @@
     };
   }
   function create_default_slot10(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -28293,8 +28293,8 @@
     });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Proposal Management";
+        h2 = element("h2");
+        h2.textContent = "Proposal Management";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -28315,7 +28315,7 @@
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
         }
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Search judul");
@@ -28327,7 +28327,7 @@
         attr(div3, "class", "box parent svelte-1lg2tz8");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -28397,7 +28397,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -28512,7 +28512,7 @@
   // src/pages/admin/template.svelte
   init_define_process();
   function create_default_slot_313(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -28565,8 +28565,8 @@
     icon3 = new Icon_default({ props: { id: "edit", src: edit } });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Template";
+        h2 = element("h2");
+        h2.textContent = "Template";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -28612,7 +28612,7 @@
         button3 = element("button");
         span4 = element("span");
         create_component(icon3.$$.fragment);
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-info");
         attr(div0, "class", "column");
@@ -28636,7 +28636,7 @@
         attr(div6, "class", "box");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -28706,7 +28706,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -29138,7 +29138,7 @@
     };
   }
   function create_if_block_115(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -29183,8 +29183,8 @@
     }
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "User Management";
+        h2 = element("h2");
+        h2.textContent = "User Management";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -29215,7 +29215,7 @@
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
         }
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
         attr(div0, "class", "column");
@@ -29232,7 +29232,7 @@
         attr(div6, "class", "box parent svelte-1amf2xn");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -29312,7 +29312,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -30354,11 +30354,12 @@
   var dosen_exports = {};
   __export(dosen_exports, {
     approvalmanagement: () => approvalmanagement_default,
+    completedppm: () => completedppm_default,
     detailapproval: () => detailapproval_default,
     detailproposal: () => detailproposal_default2,
     home: () => home_default2,
+    ongoingppm: () => ongoingppm_default,
     pendaftaranproposal: () => pendaftaranproposal_default,
-    ppmongoing: () => ppmongoing_default,
     profile: () => profile_default2,
     proposalmanagement: () => proposalmanagement_default2,
     select: () => select_default,
@@ -31733,7 +31734,7 @@
     };
   }
   function create_default_slot13(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -31755,8 +31756,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Approval Management";
+        h2 = element("h2");
+        h2.textContent = "Approval Management";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -31770,7 +31771,7 @@
         if (if_block)
           if_block.c();
         if_block_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(input, "class", "input");
         attr(input, "type", "text");
         attr(input, "placeholder", "Search judul");
@@ -31779,7 +31780,7 @@
         attr(div1, "class", "field");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -31834,7 +31835,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -31928,6 +31929,83 @@
   };
   var approvalmanagement_default = Approvalmanagement;
 
+  // src/pages/dosen/completedppm.svelte
+  init_define_process();
+  function create_default_slot14(ctx) {
+    let h2;
+    let t1;
+    let hr;
+    return {
+      c() {
+        h2 = element("h2");
+        h2.textContent = "Completed Penelitian / Pengabdian Masyarakat";
+        t1 = space();
+        hr = element("hr");
+        attr(h2, "class", "title is-2");
+      },
+      m(target, anchor) {
+        insert(target, h2, anchor);
+        insert(target, t1, anchor);
+        insert(target, hr, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(h2);
+          detach(t1);
+          detach(hr);
+        }
+      }
+    };
+  }
+  function create_fragment38(ctx) {
+    let article;
+    let current;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot14] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(article.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope*/
+        1) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(article, detaching);
+      }
+    };
+  }
+  var Completedppm = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment38, safe_not_equal, {});
+    }
+  };
+  var completedppm_default = Completedppm;
+
   // src/pages/dosen/detailapproval.svelte
   init_define_process();
   function get_each_context9(ctx, list, i) {
@@ -31980,7 +32058,7 @@
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot14] },
+        $$slots: { default: [create_default_slot15] },
         $$scope: { ctx }
       }
     });
@@ -36690,14 +36768,14 @@
       }
     };
   }
-  function create_default_slot14(ctx) {
+  function create_default_slot15(ctx) {
     let modalerror0;
     let updating_show;
     let t0;
     let modalerror1;
     let updating_show_1;
     let t1;
-    let h1;
+    let h2;
     let t3;
     let div;
     let ul;
@@ -36756,8 +36834,8 @@
         t0 = space();
         create_component(modalerror1.$$.fragment);
         t1 = space();
-        h1 = element("h1");
-        h1.textContent = "Detail Proposal";
+        h2 = element("h2");
+        h2.textContent = "Detail Proposal";
         t3 = space();
         div = element("div");
         ul = element("ul");
@@ -36773,7 +36851,7 @@
         if (if_block1)
           if_block1.c();
         if_block1_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -36793,7 +36871,7 @@
         insert(target, t0, anchor);
         mount_component(modalerror1, target, anchor);
         insert(target, t1, anchor);
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t3, anchor);
         insert(target, div, anchor);
         append(div, ul);
@@ -36938,7 +37016,7 @@
         if (detaching) {
           detach(t0);
           detach(t1);
-          detach(h1);
+          detach(h2);
           detach(t3);
           detach(div);
           detach(t7);
@@ -36956,7 +37034,7 @@
       }
     };
   }
-  function create_fragment38(ctx) {
+  function create_fragment39(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -37553,7 +37631,7 @@
   var Detailapproval = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance31, create_fragment38, safe_not_equal, { params: 64 }, null, [-1, -1, -1, -1]);
+      init(this, options, instance31, create_fragment39, safe_not_equal, { params: 64 }, null, [-1, -1, -1, -1]);
     }
   };
   var detailapproval_default = Detailapproval;
@@ -42017,6 +42095,12 @@
         button1 = element("button");
         button1.textContent = "Submit";
         attr(button0, "class", "button is-info is-light");
+        toggle_class(
+          button0,
+          "is-loading",
+          /*isLoading*/
+          ctx[53]
+        );
         attr(p0, "class", "control");
         attr(button1, "class", "button is-info");
         toggle_class(
@@ -42052,6 +42136,15 @@
         }
       },
       p(ctx2, dirty) {
+        if (dirty[1] & /*isLoading*/
+        4194304) {
+          toggle_class(
+            button0,
+            "is-loading",
+            /*isLoading*/
+            ctx2[53]
+          );
+        }
         if (dirty[1] & /*isLoading*/
         4194304) {
           toggle_class(
@@ -44782,7 +44875,7 @@
     };
   }
   function create_default_slot_117(ctx) {
-    let h1;
+    let h2;
     let t1;
     let div;
     let ul;
@@ -44805,8 +44898,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Detail Proposal";
+        h2 = element("h2");
+        h2.textContent = "Detail Proposal";
         t1 = space();
         div = element("div");
         ul = element("ul");
@@ -44822,7 +44915,7 @@
         if (if_block1)
           if_block1.c();
         if_block1_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -44838,7 +44931,7 @@
         attr(div, "class", "tabs is-boxed");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, div, anchor);
         append(div, ul);
@@ -44951,7 +45044,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(div);
           detach(t5);
@@ -44967,7 +45060,7 @@
       }
     };
   }
-  function create_default_slot15(ctx) {
+  function create_default_slot16(ctx) {
     let p;
     return {
       c() {
@@ -44985,7 +45078,7 @@
       }
     };
   }
-  function create_fragment39(ctx) {
+  function create_fragment40(ctx) {
     let t;
     let modalerror;
     let updating_show;
@@ -44999,7 +45092,7 @@
       ctx[87](value);
     }
     let modalerror_props = {
-      $$slots: { default: [create_default_slot15] },
+      $$slots: { default: [create_default_slot16] },
       $$scope: { ctx }
     };
     if (
@@ -45362,6 +45455,7 @@
     }
     async function remediasi() {
       $$invalidate(0, error = {});
+      $$invalidate(53, isLoading = true);
       if (editModeProposal) {
         if (isObjectEmpty3($ppmFile)) {
           $$invalidate(0, error["fileProposal"] = `*`, error);
@@ -45473,6 +45567,7 @@
           }
         }
       }
+      $$invalidate(53, isLoading = false);
     }
     async function submitProposal() {
       $$invalidate(0, error = {});
@@ -45581,6 +45676,7 @@
     }
     async function simpanProposal() {
       $$invalidate(0, error = {});
+      $$invalidate(53, isLoading = true);
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       readerRab.onloadend = async () => {
@@ -45681,6 +45777,7 @@
           }
         }
       }
+      $$invalidate(53, isLoading = false);
     }
     let tab1 = true;
     let tab2;
@@ -45845,7 +45942,7 @@
   var Detailproposal2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance32, create_fragment39, safe_not_equal, { params: 74 }, null, [-1, -1, -1, -1, -1]);
+      init(this, options, instance32, create_fragment40, safe_not_equal, { params: 74 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var detailproposal_default2 = Detailproposal2;
@@ -45996,8 +46093,8 @@
       }
     };
   }
-  function create_default_slot16(ctx) {
-    let h1;
+  function create_default_slot17(ctx) {
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -46064,8 +46161,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Dashboard";
+        h2 = element("h2");
+        h2.textContent = "Dashboard";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -46126,7 +46223,7 @@
         div18 = element("div");
         if (if_block)
           if_block.c();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(div0, "class", "flex-item-left svelte-1g6xyrw");
         attr(p0, "class", "heading");
         attr(p1, "class", "title");
@@ -46153,7 +46250,7 @@
         attr(div20, "class", "box parent svelte-1g6xyrw");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -46254,7 +46351,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -46271,12 +46368,12 @@
       }
     };
   }
-  function create_fragment40(ctx) {
+  function create_fragment41(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot16] },
+        $$slots: { default: [create_default_slot17] },
         $$scope: { ctx }
       }
     });
@@ -46392,10 +46489,87 @@
   var Home2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance33, create_fragment40, safe_not_equal, {});
+      init(this, options, instance33, create_fragment41, safe_not_equal, {});
     }
   };
   var home_default2 = Home2;
+
+  // src/pages/dosen/ongoingppm.svelte
+  init_define_process();
+  function create_default_slot18(ctx) {
+    let h2;
+    let t1;
+    let hr;
+    return {
+      c() {
+        h2 = element("h2");
+        h2.textContent = "Ongoing Penelitian / Pengabdian Masyarakat";
+        t1 = space();
+        hr = element("hr");
+        attr(h2, "class", "title is-2");
+      },
+      m(target, anchor) {
+        insert(target, h2, anchor);
+        insert(target, t1, anchor);
+        insert(target, hr, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(h2);
+          detach(t1);
+          detach(hr);
+        }
+      }
+    };
+  }
+  function create_fragment42(ctx) {
+    let article;
+    let current;
+    article = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot18] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(article.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope*/
+        1) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article.$set(article_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(article, detaching);
+      }
+    };
+  }
+  var Ongoingppm = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment42, safe_not_equal, {});
+    }
+  };
+  var ongoingppm_default = Ongoingppm;
 
   // src/pages/dosen/pendaftaranproposal.svelte
   init_define_process();
@@ -54217,7 +54391,7 @@
     };
   }
   function create_default_slot_384(ctx) {
-    let h1;
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -54268,8 +54442,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Pendaftaran Proposal";
+        h2 = element("h2");
+        h2.textContent = "Pendaftaran Proposal";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -54305,7 +54479,7 @@
         if (if_block3)
           if_block3.c();
         if_block3_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(span0, "class", "icon");
         attr(span1, "class", "steps-marker");
         attr(div0, "class", "steps-content");
@@ -54332,7 +54506,7 @@
         attr(div2, "class", "box");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -54499,7 +54673,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -59028,7 +59202,7 @@
       }
     };
   }
-  function create_default_slot17(ctx) {
+  function create_default_slot19(ctx) {
     let p;
     return {
       c() {
@@ -59046,7 +59220,7 @@
       }
     };
   }
-  function create_fragment41(ctx) {
+  function create_fragment43(ctx) {
     let article;
     let t0;
     let modal0;
@@ -59232,7 +59406,7 @@
       ctx[203](value);
     }
     let modalerror2_props = {
-      $$slots: { default: [create_default_slot17] },
+      $$slots: { default: [create_default_slot19] },
       $$scope: { ctx }
     };
     if (
@@ -60945,87 +61119,10 @@
   var Pendaftaranproposal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance34, create_fragment41, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance34, create_fragment43, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var pendaftaranproposal_default = Pendaftaranproposal;
-
-  // src/pages/dosen/ppmongoing.svelte
-  init_define_process();
-  function create_default_slot18(ctx) {
-    let h1;
-    let t1;
-    let hr;
-    return {
-      c() {
-        h1 = element("h1");
-        h1.textContent = "PPM Ongoing";
-        t1 = space();
-        hr = element("hr");
-        attr(h1, "class", "title is-1");
-      },
-      m(target, anchor) {
-        insert(target, h1, anchor);
-        insert(target, t1, anchor);
-        insert(target, hr, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(h1);
-          detach(t1);
-          detach(hr);
-        }
-      }
-    };
-  }
-  function create_fragment42(ctx) {
-    let article;
-    let current;
-    article = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot18] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(article.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(article, target, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
-        const article_changes = {};
-        if (dirty & /*$$scope*/
-        1) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        article.$set(article_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(article.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(article.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(article, detaching);
-      }
-    };
-  }
-  var Ppmongoing = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, null, create_fragment42, safe_not_equal, {});
-    }
-  };
-  var ppmongoing_default = Ppmongoing;
 
   // src/pages/dosen/profile.svelte
   init_define_process();
@@ -65853,7 +65950,7 @@
     };
   }
   function create_default_slot_365(ctx) {
-    let h1;
+    let h2;
     let t1;
     let div;
     let ul;
@@ -65883,8 +65980,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Profile";
+        h2 = element("h2");
+        h2.textContent = "Profile";
         t1 = space();
         div = element("div");
         ul = element("ul");
@@ -65906,7 +66003,7 @@
         if (if_block2)
           if_block2.c();
         if_block2_anchor = empty();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         toggle_class(
           li0,
           "is-active",
@@ -65928,7 +66025,7 @@
         attr(div, "class", "tabs is-boxed");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, div, anchor);
         append(div, ul);
@@ -66076,7 +66173,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(div);
           detach(t7);
@@ -70541,7 +70638,7 @@
       }
     };
   }
-  function create_default_slot19(ctx) {
+  function create_default_slot20(ctx) {
     let p;
     return {
       c() {
@@ -70559,7 +70656,7 @@
       }
     };
   }
-  function create_fragment43(ctx) {
+  function create_fragment44(ctx) {
     let article;
     let t0;
     let modal0;
@@ -70707,7 +70804,7 @@
       ctx[165](value);
     }
     let modalerror_props = {
-      $$slots: { default: [create_default_slot19] },
+      $$slots: { default: [create_default_slot20] },
       $$scope: { ctx }
     };
     if (
@@ -72024,7 +72121,7 @@
   var Profile2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance35, create_fragment43, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance35, create_fragment44, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default2 = Profile2;
@@ -72034,7 +72131,7 @@
 
   // src/libs/Modalroute.svelte
   init_define_process();
-  function create_fragment44(ctx) {
+  function create_fragment45(ctx) {
     let b;
     let div1;
     let div0;
@@ -72183,7 +72280,7 @@
   var Modalroute = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance36, create_fragment44, safe_not_equal, { show: 0 });
+      init(this, options, instance36, create_fragment45, safe_not_equal, { show: 0 });
     }
   };
   var Modalroute_default = Modalroute;
@@ -72452,8 +72549,8 @@
       }
     };
   }
-  function create_default_slot20(ctx) {
-    let h1;
+  function create_default_slot21(ctx) {
+    let h2;
     let t1;
     let hr;
     let t2;
@@ -72512,8 +72609,8 @@
     );
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Proposal Management";
+        h2 = element("h2");
+        h2.textContent = "Proposal Penelitian / Pengabdian Masyarakat";
         t1 = space();
         hr = element("hr");
         t2 = space();
@@ -72544,7 +72641,7 @@
         t18 = space();
         if (if_block)
           if_block.c();
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info");
         attr(div0, "class", "column");
@@ -72561,7 +72658,7 @@
         attr(div6, "class", "box parent svelte-1mtjhz7");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
@@ -72657,7 +72754,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr);
           detach(t2);
@@ -72676,12 +72773,12 @@
       }
     };
   }
-  function create_fragment45(ctx) {
+  function create_fragment46(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot20] },
+        $$slots: { default: [create_default_slot21] },
         $$scope: { ctx }
       }
     });
@@ -72781,7 +72878,7 @@
   var Proposalmanagement2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance37, create_fragment45, safe_not_equal, {});
+      init(this, options, instance37, create_fragment46, safe_not_equal, {});
     }
   };
   var proposalmanagement_default2 = Proposalmanagement2;
@@ -73325,7 +73422,7 @@
       }
     };
   }
-  function create_default_slot21(ctx) {
+  function create_default_slot22(ctx) {
     let div2;
     let div0;
     let label;
@@ -73516,12 +73613,12 @@
       }
     };
   }
-  function create_fragment46(ctx) {
+  function create_fragment47(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot21] },
+        $$slots: { default: [create_default_slot22] },
         $$scope: { ctx }
       }
     });
@@ -73628,7 +73725,7 @@
   var Select2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance38, create_fragment46, safe_not_equal, {});
+      init(this, options, instance38, create_fragment47, safe_not_equal, {});
     }
   };
   var select_default = Select2;
@@ -73644,6 +73741,8 @@
     let span0;
     let icon;
     let t2;
+    let div5;
+    let div4;
     let div3;
     let ul;
     let li0;
@@ -73654,7 +73753,6 @@
     let t8;
     let t9;
     let t10;
-    let if_block2_anchor;
     let current;
     let mounted;
     let dispose;
@@ -73675,13 +73773,15 @@
       c() {
         div2 = element("div");
         div0 = element("div");
-        div0.innerHTML = `<h6 class="subtitle is-6">Tristan Byrne</h6>`;
+        div0.innerHTML = `<h6 class="subtitle is-6">Taris Rafiqi Izatri</h6>`;
         t1 = space();
         div1 = element("div");
         button = element("button");
         span0 = element("span");
         create_component(icon.$$.fragment);
         t2 = space();
+        div5 = element("div");
+        div4 = element("div");
         div3 = element("div");
         ul = element("ul");
         li0 = element("li");
@@ -73701,7 +73801,6 @@
         t10 = space();
         if (if_block2)
           if_block2.c();
-        if_block2_anchor = empty();
         attr(div0, "class", "column");
         attr(span0, "class", "icon");
         attr(button, "class", "button is-info is-small");
@@ -73726,6 +73825,8 @@
           ctx[3]
         );
         attr(div3, "class", "tabs is-boxed");
+        attr(div4, "class", "child svelte-hnk4gk");
+        attr(div5, "class", "parent svelte-hnk4gk");
       },
       m(target, anchor) {
         insert(target, div2, anchor);
@@ -73736,23 +73837,24 @@
         append(button, span0);
         mount_component(icon, span0, null);
         insert(target, t2, anchor);
-        insert(target, div3, anchor);
+        insert(target, div5, anchor);
+        append(div5, div4);
+        append(div4, div3);
         append(div3, ul);
         append(ul, li0);
         append(ul, t4);
         append(ul, li1);
         append(ul, t6);
         append(ul, li2);
-        insert(target, t8, anchor);
+        append(div4, t8);
         if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t9, anchor);
+          if_block0.m(div4, null);
+        append(div4, t9);
         if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t10, anchor);
+          if_block1.m(div4, null);
+        append(div4, t10);
         if (if_block2)
-          if_block2.m(target, anchor);
-        insert(target, if_block2_anchor, anchor);
+          if_block2.m(div4, null);
         current = true;
         if (!mounted) {
           dispose = [
@@ -73825,7 +73927,7 @@
             if_block0 = create_if_block_327(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
-            if_block0.m(t9.parentNode, t9);
+            if_block0.m(div4, t9);
           }
         } else if (if_block0) {
           group_outros();
@@ -73847,7 +73949,7 @@
             if_block1 = create_if_block_229(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
-            if_block1.m(t10.parentNode, t10);
+            if_block1.m(div4, t10);
           }
         } else if (if_block1) {
           group_outros();
@@ -73869,7 +73971,7 @@
             if_block2 = create_if_block_138(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
-            if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
+            if_block2.m(div4, null);
           }
         } else if (if_block2) {
           group_outros();
@@ -73899,19 +74001,15 @@
         if (detaching) {
           detach(div2);
           detach(t2);
-          detach(div3);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(if_block2_anchor);
+          detach(div5);
         }
         destroy_component(icon);
         if (if_block0)
-          if_block0.d(detaching);
+          if_block0.d();
         if (if_block1)
-          if_block1.d(detaching);
+          if_block1.d();
         if (if_block2)
-          if_block2.d(detaching);
+          if_block2.d();
         mounted = false;
         run_all(dispose);
       }
@@ -74329,7 +74427,7 @@
         create_component(icon0.$$.fragment);
         t13 = space();
         td1 = element("td");
-        td1.textContent = "Universitas Internasional Semen Indonesia";
+        td1.textContent = "Universitas Internasional Semen\n                                       Indonesia";
         t15 = space();
         td2 = element("td");
         td2.textContent = "Informatika";
@@ -74341,7 +74439,7 @@
         td4.textContent = "2024";
         t21 = space();
         td5 = element("td");
-        td5.textContent = "Perancangan Sistem Informasi LPPM UISI\n                                 Menggunakan Metode Incremental";
+        td5.textContent = "Perancangan Sistem Informasi LPPM UISI\n                                       Menggunakan Metode Incremental";
         t23 = space();
         tr2 = element("tr");
         tr2.innerHTML = `<td colspan="6"><button class="button is-small is-success is-fullwidth">Tambah</button></td>`;
@@ -74692,7 +74790,7 @@
         td1.textContent = "2018";
         t15 = space();
         td2 = element("td");
-        td2.textContent = "Perancangan Sistem Informasi LPPM UISI\n                                 Menggunakan Metode Incremental";
+        td2.textContent = "Perancangan Sistem Informasi LPPM UISI\n                                       Menggunakan Metode Incremental";
         t17 = space();
         td3 = element("td");
         td3.textContent = "Ketua";
@@ -74736,7 +74834,7 @@
         t46 = space();
         label2 = element("label");
         label2.innerHTML = `<h6 class="title is-6">Pengalaman Diseminasi Ilmiah dalam Pertemuan /
-                           Pameran</h6>`;
+                                 Pameran</h6>`;
         t48 = space();
         table2 = element("table");
         thead2 = element("thead");
@@ -74763,12 +74861,12 @@
         t64 = space();
         label3 = element("label");
         label3.innerHTML = `<h6 class="title is-6">Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
-                           Proceeding)</h6>`;
+                                 Proceeding)</h6>`;
         t66 = space();
         table3 = element("table");
         thead3 = element("thead");
         thead3.innerHTML = `<tr><th></th> <th>Tahun</th> <th>Judul Artikel</th> <th>Nama Penulis</th> <th>Nama Jurnal, Vol., No Issue/No Artikel,
-                                 Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
+                                       Halaman</th> <th>Impact Factor/Scopus Quarter/Akreditasi</th></tr>`;
         t77 = space();
         tbody3 = element("tbody");
         tr10 = element("tr");
@@ -75075,8 +75173,8 @@
       }
     };
   }
-  function create_default_slot22(ctx) {
-    let h1;
+  function create_default_slot23(ctx) {
+    let h2;
     let t1;
     let hr0;
     let t2;
@@ -75255,8 +75353,8 @@
     });
     return {
       c() {
-        h1 = element("h1");
-        h1.textContent = "Pendaftaran Proposal";
+        h2 = element("h2");
+        h2.textContent = "Pendaftaran Proposal";
         t1 = space();
         hr0 = element("hr");
         t2 = space();
@@ -75439,7 +75537,7 @@
         t92 = space();
         div43 = element("div");
         div43.innerHTML = `<p class="control"><button class="button is-info is-light">Simpan</button></p> <p class="control"><button class="button is-info">Submit</button></p>`;
-        attr(h1, "class", "title is-1");
+        attr(h2, "class", "title is-2");
         attr(h40, "class", "subtitle is-4");
         attr(label0, "class", "label");
         attr(label0, "for", "label");
@@ -75528,13 +75626,13 @@
         attr(div37, "class", "column is-1");
         attr(div38, "class", "columns");
         attr(div39, "class", "box profileBox");
-        attr(div40, "class", "box box2 svelte-gyuzvk");
+        attr(div40, "class", "box boxBiodataPeneliti svelte-hnk4gk");
         attr(div41, "class", "column");
         attr(div42, "class", "columns is-desktop");
         attr(div43, "class", "field is-grouped is-grouped-right");
       },
       m(target, anchor) {
-        insert(target, h1, anchor);
+        insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr0, anchor);
         insert(target, t2, anchor);
@@ -75734,7 +75832,7 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(h1);
+          detach(h2);
           detach(t1);
           detach(hr0);
           detach(t2);
@@ -75753,12 +75851,12 @@
       }
     };
   }
-  function create_fragment47(ctx) {
+  function create_fragment48(ctx) {
     let article;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot22] },
+        $$slots: { default: [create_default_slot23] },
         $$scope: { ctx }
       }
     });
@@ -75847,7 +75945,7 @@
   var Testform = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance39, create_fragment47, safe_not_equal, {});
+      init(this, options, instance39, create_fragment48, safe_not_equal, {});
     }
   };
   var testform_default = Testform;
@@ -76034,7 +76132,7 @@
       }
     };
   }
-  function create_fragment48(ctx) {
+  function create_fragment49(ctx) {
     let show_if;
     let current_block_type_index;
     let if_block;
@@ -76131,7 +76229,7 @@
   var Index4 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance40, create_fragment48, safe_not_equal, { params: 0 });
+      init(this, options, instance40, create_fragment49, safe_not_equal, { params: 0 });
     }
   };
   var Index_default4 = Index4;
@@ -76187,12 +76285,16 @@
       href: "/dosen/profile"
     },
     {
-      title: "Proposal Management",
+      title: "Proposal PPM",
       href: "/dosen/proposalmanagement"
     },
     {
-      title: "PPM Ongoing",
-      href: "/dosen/ppmongoing"
+      title: "Ongoing PPM",
+      href: "/dosen/ongoingppm"
+    },
+    {
+      title: "Completed PPM",
+      href: "/dosen/completedppm"
     }
   ];
   var menu_default = {
@@ -76260,18 +76362,36 @@
     };
   }
   function create_if_block_140(ctx) {
+    let br;
+    let t0;
+    let p;
+    let t2;
     let ul;
     return {
       c() {
+        br = element("br");
+        t0 = space();
+        p = element("p");
+        p.textContent = "Evaluator";
+        t2 = space();
         ul = element("ul");
         ul.innerHTML = `<li><a href="/dosen/approvalmanagement" class="svelte-l83cqz">Approval Management</a></li>`;
+        attr(p, "class", "menu-label svelte-l83cqz");
         attr(ul, "class", "menu-list svelte-l83cqz");
       },
       m(target, anchor) {
+        insert(target, br, anchor);
+        insert(target, t0, anchor);
+        insert(target, p, anchor);
+        insert(target, t2, anchor);
         insert(target, ul, anchor);
       },
       d(detaching) {
         if (detaching) {
+          detach(br);
+          detach(t0);
+          detach(p);
+          detach(t2);
           detach(ul);
         }
       }
@@ -76305,7 +76425,7 @@
       }
     };
   }
-  function create_fragment49(ctx) {
+  function create_fragment50(ctx) {
     let aside;
     let p;
     let t1;
@@ -76428,7 +76548,7 @@
   var Sidebar = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance41, create_fragment49, safe_not_equal, {});
+      init(this, options, instance41, create_fragment50, safe_not_equal, {});
     }
   };
   var Sidebar_default = Sidebar;
@@ -76553,7 +76673,7 @@
       }
     };
   }
-  function create_fragment50(ctx) {
+  function create_fragment51(ctx) {
     let header;
     let nav;
     let div0;
@@ -76746,7 +76866,7 @@
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance42, create_fragment50, safe_not_equal, {});
+      init(this, options, instance42, create_fragment51, safe_not_equal, {});
     }
   };
   var Navbarmenu_default = Navbarmenu;
@@ -76858,7 +76978,7 @@
       }
     };
   }
-  function create_fragment51(ctx) {
+  function create_fragment52(ctx) {
     let navbarmenu;
     let t0;
     let t1;
@@ -77005,7 +77125,7 @@
   var App = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance43, create_fragment51, safe_not_equal, {});
+      init(this, options, instance43, create_fragment52, safe_not_equal, {});
     }
   };
   var App_default = App;

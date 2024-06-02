@@ -497,6 +497,7 @@
 
    async function remediasi() {
       error = {};
+      isLoading = true;
 
       if (editModeProposal) {
          if (isObjectEmpty($ppmFile)) {
@@ -631,6 +632,7 @@
             }
          }
       }
+      isLoading = false;
    }
 
    async function submitProposal() {
@@ -762,6 +764,7 @@
 
    async function simpanProposal() {
       error = {};
+      isLoading = true;
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       // ================================================//
@@ -883,6 +886,7 @@
             }
          }
       }
+      isLoading = false;
    }
 
    let tab1 = true;
@@ -910,7 +914,7 @@
 
 {#if data && items.length > 0}
    <Article>
-      <h1 class="title is-1">Detail Proposal</h1>
+      <h2 class="title is-2">Detail Proposal</h2>
 
       <div class="tabs is-boxed">
          <ul>
@@ -1408,13 +1412,17 @@
             </div>
          {/if}
 
+         <!-- ============================================== -->
+         <!--                 Action Button                  -->
+         <!-- ============================================== -->
          <div class="field is-grouped is-grouped-right">
             {#if !view}
                {#if status === 0}
                   <p class="control">
                      <button
                         class="button is-info is-light"
-                        on:click={simpanProposal}>Simpan</button
+                        on:click={simpanProposal}
+                        class:is-loading={isLoading}>Simpan</button
                      >
                   </p>
                   <p class="control">

@@ -93,7 +93,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Proposal Management</h1>
+   <h2 class="title is-2">Proposal Penelitian / Pengabdian Masyarakat</h2>
    <hr />
 
    <Modalroute bind:show={showModalError}>

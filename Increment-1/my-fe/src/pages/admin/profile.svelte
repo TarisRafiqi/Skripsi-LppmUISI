@@ -901,7 +901,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Profile</h1>
+   <h2 class="title is-2">Profile</h2>
 
    <div class="tabs is-boxed">
       <ul>

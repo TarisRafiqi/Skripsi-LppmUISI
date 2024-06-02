@@ -62,7 +62,7 @@
 </script>
 
 <Article>
-   <h1 class="title is-1">Pendaftaran Proposal</h1>
+   <h2 class="title is-2">Pendaftaran Proposal</h2>
    <hr />
    <!-- <div class="box">
       <div class="columns">
@@ -311,7 +311,7 @@
       <!--         Box-2 Biodata Peneliti        -->
       <!-- ===================================== -->
       <div class="column">
-         <div class="box box2">
+         <div class="box boxBiodataPeneliti">
             <h4 class="subtitle is-4">Biodata Peneliti</h4>
             <br />
 
@@ -334,7 +334,7 @@
                {:else}
                   <div class="columns">
                      <div class="column">
-                        <h6 class="subtitle is-6">Tristan Byrne</h6>
+                        <h6 class="subtitle is-6">Taris Rafiqi Izatri</h6>
                      </div>
                      <div class="column is-1">
                         <button
@@ -346,174 +346,233 @@
                         >
                      </div>
                   </div>
-                  <div class="tabs is-boxed">
-                     <ul>
-                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <li on:click={clicktab1} class:is-active={tab1}>
-                           <!-- svelte-ignore a11y-missing-attribute -->
-                           <a>
-                              <span>Identitas</span>
-                           </a>
-                        </li>
-                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <li on:click={clicktab2} class:is-active={tab2}>
-                           <!-- svelte-ignore a11y-missing-attribute -->
-                           <a>
-                              <span>Riwayat Pendidikan</span>
-                           </a>
-                        </li>
-                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
-                        <li on:click={clicktab3} class:is-active={tab3}>
-                           <!-- svelte-ignore a11y-missing-attribute -->
-                           <a>
-                              <span>Pengalaman</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
 
-                  {#if tab1 === true}
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Nama lengkap</h6></label
-                           >
-                           <input
-                              class="input"
-                              placeholder="Masukkan nama lengkap dengan gelar"
-                           />
-                        </div>
-                     </div>
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">
-                                 Nomor Handphone
-                              </h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Email</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">
-                                 Jabatan Fungsional
-                              </h6></label
-                           >
-                           <div class="select is-fullwidth is-danger">
-                              <select>
-                                 <option>Tenaga Pengajar</option>
-                                 <option>Asisten Ahli</option>
-                                 <option>Lektor</option>
-                                 <option>Lektor Kepala</option>
-                                 <option>Guru Besar</option>
-                              </select>
-                           </div>
+                  <div class="parent">
+                     <div class="child">
+                        <div class="tabs is-boxed">
+                           <ul>
+                              <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                              <!-- svelte-ignore a11y-click-events-have-key-events -->
+                              <li on:click={clicktab1} class:is-active={tab1}>
+                                 <!-- svelte-ignore a11y-missing-attribute -->
+                                 <a>
+                                    <span>Identitas</span>
+                                 </a>
+                              </li>
+                              <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                              <!-- svelte-ignore a11y-click-events-have-key-events -->
+                              <li on:click={clicktab2} class:is-active={tab2}>
+                                 <!-- svelte-ignore a11y-missing-attribute -->
+                                 <a>
+                                    <span>Riwayat Pendidikan</span>
+                                 </a>
+                              </li>
+                              <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                              <!-- svelte-ignore a11y-click-events-have-key-events -->
+                              <li on:click={clicktab3} class:is-active={tab3}>
+                                 <!-- svelte-ignore a11y-missing-attribute -->
+                                 <a>
+                                    <span>Pengalaman</span>
+                                 </a>
+                              </li>
+                           </ul>
                         </div>
 
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">NIP</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">NIDN</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Tempat Lahir</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Tanggal Lahir</h6></label
-                           >
-                           <input class="input" type="date" />
-                        </div>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Alamat Rumah</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Telp/Fax Rumah</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">Alamat Kantor</h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                        <div class="column">
-                           <label class="label" for="label"
-                              ><h6 class="title is-6">
-                                 Telp/Fax Kantor
-                              </h6></label
-                           >
-                           <input class="input" />
-                        </div>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <div class="column">
-                           <div class="field is-grouped">
-                              <p class="control is-expanded">
+                        {#if tab1 === true}
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Nama lengkap
+                                    </h6></label
+                                 >
                                  <input
                                     class="input"
-                                    placeholder="Tambahkan mata kuliah yang diampu"
+                                    placeholder="Masukkan nama lengkap dengan gelar"
                                  />
-                              </p>
-                              <p class="control">
-                                 <button class="button is-info">
-                                    <span class="icon">
-                                       <Icon id="orang" src={add} />
-                                    </span>
-                                    <!-- svelte-ignore a11y-missing-attribute -->
-                                    <span><a>Tambah</a></span>
-                                 </button>
-                              </p>
+                              </div>
                            </div>
-                        </div>
-                     </div>
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Nomor Handphone
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">Email</h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                           </div>
 
-                     <div class="columns is-desktop">
-                        <div class="column">
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Jabatan Fungsional
+                                    </h6></label
+                                 >
+                                 <div class="select is-fullwidth is-danger">
+                                    <select>
+                                       <option>Tenaga Pengajar</option>
+                                       <option>Asisten Ahli</option>
+                                       <option>Lektor</option>
+                                       <option>Lektor Kepala</option>
+                                       <option>Guru Besar</option>
+                                    </select>
+                                 </div>
+                              </div>
+
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">NIP</h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">NIDN</h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                           </div>
+
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Tempat Lahir
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Tanggal Lahir
+                                    </h6></label
+                                 >
+                                 <input class="input" type="date" />
+                              </div>
+                           </div>
+
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Alamat Rumah
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Telp/Fax Rumah
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                           </div>
+
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Alamat Kantor
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                              <div class="column">
+                                 <label class="label" for="label"
+                                    ><h6 class="title is-6">
+                                       Telp/Fax Kantor
+                                    </h6></label
+                                 >
+                                 <input class="input" />
+                              </div>
+                           </div>
+
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <div class="field is-grouped">
+                                    <p class="control is-expanded">
+                                       <input
+                                          class="input"
+                                          placeholder="Tambahkan mata kuliah yang diampu"
+                                       />
+                                    </p>
+                                    <p class="control">
+                                       <button class="button is-info">
+                                          <span class="icon">
+                                             <Icon id="orang" src={add} />
+                                          </span>
+                                          <!-- svelte-ignore a11y-missing-attribute -->
+                                          <span><a>Tambah</a></span>
+                                       </button>
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="columns is-desktop">
+                              <div class="column">
+                                 <table
+                                    class="table is-fullwidth is-striped is-hoverable is-bordered"
+                                 >
+                                    <thead>
+                                       <tr>
+                                          <th class="is-narrow"></th>
+                                          <th>Mata Kuliah</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td
+                                             ><button
+                                                class="button is-danger is-small"
+                                                ><span class="icon">
+                                                   <Icon
+                                                      id="delete"
+                                                      src={deleteIcon}
+                                                   />
+                                                </span></button
+                                             ></td
+                                          >
+                                          <td>Informatika</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        {/if}
+
+                        <!-- ===================== -->
+                        <!-- Riwayat Pendidikan    -->
+                        <!-- ===================== -->
+                        {#if tab2 === true}
+                           <!-- ===================================================================== -->
+                           <!-- Table Program S1 -->
+                           <!-- ===================================================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">Program S1</h6></label
+                           >
                            <table
                               class="table is-fullwidth is-striped is-hoverable is-bordered"
                            >
                               <thead>
                                  <tr>
-                                    <th class="is-narrow"></th>
-                                    <th>Mata Kuliah</th>
+                                    <th></th>
+                                    <th>Nama Perguruan Tinggi</th>
+                                    <th>Bidang Ilmu</th>
+                                    <th>Tahun Masuk</th>
+                                    <th>Tahun Lulus</th>
+                                    <th>Judul Skripsi/Tesis/Disertasi</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -529,443 +588,442 @@
                                           </span></button
                                        ></td
                                     >
+                                    <td
+                                       >Universitas Internasional Semen
+                                       Indonesia</td
+                                    >
                                     <td>Informatika</td>
+                                    <td>2018</td>
+                                    <td>2024</td>
+                                    <td
+                                       >Perancangan Sistem Informasi LPPM UISI
+                                       Menggunakan Metode Incremental</td
+                                    >
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
                                  </tr>
                               </tbody>
                            </table>
-                        </div>
+
+                           <!-- ===================================================================== -->
+                           <!-- Table Program S2 -->
+                           <!-- ===================================================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">Program S2</h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Nama Perguruan Tinggi</th>
+                                    <th>Bidang Ilmu</th>
+                                    <th>Tahun Masuk</th>
+                                    <th>Tahun Lulus</th>
+                                    <th>Judul Skripsi/Tesis/Disertasi</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ===================================================================== -->
+                           <!-- Table Program S3 -->
+                           <!-- ===================================================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">Program S3</h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Nama Perguruan Tinggi</th>
+                                    <th>Bidang Ilmu</th>
+                                    <th>Tahun Masuk</th>
+                                    <th>Tahun Lulus</th>
+                                    <th>Judul Skripsi/Tesis/Disertasi</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        {/if}
+
+                        <!-- ===================== -->
+                        <!-- Pengalaman            -->
+                        <!-- ===================== -->
+                        {#if tab3 === true}
+                           <!-- ====================================== -->
+                           <!-- Table Pengalaman Penelitian            -->
+                           <!-- ====================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Penelitian
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul Penelitian</th>
+                                    <th>Role</th>
+                                    <th>Sumber Dana</th>
+                                    <th>Jumlah Rp.</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td>2018</td>
+                                    <td
+                                       >Perancangan Sistem Informasi LPPM UISI
+                                       Menggunakan Metode Incremental</td
+                                    >
+                                    <td>Ketua</td>
+                                    <td>Internal UISI</td>
+                                    <td>Rp. 10.000.000</td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ====================================== -->
+                           <!-- Table Pengalaman Penelitian            -->
+                           <!-- ====================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Penelitian
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul Penelitian</th>
+                                    <th>Role</th>
+                                    <th>Sumber Dana</th>
+                                    <th>Jumlah Rp.</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td> </td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ====================================== -->
+                           <!-- Table Pengalaman Diseminasi            -->
+                           <!-- ====================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Diseminasi Ilmiah dalam Pertemuan /
+                                 Pameran
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul Artikel</th>
+                                    <th>Nama Pemakalah</th>
+                                    <th>Nama Pertemuan Ilmiah / Pameran</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td> </td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ==================================================================== -->
+                           <!-- Table Pengalaman Pengalaman Publikasi Ilmiah dalam Jurnal            -->
+                           <!-- ==================================================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
+                                 Proceeding)
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul Artikel</th>
+                                    <th>Nama Penulis</th>
+                                    <th
+                                       >Nama Jurnal, Vol., No Issue/No Artikel,
+                                       Halaman</th
+                                    >
+                                    <th
+                                       >Impact Factor/Scopus Quarter/Akreditasi</th
+                                    >
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ========================================== -->
+                           <!-- Table Pengalaman Pengalaman Penulisan Buku -->
+                           <!-- ========================================== -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Penulisan Buku
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul Buku</th>
+                                    <th>Nama Penulis</th>
+                                    <th>Penerbit</th>
+                                    <th>ISBN</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td> </td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <!-- ========================================= -->
+                           <!-- Table Pengalaman Hak Kekayaan Intelektual -->
+                           <!-- ========================================= -->
+                           <label class="label" for="label"
+                              ><h6 class="title is-6">
+                                 Pengalaman Hak Kekayaan Intelektual
+                              </h6></label
+                           >
+                           <table
+                              class="table is-fullwidth is-striped is-hoverable is-bordered"
+                           >
+                              <thead>
+                                 <tr>
+                                    <th></th>
+                                    <th>Tahun</th>
+                                    <th>Judul HKI</th>
+                                    <th>Nama Penulis</th>
+                                    <th>Jenis HKI</th>
+                                    <th>No HKI</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td
+                                       ><button
+                                          class="button is-danger is-small"
+                                          ><span class="icon">
+                                             <Icon
+                                                id="delete"
+                                                src={deleteIcon}
+                                             />
+                                          </span></button
+                                       ></td
+                                    >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td> </td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <td colspan="6">
+                                       <button
+                                          class="button is-small is-success is-fullwidth"
+                                          >Tambah</button
+                                       >
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        {/if}
                      </div>
-                  {/if}
-
-                  <!-- ===================== -->
-                  <!-- Riwayat Pendidikan    -->
-                  <!-- ===================== -->
-                  {#if tab2 === true}
-                     <!-- ===================================================================== -->
-                     <!-- Table Program S1 -->
-                     <!-- ===================================================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">Program S1</h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Nama Perguruan Tinggi</th>
-                              <th>Bidang Ilmu</th>
-                              <th>Tahun Masuk</th>
-                              <th>Tahun Lulus</th>
-                              <th>Judul Skripsi/Tesis/Disertasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td>Universitas Internasional Semen Indonesia</td>
-                              <td>Informatika</td>
-                              <td>2018</td>
-                              <td>2024</td>
-                              <td
-                                 >Perancangan Sistem Informasi LPPM UISI
-                                 Menggunakan Metode Incremental</td
-                              >
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-
-                     <!-- ===================================================================== -->
-                     <!-- Table Program S2 -->
-                     <!-- ===================================================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">Program S2</h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Nama Perguruan Tinggi</th>
-                              <th>Bidang Ilmu</th>
-                              <th>Tahun Masuk</th>
-                              <th>Tahun Lulus</th>
-                              <th>Judul Skripsi/Tesis/Disertasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ===================================================================== -->
-                     <!-- Table Program S3 -->
-                     <!-- ===================================================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">Program S3</h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Nama Perguruan Tinggi</th>
-                              <th>Bidang Ilmu</th>
-                              <th>Tahun Masuk</th>
-                              <th>Tahun Lulus</th>
-                              <th>Judul Skripsi/Tesis/Disertasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  {/if}
-
-                  <!-- ===================== -->
-                  <!-- Pengalaman            -->
-                  <!-- ===================== -->
-                  {#if tab3 === true}
-                     <!-- ====================================== -->
-                     <!-- Table Pengalaman Penelitian            -->
-                     <!-- ====================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Penelitian
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul Penelitian</th>
-                              <th>Role</th>
-                              <th>Sumber Dana</th>
-                              <th>Jumlah Rp.</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td>2018</td>
-                              <td
-                                 >Perancangan Sistem Informasi LPPM UISI
-                                 Menggunakan Metode Incremental</td
-                              >
-                              <td>Ketua</td>
-                              <td>Internal UISI</td>
-                              <td>Rp. 10.000.000</td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ====================================== -->
-                     <!-- Table Pengalaman Penelitian            -->
-                     <!-- ====================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Penelitian
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul Penelitian</th>
-                              <th>Role</th>
-                              <th>Sumber Dana</th>
-                              <th>Jumlah Rp.</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td> </td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ====================================== -->
-                     <!-- Table Pengalaman Diseminasi            -->
-                     <!-- ====================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Diseminasi Ilmiah dalam Pertemuan /
-                           Pameran
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul Artikel</th>
-                              <th>Nama Pemakalah</th>
-                              <th>Nama Pertemuan Ilmiah / Pameran</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td> </td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ==================================================================== -->
-                     <!-- Table Pengalaman Pengalaman Publikasi Ilmiah dalam Jurnal            -->
-                     <!-- ==================================================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
-                           Proceeding)
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul Artikel</th>
-                              <th>Nama Penulis</th>
-                              <th
-                                 >Nama Jurnal, Vol., No Issue/No Artikel,
-                                 Halaman</th
-                              >
-                              <th>Impact Factor/Scopus Quarter/Akreditasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ========================================== -->
-                     <!-- Table Pengalaman Pengalaman Penulisan Buku -->
-                     <!-- ========================================== -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Penulisan Buku
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul Buku</th>
-                              <th>Nama Penulis</th>
-                              <th>Penerbit</th>
-                              <th>ISBN</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td> </td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                     <!-- ========================================= -->
-                     <!-- Table Pengalaman Hak Kekayaan Intelektual -->
-                     <!-- ========================================= -->
-                     <label class="label" for="label"
-                        ><h6 class="title is-6">
-                           Pengalaman Hak Kekayaan Intelektual
-                        </h6></label
-                     >
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th></th>
-                              <th>Tahun</th>
-                              <th>Judul HKI</th>
-                              <th>Nama Penulis</th>
-                              <th>Jenis HKI</th>
-                              <th>No HKI</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td
-                                 ><button class="button is-danger is-small"
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 ></td
-                              >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td> </td>
-                              <td></td>
-                           </tr>
-                           <tr>
-                              <td colspan="6">
-                                 <button
-                                    class="button is-small is-success is-fullwidth"
-                                    >Tambah</button
-                                 >
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  {/if}
+                  </div>
                {/if}
             </div>
 
@@ -1013,23 +1071,27 @@
 </Article>
 
 <style>
-   /* .profileBox {
-      border-color: rgb(127, 127, 127);
-      border-style: solid;
-      border-width: 1px;
-      border-radius: 4px;
-      box-shadow: rgba(10, 10, 10, 0.05) 0px 1px 2px 0px inset;
-      padding: 15px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-   } */
+   .parent {
+      height: 600px;
+      /* overflow: hidden; */
+   }
 
-   .box2 {
+   .child {
+      height: 100%;
+      margin-right: -35px; /* Maximum width of scrollbar */
+      padding-right: 25px; /* Maximum width of scrollbar */
+      padding-bottom: 25px;
+      scrollbar-width: thin;
+      overflow-y: scroll;
+   }
+
+   .boxBiodataPeneliti {
       /* background-color: rgb(241, 244, 247); */
       background-color: rgb(245, 245, 245);
       border-color: rgb(200, 200, 200);
       border-style: solid;
       border-width: 1px;
+      height: 100%;
    }
 
    /* .columns {
