@@ -498,86 +498,9 @@
    async function remediasi() {
       error = {};
       isLoading = true;
-
-      if (editModeProposal) {
-         if (isObjectEmpty($ppmFile)) {
-            error["fileProposal"] = `*`;
-         }
-      }
-
-      if (editModeRAB) {
-         if (isObjectEmpty($rabFile)) {
-            error["fileRAB"] = `*`;
-         }
-      }
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      // ================================================//
-      // Upload File RAB
-      // ================================================//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
+      const readerRab = new FileReader();
 
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadRabFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (fileRab) readerRab.readAsDataURL(fileRab);
-      // ================================================//
-      // Upload File PPM
-      // ================================================//
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (filePpm) readerPpm.readAsDataURL(filePpm);
-
-      // ------------------------------------------------------------------------
       let payload = {
          jenisProposal,
          jenisKegiatan,
@@ -601,6 +524,18 @@
          randomPpmFileName,
       };
 
+      if (editModeProposal) {
+         if (isObjectEmpty($ppmFile)) {
+            error["fileProposal"] = `*`;
+         }
+      }
+
+      if (editModeRAB) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
+
       for (const [key, value] of Object.entries(payload)) {
          if (
             (!["comment"].includes(key) && !value) ||
@@ -609,11 +544,81 @@
             error[key] = `This field is required`;
          }
       }
-      console.log(error);
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
       } else {
+         // ================================================//
+         // Upload File PPM
+         // ================================================//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+         // ================================================//
+         // Upload File RAB
+         // ================================================//
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
+               },
+               randomRabFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadRabFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         if (fileRab) readerRab.readAsDataURL(fileRab);
+         // ================================================//
+         // Patch data proposal
+         // ================================================//
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: headers,
@@ -626,9 +631,11 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/dosen/proposalmanagement");
+               $route("/dosen/proposalppm");
             } else {
                console.log(response);
+               // Buat Handle Error
+               // ...
             }
          }
       }
@@ -638,73 +645,9 @@
    async function submitProposal() {
       error = {};
       isLoading = true;
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      // ================================================//
-      // Upload File RAB
-      // ================================================//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
+      const readerRab = new FileReader();
 
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadRabFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (fileRab) readerRab.readAsDataURL(fileRab);
-      // ================================================//
-      // Upload File PPM
-      // ================================================//
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-      if (filePpm) readerPpm.readAsDataURL(filePpm);
-
-      // -----------------------------------------------------------------------------//
       let payload = {
          jenisProposal,
          jenisKegiatan,
@@ -740,6 +683,74 @@
       if (Object.keys(error).length > 0) {
          showModalError = true;
       } else {
+         // ================================================//
+         // Upload File PPM
+         // ================================================//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+         // ================================================//
+         // Upload File RAB
+         // ================================================//
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
+               },
+               randomRabFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadRabFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         if (fileRab) readerRab.readAsDataURL(fileRab);
+         // -----------------------------------------------------------------------------//
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: headers,
@@ -752,87 +763,23 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/dosen/proposalmanagement");
+               $route("/dosen/proposalppm");
             } else {
                console.log(response);
+               // Buat Handle Error
+               // ...
             }
          }
       }
-
       isLoading = false;
    }
 
    async function simpanProposal() {
       error = {};
       isLoading = true;
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      // ================================================//
-      // Upload File RAB
-      // ================================================//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
+      const readerRab = new FileReader();
 
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadRabFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (fileRab) readerRab.readAsDataURL(fileRab);
-      // ================================================//
-      // Upload File PPM
-      // ================================================//
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (filePpm) readerPpm.readAsDataURL(filePpm);
-
-      // -----------------------------------------------------------------------------//
       let payload = {
          jenisProposal,
          jenisKegiatan,
@@ -868,6 +815,75 @@
       if (Object.keys(error).length > 0) {
          showModalError = true;
       } else {
+         // ================================================//
+         // Upload File PPM
+         // ================================================//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+         // ================================================//
+         // Upload File RAB
+         // ================================================//
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
+               },
+               randomRabFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadRabFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         if (fileRab) readerRab.readAsDataURL(fileRab);
+         // -----------------------------------------------------------------------------//
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: headers,
@@ -880,9 +896,11 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/dosen/proposalmanagement");
+               $route("/dosen/proposalppm");
             } else {
                console.log(response);
+               // Buat Handle Error
+               // ...
             }
          }
       }

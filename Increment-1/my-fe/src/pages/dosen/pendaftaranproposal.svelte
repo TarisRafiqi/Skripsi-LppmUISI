@@ -469,75 +469,9 @@
    async function simpanProposal() {
       error = {};
       isLoading = true;
-      // ------------------------------//
-      // Upload File Proposal
-      // ------------------------------//
       const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      readerPpm.readAsDataURL(filePpm);
-      // -------------------------------//
-      // Upload File RAB
-      // -------------------------------//
       const readerRab = new FileReader();
-      if (
-         jenisSkema === "Riset Kelompok Keahlian" ||
-         jenisSkema === "Riset Terapan" ||
-         jenisSkema === "Riset Kerjasama" ||
-         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-      ) {
-         readerRab.onloadend = async () => {
-            const base64Data = readerRab.result.split(",")[1];
-            const payloadRabFile = {
-               fileRab: {
-                  name: fileRab.name,
-                  type: fileRab.type,
-                  data: base64Data,
-               },
-               randomRabFileName,
-            };
 
-            try {
-               const response = await fetch($apiURL + "/uploadRab", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadRabFile),
-               });
-
-               const result = await response.json();
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-         readerRab.readAsDataURL(fileRab);
-      }
-
-      // -----------------------------------------------------------//
-      // Patch Identitas & Post Proposal
-      // -----------------------------------------------------------//
       let payloadIdentitas = {
          idProfile,
          namaLengkap,
@@ -554,6 +488,7 @@
          email,
          mataKuliah,
       };
+
       let payloadProposal = {
          id,
          jenisProposal,
@@ -580,6 +515,78 @@
       if (Object.keys(error).length > 0) {
          showModalErrorBiodata = true;
       } else {
+         // ------------------------------//
+         // Upload File Proposal
+         // ------------------------------//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         readerPpm.readAsDataURL(filePpm);
+         // -------------------------------//
+         // Upload File RAB
+         // -------------------------------//
+         if (
+            jenisSkema === "Riset Kelompok Keahlian" ||
+            jenisSkema === "Riset Terapan" ||
+            jenisSkema === "Riset Kerjasama" ||
+            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+         ) {
+            readerRab.onloadend = async () => {
+               const base64Data = readerRab.result.split(",")[1];
+               const payloadRabFile = {
+                  fileRab: {
+                     name: fileRab.name,
+                     type: fileRab.type,
+                     data: base64Data,
+                  },
+                  randomRabFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadRab", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadRabFile),
+                  });
+
+                  const result = await response.json();
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  // Buat Handle Error
+                  // ...
+               }
+            };
+            readerRab.readAsDataURL(fileRab);
+         }
+
+         // -----------------------------------------------------------//
+         // Patch Identitas & Post Proposal
+         // -----------------------------------------------------------//
+
          const responseIdentitas = await fetch($apiURL + "/userprofile", {
             method: "PATCH",
             headers: headers,
@@ -593,20 +600,12 @@
          } else {
             if (!responseIdentitas.ok) {
                console.log(responseIdentitas.msg, error);
-               // return;
-               // Lakukan sesuatu untuk memberhentikan function disini
+               // Buat Handle Error
+               // ...
             }
          }
-      }
 
-      for (const [key, value] of Object.entries(payloadProposal)) {
-         if (!payloadProposal[key]) {
-            error[key] = `This field is required`;
-         }
-      }
-      if (Object.keys(error).length > 0) {
-         // showModalErrorProposal = true;
-      } else {
+         // ================================================================
          const responseProposal = await fetch($apiURL + "/ppm", {
             method: "POST",
             headers: headers,
@@ -619,9 +618,11 @@
             location.pathname = "/tokenexpired";
          } else {
             if (responseProposal.ok) {
-               $route("/dosen/proposalmanagement");
+               $route("/dosen/proposalppm");
             } else {
                console.log(responseProposal.msg, error);
+               // Buat Handle Error
+               // ...
             }
          }
       }
@@ -635,73 +636,8 @@
       error = {};
       isLoading = true;
       const readerRab = new FileReader();
-      // --------------------------------------//
-      // Upload File RAB
-      // --------------------------------------//
-      if (
-         jenisSkema === "Riset Kelompok Keahlian" ||
-         jenisSkema === "Riset Terapan" ||
-         jenisSkema === "Riset Kerjasama" ||
-         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-      ) {
-         readerRab.onloadend = async () => {
-            const base64Data = readerRab.result.split(",")[1];
-            const payloadRabFile = {
-               fileRab: {
-                  name: fileRab.name,
-                  type: fileRab.type,
-                  data: base64Data,
-               },
-               randomRabFileName,
-            };
-
-            try {
-               const response = await fetch($apiURL + "/uploadRab", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadRabFile),
-               });
-
-               const result = await response.json();
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-         readerRab.readAsDataURL(fileRab);
-      }
-      // -------------------------------------------------------------------//
-      // Upload File PPM
-      // -------------------------------------------------------------------//
       const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
 
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      readerPpm.readAsDataURL(filePpm);
-      // --------------------------------------------------------------------//
-      // Patch Identitas & Post Proposal                                                       //
-      // --------------------------------------------------------------------//
       let payloadIdentitas = {
          idProfile,
          namaLengkap,
@@ -718,6 +654,7 @@
          email,
          mataKuliah,
       };
+
       let payloadProposal = {
          id,
          jenisProposal,
@@ -744,6 +681,78 @@
       if (Object.keys(error).length > 0) {
          showModalErrorBiodata = true;
       } else {
+         console.log(">>>Test<<<");
+         // ------------------------------//
+         // Upload File Proposal
+         // ------------------------------//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               // Buat Handle Error
+               // ...
+            }
+         };
+
+         readerPpm.readAsDataURL(filePpm);
+         // --------------------------------------//
+         // Upload File RAB
+         // --------------------------------------//
+         if (
+            jenisSkema === "Riset Kelompok Keahlian" ||
+            jenisSkema === "Riset Terapan" ||
+            jenisSkema === "Riset Kerjasama" ||
+            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+         ) {
+            readerRab.onloadend = async () => {
+               const base64Data = readerRab.result.split(",")[1];
+               const payloadRabFile = {
+                  fileRab: {
+                     name: fileRab.name,
+                     type: fileRab.type,
+                     data: base64Data,
+                  },
+                  randomRabFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadRab", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadRabFile),
+                  });
+
+                  const result = await response.json();
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  // Buat Handle Error
+                  // ...
+               }
+            };
+            readerRab.readAsDataURL(fileRab);
+         }
+
+         // --------------------------------------------------------------------//
+         // Patch Identitas & Post Proposal                                     //
+         // --------------------------------------------------------------------//
          const responseIdentitas = await fetch($apiURL + "/userprofile", {
             method: "PATCH",
             headers: headers,
@@ -757,20 +766,12 @@
          } else {
             if (!responseIdentitas.ok) {
                console.log(responseIdentitas.msg, error);
-               // return;
-               // Lakukan sesuatu untuk memberhentikan function disini
+               // Buat Handle Error
+               // ...
             }
          }
-      }
 
-      for (const [key, value] of Object.entries(payloadProposal)) {
-         if (!payloadProposal[key]) {
-            error[key] = `This field is required`;
-         }
-      }
-      if (Object.keys(error).length > 0) {
-         // showModalErrorProposal = true;
-      } else {
+         // ================================================================
          const responseProposal = await fetch($apiURL + "/ppm", {
             method: "POST",
             headers: headers,
@@ -783,12 +784,15 @@
             location.pathname = "/tokenexpired";
          } else {
             if (responseProposal.ok) {
-               $route("/dosen/proposalmanagement");
+               $route("/dosen/proposalppm");
             } else {
                console.log(responseProposal.msg, error);
+               // Buat Handle Error
+               // ...
             }
          }
       }
+
       isLoading = false;
    }
 
@@ -1747,12 +1751,17 @@
             </Field>
 
             <Field name="Jabatan Fungsional">
-               <input
-                  id="jabatanFungsional"
-                  class="input"
-                  type="text"
-                  bind:value={jabatanFungsional}
-               />
+               <div class="select is-fullwidth">
+                  <select bind:value={jabatanFungsional}>
+                     <option value="" selected disabled hidden
+                        >Pilih Jabatan Fungsional</option
+                     >
+                     <option value="Asisten Ahli">Asisten Ahli</option>
+                     <option value="Lektor">Lektor</option>
+                     <option value="Lektor Kepala">Lektor Kepala</option>
+                     <option value="Profesor">Profesor</option>
+                  </select>
+               </div>
                {#if error.jabatanFungsional}
                   <p class="help error is-danger">{error.jabatanFungsional}</p>
                {/if}</Field
@@ -2513,8 +2522,10 @@
             <button class="button" on:click={clicktab1}>Back</button>
          </p>
          <p class="control">
-            <button class="button is-info is-light" on:click={simpanProposal}
-               >Simpan</button
+            <button
+               class="button is-info is-light"
+               on:click={simpanProposal}
+               class:is-loading={isLoading}>Simpan</button
             >
          </p>
          <p class="control">

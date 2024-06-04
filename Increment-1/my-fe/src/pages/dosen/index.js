@@ -6,6 +6,6 @@ export { default as home } from "./home.svelte";
 export { default as ongoingppm } from "./ongoingppm.svelte";
 export { default as pendaftaranproposal } from "./pendaftaranproposal.svelte";
 export { default as profile } from "./profile.svelte";
-export { default as proposalmanagement } from "./proposalmanagement.svelte";
+export { default as proposalppm } from "./proposalppm.svelte";
 export { default as select } from "./select.svelte";
 export { default as testform } from "./testform.svelte";

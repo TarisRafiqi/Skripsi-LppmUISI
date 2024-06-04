@@ -1873,6 +1873,31 @@ article.svelte-12yf9li {
   overflow-y: scroll;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/completedppm.esbuild-svelte-fake-css */
+.judul.svelte-1mtjhz7 {
+  text-align: justify;
+}
+.kegiatan.svelte-1mtjhz7,
+.skema.svelte-1mtjhz7,
+.status.svelte-1mtjhz7,
+.review.svelte-1mtjhz7 {
+  text-align: center;
+}
+.review.svelte-1mtjhz7 {
+  cursor: pointer;
+}
+.parent.svelte-1mtjhz7 {
+  height: 600px;
+  overflow: hidden;
+}
+.child.svelte-1mtjhz7 {
+  height: 100%;
+  margin-right: -20px;
+  padding-right: 20px;
+  scrollbar-width: thin;
+  overflow-y: scroll;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/detailapproval.esbuild-svelte-fake-css */
 .inputf__wrapper.svelte-14mnqgg.svelte-14mnqgg {
   position: relative;
@@ -1925,6 +1950,31 @@ article.svelte-12yf9li {
 }
 .flex-item-right.svelte-1g6xyrw {
   flex: 50%;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/ongoingppm.esbuild-svelte-fake-css */
+.judul.svelte-1mtjhz7 {
+  text-align: justify;
+}
+.kegiatan.svelte-1mtjhz7,
+.skema.svelte-1mtjhz7,
+.status.svelte-1mtjhz7,
+.review.svelte-1mtjhz7 {
+  text-align: center;
+}
+.review.svelte-1mtjhz7 {
+  cursor: pointer;
+}
+.parent.svelte-1mtjhz7 {
+  height: 600px;
+  overflow: hidden;
+}
+.child.svelte-1mtjhz7 {
+  height: 100%;
+  margin-right: -20px;
+  padding-right: 20px;
+  scrollbar-width: thin;
+  overflow-y: scroll;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
@@ -1988,7 +2038,7 @@ button.svelte-5cn8hs {
   color: white;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/proposalmanagement.esbuild-svelte-fake-css */
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/proposalppm.esbuild-svelte-fake-css */
 .judul.svelte-1mtjhz7 {
   text-align: justify;
 }
@@ -2014,24 +2064,12 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.field.svelte-jtr2u8.svelte-jtr2u8 {
+.field.svelte-ihhmph {
   padding-bottom: 10px;
 }
-.red-asterisk.svelte-jtr2u8.svelte-jtr2u8 {
+.red-asterisk.svelte-ihhmph {
   color: red;
   font-weight: bold;
-}
-.inputf__wrapper.svelte-jtr2u8.svelte-jtr2u8 {
-  position: relative;
-  display: flex;
-}
-.inputf__wrapper.svelte-jtr2u8 input.svelte-jtr2u8 {
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-.help.svelte-jtr2u8.svelte-jtr2u8 {
-  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */

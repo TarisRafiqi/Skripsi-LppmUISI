@@ -51,13 +51,10 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       const reminder = [];
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -95,10 +92,6 @@
 <Article>
    <h2 class="title is-2">Proposal Penelitian / Pengabdian Masyarakat</h2>
    <hr />
-
-   <Modalroute bind:show={showModalError}>
-      <p>Lengkapi profile anda terlebih dahulu</p>
-   </Modalroute>
 
    <div class="columns">
       <div class="column">
@@ -168,6 +161,10 @@
       </div>
    </div>
 </Article>
+
+<Modalroute bind:show={showModalError}>
+   <p>Lengkapi profile anda terlebih dahulu</p>
+</Modalroute>
 
 <style>
    .judul {

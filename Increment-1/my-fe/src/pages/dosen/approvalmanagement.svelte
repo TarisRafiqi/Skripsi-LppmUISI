@@ -24,10 +24,8 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {

@@ -12,8 +12,8 @@
    let isLoading = false;
    let editMode = false;
    let form = {
-      username,
       email,
+      username,
    };
 
    function toggleEditMode() {
@@ -29,9 +29,6 @@
    }
 
    function handleSubmit() {
-      console.log(filePpm);
-      console.log(filePpm.name);
-      console.log(filePpm.type);
       error = {};
       isLoading = true;
       for (const [key, value] of Object.entries(form)) {
@@ -42,23 +39,30 @@
          }
       }
 
-      if (isObjectEmpty($ppmFile)) {
-         error["fileProposal"] = `*`;
-      }
+      // if (isObjectEmpty($ppmFile)) {
+      //    error["fileProposal"] = `*`;
+      // }
 
       if (Object.keys(error).length > 0) {
          console.log("Error, Lengkapi semua form");
-      } else {
          isLoading = false;
+      } else {
+         console.log("Tombol akan kembali dalam 3 detik...");
+         setTimeout((isLoading = false), 3000);
+         // isLoading = false;
          console.log("Sukses");
          return;
       }
    }
 
-   function filePpmChange(e) {
-      filePpm = e.target.files[0];
-      $ppmFile = e.target.files[0];
+   function stopLoading() {
+      isLoading = false;
    }
+
+   // function filePpmChange(e) {
+   //    filePpm = e.target.files[0];
+   //    $ppmFile = e.target.files[0];
+   // }
 </script>
 
 <Article>
@@ -96,7 +100,7 @@
    </div>
 
    <!-- ----------------------------------------------------------------------------- -->
-   <Field name="Proposal">
+   <!-- <Field name="Proposal">
       {#if !editMode}
          <button class="button is-link button">Download Proposal</button>
          <button
@@ -148,7 +152,7 @@
 
          <p class="help is-info">File Type: pdf</p>
       {/if}
-   </Field>
+   </Field> -->
 </Article>
 
 <style>
@@ -160,18 +164,17 @@
       font-weight: bold;
    }
 
-   .inputf__wrapper {
+   /* .inputf__wrapper {
       position: relative;
       display: flex;
-   }
-   .inputf__wrapper input {
+   } */
+   /* .inputf__wrapper input {
       width: 0;
       height: 0;
       opacity: 0;
-   }
+   } */
 
-   .help {
-      /* top, right, bottom, left */
+   /* .help {
       margin: -6px 0px 0px 0px;
-   }
+   } */
 </style>

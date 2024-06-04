@@ -15401,7 +15401,7 @@
     let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
     let uidProposal;
     let fileRab;
-    let filePpm2;
+    let filePpm;
     let items = [];
     let file;
     let view;
@@ -15654,8 +15654,8 @@
         const base64Data = readerPpm.result.split(",")[1];
         const payloadPpmFile = {
           filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
+            name: filePpm.name,
+            type: filePpm.type,
             data: base64Data
           },
           randomPpmFileName
@@ -15674,8 +15674,8 @@
           console.error("Error uploading file:", error2);
         }
       };
-      if (filePpm2)
-        readerPpm.readAsDataURL(filePpm2);
+      if (filePpm)
+        readerPpm.readAsDataURL(filePpm);
       const payload = {
         jenisProposal,
         jenisKegiatan,
@@ -15996,7 +15996,7 @@
       $$invalidate(64, editModeRAB = !editModeRAB);
     }
     function filePpmChange(e) {
-      filePpm2 = e.target.files[0];
+      filePpm = e.target.files[0];
       set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
     }
     function fileRabChange(e) {
@@ -17400,8 +17400,14 @@
     };
   }
   function create_default_slot_48(ctx) {
-    let input;
-    let t;
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    let t5;
     let if_block_anchor;
     let mounted;
     let dispose;
@@ -17411,30 +17417,68 @@
     );
     return {
       c() {
-        input = element("input");
-        t = space();
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jabatan Fungsional";
+        option1 = element("option");
+        option1.textContent = "Asisten Ahli";
+        option2 = element("option");
+        option2.textContent = "Lektor";
+        option3 = element("option");
+        option3.textContent = "Lektor Kepala";
+        option4 = element("option");
+        option4.textContent = "Profesor";
+        t5 = space();
         if (if_block)
           if_block.c();
         if_block_anchor = empty();
-        attr(input, "class", "input");
-        attr(input, "type", "text");
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "Asisten Ahli";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Lektor";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Lektor Kepala";
+        set_input_value(option3, option3.__value);
+        option4.__value = "Profesor";
+        set_input_value(option4, option4.__value);
+        if (
+          /*jabatanFungsional*/
+          ctx[38] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler*/
+            ctx[102].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
       },
       m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(select, option3);
+        append(select, option4);
+        select_option(
+          select,
           /*jabatanFungsional*/
-          ctx[38]
+          ctx[38],
+          true
         );
-        insert(target, t, anchor);
+        insert(target, t5, anchor);
         if (if_block)
           if_block.m(target, anchor);
         insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_1*/
+            select,
+            "change",
+            /*select_change_handler*/
             ctx[102]
           );
           mounted = true;
@@ -17442,10 +17486,9 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*jabatanFungsional*/
-        128 && input.value !== /*jabatanFungsional*/
-        ctx2[38]) {
-          set_input_value(
-            input,
+        128) {
+          select_option(
+            select,
             /*jabatanFungsional*/
             ctx2[38]
           );
@@ -17468,8 +17511,8 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(input);
-          detach(t);
+          detach(div);
+          detach(t5);
           detach(if_block_anchor);
         }
         if (if_block)
@@ -17544,7 +17587,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_2*/
+            /*input_input_handler_1*/
             ctx[103]
           );
           mounted = true;
@@ -17654,7 +17697,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_3*/
+            /*input_input_handler_2*/
             ctx[104]
           );
           mounted = true;
@@ -17764,7 +17807,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_4*/
+            /*input_input_handler_3*/
             ctx[105]
           );
           mounted = true;
@@ -17874,7 +17917,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_5*/
+            /*input_input_handler_4*/
             ctx[106]
           );
           mounted = true;
@@ -17983,7 +18026,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
+            /*input_input_handler_5*/
             ctx[107]
           );
           mounted = true;
@@ -18093,7 +18136,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
+            /*input_input_handler_6*/
             ctx[108]
           );
           mounted = true;
@@ -18203,7 +18246,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
+            /*input_input_handler_7*/
             ctx[109]
           );
           mounted = true;
@@ -18313,7 +18356,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
+            /*input_input_handler_8*/
             ctx[110]
           );
           mounted = true;
@@ -18423,7 +18466,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
+            /*input_input_handler_9*/
             ctx[111]
           );
           mounted = true;
@@ -18533,7 +18576,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_11*/
+            /*input_input_handler_10*/
             ctx[112]
           );
           mounted = true;
@@ -18681,7 +18724,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_12*/
+              /*input_input_handler_11*/
               ctx[113]
             ),
             listen(
@@ -21877,7 +21920,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
+            /*input_input_handler_12*/
             ctx[129]
           );
           mounted = true;
@@ -21987,7 +22030,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
+            /*input_input_handler_13*/
             ctx[130]
           );
           mounted = true;
@@ -22104,7 +22147,7 @@
           ctx[11] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler*/
+            /*select_change_handler_1*/
             ctx[131].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -22129,7 +22172,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler*/
+            /*select_change_handler_1*/
             ctx[131]
           );
           mounted = true;
@@ -22238,7 +22281,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_15*/
+            /*input_input_handler_14*/
             ctx[132]
           );
           mounted = true;
@@ -22350,7 +22393,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_16*/
+              /*input_input_handler_15*/
               ctx[133]
             ),
             listen(
@@ -22666,7 +22709,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
+            /*input_input_handler_16*/
             ctx[136]
           );
           mounted = true;
@@ -22776,7 +22819,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
+            /*input_input_handler_17*/
             ctx[137]
           );
           mounted = true;
@@ -22893,7 +22936,7 @@
           ctx[16] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler_1*/
+            /*select_change_handler_2*/
             ctx[138].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -22918,7 +22961,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler_1*/
+            /*select_change_handler_2*/
             ctx[138]
           );
           mounted = true;
@@ -23027,7 +23070,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_19*/
+            /*input_input_handler_18*/
             ctx[139]
           );
           mounted = true;
@@ -23139,7 +23182,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_20*/
+              /*input_input_handler_19*/
               ctx[140]
             ),
             listen(
@@ -23455,7 +23498,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
+            /*input_input_handler_20*/
             ctx[143]
           );
           mounted = true;
@@ -23565,7 +23608,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
+            /*input_input_handler_21*/
             ctx[144]
           );
           mounted = true;
@@ -23675,7 +23718,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
+            /*input_input_handler_22*/
             ctx[145]
           );
           mounted = true;
@@ -23785,7 +23828,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
+            /*input_input_handler_23*/
             ctx[146]
           );
           mounted = true;
@@ -24070,7 +24113,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
+            /*input_input_handler_24*/
             ctx[148]
           );
           mounted = true;
@@ -24180,7 +24223,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
+            /*input_input_handler_25*/
             ctx[149]
           );
           mounted = true;
@@ -24290,7 +24333,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
+            /*input_input_handler_26*/
             ctx[150]
           );
           mounted = true;
@@ -24400,7 +24443,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
+            /*input_input_handler_27*/
             ctx[151]
           );
           mounted = true;
@@ -24510,7 +24553,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
+            /*input_input_handler_28*/
             ctx[152]
           );
           mounted = true;
@@ -24819,7 +24862,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
+            /*input_input_handler_29*/
             ctx[154]
           );
           mounted = true;
@@ -24929,7 +24972,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
+            /*input_input_handler_30*/
             ctx[155]
           );
           mounted = true;
@@ -25039,7 +25082,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
+            /*input_input_handler_31*/
             ctx[156]
           );
           mounted = true;
@@ -25149,7 +25192,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
+            /*input_input_handler_32*/
             ctx[157]
           );
           mounted = true;
@@ -25259,7 +25302,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
+            /*input_input_handler_33*/
             ctx[158]
           );
           mounted = true;
@@ -25569,7 +25612,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
+            /*input_input_handler_34*/
             ctx[160]
           );
           mounted = true;
@@ -25679,7 +25722,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
+            /*input_input_handler_35*/
             ctx[161]
           );
           mounted = true;
@@ -25789,7 +25832,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
+            /*input_input_handler_36*/
             ctx[162]
           );
           mounted = true;
@@ -25899,7 +25942,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_38*/
+            /*input_input_handler_37*/
             ctx[163]
           );
           mounted = true;
@@ -26009,7 +26052,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_39*/
+            /*input_input_handler_38*/
             ctx[164]
           );
           mounted = true;
@@ -27257,51 +27300,51 @@
       namaLengkap = this.value;
       $$invalidate(37, namaLengkap);
     }
-    function input_input_handler_1() {
-      jabatanFungsional = this.value;
+    function select_change_handler() {
+      jabatanFungsional = select_value(this);
       $$invalidate(38, jabatanFungsional);
     }
-    function input_input_handler_2() {
+    function input_input_handler_1() {
       nip = to_number(this.value);
       $$invalidate(39, nip);
     }
-    function input_input_handler_3() {
+    function input_input_handler_2() {
       nidn = to_number(this.value);
       $$invalidate(40, nidn);
     }
-    function input_input_handler_4() {
+    function input_input_handler_3() {
       tempatLahir = this.value;
       $$invalidate(41, tempatLahir);
     }
-    function input_input_handler_5() {
+    function input_input_handler_4() {
       tanggalLahir = this.value;
       $$invalidate(42, tanggalLahir);
     }
-    function input_input_handler_6() {
+    function input_input_handler_5() {
       alamatRumah = this.value;
       $$invalidate(43, alamatRumah);
     }
-    function input_input_handler_7() {
+    function input_input_handler_6() {
       telpFaxRumah = to_number(this.value);
       $$invalidate(44, telpFaxRumah);
     }
-    function input_input_handler_8() {
+    function input_input_handler_7() {
       nomorHandphone = to_number(this.value);
       $$invalidate(45, nomorHandphone);
     }
-    function input_input_handler_9() {
+    function input_input_handler_8() {
       alamatKantor = this.value;
       $$invalidate(46, alamatKantor);
     }
-    function input_input_handler_10() {
+    function input_input_handler_9() {
       telpFaxKantor = to_number(this.value);
       $$invalidate(47, telpFaxKantor);
     }
-    function input_input_handler_11() {
+    function input_input_handler_10() {
       email3 = this.value;
       $$invalidate(48, email3);
     }
-    function input_input_handler_12() {
+    function input_input_handler_11() {
       vmataKuliah = this.value;
       $$invalidate(0, vmataKuliah);
     }
@@ -27365,23 +27408,23 @@
       judulTugasAkhirS3 = this.value;
       $$invalidate(64, judulTugasAkhirS3);
     }
-    function input_input_handler_13() {
+    function input_input_handler_12() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(9, tahunPenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_13() {
       judulPenelitian = this.value;
       $$invalidate(10, judulPenelitian);
     }
-    function select_change_handler() {
+    function select_change_handler_1() {
       rolePenelitian = select_value(this);
       $$invalidate(11, rolePenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_14() {
       sumberDanaPenelitian = this.value;
       $$invalidate(12, sumberDanaPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_15() {
       biayaPP = this.value;
       $$invalidate(8, biayaPP);
     }
@@ -27390,23 +27433,23 @@
       showModalPenelitian = value;
       $$invalidate(65, showModalPenelitian);
     }
-    function input_input_handler_17() {
+    function input_input_handler_16() {
       tahunPengmas = to_number(this.value);
       $$invalidate(14, tahunPengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_17() {
       judulPengmas = this.value;
       $$invalidate(15, judulPengmas);
     }
-    function select_change_handler_1() {
+    function select_change_handler_2() {
       rolePengmas = select_value(this);
       $$invalidate(16, rolePengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_18() {
       sumberDanaPengmas = this.value;
       $$invalidate(17, sumberDanaPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_19() {
       biayaPengmas = this.value;
       $$invalidate(13, biayaPengmas);
     }
@@ -27415,19 +27458,19 @@
       showModalPengmas = value;
       $$invalidate(66, showModalPengmas);
     }
-    function input_input_handler_21() {
+    function input_input_handler_20() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(18, tahunDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_21() {
       judulDiseminasi = this.value;
       $$invalidate(19, judulDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_22() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(20, namaPemakalahDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_23() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(21, namaPertemuanDiseminasi);
     }
@@ -27435,23 +27478,23 @@
       showModalDiseminasi = value;
       $$invalidate(67, showModalDiseminasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_24() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(22, tahunPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_25() {
       judulPublikasi = this.value;
       $$invalidate(23, judulPublikasi);
     }
-    function input_input_handler_27() {
+    function input_input_handler_26() {
       namaPenulis = this.value;
       $$invalidate(24, namaPenulis);
     }
-    function input_input_handler_28() {
+    function input_input_handler_27() {
       namaJurnal = this.value;
       $$invalidate(25, namaJurnal);
     }
-    function input_input_handler_29() {
+    function input_input_handler_28() {
       impactFactor = this.value;
       $$invalidate(26, impactFactor);
     }
@@ -27459,23 +27502,23 @@
       showModalPublikasi = value;
       $$invalidate(68, showModalPublikasi);
     }
-    function input_input_handler_30() {
+    function input_input_handler_29() {
       tahunBuku = to_number(this.value);
       $$invalidate(27, tahunBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_30() {
       JudulBuku = this.value;
       $$invalidate(28, JudulBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_31() {
       namaPenulisBuku = this.value;
       $$invalidate(29, namaPenulisBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_32() {
       PenerbitBuku = this.value;
       $$invalidate(30, PenerbitBuku);
     }
-    function input_input_handler_34() {
+    function input_input_handler_33() {
       Isbn = this.value;
       $$invalidate(31, Isbn);
     }
@@ -27483,23 +27526,23 @@
       showModalPenulisanBuku = value;
       $$invalidate(69, showModalPenulisanBuku);
     }
-    function input_input_handler_35() {
+    function input_input_handler_34() {
       tahunHKI = to_number(this.value);
       $$invalidate(32, tahunHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_35() {
       JudulHKI = this.value;
       $$invalidate(33, JudulHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_36() {
       namaPenulisHKI = this.value;
       $$invalidate(34, namaPenulisHKI);
     }
-    function input_input_handler_38() {
+    function input_input_handler_37() {
       jenisHKI = this.value;
       $$invalidate(35, jenisHKI);
     }
-    function input_input_handler_39() {
+    function input_input_handler_38() {
       noHKI = this.value;
       $$invalidate(36, noHKI);
     }
@@ -27618,6 +27661,7 @@
       deleteMatkul,
       params,
       input_input_handler,
+      select_change_handler,
       input_input_handler_1,
       input_input_handler_2,
       input_input_handler_3,
@@ -27629,7 +27673,6 @@
       input_input_handler_9,
       input_input_handler_10,
       input_input_handler_11,
-      input_input_handler_12,
       input0_input_handler,
       input1_input_handler,
       input2_input_handler,
@@ -27645,42 +27688,42 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
+      input_input_handler_12,
       input_input_handler_13,
+      select_change_handler_1,
       input_input_handler_14,
-      select_change_handler,
       input_input_handler_15,
-      input_input_handler_16,
       keyup_handler,
       modal0_show_binding,
+      input_input_handler_16,
       input_input_handler_17,
+      select_change_handler_2,
       input_input_handler_18,
-      select_change_handler_1,
       input_input_handler_19,
-      input_input_handler_20,
       keyup_handler_1,
       modal1_show_binding,
+      input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
       input_input_handler_23,
-      input_input_handler_24,
       modal2_show_binding,
+      input_input_handler_24,
       input_input_handler_25,
       input_input_handler_26,
       input_input_handler_27,
       input_input_handler_28,
-      input_input_handler_29,
       modal3_show_binding,
+      input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
       input_input_handler_32,
       input_input_handler_33,
-      input_input_handler_34,
       modal4_show_binding,
+      input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
       input_input_handler_37,
       input_input_handler_38,
-      input_input_handler_39,
       modal5_show_binding,
       modalerror_show_binding
     ];
@@ -30361,7 +30404,7 @@
     ongoingppm: () => ongoingppm_default,
     pendaftaranproposal: () => pendaftaranproposal_default,
     profile: () => profile_default2,
-    proposalmanagement: () => proposalmanagement_default2,
+    proposalppm: () => proposalppm_default,
     select: () => select_default,
     testform: () => testform_default
   });
@@ -31935,26 +31978,149 @@
     let h2;
     let t1;
     let hr;
+    let t2;
+    let div1;
+    let div0;
+    let input;
+    let t3;
+    let span0;
+    let icon0;
+    let t4;
+    let div3;
+    let div2;
+    let table;
+    let thead;
+    let t14;
+    let tbody;
+    let tr1;
+    let td0;
+    let t15;
+    let td1;
+    let t16;
+    let td2;
+    let t17;
+    let td3;
+    let t18;
+    let td4;
+    let button;
+    let span1;
+    let icon1;
+    let current;
+    icon0 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
+    icon1 = new Icon_default({ props: { id: "info", src: infoOutline } });
     return {
       c() {
         h2 = element("h2");
         h2.textContent = "Completed Penelitian / Pengabdian Masyarakat";
         t1 = space();
         hr = element("hr");
+        t2 = space();
+        div1 = element("div");
+        div0 = element("div");
+        input = element("input");
+        t3 = space();
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t4 = space();
+        div3 = element("div");
+        div2 = element("div");
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
+        t14 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        td0 = element("td");
+        t15 = space();
+        td1 = element("td");
+        t16 = space();
+        td2 = element("td");
+        t17 = space();
+        td3 = element("td");
+        td3.innerHTML = ``;
+        t18 = space();
+        td4 = element("td");
+        button = element("button");
+        span1 = element("span");
+        create_component(icon1.$$.fragment);
         attr(h2, "class", "title is-2");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Search judul");
+        attr(span0, "class", "icon is-left");
+        attr(div0, "class", "control has-icons-left");
+        attr(div1, "class", "field");
+        attr(td0, "class", "judul svelte-1mtjhz7");
+        attr(td1, "class", "kegiatan svelte-1mtjhz7");
+        attr(td2, "class", "skema svelte-1mtjhz7");
+        attr(td3, "class", "status svelte-1mtjhz7");
+        attr(span1, "class", "icon");
+        attr(button, "class", "button is-info is-small");
+        attr(td4, "class", "review svelte-1mtjhz7");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div2, "class", "child svelte-1mtjhz7");
+        attr(div3, "class", "box parent svelte-1mtjhz7");
       },
       m(target, anchor) {
         insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
+        insert(target, t2, anchor);
+        insert(target, div1, anchor);
+        append(div1, div0);
+        append(div0, input);
+        append(div0, t3);
+        append(div0, span0);
+        mount_component(icon0, span0, null);
+        insert(target, t4, anchor);
+        insert(target, div3, anchor);
+        append(div3, div2);
+        append(div2, table);
+        append(table, thead);
+        append(table, t14);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tr1, td0);
+        append(tr1, t15);
+        append(tr1, td1);
+        append(tr1, t16);
+        append(tr1, td2);
+        append(tr1, t17);
+        append(tr1, td3);
+        append(tr1, t18);
+        append(tr1, td4);
+        append(td4, button);
+        append(button, span1);
+        mount_component(icon1, span1, null);
+        current = true;
       },
       p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
           detach(h2);
           detach(t1);
           detach(hr);
+          detach(t2);
+          detach(div1);
+          detach(t4);
+          detach(div3);
         }
+        destroy_component(icon0);
+        destroy_component(icon1);
       }
     };
   }
@@ -45217,7 +45383,7 @@
     const id = params["1"];
     let file;
     let fileRab;
-    let filePpm2;
+    let filePpm;
     let isLoading = false;
     let editModeProposal = false;
     let editModeRAB = false;
@@ -45406,7 +45572,7 @@
       }
     });
     function filePpmChange(e) {
-      filePpm2 = e.target.files[0];
+      filePpm = e.target.files[0];
       set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
     }
     function fileRabChange(e) {
@@ -45456,70 +45622,8 @@
     async function remediasi() {
       $$invalidate(0, error = {});
       $$invalidate(53, isLoading = true);
-      if (editModeProposal) {
-        if (isObjectEmpty3($ppmFile)) {
-          $$invalidate(0, error["fileProposal"] = `*`, error);
-        }
-      }
-      if (editModeRAB) {
-        if (isObjectEmpty3($rabFile)) {
-          $$invalidate(0, error["fileRAB"] = `*`, error);
-        }
-      }
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      readerRab.onloadend = async () => {
-        const base64Data = readerRab.result.split(",")[1];
-        const payloadRabFile = {
-          fileRab: {
-            name: fileRab.name,
-            type: fileRab.type,
-            data: base64Data
-          },
-          randomRabFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadRab", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadRabFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (fileRab)
-        readerRab.readAsDataURL(fileRab);
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
-            data: base64Data
-          },
-          randomPpmFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (filePpm2)
-        readerPpm.readAsDataURL(filePpm2);
+      const readerRab = new FileReader();
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -45542,15 +45646,76 @@
         randomRabFileName,
         randomPpmFileName
       };
+      if (editModeProposal) {
+        if (isObjectEmpty3($ppmFile)) {
+          $$invalidate(0, error["fileProposal"] = `*`, error);
+        }
+      }
+      if (editModeRAB) {
+        if (isObjectEmpty3($rabFile)) {
+          $$invalidate(0, error["fileRAB"] = `*`, error);
+        }
+      }
       for (const [key, value] of Object.entries(payload)) {
         if (!["comment"].includes(key) && !value || key === "anggotaTim" && Array.isArray(value) && value.length <= 1) {
           $$invalidate(0, error[key] = `This field is required`, error);
         }
       }
-      console.log(error);
       if (Object.keys(error).length > 0) {
         $$invalidate(56, showModalError = true);
       } else {
+        readerPpm.onloadend = async () => {
+          const base64Data = readerPpm.result.split(",")[1];
+          const payloadPpmFile = {
+            filePpm: {
+              name: filePpm.name,
+              type: filePpm.type,
+              data: base64Data
+            },
+            randomPpmFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadPpm", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadPpmFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (filePpm)
+          readerPpm.readAsDataURL(filePpm);
+        readerRab.onloadend = async () => {
+          const base64Data = readerRab.result.split(",")[1];
+          const payloadRabFile = {
+            fileRab: {
+              name: fileRab.name,
+              type: fileRab.type,
+              data: base64Data
+            },
+            randomRabFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadRab", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadRabFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (fileRab)
+          readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
           headers,
@@ -45561,7 +45726,7 @@
           location.pathname = "/tokenexpired";
         } else {
           if (response.ok) {
-            $route("/dosen/proposalmanagement");
+            $route("/dosen/proposalppm");
           } else {
             console.log(response);
           }
@@ -45572,60 +45737,8 @@
     async function submitProposal() {
       $$invalidate(0, error = {});
       $$invalidate(53, isLoading = true);
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      readerRab.onloadend = async () => {
-        const base64Data = readerRab.result.split(",")[1];
-        const payloadRabFile = {
-          fileRab: {
-            name: fileRab.name,
-            type: fileRab.type,
-            data: base64Data
-          },
-          randomRabFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadRab", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadRabFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (fileRab)
-        readerRab.readAsDataURL(fileRab);
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
-            data: base64Data
-          },
-          randomPpmFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (filePpm2)
-        readerPpm.readAsDataURL(filePpm2);
+      const readerRab = new FileReader();
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -45656,6 +45769,58 @@
       if (Object.keys(error).length > 0) {
         $$invalidate(56, showModalError = true);
       } else {
+        readerPpm.onloadend = async () => {
+          const base64Data = readerPpm.result.split(",")[1];
+          const payloadPpmFile = {
+            filePpm: {
+              name: filePpm.name,
+              type: filePpm.type,
+              data: base64Data
+            },
+            randomPpmFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadPpm", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadPpmFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (filePpm)
+          readerPpm.readAsDataURL(filePpm);
+        readerRab.onloadend = async () => {
+          const base64Data = readerRab.result.split(",")[1];
+          const payloadRabFile = {
+            fileRab: {
+              name: fileRab.name,
+              type: fileRab.type,
+              data: base64Data
+            },
+            randomRabFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadRab", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadRabFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (fileRab)
+          readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
           headers,
@@ -45666,7 +45831,7 @@
           location.pathname = "/tokenexpired";
         } else {
           if (response.ok) {
-            $route("/dosen/proposalmanagement");
+            $route("/dosen/proposalppm");
           } else {
             console.log(response);
           }
@@ -45677,60 +45842,8 @@
     async function simpanProposal() {
       $$invalidate(0, error = {});
       $$invalidate(53, isLoading = true);
-      const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      readerRab.onloadend = async () => {
-        const base64Data = readerRab.result.split(",")[1];
-        const payloadRabFile = {
-          fileRab: {
-            name: fileRab.name,
-            type: fileRab.type,
-            data: base64Data
-          },
-          randomRabFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadRab", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadRabFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (fileRab)
-        readerRab.readAsDataURL(fileRab);
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
-            data: base64Data
-          },
-          randomPpmFileName
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-          if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-          }
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      if (filePpm2)
-        readerPpm.readAsDataURL(filePpm2);
+      const readerRab = new FileReader();
       let payload = {
         jenisProposal,
         jenisKegiatan,
@@ -45761,6 +45874,58 @@
       if (Object.keys(error).length > 0) {
         $$invalidate(56, showModalError = true);
       } else {
+        readerPpm.onloadend = async () => {
+          const base64Data = readerPpm.result.split(",")[1];
+          const payloadPpmFile = {
+            filePpm: {
+              name: filePpm.name,
+              type: filePpm.type,
+              data: base64Data
+            },
+            randomPpmFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadPpm", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadPpmFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (filePpm)
+          readerPpm.readAsDataURL(filePpm);
+        readerRab.onloadend = async () => {
+          const base64Data = readerRab.result.split(",")[1];
+          const payloadRabFile = {
+            fileRab: {
+              name: fileRab.name,
+              type: fileRab.type,
+              data: base64Data
+            },
+            randomRabFileName
+          };
+          try {
+            const response2 = await fetch($apiURL + "/uploadRab", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadRabFile)
+            });
+            const result2 = await response2.json();
+            if (response2.status === 401) {
+              location.pathname = "/tokenexpired";
+            }
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        if (fileRab)
+          readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
           headers,
@@ -45771,7 +45936,7 @@
           location.pathname = "/tokenexpired";
         } else {
           if (response.ok) {
-            $route("/dosen/proposalmanagement");
+            $route("/dosen/proposalppm");
           } else {
             console.log(response);
           }
@@ -46500,26 +46665,149 @@
     let h2;
     let t1;
     let hr;
+    let t2;
+    let div1;
+    let div0;
+    let input;
+    let t3;
+    let span0;
+    let icon0;
+    let t4;
+    let div3;
+    let div2;
+    let table;
+    let thead;
+    let t14;
+    let tbody;
+    let tr1;
+    let td0;
+    let t15;
+    let td1;
+    let t16;
+    let td2;
+    let t17;
+    let td3;
+    let t18;
+    let td4;
+    let button;
+    let span1;
+    let icon1;
+    let current;
+    icon0 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
+    icon1 = new Icon_default({ props: { id: "info", src: infoOutline } });
     return {
       c() {
         h2 = element("h2");
         h2.textContent = "Ongoing Penelitian / Pengabdian Masyarakat";
         t1 = space();
         hr = element("hr");
+        t2 = space();
+        div1 = element("div");
+        div0 = element("div");
+        input = element("input");
+        t3 = space();
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t4 = space();
+        div3 = element("div");
+        div2 = element("div");
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
+        t14 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        td0 = element("td");
+        t15 = space();
+        td1 = element("td");
+        t16 = space();
+        td2 = element("td");
+        t17 = space();
+        td3 = element("td");
+        td3.innerHTML = ``;
+        t18 = space();
+        td4 = element("td");
+        button = element("button");
+        span1 = element("span");
+        create_component(icon1.$$.fragment);
         attr(h2, "class", "title is-2");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(input, "placeholder", "Search judul");
+        attr(span0, "class", "icon is-left");
+        attr(div0, "class", "control has-icons-left");
+        attr(div1, "class", "field");
+        attr(td0, "class", "judul svelte-1mtjhz7");
+        attr(td1, "class", "kegiatan svelte-1mtjhz7");
+        attr(td2, "class", "skema svelte-1mtjhz7");
+        attr(td3, "class", "status svelte-1mtjhz7");
+        attr(span1, "class", "icon");
+        attr(button, "class", "button is-info is-small");
+        attr(td4, "class", "review svelte-1mtjhz7");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable");
+        attr(div2, "class", "child svelte-1mtjhz7");
+        attr(div3, "class", "box parent svelte-1mtjhz7");
       },
       m(target, anchor) {
         insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
+        insert(target, t2, anchor);
+        insert(target, div1, anchor);
+        append(div1, div0);
+        append(div0, input);
+        append(div0, t3);
+        append(div0, span0);
+        mount_component(icon0, span0, null);
+        insert(target, t4, anchor);
+        insert(target, div3, anchor);
+        append(div3, div2);
+        append(div2, table);
+        append(table, thead);
+        append(table, t14);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tr1, td0);
+        append(tr1, t15);
+        append(tr1, td1);
+        append(tr1, t16);
+        append(tr1, td2);
+        append(tr1, t17);
+        append(tr1, td3);
+        append(tr1, t18);
+        append(tr1, td4);
+        append(td4, button);
+        append(button, span1);
+        mount_component(icon1, span1, null);
+        current = true;
       },
       p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
           detach(h2);
           detach(t1);
           detach(hr);
+          detach(t2);
+          detach(div1);
+          detach(t4);
+          detach(div3);
         }
+        destroy_component(icon0);
+        destroy_component(icon1);
       }
     };
   }
@@ -50071,8 +50359,14 @@
     };
   }
   function create_default_slot_492(ctx) {
-    let input;
-    let t;
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    let t5;
     let if_block_anchor;
     let mounted;
     let dispose;
@@ -50082,31 +50376,68 @@
     );
     return {
       c() {
-        input = element("input");
-        t = space();
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jabatan Fungsional";
+        option1 = element("option");
+        option1.textContent = "Asisten Ahli";
+        option2 = element("option");
+        option2.textContent = "Lektor";
+        option3 = element("option");
+        option3.textContent = "Lektor Kepala";
+        option4 = element("option");
+        option4.textContent = "Profesor";
+        t5 = space();
         if (if_block)
           if_block.c();
         if_block_anchor = empty();
-        attr(input, "id", "jabatanFungsional");
-        attr(input, "class", "input");
-        attr(input, "type", "text");
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "Asisten Ahli";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Lektor";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Lektor Kepala";
+        set_input_value(option3, option3.__value);
+        option4.__value = "Profesor";
+        set_input_value(option4, option4.__value);
+        if (
+          /*jabatanFungsional*/
+          ctx[32] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler_3*/
+            ctx[137].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
       },
       m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(select, option3);
+        append(select, option4);
+        select_option(
+          select,
           /*jabatanFungsional*/
-          ctx[32]
+          ctx[32],
+          true
         );
-        insert(target, t, anchor);
+        insert(target, t5, anchor);
         if (if_block)
           if_block.m(target, anchor);
         insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_7*/
+            select,
+            "change",
+            /*select_change_handler_3*/
             ctx[137]
           );
           mounted = true;
@@ -50114,10 +50445,9 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*jabatanFungsional*/
-        2 && input.value !== /*jabatanFungsional*/
-        ctx2[32]) {
-          set_input_value(
-            input,
+        2) {
+          select_option(
+            select,
             /*jabatanFungsional*/
             ctx2[32]
           );
@@ -50140,8 +50470,8 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(input);
-          detach(t);
+          detach(div);
+          detach(t5);
           detach(if_block_anchor);
         }
         if (if_block)
@@ -50217,7 +50547,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
+            /*input_input_handler_7*/
             ctx[138]
           );
           mounted = true;
@@ -50328,7 +50658,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
+            /*input_input_handler_8*/
             ctx[139]
           );
           mounted = true;
@@ -50645,7 +50975,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
+            /*input_input_handler_9*/
             ctx[142]
           );
           mounted = true;
@@ -50756,7 +51086,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_11*/
+            /*input_input_handler_10*/
             ctx[143]
           );
           mounted = true;
@@ -50867,7 +51197,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_12*/
+            /*input_input_handler_11*/
             ctx[144]
           );
           mounted = true;
@@ -50978,7 +51308,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
+            /*input_input_handler_12*/
             ctx[145]
           );
           mounted = true;
@@ -51089,7 +51419,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
+            /*input_input_handler_13*/
             ctx[146]
           );
           mounted = true;
@@ -51200,7 +51530,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_15*/
+            /*input_input_handler_14*/
             ctx[147]
           );
           mounted = true;
@@ -51348,7 +51678,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_16*/
+              /*input_input_handler_15*/
               ctx[148]
             ),
             listen(
@@ -54325,6 +54655,12 @@
         attr(button0, "class", "button");
         attr(p0, "class", "control");
         attr(button1, "class", "button is-info is-light");
+        toggle_class(
+          button1,
+          "is-loading",
+          /*isLoading*/
+          ctx[86]
+        );
         attr(p1, "class", "control");
         attr(button2, "class", "button is-info");
         toggle_class(
@@ -54371,6 +54707,15 @@
         }
       },
       p(ctx2, dirty) {
+        if (dirty[2] & /*isLoading*/
+        16777216) {
+          toggle_class(
+            button1,
+            "is-loading",
+            /*isLoading*/
+            ctx2[86]
+          );
+        }
         if (dirty[2] & /*isLoading*/
         16777216) {
           toggle_class(
@@ -54762,7 +55107,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
+            /*input_input_handler_16*/
             ctx[164]
           );
           mounted = true;
@@ -54872,7 +55217,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
+            /*input_input_handler_17*/
             ctx[165]
           );
           mounted = true;
@@ -54989,7 +55334,7 @@
           ctx[53] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler_3*/
+            /*select_change_handler_4*/
             ctx[166].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -55014,7 +55359,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler_3*/
+            /*select_change_handler_4*/
             ctx[166]
           );
           mounted = true;
@@ -55123,7 +55468,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_19*/
+            /*input_input_handler_18*/
             ctx[167]
           );
           mounted = true;
@@ -55235,7 +55580,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_20*/
+              /*input_input_handler_19*/
               ctx[168]
             ),
             listen(
@@ -55556,7 +55901,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
+            /*input_input_handler_20*/
             ctx[171]
           );
           mounted = true;
@@ -55666,7 +56011,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
+            /*input_input_handler_21*/
             ctx[172]
           );
           mounted = true;
@@ -55783,7 +56128,7 @@
           ctx[58] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler_4*/
+            /*select_change_handler_5*/
             ctx[173].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -55808,7 +56153,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler_4*/
+            /*select_change_handler_5*/
             ctx[173]
           );
           mounted = true;
@@ -55917,7 +56262,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
+            /*input_input_handler_22*/
             ctx[174]
           );
           mounted = true;
@@ -56029,7 +56374,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_24*/
+              /*input_input_handler_23*/
               ctx[175]
             ),
             listen(
@@ -56350,7 +56695,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
+            /*input_input_handler_24*/
             ctx[178]
           );
           mounted = true;
@@ -56460,7 +56805,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
+            /*input_input_handler_25*/
             ctx[179]
           );
           mounted = true;
@@ -56570,7 +56915,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
+            /*input_input_handler_26*/
             ctx[180]
           );
           mounted = true;
@@ -56680,7 +57025,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
+            /*input_input_handler_27*/
             ctx[181]
           );
           mounted = true;
@@ -56969,7 +57314,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
+            /*input_input_handler_28*/
             ctx[183]
           );
           mounted = true;
@@ -57079,7 +57424,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
+            /*input_input_handler_29*/
             ctx[184]
           );
           mounted = true;
@@ -57189,7 +57534,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
+            /*input_input_handler_30*/
             ctx[185]
           );
           mounted = true;
@@ -57299,7 +57644,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
+            /*input_input_handler_31*/
             ctx[186]
           );
           mounted = true;
@@ -57409,7 +57754,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
+            /*input_input_handler_32*/
             ctx[187]
           );
           mounted = true;
@@ -57723,7 +58068,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
+            /*input_input_handler_33*/
             ctx[189]
           );
           mounted = true;
@@ -57833,7 +58178,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
+            /*input_input_handler_34*/
             ctx[190]
           );
           mounted = true;
@@ -57943,7 +58288,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
+            /*input_input_handler_35*/
             ctx[191]
           );
           mounted = true;
@@ -58053,7 +58398,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
+            /*input_input_handler_36*/
             ctx[192]
           );
           mounted = true;
@@ -58163,7 +58508,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_38*/
+            /*input_input_handler_37*/
             ctx[193]
           );
           mounted = true;
@@ -58477,7 +58822,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_39*/
+            /*input_input_handler_38*/
             ctx[195]
           );
           mounted = true;
@@ -58587,7 +58932,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_40*/
+            /*input_input_handler_39*/
             ctx[196]
           );
           mounted = true;
@@ -58697,7 +59042,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_41*/
+            /*input_input_handler_40*/
             ctx[197]
           );
           mounted = true;
@@ -58807,7 +59152,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_42*/
+            /*input_input_handler_41*/
             ctx[198]
           );
           mounted = true;
@@ -58917,7 +59262,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_43*/
+            /*input_input_handler_42*/
             ctx[199]
           );
           mounted = true;
@@ -59691,7 +60036,7 @@
     let vmataKuliah;
     let items = [];
     let fileRab;
-    let filePpm2;
+    let filePpm;
     let jenisKegiatan = "";
     let jenisProposal = "";
     let jenisSkema = "";
@@ -59930,53 +60275,7 @@
       $$invalidate(0, error = {});
       $$invalidate(86, isLoading = true);
       const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
-            data: base64Data
-          },
-          randomPpmFileName: randomPpmFileName2
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      readerPpm.readAsDataURL(filePpm2);
       const readerRab = new FileReader();
-      if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
-        readerRab.onloadend = async () => {
-          const base64Data = readerRab.result.split(",")[1];
-          const payloadRabFile = {
-            fileRab: {
-              name: fileRab.name,
-              type: fileRab.type,
-              data: base64Data
-            },
-            randomRabFileName: randomRabFileName2
-          };
-          try {
-            const response = await fetch($apiURL + "/uploadRab", {
-              method: "POST",
-              headers,
-              body: JSON.stringify(payloadRabFile)
-            });
-            const result = await response.json();
-          } catch (error2) {
-            console.error("Error uploading file:", error2);
-          }
-        };
-        readerRab.readAsDataURL(fileRab);
-      }
       let payloadIdentitas = {
         idProfile,
         namaLengkap,
@@ -60018,6 +60317,52 @@
       if (Object.keys(error).length > 0) {
         $$invalidate(2, showModalErrorBiodata = true);
       } else {
+        readerPpm.onloadend = async () => {
+          const base64Data = readerPpm.result.split(",")[1];
+          const payloadPpmFile = {
+            filePpm: {
+              name: filePpm.name,
+              type: filePpm.type,
+              data: base64Data
+            },
+            randomPpmFileName: randomPpmFileName2
+          };
+          try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadPpmFile)
+            });
+            const result = await response.json();
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        readerPpm.readAsDataURL(filePpm);
+        if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
+          readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+              fileRab: {
+                name: fileRab.name,
+                type: fileRab.type,
+                data: base64Data
+              },
+              randomRabFileName: randomRabFileName2
+            };
+            try {
+              const response = await fetch($apiURL + "/uploadRab", {
+                method: "POST",
+                headers,
+                body: JSON.stringify(payloadRabFile)
+              });
+              const result = await response.json();
+            } catch (error2) {
+              console.error("Error uploading file:", error2);
+            }
+          };
+          readerRab.readAsDataURL(fileRab);
+        }
         const responseIdentitas = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
           headers,
@@ -60031,28 +60376,17 @@
             console.log(responseIdentitas.msg, error);
           }
         }
-      }
-      for (const [key, value2] of Object.entries(payloadProposal)) {
-        if (!payloadProposal[key]) {
-          $$invalidate(0, error[key] = `This field is required`, error);
-        }
-      }
-      if (Object.keys(error).length > 0) {
-      } else {
-        const responseProposal = await fetch(
-          $apiURL + "/ppm",
-          {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadProposal)
-          }
-        );
+        const responseProposal = await fetch($apiURL + "/ppm", {
+          method: "POST",
+          headers,
+          body: JSON.stringify(payloadProposal)
+        });
         const resultProposal = await responseProposal.json();
         if (resultProposal.statusCode != 200) {
           location.pathname = "/tokenexpired";
         } else {
           if (responseProposal.ok) {
-            $route("/dosen/proposalmanagement");
+            $route("/dosen/proposalppm");
           } else {
             console.log(responseProposal.msg, error);
           }
@@ -60064,53 +60398,7 @@
       $$invalidate(0, error = {});
       $$invalidate(86, isLoading = true);
       const readerRab = new FileReader();
-      if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
-        readerRab.onloadend = async () => {
-          const base64Data = readerRab.result.split(",")[1];
-          const payloadRabFile = {
-            fileRab: {
-              name: fileRab.name,
-              type: fileRab.type,
-              data: base64Data
-            },
-            randomRabFileName: randomRabFileName2
-          };
-          try {
-            const response = await fetch($apiURL + "/uploadRab", {
-              method: "POST",
-              headers,
-              body: JSON.stringify(payloadRabFile)
-            });
-            const result = await response.json();
-          } catch (error2) {
-            console.error("Error uploading file:", error2);
-          }
-        };
-        readerRab.readAsDataURL(fileRab);
-      }
       const readerPpm = new FileReader();
-      readerPpm.onloadend = async () => {
-        const base64Data = readerPpm.result.split(",")[1];
-        const payloadPpmFile = {
-          filePpm: {
-            name: filePpm2.name,
-            type: filePpm2.type,
-            data: base64Data
-          },
-          randomPpmFileName: randomPpmFileName2
-        };
-        try {
-          const response = await fetch($apiURL + "/uploadPpm", {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadPpmFile)
-          });
-          const result = await response.json();
-        } catch (error2) {
-          console.error("Error uploading file:", error2);
-        }
-      };
-      readerPpm.readAsDataURL(filePpm2);
       let payloadIdentitas = {
         idProfile,
         namaLengkap,
@@ -60152,6 +60440,53 @@
       if (Object.keys(error).length > 0) {
         $$invalidate(2, showModalErrorBiodata = true);
       } else {
+        console.log(">>>Test<<<");
+        readerPpm.onloadend = async () => {
+          const base64Data = readerPpm.result.split(",")[1];
+          const payloadPpmFile = {
+            filePpm: {
+              name: filePpm.name,
+              type: filePpm.type,
+              data: base64Data
+            },
+            randomPpmFileName: randomPpmFileName2
+          };
+          try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+              method: "POST",
+              headers,
+              body: JSON.stringify(payloadPpmFile)
+            });
+            const result = await response.json();
+          } catch (error2) {
+            console.error("Error uploading file:", error2);
+          }
+        };
+        readerPpm.readAsDataURL(filePpm);
+        if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") {
+          readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+              fileRab: {
+                name: fileRab.name,
+                type: fileRab.type,
+                data: base64Data
+              },
+              randomRabFileName: randomRabFileName2
+            };
+            try {
+              const response = await fetch($apiURL + "/uploadRab", {
+                method: "POST",
+                headers,
+                body: JSON.stringify(payloadRabFile)
+              });
+              const result = await response.json();
+            } catch (error2) {
+              console.error("Error uploading file:", error2);
+            }
+          };
+          readerRab.readAsDataURL(fileRab);
+        }
         const responseIdentitas = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
           headers,
@@ -60165,28 +60500,17 @@
             console.log(responseIdentitas.msg, error);
           }
         }
-      }
-      for (const [key, value2] of Object.entries(payloadProposal)) {
-        if (!payloadProposal[key]) {
-          $$invalidate(0, error[key] = `This field is required`, error);
-        }
-      }
-      if (Object.keys(error).length > 0) {
-      } else {
-        const responseProposal = await fetch(
-          $apiURL + "/ppm",
-          {
-            method: "POST",
-            headers,
-            body: JSON.stringify(payloadProposal)
-          }
-        );
+        const responseProposal = await fetch($apiURL + "/ppm", {
+          method: "POST",
+          headers,
+          body: JSON.stringify(payloadProposal)
+        });
         const resultProposal = await responseProposal.json();
         if (resultProposal.statusCode != 200) {
           location.pathname = "/tokenexpired";
         } else {
           if (responseProposal.ok) {
-            $route("/dosen/proposalmanagement");
+            $route("/dosen/proposalppm");
           } else {
             console.log(responseProposal.msg, error);
           }
@@ -60591,7 +60915,7 @@
       }
     }
     function filePpmChange(e) {
-      filePpm2 = e.target.files[0];
+      filePpm = e.target.files[0];
       set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
     }
     function fileRabChange(e) {
@@ -60647,15 +60971,15 @@
       namaLengkap = this.value;
       $$invalidate(31, namaLengkap);
     }
-    function input_input_handler_7() {
-      jabatanFungsional = this.value;
+    function select_change_handler_3() {
+      jabatanFungsional = select_value(this);
       $$invalidate(32, jabatanFungsional);
     }
-    function input_input_handler_8() {
+    function input_input_handler_7() {
       nip = to_number(this.value);
       $$invalidate(33, nip);
     }
-    function input_input_handler_9() {
+    function input_input_handler_8() {
       nidn = to_number(this.value);
       $$invalidate(34, nidn);
     }
@@ -60667,31 +60991,31 @@
       tanggalLahir = this.value;
       $$invalidate(36, tanggalLahir);
     }
-    function input_input_handler_10() {
+    function input_input_handler_9() {
       alamatRumah = this.value;
       $$invalidate(37, alamatRumah);
     }
-    function input_input_handler_11() {
+    function input_input_handler_10() {
       telpFaxRumah = to_number(this.value);
       $$invalidate(38, telpFaxRumah);
     }
-    function input_input_handler_12() {
+    function input_input_handler_11() {
       nomorHandphone = to_number(this.value);
       $$invalidate(39, nomorHandphone);
     }
-    function input_input_handler_13() {
+    function input_input_handler_12() {
       alamatKantor = this.value;
       $$invalidate(40, alamatKantor);
     }
-    function input_input_handler_14() {
+    function input_input_handler_13() {
       telpFaxKantor = to_number(this.value);
       $$invalidate(41, telpFaxKantor);
     }
-    function input_input_handler_15() {
+    function input_input_handler_14() {
       email3 = this.value;
       $$invalidate(42, email3);
     }
-    function input_input_handler_16() {
+    function input_input_handler_15() {
       vmataKuliah = this.value;
       $$invalidate(4, vmataKuliah);
     }
@@ -60755,23 +61079,23 @@
       judulTugasAkhirS3 = this.value;
       $$invalidate(30, judulTugasAkhirS3);
     }
-    function input_input_handler_17() {
+    function input_input_handler_16() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(51, tahunPenelitian);
     }
-    function input_input_handler_18() {
+    function input_input_handler_17() {
       judulPenelitian = this.value;
       $$invalidate(52, judulPenelitian);
     }
-    function select_change_handler_3() {
+    function select_change_handler_4() {
       rolePenelitian = select_value(this);
       $$invalidate(53, rolePenelitian);
     }
-    function input_input_handler_19() {
+    function input_input_handler_18() {
       sumberDanaPenelitian = this.value;
       $$invalidate(54, sumberDanaPenelitian);
     }
-    function input_input_handler_20() {
+    function input_input_handler_19() {
       biayaPP = this.value;
       $$invalidate(50, biayaPP);
     }
@@ -60780,23 +61104,23 @@
       showModalPenelitian = value2;
       $$invalidate(79, showModalPenelitian);
     }
-    function input_input_handler_21() {
+    function input_input_handler_20() {
       tahunPengmas = to_number(this.value);
       $$invalidate(56, tahunPengmas);
     }
-    function input_input_handler_22() {
+    function input_input_handler_21() {
       judulPengmas = this.value;
       $$invalidate(57, judulPengmas);
     }
-    function select_change_handler_4() {
+    function select_change_handler_5() {
       rolePengmas = select_value(this);
       $$invalidate(58, rolePengmas);
     }
-    function input_input_handler_23() {
+    function input_input_handler_22() {
       sumberDanaPengmas = this.value;
       $$invalidate(59, sumberDanaPengmas);
     }
-    function input_input_handler_24() {
+    function input_input_handler_23() {
       biayaPengmas = this.value;
       $$invalidate(55, biayaPengmas);
     }
@@ -60805,19 +61129,19 @@
       showModalPengmas = value2;
       $$invalidate(80, showModalPengmas);
     }
-    function input_input_handler_25() {
+    function input_input_handler_24() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(60, tahunDiseminasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_25() {
       judulDiseminasi = this.value;
       $$invalidate(61, judulDiseminasi);
     }
-    function input_input_handler_27() {
+    function input_input_handler_26() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(62, namaPemakalahDiseminasi);
     }
-    function input_input_handler_28() {
+    function input_input_handler_27() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(63, namaPertemuanDiseminasi);
     }
@@ -60825,23 +61149,23 @@
       showModalDiseminasi = value2;
       $$invalidate(81, showModalDiseminasi);
     }
-    function input_input_handler_29() {
+    function input_input_handler_28() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(64, tahunPublikasi);
     }
-    function input_input_handler_30() {
+    function input_input_handler_29() {
       judulPublikasi = this.value;
       $$invalidate(65, judulPublikasi);
     }
-    function input_input_handler_31() {
+    function input_input_handler_30() {
       namaPenulis = this.value;
       $$invalidate(66, namaPenulis);
     }
-    function input_input_handler_32() {
+    function input_input_handler_31() {
       namaJurnal = this.value;
       $$invalidate(67, namaJurnal);
     }
-    function input_input_handler_33() {
+    function input_input_handler_32() {
       impactFactor = this.value;
       $$invalidate(68, impactFactor);
     }
@@ -60849,23 +61173,23 @@
       showModalPublikasi = value2;
       $$invalidate(82, showModalPublikasi);
     }
-    function input_input_handler_34() {
+    function input_input_handler_33() {
       tahunBuku = to_number(this.value);
       $$invalidate(69, tahunBuku);
     }
-    function input_input_handler_35() {
+    function input_input_handler_34() {
       JudulBuku = this.value;
       $$invalidate(70, JudulBuku);
     }
-    function input_input_handler_36() {
+    function input_input_handler_35() {
       namaPenulisBuku = this.value;
       $$invalidate(71, namaPenulisBuku);
     }
-    function input_input_handler_37() {
+    function input_input_handler_36() {
       PenerbitBuku = this.value;
       $$invalidate(72, PenerbitBuku);
     }
-    function input_input_handler_38() {
+    function input_input_handler_37() {
       Isbn = this.value;
       $$invalidate(73, Isbn);
     }
@@ -60873,23 +61197,23 @@
       showModalPenulisanBuku = value2;
       $$invalidate(83, showModalPenulisanBuku);
     }
-    function input_input_handler_39() {
+    function input_input_handler_38() {
       tahunHKI = to_number(this.value);
       $$invalidate(74, tahunHKI);
     }
-    function input_input_handler_40() {
+    function input_input_handler_39() {
       JudulHKI = this.value;
       $$invalidate(75, JudulHKI);
     }
-    function input_input_handler_41() {
+    function input_input_handler_40() {
       namaPenulisHKI = this.value;
       $$invalidate(76, namaPenulisHKI);
     }
-    function input_input_handler_42() {
+    function input_input_handler_41() {
       jenisHKI = this.value;
       $$invalidate(77, jenisHKI);
     }
-    function input_input_handler_43() {
+    function input_input_handler_42() {
       noHKI = this.value;
       $$invalidate(78, noHKI);
     }
@@ -61047,18 +61371,18 @@
       input_input_handler_5,
       textarea_input_handler,
       input_input_handler_6,
+      select_change_handler_3,
       input_input_handler_7,
       input_input_handler_8,
-      input_input_handler_9,
       input0_input_handler,
       input1_input_handler,
+      input_input_handler_9,
       input_input_handler_10,
       input_input_handler_11,
       input_input_handler_12,
       input_input_handler_13,
       input_input_handler_14,
       input_input_handler_15,
-      input_input_handler_16,
       input0_input_handler_1,
       input1_input_handler_1,
       input2_input_handler,
@@ -61074,42 +61398,42 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
+      input_input_handler_16,
       input_input_handler_17,
+      select_change_handler_4,
       input_input_handler_18,
-      select_change_handler_3,
       input_input_handler_19,
-      input_input_handler_20,
       keyup_handler_1,
       modal0_show_binding,
+      input_input_handler_20,
       input_input_handler_21,
+      select_change_handler_5,
       input_input_handler_22,
-      select_change_handler_4,
       input_input_handler_23,
-      input_input_handler_24,
       keyup_handler_2,
       modal1_show_binding,
+      input_input_handler_24,
       input_input_handler_25,
       input_input_handler_26,
       input_input_handler_27,
-      input_input_handler_28,
       modal2_show_binding,
+      input_input_handler_28,
       input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
       input_input_handler_32,
-      input_input_handler_33,
       modal3_show_binding,
+      input_input_handler_33,
       input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
       input_input_handler_37,
-      input_input_handler_38,
       modal4_show_binding,
+      input_input_handler_38,
       input_input_handler_39,
       input_input_handler_40,
       input_input_handler_41,
       input_input_handler_42,
-      input_input_handler_43,
       modal5_show_binding,
       modalerror0_show_binding,
       modalerror1_show_binding,
@@ -61732,8 +62056,14 @@
     };
   }
   function create_default_slot_483(ctx) {
-    let input;
-    let t;
+    let div;
+    let select;
+    let option0;
+    let option1;
+    let option2;
+    let option3;
+    let option4;
+    let t5;
     let if_block_anchor;
     let mounted;
     let dispose;
@@ -61743,30 +62073,68 @@
     );
     return {
       c() {
-        input = element("input");
-        t = space();
+        div = element("div");
+        select = element("select");
+        option0 = element("option");
+        option0.textContent = "Pilih Jabatan Fungsional";
+        option1 = element("option");
+        option1.textContent = "Asisten Ahli";
+        option2 = element("option");
+        option2.textContent = "Lektor";
+        option3 = element("option");
+        option3.textContent = "Lektor Kepala";
+        option4 = element("option");
+        option4.textContent = "Profesor";
+        t5 = space();
         if (if_block)
           if_block.c();
         if_block_anchor = empty();
-        attr(input, "class", "input");
-        attr(input, "type", "text");
+        option0.__value = "";
+        set_input_value(option0, option0.__value);
+        option0.selected = true;
+        option0.disabled = true;
+        option0.hidden = true;
+        option1.__value = "Asisten Ahli";
+        set_input_value(option1, option1.__value);
+        option2.__value = "Lektor";
+        set_input_value(option2, option2.__value);
+        option3.__value = "Lektor Kepala";
+        set_input_value(option3, option3.__value);
+        option4.__value = "Profesor";
+        set_input_value(option4, option4.__value);
+        if (
+          /*jabatanFungsional*/
+          ctx[38] === void 0
+        )
+          add_render_callback(() => (
+            /*select_change_handler*/
+            ctx[101].call(select)
+          ));
+        attr(div, "class", "select is-fullwidth");
       },
       m(target, anchor) {
-        insert(target, input, anchor);
-        set_input_value(
-          input,
+        insert(target, div, anchor);
+        append(div, select);
+        append(select, option0);
+        append(select, option1);
+        append(select, option2);
+        append(select, option3);
+        append(select, option4);
+        select_option(
+          select,
           /*jabatanFungsional*/
-          ctx[38]
+          ctx[38],
+          true
         );
-        insert(target, t, anchor);
+        insert(target, t5, anchor);
         if (if_block)
           if_block.m(target, anchor);
         insert(target, if_block_anchor, anchor);
         if (!mounted) {
           dispose = listen(
-            input,
-            "input",
-            /*input_input_handler_1*/
+            select,
+            "change",
+            /*select_change_handler*/
             ctx[101]
           );
           mounted = true;
@@ -61774,10 +62142,9 @@
       },
       p(ctx2, dirty) {
         if (dirty[1] & /*jabatanFungsional*/
-        128 && input.value !== /*jabatanFungsional*/
-        ctx2[38]) {
-          set_input_value(
-            input,
+        128) {
+          select_option(
+            select,
             /*jabatanFungsional*/
             ctx2[38]
           );
@@ -61800,8 +62167,8 @@
       },
       d(detaching) {
         if (detaching) {
-          detach(input);
-          detach(t);
+          detach(div);
+          detach(t5);
           detach(if_block_anchor);
         }
         if (if_block)
@@ -61876,7 +62243,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_2*/
+            /*input_input_handler_1*/
             ctx[102]
           );
           mounted = true;
@@ -61986,7 +62353,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_3*/
+            /*input_input_handler_2*/
             ctx[103]
           );
           mounted = true;
@@ -62096,7 +62463,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_4*/
+            /*input_input_handler_3*/
             ctx[104]
           );
           mounted = true;
@@ -62206,7 +62573,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_5*/
+            /*input_input_handler_4*/
             ctx[105]
           );
           mounted = true;
@@ -62315,7 +62682,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_6*/
+            /*input_input_handler_5*/
             ctx[106]
           );
           mounted = true;
@@ -62425,7 +62792,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_7*/
+            /*input_input_handler_6*/
             ctx[107]
           );
           mounted = true;
@@ -62535,7 +62902,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_8*/
+            /*input_input_handler_7*/
             ctx[108]
           );
           mounted = true;
@@ -62645,7 +63012,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_9*/
+            /*input_input_handler_8*/
             ctx[109]
           );
           mounted = true;
@@ -62755,7 +63122,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_10*/
+            /*input_input_handler_9*/
             ctx[110]
           );
           mounted = true;
@@ -62865,7 +63232,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_11*/
+            /*input_input_handler_10*/
             ctx[111]
           );
           mounted = true;
@@ -63013,7 +63380,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_12*/
+              /*input_input_handler_11*/
               ctx[112]
             ),
             listen(
@@ -66257,7 +66624,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_13*/
+            /*input_input_handler_12*/
             ctx[128]
           );
           mounted = true;
@@ -66367,7 +66734,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_14*/
+            /*input_input_handler_13*/
             ctx[129]
           );
           mounted = true;
@@ -66484,7 +66851,7 @@
           ctx[11] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler*/
+            /*select_change_handler_1*/
             ctx[130].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -66509,7 +66876,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler*/
+            /*select_change_handler_1*/
             ctx[130]
           );
           mounted = true;
@@ -66618,7 +66985,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_15*/
+            /*input_input_handler_14*/
             ctx[131]
           );
           mounted = true;
@@ -66730,7 +67097,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_16*/
+              /*input_input_handler_15*/
               ctx[132]
             ),
             listen(
@@ -67046,7 +67413,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_17*/
+            /*input_input_handler_16*/
             ctx[135]
           );
           mounted = true;
@@ -67156,7 +67523,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_18*/
+            /*input_input_handler_17*/
             ctx[136]
           );
           mounted = true;
@@ -67273,7 +67640,7 @@
           ctx[16] === void 0
         )
           add_render_callback(() => (
-            /*select_change_handler_1*/
+            /*select_change_handler_2*/
             ctx[137].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
@@ -67298,7 +67665,7 @@
           dispose = listen(
             select,
             "change",
-            /*select_change_handler_1*/
+            /*select_change_handler_2*/
             ctx[137]
           );
           mounted = true;
@@ -67407,7 +67774,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_19*/
+            /*input_input_handler_18*/
             ctx[138]
           );
           mounted = true;
@@ -67519,7 +67886,7 @@
             listen(
               input,
               "input",
-              /*input_input_handler_20*/
+              /*input_input_handler_19*/
               ctx[139]
             ),
             listen(
@@ -67835,7 +68202,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_21*/
+            /*input_input_handler_20*/
             ctx[142]
           );
           mounted = true;
@@ -67945,7 +68312,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_22*/
+            /*input_input_handler_21*/
             ctx[143]
           );
           mounted = true;
@@ -68055,7 +68422,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_23*/
+            /*input_input_handler_22*/
             ctx[144]
           );
           mounted = true;
@@ -68165,7 +68532,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_24*/
+            /*input_input_handler_23*/
             ctx[145]
           );
           mounted = true;
@@ -68450,7 +68817,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_25*/
+            /*input_input_handler_24*/
             ctx[147]
           );
           mounted = true;
@@ -68560,7 +68927,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_26*/
+            /*input_input_handler_25*/
             ctx[148]
           );
           mounted = true;
@@ -68670,7 +69037,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_27*/
+            /*input_input_handler_26*/
             ctx[149]
           );
           mounted = true;
@@ -68780,7 +69147,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_28*/
+            /*input_input_handler_27*/
             ctx[150]
           );
           mounted = true;
@@ -68890,7 +69257,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_29*/
+            /*input_input_handler_28*/
             ctx[151]
           );
           mounted = true;
@@ -69199,7 +69566,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_30*/
+            /*input_input_handler_29*/
             ctx[153]
           );
           mounted = true;
@@ -69309,7 +69676,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_31*/
+            /*input_input_handler_30*/
             ctx[154]
           );
           mounted = true;
@@ -69419,7 +69786,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_32*/
+            /*input_input_handler_31*/
             ctx[155]
           );
           mounted = true;
@@ -69529,7 +69896,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_33*/
+            /*input_input_handler_32*/
             ctx[156]
           );
           mounted = true;
@@ -69639,7 +70006,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_34*/
+            /*input_input_handler_33*/
             ctx[157]
           );
           mounted = true;
@@ -69949,7 +70316,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_35*/
+            /*input_input_handler_34*/
             ctx[159]
           );
           mounted = true;
@@ -70059,7 +70426,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_36*/
+            /*input_input_handler_35*/
             ctx[160]
           );
           mounted = true;
@@ -70169,7 +70536,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_37*/
+            /*input_input_handler_36*/
             ctx[161]
           );
           mounted = true;
@@ -70279,7 +70646,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_38*/
+            /*input_input_handler_37*/
             ctx[162]
           );
           mounted = true;
@@ -70389,7 +70756,7 @@
           dispose = listen(
             input,
             "input",
-            /*input_input_handler_39*/
+            /*input_input_handler_38*/
             ctx[163]
           );
           mounted = true;
@@ -71695,51 +72062,51 @@
       namaLengkap = this.value;
       $$invalidate(37, namaLengkap);
     }
-    function input_input_handler_1() {
-      jabatanFungsional = this.value;
+    function select_change_handler() {
+      jabatanFungsional = select_value(this);
       $$invalidate(38, jabatanFungsional);
     }
-    function input_input_handler_2() {
+    function input_input_handler_1() {
       nip = to_number(this.value);
       $$invalidate(39, nip);
     }
-    function input_input_handler_3() {
+    function input_input_handler_2() {
       nidn = to_number(this.value);
       $$invalidate(40, nidn);
     }
-    function input_input_handler_4() {
+    function input_input_handler_3() {
       tempatLahir = this.value;
       $$invalidate(41, tempatLahir);
     }
-    function input_input_handler_5() {
+    function input_input_handler_4() {
       tanggalLahir = this.value;
       $$invalidate(42, tanggalLahir);
     }
-    function input_input_handler_6() {
+    function input_input_handler_5() {
       alamatRumah = this.value;
       $$invalidate(43, alamatRumah);
     }
-    function input_input_handler_7() {
+    function input_input_handler_6() {
       telpFaxRumah = to_number(this.value);
       $$invalidate(44, telpFaxRumah);
     }
-    function input_input_handler_8() {
+    function input_input_handler_7() {
       nomorHandphone = to_number(this.value);
       $$invalidate(45, nomorHandphone);
     }
-    function input_input_handler_9() {
+    function input_input_handler_8() {
       alamatKantor = this.value;
       $$invalidate(46, alamatKantor);
     }
-    function input_input_handler_10() {
+    function input_input_handler_9() {
       telpFaxKantor = to_number(this.value);
       $$invalidate(47, telpFaxKantor);
     }
-    function input_input_handler_11() {
+    function input_input_handler_10() {
       email3 = this.value;
       $$invalidate(48, email3);
     }
-    function input_input_handler_12() {
+    function input_input_handler_11() {
       vmataKuliah = this.value;
       $$invalidate(0, vmataKuliah);
     }
@@ -71803,23 +72170,23 @@
       judulTugasAkhirS3 = this.value;
       $$invalidate(64, judulTugasAkhirS3);
     }
-    function input_input_handler_13() {
+    function input_input_handler_12() {
       tahunPenelitian = to_number(this.value);
       $$invalidate(9, tahunPenelitian);
     }
-    function input_input_handler_14() {
+    function input_input_handler_13() {
       judulPenelitian = this.value;
       $$invalidate(10, judulPenelitian);
     }
-    function select_change_handler() {
+    function select_change_handler_1() {
       rolePenelitian = select_value(this);
       $$invalidate(11, rolePenelitian);
     }
-    function input_input_handler_15() {
+    function input_input_handler_14() {
       sumberDanaPenelitian = this.value;
       $$invalidate(12, sumberDanaPenelitian);
     }
-    function input_input_handler_16() {
+    function input_input_handler_15() {
       biayaPP = this.value;
       $$invalidate(8, biayaPP);
     }
@@ -71828,23 +72195,23 @@
       showModalPenelitian = value;
       $$invalidate(65, showModalPenelitian);
     }
-    function input_input_handler_17() {
+    function input_input_handler_16() {
       tahunPengmas = to_number(this.value);
       $$invalidate(14, tahunPengmas);
     }
-    function input_input_handler_18() {
+    function input_input_handler_17() {
       judulPengmas = this.value;
       $$invalidate(15, judulPengmas);
     }
-    function select_change_handler_1() {
+    function select_change_handler_2() {
       rolePengmas = select_value(this);
       $$invalidate(16, rolePengmas);
     }
-    function input_input_handler_19() {
+    function input_input_handler_18() {
       sumberDanaPengmas = this.value;
       $$invalidate(17, sumberDanaPengmas);
     }
-    function input_input_handler_20() {
+    function input_input_handler_19() {
       biayaPengmas = this.value;
       $$invalidate(13, biayaPengmas);
     }
@@ -71853,19 +72220,19 @@
       showModalPengmas = value;
       $$invalidate(66, showModalPengmas);
     }
-    function input_input_handler_21() {
+    function input_input_handler_20() {
       tahunDiseminasi = to_number(this.value);
       $$invalidate(18, tahunDiseminasi);
     }
-    function input_input_handler_22() {
+    function input_input_handler_21() {
       judulDiseminasi = this.value;
       $$invalidate(19, judulDiseminasi);
     }
-    function input_input_handler_23() {
+    function input_input_handler_22() {
       namaPemakalahDiseminasi = this.value;
       $$invalidate(20, namaPemakalahDiseminasi);
     }
-    function input_input_handler_24() {
+    function input_input_handler_23() {
       namaPertemuanDiseminasi = this.value;
       $$invalidate(21, namaPertemuanDiseminasi);
     }
@@ -71873,23 +72240,23 @@
       showModalDiseminasi = value;
       $$invalidate(67, showModalDiseminasi);
     }
-    function input_input_handler_25() {
+    function input_input_handler_24() {
       tahunPublikasi = to_number(this.value);
       $$invalidate(22, tahunPublikasi);
     }
-    function input_input_handler_26() {
+    function input_input_handler_25() {
       judulPublikasi = this.value;
       $$invalidate(23, judulPublikasi);
     }
-    function input_input_handler_27() {
+    function input_input_handler_26() {
       namaPenulis = this.value;
       $$invalidate(24, namaPenulis);
     }
-    function input_input_handler_28() {
+    function input_input_handler_27() {
       namaJurnal = this.value;
       $$invalidate(25, namaJurnal);
     }
-    function input_input_handler_29() {
+    function input_input_handler_28() {
       impactFactor = this.value;
       $$invalidate(26, impactFactor);
     }
@@ -71897,23 +72264,23 @@
       showModalPublikasi = value;
       $$invalidate(68, showModalPublikasi);
     }
-    function input_input_handler_30() {
+    function input_input_handler_29() {
       tahunBuku = to_number(this.value);
       $$invalidate(27, tahunBuku);
     }
-    function input_input_handler_31() {
+    function input_input_handler_30() {
       JudulBuku = this.value;
       $$invalidate(28, JudulBuku);
     }
-    function input_input_handler_32() {
+    function input_input_handler_31() {
       namaPenulisBuku = this.value;
       $$invalidate(29, namaPenulisBuku);
     }
-    function input_input_handler_33() {
+    function input_input_handler_32() {
       PenerbitBuku = this.value;
       $$invalidate(30, PenerbitBuku);
     }
-    function input_input_handler_34() {
+    function input_input_handler_33() {
       Isbn = this.value;
       $$invalidate(31, Isbn);
     }
@@ -71921,23 +72288,23 @@
       showModalPenulisanBuku = value;
       $$invalidate(69, showModalPenulisanBuku);
     }
-    function input_input_handler_35() {
+    function input_input_handler_34() {
       tahunHKI = to_number(this.value);
       $$invalidate(32, tahunHKI);
     }
-    function input_input_handler_36() {
+    function input_input_handler_35() {
       JudulHKI = this.value;
       $$invalidate(33, JudulHKI);
     }
-    function input_input_handler_37() {
+    function input_input_handler_36() {
       namaPenulisHKI = this.value;
       $$invalidate(34, namaPenulisHKI);
     }
-    function input_input_handler_38() {
+    function input_input_handler_37() {
       jenisHKI = this.value;
       $$invalidate(35, jenisHKI);
     }
-    function input_input_handler_39() {
+    function input_input_handler_38() {
       noHKI = this.value;
       $$invalidate(36, noHKI);
     }
@@ -72051,6 +72418,7 @@
       delrowPHKI,
       deleteMatkul,
       input_input_handler,
+      select_change_handler,
       input_input_handler_1,
       input_input_handler_2,
       input_input_handler_3,
@@ -72062,7 +72430,6 @@
       input_input_handler_9,
       input_input_handler_10,
       input_input_handler_11,
-      input_input_handler_12,
       input0_input_handler,
       input1_input_handler,
       input2_input_handler,
@@ -72078,42 +72445,42 @@
       textarea0_input_handler,
       textarea1_input_handler,
       textarea2_input_handler,
+      input_input_handler_12,
       input_input_handler_13,
+      select_change_handler_1,
       input_input_handler_14,
-      select_change_handler,
       input_input_handler_15,
-      input_input_handler_16,
       keyup_handler,
       modal0_show_binding,
+      input_input_handler_16,
       input_input_handler_17,
+      select_change_handler_2,
       input_input_handler_18,
-      select_change_handler_1,
       input_input_handler_19,
-      input_input_handler_20,
       keyup_handler_1,
       modal1_show_binding,
+      input_input_handler_20,
       input_input_handler_21,
       input_input_handler_22,
       input_input_handler_23,
-      input_input_handler_24,
       modal2_show_binding,
+      input_input_handler_24,
       input_input_handler_25,
       input_input_handler_26,
       input_input_handler_27,
       input_input_handler_28,
-      input_input_handler_29,
       modal3_show_binding,
+      input_input_handler_29,
       input_input_handler_30,
       input_input_handler_31,
       input_input_handler_32,
       input_input_handler_33,
-      input_input_handler_34,
       modal4_show_binding,
+      input_input_handler_34,
       input_input_handler_35,
       input_input_handler_36,
       input_input_handler_37,
       input_input_handler_38,
-      input_input_handler_39,
       modal5_show_binding,
       modalerror_show_binding
     ];
@@ -72126,7 +72493,7 @@
   };
   var profile_default2 = Profile2;
 
-  // src/pages/dosen/proposalmanagement.svelte
+  // src/pages/dosen/proposalppm.svelte
   init_define_process();
 
   // src/libs/Modalroute.svelte
@@ -72285,29 +72652,11 @@
   };
   var Modalroute_default = Modalroute;
 
-  // src/pages/dosen/proposalmanagement.svelte
+  // src/pages/dosen/proposalppm.svelte
   function get_each_context14(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[7] = list[i];
     return child_ctx;
-  }
-  function create_default_slot_121(ctx) {
-    let p;
-    return {
-      c() {
-        p = element("p");
-        p.textContent = "Lengkapi profile anda terlebih dahulu";
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
   }
   function create_if_block18(ctx) {
     let tbody;
@@ -72549,54 +72898,35 @@
       }
     };
   }
-  function create_default_slot21(ctx) {
+  function create_default_slot_121(ctx) {
     let h2;
     let t1;
     let hr;
     let t2;
-    let modalroute;
-    let updating_show;
-    let t3;
     let div4;
     let div0;
     let button;
     let span0;
     let icon0;
-    let t4;
+    let t3;
     let span1;
-    let t6;
+    let t5;
     let div3;
     let div2;
     let div1;
     let input;
-    let t7;
+    let t6;
     let span2;
     let icon1;
-    let t8;
+    let t7;
     let div6;
     let div5;
     let table;
     let thead;
-    let t18;
+    let t17;
     let current;
     let mounted;
     let dispose;
-    function modalroute_show_binding(value) {
-      ctx[3](value);
-    }
-    let modalroute_props = {
-      $$slots: { default: [create_default_slot_121] },
-      $$scope: { ctx }
-    };
-    if (
-      /*showModalError*/
-      ctx[0] !== void 0
-    ) {
-      modalroute_props.show = /*showModalError*/
-      ctx[0];
-    }
-    modalroute = new Modalroute_default({ props: modalroute_props });
-    binding_callbacks.push(() => bind(modalroute, "show", modalroute_show_binding));
     icon0 = new Icon_default({
       props: { id: "addProposal", src: addProposal }
     });
@@ -72614,31 +72944,29 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        create_component(modalroute.$$.fragment);
-        t3 = space();
         div4 = element("div");
         div0 = element("div");
         button = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
-        t4 = space();
+        t3 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Buat Proposal</a>`;
-        t6 = space();
+        t5 = space();
         div3 = element("div");
         div2 = element("div");
         div1 = element("div");
         input = element("input");
-        t7 = space();
+        t6 = space();
         span2 = element("span");
         create_component(icon1.$$.fragment);
-        t8 = space();
+        t7 = space();
         div6 = element("div");
         div5 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th style="width: 50%;">Judul</th> <th style="width: 10%; text-align: center" class="is-narrow">Jenis Kegiatan</th> <th style="width: auto; text-align: center" class="is-narrow">Jenis Skema</th> <th style="width: 15%; text-align: center">Status</th> <th style="width: 5%;" colspan="2">Action</th></tr>`;
-        t18 = space();
+        t17 = space();
         if (if_block)
           if_block.c();
         attr(h2, "class", "title is-2");
@@ -72662,29 +72990,27 @@
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        mount_component(modalroute, target, anchor);
-        insert(target, t3, anchor);
         insert(target, div4, anchor);
         append(div4, div0);
         append(div0, button);
         append(button, span0);
         mount_component(icon0, span0, null);
-        append(button, t4);
+        append(button, t3);
         append(button, span1);
-        append(div4, t6);
+        append(div4, t5);
         append(div4, div3);
         append(div3, div2);
         append(div2, div1);
         append(div1, input);
-        append(div1, t7);
+        append(div1, t6);
         append(div1, span2);
         mount_component(icon1, span2, null);
-        insert(target, t8, anchor);
+        insert(target, t7, anchor);
         insert(target, div6, anchor);
         append(div6, div5);
         append(div5, table);
         append(table, thead);
-        append(table, t18);
+        append(table, t17);
         if (if_block)
           if_block.m(table, null);
         current = true;
@@ -72699,19 +73025,6 @@
         }
       },
       p(ctx2, dirty) {
-        const modalroute_changes = {};
-        if (dirty & /*$$scope*/
-        1024) {
-          modalroute_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        if (!updating_show && dirty & /*showModalError*/
-        1) {
-          updating_show = true;
-          modalroute_changes.show = /*showModalError*/
-          ctx2[0];
-          add_flush_callback(() => updating_show = false);
-        }
-        modalroute.$set(modalroute_changes);
         if (
           /*items*/
           ctx2[1]
@@ -72739,14 +73052,12 @@
       i(local) {
         if (current)
           return;
-        transition_in(modalroute.$$.fragment, local);
         transition_in(icon0.$$.fragment, local);
         transition_in(icon1.$$.fragment, local);
         transition_in(if_block);
         current = true;
       },
       o(local) {
-        transition_out(modalroute.$$.fragment, local);
         transition_out(icon0.$$.fragment, local);
         transition_out(icon1.$$.fragment, local);
         transition_out(if_block);
@@ -72758,12 +73069,10 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(t3);
           detach(div4);
-          detach(t8);
+          detach(t7);
           detach(div6);
         }
-        destroy_component(modalroute, detaching);
         destroy_component(icon0);
         destroy_component(icon1);
         if (if_block)
@@ -72773,43 +73082,103 @@
       }
     };
   }
+  function create_default_slot21(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "Lengkapi profile anda terlebih dahulu";
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
   function create_fragment46(ctx) {
     let article;
+    let t;
+    let modalroute;
+    let updating_show;
     let current;
     article = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot21] },
+        $$slots: { default: [create_default_slot_121] },
         $$scope: { ctx }
       }
     });
+    function modalroute_show_binding(value) {
+      ctx[3](value);
+    }
+    let modalroute_props = {
+      $$slots: { default: [create_default_slot21] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalError*/
+      ctx[0] !== void 0
+    ) {
+      modalroute_props.show = /*showModalError*/
+      ctx[0];
+    }
+    modalroute = new Modalroute_default({ props: modalroute_props });
+    binding_callbacks.push(() => bind(modalroute, "show", modalroute_show_binding));
     return {
       c() {
         create_component(article.$$.fragment);
+        t = space();
+        create_component(modalroute.$$.fragment);
       },
       m(target, anchor) {
         mount_component(article, target, anchor);
+        insert(target, t, anchor);
+        mount_component(modalroute, target, anchor);
         current = true;
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, items, showModalError*/
-        1027) {
+        if (dirty & /*$$scope, items*/
+        1026) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
+        const modalroute_changes = {};
+        if (dirty & /*$$scope*/
+        1024) {
+          modalroute_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        if (!updating_show && dirty & /*showModalError*/
+        1) {
+          updating_show = true;
+          modalroute_changes.show = /*showModalError*/
+          ctx2[0];
+          add_flush_callback(() => updating_show = false);
+        }
+        modalroute.$set(modalroute_changes);
       },
       i(local) {
         if (current)
           return;
         transition_in(article.$$.fragment, local);
+        transition_in(modalroute.$$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(article.$$.fragment, local);
+        transition_out(modalroute.$$.fragment, local);
         current = false;
       },
       d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
         destroy_component(article, detaching);
+        destroy_component(modalroute, detaching);
       }
     };
   }
@@ -72875,17 +73244,17 @@
     }
     return [showModalError, items, HandleAddProposal, modalroute_show_binding];
   }
-  var Proposalmanagement2 = class extends SvelteComponent {
+  var Proposalppm = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance37, create_fragment46, safe_not_equal, {});
     }
   };
-  var proposalmanagement_default2 = Proposalmanagement2;
+  var proposalppm_default = Proposalppm;
 
   // src/pages/dosen/select.svelte
   init_define_process();
-  function create_if_block_420(ctx) {
+  function create_if_block_131(ctx) {
     let span;
     let t_value = (
       /*error*/
@@ -72896,7 +73265,7 @@
       c() {
         span = element("span");
         t = text(t_value);
-        attr(span, "class", "help error has-text-danger svelte-jtr2u8");
+        attr(span, "class", "help error has-text-danger");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -72915,7 +73284,7 @@
       }
     };
   }
-  function create_else_block_24(ctx) {
+  function create_else_block10(ctx) {
     let label;
     let t1;
     let input;
@@ -72938,26 +73307,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[3].username
+          ctx[2].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_2*/
-            ctx[10]
+            ctx[6]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        8 && input.value !== /*form*/
-        ctx2[3].username) {
+        4 && input.value !== /*form*/
+        ctx2[2].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[3].username
+            ctx2[2].username
           );
         }
       },
@@ -72972,7 +73341,7 @@
       }
     };
   }
-  function create_if_block_321(ctx) {
+  function create_if_block19(ctx) {
     let label;
     let t2;
     let input;
@@ -72981,7 +73350,7 @@
     return {
       c() {
         label = element("label");
-        label.innerHTML = `Username<span class="red-asterisk svelte-jtr2u8">*</span>`;
+        label.innerHTML = `Username<span class="red-asterisk svelte-ihhmph">*</span>`;
         t2 = space();
         input = element("input");
         attr(label, "for", "username");
@@ -72995,26 +73364,26 @@
         set_input_value(
           input,
           /*form*/
-          ctx[3].username
+          ctx[2].username
         );
         if (!mounted) {
           dispose = listen(
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[9]
+            ctx[5]
           );
           mounted = true;
         }
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        8 && input.value !== /*form*/
-        ctx2[3].username) {
+        4 && input.value !== /*form*/
+        ctx2[2].username) {
           set_input_value(
             input,
             /*form*/
-            ctx2[3].username
+            ctx2[2].username
           );
         }
       },
@@ -73026,399 +73395,6 @@
         }
         mounted = false;
         dispose();
-      }
-    };
-  }
-  function create_else_block10(ctx) {
-    let span4;
-    let input0;
-    let t0;
-    let div;
-    let label;
-    let input1;
-    let t1;
-    let span2;
-    let span0;
-    let icon0;
-    let t2;
-    let span1;
-    let t4;
-    let t5;
-    let t6;
-    let button;
-    let span3;
-    let icon1;
-    let t7;
-    let p;
-    let current;
-    let mounted;
-    let dispose;
-    icon0 = new Icon_default({
-      props: { id: "download", src: downloadIcon }
-    });
-    function select_block_type_2(ctx2, dirty) {
-      if (
-        /*$ppmFile*/
-        ctx2[4]?.name
-      )
-        return create_if_block_228;
-      return create_else_block_14;
-    }
-    let current_block_type = select_block_type_2(ctx, -1);
-    let if_block0 = current_block_type(ctx);
-    let if_block1 = (
-      /*error*/
-      ctx[0].fileProposal && create_if_block_131(ctx)
-    );
-    icon1 = new Icon_default({ props: { id: "cancel", src: cancelIcon } });
-    return {
-      c() {
-        span4 = element("span");
-        input0 = element("input");
-        t0 = space();
-        div = element("div");
-        label = element("label");
-        input1 = element("input");
-        t1 = space();
-        span2 = element("span");
-        span0 = element("span");
-        create_component(icon0.$$.fragment);
-        t2 = space();
-        span1 = element("span");
-        span1.textContent = "Choose a file";
-        t4 = space();
-        if_block0.c();
-        t5 = space();
-        if (if_block1)
-          if_block1.c();
-        t6 = space();
-        button = element("button");
-        span3 = element("span");
-        create_component(icon1.$$.fragment);
-        t7 = space();
-        p = element("p");
-        p.textContent = "File Type: pdf";
-        attr(input0, "id", "filePpm");
-        attr(input0, "class", "inputf custom-file-input svelte-jtr2u8");
-        attr(input0, "accept", "application/pdf");
-        attr(input0, "type", "file");
-        attr(input1, "class", "file-input svelte-jtr2u8");
-        attr(input1, "type", "file");
-        attr(input1, "name", "resume");
-        attr(span0, "class", "file-icon");
-        attr(span1, "class", "file-label");
-        attr(span2, "class", "file-cta");
-        attr(label, "class", "file-label");
-        attr(label, "for", "filePpm");
-        attr(div, "class", "file has-name");
-        attr(span3, "class", "icon");
-        attr(button, "class", "button is-danger is-light");
-        attr(button, "title", "Cancel");
-        attr(span4, "class", "inputf__wrapper svelte-jtr2u8");
-        attr(p, "class", "help is-info svelte-jtr2u8");
-      },
-      m(target, anchor) {
-        insert(target, span4, anchor);
-        append(span4, input0);
-        append(span4, t0);
-        append(span4, div);
-        append(div, label);
-        append(label, input1);
-        append(label, t1);
-        append(label, span2);
-        append(span2, span0);
-        mount_component(icon0, span0, null);
-        append(span2, t2);
-        append(span2, span1);
-        append(label, t4);
-        if_block0.m(label, null);
-        append(span4, t5);
-        if (if_block1)
-          if_block1.m(span4, null);
-        append(span4, t6);
-        append(span4, button);
-        append(button, span3);
-        mount_component(icon1, span3, null);
-        insert(target, t7, anchor);
-        insert(target, p, anchor);
-        current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              input0,
-              "change",
-              /*filePpmChange*/
-              ctx[7]
-            ),
-            listen(
-              button,
-              "click",
-              /*toggleEditMode*/
-              ctx[5]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (current_block_type === (current_block_type = select_block_type_2(ctx2, dirty)) && if_block0) {
-          if_block0.p(ctx2, dirty);
-        } else {
-          if_block0.d(1);
-          if_block0 = current_block_type(ctx2);
-          if (if_block0) {
-            if_block0.c();
-            if_block0.m(label, null);
-          }
-        }
-        if (
-          /*error*/
-          ctx2[0].fileProposal
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_131(ctx2);
-            if_block1.c();
-            if_block1.m(span4, t6);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(icon0.$$.fragment, local);
-        transition_in(icon1.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(icon0.$$.fragment, local);
-        transition_out(icon1.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(span4);
-          detach(t7);
-          detach(p);
-        }
-        destroy_component(icon0);
-        if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        destroy_component(icon1);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_if_block19(ctx) {
-    let button0;
-    let t1;
-    let button1;
-    let span;
-    let icon;
-    let current;
-    let mounted;
-    let dispose;
-    icon = new Icon_default({ props: { id: "edit", src: edit } });
-    return {
-      c() {
-        button0 = element("button");
-        button0.textContent = "Download Proposal";
-        t1 = space();
-        button1 = element("button");
-        span = element("span");
-        create_component(icon.$$.fragment);
-        attr(button0, "class", "button is-link button");
-        attr(span, "class", "icon");
-        attr(button1, "class", "button is-link is-light");
-        attr(button1, "title", "Change files");
-      },
-      m(target, anchor) {
-        insert(target, button0, anchor);
-        insert(target, t1, anchor);
-        insert(target, button1, anchor);
-        append(button1, span);
-        mount_component(icon, span, null);
-        current = true;
-        if (!mounted) {
-          dispose = listen(
-            button1,
-            "click",
-            /*toggleEditMode*/
-            ctx[5]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(icon.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(icon.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(button0);
-          detach(t1);
-          detach(button1);
-        }
-        destroy_component(icon);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_else_block_14(ctx) {
-    let span;
-    return {
-      c() {
-        span = element("span");
-        span.textContent = "...";
-        attr(span, "class", "file-name");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(span);
-        }
-      }
-    };
-  }
-  function create_if_block_228(ctx) {
-    let span;
-    let t_value = (
-      /*$ppmFile*/
-      ctx[4].name + ""
-    );
-    let t;
-    return {
-      c() {
-        span = element("span");
-        t = text(t_value);
-        attr(span, "class", "file-name");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-        append(span, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*$ppmFile*/
-        16 && t_value !== (t_value = /*$ppmFile*/
-        ctx2[4].name + ""))
-          set_data(t, t_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(span);
-        }
-      }
-    };
-  }
-  function create_if_block_131(ctx) {
-    let p;
-    let t_value = (
-      /*error*/
-      ctx[0].fileProposal + ""
-    );
-    let t;
-    return {
-      c() {
-        p = element("p");
-        t = text(t_value);
-        attr(p, "class", "error has-text-danger");
-      },
-      m(target, anchor) {
-        insert(target, p, anchor);
-        append(p, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*error*/
-        1 && t_value !== (t_value = /*error*/
-        ctx2[0].fileProposal + ""))
-          set_data(t, t_value);
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(p);
-        }
-      }
-    };
-  }
-  function create_default_slot_128(ctx) {
-    let current_block_type_index;
-    let if_block;
-    let if_block_anchor;
-    let current;
-    const if_block_creators = [create_if_block19, create_else_block10];
-    const if_blocks = [];
-    function select_block_type_1(ctx2, dirty) {
-      if (!/*editMode*/
-      ctx2[2])
-        return 0;
-      return 1;
-    }
-    current_block_type_index = select_block_type_1(ctx, -1);
-    if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    return {
-      c() {
-        if_block.c();
-        if_block_anchor = empty();
-      },
-      m(target, anchor) {
-        if_blocks[current_block_type_index].m(target, anchor);
-        insert(target, if_block_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        let previous_block_index = current_block_type_index;
-        current_block_type_index = select_block_type_1(ctx2, dirty);
-        if (current_block_type_index === previous_block_index) {
-          if_blocks[current_block_type_index].p(ctx2, dirty);
-        } else {
-          group_outros();
-          transition_out(if_blocks[previous_block_index], 1, 1, () => {
-            if_blocks[previous_block_index] = null;
-          });
-          check_outros();
-          if_block = if_blocks[current_block_type_index];
-          if (!if_block) {
-            if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx2);
-            if_block.c();
-          } else {
-            if_block.p(ctx2, dirty);
-          }
-          transition_in(if_block, 1);
-          if_block.m(if_block_anchor.parentNode, if_block_anchor);
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(if_block_anchor);
-        }
-        if_blocks[current_block_type_index].d(detaching);
       }
     };
   }
@@ -73435,32 +73411,22 @@
     let br;
     let t5;
     let button;
-    let t7;
-    let field;
-    let current;
     let mounted;
     let dispose;
     let if_block0 = (
       /*error*/
-      ctx[0].email && create_if_block_420(ctx)
+      ctx[0].email && create_if_block_131(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (
         /*error*/
         ctx2[0].username
       )
-        return create_if_block_321;
-      return create_else_block_24;
+        return create_if_block19;
+      return create_else_block10;
     }
     let current_block_type = select_block_type(ctx, -1);
     let if_block1 = current_block_type(ctx);
-    field = new Field_default({
-      props: {
-        name: "Proposal",
-        $$slots: { default: [create_default_slot_128] },
-        $$scope: { ctx }
-      }
-    });
     return {
       c() {
         div2 = element("div");
@@ -73480,13 +73446,11 @@
         t5 = space();
         button = element("button");
         button.textContent = "Submit";
-        t7 = space();
-        create_component(field.$$.fragment);
         attr(label, "for", "email");
         attr(input, "class", "input");
         attr(input, "type", "text");
-        attr(div0, "class", "field svelte-jtr2u8");
-        attr(div1, "class", "field svelte-jtr2u8");
+        attr(div0, "class", "field svelte-ihhmph");
+        attr(div1, "class", "field svelte-ihhmph");
         attr(button, "class", "button is-info");
         toggle_class(
           button,
@@ -73505,7 +73469,7 @@
         set_input_value(
           input,
           /*form*/
-          ctx[3].email
+          ctx[2].email
         );
         append(div0, t2);
         if (if_block0)
@@ -73517,22 +73481,19 @@
         append(div2, br);
         append(div2, t5);
         append(div2, button);
-        insert(target, t7, anchor);
-        mount_component(field, target, anchor);
-        current = true;
         if (!mounted) {
           dispose = [
             listen(
               input,
               "input",
               /*input_input_handler*/
-              ctx[8]
+              ctx[4]
             ),
             listen(
               button,
               "click",
               /*handleSubmit*/
-              ctx[6]
+              ctx[3]
             )
           ];
           mounted = true;
@@ -73540,12 +73501,12 @@
       },
       p(ctx2, dirty) {
         if (dirty & /*form*/
-        8 && input.value !== /*form*/
-        ctx2[3].email) {
+        4 && input.value !== /*form*/
+        ctx2[2].email) {
           set_input_value(
             input,
             /*form*/
-            ctx2[3].email
+            ctx2[2].email
           );
         }
         if (
@@ -73555,7 +73516,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_420(ctx2);
+            if_block0 = create_if_block_131(ctx2);
             if_block0.c();
             if_block0.m(div0, null);
           }
@@ -73573,7 +73534,7 @@
             if_block1.m(div1, null);
           }
         }
-        if (!current || dirty & /*isLoading*/
+        if (dirty & /*isLoading*/
         2) {
           toggle_class(
             button,
@@ -73582,32 +73543,14 @@
             ctx2[1]
           );
         }
-        const field_changes = {};
-        if (dirty & /*$$scope, editMode, error, $ppmFile*/
-        2069) {
-          field_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        field.$set(field_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(field.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(field.$$.fragment, local);
-        current = false;
       },
       d(detaching) {
         if (detaching) {
           detach(div2);
-          detach(t7);
         }
         if (if_block0)
           if_block0.d();
         if_block1.d();
-        destroy_component(field, detaching);
         mounted = false;
         run_all(dispose);
       }
@@ -73632,8 +73575,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, editMode, error, $ppmFile, isLoading, form*/
-        2079) {
+        if (dirty & /*$$scope, isLoading, form, error*/
+        1031) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -73655,23 +73598,15 @@
   }
   var username = "";
   var email = "";
-  function isObjectEmpty5(objectName) {
-    return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object;
-  }
   function instance38($$self, $$props, $$invalidate) {
-    let $ppmFile;
-    component_subscribe($$self, ppmFile, ($$value) => $$invalidate(4, $ppmFile = $$value));
     let error = {};
     let isLoading = false;
     let editMode = false;
-    let form = { username, email };
+    let form = { email, username };
     function toggleEditMode() {
-      $$invalidate(2, editMode = !editMode);
+      editMode = !editMode;
     }
     function handleSubmit() {
-      console.log(filePpm);
-      console.log(filePpm.name);
-      console.log(filePpm.type);
       $$invalidate(0, error = {});
       $$invalidate(1, isLoading = true);
       for (const [key, value] of Object.entries(form)) {
@@ -73681,42 +73616,36 @@
           console.log("Sukses Cek Form Error");
         }
       }
-      if (isObjectEmpty5($ppmFile)) {
-        $$invalidate(0, error["fileProposal"] = `*`, error);
-      }
       if (Object.keys(error).length > 0) {
         console.log("Error, Lengkapi semua form");
-      } else {
         $$invalidate(1, isLoading = false);
+      } else {
+        console.log("Tombol akan kembali dalam 3 detik...");
+        setTimeout($$invalidate(1, isLoading = false), 3e3);
         console.log("Sukses");
         return;
       }
     }
-    function filePpmChange(e) {
-      filePpm = e.target.files[0];
-      set_store_value(ppmFile, $ppmFile = e.target.files[0], $ppmFile);
+    function stopLoading() {
+      $$invalidate(1, isLoading = false);
     }
     function input_input_handler() {
       form.email = this.value;
-      $$invalidate(3, form);
+      $$invalidate(2, form);
     }
     function input_input_handler_1() {
       form.username = this.value;
-      $$invalidate(3, form);
+      $$invalidate(2, form);
     }
     function input_input_handler_2() {
       form.username = this.value;
-      $$invalidate(3, form);
+      $$invalidate(2, form);
     }
     return [
       error,
       isLoading,
-      editMode,
       form,
-      $ppmFile,
-      toggleEditMode,
       handleSubmit,
-      filePpmChange,
       input_input_handler,
       input_input_handler_1,
       input_input_handler_2
@@ -73759,11 +73688,11 @@
     icon = new Icon_default({ props: { id: "upArrow", src: upArrow } });
     let if_block0 = (
       /*tab1*/
-      ctx[1] === true && create_if_block_327(ctx)
+      ctx[1] === true && create_if_block_321(ctx)
     );
     let if_block1 = (
       /*tab2*/
-      ctx[2] === true && create_if_block_229(ctx)
+      ctx[2] === true && create_if_block_228(ctx)
     );
     let if_block2 = (
       /*tab3*/
@@ -73924,7 +73853,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_327(ctx2);
+            if_block0 = create_if_block_321(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div4, t9);
@@ -73946,7 +73875,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_229(ctx2);
+            if_block1 = create_if_block_228(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(div4, t10);
@@ -74085,7 +74014,7 @@
       }
     };
   }
-  function create_if_block_327(ctx) {
+  function create_if_block_321(ctx) {
     let div1;
     let t2;
     let div4;
@@ -74100,42 +74029,41 @@
     let option1;
     let option2;
     let option3;
-    let option4;
-    let t16;
+    let t15;
     let div7;
-    let t19;
+    let t18;
     let div8;
-    let t22;
+    let t21;
     let div12;
-    let t28;
+    let t27;
     let div15;
-    let t34;
+    let t33;
     let div18;
-    let t40;
+    let t39;
     let div21;
     let div20;
     let div19;
     let p0;
-    let t41;
+    let t40;
     let p1;
     let button0;
     let span0;
     let icon0;
-    let t42;
+    let t41;
     let span1;
-    let t44;
+    let t43;
     let div23;
     let div22;
     let table;
     let thead;
-    let t47;
+    let t46;
     let tbody;
     let tr1;
     let td0;
     let button1;
     let span2;
     let icon1;
-    let t48;
+    let t47;
     let td1;
     let current;
     icon0 = new Icon_default({ props: { id: "orang", src: add } });
@@ -74156,74 +74084,70 @@
         div5 = element("div");
         select = element("select");
         option0 = element("option");
-        option0.textContent = "Tenaga Pengajar";
+        option0.textContent = "Asisten Ahli";
         option1 = element("option");
-        option1.textContent = "Asisten Ahli";
+        option1.textContent = "Lektor";
         option2 = element("option");
-        option2.textContent = "Lektor";
+        option2.textContent = "Lektor Kepala";
         option3 = element("option");
-        option3.textContent = "Lektor Kepala";
-        option4 = element("option");
-        option4.textContent = "Guru Besar";
-        t16 = space();
+        option3.textContent = "Guru Besar / Profesor";
+        t15 = space();
         div7 = element("div");
         div7.innerHTML = `<label class="label" for="label"><h6 class="title is-6">NIP</h6></label> <input class="input"/>`;
-        t19 = space();
+        t18 = space();
         div8 = element("div");
         div8.innerHTML = `<label class="label" for="label"><h6 class="title is-6">NIDN</h6></label> <input class="input"/>`;
-        t22 = space();
+        t21 = space();
         div12 = element("div");
         div12.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Tempat Lahir</h6></label> <input class="input"/></div> <div class="column"><label class="label" for="label"><h6 class="title is-6">Tanggal Lahir</h6></label> <input class="input" type="date"/></div>`;
-        t28 = space();
+        t27 = space();
         div15 = element("div");
         div15.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Alamat Rumah</h6></label> <input class="input"/></div> <div class="column"><label class="label" for="label"><h6 class="title is-6">Telp/Fax Rumah</h6></label> <input class="input"/></div>`;
-        t34 = space();
+        t33 = space();
         div18 = element("div");
         div18.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Alamat Kantor</h6></label> <input class="input"/></div> <div class="column"><label class="label" for="label"><h6 class="title is-6">Telp/Fax Kantor</h6></label> <input class="input"/></div>`;
-        t40 = space();
+        t39 = space();
         div21 = element("div");
         div20 = element("div");
         div19 = element("div");
         p0 = element("p");
         p0.innerHTML = `<input class="input" placeholder="Tambahkan mata kuliah yang diampu"/>`;
-        t41 = space();
+        t40 = space();
         p1 = element("p");
         button0 = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
-        t42 = space();
+        t41 = space();
         span1 = element("span");
         span1.innerHTML = `<a>Tambah</a>`;
-        t44 = space();
+        t43 = space();
         div23 = element("div");
         div22 = element("div");
         table = element("table");
         thead = element("thead");
         thead.innerHTML = `<tr><th class="is-narrow"></th> <th>Mata Kuliah</th></tr>`;
-        t47 = space();
+        t46 = space();
         tbody = element("tbody");
         tr1 = element("tr");
         td0 = element("td");
         button1 = element("button");
         span2 = element("span");
         create_component(icon1.$$.fragment);
-        t48 = space();
+        t47 = space();
         td1 = element("td");
         td1.textContent = "Informatika";
         attr(div1, "class", "columns is-desktop");
         attr(div4, "class", "columns is-desktop");
         attr(label3, "class", "label");
         attr(label3, "for", "label");
-        option0.__value = "Tenaga Pengajar";
+        option0.__value = "Asisten Ahli";
         set_input_value(option0, option0.__value);
-        option1.__value = "Asisten Ahli";
+        option1.__value = "Lektor";
         set_input_value(option1, option1.__value);
-        option2.__value = "Lektor";
+        option2.__value = "Lektor Kepala";
         set_input_value(option2, option2.__value);
-        option3.__value = "Lektor Kepala";
+        option3.__value = "Guru Besar / Profesor";
         set_input_value(option3, option3.__value);
-        option4.__value = "Guru Besar";
-        set_input_value(option4, option4.__value);
         attr(div5, "class", "select is-fullwidth is-danger");
         attr(div6, "class", "column");
         attr(div7, "class", "column");
@@ -74260,42 +74184,41 @@
         append(select, option1);
         append(select, option2);
         append(select, option3);
-        append(select, option4);
-        append(div9, t16);
+        append(div9, t15);
         append(div9, div7);
-        append(div9, t19);
+        append(div9, t18);
         append(div9, div8);
-        insert(target, t22, anchor);
+        insert(target, t21, anchor);
         insert(target, div12, anchor);
-        insert(target, t28, anchor);
+        insert(target, t27, anchor);
         insert(target, div15, anchor);
-        insert(target, t34, anchor);
+        insert(target, t33, anchor);
         insert(target, div18, anchor);
-        insert(target, t40, anchor);
+        insert(target, t39, anchor);
         insert(target, div21, anchor);
         append(div21, div20);
         append(div20, div19);
         append(div19, p0);
-        append(div19, t41);
+        append(div19, t40);
         append(div19, p1);
         append(p1, button0);
         append(button0, span0);
         mount_component(icon0, span0, null);
-        append(button0, t42);
+        append(button0, t41);
         append(button0, span1);
-        insert(target, t44, anchor);
+        insert(target, t43, anchor);
         insert(target, div23, anchor);
         append(div23, div22);
         append(div22, table);
         append(table, thead);
-        append(table, t47);
+        append(table, t46);
         append(table, tbody);
         append(tbody, tr1);
         append(tr1, td0);
         append(td0, button1);
         append(button1, span2);
         mount_component(icon1, span2, null);
-        append(tr1, t48);
+        append(tr1, t47);
         append(tr1, td1);
         current = true;
       },
@@ -74318,15 +74241,15 @@
           detach(div4);
           detach(t8);
           detach(div9);
-          detach(t22);
+          detach(t21);
           detach(div12);
-          detach(t28);
+          detach(t27);
           detach(div15);
-          detach(t34);
+          detach(t33);
           detach(div18);
-          detach(t40);
+          detach(t39);
           detach(div21);
-          detach(t44);
+          detach(t43);
           detach(div23);
         }
         destroy_component(icon0);
@@ -74334,7 +74257,7 @@
       }
     };
   }
-  function create_if_block_229(ctx) {
+  function create_if_block_228(ctx) {
     let label0;
     let t1;
     let table0;
@@ -76286,7 +76209,7 @@
     },
     {
       title: "Proposal PPM",
-      href: "/dosen/proposalmanagement"
+      href: "/dosen/proposalppm"
     },
     {
       title: "Ongoing PPM",

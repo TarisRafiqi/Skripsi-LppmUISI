@@ -24,7 +24,7 @@ const dosen = [
    },
    {
       title: "Proposal PPM",
-      href: "/dosen/proposalmanagement",
+      href: "/dosen/proposalppm",
    },
    {
       title: "Ongoing PPM",

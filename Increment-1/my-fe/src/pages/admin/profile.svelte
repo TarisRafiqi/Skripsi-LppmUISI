@@ -947,7 +947,17 @@
          </Field>
 
          <Field name="Jabatan Fungsional">
-            <input class="input" type="text" bind:value={jabatanFungsional} />
+            <div class="select is-fullwidth">
+               <select bind:value={jabatanFungsional}>
+                  <option value="" selected disabled hidden
+                     >Pilih Jabatan Fungsional</option
+                  >
+                  <option value="Asisten Ahli">Asisten Ahli</option>
+                  <option value="Lektor">Lektor</option>
+                  <option value="Lektor Kepala">Lektor Kepala</option>
+                  <option value="Profesor">Profesor</option>
+               </select>
+            </div>
             {#if error.jabatanFungsional}
                <p class="help error is-danger">{error.jabatanFungsional}</p>
             {/if}

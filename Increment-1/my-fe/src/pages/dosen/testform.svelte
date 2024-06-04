@@ -418,11 +418,10 @@
                                  >
                                  <div class="select is-fullwidth is-danger">
                                     <select>
-                                       <option>Tenaga Pengajar</option>
                                        <option>Asisten Ahli</option>
                                        <option>Lektor</option>
                                        <option>Lektor Kepala</option>
-                                       <option>Guru Besar</option>
+                                       <option>Guru Besar / Profesor</option>
                                     </select>
                                  </div>
                               </div>
