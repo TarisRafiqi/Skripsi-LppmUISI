@@ -1401,10 +1401,6 @@
 
                <br />
 
-               <div class="field is-grouped is-grouped-centered">
-                  <h5 class="title is-5">Riwayat Catatan Revisi</h5>
-               </div>
-
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >

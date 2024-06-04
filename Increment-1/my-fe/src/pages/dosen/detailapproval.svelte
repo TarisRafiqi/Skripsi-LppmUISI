@@ -10,8 +10,9 @@
    export let params;
 
    let randomPenilaianFileName = "";
-   let showModalError = false;
-   let showModalErrorReviewer = false;
+   let showModalErrorRevisi = false;
+   let showModalErrorPassReviewer = false;
+   let isLoading = false;
    const id = params["1"];
    const role = localStorage.getItem("role");
    const idEvaluator = localStorage.getItem("id");
@@ -394,7 +395,6 @@
       const resultPHKI = await responsePHKI.json();
 
       if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -407,29 +407,30 @@
 
    async function handleRevisi() {
       error = {};
-      let payloadCttnRevisi = {
-         ppmId,
-         comment,
-         namaLengkapEvl,
-      };
+      isLoading = true;
 
       let payload = {
          comment,
          status: Number(data.status) - 1,
          id,
       };
-      // -------------------------
-      //    API RiwayatCttnRevisi
-      // -------------------------
-      for (const [key, value] of Object.entries(payload)) {
-         if (!payload[key]) {
-            error[key] = `This field is required`;
-         }
+
+      let payloadCttnRevisi = {
+         ppmId,
+         comment,
+         namaLengkapEvl,
+      };
+
+      if (!payload.comment) {
+         error.comment = `This field is required`;
       }
-      console.log(error);
+
       if (Object.keys(error).length > 0) {
-         showModalError = true;
+         showModalErrorRevisi = true;
       } else {
+         // ==========================//
+         //    API RiwayatCttnRevisi
+         // ==========================//
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
             headers: headers,
@@ -443,11 +444,13 @@
          } else {
             if (!responseRev.ok) {
                console.log(responseRev);
+               // Buat Handle Error
+               // ...
             }
          }
-         // -----------------------------
+         // ==========================//
          //          API PPM
-         // -----------------------------
+         // ==========================//
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
@@ -456,19 +459,24 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
                $route("/dosen/approvalmanagement");
             } else {
                console.log(response);
+               // Buat Handle Error
+               // ...
             }
          }
       }
+      isLoading = false;
    }
 
    async function handleDitolak() {
+      isLoading = true;
+
       const payload = {
          comment: "",
          status: Number(data.status) + 1,
@@ -484,18 +492,22 @@
       const result = await response.json();
 
       if (result.statusCode != 200) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
             $route("/dosen/approvalmanagement");
          } else {
             console.log(response);
+            // Buat Handle Error
+            // ...
          }
       }
+      isLoading = false;
    }
 
    async function handlePass() {
+      isLoading = true;
+
       const payload = {
          comment: "",
          status: Number(data.status) + 2,
@@ -510,31 +522,42 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
             $route("/dosen/approvalmanagement");
          } else {
             console.log(response);
+            // Buat Handle Error
+            // ...
          }
       }
+      isLoading = false;
    }
 
    async function handlePassReviewer() {
       error = {};
+      isLoading = true;
       const readerPenilaian = new FileReader();
-      // -------------------------------------------------------------------//
-      // Upload File Penilaian
-      // -------------------------------------------------------------------//
+
+      const payload = {
+         comment: "",
+         status: Number(data.status) + 2,
+         randomPenilaianFileName,
+         id,
+      };
+
       if (isObjectEmpty($penilaianFile)) {
          error["filePenilaian"] = `*`;
       }
 
       if (Object.keys(error).length > 0) {
-         showModalErrorReviewer = true;
+         showModalErrorPassReviewer = true;
       } else {
+         // ==================================================//
+         // Upload File Penilaian
+         // ==================================================//
          if (
             jenisSkema === "Riset Kelompok Keahlian" ||
             jenisSkema === "Riset Terapan" ||
@@ -570,18 +593,13 @@
                   }
                } catch (error) {
                   console.error("Error uploading file:", error);
+                  // Buat Handle Error
+                  // ...
                }
             };
             readerPenilaian.readAsDataURL(filePenilaian);
          }
-         // -------------------------------------------------------------------//
-         const payload = {
-            comment: "",
-            status: Number(data.status) + 2,
-            randomPenilaianFileName,
-            id,
-         };
-
+         // =================================================================//
          const response = await fetch($apiURL + "/handleEvaluatorAction", {
             method: "PATCH",
             headers: headers,
@@ -597,9 +615,12 @@
                $route("/dosen/approvalmanagement");
             } else {
                console.log(response);
+               // Buat Handle Error
+               // ...
             }
          }
       }
+      isLoading = false;
    }
 
    async function searchUser(ev) {
@@ -741,17 +762,6 @@
 
 {#if data}
    <Article>
-      <Modalerror bind:show={showModalError}>
-         <p>
-            Anda belum menambahkan catatan revisi,<br /> Isi catatan revisi sebagai
-            acuan peneliti untuk memperbaiki kesalahan!
-         </p>
-      </Modalerror>
-
-      <Modalerror bind:show={showModalErrorReviewer}>
-         <p>Anda belum mengupload file penilaian proposal</p>
-      </Modalerror>
-
       <h2 class="title is-2">Detail Proposal</h2>
 
       <div class="tabs is-boxed">
@@ -927,23 +937,24 @@
             <h4 class="title is-4">Informasi Revisi</h4>
             <hr />
 
-            <div class="notification is-warning is-light">
-               <p>Berikan catatan revisi jika ingin revisi proposal.</p>
-            </div>
+            {#if status != 8}
+               <div class="notification is-warning is-light">
+                  <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+               </div>
 
-            <Field name="Catatan Revisi">
-               <textarea
-                  class="textarea"
-                  bind:value={comment}
-                  name="komentar"
-                  id="komentar"
-               ></textarea>
-               {#if error.comment}
-                  <p class="help error is-danger">{error.comment}</p>
-               {/if}
-            </Field>
-
-            <br />
+               <Field name="Catatan Revisi">
+                  <textarea
+                     class="textarea"
+                     bind:value={comment}
+                     name="komentar"
+                     id="komentar"
+                  ></textarea>
+                  {#if error.comment}
+                     <p class="help error is-danger">{error.comment}</p>
+                  {/if}
+               </Field>
+               <br />
+            {/if}
 
             <table
                class="table is-fullwidth is-striped is-hoverable is-bordered"
@@ -976,8 +987,10 @@
             {#if status === 4}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Proses</button
                      >
                   </p>
                </div>
@@ -990,12 +1003,15 @@
                   <p class="control">
                      <button
                         class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}>Revisi</button
+                        on:click={handleRevisi}
+                        class:is-loading={isLoading}>Revisi</button
                      >
                   </p>
                   <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Proses</button
                      >
                   </p>
                </div>
@@ -1008,7 +1024,8 @@
                   <p class="control">
                      <button
                         class="button is-info"
-                        on:click={handlePassReviewer}>Proses</button
+                        on:click={handlePassReviewer}
+                        class:is-loading={isLoading}>Proses</button
                      >
                   </p>
                </div>
@@ -1021,20 +1038,24 @@
                   <p class="control">
                      <button
                         class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}>Revisi</button
+                        on:click={handleRevisi}
+                        class:is-loading={isLoading}>Revisi</button
                      >
                   </p>
 
                   <p class="control">
                      <button
                         class="button is-danger is-light is-outlined"
-                        on:click={handleDitolak}>Ditolak</button
+                        on:click={handleDitolak}
+                        class:is-loading={isLoading}>Ditolak</button
                      >
                   </p>
 
                   <p class="control">
-                     <button class="button is-info" on:click={handlePass}
-                        >Proses</button
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Proses</button
                      >
                   </p>
                </div>
@@ -1318,6 +1339,14 @@
       {/if}
    </Article>
 {/if}
+
+<Modalerror bind:show={showModalErrorRevisi}>
+   <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorPassReviewer}>
+   <p>Anda belum mengupload file penilaian proposal</p>
+</Modalerror>
 
 <style>
    /*

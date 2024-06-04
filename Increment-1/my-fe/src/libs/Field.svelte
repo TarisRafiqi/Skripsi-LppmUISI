@@ -73,8 +73,7 @@
    {:else if select && view}
       <p class="select">
          <select {id} on:change={fillSelect}>
-            <option value="" selected disabled hidden
-               >Masukkan evaluator...</option
+            <option value="" selected disabled hidden>Masukkan evaluator</option
             >
             {#each value as it}
                <option value={it.id} use:goSelect>{it.username}</option>

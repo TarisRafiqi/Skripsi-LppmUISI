@@ -23,8 +23,10 @@
    const idEvaluator = localStorage.getItem("id");
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let showModalError = false;
+   let showModalErrorRevisi = false;
+   let showModalErrorPassReviewer = false;
    let showModalErrorInputEvaluator = false;
-   let showModalErrorReviewer = false;
+   let isLoading = false;
    let randomPenilaianFileName = "";
 
    let jenisProposal;
@@ -460,86 +462,10 @@
 
    async function remediasi() {
       error = {};
-
-      if (editModeProposal) {
-         if (isObjectEmpty($ppmFile)) {
-            error["fileProposal"] = `*`;
-         }
-      }
-
-      if (editModeRAB) {
-         if (isObjectEmpty($rabFile)) {
-            error["fileRAB"] = `*`;
-         }
-      }
+      isLoading = true;
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
-      // -------------------------------------------------------------------//
-      // Upload File RAB
-      // -------------------------------------------------------------------//
-      readerRab.onloadend = async () => {
-         const base64Data = readerRab.result.split(",")[1];
-         const payloadRabFile = {
-            fileRab: {
-               name: fileRab.name,
-               type: fileRab.type,
-               data: base64Data,
-            },
-            randomRabFileName,
-         };
 
-         try {
-            const response = await fetch($apiURL + "/uploadRab", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadRabFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (fileRab) readerRab.readAsDataURL(fileRab);
-      // -------------------------------------------------------------------//
-      // Upload File PPM
-      // -------------------------------------------------------------------//
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-            }
-         } catch (error) {
-            console.error("Error uploading file:", error);
-         }
-      };
-
-      if (filePpm) readerPpm.readAsDataURL(filePpm);
-
-      // -----------------------------------------------------------------------------//
       const payload = {
          jenisProposal,
          jenisKegiatan,
@@ -562,6 +488,18 @@
          randomRabFileName,
          randomPpmFileName,
       };
+
+      if (editModeProposal) {
+         if (isObjectEmpty($ppmFile)) {
+            error["fileProposal"] = `*`;
+         }
+      }
+
+      if (editModeRAB) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
 
       for (const [key, value] of Object.entries(payload)) {
          if (
@@ -575,6 +513,76 @@
       if (Object.keys(error).length > 0) {
          showModalError = true;
       } else {
+         // ================================================//
+         // Upload File PPM
+         // ================================================//
+         readerPpm.onloadend = async () => {
+            const base64Data = readerPpm.result.split(",")[1];
+            const payloadPpmFile = {
+               filePpm: {
+                  name: filePpm.name,
+                  type: filePpm.type,
+                  data: base64Data,
+               },
+               randomPpmFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadPpm", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadPpmFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+            }
+         };
+
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+
+         // ================================================//
+         // Upload File RAB
+         // ================================================//
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
+                  data: base64Data,
+               },
+               randomRabFileName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadRab", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadRabFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+            }
+         };
+
+         if (fileRab) readerRab.readAsDataURL(fileRab);
+
+         // ================================================//
+         // Patch Data Proposal PPM
+         // ================================================//
+
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: headers,
@@ -593,22 +601,35 @@
             }
          }
       }
+      isLoading = false;
    }
 
    async function handleRevisi() {
-      const komentar = document.getElementById("komentar");
-      // -------------------------
-      //    API RiwayatCttnRevisi
-      // -------------------------
+      error = {};
+      isLoading = true;
+
+      let payload = {
+         comment,
+         status: Number(data.status) - 1,
+         id,
+      };
+
       const payloadCttnRevisi = {
          ppmId,
          comment,
          namaLengkapEvl,
       };
 
-      if (komentar.value === "" || komentar.value == null) {
-         showModalErrorReviewer = true;
+      if (!payload.comment) {
+         error.comment = `This field is required`;
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorRevisi = true;
       } else {
+         // ==========================//
+         //    API RiwayatCttnRevisi
+         // ==========================//
          const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
             method: "POST",
             headers: headers,
@@ -617,38 +638,20 @@
 
          const resultRev = await responseRev.json();
 
-         if (responseRev.status === 401) {
+         if (resultRev.statusCode != 200) {
             location.pathname = "/tokenexpired";
+         } else {
+            if (!responseRev.ok) {
+               console.log(responseRev);
+               // Buat Handle Error
+               // ...
+            }
          }
 
-         // -----------------------------
+         // ==========================//
          //          API PPM
-         // -----------------------------
-         const payload = {
-            jenisProposal,
-            jenisKegiatan,
-            jenisSkema,
-            kelompokKeahlian,
-            topik,
-            tanggalMulai,
-            tanggalSelesai,
-            biayaPenelitian,
-            anggotaTim,
-            id,
-            judul,
-            abstrak,
-            isi,
-            comment,
-            status: Number(data.status) - 1,
-            kdeptSelected,
-            klppmSelected,
-            kpkSelected,
-            reviewerSelected,
-            randomRabFileName,
-            randomPpmFileName,
-         };
-
-         const response = await fetch($apiURL + "/ppm", {
+         // ==========================//
+         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
             body: JSON.stringify(payload),
@@ -666,34 +669,19 @@
             }
          }
       }
+      isLoading = false;
    }
 
    async function handleDitolak() {
+      isLoading = true;
+
       const payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
-         isi,
          comment: "",
          status: Number(data.status) + 1,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         id,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: headers,
          body: JSON.stringify(payload),
@@ -710,11 +698,20 @@
             console.log(response);
          }
       }
+      isLoading = false;
    }
 
    async function handlePassReviewer() {
       error = {};
+      isLoading = true;
       const readerPenilaian = new FileReader();
+
+      const payload = {
+         comment: "",
+         status: Number(data.status) + 2,
+         randomPenilaianFileName,
+         id,
+      };
       // -------------------------------------------------------------------//
       // Upload File Penilaian
       // -------------------------------------------------------------------//
@@ -723,7 +720,7 @@
       }
 
       if (Object.keys(error).length > 0) {
-         showModalError = true;
+         showModalErrorPassReviewer = true;
       } else {
          if (
             jenisSkema === "Riset Kelompok Keahlian" ||
@@ -765,13 +762,6 @@
             readerPenilaian.readAsDataURL(filePenilaian);
          }
          // -------------------------------------------------------------------//
-         const payload = {
-            comment: "",
-            status: Number(data.status) + 2,
-            randomPenilaianFileName,
-            id,
-         };
-
          const response = await fetch($apiURL + "/handleEvaluatorAction", {
             method: "PATCH",
             headers: headers,
@@ -780,7 +770,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -790,34 +780,19 @@
             }
          }
       }
+      isLoading = false;
    }
 
    async function handlePass() {
+      isLoading = true;
+
       let payload = {
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         id,
-         judul,
-         abstrak,
-         isi,
          comment: "",
          status: Number(data.status) + 2,
-         kdeptSelected,
-         klppmSelected,
-         kpkSelected,
-         reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         id,
       };
 
-      const response = await fetch($apiURL + "/ppm", {
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
          method: "PATCH",
          headers: headers,
          body: JSON.stringify(payload),
@@ -832,8 +807,11 @@
             $route("/admin/proposalmanagement");
          } else {
             console.log(response);
+            // Buat Handle Error
+            // ...
          }
       }
+      isLoading = false;
    }
 
    function deleteMember(e) {
@@ -996,21 +974,6 @@
 
 {#if data}
    <Article>
-      <Modalerror bind:show={showModalErrorReviewer}>
-         <p>
-            Anda belum menambahkan catatan revisi,<br /> Isi catatan revisi sebagai
-            acuan peneliti untuk memperbaiki kesalahan!
-         </p>
-      </Modalerror>
-
-      <Modalerror bind:show={showModalError}>
-         <p>Lengkapi semua form</p>
-      </Modalerror>
-
-      <Modalerror bind:show={showModalErrorInputEvaluator}>
-         <p>Anda belum menambahkan evaluator pada proposal</p>
-      </Modalerror>
-
       <h2 class="title is-2">Detail Proposal</h2>
 
       <div class="tabs is-boxed">
@@ -1540,101 +1503,110 @@
          <!-- ========================================== -->
          <!--              Catatan Revisi                -->
          <!-- ========================================== -->
-         <div class="box">
-            <h4 class="title is-4">Informasi Revisi</h4>
-            <hr />
-            {#if !view}
-               <Field name="Catatan Revisi">
-                  {comment}
-               </Field>
-            {:else}
-               <Field name="Catatan Revisi">
-                  <textarea
-                     class="textarea"
-                     bind:value={comment}
-                     name="komentar"
-                     id="komentar"
-                  ></textarea>
-               </Field>
-            {/if}
+         {#if status != 0}
+            <div class="box">
+               <h4 class="title is-4">Informasi Revisi</h4>
+               <hr />
+               {#if !view}
+                  <Field name="Catatan Revisi">
+                     {comment}
+                  </Field>
+               {:else if status != 8}
+                  <div class="notification is-warning is-light">
+                     <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+                  </div>
 
-            <br />
-
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th style="width: 70%;">Riwayat Catatan Revisi</th>
-                     <th style="width: 15%;">Evaluator</th>
-                     <th style="width: 15%;">Waktu</th>
-                  </tr>
-               </thead>
-               {#if itemsRCR}
-                  <tbody>
-                     {#each itemsRCR as item}
-                        <tr>
-                           <td>{item.comment}</td>
-                           <td>{item.evaluator}</td>
-                           <td>{item.time}</td>
-                        </tr>
-                     {/each}
-                  </tbody>
+                  <Field name="Catatan Revisi">
+                     <textarea
+                        class="textarea"
+                        bind:value={comment}
+                        name="komentar"
+                     ></textarea>
+                     {#if error.comment}
+                        <p class="help error is-danger">{error.comment}</p>
+                     {/if}
+                  </Field>
+                  <br />
                {/if}
-            </table>
-         </div>
+
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                        <th style="width: 15%;">Evaluator</th>
+                        <th style="width: 15%;">Waktu</th>
+                     </tr>
+                  </thead>
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td>{item.evaluator}</td>
+                              <td>{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
+            </div>
+         {/if}
 
          <!-- ========================================== -->
          <!--              Input Evaluator               -->
          <!-- ========================================== -->
-         <div class="box">
-            <h4 class="title is-4">Input Evaluator</h4>
-            <hr />
-            <Field
-               id={"evaluatorKdept"}
-               name="Ka. Departemen"
-               bind:value={ka_departemen}
-               bind:selected={kdeptSelected}
-               select
-               view
-               userId={kdeptSelected}
-            />
-            <br />
-            <Field
-               id={"evaluatorKlppm"}
-               name="Ka. LPPM"
-               bind:value={ka_lppm}
-               bind:selected={klppmSelected}
-               select
-               view
-               userId={klppmSelected}
-            />
-            <br />
-            <Field
-               id={"evaluatorReviewer"}
-               name="Reviewer"
-               bind:value={reviewer}
-               bind:selected={reviewerSelected}
-               select
-               view
-               userId={reviewerSelected}
-            />
-            <br />
-            <Field
-               id={"evaluatorKpk"}
-               name="Ka. Pusat Kajian"
-               bind:value={ka_pusat_kajian}
-               bind:selected={kpkSelected}
-               select
-               view
-               userId={kpkSelected}
-            />
-            <div class="field is-grouped is-grouped-right">
-               <p class="control">
-                  <button class="button is-success">Submit Evaluator</button>
-               </p>
+         {#if status != 0}
+            <div class="box">
+               <h4 class="title is-4">Input Evaluator</h4>
+               <hr />
+               <Field
+                  id={"evaluatorKdept"}
+                  name="Ka. Departemen"
+                  bind:value={ka_departemen}
+                  bind:selected={kdeptSelected}
+                  select
+                  view
+                  userId={kdeptSelected}
+               />
+               <br />
+               <Field
+                  id={"evaluatorKlppm"}
+                  name="Ka. LPPM"
+                  bind:value={ka_lppm}
+                  bind:selected={klppmSelected}
+                  select
+                  view
+                  userId={klppmSelected}
+               />
+               <br />
+               <Field
+                  id={"evaluatorReviewer"}
+                  name="Reviewer"
+                  bind:value={reviewer}
+                  bind:selected={reviewerSelected}
+                  select
+                  view
+                  userId={reviewerSelected}
+               />
+               <br />
+               <Field
+                  id={"evaluatorKpk"}
+                  name="Ka. Pusat Kajian"
+                  bind:value={ka_pusat_kajian}
+                  bind:selected={kpkSelected}
+                  select
+                  view
+                  userId={kpkSelected}
+               />
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button class="button is-success">Submit Evaluator</button>
+                  </p>
+               </div>
             </div>
-         </div>
+         {/if}
 
          <!-- ========================================== -->
          <!--              Action Button                 -->
@@ -1644,28 +1616,35 @@
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
-                     on:click={handleRevisi}>Revisi</button
+                     on:click={handleRevisi}
+                     class:is-loading={isLoading}>Revisi</button
                   >
                </p>
                <p class="control">
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
+                  <button
+                     class="button is-info"
+                     on:click={handlePass}
+                     class:is-loading={isLoading}>Proses</button
                   >
                </p>
             {/if}
 
             {#if status === 4}
                <p class="control">
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
+                  <button
+                     class="button is-info"
+                     on:click={handlePass}
+                     class:is-loading={isLoading}>Proses</button
                   >
                </p>
             {/if}
 
             {#if status === 8}
                <p class="control">
-                  <button class="button is-info" on:click={handlePassReviewer}
-                     >Proses</button
+                  <button
+                     class="button is-info"
+                     on:click={handlePassReviewer}
+                     class:is-loading={isLoading}>Proses</button
                   >
                </p>
             {/if}
@@ -1674,26 +1653,32 @@
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
-                     on:click={handleRevisi}>Revisi</button
+                     on:click={handleRevisi}
+                     class:is-loading={isLoading}>Revisi</button
                   >
                </p>
                <p class="control">
                   <button
                      class="button is-danger is-light is-outlined"
-                     on:click={handleDitolak}>Ditolak</button
+                     on:click={handleDitolak}
+                     class:is-loading={isLoading}>Ditolak</button
                   >
                </p>
                <p class="control">
-                  <button class="button is-info" on:click={handlePass}
-                     >Proses</button
+                  <button
+                     class="button is-info"
+                     on:click={handlePass}
+                     class:is-loading={isLoading}>Proses</button
                   >
                </p>
             {/if}
 
             {#if status === 1 || status === 3 || status === 5 || status === 7 || status === 9}
                <p class="control">
-                  <button class="button is-info" on:click={remediasi}
-                     >Remediasi</button
+                  <button
+                     class="button is-info"
+                     on:click={remediasi}
+                     class:is-loading={isLoading}>Remediasi</button
                   >
                </p>
             {/if}
@@ -1974,6 +1959,22 @@
       {/if}
    </Article>
 {/if}
+
+<Modalerror bind:show={showModalError}>
+   <p>Lengkapi semua form</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorRevisi}>
+   <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorPassReviewer}>
+   <p>Anda belum mengupload file penilaian proposal</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorInputEvaluator}>
+   <p>Anda belum menambahkan evaluator pada proposal</p>
+</Modalerror>
 
 <style>
    .inputf__wrapper {
