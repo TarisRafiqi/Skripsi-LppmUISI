@@ -34,6 +34,7 @@
    {/if}
 
    {#if role === "admin"}
+      <br />
       <p class="menu-label">Website Settings</p>
       <ul class="menu-list">
          <!-- svelte-ignore a11y-missing-attribute -->

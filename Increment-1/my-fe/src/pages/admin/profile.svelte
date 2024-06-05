@@ -689,7 +689,6 @@
             error[key] = `This field is required`;
          }
       }
-      console.log(error);
 
       if (Object.keys(error).length > 0) {
          showModalErrorForm = true;

@@ -37,12 +37,11 @@
          localStorage.setItem("username", username);
          localStorage.setItem("role", role);
          localStorage.setItem("token", token);
-         // return;
          if (role === "admin") $route("/admin");
          else $route("/dosen");
       } else {
+         console.log(response);
          paragraph.style.display = "block";
-         // console.log("Username atau password salah");
       }
    }
 

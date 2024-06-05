@@ -40,7 +40,6 @@
    let anggotaTim = [];
    let judul;
    let abstrak;
-   let isi;
    let comment;
    let status;
    let itemsRCR;
@@ -49,7 +48,6 @@
    let ka_lppm;
    let reviewer;
    let ka_pusat_kajian;
-   let showModal = false;
    let kdeptSelected;
    let klppmSelected;
    let kpkSelected;
@@ -91,7 +89,6 @@
    let fileRab;
    let filePpm;
    let items = [];
-   let file;
    let view;
    let editModeProposal = false;
    let editModeRAB = false;
@@ -447,6 +444,54 @@
       }
    });
 
+   async function getDetailProposal() {
+      ka_departemen = await findRole(11);
+      ka_lppm = await findRole(12);
+      ka_pusat_kajian = await findRole(13);
+      reviewer = await findRole(10);
+
+      const response = await fetch($apiURL + "/ppm/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+      const result = await response.json();
+      view = !isEdit(result.status);
+
+      if (result.statusCode != 200) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            ppmId = data.id;
+            uidProposal = data.uid;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim =
+               typeof data.anggota_tim === "string"
+                  ? JSON.parse(data.anggota_tim)
+                  : data.anggota_tim;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            isi = data.isi;
+            comment = data.comment;
+            status = data.status;
+            kdeptSelected = data.uid_kdept;
+            klppmSelected = data.uid_klppm;
+            kpkSelected = data.uid_kpk;
+            reviewerSelected = data.uid_reviewer;
+            randomRabFileName = data.random_rab_file_name;
+            randomPpmFileName = data.random_ppm_file_name;
+            randomPenilaianFileNamedb = data.random_penilaian_file_name;
+         }
+      }
+   }
+
    function isEdit(code) {
       const edit = [0, 1, 3, 5, 7, 9];
       return edit.some((x) => x === code);
@@ -458,6 +503,48 @@
          Object.keys(objectName).length === 0 &&
          objectName.constructor === Object
       );
+   }
+
+   async function handleSubmitEvaluator() {
+      error = {};
+      isLoading = true;
+
+      const payload = {
+         id,
+         kdeptSelected,
+         klppmSelected,
+         kpkSelected,
+         reviewerSelected,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorInputEvaluator = true;
+      } else {
+         const response = await fetch($apiURL + "/submitEvaluator", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               getDetailProposal();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+      isLoading = false;
    }
 
    async function remediasi() {
@@ -784,6 +871,11 @@
    }
 
    async function handlePass() {
+      let db_Kdept = data.uid_kdept;
+      let db_Klppm = data.uid_klppm;
+      let db_Kpk = data.uid_kpk;
+      let db_Reviewer = data.uid_reviewer;
+      error = {};
       isLoading = true;
 
       let payload = {
@@ -792,23 +884,40 @@
          id,
       };
 
-      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
-         method: "PATCH",
-         headers: headers,
-         body: JSON.stringify(payload),
-      });
+      let dbEvaluator = {
+         db_Kdept,
+         db_Klppm,
+         db_Kpk,
+         db_Reviewer,
+      };
 
-      const result = await response.json();
+      for (const [key, value] of Object.entries(dbEvaluator)) {
+         if (!dbEvaluator[key]) {
+            error[key] = `This field is required`;
+         }
+      }
 
-      if (response.status === 401) {
-         location.pathname = "/tokenexpired";
+      if (Object.keys(error).length > 0) {
+         showModalErrorInputEvaluator = true;
       } else {
-         if (response.ok) {
-            $route("/admin/proposalmanagement");
+         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
          } else {
-            console.log(response);
-            // Buat Handle Error
-            // ...
+            if (response.ok) {
+               $route("/admin/proposalmanagement");
+            } else {
+               console.log(response);
+               // Buat Handle Error
+               // ...
+            }
          }
       }
       isLoading = false;
@@ -970,6 +1079,9 @@
       tab1 = false;
       tab2 = true;
    }
+
+   $: isFormFilled =
+      kdeptSelected && klppmSelected && reviewerSelected && kpkSelected;
 </script>
 
 {#if data}
@@ -1600,9 +1712,21 @@
                   view
                   userId={kpkSelected}
                />
+
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
-                     <button class="button is-success">Submit Evaluator</button>
+                     {#if isFormFilled}
+                        <button
+                           class="button is-success"
+                           class:is-loading={isLoading}
+                           on:click={handleSubmitEvaluator}
+                           >Submit Evaluator</button
+                        >
+                     {:else}
+                        <button class="button is-success" disabled>
+                           Submit Evaluator
+                        </button>
+                     {/if}
                   </p>
                </div>
             </div>
@@ -1973,7 +2097,7 @@
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorInputEvaluator}>
-   <p>Anda belum menambahkan evaluator pada proposal</p>
+   <p>Lengkapi form input evaluator</p>
 </Modalerror>
 
 <style>
