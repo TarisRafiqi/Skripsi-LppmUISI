@@ -94,7 +94,7 @@
                <Icon id="logo" src={jurnal} size="2" />
             </div>
             <div class="flex-item-right has-text-centered">
-               <p class="heading">Jurnal</p>
+               <p class="heading">Ongoing PPM</p>
                <p class="title">...</p>
             </div>
          </div>
@@ -106,7 +106,7 @@
                <Icon id="logo" src={copyright} size="2" />
             </div>
             <div class="flex-item-right has-text-centered">
-               <p class="heading">HKI</p>
+               <p class="heading">Completed PPM</p>
                <p class="title">...</p>
             </div>
          </div>

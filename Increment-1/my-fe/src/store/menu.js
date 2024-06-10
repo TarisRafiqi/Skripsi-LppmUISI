@@ -23,16 +23,8 @@ const dosen = [
       href: "/dosen/profile",
    },
    {
-      title: "Proposal PPM",
-      href: "/dosen/proposalppm",
-   },
-   {
-      title: "Ongoing PPM",
-      href: "/dosen/ongoingppm",
-   },
-   {
-      title: "Completed PPM",
-      href: "/dosen/completedppm",
+      title: "PPM Management",
+      href: "/dosen/ppmmanagement",
    },
 ];
 export default {

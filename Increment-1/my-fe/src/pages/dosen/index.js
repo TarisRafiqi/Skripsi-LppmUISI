@@ -1,11 +1,9 @@
 export { default as approvalmanagement } from "./approvalmanagement.svelte";
-export { default as completedppm } from "./completedppm.svelte";
 export { default as detailapproval } from "./detailapproval.svelte";
 export { default as detailproposal } from "./detailproposal.svelte";
 export { default as home } from "./home.svelte";
-export { default as ongoingppm } from "./ongoingppm.svelte";
 export { default as pendaftaranproposal } from "./pendaftaranproposal.svelte";
+export { default as ppmmanagement } from "./ppmmanagement.svelte";
 export { default as profile } from "./profile.svelte";
-export { default as proposalppm } from "./proposalppm.svelte";
 export { default as select } from "./select.svelte";
 export { default as testform } from "./testform.svelte";

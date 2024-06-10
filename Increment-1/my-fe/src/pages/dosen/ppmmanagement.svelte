@@ -51,7 +51,6 @@
       });
 
       const result = await response.json();
-
       const reminder = [];
 
       if (result.statusCode != 200) {
@@ -90,7 +89,7 @@
 </script>
 
 <Article>
-   <h2 class="title is-2">Proposal Penelitian / Pengabdian Masyarakat</h2>
+   <h2 class="title is-2">PPM Management</h2>
    <hr />
 
    <div class="columns">

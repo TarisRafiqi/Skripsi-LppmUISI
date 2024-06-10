@@ -618,7 +618,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (responseProposal.ok) {
-               $route("/dosen/proposalppm");
+               $route("/dosen/ppmmanagement");
             } else {
                console.log(responseProposal.msg, error);
                // Buat Handle Error
@@ -784,7 +784,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (responseProposal.ok) {
-               $route("/dosen/proposalppm");
+               $route("/dosen/ppmmanagement");
             } else {
                console.log(responseProposal.msg, error);
                // Buat Handle Error

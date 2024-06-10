@@ -49,12 +49,86 @@
       <h2 class="title is-2">Proposal Management</h2>
       <hr />
 
-      <div class="field">
-         <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="Search judul" />
-            <span class="icon is-left">
-               <Icon id="searchIcon" src={searchIcon} />
-            </span>
+      <div class="columns">
+         <div class="column">
+            <h4 class="title is-4">Review Administrasi</h4>
+         </div>
+
+         <div class="column">
+            <div class="field">
+               <div class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Search judul" />
+                  <span class="icon is-left">
+                     <Icon id="searchIcon" src={searchIcon} />
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box parent">
+         <div class="child">
+            <table class="table is-fullwidth is-striped is-hoverable">
+               <thead>
+                  <tr>
+                     <th style="width: 50%;">Judul</th>
+                     <th
+                        style="width: 10%; text-align: center"
+                        class="is-narrow">Jenis Kegiatan</th
+                     >
+                     <th
+                        style="width: auto; text-align: center"
+                        class="is-narrow">Jenis Skema</th
+                     >
+                     <th style="width: 15%; text-align: center">Status</th>
+                     <th style="width: 5%;" colspan="2">Action</th>
+                  </tr>
+               </thead>
+
+               <tbody>
+                  {#each items as item}
+                     {#if item.status === 2}
+                        <tr>
+                           <td class="judul"><p>{item.judul}</p> </td>
+                           <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
+                           >
+                           <td class="skema"><p>{item.jenis_skema}</p></td>
+                           <td class="status"><Status code={item.status} /></td>
+                           <td class="review"
+                              ><button
+                                 class="button is-info is-small"
+                                 uid={item.id}
+                                 on:click={handleReview}
+                              >
+                                 <span class="icon">
+                                    <Icon id="review" src={infoOutline} />
+                                 </span></button
+                              ></td
+                           >
+                        </tr>
+                     {/if}
+                  {/each}
+               </tbody>
+            </table>
+         </div>
+      </div>
+
+      <br />
+
+      <div class="columns">
+         <div class="column">
+            <h4 class="title is-4">All Proposal</h4>
+         </div>
+
+         <div class="column">
+            <div class="field">
+               <div class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Search judul" />
+                  <span class="icon is-left">
+                     <Icon id="searchIcon" src={searchIcon} />
+                  </span>
+               </div>
+            </div>
          </div>
       </div>
 
@@ -121,7 +195,7 @@
    }
 
    .parent {
-      height: 700px;
+      height: 500px;
       overflow: hidden;
    }
 

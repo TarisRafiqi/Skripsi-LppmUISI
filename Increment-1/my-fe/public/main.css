@@ -1788,23 +1788,23 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/proposalmanagement.esbuild-svelte-fake-css */
-.judul.svelte-1lg2tz8 {
+.judul.svelte-o5mv3m {
   text-align: justify;
 }
-.kegiatan.svelte-1lg2tz8,
-.skema.svelte-1lg2tz8,
-.status.svelte-1lg2tz8,
-.review.svelte-1lg2tz8 {
+.kegiatan.svelte-o5mv3m,
+.skema.svelte-o5mv3m,
+.status.svelte-o5mv3m,
+.review.svelte-o5mv3m {
   text-align: center;
 }
-.review.svelte-1lg2tz8 {
+.review.svelte-o5mv3m {
   cursor: pointer;
 }
-.parent.svelte-1lg2tz8 {
-  height: 700px;
+.parent.svelte-o5mv3m {
+  height: 500px;
   overflow: hidden;
 }
-.child.svelte-1lg2tz8 {
+.child.svelte-o5mv3m {
   height: 100%;
   margin-right: -20px;
   padding-right: 20px;
@@ -1849,31 +1849,6 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/approvalmanagement.esbuild-svelte-fake-css */
-.judul.svelte-1mtjhz7 {
-  text-align: justify;
-}
-.kegiatan.svelte-1mtjhz7,
-.skema.svelte-1mtjhz7,
-.status.svelte-1mtjhz7,
-.review.svelte-1mtjhz7 {
-  text-align: center;
-}
-.review.svelte-1mtjhz7 {
-  cursor: pointer;
-}
-.parent.svelte-1mtjhz7 {
-  height: 600px;
-  overflow: hidden;
-}
-.child.svelte-1mtjhz7 {
-  height: 100%;
-  margin-right: -20px;
-  padding-right: 20px;
-  scrollbar-width: thin;
-  overflow-y: scroll;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/completedppm.esbuild-svelte-fake-css */
 .judul.svelte-1mtjhz7 {
   text-align: justify;
 }
@@ -1952,31 +1927,6 @@ article.svelte-12yf9li {
   flex: 50%;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/ongoingppm.esbuild-svelte-fake-css */
-.judul.svelte-1mtjhz7 {
-  text-align: justify;
-}
-.kegiatan.svelte-1mtjhz7,
-.skema.svelte-1mtjhz7,
-.status.svelte-1mtjhz7,
-.review.svelte-1mtjhz7 {
-  text-align: center;
-}
-.review.svelte-1mtjhz7 {
-  cursor: pointer;
-}
-.parent.svelte-1mtjhz7 {
-  height: 600px;
-  overflow: hidden;
-}
-.child.svelte-1mtjhz7 {
-  height: 100%;
-  margin-right: -20px;
-  padding-right: 20px;
-  scrollbar-width: thin;
-  overflow-y: scroll;
-}
-
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
 .inputf__wrapper.svelte-zdesaq.svelte-zdesaq {
   position: relative;
@@ -1988,11 +1938,6 @@ article.svelte-12yf9li {
   opacity: 0;
 }
 .help.svelte-zdesaq.svelte-zdesaq {
-  margin: -6px 0px 0px 0px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/profile.esbuild-svelte-fake-css */
-.help.svelte-1lhj3n7 {
   margin: -6px 0px 0px 0px;
 }
 
@@ -2038,7 +1983,7 @@ button.svelte-5cn8hs {
   color: white;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/proposalppm.esbuild-svelte-fake-css */
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/ppmmanagement.esbuild-svelte-fake-css */
 .judul.svelte-1mtjhz7 {
   text-align: justify;
 }
@@ -2061,6 +2006,11 @@ button.svelte-5cn8hs {
   padding-right: 20px;
   scrollbar-width: thin;
   overflow-y: scroll;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/profile.esbuild-svelte-fake-css */
+.help.svelte-1lhj3n7 {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
