@@ -1691,7 +1691,7 @@
 
       <!-- Tab Biodata Peneliti -->
       {#if tab2 === true}
-         {#if uidProposal === own_id}
+         <!-- {#if uidProposal === own_id}
             <div class="notification is-danger is-light">
                <p style="text-align: justify;">
                   <strong>Biodata</strong> sebagai salah satu syarat dalam
@@ -1703,7 +1703,7 @@
                   </a>
                </p>
             </div>
-         {/if}
+         {/if} -->
 
          <div class="box">
             <Field name="Nama Lengkap">{namaLengkap}</Field>
@@ -1731,27 +1731,25 @@
             {:else}
                <Field name="Email"><span></span></Field>
             {/if}
-
-            <Field name="Mata Kuliah">
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th>Mata Kuliah</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {#if mataKuliah && mataKuliah.length > 0}
-                        {#each mataKuliah as matkul}
-                           <tr>
-                              <td>{matkul.label}</td>
-                           </tr>
-                        {/each}
-                     {/if}
-                  </tbody>
-               </table>
-            </Field>
+            <br />
+            <table
+               class="table is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th>Mata Kuliah yang diampu</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if mataKuliah && mataKuliah.length > 0}
+                     {#each mataKuliah as matkul}
+                        <tr>
+                           <td>{matkul.label}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
          </div>
 
          <!-- =========================================== -->
@@ -1999,7 +1997,6 @@
 
    .toggle-button {
       cursor: pointer;
-      /* color: #434a54; */
       color: #fc6c78;
       font-size: small;
    }

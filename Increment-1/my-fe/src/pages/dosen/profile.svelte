@@ -199,8 +199,8 @@
       // }
 
       getRiwayatPendidikanS1();
-      // getRiwayatPendidikanS2();
-      // getRiwayatPendidikanS3();
+      getRiwayatPendidikanS2();
+      getRiwayatPendidikanS3();
       getPengalamanPenelitian();
       getPengalamanPengmas();
       getPengalamanDiseminasi();
@@ -227,6 +227,50 @@
             dataRPS1 = resultRPS1.dbData;
          } else {
             console.log(responseRPS1);
+         }
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Riwayat Pendidikan S2
+   // -----------------------------------------------
+   async function getRiwayatPendidikanS2() {
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultRPS2 = await responseRPS2.json();
+
+      if (responseRPS2.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS2.ok) {
+            dataRPS2 = resultRPS2.dbData;
+         } else {
+            console.log(responseRPS2);
+         }
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Riwayat Pendidikan S2
+   // -----------------------------------------------
+   async function getRiwayatPendidikanS3() {
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultRPS3 = await responseRPS3.json();
+
+      if (responseRPS3.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS3.ok) {
+            dataRPS3 = resultRPS3.dbData;
+         } else {
+            console.log(responseRPS3);
          }
       }
    }
@@ -469,8 +513,6 @@
             }
          }
       }
-
-      // console.log(payload);
    }
 
    // ------------------------------------------------------------
@@ -497,9 +539,30 @@
       if (Object.keys(error).length > 0) {
          showModalErrorForm = true;
       } else {
-         showModalRiwayatPendidikanS2 = false;
+         const response = await fetch($apiURL + "/riwayatPendidikanS2", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalRiwayatPendidikanS2 = false;
+               nama_pertiS2 = "";
+               bidang_ilmuS2 = "";
+               tahunMasukS2 = "";
+               tahunLulusS2 = "";
+               judulTesis = "";
+               getRiwayatPendidikanS2();
+            } else {
+               console.log(response);
+            }
+         }
       }
-      // console.log(payload);
    }
 
    // ------------------------------------------------------------
@@ -526,9 +589,30 @@
       if (Object.keys(error).length > 0) {
          showModalErrorForm = true;
       } else {
-         showModalRiwayatPendidikanS3 = false;
+         const response = await fetch($apiURL + "/riwayatPendidikanS3", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalRiwayatPendidikanS3 = false;
+               nama_pertiS3 = "";
+               bidang_ilmuS3 = "";
+               tahunMasukS3 = "";
+               tahunLulusS3 = "";
+               judulDisertasi = "";
+               getRiwayatPendidikanS3();
+            } else {
+               console.log(response);
+            }
+         }
       }
-      // console.log(payload);
    }
 
    // ------------------------------------------------------------
@@ -943,6 +1027,48 @@
       }
    }
 
+   async function delrowRPS2(ev) {
+      let idRPS2 = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, {
+         method: "DELETE",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getRiwayatPendidikanS2();
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
+   async function delrowRPS3(ev) {
+      let idRPS3 = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, {
+         method: "DELETE",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getRiwayatPendidikanS3();
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
    async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
 
@@ -1275,7 +1401,7 @@
             <thead>
                <tr>
                   <th class="is-narrow"></th>
-                  <th>Mata Kuliah</th>
+                  <th>Mata Kuliah yang diampu</th>
                </tr>
             </thead>
             <tbody>
@@ -1413,20 +1539,27 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td
-                     ><button class="button is-danger is-small"
-                        ><span class="icon">
-                           <Icon id="delete" src={deleteIcon} />
-                        </span></button
-                     ></td
-                  >
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-               </tr>
+               {#if dataRPS2}
+                  {#each dataRPS2 as RPS2}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              pid={RPS2.id}
+                              on:click={delrowRPS2}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{RPS2.nama_perguruan_tinggi}</td>
+                        <td>{RPS2.bidang_ilmu}</td>
+                        <td>{RPS2.tahun_masuk}</td>
+                        <td>{RPS2.tahun_lulus}</td>
+                        <td>{RPS2.judul_tesis}</td>
+                     </tr>
+                  {/each}
+               {/if}
             </tbody>
          </table>
       </div>
@@ -1470,20 +1603,27 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td
-                     ><button class="button is-danger is-small"
-                        ><span class="icon">
-                           <Icon id="delete" src={deleteIcon} />
-                        </span></button
-                     ></td
-                  >
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-               </tr>
+               {#if dataRPS3}
+                  {#each dataRPS3 as RPS3}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              pid={RPS3.id}
+                              on:click={delrowRPS3}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{RPS3.nama_perguruan_tinggi}</td>
+                        <td>{RPS3.bidang_ilmu}</td>
+                        <td>{RPS3.tahun_masuk}</td>
+                        <td>{RPS3.tahun_lulus}</td>
+                        <td>{RPS3.judul_disertasi}</td>
+                     </tr>
+                  {/each}
+               {/if}
             </tbody>
          </table>
       </div>
