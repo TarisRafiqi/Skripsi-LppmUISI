@@ -1782,12 +1782,7 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
   flex: 50%;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/profile.esbuild-svelte-fake-css */
-.help.svelte-1lhj3n7 {
-  margin: -6px 0px 0px 0px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/proposalmanagement.esbuild-svelte-fake-css */
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/ppmmanagement.esbuild-svelte-fake-css */
 .judul.svelte-o5mv3m {
   text-align: justify;
 }
@@ -1810,6 +1805,11 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
   padding-right: 20px;
   scrollbar-width: thin;
   overflow-y: scroll;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/profile.esbuild-svelte-fake-css */
+.help.svelte-1lhj3n7 {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/admin/usersmanagement.esbuild-svelte-fake-css */
@@ -1888,17 +1888,22 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/detailproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-wzx0zq.svelte-wzx0zq {
+.inputf__wrapper.svelte-1h3pib6.svelte-1h3pib6 {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-wzx0zq input.svelte-wzx0zq {
+.inputf__wrapper.svelte-1h3pib6 input.svelte-1h3pib6 {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-wzx0zq.svelte-wzx0zq {
+.help.svelte-1h3pib6.svelte-1h3pib6 {
   margin: -6px 0px 0px 0px;
+}
+.toggle-button.svelte-1h3pib6.svelte-1h3pib6 {
+  cursor: pointer;
+  color: #fc6c78;
+  font-size: small;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
@@ -2014,12 +2019,10 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.field.svelte-ihhmph {
-  padding-bottom: 10px;
-}
-.red-asterisk.svelte-ihhmph {
-  color: red;
-  font-weight: bold;
+.toggle-button.svelte-y4xugd {
+  cursor: pointer;
+  color: #434a54;
+  font-size: small;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-1/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */

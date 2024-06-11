@@ -8,8 +8,8 @@ const admin = [
       href: "/admin/usersmanagement",
    },
    {
-      title: "Proposal Management",
-      href: "/admin/proposalmanagement",
+      title: "PPM Management",
+      href: "/admin/ppmmanagement",
    },
 ];
 

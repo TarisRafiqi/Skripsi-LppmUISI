@@ -75,6 +75,12 @@
    let editModeProposal = false;
    let editModeRAB = false;
    let showModalError = false;
+   let skpVisible = false;
+   let danaPenelitianVisible = false;
+   let suratTugasVisible = false;
+   let hasilPenelitianVisible = false;
+   let presentasiVisible = false;
+   let skPenelitianVisible = false;
 
    const accessToken = localStorage.getItem("token");
 
@@ -1170,11 +1176,11 @@
                <Field name="Proposal">
                   {#if !editModeProposal}
                      <button
-                        class="button is-link button"
+                        class="button is-link button is-small"
                         on:click={handleDownloadPpm}>Download Proposal</button
                      >
                      <button
-                        class="button is-link is-light"
+                        class="button is-link is-light is-small"
                         on:click={toggleEditModeProposal}
                         title="Change files"
                         ><span class="icon">
@@ -1190,7 +1196,7 @@
                            type="file"
                            on:change={filePpmChange}
                         />
-                        <div class="file has-name is-success">
+                        <div class="file has-name is-success is-small">
                            <label class="file-label" for="filePpm">
                               <input
                                  class="file-input"
@@ -1211,7 +1217,7 @@
                            </label>
                         </div>
                         <button
-                           class="button is-danger is-light"
+                           class="button is-danger is-light is-small"
                            on:click={toggleEditModeProposal}
                            title="Cancel"
                            ><span class="icon">
@@ -1232,11 +1238,11 @@
                   <Field name="Rencana Anggaran Biaya">
                      {#if !editModeRAB}
                         <button
-                           class="button is-link button"
+                           class="button is-link button is-small"
                            on:click={handleDownloadRab}>Download RAB</button
                         >
                         <button
-                           class="button is-link is-light"
+                           class="button is-link is-light is-small"
                            on:click={toggleEditModeRAB}
                            title="Change files"
                            ><span class="icon">
@@ -1252,7 +1258,7 @@
                               type="file"
                               on:change={fileRabChange}
                            />
-                           <div class="file has-name is-success">
+                           <div class="file has-name is-success is-small">
                               <label class="file-label" for="fileRab">
                                  <input
                                     class="file-input"
@@ -1278,7 +1284,7 @@
                               </label>
                            </div>
                            <button
-                              class="button is-danger is-light"
+                              class="button is-danger is-light is-small"
                               on:click={toggleEditModeRAB}
                               title="Cancel"
                               ><span class="icon">
@@ -1365,7 +1371,7 @@
 
                <Field name="Proposal">
                   <button
-                     class="button is-link button"
+                     class="button is-link button is-small"
                      on:click={handleDownloadPpm}>Download Proposal</button
                   >
                </Field>
@@ -1373,7 +1379,7 @@
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                   <Field name="Rencana Anggaran Biaya">
                      <button
-                        class="button is-link button"
+                        class="button is-link button is-small"
                         on:click={handleDownloadRab}>Download RAB</button
                      >
                   </Field>
@@ -1386,9 +1392,8 @@
          <!-- ========================================== -->
          {#if !view}
             <div class="box">
-               <h4 class="title is-4">Informasi Revisi</h4>
-               <hr />
-               <div class="notification is-danger is-light">
+               <h5 class="title is-5">Informasi Revisi</h5>
+               <div class="notification is-warning is-light">
                   <p>
                      Perhatikan catatan revisi dari evaluator untuk detail yang
                      akan direvisi!
@@ -1426,9 +1431,236 @@
             </div>
          {/if}
 
-         <!-- ============================================== -->
-         <!--                 Action Button                  -->
-         <!-- ============================================== -->
+         {#if status >= 12}
+            <!-- ========================================== -->
+            <!--        Surat Kontrak Penelitian (SKP)      -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download Surat Kontrak Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() => (skpVisible = !skpVisible)}
+                  >
+                     {skpVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skpVisible}
+                  <hr />
+                  <Field name="Surat Kontrak Penelitian">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+
+                  <Field name="Tanda tangan">
+                     <input type="checkbox" />
+                     Saya sudah menandatangani <b>Surat Kontrak Penelitian</b>
+                  </Field>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--               Dana Penelitian              -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Dana Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (danaPenelitianVisible = !danaPenelitianVisible)}
+                  >
+                     {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if danaPenelitianVisible}
+                  <hr />
+                  <div class="notification is-warning is-light">
+                     <p>
+                        Untuk pengambilan dana atau penjelasan lebih lanjut
+                        terkait pendanaan, hubungi LPPM UISI.
+                     </p>
+                  </div>
+                  <Field name="Status Dana Penelitian">
+                     <span class="tag is-info">30% dana dicairkan</span></Field
+                  >
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--                 Surat Tugas                -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download Surat Tugas
+                  <span
+                     class="toggle-button"
+                     on:click={() => (suratTugasVisible = !suratTugasVisible)}
+                  >
+                     {suratTugasVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if suratTugasVisible}
+                  <hr />
+                  <Field name="Surat Tugas">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Hasil Penelitian               -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (hasilPenelitianVisible = !hasilPenelitianVisible)}
+                  >
+                     {hasilPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if hasilPenelitianVisible}
+                  <hr />
+                  <Field name="Upload Hasil Penelitian">
+                     <div class="file has-name is-success is-small">
+                        <label class="file-label" for="filePpm">
+                           <input
+                              class="file-input"
+                              type="file"
+                              name="resume"
+                           />
+                           <span class="file-cta">
+                              <span class="file-icon">
+                                 <Icon id="download" src={downloadIcon} />
+                              </span>
+                              <span class="file-label"> Choose a file</span>
+                           </span>
+                           <span class="file-name">No file chosen</span>
+                        </label>
+                     </div>
+                  </Field>
+
+                  <Field name="Tanggungan Revisi"><span></span></Field>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 65%;">Catatan</th>
+                           <th style="width: 15%;">Evaluator</th>
+                           <th>Status</th>
+                           <th style="width: 15%;">Tanggal</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td></td>
+                           <td>Taris Rafiqi</td>
+                           <td><span class="tag is-success">Done</span></td>
+                           <td></td>
+                        </tr>
+                     </tbody>
+                  </table>
+
+                  <Field name="Approval Hasil Penelitian"><span></span></Field>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 65%;">Catatan</th>
+                           <th style="width: 15%;">Evaluator</th>
+                           <th>Approval</th>
+                           <th style="width: 15%;">Tanggal</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>Tidak ada catatan</td>
+                           <td>Taris Rafiqi</td>
+                           <td><span class="tag is-success">Disetujui</span></td
+                           >
+                           <td></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--         Presentasi Hasil Penelitian        -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Presentasi Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() => (presentasiVisible = !presentasiVisible)}
+                  >
+                     {presentasiVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if presentasiVisible}
+                  <hr />
+                  <input type="checkbox" />
+                  Saya sudah presentasi <b>Hasil Penelitian</b>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--                 Surat Tugas                -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download SK Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (skPenelitianVisible = !skPenelitianVisible)}
+                  >
+                     {skPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skPenelitianVisible}
+                  <hr />
+                  <Field name="SK Penelitian">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+               {/if}
+            </div>
+         {/if}
+
+         <!-- ========================================== -->
+         <!--               Action Button                -->
+         <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
             {#if !view}
                {#if status === 0}
@@ -1522,6 +1754,9 @@
             </Field>
          </div>
 
+         <!-- =========================================== -->
+         <!--              Riwayat Pendidikan             -->
+         <!-- =========================================== -->
          <div class="box">
             <h6 class="title is-6">Riwayat Pendidikan</h6>
 
@@ -1530,42 +1765,20 @@
             >
                <thead>
                   <tr>
-                     <th class="is-narrow">Program</th>
-                     <th class="is-narrow">S1</th>
-                     <th class="is-narrow">S2</th>
-                     <th class="is-narrow">S3</th>
+                     <th>Nama Perguruan Tinggi</th>
+                     <th>Bidang Ilmu</th>
+                     <th>Tahun Masuk</th>
+                     <th>Tahun Lulus</th>
+                     <th>Judul Skripsi/Tesis/Disertasi</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <th>Nama Perguruan Tinggi</th>
-                     <td>{pertiS1}</td>
-                     <td>{pertiS2}</td>
-                     <td>{pertiS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Bidang Ilmu</th>
-                     <td>{bidangIlmuS1}</td>
-                     <td>{bidangIlmuS2}</td>
-                     <td>{bidangIlmuS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Tahun Masuk</th>
-                     <td>{tahunMasukS1}</td>
-                     <td>{tahunMasukS2}</td>
-                     <td>{tahunMasukS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Tahun Lulus</th>
-                     <td>{tahunLulusS1}</td>
-                     <td>{tahunLulusS2}</td>
-                     <td>{tahunLulusS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Judul Skripsi/Tesis/Disertasi</th>
-                     <td>{judulTugasAkhirS1}</td>
-                     <td>{judulTugasAkhirS2}</td>
-                     <td>{judulTugasAkhirS3}</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
                   </tr>
                </tbody>
             </table>
@@ -1602,6 +1815,9 @@
             </table>
          </div>
 
+         <!-- =========================================== -->
+         <!--                  Pengalaman                 -->
+         <!-- =========================================== -->
          <div class="box">
             <h6 class="title is-6">Pengalaman Pengabdian Masyarakat</h6>
 
@@ -1779,5 +1995,12 @@
    .help {
       /* top, right, bottom, left */
       margin: -6px 0px 0px 0px;
+   }
+
+   .toggle-button {
+      cursor: pointer;
+      /* color: #434a54; */
+      color: #fc6c78;
+      font-size: small;
    }
 </style>

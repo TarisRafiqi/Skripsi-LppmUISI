@@ -46,7 +46,7 @@
 
 {#if items}
    <Article>
-      <h2 class="title is-2">Proposal Management</h2>
+      <h2 class="title is-2">PPM Management</h2>
       <hr />
 
       <div class="columns">

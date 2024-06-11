@@ -682,7 +682,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/proposalmanagement");
+               $route("/admin/ppmmanagement");
             } else {
                console.log(response);
             }
@@ -750,7 +750,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/proposalmanagement");
+               $route("/admin/ppmmanagement");
             } else {
                console.log(response);
             }
@@ -780,7 +780,7 @@
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
-            $route("/admin/proposalmanagement");
+            $route("/admin/ppmmanagement");
          } else {
             console.log(response);
          }
@@ -861,7 +861,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/proposalmanagement");
+               $route("/admin/ppmmanagement");
             } else {
                console.log(response);
             }
@@ -912,7 +912,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/proposalmanagement");
+               $route("/admin/ppmmanagement");
             } else {
                console.log(response);
                // Buat Handle Error
