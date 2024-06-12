@@ -53,22 +53,6 @@
       email,
       mataKuliah = [];
 
-   // let pertiS1,
-   //    pertiS2,
-   //    pertiS3,
-   //    bidangIlmuS1,
-   //    bidangIlmuS2,
-   //    bidangIlmuS3,
-   //    tahunMasukS1,
-   //    tahunMasukS2,
-   //    tahunMasukS3,
-   //    tahunLulusS1,
-   //    tahunLulusS2,
-   //    tahunLulusS3,
-   //    judulTugasAkhirS1,
-   //    judulTugasAkhirS2,
-   //    judulTugasAkhirS3;
-
    let showModalRiwayatPendidikanS1 = false;
    let showModalRiwayatPendidikanS2 = false;
    let showModalRiwayatPendidikanS3 = false;

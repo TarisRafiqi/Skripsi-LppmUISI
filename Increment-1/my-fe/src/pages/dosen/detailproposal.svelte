@@ -1448,6 +1448,233 @@
             </div>
          {/if}
 
+         {#if status >= 12}
+            <!-- ========================================== -->
+            <!--        Surat Kontrak Penelitian (SKP)      -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download Surat Kontrak Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() => (skpVisible = !skpVisible)}
+                  >
+                     {skpVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skpVisible}
+                  <hr />
+                  <Field name="Surat Kontrak Penelitian">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+
+                  <Field name="Tanda tangan">
+                     <input type="checkbox" />
+                     Saya sudah menandatangani <b>Surat Kontrak Penelitian</b>
+                  </Field>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--               Dana Penelitian              -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Dana Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (danaPenelitianVisible = !danaPenelitianVisible)}
+                  >
+                     {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if danaPenelitianVisible}
+                  <hr />
+                  <div class="notification is-warning is-light">
+                     <p>
+                        Untuk pengambilan dana atau penjelasan lebih lanjut
+                        terkait pendanaan, hubungi LPPM UISI.
+                     </p>
+                  </div>
+                  <Field name="Status Dana Penelitian">
+                     <span class="tag is-info">30% dana dicairkan</span></Field
+                  >
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--                 Surat Tugas                -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download Surat Tugas
+                  <span
+                     class="toggle-button"
+                     on:click={() => (suratTugasVisible = !suratTugasVisible)}
+                  >
+                     {suratTugasVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if suratTugasVisible}
+                  <hr />
+                  <Field name="Surat Tugas">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Hasil Penelitian               -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (hasilPenelitianVisible = !hasilPenelitianVisible)}
+                  >
+                     {hasilPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if hasilPenelitianVisible}
+                  <hr />
+                  <Field name="Upload Hasil Penelitian">
+                     <div class="file has-name is-success is-small">
+                        <label class="file-label" for="filePpm">
+                           <input
+                              class="file-input"
+                              type="file"
+                              name="resume"
+                           />
+                           <span class="file-cta">
+                              <span class="file-icon">
+                                 <Icon id="download" src={downloadIcon} />
+                              </span>
+                              <span class="file-label"> Choose a file</span>
+                           </span>
+                           <span class="file-name">No file chosen</span>
+                        </label>
+                     </div>
+                  </Field>
+
+                  <Field name="Tanggungan Revisi"><span></span></Field>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 65%;">Catatan</th>
+                           <th style="width: 15%;">Evaluator</th>
+                           <th>Status</th>
+                           <th style="width: 15%;">Tanggal</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td></td>
+                           <td>Taris Rafiqi</td>
+                           <td><span class="tag is-success">Done</span></td>
+                           <td></td>
+                        </tr>
+                     </tbody>
+                  </table>
+
+                  <Field name="Approval Hasil Penelitian"><span></span></Field>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 65%;">Catatan</th>
+                           <th style="width: 15%;">Evaluator</th>
+                           <th>Approval</th>
+                           <th style="width: 15%;">Tanggal</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>Tidak ada catatan</td>
+                           <td>Taris Rafiqi</td>
+                           <td><span class="tag is-success">Disetujui</span></td
+                           >
+                           <td></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--         Presentasi Hasil Penelitian        -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Presentasi Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() => (presentasiVisible = !presentasiVisible)}
+                  >
+                     {presentasiVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if presentasiVisible}
+                  <hr />
+                  <input type="checkbox" />
+                  Saya sudah presentasi <b>Hasil Penelitian</b>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--                 Surat Tugas                -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-5">
+                  Download SK Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (skPenelitianVisible = !skPenelitianVisible)}
+                  >
+                     {skPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skPenelitianVisible}
+                  <hr />
+                  <Field name="SK Penelitian">
+                     <button class="button is-link button is-small"
+                        >Download</button
+                     >
+                  </Field>
+               {/if}
+            </div>
+         {/if}
+
          <!-- ========================================== -->
          <!--               Action Button                -->
          <!-- ========================================== -->
@@ -1842,5 +2069,11 @@
    .help {
       /* top, right, bottom, left */
       margin: -6px 0px 0px 0px;
+   }
+
+   .toggle-button {
+      cursor: pointer;
+      color: #fc6c78;
+      font-size: small;
    }
 </style>
