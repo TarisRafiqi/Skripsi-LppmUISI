@@ -891,7 +891,7 @@
          </Field> -->
             <Field name="Proposal">
                <button
-                  class="button is-link button"
+                  class="button is-link button is-small"
                   on:click={handleDownloadPpm}>Download Proposal</button
                >
             </Field>
@@ -899,7 +899,7 @@
             {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                <Field name="Rencana Anggaran Biaya">
                   <button
-                     class="button is-link button"
+                     class="button is-link button is-small"
                      on:click={handleDownloadRab}>Download RAB</button
                   >
                </Field>
@@ -916,7 +916,7 @@
                            type="file"
                            on:change={filePenilaianChange}
                         />
-                        <div class="file has-name is-success">
+                        <div class="file has-name is-success is-small">
                            <label class="file-label" for="filePenilaian">
                               <input
                                  class="file-input"
@@ -951,9 +951,9 @@
                {#if status > 8}
                   <Field name="Penilaian Proposal">
                      <button
-                        class="button is-link button"
+                        class="button is-link button is-small"
                         on:click={handleDownloadPenilaian}
-                        >Download Form Penilaian</button
+                        >Download Penilaian</button
                      >
                   </Field>
                {/if}

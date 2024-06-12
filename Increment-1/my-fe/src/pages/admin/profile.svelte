@@ -1375,7 +1375,7 @@
             </div>
          </nav>
 
-         <table class="table is-fullwidth is-striped is-hoverable">
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
             <thead>
                <tr>
                   <th></th>
@@ -1439,7 +1439,7 @@
             </div>
          </nav>
 
-         <table class="table is-fullwidth is-striped is-hoverable">
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
             <thead>
                <tr>
                   <th></th>
@@ -1503,7 +1503,7 @@
             </div>
          </nav>
 
-         <table class="table is-fullwidth is-striped is-hoverable">
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
             <thead>
                <tr>
                   <th></th>
