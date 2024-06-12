@@ -21,6 +21,7 @@
    let error = {};
 
    const idEvaluator = localStorage.getItem("id");
+   let dataRPS1, dataRPS2, dataRPS3;
    let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let showModalError = false;
    let showModalErrorRevisi = false;
@@ -67,22 +68,6 @@
       telpFaxKantor,
       email,
       mataKuliah = [];
-
-   let pertiS1,
-      pertiS2,
-      pertiS3,
-      bidangIlmuS1,
-      bidangIlmuS2,
-      bidangIlmuS3,
-      tahunMasukS1,
-      tahunMasukS2,
-      tahunMasukS3,
-      tahunLulusS1,
-      tahunLulusS2,
-      tahunLulusS3,
-      judulTugasAkhirS1,
-      judulTugasAkhirS2,
-      judulTugasAkhirS3;
 
    let uidProposal;
 
@@ -237,42 +222,72 @@
          }
       }
 
-      // -----------------------------------------------------------------------------//
-      // Get Riwayat Pendidikan
-      // -----------------------------------------------------------------------------//
-      const responseRP = await fetch(
-         $apiURL + "/riwayatpendidikan/" + uidProposal,
+      // ================================================//
+      // Get Riwayat Pendidikan S1
+      // ================================================//
+      const responseRPS1 = await fetch(
+         $apiURL + "/riwayatPendidikanS1/" + uidProposal,
          {
             method: "GET",
             headers: headers,
          }
       );
 
-      const dataRP = await responseRP.json();
+      const resultRPS1 = await responseRPS1.json();
 
-      if (dataRP.statusCode != 200) {
+      if (responseRPS1.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
-         if (responseRP.ok) {
-            pertiS1 = dataRP.nama_perti_s1;
-            pertiS2 = dataRP.nama_perti_s2;
-            pertiS3 = dataRP.nama_perti_s3;
+         if (responseRPS1.ok) {
+            dataRPS1 = resultRPS1.dbData;
+         } else {
+            console.log(responseRPS1);
+         }
+      }
 
-            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
+      // ================================================//
+      // Get Riwayat Pendidikan S2
+      // ================================================//
+      const responseRPS2 = await fetch(
+         $apiURL + "/riwayatPendidikanS2/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
 
-            tahunMasukS1 = dataRP.tahun_masuk_s1;
-            tahunMasukS2 = dataRP.tahun_masuk_s2;
-            tahunMasukS3 = dataRP.tahun_masuk_s3;
+      const resultRPS2 = await responseRPS2.json();
 
-            tahunLulusS1 = dataRP.tahun_lulus_s1;
-            tahunLulusS2 = dataRP.tahun_lulus_s2;
-            tahunLulusS3 = dataRP.tahun_lulus_s3;
+      if (responseRPS2.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS2.ok) {
+            dataRPS2 = resultRPS2.dbData;
+         } else {
+            console.log(responseRPS2);
+         }
+      }
 
-            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
+      // ================================================//
+      // Get Riwayat Pendidikan S3
+      // ================================================//
+      const responseRPS3 = await fetch(
+         $apiURL + "/riwayatPendidikanS3/" + uidProposal,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const resultRPS3 = await responseRPS3.json();
+
+      if (responseRPS3.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS3.ok) {
+            dataRPS3 = resultRPS3.dbData;
+         } else {
+            console.log(responseRPS3);
          }
       }
 
@@ -1824,75 +1839,120 @@
             <Field name="Alamat Kantor">{alamatKantor}</Field>
             <Field name="Telp/Fax Kantor">{telpFaxKantor}</Field>
             <Field name="Email">{email}</Field>
-            <Field name="Mata Kuliah">
+
+            <table
+               class="table mt-5 is-fullwidth is-striped is-hoverable is-bordered"
+            >
+               <thead>
+                  <tr>
+                     <th>Mata Kuliah yang diampu</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {#if mataKuliah && mataKuliah.length > 0}
+                     {#each mataKuliah as matkul}
+                        <tr>
+                           <td>{matkul.label}</td>
+                        </tr>
+                     {/each}
+                  {/if}
+               </tbody>
+            </table>
+         </div>
+
+         <!-- =========================================== -->
+         <!--              Riwayat Pendidikan             -->
+         <!-- =========================================== -->
+         <div class="box">
+            <div class="mb-6">
+               <h6 class="title is-6">Riwayat Pendidikan S1</h6>
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
                   <thead>
                      <tr>
-                        <th>Mata Kuliah</th>
+                        <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                        <th style="width: 20%;">Bidang Ilmu</th>
+                        <th style="width: 10%;">Tahun Masuk</th>
+                        <th style="width: 10%;">Tahun Lulus</th>
+                        <th style="width: 35%;">Judul Skripsi</th>
                      </tr>
                   </thead>
                   <tbody>
-                     {#if mataKuliah && mataKuliah.length > 0}
-                        {#each mataKuliah as matkul}
+                     {#if dataRPS1}
+                        {#each dataRPS1 as RPS1}
                            <tr>
-                              <td>{matkul.label}</td>
+                              <td>{RPS1.nama_perguruan_tinggi}</td>
+                              <td>{RPS1.bidang_ilmu}</td>
+                              <td>{RPS1.tahun_masuk}</td>
+                              <td>{RPS1.tahun_lulus}</td>
+                              <td>{RPS1.judul_skripsi}</td>
                            </tr>
                         {/each}
                      {/if}
                   </tbody>
                </table>
-            </Field>
-         </div>
+            </div>
 
-         <div class="box">
-            <h6 class="title is-6">Riwayat Pendidikan</h6>
+            <div class="mb-6">
+               <h6 class="title is-6">Riwayat Pendidikan S2</h6>
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                        <th style="width: 20%;">Bidang Ilmu</th>
+                        <th style="width: 10%;">Tahun Masuk</th>
+                        <th style="width: 10%;">Tahun Lulus</th>
+                        <th style="width: 35%;">Judul Tesis</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if dataRPS2}
+                        {#each dataRPS2 as RPS2}
+                           <tr>
+                              <td>{RPS2.nama_perguruan_tinggi}</td>
+                              <td>{RPS2.bidang_ilmu}</td>
+                              <td>{RPS2.tahun_masuk}</td>
+                              <td>{RPS2.tahun_lulus}</td>
+                              <td>{RPS2.judul_tesis}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </div>
 
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th class="is-narrow">Program</th>
-                     <th class="is-narrow">S1</th>
-                     <th class="is-narrow">S2</th>
-                     <th class="is-narrow">S3</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <th>Nama Perguruan Tinggi</th>
-                     <td>{pertiS1}</td>
-                     <td>{pertiS2}</td>
-                     <td>{pertiS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Bidang Ilmu</th>
-                     <td>{bidangIlmuS1}</td>
-                     <td>{bidangIlmuS2}</td>
-                     <td>{bidangIlmuS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Tahun Masuk</th>
-                     <td>{tahunMasukS1}</td>
-                     <td>{tahunMasukS2}</td>
-                     <td>{tahunMasukS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Tahun Lulus</th>
-                     <td>{tahunLulusS1}</td>
-                     <td>{tahunLulusS2}</td>
-                     <td>{tahunLulusS3}</td>
-                  </tr>
-                  <tr>
-                     <th>Judul Skripsi/Tesis/Disertasi</th>
-                     <td>{judulTugasAkhirS1}</td>
-                     <td>{judulTugasAkhirS2}</td>
-                     <td>{judulTugasAkhirS3}</td>
-                  </tr>
-               </tbody>
-            </table>
+            <div>
+               <h6 class="title is-6">Riwayat Pendidikan S3</h6>
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                        <th style="width: 20%;">Bidang Ilmu</th>
+                        <th style="width: 10%;">Tahun Masuk</th>
+                        <th style="width: 10%;">Tahun Lulus</th>
+                        <th style="width: 35%;">Judul Disertasi</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if dataRPS3}
+                        {#each dataRPS3 as RPS3}
+                           <tr>
+                              <td>{RPS3.nama_perguruan_tinggi}</td>
+                              <td>{RPS3.bidang_ilmu}</td>
+                              <td>{RPS3.tahun_masuk}</td>
+                              <td>{RPS3.tahun_lulus}</td>
+                              <td>{RPS3.judul_disertasi}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </div>
          </div>
 
          <div class="box">

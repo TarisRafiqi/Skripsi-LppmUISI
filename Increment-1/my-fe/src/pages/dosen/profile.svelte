@@ -13,14 +13,11 @@
    let error = {};
 
    let dataRPS1, dataRPS2, dataRPS3;
+   let nama_pertiS1, bidang_ilmuS1, tahunMasukS1, tahunLulusS1, judulSkripsi;
+   let nama_pertiS2, bidang_ilmuS2, tahunMasukS2, tahunLulusS2, judulTesis;
+   let nama_pertiS3, bidang_ilmuS3, tahunMasukS3, tahunLulusS3, judulDisertasi;
 
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
-
-   let nama_pertiS1, bidang_ilmuS1, tahunMasukS1, tahunLulusS1, judulSkripsi;
-
-   let nama_pertiS2, bidang_ilmuS2, tahunMasukS2, tahunLulusS2, judulTesis;
-
-   let nama_pertiS3, bidang_ilmuS3, tahunMasukS3, tahunLulusS3, judulDisertasi;
 
    let biayaPP,
       tahunPenelitian,
@@ -162,42 +159,6 @@
          }
       }
 
-      // --------------------------------------------
-      // Get Data Riwayat Pendidikan
-      // --------------------------------------------
-      // const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, {
-      //    method: "GET",
-      //    headers: headers,
-      // });
-
-      // const dataRP = await responseRP.json();
-
-      // if (dataRP.statusCode != 200) {
-      //    location.pathname = "/tokenexpired";
-      // } else {
-      //    if (responseRP.ok) {
-      //       pertiS1 = dataRP.nama_perti_s1;
-      //       pertiS2 = dataRP.nama_perti_s2;
-      //       pertiS3 = dataRP.nama_perti_s3;
-
-      //       bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-      //       bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-      //       bidangIlmuS3 = dataRP.bidang_ilmu_s3;
-
-      //       tahunMasukS1 = dataRP.tahun_masuk_s1;
-      //       tahunMasukS2 = dataRP.tahun_masuk_s2;
-      //       tahunMasukS3 = dataRP.tahun_masuk_s3;
-
-      //       tahunLulusS1 = dataRP.tahun_lulus_s1;
-      //       tahunLulusS2 = dataRP.tahun_lulus_s2;
-      //       tahunLulusS3 = dataRP.tahun_lulus_s3;
-
-      //       judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-      //       judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-      //       judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
-      //    }
-      // }
-
       getRiwayatPendidikanS1();
       getRiwayatPendidikanS2();
       getRiwayatPendidikanS3();
@@ -254,7 +215,7 @@
    }
 
    // -----------------------------------------------
-   // Get Riwayat Pendidikan S2
+   // Get Riwayat Pendidikan S3
    // -----------------------------------------------
    async function getRiwayatPendidikanS3() {
       const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, {
@@ -928,51 +889,6 @@
       }
    }
 
-   // ------------------------------------------------------------
-   // Simpan Riwayat Pendidikan
-   // ------------------------------------------------------------
-   // async function simpanRiwayatPendidikan() {
-   //    const payload = {
-   //       pertiS1,
-   //       pertiS2,
-   //       pertiS3,
-   //       bidangIlmuS1,
-   //       bidangIlmuS2,
-   //       bidangIlmuS3,
-   //       tahunMasukS1,
-   //       tahunMasukS2,
-   //       tahunMasukS3,
-   //       tahunLulusS1,
-   //       tahunLulusS2,
-   //       tahunLulusS3,
-   //       judulTugasAkhirS1,
-   //       judulTugasAkhirS2,
-   //       judulTugasAkhirS3,
-   //       id,
-   //    };
-
-   //    const response = await fetch($apiURL + "/riwayatpendidikan", {
-   //       method: "PATCH",
-   //       headers: {
-   //          Authorization: `Bearer ${accessToken}`,
-   //          "Content-Type": "application/json",
-   //       },
-   //       body: JSON.stringify(payload),
-   //    });
-
-   //    const result = await response.json();
-
-   //    if (result.statusCode != 200) {
-   //       location.pathname = "/tokenexpired";
-   //    } else {
-   //       if (response.ok) {
-   //          $route("/dosen");
-   //       } else {
-   //          console.log(response);
-   //       }
-   //    }
-   // }
-
    let tab1 = true;
    let tab2;
    let tab3;
@@ -1395,9 +1311,10 @@
                </p>
             </div>
          </Field>
-         <br />
 
-         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+         <table
+            class="table mt-4 is-fullwidth is-striped is-hoverable is-bordered"
+         >
             <thead>
                <tr>
                   <th class="is-narrow"></th>
@@ -1695,7 +1612,6 @@
             </tbody>
          </table>
       </div>
-      <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Pengabdian Masyarakat -->
@@ -1759,7 +1675,6 @@
             </tbody>
          </table>
       </div>
-      <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran -->
@@ -1826,7 +1741,6 @@
             </tbody>
          </table>
       </div>
-      <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Publikasi Ilmiah dalam Jurnal "Bukan Proceeding" -->
@@ -1892,7 +1806,6 @@
             </tbody>
          </table>
       </div>
-      <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Penulisan Buku -->
@@ -1959,7 +1872,6 @@
             </tbody>
          </table>
       </div>
-      <br />
 
       <!-- ------------------------------------------------------------------------>
       <!-- Pengalaman Hak Kekayaan Intelektual -->
@@ -2025,7 +1937,6 @@
             </tbody>
          </table>
       </div>
-      <br />
    {/if}
 </Article>
 

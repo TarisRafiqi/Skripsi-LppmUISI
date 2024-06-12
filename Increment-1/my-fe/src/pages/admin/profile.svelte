@@ -13,6 +13,11 @@
    let vmataKuliah;
    let error = {};
 
+   let dataRPS1, dataRPS2, dataRPS3;
+   let nama_pertiS1, bidang_ilmuS1, tahunMasukS1, tahunLulusS1, judulSkripsi;
+   let nama_pertiS2, bidang_ilmuS2, tahunMasukS2, tahunLulusS2, judulTesis;
+   let nama_pertiS3, bidang_ilmuS3, tahunMasukS3, tahunLulusS3, judulDisertasi;
+
    let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
    let biayaPP,
       tahunPenelitian,
@@ -49,21 +54,9 @@
       email,
       mataKuliah = [];
 
-   let pertiS1,
-      pertiS2,
-      pertiS3,
-      bidangIlmuS1,
-      bidangIlmuS2,
-      bidangIlmuS3,
-      tahunMasukS1,
-      tahunMasukS2,
-      tahunMasukS3,
-      tahunLulusS1,
-      tahunLulusS2,
-      tahunLulusS3,
-      judulTugasAkhirS1,
-      judulTugasAkhirS2,
-      judulTugasAkhirS3;
+   let showModalRiwayatPendidikanS1 = false;
+   let showModalRiwayatPendidikanS2 = false;
+   let showModalRiwayatPendidikanS3 = false;
 
    let showModalPenelitian = false;
    let showModalPengmas = false;
@@ -72,6 +65,18 @@
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
    let showModalErrorForm = false;
+
+   async function modalInputRiwayatPendidikanS1() {
+      showModalRiwayatPendidikanS1 = true;
+   }
+
+   async function modalInputRiwayatPendidikanS2() {
+      showModalRiwayatPendidikanS2 = true;
+   }
+
+   async function modalInputRiwayatPendidikanS3() {
+      showModalRiwayatPendidikanS3 = true;
+   }
 
    async function clickModalPenelitian() {
       showModalPenelitian = true;
@@ -138,42 +143,9 @@
          }
       }
 
-      // --------------------------------------------
-      // Get Data Riwayat Pendidikan
-      // --------------------------------------------
-      const responseRP = await fetch($apiURL + "/riwayatpendidikan/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const dataRP = await responseRP.json();
-
-      if (dataRP.statusCode != 200) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseRP.ok) {
-            pertiS1 = dataRP.nama_perti_s1;
-            pertiS2 = dataRP.nama_perti_s2;
-            pertiS3 = dataRP.nama_perti_s3;
-
-            bidangIlmuS1 = dataRP.bidang_ilmu_s1;
-            bidangIlmuS2 = dataRP.bidang_ilmu_s2;
-            bidangIlmuS3 = dataRP.bidang_ilmu_s3;
-
-            tahunMasukS1 = dataRP.tahun_masuk_s1;
-            tahunMasukS2 = dataRP.tahun_masuk_s2;
-            tahunMasukS3 = dataRP.tahun_masuk_s3;
-
-            tahunLulusS1 = dataRP.tahun_lulus_s1;
-            tahunLulusS2 = dataRP.tahun_lulus_s2;
-            tahunLulusS3 = dataRP.tahun_lulus_s3;
-
-            judulTugasAkhirS1 = dataRP.judul_tugasakhir_s1;
-            judulTugasAkhirS2 = dataRP.judul_tugasakhir_s2;
-            judulTugasAkhirS3 = dataRP.judul_tugasakhir_s3;
-         }
-      }
-
+      getRiwayatPendidikanS1();
+      getRiwayatPendidikanS2();
+      getRiwayatPendidikanS3();
       getPengalamanPenelitian();
       getPengalamanPengmas();
       getPengalamanDiseminasi();
@@ -181,6 +153,72 @@
       getPengalamanPenulisanBuku();
       getPengalamanHKI();
    });
+
+   // -----------------------------------------------
+   // Get Riwayat Pendidikan S1
+   // -----------------------------------------------
+   async function getRiwayatPendidikanS1() {
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultRPS1 = await responseRPS1.json();
+
+      if (responseRPS1.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS1.ok) {
+            dataRPS1 = resultRPS1.dbData;
+         } else {
+            console.log(responseRPS1);
+         }
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Riwayat Pendidikan S2
+   // -----------------------------------------------
+   async function getRiwayatPendidikanS2() {
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultRPS2 = await responseRPS2.json();
+
+      if (responseRPS2.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS2.ok) {
+            dataRPS2 = resultRPS2.dbData;
+         } else {
+            console.log(responseRPS2);
+         }
+      }
+   }
+
+   // -----------------------------------------------
+   // Get Riwayat Pendidikan S3
+   // -----------------------------------------------
+   async function getRiwayatPendidikanS3() {
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultRPS3 = await responseRPS3.json();
+
+      if (responseRPS3.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRPS3.ok) {
+            dataRPS3 = resultRPS3.dbData;
+         } else {
+            console.log(responseRPS3);
+         }
+      }
+   }
 
    // -----------------------------------------------
    // Get Pengalaman Penelitian
@@ -317,9 +355,155 @@
       }
    }
 
-   // -----------------------------------------------
-   // Tombol Simpan
-   // -----------------------------------------------
+   // ------------------------------------------------------------
+   // Simpan Riwayat Pendidikan S1
+   // ------------------------------------------------------------
+   async function simpanRP_S1() {
+      error = {};
+
+      let payload = {
+         nama_pertiS1,
+         bidang_ilmuS1,
+         tahunMasukS1,
+         tahunLulusS1,
+         judulSkripsi,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/riwayatPendidikanS1", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalRiwayatPendidikanS1 = false;
+               nama_pertiS1 = "";
+               bidang_ilmuS1 = "";
+               tahunMasukS1 = "";
+               tahunLulusS1 = "";
+               judulSkripsi = "";
+               getRiwayatPendidikanS1();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
+   // ------------------------------------------------------------
+   // Simpan Riwayat Pendidikan S2
+   // ------------------------------------------------------------
+   async function simpanRP_S2() {
+      error = {};
+
+      let payload = {
+         nama_pertiS2,
+         bidang_ilmuS2,
+         tahunMasukS2,
+         tahunLulusS2,
+         judulTesis,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/riwayatPendidikanS2", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalRiwayatPendidikanS2 = false;
+               nama_pertiS2 = "";
+               bidang_ilmuS2 = "";
+               tahunMasukS2 = "";
+               tahunLulusS2 = "";
+               judulTesis = "";
+               getRiwayatPendidikanS2();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
+
+   // ------------------------------------------------------------
+   // Simpan Riwayat Pendidikan S3
+   // ------------------------------------------------------------
+   async function simpanRP_S3() {
+      error = {};
+
+      let payload = {
+         nama_pertiS3,
+         bidang_ilmuS3,
+         tahunMasukS3,
+         tahunLulusS3,
+         judulDisertasi,
+         id,
+      };
+
+      for (const [key, value] of Object.entries(payload)) {
+         if (!payload[key]) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorForm = true;
+      } else {
+         const response = await fetch($apiURL + "/riwayatPendidikanS3", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               showModalRiwayatPendidikanS3 = false;
+               nama_pertiS3 = "";
+               bidang_ilmuS3 = "";
+               tahunMasukS3 = "";
+               tahunLulusS3 = "";
+               judulDisertasi = "";
+               getRiwayatPendidikanS3();
+            } else {
+               console.log(response);
+            }
+         }
+      }
+   }
 
    // ------------------------------------------------------------
    // Simpan Pengalaman Penelitian
@@ -622,44 +806,44 @@
    // ------------------------------------------------------------
    // Simpan Riwayat Pendidikan
    // ------------------------------------------------------------
-   async function simpanRiwayatPendidikan() {
-      const payload = {
-         pertiS1,
-         pertiS2,
-         pertiS3,
-         bidangIlmuS1,
-         bidangIlmuS2,
-         bidangIlmuS3,
-         tahunMasukS1,
-         tahunMasukS2,
-         tahunMasukS3,
-         tahunLulusS1,
-         tahunLulusS2,
-         tahunLulusS3,
-         judulTugasAkhirS1,
-         judulTugasAkhirS2,
-         judulTugasAkhirS3,
-         id,
-      };
+   // async function simpanRiwayatPendidikan() {
+   //    const payload = {
+   //       pertiS1,
+   //       pertiS2,
+   //       pertiS3,
+   //       bidangIlmuS1,
+   //       bidangIlmuS2,
+   //       bidangIlmuS3,
+   //       tahunMasukS1,
+   //       tahunMasukS2,
+   //       tahunMasukS3,
+   //       tahunLulusS1,
+   //       tahunLulusS2,
+   //       tahunLulusS3,
+   //       judulTugasAkhirS1,
+   //       judulTugasAkhirS2,
+   //       judulTugasAkhirS3,
+   //       id,
+   //    };
 
-      const response = await fetch($apiURL + "/riwayatpendidikan", {
-         method: "PATCH",
-         headers: headers,
-         body: JSON.stringify(payload),
-      });
+   //    const response = await fetch($apiURL + "/riwayatpendidikan", {
+   //       method: "PATCH",
+   //       headers: headers,
+   //       body: JSON.stringify(payload),
+   //    });
 
-      const result = await response.json();
+   //    const result = await response.json();
 
-      if (result.statusCode != 200) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (response.ok) {
-            $route("/admin/usersmanagement");
-         } else {
-            console.log(response);
-         }
-      }
-   }
+   //    if (result.statusCode != 200) {
+   //       location.pathname = "/tokenexpired";
+   //    } else {
+   //       if (response.ok) {
+   //          $route("/admin/usersmanagement");
+   //       } else {
+   //          console.log(response);
+   //       }
+   //    }
+   // }
 
    // ------------------------------------------------------------
    // Simpan Identtias
@@ -746,6 +930,72 @@
    // -----------------------------------------------
    // Tombol Delete
    // -----------------------------------------------
+   // -----------------------------------------------
+   // Tombol Delete
+   // -----------------------------------------------
+   async function delrowRPS1(ev) {
+      let idRPS1 = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/riwayatPendidikanS1/" + idRPS1, {
+         method: "DELETE",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getRiwayatPendidikanS1();
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
+   async function delrowRPS2(ev) {
+      let idRPS2 = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, {
+         method: "DELETE",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getRiwayatPendidikanS2();
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
+   async function delrowRPS3(ev) {
+      let idRPS3 = ev.target.getAttribute("pid");
+
+      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, {
+         method: "DELETE",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getRiwayatPendidikanS3();
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
    async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
 
@@ -1098,138 +1348,196 @@
    {/if}
 
    {#if tab2 === true}
+      <!-- =========================================== -->
+      <!--             Riwayat Pendidikan S1           -->
+      <!-- =========================================== -->
       <div class="box">
-         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+         <nav class="level">
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Riwayat Pendidikan S1</h6>
+               </div>
+            </div>
+
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={modalInputRiwayatPendidikanS1}
+                  >
+                     <span class="icon">
+                        <Icon id="add" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
             <thead>
                <tr>
-                  <th class="is-narrow">Program</th>
-                  <th>S1</th>
-                  <th>S2</th>
-                  <th>S3</th>
+                  <th></th>
+                  <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                  <th style="width: 20%;">Bidang Ilmu</th>
+                  <th style="width: 10%;">Tahun Masuk</th>
+                  <th style="width: 10%;">Tahun Lulus</th>
+                  <th style="width: 35%;">Judul Skripsi</th>
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <th>Nama Perguruan Tinggi</th>
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={pertiS1}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={pertiS2}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={pertiS3}
-                     /></td
-                  >
-               </tr>
-               <tr>
-                  <th>Bidang Ilmu</th>
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={bidangIlmuS1}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={bidangIlmuS2}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="text"
-                        bind:value={bidangIlmuS3}
-                     /></td
-                  >
-               </tr>
-               <tr>
-                  <th>Tahun Masuk</th>
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunMasukS1}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunMasukS2}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunMasukS3}
-                     /></td
-                  >
-               </tr>
-               <tr>
-                  <th>Tahun Lulus</th>
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunLulusS1}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunLulusS2}
-                     /></td
-                  >
-                  <td
-                     ><input
-                        class="input"
-                        type="number"
-                        bind:value={tahunLulusS3}
-                     /></td
-                  >
-               </tr>
-               <tr>
-                  <th>Judul Skripsi/Tesis/Disertasi</th>
-                  <td
-                     ><textarea class="textarea" bind:value={judulTugasAkhirS1}
-                     ></textarea></td
-                  >
-                  <td
-                     ><textarea class="textarea" bind:value={judulTugasAkhirS2}
-                     ></textarea></td
-                  >
-                  <td
-                     ><textarea class="textarea" bind:value={judulTugasAkhirS3}
-                     ></textarea></td
-                  >
-               </tr>
+               {#if dataRPS1}
+                  {#each dataRPS1 as RPS1}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              pid={RPS1.id}
+                              on:click={delrowRPS1}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{RPS1.nama_perguruan_tinggi}</td>
+                        <td>{RPS1.bidang_ilmu}</td>
+                        <td>{RPS1.tahun_masuk}</td>
+                        <td>{RPS1.tahun_lulus}</td>
+                        <td>{RPS1.judul_skripsi}</td>
+                     </tr>
+                  {/each}
+               {/if}
             </tbody>
          </table>
       </div>
 
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanRiwayatPendidikan}
-               >Simpan</button
-            >
-         </p>
+      <!-- =========================================== -->
+      <!--             Riwayat Pendidikan S2           -->
+      <!-- =========================================== -->
+      <div class="box">
+         <nav class="level">
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Riwayat Pendidikan S2</h6>
+               </div>
+            </div>
+
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={modalInputRiwayatPendidikanS2}
+                  >
+                     <span class="icon">
+                        <Icon id="add" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th></th>
+                  <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                  <th style="width: 20%;">Bidang Ilmu</th>
+                  <th style="width: 10%;">Tahun Masuk</th>
+                  <th style="width: 10%;">Tahun Lulus</th>
+                  <th style="width: 35%;">Judul Tesis</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataRPS2}
+                  {#each dataRPS2 as RPS2}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              pid={RPS2.id}
+                              on:click={delrowRPS2}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{RPS2.nama_perguruan_tinggi}</td>
+                        <td>{RPS2.bidang_ilmu}</td>
+                        <td>{RPS2.tahun_masuk}</td>
+                        <td>{RPS2.tahun_lulus}</td>
+                        <td>{RPS2.judul_tesis}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+      </div>
+
+      <!-- =========================================== -->
+      <!--             Riwayat Pendidikan S3           -->
+      <!-- =========================================== -->
+      <div class="box">
+         <nav class="level">
+            <div class="level-left">
+               <div class="level-item">
+                  <h6 class="title is-6">Riwayat Pendidikan S3</h6>
+               </div>
+            </div>
+
+            <div class="level-right">
+               <div class="level-item">
+                  <button
+                     class="button is-info"
+                     on:click={modalInputRiwayatPendidikanS3}
+                  >
+                     <span class="icon">
+                        <Icon id="add" src={add} />
+                     </span>
+                     <!-- svelte-ignore a11y-missing-attribute -->
+                     <span><a>Tambah</a></span>
+                  </button>
+               </div>
+            </div>
+         </nav>
+
+         <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+               <tr>
+                  <th></th>
+                  <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                  <th style="width: 20%;">Bidang Ilmu</th>
+                  <th style="width: 10%;">Tahun Masuk</th>
+                  <th style="width: 10%;">Tahun Lulus</th>
+                  <th style="width: 35%;">Judul Disertasi</th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if dataRPS3}
+                  {#each dataRPS3 as RPS3}
+                     <tr>
+                        <td
+                           ><button
+                              class="button is-danger is-small"
+                              pid={RPS3.id}
+                              on:click={delrowRPS3}
+                              ><span class="icon">
+                                 <Icon id="delete" src={deleteIcon} />
+                              </span></button
+                           ></td
+                        >
+                        <td>{RPS3.nama_perguruan_tinggi}</td>
+                        <td>{RPS3.bidang_ilmu}</td>
+                        <td>{RPS3.tahun_masuk}</td>
+                        <td>{RPS3.tahun_lulus}</td>
+                        <td>{RPS3.judul_disertasi}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
       </div>
    {/if}
 
@@ -1632,6 +1940,149 @@
       </div>
    {/if}
 </Article>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Input Riwayat Pendidikan S1 -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalRiwayatPendidikanS1}>
+   <h4 class="title is-4" slot="header">Riwayat Pendidikan S1</h4>
+
+   <Field name="Nama Perguruan Tinggi"
+      ><input class="input" type="text" bind:value={nama_pertiS1} />
+      {#if error.nama_pertiS1}
+         <p class="help error is-danger">{error.nama_pertiS1}</p>
+      {/if}
+   </Field>
+
+   <Field name="Bidang Ilmu"
+      ><input class="input" type="text" bind:value={bidang_ilmuS1} />
+      {#if error.bidang_ilmuS1}
+         <p class="help error is-danger">{error.bidang_ilmuS1}</p>
+      {/if}
+   </Field>
+
+   <Field name="Tahun Masuk"
+      ><input class="input" type="number" bind:value={tahunMasukS1} />
+      {#if error.tahunMasukS1}
+         <p class="help error is-danger">{error.tahunMasukS1}</p>
+      {/if}
+   </Field>
+
+   <Field name="Tahun Lulus"
+      ><input class="input" type="number" bind:value={tahunLulusS1} />
+      {#if error.tahunLulusS1}
+         <p class="help error is-danger">{error.tahunLulusS1}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Skripsi"
+      ><input class="input" type="text" bind:value={judulSkripsi} />
+      {#if error.judulSkripsi}
+         <p class="help error is-danger">{error.judulSkripsi}</p>
+      {/if}
+   </Field>
+
+   <hr />
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanRP_S1}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Input Riwayat Pendidikan S2 -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalRiwayatPendidikanS2}>
+   <h4 class="title is-4" slot="header">Riwayat Pendidikan S2</h4>
+
+   <Field name="Nama Perguruan Tinggi"
+      ><input class="input" type="text" bind:value={nama_pertiS2} />
+      {#if error.nama_pertiS2}
+         <p class="help error is-danger">{error.nama_pertiS2}</p>
+      {/if}
+   </Field>
+
+   <Field name="Bidang Ilmu"
+      ><input class="input" type="text" bind:value={bidang_ilmuS2} />
+      {#if error.bidang_ilmuS2}
+         <p class="help error is-danger">{error.bidang_ilmuS2}</p>
+      {/if}
+   </Field>
+
+   <Field name="Tahun Masuk"
+      ><input class="input" type="number" bind:value={tahunMasukS2} />
+      {#if error.tahunMasukS2}
+         <p class="help error is-danger">{error.tahunMasukS2}</p>
+      {/if}
+   </Field>
+
+   <Field name="Tahun Lulus"
+      ><input class="input" type="number" bind:value={tahunLulusS2} />
+      {#if error.tahunLulusS2}
+         <p class="help error is-danger">{error.tahunLulusS2}</p>
+      {/if}
+   </Field>
+
+   <Field name="Judul Tesis"
+      ><input class="input" type="text" bind:value={judulTesis} />
+      {#if error.judulTesis}
+         <p class="help error is-danger">{error.judulTesis}</p>
+      {/if}
+   </Field>
+
+   <hr />
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanRP_S2}>Simpan</button>
+      </p>
+   </div>
+</Modal>
+
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Input Riwayat Pendidikan S3 -->
+<!-- ------------------------------------------------------------------------>
+<Modal bind:show={showModalRiwayatPendidikanS3}>
+   <h4 class="title is-4" slot="header">Riwayat Pendidikan S3</h4>
+
+   <Field name="Nama Perguruan Tinggi"
+      ><input class="input" type="text" bind:value={nama_pertiS3} />
+      {#if error.nama_pertiS3}
+         <p class="help error is-danger">{error.nama_pertiS3}</p>
+      {/if}
+   </Field>
+   <Field name="Bidang Ilmu"
+      ><input class="input" type="text" bind:value={bidang_ilmuS3} />
+      {#if error.bidang_ilmuS3}
+         <p class="help error is-danger">{error.bidang_ilmuS3}</p>
+      {/if}
+   </Field>
+   <Field name="Tahun Masuk"
+      ><input class="input" type="number" bind:value={tahunMasukS3} />
+      {#if error.tahunMasukS3}
+         <p class="help error is-danger">{error.tahunMasukS3}</p>
+      {/if}
+   </Field>
+   <Field name="Tahun Lulus"
+      ><input class="input" type="number" bind:value={tahunLulusS3} />
+      {#if error.tahunLulusS3}
+         <p class="help error is-danger">{error.tahunLulusS3}</p>
+      {/if}
+   </Field>
+   <Field name="Judul Disertasi"
+      ><input class="input" type="text" bind:value={judulDisertasi} />
+      {#if error.judulDisertasi}
+         <p class="help error is-danger">{error.judulDisertasi}</p>
+      {/if}
+   </Field>
+
+   <hr />
+   <div class="field is-grouped is-grouped-right">
+      <p class="control">
+         <button class="button is-info" on:click={simpanRP_S3}>Simpan</button>
+      </p>
+   </div>
+</Modal>
 
 <!-- ------------------------------------------------------------------------>
 <!-- Modal Pengalaman Penelitian -->
