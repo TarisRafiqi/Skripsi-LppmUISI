@@ -2027,10 +2027,17 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.toggle-button.svelte-y4xugd {
+.toggle-button.svelte-1kg9g0u.svelte-1kg9g0u {
   cursor: pointer;
-  color: #434a54;
+  color: #fc6c78;
   font-size: small;
+}
+ul.svelte-1kg9g0u.svelte-1kg9g0u {
+  margin-left: 1.2em;
+  margin-top: -1em;
+}
+ul.svelte-1kg9g0u li.svelte-1kg9g0u {
+  margin-bottom: 4px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */

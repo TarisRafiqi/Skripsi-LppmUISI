@@ -251,7 +251,7 @@
                         <label class="label" for="label"
                            ><h6 class="title is-6">Abstrak</h6></label
                         >
-                        <input class="input" />
+                        <textarea class="textarea" id="myAbstract"></textarea>
                      </div>
                   </div>
 

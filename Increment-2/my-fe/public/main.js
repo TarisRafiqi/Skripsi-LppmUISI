@@ -16136,7 +16136,7 @@
     let tanggalMulai;
     let tanggalSelesai;
     let biayaPenelitian;
-    let anggotaTim2 = [];
+    let anggotaTim = [];
     let judul;
     let abstrak;
     let comment;
@@ -16159,7 +16159,7 @@
     let editModeProposal = false;
     let editModeRAB = false;
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
@@ -16168,7 +16168,7 @@
       $$invalidate(35, ka_lppm = await findRole(12));
       $$invalidate(37, ka_pusat_kajian = await findRole(13));
       $$invalidate(36, reviewer = await findRole(10));
-      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
       $$invalidate(52, view = !isEdit(result.status));
       if (result.statusCode != 200) {
@@ -16186,7 +16186,7 @@
           $$invalidate(25, tanggalMulai = data2.tanggal_mulai);
           $$invalidate(26, tanggalSelesai = data2.tanggal_selesai);
           $$invalidate(27, biayaPenelitian = data2.biaya_penelitian);
-          $$invalidate(28, anggotaTim2 = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(28, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
           $$invalidate(29, judul = data2.judul);
           $$invalidate(30, abstrak = data2.abstrak);
           isi = data2.isi;
@@ -16208,7 +16208,7 @@
         resultPenilaianChar += characters.charAt(randomIndex);
       }
       randomPenilaianFileName = resultPenilaianChar;
-      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers: headers2 });
+      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers });
       const resultEvl = await responseEvl.json();
       if (resultEvl.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16218,7 +16218,7 @@
           namaLengkapEvl = dataEvl.nama_lengkap;
         }
       }
-      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers: headers2 });
+      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
       if (dataRCR.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16227,7 +16227,7 @@
           $$invalidate(33, itemsRCR = dataRCR.dbData);
         }
       }
-      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
       if (resultGP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16251,7 +16251,7 @@
           $$invalidate(50, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
         }
       }
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers });
       const resultRPS1 = await responseRPS1.json();
       if (responseRPS1.status === 401) {
         location.pathname = "/tokenexpired";
@@ -16262,7 +16262,7 @@
           console.log(responseRPS1);
         }
       }
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers });
       const resultRPS2 = await responseRPS2.json();
       if (responseRPS2.status === 401) {
         location.pathname = "/tokenexpired";
@@ -16273,7 +16273,7 @@
           console.log(responseRPS2);
         }
       }
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers });
       const resultRPS3 = await responseRPS3.json();
       if (responseRPS3.status === 401) {
         location.pathname = "/tokenexpired";
@@ -16284,7 +16284,7 @@
           console.log(responseRPS3);
         }
       }
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
       if (resultPP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16295,7 +16295,7 @@
           console.log(responsePP);
         }
       }
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
       if (resultPM.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16306,7 +16306,7 @@
           console.log(responsePM);
         }
       }
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
       if (resultPD.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16317,7 +16317,7 @@
           console.log(responsePD);
         }
       }
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
       if (resultPPub.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16328,7 +16328,7 @@
           console.log(responsePPub);
         }
       }
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
       if (resultPPB.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16339,7 +16339,7 @@
           console.log(responsePPB);
         }
       }
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
       if (resultPHKI.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16350,7 +16350,7 @@
           console.log(responsePHKI);
         }
       }
-      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers: headers2 });
+      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
       if (results.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -16376,7 +16376,7 @@
       $$invalidate(35, ka_lppm = await findRole(12));
       $$invalidate(37, ka_pusat_kajian = await findRole(13));
       $$invalidate(36, reviewer = await findRole(10));
-      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
       $$invalidate(52, view = !isEdit(result.status));
       if (result.statusCode != 200) {
@@ -16394,7 +16394,7 @@
           $$invalidate(25, tanggalMulai = data2.tanggal_mulai);
           $$invalidate(26, tanggalSelesai = data2.tanggal_selesai);
           $$invalidate(27, biayaPenelitian = data2.biaya_penelitian);
-          $$invalidate(28, anggotaTim2 = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(28, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
           $$invalidate(29, judul = data2.judul);
           $$invalidate(30, abstrak = data2.abstrak);
           isi = data2.isi;
@@ -16430,7 +16430,7 @@
       } else {
         const response = await fetch($apiURL + "/submitEvaluator", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -16460,7 +16460,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         id,
         judul,
         abstrak,
@@ -16504,7 +16504,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadPpm", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadPpmFile)
             });
             const result2 = await response2.json();
@@ -16530,7 +16530,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result2 = await response2.json();
@@ -16545,7 +16545,7 @@
           readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -16578,7 +16578,7 @@
       } else {
         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payloadCttnRevisi)
         });
         const resultRev = await responseRev.json();
@@ -16591,7 +16591,7 @@
         }
         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -16616,7 +16616,7 @@
       };
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
         method: "PATCH",
-        headers: headers2,
+        headers,
         body: JSON.stringify(payload)
       });
       const result = await response.json();
@@ -16661,7 +16661,7 @@
             try {
               const responseUpload = await fetch($apiURL + "/uploadPenilaian", {
                 method: "POST",
-                headers: headers2,
+                headers,
                 body: JSON.stringify(payloadPenilaianFile)
               });
               const resultUpload = await responseUpload.json();
@@ -16676,7 +16676,7 @@
         }
         const response = await fetch($apiURL + "/handleEvaluatorAction", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -16715,7 +16715,7 @@
       } else {
         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -16733,14 +16733,14 @@
     }
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
-      $$invalidate(28, anggotaTim2 = anggotaTim2.filter((member) => {
+      $$invalidate(28, anggotaTim = anggotaTim.filter((member) => {
         return member.value !== uid;
       }));
     }
     async function handleDownloadRab(e) {
       let filename = "RAB_" + judul + ".xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -16757,7 +16757,7 @@
     async function handleDownloadPpm(e) {
       let filename = "Proposal_" + judul + ".pdf";
       try {
-        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -16774,7 +16774,7 @@
     async function handleDownloadPenilaian(e) {
       let filename = "Penilaian Proposal_" + judul + ".xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -16790,7 +16790,7 @@
     }
     let options;
     async function findRole(role) {
-      const response = await fetch($apiURL + "/role/" + role, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/role/" + role, { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -16865,8 +16865,8 @@
     }
     const keyup_handler = () => $$invalidate(27, biayaPenelitian = formatRupiah(biayaPenelitian, "Rp. "));
     function select_result_binding(value) {
-      anggotaTim2 = value;
-      $$invalidate(28, anggotaTim2);
+      anggotaTim = value;
+      $$invalidate(28, anggotaTim);
     }
     function input_input_handler_5() {
       judul = this.value;
@@ -16968,7 +16968,7 @@
       tanggalMulai,
       tanggalSelesai,
       biayaPenelitian,
-      anggotaTim2,
+      anggotaTim,
       judul,
       abstrak,
       comment,
@@ -17322,11 +17322,11 @@
     let penelitianCounter, pengmasCounter;
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
-      const headers2 = {
+      const headers = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
-      const responseCP = await fetch($apiURL + "/counterPenelitian", { method: "GET", headers: headers2 });
+      const responseCP = await fetch($apiURL + "/counterPenelitian", { method: "GET", headers });
       const resultCP = await responseCP.json();
       if (resultCP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -17337,7 +17337,7 @@
           console.log(responseCP);
         }
       }
-      const responseCPM = await fetch($apiURL + "/counterPengmas", { method: "GET", headers: headers2 });
+      const responseCPM = await fetch($apiURL + "/counterPengmas", { method: "GET", headers });
       const resultCPM = await responseCPM.json();
       if (resultCPM.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -18778,12 +18778,12 @@
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
     let items;
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
     onMount(async () => {
-      const response = await fetch($apiURL + "/ppm", { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm", { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -31670,12 +31670,12 @@
       $$invalidate(76, showModalHKI = true);
     }
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
     onMount(async () => {
-      const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31710,7 +31710,7 @@
       getPengalamanHKI();
     });
     async function getRiwayatPendidikanS1() {
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, { method: "GET", headers: headers2 });
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, { method: "GET", headers });
       const resultRPS1 = await responseRPS1.json();
       if (responseRPS1.status === 401) {
         location.pathname = "/tokenexpired";
@@ -31723,7 +31723,7 @@
       }
     }
     async function getRiwayatPendidikanS2() {
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, { method: "GET", headers: headers2 });
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, { method: "GET", headers });
       const resultRPS2 = await responseRPS2.json();
       if (responseRPS2.status === 401) {
         location.pathname = "/tokenexpired";
@@ -31736,7 +31736,7 @@
       }
     }
     async function getRiwayatPendidikanS3() {
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, { method: "GET", headers: headers2 });
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, { method: "GET", headers });
       const resultRPS3 = await responseRPS3.json();
       if (responseRPS3.status === 401) {
         location.pathname = "/tokenexpired";
@@ -31749,7 +31749,7 @@
       }
     }
     async function getPengalamanPenelitian() {
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers: headers2 });
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers });
       const resultPP = await responsePP.json();
       if (resultPP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31762,7 +31762,7 @@
       }
     }
     async function getPengalamanPengmas() {
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers: headers2 });
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers });
       const resultPM = await responsePM.json();
       if (resultPM.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31775,7 +31775,7 @@
       }
     }
     async function getPengalamanDiseminasi() {
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers: headers2 });
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers });
       const resultPD = await responsePD.json();
       if (resultPD.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31788,7 +31788,7 @@
       }
     }
     async function getPengalamanPublikasi() {
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers: headers2 });
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
       if (resultPPub.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31801,7 +31801,7 @@
       }
     }
     async function getPengalamanPenulisanBuku() {
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers: headers2 });
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
       if (resultPPB.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31814,7 +31814,7 @@
       }
     }
     async function getPengalamanHKI() {
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers: headers2 });
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
       if (resultPHKI.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -31846,7 +31846,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS1", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -31887,7 +31887,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS2", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -31928,7 +31928,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS3", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -31969,7 +31969,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanPenelitian", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32010,7 +32010,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanPengmas", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32050,7 +32050,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanDiseminasi", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32090,7 +32090,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanPublikasi", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32131,7 +32131,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanPenulisanBuku", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32172,7 +32172,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanHKI", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32221,7 +32221,7 @@
       } else {
         const response = await fetch($apiURL + "/userprofile", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -32261,7 +32261,7 @@
     }
     async function delrowRPS1(ev) {
       let idRPS1 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS1/" + idRPS1, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS1/" + idRPS1, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -32275,7 +32275,7 @@
     }
     async function delrowRPS2(ev) {
       let idRPS2 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -32289,7 +32289,7 @@
     }
     async function delrowRPS3(ev) {
       let idRPS3 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -32303,7 +32303,7 @@
     }
     async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -32317,7 +32317,7 @@
     }
     async function delrowPM(ev) {
       let idPM = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanPengmas/" + idPM, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -32331,7 +32331,7 @@
     }
     async function delrowPD(ev) {
       let idPD = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanDiseminasi/" + idPD, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -32345,7 +32345,7 @@
     }
     async function delrowPPub(ev) {
       let idPPub = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanPublikasi/" + idPPub, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -32359,7 +32359,7 @@
     }
     async function delrowPPB(ev) {
       let idPPB = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idPPB, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idPPB, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -32373,7 +32373,7 @@
     }
     async function delrowPHKI(ev) {
       let idPHKI = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanHKI/" + idPHKI, { method: "DELETE", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -34013,12 +34013,12 @@
     let items;
     const accessToken = localStorage.getItem("token");
     const roleFromToken = localStorage.getItem("role");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
     async function populateTable() {
-      const response = await fetch($apiURL + "/user", { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/user", { method: "GET", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -34085,7 +34085,7 @@
     async function getPage() {
       if (params["1"] === "profile") {
         let id = params["2"];
-        const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
         const result = await response.json();
         if (result.statusCode != 200) {
           location.pathname = "/tokenexpired";
@@ -36248,11 +36248,11 @@
     let items;
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
-      const headers2 = {
+      const headers = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
-      const response = await fetch($apiURL + "/approval/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/approval/" + id, { method: "GET", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41825,9 +41825,9 @@
     let pertiS1, pertiS2, pertiS3, bidangIlmuS1, bidangIlmuS2, bidangIlmuS3, tahunMasukS1, tahunMasukS2, tahunMasukS3, tahunLulusS1, tahunLulusS2, tahunLulusS3, judulTugasAkhirS1, judulTugasAkhirS2, judulTugasAkhirS3;
     let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email2, mataKuliah = [];
     let ka_departemen, ka_lppm, reviewer, ka_pusat_kajian;
-    let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tanggalMulai, tanggalSelesai, biayaPenelitian, anggotaTim2, rab, judul, abstrak, comment, status, kdeptSelected2, klppmSelected2, kpkSelected2, reviewerSelected2;
+    let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tanggalMulai, tanggalSelesai, biayaPenelitian, anggotaTim, rab, judul, abstrak, comment, status, kdeptSelected2, klppmSelected2, kpkSelected2, reviewerSelected2;
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
@@ -41836,7 +41836,7 @@
       ka_lppm = await findRole(12);
       ka_pusat_kajian = await findRole(13);
       reviewer = await findRole(10);
-      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
       if (result.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41853,7 +41853,7 @@
           $$invalidate(33, tanggalMulai = data2.tanggal_mulai);
           $$invalidate(34, tanggalSelesai = data2.tanggal_selesai);
           $$invalidate(35, biayaPenelitian = data2.biaya_penelitian);
-          $$invalidate(36, anggotaTim2 = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(36, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
           rab = data2.rab;
           judul = data2.judul;
           abstrak = data2.abstrak;
@@ -41875,7 +41875,7 @@
         resultPenilaianChar += characters.charAt(randomIndex);
       }
       randomPenilaianFileName = resultPenilaianChar;
-      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers: headers2 });
+      const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, { method: "GET", headers });
       const resultEvl = await responseEvl.json();
       if (resultEvl.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41885,7 +41885,7 @@
           namaLengkapEvl = dataEvl.nama_lengkap;
         }
       }
-      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers: headers2 });
+      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
       if (dataRCR.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41894,7 +41894,7 @@
           $$invalidate(11, itemsRCR = dataRCR.dbData);
         }
       }
-      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
       if (resultGP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41918,7 +41918,7 @@
           $$invalidate(27, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
         }
       }
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers });
       const resultRPS1 = await responseRPS1.json();
       if (responseRPS1.status === 401) {
         location.pathname = "/tokenexpired";
@@ -41929,7 +41929,7 @@
           console.log(responseRPS1);
         }
       }
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers });
       const resultRPS2 = await responseRPS2.json();
       if (responseRPS2.status === 401) {
         location.pathname = "/tokenexpired";
@@ -41940,7 +41940,7 @@
           console.log(responseRPS2);
         }
       }
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers });
       const resultRPS3 = await responseRPS3.json();
       if (responseRPS3.status === 401) {
         location.pathname = "/tokenexpired";
@@ -41951,7 +41951,7 @@
           console.log(responseRPS3);
         }
       }
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
       if (resultPP.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41962,7 +41962,7 @@
           console.log(responsePP);
         }
       }
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
       if (resultPM.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41973,7 +41973,7 @@
           console.log(responsePM);
         }
       }
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
       if (resultPD.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41984,7 +41984,7 @@
           console.log(responsePD);
         }
       }
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
       if (resultPPub.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -41995,7 +41995,7 @@
           console.log(responsePPub);
         }
       }
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
       if (resultPPB.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -42006,7 +42006,7 @@
           console.log(responsePPB);
         }
       }
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
       if (resultPHKI.statusCode != 200) {
         location.pathname = "/tokenexpired";
@@ -42035,7 +42035,7 @@
       } else {
         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payloadCttnRevisi)
         });
         const resultRev = await responseRev.json();
@@ -42048,7 +42048,7 @@
         }
         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -42073,7 +42073,7 @@
       };
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
         method: "PATCH",
-        headers: headers2,
+        headers,
         body: JSON.stringify(payload)
       });
       const result = await response.json();
@@ -42097,7 +42097,7 @@
       };
       const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
         method: "PATCH",
-        headers: headers2,
+        headers,
         body: JSON.stringify(payload)
       });
       const result = await response.json();
@@ -42142,7 +42142,7 @@
             try {
               const responseUpload = await fetch($apiURL + "/uploadPenilaian", {
                 method: "POST",
-                headers: headers2,
+                headers,
                 body: JSON.stringify(payloadPenilaianFile)
               });
               const resultUpload = await responseUpload.json();
@@ -42157,7 +42157,7 @@
         }
         const response = await fetch($apiURL + "/handleEvaluatorAction", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -42182,7 +42182,7 @@
     }
     let options;
     async function findRole(role2) {
-      const response = await fetch($apiURL + "/role/" + role2, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/role/" + role2, { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -42198,7 +42198,7 @@
     async function handleDownloadRab(e) {
       let filename = "RAB_" + judul + ".xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -42215,7 +42215,7 @@
     async function handleDownloadPpm(e) {
       let filename = "Proposal_" + judul + ".pdf";
       try {
-        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -42232,7 +42232,7 @@
     async function handleDownloadPenilaian(e) {
       let filename = "Penilaian Proposal_" + judul + ".xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -42313,7 +42313,7 @@
       tanggalMulai,
       tanggalSelesai,
       biayaPenelitian,
-      anggotaTim2,
+      anggotaTim,
       comment,
       status,
       tab1,
@@ -51037,7 +51037,7 @@
     let dataRPS1, dataRPS2, dataRPS3;
     let data2, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
     let itemsRCR;
-    let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tanggalMulai, tanggalSelesai, biayaPenelitian, anggotaTim2 = [], judul, abstrak, comment, status;
+    let uidProposal, jenisProposal, jenisKegiatan, jenisSkema, kelompokKeahlian, topik, tanggalMulai, tanggalSelesai, biayaPenelitian, anggotaTim = [], judul, abstrak, comment, status;
     let idProfile, namaLengkap, jabatanFungsional, nip, nidn, tempatLahir, tanggalLahir, alamatRumah, telpFaxRumah, nomorHandphone, alamatKantor, telpFaxKantor, email2, mataKuliah = [];
     const id = params["1"];
     let file;
@@ -51054,13 +51054,13 @@
     let presentasiVisible = false;
     let skPenelitianVisible = false;
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
     onMount(async () => {
       $$invalidate(40, isLoading = false);
-      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
       $$invalidate(2, view = !isEdit2(result.status));
       if (response.status === 401) {
@@ -51078,7 +51078,7 @@
           $$invalidate(19, tanggalMulai = data2.tanggal_mulai);
           $$invalidate(20, tanggalSelesai = data2.tanggal_selesai);
           $$invalidate(21, biayaPenelitian = data2.biaya_penelitian);
-          $$invalidate(22, anggotaTim2 = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
+          $$invalidate(22, anggotaTim = typeof data2.anggota_tim === "string" ? JSON.parse(data2.anggota_tim) : data2.anggota_tim);
           $$invalidate(23, judul = data2.judul);
           $$invalidate(24, abstrak = data2.abstrak);
           $$invalidate(25, comment = data2.comment);
@@ -51093,7 +51093,7 @@
           console.log(response);
         }
       }
-      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers: headers2 });
+      const responseRCR = await fetch($apiURL + "/riwayatCatatanRevisi/" + ppmId, { method: "GET", headers });
       const dataRCR = await responseRCR.json();
       if (responseRCR.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51102,7 +51102,7 @@
           $$invalidate(13, itemsRCR = dataRCR.dbData);
         }
       }
-      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseGP = await fetch($apiURL + "/user/" + uidProposal, { method: "GET", headers });
       const resultGP = await responseGP.json();
       if (responseGP.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51126,7 +51126,7 @@
           $$invalidate(39, mataKuliah = typeof dataGP.mata_kuliah === "string" ? JSON.parse(dataGP.mata_kuliah) : dataGP.mata_kuliah || []);
         }
       }
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + uidProposal, { method: "GET", headers });
       const resultRPS1 = await responseRPS1.json();
       if (responseRPS1.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51137,7 +51137,7 @@
           console.log(responseRPS1);
         }
       }
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + uidProposal, { method: "GET", headers });
       const resultRPS2 = await responseRPS2.json();
       if (responseRPS2.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51148,7 +51148,7 @@
           console.log(responseRPS2);
         }
       }
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers: headers2 });
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + uidProposal, { method: "GET", headers });
       const resultRPS3 = await responseRPS3.json();
       if (responseRPS3.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51159,7 +51159,7 @@
           console.log(responseRPS3);
         }
       }
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + uidProposal, { method: "GET", headers });
       const resultPP = await responsePP.json();
       if (responsePP.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51170,7 +51170,7 @@
           console.log(responsePP);
         }
       }
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + uidProposal, { method: "GET", headers });
       const resultPM = await responsePM.json();
       if (responsePM.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51181,7 +51181,7 @@
           console.log(responsePM);
         }
       }
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + uidProposal, { method: "GET", headers });
       const resultPD = await responsePD.json();
       if (responsePD.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51192,7 +51192,7 @@
           console.log(responsePD);
         }
       }
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + uidProposal, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
       if (responsePPub.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51203,7 +51203,7 @@
           console.log(responsePPub);
         }
       }
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + uidProposal, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
       if (responsePPB.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51214,7 +51214,7 @@
           console.log(responsePPB);
         }
       }
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers: headers2 });
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + uidProposal, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
       if (responsePHKI.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51225,7 +51225,7 @@
           console.log(responsePHKI);
         }
       }
-      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers: headers2 });
+      const responsee = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const results = await responsee.json();
       if (responsee.status === 401) {
         location.pathname = "/tokenexpired";
@@ -51263,7 +51263,7 @@
     async function handleDownloadRab(e) {
       let filename = "RAB_" + judul + ".xlsx";
       try {
-        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadRab/${randomRabFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -51280,7 +51280,7 @@
     async function handleDownloadPpm(e) {
       let filename = "Proposal_" + judul + ".pdf";
       try {
-        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers: headers2 });
+        const response = await fetch($apiURL + `/uploadPpm/${randomPpmFileName}`, { method: "GET", headers });
         if (response.status === 401) {
           location.pathname = "/tokenexpired";
         } else {
@@ -51308,7 +51308,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         id,
         judul,
         abstrak,
@@ -51352,7 +51352,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadPpm", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadPpmFile)
             });
             const result2 = await response2.json();
@@ -51378,7 +51378,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result2 = await response2.json();
@@ -51393,7 +51393,7 @@
           readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -51423,7 +51423,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         id,
         judul,
         abstrak,
@@ -51457,7 +51457,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadPpm", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadPpmFile)
             });
             const result2 = await response2.json();
@@ -51483,7 +51483,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result2 = await response2.json();
@@ -51498,7 +51498,7 @@
           readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -51528,7 +51528,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         id,
         judul,
         abstrak,
@@ -51562,7 +51562,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadPpm", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadPpmFile)
             });
             const result2 = await response2.json();
@@ -51588,7 +51588,7 @@
           try {
             const response2 = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result2 = await response2.json();
@@ -51603,7 +51603,7 @@
           readerRab.readAsDataURL(fileRab);
         const response = await fetch($apiURL + "/ppm", {
           method: "PATCH",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -51631,7 +51631,7 @@
     }
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
-      $$invalidate(22, anggotaTim2 = anggotaTim2.filter((member) => {
+      $$invalidate(22, anggotaTim = anggotaTim.filter((member) => {
         return member.value !== uid;
       }));
     }
@@ -51669,8 +51669,8 @@
     }
     const keyup_handler = () => $$invalidate(21, biayaPenelitian = formatRupiah3(biayaPenelitian, "Rp. "));
     function select_result_binding(value) {
-      anggotaTim2 = value;
-      $$invalidate(22, anggotaTim2);
+      anggotaTim = value;
+      $$invalidate(22, anggotaTim);
     }
     function input_input_handler_5() {
       judul = this.value;
@@ -51717,7 +51717,7 @@
       tanggalMulai,
       tanggalSelesai,
       biayaPenelitian,
-      anggotaTim2,
+      anggotaTim,
       judul,
       abstrak,
       comment,
@@ -52272,11 +52272,11 @@
     const id = Number(localStorage.getItem("id"));
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
-      const headers2 = {
+      const headers = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
-      const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -52295,7 +52295,7 @@
           console.log(response);
         }
       }
-      const responseCP = await fetch($apiURL + "/counterPenelitian/" + id, { method: "GET", headers: headers2 });
+      const responseCP = await fetch($apiURL + "/counterPenelitian/" + id, { method: "GET", headers });
       const resultCP = await responseCP.json();
       if (responseCP.status === 401) {
         location.pathname = "/tokenexpired";
@@ -52306,7 +52306,7 @@
           console.log(responseCP);
         }
       }
-      const responseCPM = await fetch($apiURL + "/counterPengmas/" + id, { method: "GET", headers: headers2 });
+      const responseCPM = await fetch($apiURL + "/counterPengmas/" + id, { method: "GET", headers });
       const resultCPM = await responseCPM.json();
       if (responseCPM.status === 401) {
         location.pathname = "/tokenexpired";
@@ -52317,7 +52317,7 @@
           console.log(responseCPM);
         }
       }
-      const responseGP = await fetch($apiURL + "/user/" + id, { method: "GET", headers: headers2 });
+      const responseGP = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
       const resultGP = await responseGP.json();
       if (responseGP.status === 401) {
         location.pathname = "/tokenexpired";
@@ -59403,7 +59403,7 @@
     const localStorage_id = localStorage.getItem("id");
     const accessToken = localStorage.getItem("token");
     const id = Number(localStorage.getItem("id"));
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
@@ -59422,7 +59422,7 @@
     let tanggalSelesai = "";
     let topik = "";
     let biayaPenelitian = "";
-    let anggotaTim2 = [
+    let anggotaTim = [
       {
         value: localStorage_id,
         label: localStorage_namaLengkap,
@@ -59432,12 +59432,12 @@
     let randomRabFileName2 = "";
     let randomPpmFileName2 = "";
     let mataKuliah = [];
-    let userData2 = [];
+    let userData = [];
     let items = [];
     let error = {};
     onMount(async () => {
       $$invalidate(1, isLoading = false);
-      const response = await fetch($apiURL + "/pilihUser", { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/pilihUser", { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -59495,7 +59495,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         judul,
         myAbstract,
         status: 0,
@@ -59515,7 +59515,7 @@
         try {
           const response = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
-            headers: headers2,
+            headers,
             body: JSON.stringify(payloadPpmFile)
           });
           const result = await response.json();
@@ -59538,7 +59538,7 @@
           try {
             const response = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result = await response.json();
@@ -59550,7 +59550,7 @@
       }
       const responseProposal = await fetch($apiURL + "/ppm", {
         method: "POST",
-        headers: headers2,
+        headers,
         body: JSON.stringify(payloadProposal)
       });
       const resultProposal = await responseProposal.json();
@@ -59580,7 +59580,7 @@
         tanggalMulai,
         tanggalSelesai,
         biayaPenelitian,
-        anggotaTim: anggotaTim2,
+        anggotaTim,
         judul,
         myAbstract,
         status: 2,
@@ -59600,7 +59600,7 @@
         try {
           const response = await fetch($apiURL + "/uploadPpm", {
             method: "POST",
-            headers: headers2,
+            headers,
             body: JSON.stringify(payloadPpmFile)
           });
           const result = await response.json();
@@ -59623,7 +59623,7 @@
           try {
             const response = await fetch($apiURL + "/uploadRab", {
               method: "POST",
-              headers: headers2,
+              headers,
               body: JSON.stringify(payloadRabFile)
             });
             const result = await response.json();
@@ -59635,7 +59635,7 @@
       }
       const responseProposal = await fetch($apiURL + "/ppm", {
         method: "POST",
-        headers: headers2,
+        headers,
         body: JSON.stringify(payloadProposal)
       });
       const resultProposal = await responseProposal.json();
@@ -59652,15 +59652,15 @@
     }
     function deleteMember(e) {
       let uid = e.target.getAttribute("data-value");
-      $$invalidate(12, anggotaTim2 = anggotaTim2.filter((member) => {
+      $$invalidate(12, anggotaTim = anggotaTim.filter((member) => {
         return member.value !== uid;
       }));
     }
     async function getBiodataAnggota() {
-      let ids = anggotaTim2.map((anggota) => anggota.value);
+      let ids = anggotaTim.map((anggota) => anggota.value);
       let promises = ids.map(async (idAnggota) => {
         try {
-          const profileResponse = await fetch($apiURL + "/user/" + idAnggota, { method: "GET", headers: headers2 });
+          const profileResponse = await fetch($apiURL + "/user/" + idAnggota, { method: "GET", headers });
           if (profileResponse.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59669,7 +59669,7 @@
             throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
           }
           const profileResult = await profileResponse.json();
-          const RPS1Response = await fetch($apiURL + "/riwayatPendidikanS1/" + idAnggota, { method: "GET", headers: headers2 });
+          const RPS1Response = await fetch($apiURL + "/riwayatPendidikanS1/" + idAnggota, { method: "GET", headers });
           if (RPS1Response.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59678,7 +59678,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S1 for ID ${idAnggota}`);
           }
           const RPS1Result = await RPS1Response.json();
-          const RPS2Response = await fetch($apiURL + "/riwayatPendidikanS2/" + idAnggota, { method: "GET", headers: headers2 });
+          const RPS2Response = await fetch($apiURL + "/riwayatPendidikanS2/" + idAnggota, { method: "GET", headers });
           if (RPS2Response.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59687,7 +59687,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S2 for ID ${idAnggota}`);
           }
           const RPS2Result = await RPS2Response.json();
-          const RPS3Response = await fetch($apiURL + "/riwayatPendidikanS3/" + idAnggota, { method: "GET", headers: headers2 });
+          const RPS3Response = await fetch($apiURL + "/riwayatPendidikanS3/" + idAnggota, { method: "GET", headers });
           if (RPS3Response.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59696,7 +59696,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const RPS3Result = await RPS3Response.json();
-          const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + idAnggota, { method: "GET", headers });
           if (responsePP.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59705,7 +59705,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const resultPP = await responsePP.json();
-          const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + idAnggota, { method: "GET", headers });
           if (responsePM.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59714,7 +59714,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const resultPM = await responsePM.json();
-          const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + idAnggota, { method: "GET", headers });
           if (responsePD.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59723,7 +59723,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const resultPD = await responsePD.json();
-          const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + idAnggota, { method: "GET", headers });
           if (responsePPub.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59732,7 +59732,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const resultPPub = await responsePPub.json();
-          const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + idAnggota, { method: "GET", headers });
           if (responsePPB.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59741,7 +59741,7 @@
             throw new Error(`Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`);
           }
           const resultPPB = await responsePPB.json();
-          const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + idAnggota, { method: "GET", headers: headers2 });
+          const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + idAnggota, { method: "GET", headers });
           if (responsePHKI.status === 401) {
             location.pathname = "/tokenexpired";
             return;
@@ -59779,7 +59779,7 @@
           };
         }
       });
-      $$invalidate(13, userData2 = await Promise.all(promises.filter(Boolean)));
+      $$invalidate(13, userData = await Promise.all(promises.filter(Boolean)));
     }
     let tab1 = true;
     let tab2 = false;
@@ -59838,8 +59838,8 @@
     }
     const keyup_handler = () => $$invalidate(11, biayaPenelitian = formatRupiah4(biayaPenelitian, "Rp. "));
     function select_result_binding(value) {
-      anggotaTim2 = value;
-      $$invalidate(12, anggotaTim2);
+      anggotaTim = value;
+      $$invalidate(12, anggotaTim);
     }
     function input_input_handler_5() {
       judul = this.value;
@@ -59849,7 +59849,7 @@
       myAbstract = this.value;
       $$invalidate(2, myAbstract);
     }
-    const click_handler = (index) => $$invalidate(13, userData2[index].profileVisible = !userData2[index].profileVisible, userData2);
+    const click_handler = (index) => $$invalidate(13, userData[index].profileVisible = !userData[index].profileVisible, userData);
     function modalerror_show_binding(value) {
       showModalErrorProposal = value;
       $$invalidate(0, showModalErrorProposal);
@@ -59867,8 +59867,8 @@
       tanggalSelesai,
       topik,
       biayaPenelitian,
-      anggotaTim2,
-      userData2,
+      anggotaTim,
+      userData,
       items,
       error,
       tab1,
@@ -60621,11 +60621,11 @@
     let items;
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
-      const headers2 = {
+      const headers = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json"
       };
-      const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers });
       const result = await response.json();
       const reminder = [];
       if (result.statusCode != 200) {
@@ -73522,12 +73522,12 @@
       $$invalidate(76, showModalHKI = true);
     }
     const accessToken = localStorage.getItem("token");
-    const headers2 = {
+    const headers = {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     };
     onMount(async () => {
-      const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers: headers2 });
+      const response = await fetch($apiURL + "/user/" + id, { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73562,7 +73562,7 @@
       getPengalamanHKI();
     });
     async function getRiwayatPendidikanS1() {
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, { method: "GET", headers: headers2 });
+      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, { method: "GET", headers });
       const resultRPS1 = await responseRPS1.json();
       if (responseRPS1.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73575,7 +73575,7 @@
       }
     }
     async function getRiwayatPendidikanS2() {
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, { method: "GET", headers: headers2 });
+      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, { method: "GET", headers });
       const resultRPS2 = await responseRPS2.json();
       if (responseRPS2.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73588,7 +73588,7 @@
       }
     }
     async function getRiwayatPendidikanS3() {
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, { method: "GET", headers: headers2 });
+      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, { method: "GET", headers });
       const resultRPS3 = await responseRPS3.json();
       if (responseRPS3.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73601,7 +73601,7 @@
       }
     }
     async function getPengalamanPenelitian() {
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers: headers2 });
+      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, { method: "GET", headers });
       const resultPP = await responsePP.json();
       if (responsePP.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73614,7 +73614,7 @@
       }
     }
     async function getPengalamanPengmas() {
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers: headers2 });
+      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, { method: "GET", headers });
       const resultPM = await responsePM.json();
       if (responsePM.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73627,7 +73627,7 @@
       }
     }
     async function getPengalamanDiseminasi() {
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers: headers2 });
+      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, { method: "GET", headers });
       const resultPD = await responsePD.json();
       if (responsePD.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73640,7 +73640,7 @@
       }
     }
     async function getPengalamanPublikasi() {
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers: headers2 });
+      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, { method: "GET", headers });
       const resultPPub = await responsePPub.json();
       if (responsePPub.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73653,7 +73653,7 @@
       }
     }
     async function getPengalamanPenulisanBuku() {
-      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers: headers2 });
+      const responsePPB = await fetch($apiURL + "/pengalamanPenulisanBuku/" + id, { method: "GET", headers });
       const resultPPB = await responsePPB.json();
       if (responsePPB.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73666,7 +73666,7 @@
       }
     }
     async function getPengalamanHKI() {
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers: headers2 });
+      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, { method: "GET", headers });
       const resultPHKI = await responsePHKI.json();
       if (responsePHKI.status === 401) {
         location.pathname = "/tokenexpired";
@@ -73744,7 +73744,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS1", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -73785,7 +73785,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS2", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -73826,7 +73826,7 @@
       } else {
         const response = await fetch($apiURL + "/riwayatPendidikanS3", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -73867,7 +73867,7 @@
       } else {
         const response = await fetch($apiURL + "/pengalamanPenelitian", {
           method: "POST",
-          headers: headers2,
+          headers,
           body: JSON.stringify(payload)
         });
         const result = await response.json();
@@ -74131,7 +74131,7 @@
     }
     async function delrowRPS1(ev) {
       let idRPS1 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS1/" + idRPS1, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS1/" + idRPS1, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -74145,7 +74145,7 @@
     }
     async function delrowRPS2(ev) {
       let idRPS2 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS2/" + idRPS2, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -74159,7 +74159,7 @@
     }
     async function delrowRPS3(ev) {
       let idRPS3 = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/riwayatPendidikanS3/" + idRPS3, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -74173,7 +74173,7 @@
     }
     async function delrowPP(ev) {
       let idPP = ev.target.getAttribute("pid");
-      const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, { method: "DELETE", headers: headers2 });
+      const response = await fetch($apiURL + "/pengalamanPenelitian/" + idPP, { method: "DELETE", headers });
       const result = await response.json();
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
@@ -74757,6 +74757,112 @@
 
   // src/pages/dosen/select.svelte
   init_define_process();
+  function create_if_block_131(ctx) {
+    let hr;
+    let t0;
+    let p0;
+    let t2;
+    let div0;
+    let t4;
+    let div5;
+    let t12;
+    let div10;
+    let t20;
+    let div15;
+    let t28;
+    let div20;
+    let t36;
+    let div25;
+    let t44;
+    let div30;
+    let t52;
+    let div34;
+    return {
+      c() {
+        hr = element("hr");
+        t0 = space();
+        p0 = element("p");
+        p0.innerHTML = `<b>Identitas Diri</b>`;
+        t2 = space();
+        div0 = element("div");
+        div0.innerHTML = `<p>Pastikan untuk melengkapi Identitas Diri.</p>`;
+        t4 = space();
+        div5 = element("div");
+        div5.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Nama Lengkap</b></p> <p class="subtitle is-6">Taris Rafiqi Izatri, S.Kom.</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>Jabatan Fungsional</b></p> <p class="subtitle is-6">Lektor</p></div></div>`;
+        t12 = space();
+        div10 = element("div");
+        div10.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>NIP</b></p> <p class="subtitle is-6">3011810050</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>NIDN</b></p> <p class="subtitle is-6">101202000304082</p></div></div>`;
+        t20 = space();
+        div15 = element("div");
+        div15.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Email</b></p> <p class="subtitle is-6">Tarisrafiqi@gmail.com</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>Nomor Handphone</b></p> <p class="subtitle is-6">081110743103</p></div></div>`;
+        t28 = space();
+        div20 = element("div");
+        div20.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Tempat Lahir</b></p> <p class="subtitle is-6">Padang</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>Tanggal Lahir</b></p> <p class="subtitle is-6">06-05-2000</p></div></div>`;
+        t36 = space();
+        div25 = element("div");
+        div25.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Alamat Rumah</b></p> <p class="subtitle is-6">Perumahan Semen Indonesia, Blok G</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>Telp/Fax Rumah</b></p> <p class="subtitle is-6">0751496808</p></div></div>`;
+        t44 = space();
+        div30 = element("div");
+        div30.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Alamat Kantor</b></p> <p class="subtitle is-6">Jl. Veteran, Kb. Dalem, Sidomoro</p></div></div> <div class="column"><div class="field"><p class="title is-6"><b>Telp/Fax Kantor</b></p> <p class="subtitle is-6">021918274</p></div></div>`;
+        t52 = space();
+        div34 = element("div");
+        div34.innerHTML = `<div class="column"><div class="field"><p class="title is-6"><b>Mata Kuliah yang diampu</b></p> <ul style="list-style-type:disc" class="svelte-1kg9g0u"><li class="svelte-1kg9g0u">Pemograman 2</li> <li class="svelte-1kg9g0u">Sistem Basis Data</li> <li class="svelte-1kg9g0u">Machine Learning</li></ul></div></div> <div class="column"></div>`;
+        attr(p0, "class", "title is-5");
+        attr(div0, "class", "notification is-info is-light");
+        attr(div5, "class", "columns is-desktop");
+        attr(div10, "class", "columns is-desktop");
+        attr(div15, "class", "columns is-desktop");
+        attr(div20, "class", "columns is-desktop");
+        attr(div25, "class", "columns is-desktop");
+        attr(div30, "class", "columns is-desktop");
+        attr(div34, "class", "columns is-desktop");
+      },
+      m(target, anchor) {
+        insert(target, hr, anchor);
+        insert(target, t0, anchor);
+        insert(target, p0, anchor);
+        insert(target, t2, anchor);
+        insert(target, div0, anchor);
+        insert(target, t4, anchor);
+        insert(target, div5, anchor);
+        insert(target, t12, anchor);
+        insert(target, div10, anchor);
+        insert(target, t20, anchor);
+        insert(target, div15, anchor);
+        insert(target, t28, anchor);
+        insert(target, div20, anchor);
+        insert(target, t36, anchor);
+        insert(target, div25, anchor);
+        insert(target, t44, anchor);
+        insert(target, div30, anchor);
+        insert(target, t52, anchor);
+        insert(target, div34, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(hr);
+          detach(t0);
+          detach(p0);
+          detach(t2);
+          detach(div0);
+          detach(t4);
+          detach(div5);
+          detach(t12);
+          detach(div10);
+          detach(t20);
+          detach(div15);
+          detach(t28);
+          detach(div20);
+          detach(t36);
+          detach(div25);
+          detach(t44);
+          detach(div30);
+          detach(t52);
+          detach(div34);
+        }
+      }
+    };
+  }
   function create_if_block19(ctx) {
     let div0;
     let t2;
@@ -74786,83 +74892,149 @@
     };
   }
   function create_default_slot20(ctx) {
-    let div;
-    let h4;
+    let div0;
+    let h6;
     let t0;
-    let span;
+    let span0;
     let t1_value = (
-      /*isFormVisible1*/
-      ctx[0] ? "(tutup)" : "(buka)"
+      /*biodataVisible*/
+      ctx[1] ? "(tutup)" : "(buka)"
     );
     let t1;
     let t2;
+    let t3;
+    let div1;
+    let h4;
+    let t4;
+    let span1;
+    let t5_value = (
+      /*isFormVisible1*/
+      ctx[0] ? "(tutup)" : "(buka)"
+    );
+    let t5;
+    let t6;
     let mounted;
     let dispose;
-    let if_block = (
+    let if_block0 = (
+      /*biodataVisible*/
+      ctx[1] && create_if_block_131(ctx)
+    );
+    let if_block1 = (
       /*isFormVisible1*/
       ctx[0] && create_if_block19(ctx)
     );
     return {
       c() {
-        div = element("div");
-        h4 = element("h4");
-        t0 = text("Test Extend Box\r\n         ");
-        span = element("span");
+        div0 = element("div");
+        h6 = element("h6");
+        t0 = text("Biodata: Taris Rafiqi Izatri, S.Kom. ");
+        span0 = element("span");
         t1 = text(t1_value);
         t2 = space();
-        if (if_block)
-          if_block.c();
-        attr(span, "class", "toggle-button svelte-y4xugd");
-        attr(h4, "class", "title is-4");
-        attr(div, "class", "box");
+        if (if_block0)
+          if_block0.c();
+        t3 = space();
+        div1 = element("div");
+        h4 = element("h4");
+        t4 = text("Test Extend Box\r\n         ");
+        span1 = element("span");
+        t5 = text(t5_value);
+        t6 = space();
+        if (if_block1)
+          if_block1.c();
+        attr(span0, "class", "toggle-button svelte-1kg9g0u");
+        attr(h6, "class", "title is-6");
+        attr(div0, "class", "box");
+        attr(span1, "class", "toggle-button svelte-1kg9g0u");
+        attr(h4, "class", "title is-5");
+        attr(div1, "class", "box");
       },
       m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, h4);
-        append(h4, t0);
-        append(h4, span);
-        append(span, t1);
-        append(div, t2);
-        if (if_block)
-          if_block.m(div, null);
+        insert(target, div0, anchor);
+        append(div0, h6);
+        append(h6, t0);
+        append(h6, span0);
+        append(span0, t1);
+        append(div0, t2);
+        if (if_block0)
+          if_block0.m(div0, null);
+        insert(target, t3, anchor);
+        insert(target, div1, anchor);
+        append(div1, h4);
+        append(h4, t4);
+        append(h4, span1);
+        append(span1, t5);
+        append(div1, t6);
+        if (if_block1)
+          if_block1.m(div1, null);
         if (!mounted) {
-          dispose = listen(
-            span,
-            "click",
-            /*click_handler*/
-            ctx[1]
-          );
+          dispose = [
+            listen(
+              span0,
+              "click",
+              /*click_handler*/
+              ctx[2]
+            ),
+            listen(
+              span1,
+              "click",
+              /*click_handler_1*/
+              ctx[3]
+            )
+          ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty & /*isFormVisible1*/
-        1 && t1_value !== (t1_value = /*isFormVisible1*/
-        ctx2[0] ? "(tutup)" : "(buka)"))
+        if (dirty & /*biodataVisible*/
+        2 && t1_value !== (t1_value = /*biodataVisible*/
+        ctx2[1] ? "(tutup)" : "(buka)"))
           set_data(t1, t1_value);
+        if (
+          /*biodataVisible*/
+          ctx2[1]
+        ) {
+          if (if_block0) {
+          } else {
+            if_block0 = create_if_block_131(ctx2);
+            if_block0.c();
+            if_block0.m(div0, null);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (dirty & /*isFormVisible1*/
+        1 && t5_value !== (t5_value = /*isFormVisible1*/
+        ctx2[0] ? "(tutup)" : "(buka)"))
+          set_data(t5, t5_value);
         if (
           /*isFormVisible1*/
           ctx2[0]
         ) {
-          if (if_block) {
+          if (if_block1) {
           } else {
-            if_block = create_if_block19(ctx2);
-            if_block.c();
-            if_block.m(div, null);
+            if_block1 = create_if_block19(ctx2);
+            if_block1.c();
+            if_block1.m(div1, null);
           }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
         }
       },
       d(detaching) {
         if (detaching) {
-          detach(div);
+          detach(div0);
+          detach(t3);
+          detach(div1);
         }
-        if (if_block)
-          if_block.d();
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
         mounted = false;
-        dispose();
+        run_all(dispose);
       }
     };
   }
@@ -74885,8 +75057,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, isFormVisible1*/
-        17) {
+        if (dirty & /*$$scope, isFormVisible1, biodataVisible*/
+        19) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article.$set(article_changes);
@@ -74907,41 +75079,11 @@
     };
   }
   function instance38($$self, $$props, $$invalidate) {
-    let $apiURL;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
     let isFormVisible1 = false;
-    async function getBiodataAnggota() {
-      let ids = anggotaTim.map((anggota) => anggota.value);
-      let promises = ids.map(async (idAnggota) => {
-        try {
-          const profileResponse = await fetch($apiURL + "/user/" + idAnggota, { method: "GET", headers });
-          if (!profileResponse.ok) {
-            throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
-          }
-          const profileResult = await profileResponse.json();
-          const RPS1Response = await fetch($apiURL + "/riwayatPendidikanS1/" + idAnggota, { method: "GET", headers });
-          if (!RPS1Response.ok) {
-            throw new Error(`Failed to fetch RPS1 for ID ${idAnggota}`);
-          }
-          const RPS1Result = await RPS1Response.json();
-          return {
-            profile: profileResult,
-            RPS1: RPS1Result.dbData
-          };
-        } catch (error) {
-          console.error(`Error fetching data for ID ${idAnggota}:`, error);
-          return {
-            profile: null,
-            RPS1: [],
-            error: error.message
-          };
-        }
-      });
-      userData = await Promise.all(promises);
-      console.log(userData);
-    }
-    const click_handler = () => $$invalidate(0, isFormVisible1 = !isFormVisible1);
-    return [isFormVisible1, click_handler];
+    let biodataVisible = true;
+    const click_handler = () => $$invalidate(1, biodataVisible = !biodataVisible);
+    const click_handler_1 = () => $$invalidate(0, isFormVisible1 = !isFormVisible1);
+    return [isFormVisible1, biodataVisible, click_handler, click_handler_1];
   }
   var Select2 = class extends SvelteComponent {
     constructor(options) {
@@ -74988,7 +75130,7 @@
     );
     let if_block2 = (
       /*tab3*/
-      ctx[3] === true && create_if_block_131(ctx)
+      ctx[3] === true && create_if_block_138(ctx)
     );
     return {
       c() {
@@ -75189,7 +75331,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_131(ctx2);
+            if_block2 = create_if_block_138(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(div4, null);
@@ -75836,7 +75978,7 @@
       }
     };
   }
-  function create_if_block_131(ctx) {
+  function create_if_block_138(ctx) {
     let label0;
     let t1;
     let table0;
@@ -76486,7 +76628,7 @@
     let t68;
     let div22;
     let label12;
-    let input7;
+    let input6;
     let t69;
     let span6;
     let span4;
@@ -76501,7 +76643,7 @@
     let t76;
     let div24;
     let label14;
-    let input8;
+    let input7;
     let t77;
     let span10;
     let span8;
@@ -76681,7 +76823,7 @@
         div19.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Judul</h6></label> <input class="input"/></div>`;
         t63 = space();
         div21 = element("div");
-        div21.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Abstrak</h6></label> <input class="input"/></div>`;
+        div21.innerHTML = `<div class="column"><label class="label" for="label"><h6 class="title is-6">Abstrak</h6></label> <textarea class="textarea" id="myAbstract"></textarea></div>`;
         t66 = space();
         div26 = element("div");
         div23 = element("div");
@@ -76690,7 +76832,7 @@
         t68 = space();
         div22 = element("div");
         label12 = element("label");
-        input7 = element("input");
+        input6 = element("input");
         t69 = space();
         span6 = element("span");
         span4 = element("span");
@@ -76708,7 +76850,7 @@
         t76 = space();
         div24 = element("div");
         label14 = element("label");
-        input8 = element("input");
+        input7 = element("input");
         t77 = space();
         span10 = element("span");
         span8 = element("span");
@@ -76798,9 +76940,9 @@
         attr(div21, "class", "columns is-desktop");
         attr(label11, "class", "label");
         attr(label11, "for", "label");
-        attr(input7, "class", "file-input");
-        attr(input7, "type", "file");
-        attr(input7, "name", "resume");
+        attr(input6, "class", "file-input");
+        attr(input6, "type", "file");
+        attr(input6, "name", "resume");
         attr(span4, "class", "file-icon");
         attr(span5, "class", "file-label");
         attr(span6, "class", "file-cta");
@@ -76811,9 +76953,9 @@
         attr(div23, "class", "column");
         attr(label13, "class", "label");
         attr(label13, "for", "label");
-        attr(input8, "class", "file-input");
-        attr(input8, "type", "file");
-        attr(input8, "name", "resume");
+        attr(input7, "class", "file-input");
+        attr(input7, "type", "file");
+        attr(input7, "name", "resume");
         attr(span8, "class", "file-icon");
         attr(span9, "class", "file-label");
         attr(span10, "class", "file-cta");
@@ -76944,7 +77086,7 @@
         append(div23, t68);
         append(div23, div22);
         append(div22, label12);
-        append(label12, input7);
+        append(label12, input6);
         append(label12, t69);
         append(label12, span6);
         append(span6, span4);
@@ -76959,7 +77101,7 @@
         append(div25, t76);
         append(div25, div24);
         append(div24, label14);
-        append(label14, input8);
+        append(label14, input7);
         append(label14, t77);
         append(label14, span10);
         append(span10, span8);
@@ -77194,7 +77336,7 @@
       }
     };
   }
-  function create_if_block_138(ctx) {
+  function create_if_block_139(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -77353,7 +77495,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block21, create_if_block_138, create_else_block11];
+    const if_block_creators = [create_if_block21, create_if_block_139, create_else_block11];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -77568,7 +77710,7 @@
       }
     };
   }
-  function create_if_block_139(ctx) {
+  function create_if_block_140(ctx) {
     let br;
     let t0;
     let p;
@@ -77663,7 +77805,7 @@
       (ctx[1] === "Ka.Departemen" || /*role*/
       ctx[1] === "Ka.LPPM" || /*role*/
       ctx[1] === "Ka.PusatKajian" || /*role*/
-      ctx[1] === "reviewer") && create_if_block_139(ctx)
+      ctx[1] === "reviewer") && create_if_block_140(ctx)
     );
     let if_block1 = (
       /*role*/
@@ -78087,7 +78229,7 @@
   var Navbarmenu_default = Navbarmenu;
 
   // src/App.svelte
-  function create_if_block_140(ctx) {
+  function create_if_block_141(ctx) {
     let sidebar;
     let current;
     sidebar = new Sidebar_default({});
@@ -78203,7 +78345,7 @@
     let if_block0 = (
       /*token*/
       ctx[2] && !/*inBeranda*/
-      ctx[3] && create_if_block_140(ctx)
+      ctx[3] && create_if_block_141(ctx)
     );
     let if_block1 = (
       /*cmp*/
@@ -78243,7 +78385,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_140(ctx2);
+            if_block0 = create_if_block_141(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t1.parentNode, t1);

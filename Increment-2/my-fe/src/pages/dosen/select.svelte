@@ -1,73 +1,145 @@
 <script>
-   import { onMount } from "svelte";
-   import Article from "../../libs/Article.svelte";
+   import { cancelIcon, edit, downloadIcon } from "../../store/icons";
    import { route, apiURL, ppmFile } from "../../store";
+   import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { cancelIcon, edit, downloadIcon } from "../../store/icons";
+   import { onMount } from "svelte";
 
    let isFormVisible1 = false;
-
-   async function getBiodataAnggota() {
-      let ids = anggotaTim.map((anggota) => anggota.value);
-      let promises = ids.map(async (idAnggota) => {
-         try {
-            // ==============
-            // get profile
-            // ==============
-            const profileResponse = await fetch(
-               $apiURL + "/user/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-            if (!profileResponse.ok) {
-               throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
-            }
-            const profileResult = await profileResponse.json();
-
-            // ==============
-            // get RPS1
-            // ==============
-            const RPS1Response = await fetch(
-               $apiURL + "/riwayatPendidikanS1/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-            if (!RPS1Response.ok) {
-               throw new Error(`Failed to fetch RPS1 for ID ${idAnggota}`);
-            }
-            const RPS1Result = await RPS1Response.json();
-
-            return {
-               profile: profileResult,
-               RPS1: RPS1Result.dbData,
-            };
-         } catch (error) {
-            console.error(`Error fetching data for ID ${idAnggota}:`, error);
-
-            return {
-               profile: null,
-               RPS1: [],
-               error: error.message,
-            };
-         }
-      });
-
-      userData = await Promise.all(promises);
-      // You might want to handle cases where some user data couldn't be fetched
-      console.log(userData);
-   }
+   let biodataVisible = true;
 </script>
 
 <Article>
    <div class="box">
       <!-- svelte-ignore a11y-no-static-element-interactions -->
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <h4 class="title is-4">
+      <h6 class="title is-6">
+         Biodata: Taris Rafiqi Izatri, S.Kom. <span
+            class="toggle-button"
+            on:click={() => (biodataVisible = !biodataVisible)}
+         >
+            {biodataVisible ? "(tutup)" : "(buka)"}
+         </span>
+      </h6>
+
+      {#if biodataVisible}
+         <hr />
+         <p class="title is-5"><b>Identitas Diri</b></p>
+         <div class="notification is-info is-light">
+            <p>Pastikan untuk melengkapi Identitas Diri.</p>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Nama Lengkap</b></p>
+                  <p class="subtitle is-6">Taris Rafiqi Izatri, S.Kom.</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Jabatan Fungsional</b></p>
+                  <p class="subtitle is-6">Lektor</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>NIP</b></p>
+                  <p class="subtitle is-6">3011810050</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>NIDN</b></p>
+                  <p class="subtitle is-6">101202000304082</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Email</b></p>
+                  <p class="subtitle is-6">Tarisrafiqi@gmail.com</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Nomor Handphone</b></p>
+                  <p class="subtitle is-6">081110743103</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Tempat Lahir</b></p>
+                  <p class="subtitle is-6">Padang</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Tanggal Lahir</b></p>
+                  <p class="subtitle is-6">06-05-2000</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Alamat Rumah</b></p>
+                  <p class="subtitle is-6">Perumahan Semen Indonesia, Blok G</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Telp/Fax Rumah</b></p>
+                  <p class="subtitle is-6">0751496808</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Alamat Kantor</b></p>
+                  <p class="subtitle is-6">Jl. Veteran, Kb. Dalem, Sidomoro</p>
+               </div>
+            </div>
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Telp/Fax Kantor</b></p>
+                  <p class="subtitle is-6">021918274</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="columns is-desktop">
+            <div class="column">
+               <div class="field">
+                  <p class="title is-6"><b>Mata Kuliah yang diampu</b></p>
+                  <ul style="list-style-type:disc">
+                     <li>Pemograman 2</li>
+                     <li>Sistem Basis Data</li>
+                     <li>Machine Learning</li>
+                  </ul>
+               </div>
+            </div>
+            <div class="column"></div>
+         </div>
+      {/if}
+   </div>
+
+   <div class="box">
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <h4 class="title is-5">
          Test Extend Box
          <span
             class="toggle-button"
@@ -94,7 +166,14 @@
 <style>
    .toggle-button {
       cursor: pointer;
-      color: #434a54;
+      color: #fc6c78;
       font-size: small;
+   }
+   ul {
+      margin-left: 1.2em;
+      margin-top: -1em;
+   }
+   ul li {
+      margin-bottom: 4px;
    }
 </style>
