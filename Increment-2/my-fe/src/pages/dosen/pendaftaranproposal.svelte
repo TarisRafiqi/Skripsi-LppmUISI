@@ -49,21 +49,9 @@
    let randomRabFileName = "";
    let randomPpmFileName = "";
 
-   let idProfile,
-      namaLengkap,
-      jabatanFungsional,
-      nip,
-      nidn,
-      tempatLahir,
-      tanggalLahir,
-      alamatRumah,
-      telpFaxRumah,
-      nomorHandphone,
-      alamatKantor,
-      telpFaxKantor,
-      email,
-      mataKuliah = [];
+   let mataKuliah = [];
    let profilesAnggota = [];
+   let RPS1Anggota = [];
 
    let dataRPS1, dataRPS2, dataRPS3;
    let nama_pertiS1, bidang_ilmuS1, tahunMasukS1, tahunLulusS1, judulSkripsi;
@@ -152,7 +140,6 @@
       // --------------------------------------------------
       // Get Users for Form Select Anggota Tim
       // --------------------------------------------------
-
       const response = await fetch($apiURL + "/pilihUser", {
          method: "GET",
          headers: headers,
@@ -160,8 +147,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -175,42 +161,6 @@
             }
          } else {
             console.log(response);
-         }
-      }
-
-      //------------------------------------------------------------
-      // Get Profile
-      //------------------------------------------------------------
-      const responseGP = await fetch($apiURL + "/user/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultGP = await responseGP.json();
-
-      if (resultGP.statusCode != 200) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseGP.ok) {
-            data = resultGP;
-            idProfile = data.id;
-            idUser = data.uid;
-            namaLengkap = data.nama_lengkap;
-            jabatanFungsional = data.jabatan_fungsional;
-            nip = data.nip;
-            nidn = data.nidn;
-            tempatLahir = data.tempat_lahir;
-            tanggalLahir = data.tanggal_lahir;
-            alamatRumah = data.alamat_rumah;
-            telpFaxRumah = data.telp_fax_rumah;
-            nomorHandphone = data.nomor_handphone;
-            alamatKantor = data.alamat_kantor;
-            telpFaxKantor = data.telp_fax_kantor;
-            email = data.email;
-            mataKuliah =
-               typeof data.mata_kuliah === "string"
-                  ? JSON.parse(data.mata_kuliah)
-                  : data.mata_kuliah || [];
          }
       }
 
@@ -328,8 +278,7 @@
 
       const resultPP = await responsePP.json();
 
-      if (resultPP.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePP.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -351,8 +300,7 @@
 
       const resultPM = await responsePM.json();
 
-      if (resultPM.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePM.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -374,8 +322,7 @@
 
       const resultPD = await responsePD.json();
 
-      if (resultPD.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePD.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -397,8 +344,7 @@
 
       const resultPPub = await responsePPub.json();
 
-      if (resultPPub.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePPub.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -423,8 +369,7 @@
 
       const resultPPB = await responsePPB.json();
 
-      if (resultPPB.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePPB.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -446,8 +391,7 @@
 
       const resultPHKI = await responsePHKI.json();
 
-      if (resultPHKI.statusCode != 200) {
-         // localStorage.clear();
+      if (responsePHKI.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -507,23 +451,6 @@
       const readerPpm = new FileReader();
       const readerRab = new FileReader();
 
-      let payloadIdentitas = {
-         idProfile,
-         namaLengkap,
-         jabatanFungsional,
-         nip,
-         nidn,
-         tempatLahir,
-         tanggalLahir,
-         alamatRumah,
-         telpFaxRumah,
-         nomorHandphone,
-         alamatKantor,
-         telpFaxKantor,
-         email,
-         mataKuliah,
-      };
-
       let payloadProposal = {
          id,
          jenisProposal,
@@ -542,33 +469,62 @@
          randomPpmFileName,
       };
 
-      for (const [key, value] of Object.entries(payloadIdentitas)) {
-         if (!payloadIdentitas[key]) {
-            error[key] = `This field is required`;
+      // ------------------------------//
+      // Upload File Proposal
+      // ------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+            // Buat Handle Error
+            // ...
          }
-      }
-      if (Object.keys(error).length > 0) {
-         showModalErrorBiodata = true;
-      } else {
-         // ------------------------------//
-         // Upload File Proposal
-         // ------------------------------//
-         readerPpm.onloadend = async () => {
-            const base64Data = readerPpm.result.split(",")[1];
-            const payloadPpmFile = {
-               filePpm: {
-                  name: filePpm.name,
-                  type: filePpm.type,
+      };
+
+      readerPpm.readAsDataURL(filePpm);
+      // -------------------------------//
+      // Upload File RAB
+      // -------------------------------//
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
                   data: base64Data,
                },
-               randomPpmFileName,
+               randomRabFileName,
             };
 
             try {
-               const response = await fetch($apiURL + "/uploadPpm", {
+               const response = await fetch($apiURL + "/uploadRab", {
                   method: "POST",
                   headers: headers,
-                  body: JSON.stringify(payloadPpmFile),
+                  body: JSON.stringify(payloadRabFile),
                });
 
                const result = await response.json();
@@ -578,87 +534,29 @@
                // ...
             }
          };
+         readerRab.readAsDataURL(fileRab);
+      }
 
-         readerPpm.readAsDataURL(filePpm);
-         // -------------------------------//
-         // Upload File RAB
-         // -------------------------------//
-         if (
-            jenisSkema === "Riset Kelompok Keahlian" ||
-            jenisSkema === "Riset Terapan" ||
-            jenisSkema === "Riset Kerjasama" ||
-            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-         ) {
-            readerRab.onloadend = async () => {
-               const base64Data = readerRab.result.split(",")[1];
-               const payloadRabFile = {
-                  fileRab: {
-                     name: fileRab.name,
-                     type: fileRab.type,
-                     data: base64Data,
-                  },
-                  randomRabFileName,
-               };
+      // --------------------------------------//
+      //  Post Proposal
+      // --------------------------------------//
+      const responseProposal = await fetch($apiURL + "/ppm", {
+         method: "POST",
+         headers: headers,
+         body: JSON.stringify(payloadProposal),
+      });
 
-               try {
-                  const response = await fetch($apiURL + "/uploadRab", {
-                     method: "POST",
-                     headers: headers,
-                     body: JSON.stringify(payloadRabFile),
-                  });
+      const resultProposal = await responseProposal.json();
 
-                  const result = await response.json();
-               } catch (error) {
-                  console.error("Error uploading file:", error);
-                  // Buat Handle Error
-                  // ...
-               }
-            };
-            readerRab.readAsDataURL(fileRab);
-         }
-
-         // -----------------------------------------------------------//
-         // Patch Identitas & Post Proposal
-         // -----------------------------------------------------------//
-
-         const responseIdentitas = await fetch($apiURL + "/userprofile", {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify(payloadIdentitas),
-         });
-
-         const resultIdentitas = await responseIdentitas.json();
-
-         if (resultIdentitas.statusCode != 200) {
-            location.pathname = "/tokenexpired";
+      if (responseProposal.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseProposal.ok) {
+            $route("/dosen/ppmmanagement");
          } else {
-            if (!responseIdentitas.ok) {
-               console.log(responseIdentitas.msg, error);
-               // Buat Handle Error
-               // ...
-            }
-         }
-
-         // ================================================================
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadProposal),
-         });
-
-         const resultProposal = await responseProposal.json();
-
-         if (resultProposal.statusCode != 200) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (responseProposal.ok) {
-               $route("/dosen/ppmmanagement");
-            } else {
-               console.log(responseProposal.msg, error);
-               // Buat Handle Error
-               // ...
-            }
+            console.log(responseProposal.msg, error);
+            // Buat Handle Error
+            // ...
          }
       }
       isLoading = false;
@@ -672,23 +570,6 @@
       isLoading = true;
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
-
-      let payloadIdentitas = {
-         idProfile,
-         namaLengkap,
-         jabatanFungsional,
-         nip,
-         nidn,
-         tempatLahir,
-         tanggalLahir,
-         alamatRumah,
-         telpFaxRumah,
-         nomorHandphone,
-         alamatKantor,
-         telpFaxKantor,
-         email,
-         mataKuliah,
-      };
 
       let payloadProposal = {
          id,
@@ -708,33 +589,62 @@
          randomPpmFileName,
       };
 
-      for (const [key, value] of Object.entries(payloadIdentitas)) {
-         if (!payloadIdentitas[key]) {
-            error[key] = `This field is required`;
+      // ------------------------------//
+      // Upload File Proposal
+      // ------------------------------//
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+            // Buat Handle Error
+            // ...
          }
-      }
-      if (Object.keys(error).length > 0) {
-         showModalErrorBiodata = true;
-      } else {
-         // ------------------------------//
-         // Upload File Proposal
-         // ------------------------------//
-         readerPpm.onloadend = async () => {
-            const base64Data = readerPpm.result.split(",")[1];
-            const payloadPpmFile = {
-               filePpm: {
-                  name: filePpm.name,
-                  type: filePpm.type,
+      };
+
+      readerPpm.readAsDataURL(filePpm);
+      // --------------------------------------//
+      // Upload File RAB
+      // --------------------------------------//
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         readerRab.onloadend = async () => {
+            const base64Data = readerRab.result.split(",")[1];
+            const payloadRabFile = {
+               fileRab: {
+                  name: fileRab.name,
+                  type: fileRab.type,
                   data: base64Data,
                },
-               randomPpmFileName,
+               randomRabFileName,
             };
 
             try {
-               const response = await fetch($apiURL + "/uploadPpm", {
+               const response = await fetch($apiURL + "/uploadRab", {
                   method: "POST",
                   headers: headers,
-                  body: JSON.stringify(payloadPpmFile),
+                  body: JSON.stringify(payloadRabFile),
                });
 
                const result = await response.json();
@@ -744,89 +654,31 @@
                // ...
             }
          };
-
-         readerPpm.readAsDataURL(filePpm);
-         // --------------------------------------//
-         // Upload File RAB
-         // --------------------------------------//
-         if (
-            jenisSkema === "Riset Kelompok Keahlian" ||
-            jenisSkema === "Riset Terapan" ||
-            jenisSkema === "Riset Kerjasama" ||
-            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-         ) {
-            readerRab.onloadend = async () => {
-               const base64Data = readerRab.result.split(",")[1];
-               const payloadRabFile = {
-                  fileRab: {
-                     name: fileRab.name,
-                     type: fileRab.type,
-                     data: base64Data,
-                  },
-                  randomRabFileName,
-               };
-
-               try {
-                  const response = await fetch($apiURL + "/uploadRab", {
-                     method: "POST",
-                     headers: headers,
-                     body: JSON.stringify(payloadRabFile),
-                  });
-
-                  const result = await response.json();
-               } catch (error) {
-                  console.error("Error uploading file:", error);
-                  // Buat Handle Error
-                  // ...
-               }
-            };
-            readerRab.readAsDataURL(fileRab);
-         }
-
-         // --------------------------------------------------------------------//
-         // Patch Identitas & Post Proposal                                     //
-         // --------------------------------------------------------------------//
-         const responseIdentitas = await fetch($apiURL + "/userprofile", {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify(payloadIdentitas),
-         });
-
-         const resultIdentitas = await responseIdentitas.json();
-
-         if (resultIdentitas.statusCode != 200) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (!responseIdentitas.ok) {
-               console.log(responseIdentitas.msg, error);
-               // Buat Handle Error
-               // ...
-            }
-         }
-
-         // ================================================================
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadProposal),
-         });
-
-         const resultProposal = await responseProposal.json();
-
-         if (resultProposal.statusCode != 200) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (responseProposal.ok) {
-               $route("/dosen/ppmmanagement");
-            } else {
-               console.log(responseProposal.msg, error);
-               // Buat Handle Error
-               // ...
-            }
-         }
+         readerRab.readAsDataURL(fileRab);
       }
 
+      // --------------------------------------------------//
+      // Post Proposal                                     //
+      // --------------------------------------------------//
+      const responseProposal = await fetch($apiURL + "/ppm", {
+         method: "POST",
+         headers: headers,
+         body: JSON.stringify(payloadProposal),
+      });
+
+      const resultProposal = await responseProposal.json();
+
+      if (responseProposal.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseProposal.ok) {
+            $route("/dosen/ppmmanagement");
+         } else {
+            console.log(responseProposal.msg, error);
+            // Buat Handle Error
+            // ...
+         }
+      }
       isLoading = false;
    }
 
@@ -845,7 +697,10 @@
       );
    }
 
-   async function getProfileAnggotaTim() {
+   //------------------------------------------------------------
+   // Get Profile Anggota Tim
+   //------------------------------------------------------------
+   async function getProfileAnggota() {
       let ids = anggotaTim.map((anggota) => anggota.value);
 
       for (idAnggota of ids) {
@@ -857,29 +712,102 @@
          const result = await response.json();
          profilesAnggota.push(result);
       }
+      console.log(profilesAnggota);
       return profilesAnggota;
    }
 
-   let tab1 = true;
-   let tab2;
+   //------------------------------------------------------------
+   // Get Riwayat Pendidikan S1 Anggota Tim
+   //------------------------------------------------------------
+   async function getRPS1Anggota() {
+      let ids = anggotaTim.map((anggota) => anggota.value);
+      let allData = [];
 
-   function clicktab1() {
-      tab1 = true;
-      tab2 = false;
+      for (idAnggota of ids) {
+         const response = await fetch(
+            $apiURL + "/riwayatPendidikanS1/" + idAnggota,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+         const result = await response.json();
+         console.log(result);
+         if (result.dbData && Array.isArray(result.dbData)) {
+            allData.push(result.dbData);
+         }
+      }
+      RPS1Anggota = allData;
+      console.log(RPS1Anggota);
+      return RPS1Anggota;
+   }
+
+   //------------------------------------------------------------
+   //------------------------------------------------------------
+   async function getBiodataAnggota() {
+      let ids = anggotaTim.map((anggota) => anggota.value);
+      let promises = ids.map(async (idAnggota) => {
+         // ==============
+         // get profile
+         // ==============
+         const profileResponse = await fetch($apiURL + "/user/" + idAnggota, {
+            method: "GET",
+            headers: headers,
+         });
+         const profileResult = await profileResponse.json();
+
+         // ==============
+         // get RPS1
+         // ==============
+         const RPS1Response = await fetch(
+            $apiURL + "/riwayatPendidikanS1/" + idAnggota,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+         const RPS1Result = await RPS1Response.json();
+
+         return {
+            profile: profileResult,
+            RPS1: RPS1Result.dbData,
+         };
+      });
+
+      userData = await Promise.all(promises);
+      console.log(userData);
+   }
+
+   let userData = [];
+   let tab1 = true;
+   let tab2 = false;
+
+   async function clicktab1() {
+      if (!tab1) {
+         tab1 = true;
+         tab2 = false;
+      }
    }
 
    async function clicktab2() {
-      profilesAnggota = [];
-      await getProfileAnggotaTim();
-      tab1 = false;
-      tab2 = true;
+      if (!tab2) {
+         showModalErrorProposal = false;
+         // profilesAnggota = [];
+         // RPS1Anggota = [];
+         // await getProfileAnggota();
+         // await getRPS1Anggota();
+         await getBiodataAnggota();
+         tab1 = false;
+         tab2 = true;
+      }
    }
 
+   // $: dataLoaded, console.log("dataLoaded = " + dataLoaded);
    // $: anggotaTim, console.log(anggotaTim);
-   $: tab2, console.log("Tab2 (Biodata Peneliti) = " + tab2);
+   // $: tab2, console.log("Tab2 (Biodata Peneliti) = " + tab2);
 
    // async function clicktab2() {
-   //    getProfileAnggotaTim();
+   //    getProfileAnggota();
 
    //    error = {};
 
@@ -900,14 +828,14 @@
    //       randomPpmFileName,
    //    };
 
-   //    for (const [key, value] of Object.entries(payloadProposal)) {
-   //       if (
-   //          !value ||
-   //          (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
-   //       ) {
-   //          error[key] = `This field is required`;
-   //       }
+   // for (const [key, value] of Object.entries(payloadProposal)) {
+   //    if (
+   //       !value ||
+   //       (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+   //    ) {
+   //       error[key] = `This field is required`;
    //    }
+   // }
 
    //    if (isObjectEmpty($ppmFile)) {
    //       error["fileProposal"] = `*`;
@@ -1115,7 +1043,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1165,7 +1093,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1214,7 +1142,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1263,7 +1191,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1313,7 +1241,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1363,8 +1291,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
-            // localStorage.clear();
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -1467,8 +1394,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1492,8 +1418,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1517,8 +1442,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1542,8 +1466,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1570,8 +1493,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1595,8 +1517,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -1888,7 +1809,7 @@
                   type="file"
                   on:change={filePpmChange}
                />
-               <div class="file has-name is-success">
+               <div class="file has-name is-success is-small">
                   <label class="file-label" for="filePpm">
                      <input class="file-input" type="file" name="resume" />
                      <span class="file-cta">
@@ -1921,7 +1842,7 @@
                      type="file"
                      on:change={fileRabChange}
                   />
-                  <div class="file has-name is-success">
+                  <div class="file has-name is-success is-small">
                      <label class="file-label" for="fileRab">
                         <input class="file-input" type="file" name="resume" />
                         <span class="file-cta">
@@ -1959,14 +1880,53 @@
    <!-- Tabs Step 2 -->
    <!-- ---------------------------------------------------- -->
    {#if tab2 === true}
-      {#each profilesAnggota as profile}
-         <div class="box">
-            <h5 class="title is-5">Identitas</h5>
-            <Field name="Nama Lengkap">{profile.nama_lengkap}</Field>
-            <Field name="Tempat Lahir">{profile.tempat_lahir}</Field>
-            <Field name="NIP">{profile.nip}</Field>
-         </div>
-      {/each}
+      {#if userData.length > 0}
+         {#each userData as user}
+            <div class="box">
+               <h5 class="title is-5">Identitas</h5>
+               <Field name="Nama Lengkap">
+                  {#if user.profile.nama_lengkap}
+                     {user.profile.nama_lengkap}
+                  {:else}
+                     <span></span>
+                  {/if}
+               </Field>
+               <Field name="Jabatan Fungsional">
+                  {user.profile.jabatan_fungsional}
+               </Field>
+
+               <hr />
+
+               <h5 class="title is-5">Riwayat Pendidikan S1</h5>
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                        <th style="width: 20%;">Bidang Ilmu</th>
+                        <th style="width: 10%;">Tahun Masuk</th>
+                        <th style="width: 10%;">Tahun Lulus</th>
+                        <th style="width: 35%;">Judul Skripsi</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if user.RPS1.length > 0}
+                        {#each user.RPS1 as RPS1}
+                           <tr>
+                              <td>{RPS1.nama_perguruan_tinggi}</td>
+                              <td>{RPS1.bidang_ilmu}</td>
+                              <td>{RPS1.tahun_masuk}</td>
+                              <td>{RPS1.tahun_lulus}</td>
+                              <td>{RPS1.judul_skripsi}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </div>
+         {/each}
+      {/if}
    {/if}
 
    <!-- ============================================== -->
@@ -2501,5 +2461,9 @@
    .help {
       /* top, right, bottom, left */
       margin: -6px 0px 0px 0px;
+   }
+
+   ul {
+      margin-left: 1em;
    }
 </style>
