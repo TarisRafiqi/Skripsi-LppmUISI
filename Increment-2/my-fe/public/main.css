@@ -1933,20 +1933,25 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-1s0fls9.svelte-1s0fls9 {
+.inputf__wrapper.svelte-s3brip.svelte-s3brip {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-1s0fls9 input.svelte-1s0fls9 {
+.inputf__wrapper.svelte-s3brip input.svelte-s3brip {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-1s0fls9.svelte-1s0fls9 {
+.help.svelte-s3brip.svelte-s3brip {
   margin: -6px 0px 0px 0px;
 }
-ul.svelte-1s0fls9.svelte-1s0fls9 {
+ul.svelte-s3brip.svelte-s3brip {
   margin-left: 1em;
+}
+.toggle-button.svelte-s3brip.svelte-s3brip {
+  cursor: pointer;
+  color: #fc6c78;
+  font-size: small;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Modalroute.esbuild-svelte-fake-css */

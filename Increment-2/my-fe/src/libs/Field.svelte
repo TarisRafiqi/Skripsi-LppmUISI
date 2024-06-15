@@ -60,6 +60,7 @@
 
 <div class:view>
    <b>{name}</b>
+   <!-- <h6 class="title is-6">{name}</h6> -->
 
    {#if hasSlot}
       <!-- svelte-ignore a11y-missing-attribute -->
