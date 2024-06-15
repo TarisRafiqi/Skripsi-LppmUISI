@@ -1,32 +1,32 @@
 <script>
    import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import Modalerror from "../../libs/Modalerror.svelte";
+   import Article from "../../libs/Article.svelte";
+   import Select from "../../libs/Select.svelte";
+   import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
    import {
       deleteIcon,
       penelitian,
       accountEdit,
-      add,
       downloadIcon,
    } from "../../store/icons";
-   import Article from "../../libs/Article.svelte";
-   import Field from "../../libs/Field.svelte";
-   import Select from "../../libs/Select.svelte";
-   import Modal from "../../libs/Modal.svelte";
-   import Modalerror from "../../libs/Modalerror.svelte";
 
-   const id = Number(localStorage.getItem("id"));
-   const localStorage_id = localStorage.getItem("id");
    const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
-   let error = {};
+   const localStorage_id = localStorage.getItem("id");
+   const accessToken = localStorage.getItem("token");
+   const id = Number(localStorage.getItem("id"));
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
+
    let showModalErrorProposal = false;
-   let showModalErrorBiodata = false;
    let warningFormText = false;
-   let value;
-   let label;
-   let myAbstract;
+   let isLoading = false;
    let vmataKuliah;
-   let items = [];
+   let myAbstract;
    let fileRab;
    let filePpm;
 
@@ -51,94 +51,14 @@
 
    let mataKuliah = [];
    let userData = [];
-
-   let dataRPS1, dataRPS2, dataRPS3;
-   let nama_pertiS1, bidang_ilmuS1, tahunMasukS1, tahunLulusS1, judulSkripsi;
-   let nama_pertiS2, bidang_ilmuS2, tahunMasukS2, tahunLulusS2, judulTesis;
-   let nama_pertiS3, bidang_ilmuS3, tahunMasukS3, tahunLulusS3, judulDisertasi;
-
-   let data, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
-
-   let biayaPP,
-      tahunPenelitian,
-      judulPenelitian,
-      rolePenelitian,
-      sumberDanaPenelitian;
-
-   let biayaPengmas, tahunPengmas, judulPengmas, rolePengmas, sumberDanaPengmas;
-
-   let tahunDiseminasi,
-      judulDiseminasi,
-      namaPemakalahDiseminasi,
-      namaPertemuanDiseminasi;
-
-   let tahunPublikasi, judulPublikasi, namaPenulis, namaJurnal, impactFactor;
-
-   let tahunBuku, JudulBuku, namaPenulisBuku, PenerbitBuku, Isbn;
-
-   let tahunHKI, JudulHKI, namaPenulisHKI, jenisHKI, noHKI;
-
-   let showModalRiwayatPendidikanS1 = false;
-   let showModalRiwayatPendidikanS2 = false;
-   let showModalRiwayatPendidikanS3 = false;
-
-   let showModalPenelitian = false;
-   let showModalPengmas = false;
-   let showModalDiseminasi = false;
-   let showModalPublikasi = false;
-   let showModalPenulisanBuku = false;
-   let showModalHKI = false;
-   let showModalErrorForm = false;
-   let isLoading = false;
-
-   const accessToken = localStorage.getItem("token");
-
-   const headers = {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-   };
-
-   async function modalInputRiwayatPendidikanS1() {
-      showModalRiwayatPendidikanS1 = true;
-   }
-
-   async function modalInputRiwayatPendidikanS2() {
-      showModalRiwayatPendidikanS2 = true;
-   }
-
-   async function modalInputRiwayatPendidikanS3() {
-      showModalRiwayatPendidikanS3 = true;
-   }
-
-   async function clickModalPenelitian() {
-      showModalPenelitian = true;
-   }
-
-   async function clickModalPengmas() {
-      showModalPengmas = true;
-   }
-
-   async function clickModalDiseminasi() {
-      showModalDiseminasi = true;
-   }
-
-   async function clickModalPublikasi() {
-      showModalPublikasi = true;
-   }
-
-   async function clickModalPenulisanBuku() {
-      showModalPenulisanBuku = true;
-   }
-
-   async function clickModalHKI() {
-      showModalHKI = true;
-   }
+   let items = [];
+   let error = {};
 
    onMount(async () => {
       isLoading = false;
-      // --------------------------------------------------
+      //============================================================
       // Get Users for Form Select Anggota Tim
-      // --------------------------------------------------
+      //============================================================
       const response = await fetch($apiURL + "/pilihUser", {
          method: "GET",
          headers: headers,
@@ -163,9 +83,9 @@
          }
       }
 
-      //------------------------------------------------------------
-      // Generate RAB Random Character
-      //------------------------------------------------------------
+      //============================================================
+      //               Generate RAB Random Character
+      //============================================================
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultRabChar = "";
@@ -177,9 +97,9 @@
 
       randomRabFileName = resultRabChar;
 
-      //------------------------------------------------------------
-      // Generate PPM Random Character
-      //------------------------------------------------------------
+      //============================================================
+      //               Generate PPM Random Character
+      //============================================================
       let resultPpmChar = "";
 
       for (let i = 0; i < 30; i++) {
@@ -188,222 +108,11 @@
       }
 
       randomPpmFileName = resultPpmChar;
-
-      getRiwayatPendidikanS1();
-      getRiwayatPendidikanS2();
-      getRiwayatPendidikanS3();
-      getPengalamanPenelitian();
-      getPengalamanPengmas();
-      getPengalamanDiseminasi();
-      getPengalamanPublikasi();
-      getPengalamanPenulisanBuku();
-      getPengalamanHKI();
    });
 
-   // -----------------------------------------------
-   // Get Riwayat Pendidikan S1
-   // -----------------------------------------------
-   async function getRiwayatPendidikanS1() {
-      const responseRPS1 = await fetch($apiURL + "/riwayatPendidikanS1/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultRPS1 = await responseRPS1.json();
-
-      if (responseRPS1.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseRPS1.ok) {
-            dataRPS1 = resultRPS1.dbData;
-         } else {
-            console.log(responseRPS1);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Riwayat Pendidikan S2
-   // -----------------------------------------------
-   async function getRiwayatPendidikanS2() {
-      const responseRPS2 = await fetch($apiURL + "/riwayatPendidikanS2/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultRPS2 = await responseRPS2.json();
-
-      if (responseRPS2.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseRPS2.ok) {
-            dataRPS2 = resultRPS2.dbData;
-         } else {
-            console.log(responseRPS2);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Riwayat Pendidikan S3
-   // -----------------------------------------------
-   async function getRiwayatPendidikanS3() {
-      const responseRPS3 = await fetch($apiURL + "/riwayatPendidikanS3/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultRPS3 = await responseRPS3.json();
-
-      if (responseRPS3.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responseRPS3.ok) {
-            dataRPS3 = resultRPS3.dbData;
-         } else {
-            console.log(responseRPS3);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Penelitian
-   // -----------------------------------------------
-   async function getPengalamanPenelitian() {
-      const responsePP = await fetch($apiURL + "/pengalamanPenelitian/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultPP = await responsePP.json();
-
-      if (responsePP.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePP.ok) {
-            dataPP = resultPP.dbData;
-         } else {
-            console.log(responsePP);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Pengmas
-   // -----------------------------------------------
-   async function getPengalamanPengmas() {
-      const responsePM = await fetch($apiURL + "/pengalamanPengmas/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultPM = await responsePM.json();
-
-      if (responsePM.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePM.ok) {
-            dataPM = resultPM.dbData;
-         } else {
-            console.log(responsePM);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Diseminasi
-   // -----------------------------------------------
-   async function getPengalamanDiseminasi() {
-      const responsePD = await fetch($apiURL + "/pengalamanDiseminasi/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultPD = await responsePD.json();
-
-      if (responsePD.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePD.ok) {
-            dataPD = resultPD.dbData;
-         } else {
-            console.log(responsePD);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Publikasi
-   // -----------------------------------------------
-   async function getPengalamanPublikasi() {
-      const responsePPub = await fetch($apiURL + "/pengalamanPublikasi/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultPPub = await responsePPub.json();
-
-      if (responsePPub.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePPub.ok) {
-            dataPPub = resultPPub.dbData;
-         } else {
-            console.log(responsePPub);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Penulisan Buku
-   // -----------------------------------------------
-   async function getPengalamanPenulisanBuku() {
-      const responsePPB = await fetch(
-         $apiURL + "/pengalamanPenulisanBuku/" + id,
-         {
-            method: "GET",
-            headers: headers,
-         }
-      );
-
-      const resultPPB = await responsePPB.json();
-
-      if (responsePPB.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePPB.ok) {
-            dataPPB = resultPPB.dbData;
-         } else {
-            console.log(responsePPB);
-         }
-      }
-   }
-
-   // -----------------------------------------------
-   // Get Pengalaman Hak Kekayaan Intelektual
-   // -----------------------------------------------
-   async function getPengalamanHKI() {
-      const responsePHKI = await fetch($apiURL + "/pengalamanHKI/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-
-      const resultPHKI = await responsePHKI.json();
-
-      if (responsePHKI.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (responsePHKI.ok) {
-            dataPHKI = resultPHKI.dbData;
-         } else {
-            console.log(responsePHKI);
-         }
-      }
-   }
-
-   //------------------------------------------------------------
+   //===============================
    // Add Mata Kuliah
-   //------------------------------------------------------------
+   //===============================
    function addMatkul() {
       let addVmatkul = {
          label: vmataKuliah,
@@ -412,9 +121,9 @@
       vmataKuliah = "";
    }
 
-   //------------------------------------------------------------
+   //===============================
    // Delete Mata Kuliah
-   //------------------------------------------------------------
+   //===============================
    function deleteMatkul(e) {
       let delMatkul = e.target.getAttribute("data-value");
       mataKuliah = mataKuliah.filter((matkul) => {
@@ -422,9 +131,9 @@
       });
    }
 
-   //------------------------------------------------------------
+   //============================================================
    // Format Rupiah
-   //------------------------------------------------------------
+   //============================================================
    function formatRupiah(angka, prefix) {
       var number_string = angka.replace(/[^,\d]/g, "").toString(),
          split = number_string.split(","),
@@ -441,9 +150,9 @@
       return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 
-   //----------------------------//
+   //============================================================
    // Button Simpan Proposal
-   //----------------------------//
+   //============================================================
    async function simpanProposal() {
       error = {};
       isLoading = true;
@@ -468,9 +177,9 @@
          randomPpmFileName,
       };
 
-      // ------------------------------//
+      //============================================================
       // Upload File Proposal
-      // ------------------------------//
+      //============================================================
       readerPpm.onloadend = async () => {
          const base64Data = readerPpm.result.split(",")[1];
          const payloadPpmFile = {
@@ -498,9 +207,9 @@
       };
 
       readerPpm.readAsDataURL(filePpm);
-      // -------------------------------//
+      //============================================================
       // Upload File RAB
-      // -------------------------------//
+      //============================================================
       if (
          jenisSkema === "Riset Kelompok Keahlian" ||
          jenisSkema === "Riset Terapan" ||
@@ -536,9 +245,9 @@
          readerRab.readAsDataURL(fileRab);
       }
 
-      // --------------------------------------//
+      //============================================================
       //  Post Proposal
-      // --------------------------------------//
+      //============================================================
       const responseProposal = await fetch($apiURL + "/ppm", {
          method: "POST",
          headers: headers,
@@ -561,9 +270,9 @@
       isLoading = false;
    }
 
-   //------------------------------
+   //============================================================
    // Button Submit Proposal
-   //------------------------------
+   //============================================================
    async function submitProposal() {
       error = {};
       isLoading = true;
@@ -588,9 +297,9 @@
          randomPpmFileName,
       };
 
-      // ------------------------------//
+      //============================================================
       // Upload File Proposal
-      // ------------------------------//
+      //============================================================
       readerPpm.onloadend = async () => {
          const base64Data = readerPpm.result.split(",")[1];
          const payloadPpmFile = {
@@ -618,9 +327,9 @@
       };
 
       readerPpm.readAsDataURL(filePpm);
-      // --------------------------------------//
+      ///============================================================
       // Upload File RAB
-      // --------------------------------------//
+      //============================================================
       if (
          jenisSkema === "Riset Kelompok Keahlian" ||
          jenisSkema === "Riset Terapan" ||
@@ -656,9 +365,9 @@
          readerRab.readAsDataURL(fileRab);
       }
 
-      // --------------------------------------------------//
-      // Post Proposal                                     //
-      // --------------------------------------------------//
+      //============================================================
+      // Post Proposal
+      //============================================================
       const responseProposal = await fetch($apiURL + "/ppm", {
          method: "POST",
          headers: headers,
@@ -696,41 +405,264 @@
       );
    }
 
-   //------------------------------------------------------------
+   //============================================================
    // Get Biodata Anggota
-   //------------------------------------------------------------
+   //============================================================
    async function getBiodataAnggota() {
       let ids = anggotaTim.map((anggota) => anggota.value);
       let promises = ids.map(async (idAnggota) => {
-         // ==============
-         // get profile
-         // ==============
-         const profileResponse = await fetch($apiURL + "/user/" + idAnggota, {
-            method: "GET",
-            headers: headers,
-         });
-         const profileResult = await profileResponse.json();
+         try {
+            // ==============================================
+            // Get profile
+            // ==============================================
+            const profileResponse = await fetch(
+               $apiURL + "/user/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
 
-         // ==============
-         // get RPS1
-         // ==============
-         const RPS1Response = await fetch(
-            $apiURL + "/riwayatPendidikanS1/" + idAnggota,
-            {
-               method: "GET",
-               headers: headers,
+            if (profileResponse.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
             }
-         );
-         const RPS1Result = await RPS1Response.json();
+            if (!profileResponse.ok) {
+               throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
+            }
+            const profileResult = await profileResponse.json();
 
-         return {
-            profile: profileResult,
-            RPS1: RPS1Result.dbData,
-         };
+            // ==============================================
+            // Get RPS1
+            // ==============================================
+            const RPS1Response = await fetch(
+               $apiURL + "/riwayatPendidikanS1/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS1Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS1Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S1 for ID ${idAnggota}`
+               );
+            }
+            const RPS1Result = await RPS1Response.json();
+
+            // ==============================================
+            // Get RPS2
+            // ==============================================
+            const RPS2Response = await fetch(
+               $apiURL + "/riwayatPendidikanS2/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS2Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS2Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S2 for ID ${idAnggota}`
+               );
+            }
+            const RPS2Result = await RPS2Response.json();
+
+            // ==============================================
+            // Get RPS3
+            // ==============================================
+            const RPS3Response = await fetch(
+               $apiURL + "/riwayatPendidikanS3/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS3Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS3Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const RPS3Result = await RPS3Response.json();
+
+            // ==============================================
+            // Get Pengalaman Penelitian
+            // ==============================================
+            const responsePP = await fetch(
+               $apiURL + "/pengalamanPenelitian/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePP.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePP.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPP = await responsePP.json();
+
+            // ==============================================
+            // Get Pengalaman Pengmas
+            // ==============================================
+            const responsePM = await fetch(
+               $apiURL + "/pengalamanPengmas/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePM.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePM.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPM = await responsePM.json();
+
+            // ==============================================
+            // Get Pengalaman Diseminasi
+            // ==============================================
+            const responsePD = await fetch(
+               $apiURL + "/pengalamanDiseminasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePD.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePD.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPD = await responsePD.json();
+
+            // ==============================================
+            // Get Pengalaman Publikasi
+            // ==============================================
+            const responsePPub = await fetch(
+               $apiURL + "/pengalamanPublikasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPub.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPub.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPub = await responsePPub.json();
+
+            // ==============================================
+            // Get Pengalaman Penulisan Buku
+            // ==============================================
+            const responsePPB = await fetch(
+               $apiURL + "/pengalamanPenulisanBuku/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPB.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPB.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPB = await responsePPB.json();
+
+            // ==============================================
+            // Get Pengalaman Hak Kekayaan Intelektual
+            // ==============================================
+            const responsePHKI = await fetch(
+               $apiURL + "/pengalamanHKI/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePHKI.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePHKI.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPHKI = await responsePHKI.json();
+
+            return {
+               profile: profileResult,
+               RPS1: RPS1Result.dbData,
+               RPS2: RPS2Result.dbData,
+               RPS3: RPS3Result.dbData,
+               Ppenelitian: resultPP.dbData,
+               Ppengmas: resultPM.dbData,
+               Pdiseminasi: resultPD.dbData,
+               Ppublikasi: resultPPub.dbData,
+               PpenulisanBuku: resultPPB.dbData,
+               Phki: resultPHKI.dbData,
+            };
+         } catch (error) {
+            console.error(`Error fetching data for ID ${idAnggota}:`, error);
+            return {
+               profile: null,
+               RPS1: [],
+               RPS2: [],
+               RPS3: [],
+               Ppenelitian: [],
+               Ppengmas: [],
+               Pdiseminasi: [],
+               Ppublikasi: [],
+               PpenulisanBuku: [],
+               Phki: [],
+               error: error.message,
+            };
+         }
       });
 
-      userData = await Promise.all(promises);
-      console.log(userData);
+      // userData = await Promise.all(promises);
+      userData = await Promise.all(promises.filter(Boolean));
+      // console.log(userData);
    }
 
    let tab1 = true;
@@ -745,22 +677,14 @@
 
    async function clicktab2() {
       if (!tab2) {
-         showModalErrorProposal = false;
          await getBiodataAnggota();
          tab1 = false;
          tab2 = true;
       }
    }
 
-   // $: dataLoaded, console.log("dataLoaded = " + dataLoaded);
-   // $: anggotaTim, console.log(anggotaTim);
-   // $: tab2, console.log("Tab2 (Biodata Peneliti) = " + tab2);
-
    // async function clicktab2() {
-   //    getProfileAnggota();
-
    //    error = {};
-
    //    let payloadProposal = {
    //       id,
    //       jenisProposal,
@@ -778,14 +702,14 @@
    //       randomPpmFileName,
    //    };
 
-   // for (const [key, value] of Object.entries(payloadProposal)) {
-   //    if (
-   //       !value ||
-   //       (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
-   //    ) {
-   //       error[key] = `This field is required`;
+   //    for (const [key, value] of Object.entries(payloadProposal)) {
+   //       if (
+   //          !value ||
+   //          (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+   //       ) {
+   //          error[key] = `This field is required`;
+   //       }
    //    }
-   // }
 
    //    if (isObjectEmpty($ppmFile)) {
    //       error["fileProposal"] = `*`;
@@ -806,8 +730,11 @@
    //    if (Object.keys(error).length > 0) {
    //       showModalErrorProposal = true;
    //    } else {
-   //    tab1 = false;
-   //    tab2 = true;
+   //       if (!tab2) {
+   //          await getBiodataAnggota();
+   //          tab1 = false;
+   //          tab2 = true;
+   //       }
    //    }
    // }
 
@@ -1164,12 +1091,11 @@
    <!-- ---------------------------------------------------- -->
    {#if tab2 === true}
       <div class="notification is-warning is-light">
-         <p>Pastikan data yang digunakan merupakan data terbaru!</p>
+         <p>Pastikan data yang digunakan merupakan data terbaru.</p>
       </div>
       {#if userData.length > 0}
          {#each userData as user, index}
             <div class="box">
-               <!-- <h5 class="title is-5">Identitas</h5> -->
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h6 class="title is-6">
@@ -1185,7 +1111,13 @@
                </h6>
 
                {#if userData[index].profileVisible}
+                  <!-- =================== -->
+                  <!-- Identitas -->
+                  <!-- =================== -->
                   <hr />
+                  <div class="notification is-info is-light">
+                     <p>Pastikan untuk melengkapi Identitas Diri.</p>
+                  </div>
                   <h5 class="title is-5">Identitas Diri</h5>
 
                   <Field name="Nama Lengkap">
@@ -1284,15 +1216,32 @@
                      {/if}
                   </Field>
 
+                  <Field name="Mata Kuliah">
+                     {#if user.profile.mata_kuliah}
+                        <ul style="list-style-type:disc">
+                           {#each user.profile.mata_kuliah as mataKuliah}
+                              <li>{mataKuliah.label}</li>
+                           {/each}
+                        </ul>
+                     {:else}
+                        <span></span>
+                     {/if}
+                  </Field>
+
                   <hr />
 
-                  <h5 class="title is-5">Riwayat Pendidikan S1</h5>
+                  <!-- ===================== -->
+                  <!-- Riwayat Pendidikan S1 -->
+                  <!-- ===================== -->
+                  <h5 class="title is-5">Riwayat Pendidikan</h5>
                   <table
                      class="table is-fullwidth is-striped is-hoverable is-bordered"
                   >
                      <thead>
                         <tr>
-                           <th style="width: 25%;">Nama Perguruan Tinggi</th>
+                           <th style="width: 25%;"
+                              >Nama Perguruan Tinggi (S1)</th
+                           >
                            <th style="width: 20%;">Bidang Ilmu</th>
                            <th style="width: 10%;">Tahun Masuk</th>
                            <th style="width: 10%;">Tahun Lulus</th>
@@ -1308,6 +1257,276 @@
                                  <td>{RPS1.tahun_masuk}</td>
                                  <td>{RPS1.tahun_lulus}</td>
                                  <td>{RPS1.judul_skripsi}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <!-- ===================== -->
+                  <!-- Riwayat Pendidikan S2 -->
+                  <!-- ===================== -->
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 25%;"
+                              >Nama Perguruan Tinggi (S2)</th
+                           >
+                           <th style="width: 20%;">Bidang Ilmu</th>
+                           <th style="width: 10%;">Tahun Masuk</th>
+                           <th style="width: 10%;">Tahun Lulus</th>
+                           <th style="width: 35%;">Judul Tesis</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.RPS2.length > 0}
+                           {#each user.RPS2 as RPS2}
+                              <tr>
+                                 <td>{RPS2.nama_perguruan_tinggi}</td>
+                                 <td>{RPS2.bidang_ilmu}</td>
+                                 <td>{RPS2.tahun_masuk}</td>
+                                 <td>{RPS2.tahun_lulus}</td>
+                                 <td>{RPS2.judul_tesis}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <!-- ===================== -->
+                  <!-- Riwayat Pendidikan S3 -->
+                  <!-- ===================== -->
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 25%;"
+                              >Nama Perguruan Tinggi (S3)</th
+                           >
+                           <th style="width: 20%;">Bidang Ilmu</th>
+                           <th style="width: 10%;">Tahun Masuk</th>
+                           <th style="width: 10%;">Tahun Lulus</th>
+                           <th style="width: 35%;">Judul Disertasi</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.RPS3.length > 0}
+                           {#each user.RPS3 as RPS3}
+                              <tr>
+                                 <td>{RPS3.nama_perguruan_tinggi}</td>
+                                 <td>{RPS3.bidang_ilmu}</td>
+                                 <td>{RPS3.tahun_masuk}</td>
+                                 <td>{RPS3.tahun_lulus}</td>
+                                 <td>{RPS3.judul_disertasi}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- ===================== -->
+                  <!-- Pengalaman Penelitian -->
+                  <!-- ===================== -->
+                  <h5 class="title is-5">Pengalaman Penelitian</h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul Penelitian</th>
+                           <th class="is-narrow">Role</th>
+                           <th class="is-narrow">Sumber Dana</th>
+                           <th>Jumlah Rp.</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.Ppenelitian.length > 0}
+                           {#each user.Ppenelitian as PP}
+                              <tr>
+                                 <td>{PP.tahun_penelitian}</td>
+                                 <td>{PP.judul_penelitian}</td>
+                                 <td>{PP.role_penelitian}</td>
+                                 <td>{PP.sumber_dana}</td>
+                                 <td>{PP.jumlah}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- ===================== -->
+                  <!-- Pengalaman Pengmas    -->
+                  <!-- ===================== -->
+                  <h5 class="title is-5">Pengalaman Pengabdian Masyarakat</h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul Pengabdian Masyarakat</th>
+                           <th class="is-narrow">Role</th>
+                           <th class="is-narrow">Sumber Dana</th>
+                           <th>Jumlah Rp.</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.Ppengmas.length > 0}
+                           {#each user.Ppengmas as PM}
+                              <tr>
+                                 <td>{PM.tahun_pengmas}</td>
+                                 <td>{PM.judul_pengmas}</td>
+                                 <td>{PM.role_pengmas}</td>
+                                 <td>{PM.sumber_dana}</td>
+                                 <td>{PM.jumlah}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- =============================== -->
+                  <!-- Pengalaman Diseminasi Ilmiah    -->
+                  <!-- =============================== -->
+                  <h5 class="title is-5">
+                     Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
+                  </h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul Artikel</th>
+                           <th>Nama Pemakalah</th>
+                           <th class="is-narrow"
+                              >Nama Pertemuan Ilmiah / Pameran</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.Pdiseminasi.length > 0}
+                           {#each user.Pdiseminasi as PD}
+                              <tr>
+                                 <td>{PD.tahun_diseminasi}</td>
+                                 <td>{PD.judul_artikel}</td>
+                                 <td>{PD.nama_pemakalah}</td>
+                                 <td>{PD.nama_pertemuan}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- =============================== -->
+                  <!-- Pengalaman Publikasi Ilmiah     -->
+                  <!-- =============================== -->
+                  <h5 class="title is-5">
+                     Pengalaman Publikasi Ilmiah dalam Jurnal (bukan Proceeding)
+                  </h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul Artikel</th>
+                           <th>Nama Penulis</th>
+                           <th
+                              >Nama Jurnal, Vol., No Issue/No Artikel, Halaman</th
+                           >
+                           <th>Impact Factor/Scopus Quarter/Akreditasi</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.Ppublikasi.length > 0}
+                           {#each user.Ppublikasi as PPub}
+                              <tr>
+                                 <td>{PPub.tahun_publikasi}</td>
+                                 <td>{PPub.judul_artikel}</td>
+                                 <td>{PPub.nama_penulis}</td>
+                                 <td>{PPub.nama_jurnal}</td>
+                                 <td>{PPub.impact}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- ============================= -->
+                  <!-- Pengalaman Penulisan Buku     -->
+                  <!-- ============================= -->
+                  <h5 class="title is-5">Pengalaman Penulisan Buku</h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul Buku</th>
+                           <th>Nama Penulis</th>
+                           <th>Penerbit</th>
+                           <th>ISBN</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.PpenulisanBuku.length > 0}
+                           {#each user.PpenulisanBuku as PPB}
+                              <tr>
+                                 <td>{PPB.tahun_buku}</td>
+                                 <td>{PPB.judul_buku}</td>
+                                 <td>{PPB.nama_penulis}</td>
+                                 <td>{PPB.penerbit}</td>
+                                 <td>{PPB.isbn}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <!-- ======================================= -->
+                  <!-- Pengalaman Hak Kekayaan Intelektual     -->
+                  <!-- ======================================= -->
+                  <h5 class="title is-5">
+                     Pengalaman Hak Kekayaan Intelektual
+                  </h5>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Tahun</th>
+                           <th>Judul HKI</th>
+                           <th>Nama Penulis</th>
+                           <th>Jenis HKI</th>
+                           <th>No HKI</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if user.Phki.length > 0}
+                           {#each user.Phki as PHKI}
+                              <tr>
+                                 <td>{PHKI.tahun_hki}</td>
+                                 <td>{PHKI.judul_hki}</td>
+                                 <td>{PHKI.nama_penulis}</td>
+                                 <td>{PHKI.jenis_hki}</td>
+                                 <td>{PHKI.no_hki}</td>
                               </tr>
                            {/each}
                         {/if}
@@ -1353,16 +1572,8 @@
    {/if}
 </Article>
 
-<Modalerror bind:show={showModalErrorForm}>
-   <p>Lengkapi semua form sebelum disimpan</p>
-</Modalerror>
-
 <Modalerror bind:show={showModalErrorProposal}>
    <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>
-</Modalerror>
-
-<Modalerror bind:show={showModalErrorBiodata}>
-   <p>Lengkapi semua form biodata untuk submit proposal!</p>
 </Modalerror>
 
 <style>
@@ -1390,4 +1601,8 @@
       color: #fc6c78;
       font-size: small;
    }
+
+   /* hr {
+      border-top: 1px solid #dddddd;
+   } */
 </style>
