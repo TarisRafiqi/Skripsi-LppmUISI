@@ -65,7 +65,6 @@
          method: "GET",
          headers: headers,
       });
-
       const result = await response.json();
 
       if (response.status === 401) {
@@ -84,21 +83,8 @@
             console.log(response);
          }
       }
-
-      //============================================================
-      //               Generate RAB Random Character
-      //============================================================
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultRabChar = "";
-
-      for (let i = 0; i < 30; i++) {
-         const randomIndex = Math.floor(Math.random() * characters.length);
-         resultRabChar += characters.charAt(randomIndex);
-      }
-
-      randomRabFileName = resultRabChar;
-
       //============================================================
       //               Generate PPM Random Character
       //============================================================
@@ -110,25 +96,279 @@
       }
 
       randomPpmFileName = resultPpmChar;
+
+      //============================================================
+      //               Generate RAB Random Character
+      //============================================================
+
+      let resultRabChar = "";
+
+      for (let i = 0; i < 30; i++) {
+         const randomIndex = Math.floor(Math.random() * characters.length);
+         resultRabChar += characters.charAt(randomIndex);
+      }
+
+      randomRabFileName = resultRabChar;
    });
 
    //============================================================
-   // Format Rupiah
+   // Get Biodata Anggota
    //============================================================
-   function formatRupiah(angka, prefix) {
-      var number_string = angka.replace(/[^,\d]/g, "").toString(),
-         split = number_string.split(","),
-         sisa = split[0].length % 3,
-         rupiah = split[0].substr(0, sisa),
-         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+   async function getBiodataAnggota() {
+      let ids = anggotaTim.map((anggota) => anggota.value);
+      let promises = ids.map(async (idAnggota) => {
+         try {
+            // ==============================================
+            // Get profile
+            // ==============================================
+            const profileResponse = await fetch(
+               $apiURL + "/user/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
 
-      if (ribuan) {
-         separator = sisa ? "." : "";
-         rupiah += separator + ribuan.join(".");
-      }
+            if (profileResponse.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!profileResponse.ok) {
+               throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
+            }
+            const profileResult = await profileResponse.json();
 
-      rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
-      return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+            // ==============================================
+            // Get RPS1
+            // ==============================================
+            const RPS1Response = await fetch(
+               $apiURL + "/riwayatPendidikanS1/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS1Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS1Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S1 for ID ${idAnggota}`
+               );
+            }
+            const RPS1Result = await RPS1Response.json();
+
+            // ==============================================
+            // Get RPS2
+            // ==============================================
+            const RPS2Response = await fetch(
+               $apiURL + "/riwayatPendidikanS2/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS2Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS2Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S2 for ID ${idAnggota}`
+               );
+            }
+            const RPS2Result = await RPS2Response.json();
+
+            // ==============================================
+            // Get RPS3
+            // ==============================================
+            const RPS3Response = await fetch(
+               $apiURL + "/riwayatPendidikanS3/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS3Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS3Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const RPS3Result = await RPS3Response.json();
+
+            // ==============================================
+            // Get Pengalaman Penelitian
+            // ==============================================
+            const responsePP = await fetch(
+               $apiURL + "/pengalamanPenelitian/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePP.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePP.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPP = await responsePP.json();
+
+            // ==============================================
+            // Get Pengalaman Pengmas
+            // ==============================================
+            const responsePM = await fetch(
+               $apiURL + "/pengalamanPengmas/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePM.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePM.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPM = await responsePM.json();
+
+            // ==============================================
+            // Get Pengalaman Diseminasi
+            // ==============================================
+            const responsePD = await fetch(
+               $apiURL + "/pengalamanDiseminasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePD.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePD.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPD = await responsePD.json();
+
+            // ==============================================
+            // Get Pengalaman Publikasi
+            // ==============================================
+            const responsePPub = await fetch(
+               $apiURL + "/pengalamanPublikasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPub.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPub.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPub = await responsePPub.json();
+
+            // ==============================================
+            // Get Pengalaman Penulisan Buku
+            // ==============================================
+            const responsePPB = await fetch(
+               $apiURL + "/pengalamanPenulisanBuku/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPB.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPB.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPB = await responsePPB.json();
+
+            // ==============================================
+            // Get Pengalaman Hak Kekayaan Intelektual
+            // ==============================================
+            const responsePHKI = await fetch(
+               $apiURL + "/pengalamanHKI/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePHKI.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePHKI.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPHKI = await responsePHKI.json();
+
+            return {
+               profile: profileResult,
+               RPS1: RPS1Result.dbData,
+               RPS2: RPS2Result.dbData,
+               RPS3: RPS3Result.dbData,
+               Ppenelitian: resultPP.dbData,
+               Ppengmas: resultPM.dbData,
+               Pdiseminasi: resultPD.dbData,
+               Ppublikasi: resultPPub.dbData,
+               PpenulisanBuku: resultPPB.dbData,
+               Phki: resultPHKI.dbData,
+            };
+         } catch (error) {
+            console.error(`Error fetching data for ID ${idAnggota}:`, error);
+            return {
+               profile: null,
+               RPS1: [],
+               RPS2: [],
+               RPS3: [],
+               Ppenelitian: [],
+               Ppengmas: [],
+               Pdiseminasi: [],
+               Ppublikasi: [],
+               PpenulisanBuku: [],
+               Phki: [],
+               error: error.message,
+            };
+         }
+      });
+
+      // biodataAnggota = await Promise.all(promises);
+      biodataAnggota = await Promise.all(promises.filter(Boolean));
+      // console.log(biodataAnggota);
    }
 
    //============================================================
@@ -413,281 +653,6 @@
       isLoading = false;
    }
 
-   function deleteMember(e) {
-      let uid = e.target.getAttribute("data-value");
-      anggotaTim = anggotaTim.filter((member) => {
-         return member.value !== uid;
-      });
-   }
-
-   function isObjectEmpty(objectName) {
-      return (
-         objectName &&
-         Object.keys(objectName).length === 0 &&
-         objectName.constructor === Object
-      );
-   }
-
-   //============================================================
-   // Get Biodata Anggota
-   //============================================================
-   async function getBiodataAnggota() {
-      let ids = anggotaTim.map((anggota) => anggota.value);
-      let promises = ids.map(async (idAnggota) => {
-         try {
-            // ==============================================
-            // Get profile
-            // ==============================================
-            const profileResponse = await fetch(
-               $apiURL + "/user/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (profileResponse.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!profileResponse.ok) {
-               throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
-            }
-            const profileResult = await profileResponse.json();
-
-            // ==============================================
-            // Get RPS1
-            // ==============================================
-            const RPS1Response = await fetch(
-               $apiURL + "/riwayatPendidikanS1/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (RPS1Response.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!RPS1Response.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S1 for ID ${idAnggota}`
-               );
-            }
-            const RPS1Result = await RPS1Response.json();
-
-            // ==============================================
-            // Get RPS2
-            // ==============================================
-            const RPS2Response = await fetch(
-               $apiURL + "/riwayatPendidikanS2/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (RPS2Response.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!RPS2Response.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S2 for ID ${idAnggota}`
-               );
-            }
-            const RPS2Result = await RPS2Response.json();
-
-            // ==============================================
-            // Get RPS3
-            // ==============================================
-            const RPS3Response = await fetch(
-               $apiURL + "/riwayatPendidikanS3/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (RPS3Response.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!RPS3Response.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const RPS3Result = await RPS3Response.json();
-
-            // ==============================================
-            // Get Pengalaman Penelitian
-            // ==============================================
-            const responsePP = await fetch(
-               $apiURL + "/pengalamanPenelitian/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePP.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePP.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPP = await responsePP.json();
-
-            // ==============================================
-            // Get Pengalaman Pengmas
-            // ==============================================
-            const responsePM = await fetch(
-               $apiURL + "/pengalamanPengmas/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePM.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePM.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPM = await responsePM.json();
-
-            // ==============================================
-            // Get Pengalaman Diseminasi
-            // ==============================================
-            const responsePD = await fetch(
-               $apiURL + "/pengalamanDiseminasi/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePD.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePD.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPD = await responsePD.json();
-
-            // ==============================================
-            // Get Pengalaman Publikasi
-            // ==============================================
-            const responsePPub = await fetch(
-               $apiURL + "/pengalamanPublikasi/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePPub.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePPub.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPPub = await responsePPub.json();
-
-            // ==============================================
-            // Get Pengalaman Penulisan Buku
-            // ==============================================
-            const responsePPB = await fetch(
-               $apiURL + "/pengalamanPenulisanBuku/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePPB.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePPB.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPPB = await responsePPB.json();
-
-            // ==============================================
-            // Get Pengalaman Hak Kekayaan Intelektual
-            // ==============================================
-            const responsePHKI = await fetch(
-               $apiURL + "/pengalamanHKI/" + idAnggota,
-               {
-                  method: "GET",
-                  headers: headers,
-               }
-            );
-
-            if (responsePHKI.status === 401) {
-               location.pathname = "/tokenexpired";
-               return;
-            }
-            if (!responsePHKI.ok) {
-               throw new Error(
-                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
-               );
-            }
-            const resultPHKI = await responsePHKI.json();
-
-            return {
-               profile: profileResult,
-               RPS1: RPS1Result.dbData,
-               RPS2: RPS2Result.dbData,
-               RPS3: RPS3Result.dbData,
-               Ppenelitian: resultPP.dbData,
-               Ppengmas: resultPM.dbData,
-               Pdiseminasi: resultPD.dbData,
-               Ppublikasi: resultPPub.dbData,
-               PpenulisanBuku: resultPPB.dbData,
-               Phki: resultPHKI.dbData,
-            };
-         } catch (error) {
-            console.error(`Error fetching data for ID ${idAnggota}:`, error);
-            return {
-               profile: null,
-               RPS1: [],
-               RPS2: [],
-               RPS3: [],
-               Ppenelitian: [],
-               Ppengmas: [],
-               Pdiseminasi: [],
-               Ppublikasi: [],
-               PpenulisanBuku: [],
-               Phki: [],
-               error: error.message,
-            };
-         }
-      });
-
-      // biodataAnggota = await Promise.all(promises);
-      biodataAnggota = await Promise.all(promises.filter(Boolean));
-      // console.log(biodataAnggota);
-   }
-
    let tab1 = true;
    let tab2 = false;
 
@@ -698,68 +663,68 @@
       }
    }
 
-   // async function clicktab2() {
-   //    if (!tab2) {
-   //       await getBiodataAnggota();
-   //       tab1 = false;
-   //       tab2 = true;
-   //    }
-   // }
-
    async function clicktab2() {
-      error = {};
-      let payloadProposal = {
-         id,
-         jenisProposal,
-         jenisKegiatan,
-         jenisSkema,
-         kelompokKeahlian,
-         topik,
-         tanggalMulai,
-         tanggalSelesai,
-         biayaPenelitian,
-         anggotaTim,
-         judul,
-         myAbstract,
-         randomRabFileName,
-         randomPpmFileName,
-      };
-
-      for (const [key, value] of Object.entries(payloadProposal)) {
-         if (
-            !value ||
-            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
-         ) {
-            error[key] = `This field is required`;
-         }
-      }
-
-      if (isObjectEmpty($ppmFile)) {
-         error["fileProposal"] = `*`;
-      }
-
-      if (
-         jenisSkema === "Riset Kelompok Keahlian" ||
-         jenisSkema === "Riset Terapan" ||
-         jenisSkema === "Riset Kerjasama" ||
-         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-      ) {
-         if (isObjectEmpty($rabFile)) {
-            error["fileRAB"] = `*`;
-         }
-      }
-
-      if (Object.keys(error).length > 0) {
-         showModalErrorProposal = true;
-      } else {
-         if (!tab2) {
-            await getBiodataAnggota();
-            tab1 = false;
-            tab2 = true;
-         }
+      if (!tab2) {
+         await getBiodataAnggota();
+         tab1 = false;
+         tab2 = true;
       }
    }
+
+   // async function clicktab2() {
+   //    error = {};
+   //    let payloadProposal = {
+   //       id,
+   //       jenisProposal,
+   //       jenisKegiatan,
+   //       jenisSkema,
+   //       kelompokKeahlian,
+   //       topik,
+   //       tanggalMulai,
+   //       tanggalSelesai,
+   //       biayaPenelitian,
+   //       anggotaTim,
+   //       judul,
+   //       myAbstract,
+   //       randomRabFileName,
+   //       randomPpmFileName,
+   //    };
+
+   //    for (const [key, value] of Object.entries(payloadProposal)) {
+   //       if (
+   //          !value ||
+   //          (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+   //       ) {
+   //          error[key] = `This field is required`;
+   //       }
+   //    }
+
+   //    if (isObjectEmpty($ppmFile)) {
+   //       error["fileProposal"] = `*`;
+   //    }
+
+   //    if (
+   //       jenisSkema === "Riset Kelompok Keahlian" ||
+   //       jenisSkema === "Riset Terapan" ||
+   //       jenisSkema === "Riset Kerjasama" ||
+   //       jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+   //       jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+   //    ) {
+   //       if (isObjectEmpty($rabFile)) {
+   //          error["fileRAB"] = `*`;
+   //       }
+   //    }
+
+   //    if (Object.keys(error).length > 0) {
+   //       showModalErrorProposal = true;
+   //    } else {
+   //       if (!tab2) {
+   //          await getBiodataAnggota();
+   //          tab1 = false;
+   //          tab2 = true;
+   //       }
+   //    }
+   // }
 
    function filePpmChange(e) {
       filePpm = e.target.files[0];
@@ -769,6 +734,40 @@
    function fileRabChange(e) {
       fileRab = e.target.files[0];
       $rabFile = e.target.files[0];
+   }
+
+   // Delete Member Anggota Tim
+   function deleteMember(e) {
+      let uid = e.target.getAttribute("data-value");
+      anggotaTim = anggotaTim.filter((member) => {
+         return member.value !== uid;
+      });
+   }
+
+   // Validate Object Empty
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
+
+   // Format Rupiah
+   function formatRupiah(angka, prefix) {
+      var number_string = angka.replace(/[^,\d]/g, "").toString(),
+         split = number_string.split(","),
+         sisa = split[0].length % 3,
+         rupiah = split[0].substr(0, sisa),
+         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      if (ribuan) {
+         separator = sisa ? "." : "";
+         rupiah += separator + ribuan.join(".");
+      }
+
+      rupiah = split[1] !== undefined ? rupiah + "," + split[1] : rupiah;
+      return prefix === undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
    }
 </script>
 

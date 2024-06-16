@@ -1,4 +1,5 @@
 <script>
+   import Status from "../modules/Status.svelte";
    export let title;
    export let content;
    export let type = "text"; // default
@@ -27,6 +28,12 @@
                         <li>{item.label}</li>
                      {/each}
                   </ul>
+               {:else}
+                  <p class="subtitle is-6">...</p>
+               {/if}
+            {:else if type === "status"}
+               {#if content}
+                  <Status code={content} />
                {:else}
                   <p class="subtitle is-6">...</p>
                {/if}

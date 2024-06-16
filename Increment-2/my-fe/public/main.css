@@ -1887,6 +1887,15 @@ article.svelte-12yf9li {
   margin: -6px 0px 0px 0px;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
+ul.svelte-1p63l8q.svelte-1p63l8q {
+  margin-left: 1.2em;
+  margin-top: -1em;
+}
+ul.svelte-1p63l8q li.svelte-1p63l8q {
+  margin-bottom: 4px;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/detailproposal.esbuild-svelte-fake-css */
 .inputf__wrapper.svelte-13e2x4u.svelte-13e2x4u {
   position: relative;
@@ -1930,15 +1939,6 @@ article.svelte-12yf9li {
 }
 .flex-item-right.svelte-1g6xyrw {
   flex: 50%;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
-ul.svelte-1p63l8q.svelte-1p63l8q {
-  margin-left: 1.2em;
-  margin-top: -1em;
-}
-ul.svelte-1p63l8q li.svelte-1p63l8q {
-  margin-bottom: 4px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/pendaftaranproposal.esbuild-svelte-fake-css */
@@ -2036,9 +2036,8 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.toggle-button.svelte-8xuwak {
-  cursor: pointer;
-  color: #fc6c78;
+.errorMark.svelte-rt4lv7 {
+  color: hsl(348, 100%, 61%);
   font-size: small;
 }
 

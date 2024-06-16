@@ -53,7 +53,7 @@
       const result = await response.json();
       const reminder = [];
 
-      if (result.statusCode != 200) {
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
