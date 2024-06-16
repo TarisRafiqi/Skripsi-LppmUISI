@@ -5,6 +5,7 @@
    import Article from "../../libs/Article.svelte";
    import Select from "../../libs/Select.svelte";
    import Field from "../../libs/Field.svelte";
+   import Fieldview from "../../libs/Fieldview.svelte";
    import Icon from "../../libs/Icon.svelte";
    import {
       deleteIcon,
@@ -23,6 +24,7 @@
    };
 
    let showModalErrorProposal = false;
+   let showModalErrorIdentitas = false;
    let warningFormText = false;
    let isLoading = false;
    let vmataKuliah;
@@ -273,6 +275,22 @@
    //============================================================
    // Button Submit Proposal
    //============================================================
+   async function testSubmit() {
+      // Cek apakah ada value dari setiap profile yang kosong?
+      for (const user of userData) {
+         if (user.profile) {
+            for (const value of Object.values(user.profile)) {
+               if (!value) {
+                  showModalErrorIdentitas = true;
+                  break;
+               }
+            }
+         }
+
+         if (showModalErrorIdentitas) break;
+      }
+   }
+
    async function submitProposal() {
       error = {};
       isLoading = true;
@@ -662,7 +680,7 @@
 
       // userData = await Promise.all(promises);
       userData = await Promise.all(promises.filter(Boolean));
-      // console.log(userData);
+      console.log(userData);
    }
 
    let tab1 = true;
@@ -1099,7 +1117,7 @@
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h6 class="title is-6">
-                  Biodata: {user.profile.nama_lengkap}
+                  Biodata - {user.profile.nama_lengkap}
                   <span
                      class="toggle-button"
                      on:click={() =>
@@ -1114,121 +1132,80 @@
                   <!-- =================== -->
                   <!-- Identitas -->
                   <!-- =================== -->
-                  <hr />
+                  <hr class="has-background-grey-light" />
+
+                  <h5 class="title is-5">Identitas Diri</h5>
                   <div class="notification is-info is-light">
                      <p>Pastikan untuk melengkapi Identitas Diri.</p>
                   </div>
-                  <h5 class="title is-5">Identitas Diri</h5>
 
-                  <Field name="Nama Lengkap">
-                     {#if user.profile.nama_lengkap}
-                        {user.profile.nama_lengkap}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview
+                        title="Nama Lengkap"
+                        content={user.profile.nama_lengkap}
+                     />
+                     <Fieldview
+                        title="Jabatan Fungsional"
+                        content={user.profile.jabatan_fungsional}
+                     />
+                  </div>
 
-                  <Field name="Jabatan Fungsional">
-                     {#if user.profile.jabatan_fungsional}
-                        {user.profile.jabatan_fungsional}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview title="NIP" content={user.profile.nip} />
+                     <Fieldview title="NIDN" content={user.profile.nidn} />
+                  </div>
 
-                  <Field name="NIP">
-                     {#if user.profile.nip}
-                        {user.profile.nip}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview title="Email" content={user.profile.email} />
+                     <Fieldview
+                        title="Nomor Handphone"
+                        content={user.profile.nomor_handphone}
+                     />
+                  </div>
 
-                  <Field name="NIDN">
-                     {#if user.profile.nidn}
-                        {user.profile.nidn}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview
+                        title="Tempat Lahir"
+                        content={user.profile.tempat_lahir}
+                     />
+                     <Fieldview
+                        title="Tanggal Lahir"
+                        content={user.profile.tanggal_lahir}
+                     />
+                  </div>
 
-                  <Field name="Tempat Lahir">
-                     {#if user.profile.tempat_lahir}
-                        {user.profile.tempat_lahir}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview
+                        title="Alamat Rumah"
+                        content={user.profile.alamat_rumah}
+                     />
+                     <Fieldview
+                        title="Telp/Fax Rumah"
+                        content={user.profile.telp_fax_rumah}
+                     />
+                  </div>
 
-                  <Field name="Tanggal Lahir">
-                     {#if user.profile.tanggal_lahir}
-                        {user.profile.tanggal_lahir}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview
+                        title="Alamat Kantor"
+                        content={user.profile.alamat_kantor}
+                     />
+                     <Fieldview
+                        title="Telp/Fax Kantor"
+                        content={user.profile.telp_fax_kantor}
+                     />
+                  </div>
 
-                  <Field name="Alamat Rumah">
-                     {#if user.profile.alamat_rumah}
-                        {user.profile.alamat_rumah}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
+                  <div class="columns is-desktop">
+                     <Fieldview
+                        title="Mata Kuliah yang diampu"
+                        content={user.profile.mata_kuliah}
+                        type="list"
+                     />
+                     <Fieldview title="" content="" />
+                  </div>
 
-                  <Field name="Telp/Fax Rumah">
-                     {#if user.profile.telp_fax_rumah}
-                        {user.profile.telp_fax_rumah}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <Field name="Nomor Handphone">
-                     {#if user.profile.nomor_handphone}
-                        {user.profile.nomor_handphone}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <Field name="Alamat Kantor">
-                     {#if user.profile.alamat_kantor}
-                        {user.profile.alamat_kantor}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <Field name="Telp/Fax Kantor">
-                     {#if user.profile.telp_fax_kantor}
-                        {user.profile.telp_fax_kantor}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <Field name="Email">
-                     {#if user.profile.email}
-                        {user.profile.email}
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <Field name="Mata Kuliah">
-                     {#if user.profile.mata_kuliah}
-                        <ul style="list-style-type:disc">
-                           {#each user.profile.mata_kuliah as mataKuliah}
-                              <li>{mataKuliah.label}</li>
-                           {/each}
-                        </ul>
-                     {:else}
-                        <span></span>
-                     {/if}
-                  </Field>
-
-                  <hr />
+                  <hr class="has-background-grey-light" />
 
                   <!-- ===================== -->
                   <!-- Riwayat Pendidikan S1 -->
@@ -1564,7 +1541,7 @@
          <p class="control">
             <button
                class="button is-info"
-               on:click={submitProposal}
+               on:click={testSubmit}
                class:is-loading={isLoading}>Submit</button
             >
          </p>
@@ -1574,6 +1551,10 @@
 
 <Modalerror bind:show={showModalErrorProposal}>
    <p>Lengkapi semua form proposal untuk ke step selanjutnya!</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorIdentitas}>
+   <p>Pastikan untuk melengkapi Identitas Diri semua anggota</p>
 </Modalerror>
 
 <style>
