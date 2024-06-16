@@ -123,9 +123,7 @@
          }
       });
 
-      // userData = await Promise.all(promises);
       userData = await Promise.all(promises.filter(Boolean));
-      // console.log(userData);
    }
 
    function deleteMember(e) {

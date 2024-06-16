@@ -52,7 +52,7 @@
    let randomPpmFileName = "";
 
    let mataKuliah = [];
-   let userData = [];
+   let biodataAnggota = [];
    let items = [];
    let error = {};
 
@@ -112,27 +112,6 @@
       randomPpmFileName = resultPpmChar;
    });
 
-   //===============================
-   // Add Mata Kuliah
-   //===============================
-   function addMatkul() {
-      let addVmatkul = {
-         label: vmataKuliah,
-      };
-      mataKuliah = [...mataKuliah, addVmatkul];
-      vmataKuliah = "";
-   }
-
-   //===============================
-   // Delete Mata Kuliah
-   //===============================
-   function deleteMatkul(e) {
-      let delMatkul = e.target.getAttribute("data-value");
-      mataKuliah = mataKuliah.filter((matkul) => {
-         return matkul.label !== delMatkul;
-      });
-   }
-
    //============================================================
    // Format Rupiah
    //============================================================
@@ -158,6 +137,26 @@
    async function simpanProposal() {
       error = {};
       isLoading = true;
+
+      // Validasi biodataAnggota profiles
+      for (const user of biodataAnggota) {
+         if (user.profile) {
+            for (const value of Object.values(user.profile)) {
+               if (!value) {
+                  showModalErrorIdentitas = true;
+                  break;
+               }
+            }
+         }
+         if (showModalErrorIdentitas) break;
+      }
+
+      if (showModalErrorIdentitas) {
+         console.error("Biodata validation failed. Some fields are empty.");
+         isLoading = false;
+         return;
+      }
+
       const readerPpm = new FileReader();
       const readerRab = new FileReader();
 
@@ -172,6 +171,7 @@
          tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
+         biodataAnggota,
          judul,
          myAbstract,
          status: 0,
@@ -275,9 +275,12 @@
    //============================================================
    // Button Submit Proposal
    //============================================================
-   async function testSubmit() {
-      // Cek apakah ada value dari setiap profile yang kosong?
-      for (const user of userData) {
+   async function submitProposal() {
+      error = {};
+      isLoading = true;
+
+      // Validasi biodataAnggota profiles
+      for (const user of biodataAnggota) {
          if (user.profile) {
             for (const value of Object.values(user.profile)) {
                if (!value) {
@@ -286,14 +289,15 @@
                }
             }
          }
-
          if (showModalErrorIdentitas) break;
       }
-   }
 
-   async function submitProposal() {
-      error = {};
-      isLoading = true;
+      if (showModalErrorIdentitas) {
+         console.error("Biodata validation failed. Some fields are empty.");
+         isLoading = false;
+         return;
+      }
+
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
 
@@ -308,6 +312,7 @@
          tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
+         biodataAnggota,
          judul,
          myAbstract,
          status: 2,
@@ -678,9 +683,9 @@
          }
       });
 
-      // userData = await Promise.all(promises);
-      userData = await Promise.all(promises.filter(Boolean));
-      console.log(userData);
+      // biodataAnggota = await Promise.all(promises);
+      biodataAnggota = await Promise.all(promises.filter(Boolean));
+      // console.log(biodataAnggota);
    }
 
    let tab1 = true;
@@ -693,68 +698,68 @@
       }
    }
 
-   async function clicktab2() {
-      if (!tab2) {
-         await getBiodataAnggota();
-         tab1 = false;
-         tab2 = true;
-      }
-   }
-
    // async function clicktab2() {
-   //    error = {};
-   //    let payloadProposal = {
-   //       id,
-   //       jenisProposal,
-   //       jenisKegiatan,
-   //       jenisSkema,
-   //       kelompokKeahlian,
-   //       topik,
-   //       tanggalMulai,
-   //       tanggalSelesai,
-   //       biayaPenelitian,
-   //       anggotaTim,
-   //       judul,
-   //       myAbstract,
-   //       randomRabFileName,
-   //       randomPpmFileName,
-   //    };
-
-   //    for (const [key, value] of Object.entries(payloadProposal)) {
-   //       if (
-   //          !value ||
-   //          (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
-   //       ) {
-   //          error[key] = `This field is required`;
-   //       }
-   //    }
-
-   //    if (isObjectEmpty($ppmFile)) {
-   //       error["fileProposal"] = `*`;
-   //    }
-
-   //    if (
-   //       jenisSkema === "Riset Kelompok Keahlian" ||
-   //       jenisSkema === "Riset Terapan" ||
-   //       jenisSkema === "Riset Kerjasama" ||
-   //       jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
-   //       jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
-   //    ) {
-   //       if (isObjectEmpty($rabFile)) {
-   //          error["fileRAB"] = `*`;
-   //       }
-   //    }
-
-   //    if (Object.keys(error).length > 0) {
-   //       showModalErrorProposal = true;
-   //    } else {
-   //       if (!tab2) {
-   //          await getBiodataAnggota();
-   //          tab1 = false;
-   //          tab2 = true;
-   //       }
+   //    if (!tab2) {
+   //       await getBiodataAnggota();
+   //       tab1 = false;
+   //       tab2 = true;
    //    }
    // }
+
+   async function clicktab2() {
+      error = {};
+      let payloadProposal = {
+         id,
+         jenisProposal,
+         jenisKegiatan,
+         jenisSkema,
+         kelompokKeahlian,
+         topik,
+         tanggalMulai,
+         tanggalSelesai,
+         biayaPenelitian,
+         anggotaTim,
+         judul,
+         myAbstract,
+         randomRabFileName,
+         randomPpmFileName,
+      };
+
+      for (const [key, value] of Object.entries(payloadProposal)) {
+         if (
+            !value ||
+            (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
+         ) {
+            error[key] = `This field is required`;
+         }
+      }
+
+      if (isObjectEmpty($ppmFile)) {
+         error["fileProposal"] = `*`;
+      }
+
+      if (
+         jenisSkema === "Riset Kelompok Keahlian" ||
+         jenisSkema === "Riset Terapan" ||
+         jenisSkema === "Riset Kerjasama" ||
+         jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+         jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+      ) {
+         if (isObjectEmpty($rabFile)) {
+            error["fileRAB"] = `*`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorProposal = true;
+      } else {
+         if (!tab2) {
+            await getBiodataAnggota();
+            tab1 = false;
+            tab2 = true;
+         }
+      }
+   }
 
    function filePpmChange(e) {
       filePpm = e.target.files[0];
@@ -1111,8 +1116,8 @@
       <div class="notification is-warning is-light">
          <p>Pastikan data yang digunakan merupakan data terbaru.</p>
       </div>
-      {#if userData.length > 0}
-         {#each userData as user, index}
+      {#if biodataAnggota.length > 0}
+         {#each biodataAnggota as user, index}
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -1121,14 +1126,16 @@
                   <span
                      class="toggle-button"
                      on:click={() =>
-                        (userData[index].profileVisible =
-                           !userData[index].profileVisible)}
+                        (biodataAnggota[index].profileVisible =
+                           !biodataAnggota[index].profileVisible)}
                   >
-                     {userData[index].profileVisible ? "(tutup)" : "(buka)"}
+                     {biodataAnggota[index].profileVisible
+                        ? "(tutup)"
+                        : "(buka)"}
                   </span>
                </h6>
 
-               {#if userData[index].profileVisible}
+               {#if biodataAnggota[index].profileVisible}
                   <!-- =================== -->
                   <!-- Identitas -->
                   <!-- =================== -->
@@ -1541,7 +1548,7 @@
          <p class="control">
             <button
                class="button is-info"
-               on:click={testSubmit}
+               on:click={submitProposal}
                class:is-loading={isLoading}>Submit</button
             >
          </p>
