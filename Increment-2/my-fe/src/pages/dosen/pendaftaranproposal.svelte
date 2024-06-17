@@ -821,6 +821,33 @@
    <!-- ---------------------------------------------------- -->
    {#if tab1 === true}
       <div class="box">
+         <Field name="Judul">
+            <input
+               id="judul"
+               class="input"
+               type="text"
+               placeholder="Masukkan judul"
+               bind:value={judul}
+            />
+            {#if error.judul}
+               <p class="help error is-danger">{error.judul}</p>
+            {/if}
+         </Field>
+
+         <Field name="Abstrak">
+            <textarea
+               id="myAbstract"
+               class="textarea"
+               bind:value={myAbstract}
+               placeholder="Masukkan abstrak"
+            ></textarea>
+            {#if error.myAbstract}
+               <p class="help error is-danger">{error.myAbstract}</p>
+            {/if}
+         </Field>
+
+         <hr />
+
          <Field name="Jenis Proposal">
             <div class="select is-fullwidth">
                <select id="jenisProposal" bind:value={jenisProposal}>
@@ -957,81 +984,6 @@
             {/if}
          </Field>
 
-         {#if items.length}
-            <Field name="Anggota Tim">
-               <Select
-                  id="anggotaTim"
-                  start="2"
-                  {items}
-                  bind:result={anggotaTim}
-               />
-               {#if error.anggotaTim}
-                  <p class="help error is-danger">{error.anggotaTim}</p>
-               {/if}
-            </Field>
-         {/if}
-
-         <br />
-
-         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
-            <thead>
-               <tr>
-                  <th class="is-narrow" style="width:55px"></th>
-                  <th class="is-narrow" style="width:86px">Role</th>
-                  <th>Nama Anggota </th>
-               </tr>
-            </thead>
-            <tbody>
-               {#if anggotaTim.length > 0}
-                  {#each anggotaTim as member, idx}
-                     <tr>
-                        <td>
-                           {#if idx > 0}
-                              <button
-                                 class="button is-danger is-small"
-                                 data-value={member.value}
-                                 on:click={deleteMember}
-                                 ><span class="icon">
-                                    <Icon id="delete" src={deleteIcon} />
-                                 </span>
-                              </button>
-                           {/if}
-                        </td>
-                        <td>{member.role}</td>
-                        <td>{member.label}</td>
-                     </tr>
-                  {/each}
-               {/if}
-            </tbody>
-         </table>
-
-         <hr />
-
-         <Field name="Judul">
-            <input
-               id="judul"
-               class="input"
-               type="text"
-               placeholder="Masukkan judul"
-               bind:value={judul}
-            />
-            {#if error.judul}
-               <p class="help error is-danger">{error.judul}</p>
-            {/if}
-         </Field>
-
-         <Field name="Abstrak">
-            <textarea
-               id="myAbstract"
-               class="textarea"
-               bind:value={myAbstract}
-               placeholder="Masukkan abstrak"
-            ></textarea>
-            {#if error.myAbstract}
-               <p class="help error is-danger">{error.myAbstract}</p>
-            {/if}
-         </Field>
-
          <Field name="Proposal">
             <span class="inputf__wrapper">
                <input
@@ -1098,13 +1050,61 @@
             </Field>
          {/if}
 
-         {#if warningFormText === true}
-            <div class="field is-grouped is-grouped-right">
-               <p class="has-text-danger">
-                  Lengkapi semua form untuk ke step selanjutnya.
-               </p>
-            </div>
+         {#if items.length}
+            <Field name="Anggota Tim">
+               <Select
+                  id="anggotaTim"
+                  start="2"
+                  {items}
+                  bind:result={anggotaTim}
+               />
+               {#if error.anggotaTim}
+                  <p class="help error is-danger">{error.anggotaTim}</p>
+               {/if}
+            </Field>
          {/if}
+
+         <br />
+
+         <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+            <thead>
+               <tr>
+                  <th class="is-narrow" style="width:55px"></th>
+                  <th class="is-narrow" style="width:86px">Role</th>
+                  <th>Nama Anggota </th>
+               </tr>
+            </thead>
+            <tbody>
+               {#if anggotaTim.length > 0}
+                  {#each anggotaTim as member, idx}
+                     <tr>
+                        <td>
+                           {#if idx > 0}
+                              <button
+                                 class="button is-danger is-small"
+                                 data-value={member.value}
+                                 on:click={deleteMember}
+                                 ><span class="icon">
+                                    <Icon id="delete" src={deleteIcon} />
+                                 </span>
+                              </button>
+                           {/if}
+                        </td>
+                        <td>{member.role}</td>
+                        <td>{member.label}</td>
+                     </tr>
+                  {/each}
+               {/if}
+            </tbody>
+         </table>
+
+         <!-- {#if warningFormText === true}
+         <div class="field is-grouped is-grouped-right">
+            <p class="has-text-grey">
+               Lengkapi semua form untuk ke step selanjutnya.
+            </p>
+         </div>
+         {/if} -->
       </div>
    {/if}
 
@@ -1208,7 +1208,6 @@
                         content={user.profile.mata_kuliah}
                         type="list"
                      />
-                     <Fieldview title="" content="" />
                   </div>
 
                   <hr class="has-background-grey-light" />

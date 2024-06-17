@@ -1783,28 +1783,30 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/ppmmanagement.esbuild-svelte-fake-css */
-.judul.svelte-o5mv3m {
+.judul.svelte-1obq353 {
   text-align: justify;
 }
-.kegiatan.svelte-o5mv3m,
-.skema.svelte-o5mv3m,
-.status.svelte-o5mv3m,
-.review.svelte-o5mv3m {
+.kegiatan.svelte-1obq353,
+.skema.svelte-1obq353,
+.status.svelte-1obq353,
+.review.svelte-1obq353 {
   text-align: center;
 }
-.review.svelte-o5mv3m {
+.review.svelte-1obq353 {
   cursor: pointer;
 }
-.parent.svelte-o5mv3m {
-  height: 500px;
+.parent.svelte-1obq353 {
+  max-height: 400px;
   overflow: hidden;
 }
-.child.svelte-o5mv3m {
-  height: 100%;
-  margin-right: -20px;
-  padding-right: 20px;
+.child.svelte-1obq353 {
+  max-height: 100%;
+  overflow-y: auto;
   scrollbar-width: thin;
-  overflow-y: scroll;
+}
+.box.svelte-1obq353 {
+  display: flex;
+  flex-direction: column;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/profile.esbuild-svelte-fake-css */
@@ -1849,28 +1851,30 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/approvalmanagement.esbuild-svelte-fake-css */
-.judul.svelte-1mtjhz7 {
+.judul.svelte-xyvxfs {
   text-align: justify;
 }
-.kegiatan.svelte-1mtjhz7,
-.skema.svelte-1mtjhz7,
-.status.svelte-1mtjhz7,
-.review.svelte-1mtjhz7 {
+.kegiatan.svelte-xyvxfs,
+.skema.svelte-xyvxfs,
+.status.svelte-xyvxfs,
+.review.svelte-xyvxfs {
   text-align: center;
 }
-.review.svelte-1mtjhz7 {
+.review.svelte-xyvxfs {
   cursor: pointer;
 }
-.parent.svelte-1mtjhz7 {
-  height: 600px;
+.parent.svelte-xyvxfs {
+  max-height: 500px;
   overflow: hidden;
 }
-.child.svelte-1mtjhz7 {
-  height: 100%;
-  margin-right: -20px;
-  padding-right: 20px;
+.child.svelte-xyvxfs {
+  max-height: 100%;
+  overflow-y: auto;
   scrollbar-width: thin;
-  overflow-y: scroll;
+}
+.box.svelte-xyvxfs {
+  display: flex;
+  flex-direction: column;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/detailapproval.esbuild-svelte-fake-css */
@@ -1916,14 +1920,14 @@ ul.svelte-1p63l8q li.svelte-1p63l8q {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */
-.isi.svelte-1g6xyrw {
+.isi.svelte-1fu6z08 {
   text-align: center;
 }
-.parent.svelte-1g6xyrw {
-  height: 500px;
+.parent.svelte-1fu6z08 {
+  max-height: 400px;
   overflow: hidden;
 }
-.child.svelte-1g6xyrw {
+.child.svelte-1fu6z08 {
   height: 100%;
   margin-right: -35px;
   padding-right: 25px;
@@ -1931,13 +1935,13 @@ ul.svelte-1p63l8q li.svelte-1p63l8q {
   scrollbar-width: thin;
   overflow-y: scroll;
 }
-.box.svelte-1g6xyrw {
+.box.svelte-1fu6z08 {
   display: flex;
 }
-.flex-item-left.svelte-1g6xyrw {
+.flex-item-left.svelte-1fu6z08 {
   flex: 50%;
 }
-.flex-item-right.svelte-1g6xyrw {
+.flex-item-right.svelte-1fu6z08 {
   flex: 50%;
 }
 
@@ -2006,28 +2010,30 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/ppmmanagement.esbuild-svelte-fake-css */
-.judul.svelte-1mtjhz7 {
+.judul.svelte-xyvxfs {
   text-align: justify;
 }
-.kegiatan.svelte-1mtjhz7,
-.skema.svelte-1mtjhz7,
-.status.svelte-1mtjhz7,
-.review.svelte-1mtjhz7 {
+.kegiatan.svelte-xyvxfs,
+.skema.svelte-xyvxfs,
+.status.svelte-xyvxfs,
+.review.svelte-xyvxfs {
   text-align: center;
 }
-.review.svelte-1mtjhz7 {
+.review.svelte-xyvxfs {
   cursor: pointer;
 }
-.parent.svelte-1mtjhz7 {
-  height: 600px;
+.parent.svelte-xyvxfs {
+  max-height: 500px;
   overflow: hidden;
 }
-.child.svelte-1mtjhz7 {
-  height: 100%;
-  margin-right: -20px;
-  padding-right: 20px;
+.child.svelte-xyvxfs {
+  max-height: 100%;
+  overflow-y: auto;
   scrollbar-width: thin;
-  overflow-y: scroll;
+}
+.box.svelte-xyvxfs {
+  display: flex;
+  flex-direction: column;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/profile.esbuild-svelte-fake-css */
@@ -2039,26 +2045,6 @@ button.svelte-5cn8hs {
 .errorMark.svelte-rt4lv7 {
   color: hsl(348, 100%, 61%);
   font-size: small;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/testform.esbuild-svelte-fake-css */
-.parent.svelte-hnk4gk {
-  height: 600px;
-}
-.child.svelte-hnk4gk {
-  height: 100%;
-  margin-right: -35px;
-  padding-right: 25px;
-  padding-bottom: 25px;
-  scrollbar-width: thin;
-  overflow-y: scroll;
-}
-.boxBiodataPeneliti.svelte-hnk4gk {
-  background-color: rgb(245, 245, 245);
-  border-color: rgb(200, 200, 200);
-  border-style: solid;
-  border-width: 1px;
-  height: 100%;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */

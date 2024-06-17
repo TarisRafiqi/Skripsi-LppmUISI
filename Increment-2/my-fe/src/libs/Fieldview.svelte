@@ -2,6 +2,7 @@
    import Status from "../modules/Status.svelte";
    export let title;
    export let content;
+   export let skema;
    export let type = "text"; // default
 </script>
 
@@ -14,7 +15,7 @@
          {#if title !== ""}
             <p class="title is-6"><b>{title}</b></p>
          {/if}
-         <p class="subtitle is-6">
+         <p class="subtitle is-6 has-text-justified">
             {#if type === "text"}
                {#if content}
                   {content}
@@ -33,7 +34,7 @@
                {/if}
             {:else if type === "status"}
                {#if content}
-                  <Status code={content} />
+                  <Status code={content} jenisSkema={skema} />
                {:else}
                   <p class="subtitle is-6">...</p>
                {/if}

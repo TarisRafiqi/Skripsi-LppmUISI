@@ -183,20 +183,21 @@
    <div class="box parent">
       <div class="column">
          <div>
-            <h3 class="title is-3">Notification</h3>
+            <h4 class="title is-4">Reminder</h4>
          </div>
 
          <br />
 
          <div class="child">
             {#if reminder}
-               <table class="table is-fullwidth is-striped is-hoverable">
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
                   <thead>
                      <tr>
                         <th style="width: 70%;">Judul</th>
                         <th style="width: 15%; text-align: center">Deadline</th>
-                        <th style="width: 15%; text-align: center">Countdown</th
-                        >
+                        <!-- <th style="width: 15%; text-align: center">Countdown</th> -->
                      </tr>
                   </thead>
                   <tbody>
@@ -204,7 +205,7 @@
                         <tr>
                            <td>{reminder.judul}</td>
                            <td class="isi">{reminder.selesai}</td>
-                           <td class="isi">{reminder.tersisa}</td>
+                           <!-- <td class="isi">{reminder.tersisa}</td> -->
                         </tr>
                      {/each}
                   </tbody>
@@ -221,7 +222,7 @@
    }
 
    .parent {
-      height: 500px;
+      max-height: 400px;
       overflow: hidden;
    }
 

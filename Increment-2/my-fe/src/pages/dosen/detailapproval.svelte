@@ -83,19 +83,13 @@
 
    // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      ka_departemen = await findRole(11);
-      ka_lppm = await findRole(12);
-      ka_pusat_kajian = await findRole(13);
-      reviewer = await findRole(10);
-
       const response = await fetch($apiURL + "/ppm/" + id, {
          method: "GET",
          headers: headers,
       });
       const result = await response.json();
 
-      if (result.statusCode != 200) {
-         // localStorage.clear();
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -153,7 +147,7 @@
 
       const resultEvl = await responseEvl.json();
 
-      if (resultEvl.statusCode != 200) {
+      if (responseEvl.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -176,7 +170,7 @@
 
       const dataRCR = await responseRCR.json();
 
-      if (dataRCR.statusCode != 200) {
+      if (responseRCR.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -195,7 +189,7 @@
 
       const resultGP = await responseGP.json();
 
-      if (resultGP.statusCode != 200) {
+      if (responseGP.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -304,7 +298,7 @@
 
       const resultPP = await responsePP.json();
 
-      if (resultPP.statusCode != 200) {
+      if (responsePP.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -328,7 +322,7 @@
 
       const resultPM = await responsePM.json();
 
-      if (resultPM.statusCode != 200) {
+      if (responsePM.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -352,7 +346,7 @@
 
       const resultPD = await responsePD.json();
 
-      if (resultPD.statusCode != 200) {
+      if (responsePD.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -376,7 +370,7 @@
 
       const resultPPub = await responsePPub.json();
 
-      if (resultPPub.statusCode != 200) {
+      if (responsePPub.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -400,7 +394,7 @@
 
       const resultPPB = await responsePPB.json();
 
-      if (resultPPB.statusCode != 200) {
+      if (responsePPB.status === 401) {
          // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
@@ -424,7 +418,7 @@
 
       const resultPHKI = await responsePHKI.json();
 
-      if (resultPHKI.statusCode != 200) {
+      if (responsePHKI.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -469,7 +463,7 @@
 
          const resultRev = await responseRev.json();
 
-         if (resultRev.statusCode != 200) {
+         if (responseRev.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (!responseRev.ok) {
@@ -521,7 +515,7 @@
 
       const result = await response.json();
 
-      if (result.statusCode != 200) {
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -638,7 +632,7 @@
 
          const result = await response.json();
 
-         if (result.statusCode != 200) {
+         if (response.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
@@ -792,7 +786,7 @@
 
 {#if data}
    <Article>
-      <h2 class="title is-2">Detail Proposal</h2>
+      <h2 class="title is-2">Detail PPM</h2>
 
       <div class="tabs is-boxed">
          <ul>

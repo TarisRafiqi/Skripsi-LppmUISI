@@ -93,7 +93,12 @@
                            <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td
                            >
                            <td class="skema"><p>{item.jenis_skema}</p></td>
-                           <td class="status"><Status code={item.status} /></td>
+                           <td class="status"
+                              ><Status
+                                 code={item.status}
+                                 jenisSkema={item.jenis_skema}
+                              /></td
+                           >
                            <td class="review"
                               ><button
                                  class="button is-info is-small"
@@ -157,7 +162,12 @@
                         <td class="judul"><p>{item.judul}</p> </td>
                         <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
                         <td class="skema"><p>{item.jenis_skema}</p></td>
-                        <td class="status"><Status code={item.status} /></td>
+                        <td class="status"
+                           ><Status
+                              code={item.status}
+                              jenisSkema={item.jenis_skema}
+                           /></td
+                        >
                         <td class="review"
                            ><button
                               class="button is-info is-small"
@@ -195,15 +205,19 @@
    }
 
    .parent {
-      height: 500px;
+      max-height: 400px;
       overflow: hidden;
    }
 
    .child {
-      height: 100%;
-      margin-right: -20px;
-      padding-right: 20px;
+      max-height: 100%;
+      overflow-y: auto;
       scrollbar-width: thin;
-      overflow-y: scroll;
+   }
+
+   .box {
+      display: flex;
+      flex-direction: column;
+      /* flex: 1; */
    }
 </style>
