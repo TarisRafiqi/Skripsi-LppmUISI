@@ -37,7 +37,6 @@ module.exports = async function (fastify, opts) {
                connection.release();
                reply.send({
                   ...dbData,
-                  statusCode: 200,
                });
             } catch (error) {
                reply.send({
@@ -76,7 +75,6 @@ module.exports = async function (fastify, opts) {
                dbData = rows;
                connection.release();
                reply.send({
-                  statusCode: 200,
                   dbData,
                });
             } catch (error) {
@@ -140,7 +138,7 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "INSERT INTO proposal_ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "INSERT INTO proposal_ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, biodata_anggota, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
          if (
             roleFromToken === "admin" ||
@@ -164,6 +162,7 @@ module.exports = async function (fastify, opts) {
                   data.topik,
                   data.biayaPenelitian,
                   JSON.stringify(data.anggotaTim),
+                  JSON.stringify(data.biodataAnggota),
                   data.tanggalMulai,
                   data.tanggalSelesai,
                   data.randomRabFileName,
@@ -171,7 +170,6 @@ module.exports = async function (fastify, opts) {
                ]);
                connection.release();
                reply.send({
-                  statusCode: 200,
                   msg: "Sukses Menambahkan Proposal",
                });
             } catch (error) {
@@ -201,7 +199,7 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "UPDATE proposal_ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, judul = ?, abstrak = ?,  comment = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
+            "UPDATE proposal_ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, biodata_anggota = ?, judul = ?, abstrak = ?,  comment = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
@@ -215,6 +213,7 @@ module.exports = async function (fastify, opts) {
                data.tanggalSelesai,
                data.biayaPenelitian,
                JSON.stringify(data.anggotaTim),
+               JSON.stringify(data.newBiodataAnggota),
                data.judul,
                data.abstrak,
                data.comment,
@@ -231,7 +230,6 @@ module.exports = async function (fastify, opts) {
             connection.release();
             reply.send({
                dbData,
-               statusCode: 200,
             });
          } catch (error) {
             reply.send({

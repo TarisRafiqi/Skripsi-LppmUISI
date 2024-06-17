@@ -32,7 +32,6 @@ module.exports = async function (fastify, opts) {
                connection.release();
                reply.send({
                   ...dbData,
-                  statusCode: 200,
                });
             } catch (error) {
                reply.send({
