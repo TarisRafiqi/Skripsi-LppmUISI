@@ -15,9 +15,11 @@ const clientId =
    "6224320891-rv1khlf2774a4qrqdci4aju61nlvgdsa.apps.googleusercontent.com";
 const clientSecret = "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";
 // const redirectUrl = "http://localhost:3000/auth/google/callback";
-const redirectUrl = dev
-   ? "http://localhost:10443/auth/google/callback"
-   : "https://lppmuisiapi.dififa.com/auth/google/callback";
+// const redirectUrl = dev
+//    ? "http://localhost:10443/auth/google/callback"
+//    : "https://lppmuisiapi.dififa.com/auth/google/callback";
+
+const redirectUrl = "http://localhost:10443/auth/google/callback";
 
 const { google } = require("googleapis");
 const oauth2Client = new google.auth.OAuth2(
@@ -44,7 +46,6 @@ module.exports = async function (fastify, opts) {
    });
 
    fastify.get("/google/callback", async function (request, reply) {
-      //
       const { code } = request.query;
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
@@ -60,8 +61,8 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
       let id;
-
       const sql = "SELECT * FROM users WHERE username = ?";
+
       try {
          connection = await fastify.mysql.getConnection();
          const [rows] = await connection.query(sql, [username]);
@@ -113,10 +114,13 @@ module.exports = async function (fastify, opts) {
          // type: "google"
       });
 
+      // reply.redirect(
+      //    dev
+      //       ? `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
+      //       : `https://lppmuisi.dififa.com/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
+      // );
       reply.redirect(
-         dev
-            ? `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
-            : `https://lppmuisi.dififa.com/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
+         `http://localhost:3000/auth/home?token=${token}&id=${id}&role=${role}&username=${username}&tes=oke`
       );
    });
 
