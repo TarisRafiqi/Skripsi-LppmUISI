@@ -98,7 +98,7 @@
       const result = await response.json();
       view = !isEdit(result.status);
 
-      if (result.statusCode != 200) {
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -156,7 +156,7 @@
 
       const resultEvl = await responseEvl.json();
 
-      if (resultEvl.statusCode != 200) {
+      if (responseEvl.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responseEvl.ok) {
@@ -178,7 +178,7 @@
 
       const dataRCR = await responseRCR.json();
 
-      if (dataRCR.statusCode != 200) {
+      if (responseRCR.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
@@ -196,7 +196,7 @@
 
       const resultGP = await responseGP.json();
 
-      if (resultGP.statusCode != 200) {
+      if (responseGP.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responseGP.ok) {
@@ -304,7 +304,7 @@
 
       const resultPP = await responsePP.json();
 
-      if (resultPP.statusCode != 200) {
+      if (responsePP.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePP.ok) {
@@ -327,7 +327,7 @@
 
       const resultPM = await responsePM.json();
 
-      if (resultPM.statusCode != 200) {
+      if (responsePM.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePM.ok) {
@@ -350,7 +350,7 @@
 
       const resultPD = await responsePD.json();
 
-      if (resultPD.statusCode != 200) {
+      if (responsePD.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePD.ok) {
@@ -373,7 +373,7 @@
 
       const resultPPub = await responsePPub.json();
 
-      if (resultPPub.statusCode != 200) {
+      if (responsePPub.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPub.ok) {
@@ -396,7 +396,7 @@
 
       const resultPPB = await responsePPB.json();
 
-      if (resultPPB.statusCode != 200) {
+      if (responsePPB.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePPB.ok) {
@@ -419,7 +419,7 @@
 
       const resultPHKI = await responsePHKI.json();
 
-      if (resultPHKI.statusCode != 200) {
+      if (responsePHKI.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsePHKI.ok) {
@@ -439,7 +439,7 @@
 
       const results = await responsee.json();
 
-      if (results.statusCode != 200) {
+      if (responsee.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responsee.ok) {
@@ -472,7 +472,7 @@
       const result = await response.json();
       view = !isEdit(result.status);
 
-      if (result.statusCode != 200) {
+      if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
@@ -740,7 +740,7 @@
 
          const resultRev = await responseRev.json();
 
-         if (resultRev.statusCode != 200) {
+         if (responseRev.status === 401) {
             location.pathname = "/tokenexpired";
          } else {
             if (!responseRev.ok) {

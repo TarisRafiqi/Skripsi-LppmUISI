@@ -1901,22 +1901,27 @@ ul.svelte-1p63l8q li.svelte-1p63l8q {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/detailproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-13e2x4u.svelte-13e2x4u {
+.inputf__wrapper.svelte-huqz54.svelte-huqz54 {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-13e2x4u input.svelte-13e2x4u {
+.inputf__wrapper.svelte-huqz54 input.svelte-huqz54 {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-13e2x4u.svelte-13e2x4u {
+.help.svelte-huqz54.svelte-huqz54 {
   margin: -6px 0px 0px 0px;
 }
-.toggle-button.svelte-13e2x4u.svelte-13e2x4u {
+.toggle-button.svelte-huqz54.svelte-huqz54 {
   cursor: pointer;
   color: #fc6c78;
   font-size: small;
+}
+.isi-border.svelte-huqz54.svelte-huqz54 {
+  border: 1px solid lightgrey;
+  padding: 15px;
+  border-radius: 3.5px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/home.esbuild-svelte-fake-css */

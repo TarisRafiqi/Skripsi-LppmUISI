@@ -24,8 +24,7 @@
 
       const resultCP = await responseCP.json();
 
-      if (resultCP.statusCode != 200) {
-         // localStorage.clear();
+      if (responseCP.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responseCP.ok) {
@@ -45,8 +44,7 @@
 
       const resultCPM = await responseCPM.json();
 
-      if (resultCPM.statusCode != 200) {
-         // localStorage.clear();
+      if (responseCPM.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (responseCPM.ok) {

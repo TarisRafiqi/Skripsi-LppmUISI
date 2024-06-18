@@ -49,7 +49,6 @@
    let showModalError = false;
    let skpVisible = false;
    let danaPenelitianVisible = false;
-   let suratTugasVisible = false;
    let hasilPenelitianVisible = false;
    let presentasiVisible = false;
    let skPenelitianVisible = false;
@@ -130,7 +129,14 @@
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
-            itemsRCR = dataRCR.dbData;
+            itemsRCR_0 = dataRCR.dbData;
+            console.log(itemsRCR_0);
+
+            itemsRCR = dataRCR.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+            console.log(itemsRCR);
          }
       }
 
@@ -422,6 +428,19 @@
       // biodataAnggota = await Promise.all(promises);
       newBiodataAnggota = await Promise.all(promises.filter(Boolean));
       // console.log(newBiodataAnggota);
+   }
+
+   function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const hours = String(date.getUTCHours()).padStart(2, "0");
+      const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+      const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+
+      // Format date "YYYY-MM-DD HH:MM:SS"
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
    }
 
    function isObjectEmpty(objectName) {
@@ -1419,22 +1438,6 @@
                      </tbody>
                   </table>
                </div>
-
-               <!-- <Field name="Proposal">
-                  <button
-                     class="button is-link button is-small"
-                     on:click={handleDownloadPpm}>Download Proposal</button
-                  >
-               </Field>
-
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
-                     <button
-                        class="button is-link button is-small"
-                        on:click={handleDownloadRab}>Download RAB</button
-                     >
-                  </Field>
-               {/if} -->
             {/if}
          </div>
 
@@ -1451,20 +1454,24 @@
                   </p>
                </div>
 
-               <Field name="Catatan Revisi">
-                  {comment}
-               </Field>
+               <div class="field">
+                  <p class="title is-6"><b>Catatan Revisi</b></p>
+                  <div class="isi-border">
+                     <p class="subtitle is-6">{comment}</p>
+                  </div>
+               </div>
 
-               <br />
+               <hr />
 
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
                   <thead>
                      <tr>
-                        <th style="width: 70%;">Catatan Revisi</th>
-                        <th style="width: 15%;">Evaluator</th>
-                        <th style="width: 15%;">Waktu</th>
+                        <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                        <th style="width: 15%; text-align: center">Evaluator</th
+                        >
+                        <th style="width: 15%; text-align: center">Tanggal</th>
                      </tr>
                   </thead>
                   {#if itemsRCR}
@@ -1472,8 +1479,10 @@
                         {#each itemsRCR as item}
                            <tr>
                               <td>{item.comment}</td>
-                              <td>{item.evaluator}</td>
-                              <td>{item.time}</td>
+                              <td style="text-align: center"
+                                 >{item.evaluator}</td
+                              >
+                              <td style="text-align: center">{item.time}</td>
                            </tr>
                         {/each}
                      </tbody>
@@ -1483,14 +1492,14 @@
          {/if}
 
          {#if status >= 12}
-            <!-- ========================================== -->
-            <!--        Surat Kontrak Penelitian (SKP)      -->
-            <!-- ========================================== -->
+            <!-- ============================================================ -->
+            <!--       Download SK Pendanaan, SK Penelitian, Surat Tugas      -->
+            <!-- ============================================================ -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Download Surat Kontrak Penelitian
+                  Download SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
                   <span
                      class="toggle-button"
                      on:click={() => (skpVisible = !skpVisible)}
@@ -1501,16 +1510,51 @@
 
                {#if skpVisible}
                   <hr />
-                  <Field name="Surat Kontrak Penelitian">
-                     <button class="button is-link button is-small"
-                        >Download</button
-                     >
-                  </Field>
 
-                  <Field name="Tanda tangan">
-                     <input type="checkbox" />
-                     Saya sudah menandatangani <b>Surat Kontrak Penelitian</b>
-                  </Field>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama </th>
+                           <th class="is-narrow" style="text-align: center"
+                              >File</th
+                           >
+                           <th class="is-narrow">Tanda tangan</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>Surat Kontrak Penelitian</td>
+                           <td
+                              ><button class="button is-link button is-small"
+                                 >Download</button
+                              ></td
+                           >
+                           <td style="text-align: center"
+                              ><input type="checkbox" /></td
+                           >
+                        </tr>
+                        <tr>
+                           <td>SK Pendanaan</td>
+                           <td
+                              ><button class="button is-link button is-small"
+                                 >Download</button
+                              ></td
+                           >
+                           <td></td>
+                        </tr>
+                        <tr>
+                           <td>Surat Tugas</td>
+                           <td
+                              ><button class="button is-link button is-small"
+                                 >Download</button
+                              ></td
+                           >
+                           <td></td>
+                        </tr>
+                     </tbody>
+                  </table>
                {/if}
             </div>
 
@@ -1546,32 +1590,6 @@
             </div>
 
             <!-- ========================================== -->
-            <!--                 Surat Tugas                -->
-            <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Download Surat Tugas
-                  <span
-                     class="toggle-button"
-                     on:click={() => (suratTugasVisible = !suratTugasVisible)}
-                  >
-                     {suratTugasVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
-
-               {#if suratTugasVisible}
-                  <hr />
-                  <Field name="Surat Tugas">
-                     <button class="button is-link button is-small"
-                        >Download</button
-                     >
-                  </Field>
-               {/if}
-            </div>
-
-            <!-- ========================================== -->
             <!--             Hasil Penelitian               -->
             <!-- ========================================== -->
             <div class="box">
@@ -1590,7 +1608,8 @@
 
                {#if hasilPenelitianVisible}
                   <hr />
-                  <Field name="Upload Hasil Penelitian">
+                  <div class="field">
+                     <p class="title is-6"><b>Upload Hasil Penelitian</b></p>
                      <div class="file has-name is-success is-small">
                         <label class="file-label" for="filePpm">
                            <input
@@ -1607,51 +1626,43 @@
                            <span class="file-name">No file chosen</span>
                         </label>
                      </div>
-                  </Field>
+                  </div>
 
-                  <Field name="Tanggungan Revisi"><span></span></Field>
+                  <hr />
+
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <div class="isi-border">
+                        <p class="subtitle is-6">...</p>
+                     </div>
+                  </div>
+
+                  <hr />
+
                   <table
                      class="table is-fullwidth is-striped is-hoverable is-bordered"
                   >
                      <thead>
                         <tr>
-                           <th style="width: 65%;">Catatan</th>
-                           <th style="width: 15%;">Evaluator</th>
-                           <th>Status</th>
-                           <th style="width: 15%;">Tanggal</th>
-                        </tr>
-                     </thead>
-
-                     <tbody>
-                        <tr>
-                           <td></td>
-                           <td>Taris Rafiqi</td>
-                           <td><span class="tag is-success">Done</span></td>
-                           <td></td>
-                        </tr>
-                     </tbody>
-                  </table>
-
-                  <Field name="Approval Hasil Penelitian"><span></span></Field>
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 65%;">Catatan</th>
-                           <th style="width: 15%;">Evaluator</th>
-                           <th>Approval</th>
-                           <th style="width: 15%;">Tanggal</th>
-                        </tr>
-                     </thead>
-
-                     <tbody>
-                        <tr>
-                           <td>Tidak ada catatan</td>
-                           <td>Taris Rafiqi</td>
-                           <td><span class="tag is-success">Disetujui</span></td
+                           <th style="width: 65%;">Riwayat Catatan Revisi</th>
+                           <th
+                              class="is-narrow"
+                              style="width: 15%; text-align: center"
+                              >Evaluator</th
                            >
-                           <td></td>
+                           <th class="is-narrow" style="text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>...</td>
+                           <td style="text-align: center"
+                              >Taris Rafiqi Izatri, S.Kom.</td
+                           >
+                           <td style="text-align: center">...</td>
                         </tr>
                      </tbody>
                   </table>
@@ -1682,7 +1693,7 @@
             </div>
 
             <!-- ========================================== -->
-            <!--                 Surat Tugas                -->
+            <!--             Download SK Penelitian         -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -1700,11 +1711,29 @@
 
                {#if skPenelitianVisible}
                   <hr />
-                  <Field name="SK Penelitian">
-                     <button class="button is-link button is-small"
-                        >Download</button
-                     >
-                  </Field>
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >File</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>SK Penelitian</td>
+                           <td
+                              ><button class="button is-link button is-small"
+                                 >Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
                {/if}
             </div>
          {/if}
@@ -2177,5 +2206,11 @@
       cursor: pointer;
       color: #fc6c78;
       font-size: small;
+   }
+
+   .isi-border {
+      border: 1px solid lightgrey;
+      padding: 15px;
+      border-radius: 3.5px;
    }
 </style>
