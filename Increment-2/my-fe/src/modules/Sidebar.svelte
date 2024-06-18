@@ -1,12 +1,17 @@
 <script>
    import menu from "../store/menu";
    import Icon from "../libs/Icon.svelte";
-   import { about, pengumuman, template, approval } from "../store/icons";
+   import {
+      about,
+      pengumuman,
+      template,
+      approval,
+      logout,
+   } from "../store/icons";
 
-   // get group info
    const role = localStorage.getItem("role");
-
    let items;
+
    if (role === "admin") items = menu["admin"];
    else items = menu["dosen"];
 </script>
@@ -19,9 +24,10 @@
             <a
                id={item.title === "Dashboard" ? "dashboard" : null}
                href={item.href}
-               ><div class="icon"><Icon id={item.title} src={item.icon} /></div>
-               {item.title}</a
             >
+               <div class="icon"><Icon id={item.title} src={item.icon} /></div>
+               <div class="page-title">{item.title}</div>
+            </a>
          </li>
       </ul>
    {/each}
@@ -30,12 +36,10 @@
       <p class="menu-label">Evaluator</p>
       <ul class="menu-list">
          <li>
-            <a href="/dosen/approvalmanagement"
-               ><div class="icon">
-                  <Icon id="approval" src={approval} />
-               </div>
-               Approval Management</a
-            >
+            <a href="/dosen/approvalmanagement">
+               <div class="icon"><Icon id="approval" src={approval} /></div>
+               <div class="page-title">Approval Management</div>
+            </a>
          </li>
       </ul>
    {/if}
@@ -49,32 +53,25 @@
                ><div class="icon">
                   <Icon id="pengumuman" src={pengumuman} />
                </div>
-               Pengumuman</a
-            >
+               <div class="page-title">Pengumuman</div>
+            </a>
          </li>
 
          <li>
-            <a href="/admin/aboutuisi"
-               ><div class="icon"><Icon id="aboutUISI" src={about} /></div>
-               About UISI</a
-            >
+            <a href="/admin/aboutuisi">
+               <div class="icon"><Icon id="aboutUISI" src={about} /></div>
+               <div class="page-title">About UISI</div>
+            </a>
          </li>
 
          <li>
-            <a href="/admin/template"
-               ><div class="icon"><Icon id="template" src={template} /></div>
-               Template</a
-            >
+            <a href="/admin/template">
+               <div class="icon"><Icon id="template" src={template} /></div>
+               <div class="page-title">Template</div>
+            </a>
          </li>
       </ul>
    {/if}
-
-   <br />
-
-   <ul class="menu-list">
-      <button class="button is-light is-fullwidth" href="/logout">Logout</button
-      >
-   </ul>
 </aside>
 
 <style>
@@ -93,11 +90,11 @@
       position: fixed;
       top: 0;
       bottom: 0;
+      /* transition: width 0.3s; */
    }
 
    .menu-list a {
       color: inherit;
-
       display: flex;
       align-items: center;
    }
@@ -112,5 +109,21 @@
 
    a {
       color: white;
+   }
+
+   /* Responsive styles */
+   @media (max-width: 768px) {
+      aside {
+         width: var(--narrow);
+      }
+
+      .menu-label,
+      .menu-list a .page-title {
+         display: none;
+      }
+
+      .menu-list a .icon {
+         margin-right: 0;
+      }
    }
 </style>

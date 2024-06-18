@@ -16,7 +16,7 @@
       const paragraph = document.getElementById("errorLoginHandler");
 
       const payload = {
-         method: "post",
+         method: "POST",
          headers: {
             "Content-Type": "application/json",
          },

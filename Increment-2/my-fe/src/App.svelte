@@ -59,4 +59,10 @@
    :global(aside ~ main) {
       margin-left: var(--wide);
    }
+
+   @media (max-width: 768px) {
+      :global(aside ~ main) {
+         margin-left: 5rem;
+      }
+   }
 </style>

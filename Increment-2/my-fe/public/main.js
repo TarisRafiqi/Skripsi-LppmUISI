@@ -1995,7 +1995,7 @@
     async function handleSubmit(ev) {
       const paragraph = document.getElementById("errorLoginHandler");
       const payload = {
-        method: "post",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username2, password })
       };
@@ -35541,13 +35541,17 @@
   }
   function instance29($$self, $$props, $$invalidate) {
     let $route;
+    let $isUsername;
     let $isLogin;
     component_subscribe($$self, route, ($$value) => $$invalidate(2, $route = $$value));
-    component_subscribe($$self, isLogin, ($$value) => $$invalidate(3, $isLogin = $$value));
+    component_subscribe($$self, isUsername, ($$value) => $$invalidate(3, $isUsername = $$value));
+    component_subscribe($$self, isLogin, ($$value) => $$invalidate(4, $isLogin = $$value));
     let { params = {} } = $$props;
     const token = params.token || null;
+    const username2 = params.username;
     if (token) {
       set_store_value(isLogin, $isLogin = true, $isLogin);
+      set_store_value(isUsername, $isUsername = username2, $isUsername);
       localStorage.setItem("id", params.id);
       localStorage.setItem("username", params.username);
       localStorage.setItem("role", params.role);
@@ -53015,7 +53019,7 @@
       p(ctx2, [dirty]) {
         const article_changes = {};
         if (dirty & /*$$scope, reminder, pengmasCounter, penelitianCounter*/
-        263) {
+        1031) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article2.$set(article_changes);
@@ -53053,12 +53057,12 @@
     let items, penelitianCounter, pengmasCounter;
     let reminder;
     const id = Number(localStorage.getItem("id"));
+    const accessToken = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    };
     onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-      const headers = {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json"
-      };
       const response = await fetch($apiURL + "/ppm/all/" + id, { method: "GET", headers });
       const result = await response.json();
       if (response.status === 401) {
@@ -75648,9 +75652,10 @@
     let ul;
     let li;
     let a;
-    let div;
+    let div0;
     let icon;
     let t0;
+    let div1;
     let t1_value = (
       /*item*/
       ctx[2].title + ""
@@ -75676,26 +75681,29 @@
         ul = element("ul");
         li = element("li");
         a = element("a");
-        div = element("div");
+        div0 = element("div");
         create_component(icon.$$.fragment);
         t0 = space();
+        div1 = element("div");
         t1 = text(t1_value);
-        attr(div, "class", "icon svelte-10b412e");
+        attr(div0, "class", "icon svelte-1bevr5l");
+        attr(div1, "class", "page-title svelte-1bevr5l");
         attr(a, "id", a_id_value = /*item*/
         ctx[2].title === "Dashboard" ? "dashboard" : null);
         attr(a, "href", a_href_value = /*item*/
         ctx[2].href);
-        attr(a, "class", "svelte-10b412e");
-        attr(ul, "class", "menu-list svelte-10b412e");
+        attr(a, "class", "svelte-1bevr5l");
+        attr(ul, "class", "menu-list svelte-1bevr5l");
       },
       m(target, anchor) {
         insert(target, ul, anchor);
         append(ul, li);
         append(li, a);
-        append(a, div);
-        mount_component(icon, div, null);
+        append(a, div0);
+        mount_component(icon, div0, null);
         append(a, t0);
-        append(a, t1);
+        append(a, div1);
+        append(div1, t1);
         current = true;
       },
       p(ctx2, dirty) {
@@ -75750,9 +75758,10 @@
     let ul;
     let li;
     let a;
-    let div;
+    let div0;
     let icon;
     let t3;
+    let div1;
     let current;
     icon = new Icon_default({ props: { id: "approval", src: approval } });
     return {
@@ -75765,14 +75774,17 @@
         ul = element("ul");
         li = element("li");
         a = element("a");
-        div = element("div");
+        div0 = element("div");
         create_component(icon.$$.fragment);
-        t3 = text("\r\n               Approval Management");
-        attr(p, "class", "menu-label svelte-10b412e");
-        attr(div, "class", "icon svelte-10b412e");
+        t3 = space();
+        div1 = element("div");
+        div1.textContent = "Approval Management";
+        attr(p, "class", "menu-label svelte-1bevr5l");
+        attr(div0, "class", "icon svelte-1bevr5l");
+        attr(div1, "class", "page-title svelte-1bevr5l");
         attr(a, "href", "/dosen/approvalmanagement");
-        attr(a, "class", "svelte-10b412e");
-        attr(ul, "class", "menu-list svelte-10b412e");
+        attr(a, "class", "svelte-1bevr5l");
+        attr(ul, "class", "menu-list svelte-1bevr5l");
       },
       m(target, anchor) {
         insert(target, br, anchor);
@@ -75782,9 +75794,10 @@
         insert(target, ul, anchor);
         append(ul, li);
         append(li, a);
-        append(a, div);
-        mount_component(icon, div, null);
+        append(a, div0);
+        mount_component(icon, div0, null);
         append(a, t3);
+        append(a, div1);
         current = true;
       },
       i(local) {
@@ -75820,18 +75833,21 @@
     let div0;
     let icon0;
     let t3;
-    let t4;
+    let div1;
+    let t5;
     let li1;
     let a1;
-    let div1;
+    let div2;
     let icon1;
-    let t5;
     let t6;
+    let div3;
+    let t8;
     let li2;
     let a2;
-    let div2;
+    let div4;
     let icon2;
-    let t7;
+    let t9;
+    let div5;
     let current;
     icon0 = new Icon_default({
       props: { id: "pengumuman", src: pengumuman }
@@ -75850,30 +75866,39 @@
         a0 = element("a");
         div0 = element("div");
         create_component(icon0.$$.fragment);
-        t3 = text("\r\n               Pengumuman");
-        t4 = space();
+        t3 = space();
+        div1 = element("div");
+        div1.textContent = "Pengumuman";
+        t5 = space();
         li1 = element("li");
         a1 = element("a");
-        div1 = element("div");
+        div2 = element("div");
         create_component(icon1.$$.fragment);
-        t5 = text("\r\n               About UISI");
         t6 = space();
+        div3 = element("div");
+        div3.textContent = "About UISI";
+        t8 = space();
         li2 = element("li");
         a2 = element("a");
-        div2 = element("div");
+        div4 = element("div");
         create_component(icon2.$$.fragment);
-        t7 = text("\r\n               Template");
-        attr(p, "class", "menu-label svelte-10b412e");
-        attr(div0, "class", "icon svelte-10b412e");
+        t9 = space();
+        div5 = element("div");
+        div5.textContent = "Template";
+        attr(p, "class", "menu-label svelte-1bevr5l");
+        attr(div0, "class", "icon svelte-1bevr5l");
+        attr(div1, "class", "page-title svelte-1bevr5l");
         attr(a0, "href", "/admin/pengumuman");
-        attr(a0, "class", "svelte-10b412e");
-        attr(div1, "class", "icon svelte-10b412e");
+        attr(a0, "class", "svelte-1bevr5l");
+        attr(div2, "class", "icon svelte-1bevr5l");
+        attr(div3, "class", "page-title svelte-1bevr5l");
         attr(a1, "href", "/admin/aboutuisi");
-        attr(a1, "class", "svelte-10b412e");
-        attr(div2, "class", "icon svelte-10b412e");
+        attr(a1, "class", "svelte-1bevr5l");
+        attr(div4, "class", "icon svelte-1bevr5l");
+        attr(div5, "class", "page-title svelte-1bevr5l");
         attr(a2, "href", "/admin/template");
-        attr(a2, "class", "svelte-10b412e");
-        attr(ul, "class", "menu-list svelte-10b412e");
+        attr(a2, "class", "svelte-1bevr5l");
+        attr(ul, "class", "menu-list svelte-1bevr5l");
       },
       m(target, anchor) {
         insert(target, br, anchor);
@@ -75886,18 +75911,21 @@
         append(a0, div0);
         mount_component(icon0, div0, null);
         append(a0, t3);
-        append(ul, t4);
+        append(a0, div1);
+        append(ul, t5);
         append(ul, li1);
         append(li1, a1);
-        append(a1, div1);
-        mount_component(icon1, div1, null);
-        append(a1, t5);
-        append(ul, t6);
+        append(a1, div2);
+        mount_component(icon1, div2, null);
+        append(a1, t6);
+        append(a1, div3);
+        append(ul, t8);
         append(ul, li2);
         append(li2, a2);
-        append(a2, div2);
-        mount_component(icon2, div2, null);
-        append(a2, t7);
+        append(a2, div4);
+        mount_component(icon2, div4, null);
+        append(a2, t9);
+        append(a2, div5);
         current = true;
       },
       i(local) {
@@ -75934,10 +75962,6 @@
     let t1;
     let t2;
     let t3;
-    let t4;
-    let br;
-    let t5;
-    let ul;
     let current;
     let each_value = ensure_array_like(
       /*items*/
@@ -75976,14 +76000,8 @@
         t3 = space();
         if (if_block1)
           if_block1.c();
-        t4 = space();
-        br = element("br");
-        t5 = space();
-        ul = element("ul");
-        ul.innerHTML = `<button class="button is-light is-fullwidth" href="/logout">Logout</button>`;
-        attr(p, "class", "menu-label svelte-10b412e");
-        attr(ul, "class", "menu-list");
-        attr(aside, "class", "menu svelte-10b412e");
+        attr(p, "class", "menu-label svelte-1bevr5l");
+        attr(aside, "class", "menu svelte-1bevr5l");
       },
       m(target, anchor) {
         insert(target, aside, anchor);
@@ -76000,10 +76018,6 @@
         append(aside, t3);
         if (if_block1)
           if_block1.m(aside, null);
-        append(aside, t4);
-        append(aside, br);
-        append(aside, t5);
-        append(aside, ul);
         current = true;
       },
       p(ctx2, [dirty]) {

@@ -8,6 +8,12 @@
    let items, penelitianCounter, pengmasCounter;
    let reminder;
    const id = Number(localStorage.getItem("id"));
+   const accessToken = localStorage.getItem("token");
+
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
 
    function daysUntil(targetDate) {
       const today = new Date();
@@ -30,13 +36,6 @@
    }
 
    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
-
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
-
       const response = await fetch($apiURL + "/ppm/all/" + id, {
          method: "GET",
          headers: headers,

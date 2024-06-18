@@ -2171,10 +2171,10 @@ a.svelte-5za9if.svelte-5za9if:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Sidebar.esbuild-svelte-fake-css */
-.menu-label.svelte-10b412e.svelte-10b412e {
+.menu-label.svelte-1bevr5l.svelte-1bevr5l {
   color: white;
 }
-aside.svelte-10b412e.svelte-10b412e {
+aside.svelte-1bevr5l.svelte-1bevr5l {
   padding-top: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2187,19 +2187,31 @@ aside.svelte-10b412e.svelte-10b412e {
   top: 0;
   bottom: 0;
 }
-.menu-list.svelte-10b412e a.svelte-10b412e {
+.menu-list.svelte-1bevr5l a.svelte-1bevr5l {
   color: inherit;
   display: flex;
   align-items: center;
 }
-.menu-list.svelte-10b412e a .icon.svelte-10b412e {
+.menu-list.svelte-1bevr5l a .icon.svelte-1bevr5l {
   margin-right: 0.5em;
 }
-.menu-list.svelte-10b412e a.svelte-10b412e:hover {
+.menu-list.svelte-1bevr5l a.svelte-1bevr5l:hover {
   color: #4a4a4a;
 }
-a.svelte-10b412e.svelte-10b412e {
+a.svelte-1bevr5l.svelte-1bevr5l {
   color: white;
+}
+@media (max-width: 768px) {
+  aside.svelte-1bevr5l.svelte-1bevr5l {
+    width: var(--narrow);
+  }
+  .menu-label.svelte-1bevr5l.svelte-1bevr5l,
+  .menu-list.svelte-1bevr5l a .page-title.svelte-1bevr5l {
+    display: none;
+  }
+  .menu-list.svelte-1bevr5l a .icon.svelte-1bevr5l {
+    margin-right: 0;
+  }
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbarmenu.esbuild-svelte-fake-css */
@@ -2219,4 +2231,9 @@ nav.svelte-gab4e {
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/App.esbuild-svelte-fake-css */
 aside ~ main {
   margin-left: var(--wide);
+}
+@media (max-width: 768px) {
+  aside ~ main {
+    margin-left: 5rem;
+  }
 }
