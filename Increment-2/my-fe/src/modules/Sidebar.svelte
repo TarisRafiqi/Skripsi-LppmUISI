@@ -1,5 +1,7 @@
 <script>
    import menu from "../store/menu";
+   import Icon from "../libs/Icon.svelte";
+   import { about, pengumuman, template, approval } from "../store/icons";
 
    // get group info
    const role = localStorage.getItem("role");
@@ -13,11 +15,12 @@
    <p class="menu-label">General</p>
    {#each items as item}
       <ul class="menu-list">
-         <!-- svelte-ignore a11y-missing-attribute -->
          <li>
             <a
                id={item.title === "Dashboard" ? "dashboard" : null}
-               href={item.href}>{item.title}</a
+               href={item.href}
+               ><div class="icon"><Icon id={item.title} src={item.icon} /></div>
+               {item.title}</a
             >
          </li>
       </ul>
@@ -26,9 +29,13 @@
       <br />
       <p class="menu-label">Evaluator</p>
       <ul class="menu-list">
-         <!-- svelte-ignore a11y-missing-attribute -->
          <li>
-            <a href="/dosen/approvalmanagement">Approval Management</a>
+            <a href="/dosen/approvalmanagement"
+               ><div class="icon">
+                  <Icon id="approval" src={approval} />
+               </div>
+               Approval Management</a
+            >
          </li>
       </ul>
    {/if}
@@ -37,19 +44,34 @@
       <br />
       <p class="menu-label">Website Settings</p>
       <ul class="menu-list">
-         <!-- svelte-ignore a11y-missing-attribute -->
-         <li><a href="/admin/pengumuman">Pengumuman</a></li>
-         <!-- svelte-ignore a11y-missing-attribute -->
-         <li><a href="/admin/aboutuisi">About UISI</a></li>
-         <!-- svelte-ignore a11y-missing-attribute -->
-         <li><a href="/admin/template">Template</a></li>
+         <li>
+            <a href="/admin/pengumuman"
+               ><div class="icon">
+                  <Icon id="pengumuman" src={pengumuman} />
+               </div>
+               Pengumuman</a
+            >
+         </li>
+
+         <li>
+            <a href="/admin/aboutuisi"
+               ><div class="icon"><Icon id="aboutUISI" src={about} /></div>
+               About UISI</a
+            >
+         </li>
+
+         <li>
+            <a href="/admin/template"
+               ><div class="icon"><Icon id="template" src={template} /></div>
+               Template</a
+            >
+         </li>
       </ul>
    {/if}
 
    <br />
 
    <ul class="menu-list">
-      <!-- svelte-ignore a11y-missing-attribute -->
       <button class="button is-light is-fullwidth" href="/logout">Logout</button
       >
    </ul>
@@ -75,6 +97,13 @@
 
    .menu-list a {
       color: inherit;
+
+      display: flex;
+      align-items: center;
+   }
+
+   .menu-list a .icon {
+      margin-right: 0.5em;
    }
 
    .menu-list a:hover {

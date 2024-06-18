@@ -7,7 +7,16 @@
    import Select from "../../libs/Select.svelte";
    import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
-   import { deleteIcon } from "../../store/icons";
+   import {
+      accountAdmin,
+      uploadIcon,
+      googleIcon,
+      copyright,
+      infoOutline,
+      penelitian,
+      pengmas,
+      jurnal,
+   } from "../../store/icons";
 
    const accessToken = localStorage.getItem("token");
    const id = Number(localStorage.getItem("id"));
@@ -20,119 +29,41 @@
 </script>
 
 <Article>
-   <div class="box">
-      <div class="columns is-desktop">
-         <div class="column">
-            <label class="label" for="jenisProposal"
-               >Jenis Proposal {#if errorMark}
-                  <span class="errorMark">*</span>
-               {/if}</label
-            >
-            <div class="control">
-               {#if errorMark}
-                  <input class="input is-danger" type="text" id="judul" />
-               {:else}
-                  <input class="input" type="text" id="jenisProposal" />
-               {/if}
-            </div>
-            <!-- <p class="help error is-danger">This field is required</p> -->
-         </div>
-
-         <div class="column">
-            <div class="field">
-               <label class="label" for="jenisKegiatan">Jenis Kegiatan</label>
-
-               <div class="control">
-                  <div class="select is-fullwidth">
-                     <select id="jenisKegiatan">
-                        <option value="" selected disabled hidden
-                           >Pilih Jenis Proposal</option
-                        >
-                        <option selected value="Proposal Awal"
-                           >Proposal Awal</option
-                        >
-                        <option value="Proposal Lanjutan"
-                           >Proposal Lanjutan</option
-                        >
-                     </select>
-                  </div>
+   <aside class="menu">
+      <p class="menu-label">General</p>
+      <ul class="menu-list">
+         <li>
+            <a href=".">
+               <div class="icon">
+                  <Icon id="dashboard" src={accountAdmin} />
                </div>
-            </div>
-         </div>
-
-         <div class="column">
-            <div class="field">
-               <label class="label" for="jenisSkema">Jenis Skema</label>
-               <div class="control">
-                  <input class="input" type="text" id="jenisSkema" />
+               Dashboard
+            </a>
+         </li>
+         <li>
+            <a href=".">
+               <div class="icon">
+                  <Icon id="customers" src={uploadIcon} />
                </div>
-            </div>
-         </div>
-      </div>
+               Customers
+            </a>
+         </li>
+      </ul>
 
-      <div class="columns is-desktop">
-         <div class="column">
-            <div class="field">
-               <label class="label" for="judul">Kelompok Keahlian</label>
-               <div class="control">
-                  <input class="input" type="text" id="judul" />
-               </div>
-            </div>
-         </div>
-
-         <div class="column">
-            <div class="field">
-               <label class="label" for="topik">Topik</label>
-               <div class="control">
-                  <input class="input" type="text" id="topik" />
-               </div>
-            </div>
-         </div>
-
-         <div class="column">
-            <div class="field">
-               <label class="label" for="topik">Biaya Penelitian</label>
-               <div class="control">
-                  <input class="input" type="text" id="topik" />
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="columns is-desktop">
-         <div class="column">
-            <div class="field">
-               <label class="label" for="judul">Tanggal Mulai</label>
-               <div class="control">
-                  <input class="input" type="text" id="judul" />
-               </div>
-            </div>
-         </div>
-
-         <div class="column">
-            <div class="field">
-               <label class="label" for="topik">Tanggal Selesai</label>
-               <div class="control">
-                  <input class="input" type="text" id="topik" />
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="field">
-         <label class="label" for="topik">Anggota Tim</label>
-         <div class="control">
-            <input class="input" type="text" id="topik" />
-         </div>
-      </div>
-   </div>
+      <p class="menu-label">Transactions</p>
+      <ul class="menu-list">
+         <li><a href=".">Payments</a></li>
+         <li><a href=".">Transfers</a></li>
+         <li><a href=".">Balance</a></li>
+      </ul>
+   </aside>
 </Article>
 
 <style>
-   .errorMark {
+   /* .errorMark {
       color: hsl(348, 100%, 61%);
       font-size: small;
-   }
+   } */
    /*
    .toggle-button {
       cursor: pointer;
@@ -149,4 +80,13 @@
    ul li {
       margin-bottom: 4px;
    } */
+
+   .menu-list a {
+      display: flex;
+      align-items: center;
+   }
+
+   .menu-list a .icon {
+      margin-right: 0.5em;
+   }
 </style>

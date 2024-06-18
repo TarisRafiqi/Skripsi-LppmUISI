@@ -2047,9 +2047,12 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.errorMark.svelte-rt4lv7 {
-  color: hsl(348, 100%, 61%);
-  font-size: small;
+.menu-list.svelte-26spyd a.svelte-26spyd {
+  display: flex;
+  align-items: center;
+}
+.menu-list.svelte-26spyd a .icon.svelte-26spyd {
+  margin-right: 0.5em;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
@@ -2168,10 +2171,10 @@ a.svelte-5za9if.svelte-5za9if:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Sidebar.esbuild-svelte-fake-css */
-.menu-label.svelte-l83cqz.svelte-l83cqz {
+.menu-label.svelte-10b412e.svelte-10b412e {
   color: white;
 }
-aside.svelte-l83cqz.svelte-l83cqz {
+aside.svelte-10b412e.svelte-10b412e {
   padding-top: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2184,13 +2187,18 @@ aside.svelte-l83cqz.svelte-l83cqz {
   top: 0;
   bottom: 0;
 }
-.menu-list.svelte-l83cqz a.svelte-l83cqz {
+.menu-list.svelte-10b412e a.svelte-10b412e {
   color: inherit;
+  display: flex;
+  align-items: center;
 }
-.menu-list.svelte-l83cqz a.svelte-l83cqz:hover {
+.menu-list.svelte-10b412e a .icon.svelte-10b412e {
+  margin-right: 0.5em;
+}
+.menu-list.svelte-10b412e a.svelte-10b412e:hover {
   color: #4a4a4a;
 }
-a.svelte-l83cqz.svelte-l83cqz {
+a.svelte-10b412e.svelte-10b412e {
   color: white;
 }
 
