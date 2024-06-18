@@ -1,14 +1,16 @@
 <script>
    import * as pages from "./";
    import E404 from "../../modules/E404.svelte";
-   import { route, isLogin } from "../../store";
+   import { route, isLogin, isUsername } from "../../store";
 
    export let params = {};
 
    const token = params.token || null;
+   const username = params.username;
 
    if (token) {
       $isLogin = true;
+      $isUsername = username;
       // save to local storage
       localStorage.setItem("id", params.id);
       localStorage.setItem("username", params.username);

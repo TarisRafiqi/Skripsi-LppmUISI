@@ -597,11 +597,11 @@
          } else {
             if (response.ok) {
                showModalPenelitian = false;
-               payload.tahunPenelitian = "";
-               payload.judulPenelitian = "";
-               payload.rolePenelitian = "";
-               payload.sumberDanaPenelitian = "";
-               payload.biayaPP = "";
+               tahunPenelitian = "";
+               judulPenelitian = "";
+               rolePenelitian = "";
+               sumberDanaPenelitian = "";
+               biayaPP = "";
                getPengalamanPenelitian();
             } else {
                console.log(response);
@@ -650,11 +650,11 @@
          } else {
             if (response.ok) {
                showModalPengmas = false;
-               payload.tahunPengmas = "";
-               payload.judulPengmas = "";
-               payload.rolePengmas = "";
-               payload.sumberDanaPengmas = "";
-               payload.biayaPengmas = "";
+               tahunPengmas = "";
+               judulPengmas = "";
+               rolePengmas = "";
+               sumberDanaPengmas = "";
+               biayaPengmas = "";
                getPengalamanPengmas();
             } else {
                console.log(response);
@@ -702,10 +702,10 @@
          } else {
             if (response.ok) {
                showModalDiseminasi = false;
-               payload.tahunDiseminasi = "";
-               payload.judulDiseminasi = "";
-               payload.namaPemakalahDiseminasi = "";
-               payload.namaPertemuanDiseminasi = "";
+               tahunDiseminasi = "";
+               judulDiseminasi = "";
+               namaPemakalahDiseminasi = "";
+               namaPertemuanDiseminasi = "";
                getPengalamanDiseminasi();
             } else {
                console.log(response);
@@ -754,11 +754,11 @@
          } else {
             if (response.ok) {
                showModalPublikasi = false;
-               payload.tahunPublikasi = "";
-               payload.judulPublikasi = "";
-               payload.namaPenulis = "";
-               payload.namaJurnal = "";
-               payload.impactFactor = "";
+               tahunPublikasi = "";
+               judulPublikasi = "";
+               namaPenulis = "";
+               namaJurnal = "";
+               impactFactor = "";
                getPengalamanPublikasi();
             } else {
                console.log(response);
@@ -807,11 +807,11 @@
          } else {
             if (response.ok) {
                showModalPenulisanBuku = false;
-               payload.tahunBuku = "";
-               payload.JudulBuku = "";
-               payload.namaPenulisBuku = "";
-               payload.PenerbitBuku = "";
-               payload.Isbn = "";
+               tahunBuku = "";
+               JudulBuku = "";
+               namaPenulisBuku = "";
+               PenerbitBuku = "";
+               Isbn = "";
                getPengalamanPenulisanBuku();
             } else {
                console.log(response);
@@ -860,11 +860,11 @@
          } else {
             if (response.ok) {
                showModalHKI = false;
-               payload.tahunHKI = "";
-               payload.JudulHKI = "";
-               payload.namaPenulisHKI = "";
-               payload.jenisHKI = "";
-               payload.noHKI = "";
+               tahunHKI = "";
+               JudulHKI = "";
+               namaPenulisHKI = "";
+               jenisHKI = "";
+               noHKI = "";
                getPengalamanHKI();
             } else {
                console.log(response);
