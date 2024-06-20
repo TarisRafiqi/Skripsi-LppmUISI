@@ -1539,15 +1539,15 @@
          <p class="control">
             <button
                class="button is-info is-light"
-               on:click={simpanProposal}
-               class:is-loading={isLoading}>Simpan</button
+               class:is-loading={isLoading}
+               on:click={simpanProposal}>Simpan</button
             >
          </p>
          <p class="control">
             <button
                class="button is-info"
-               on:click={submitProposal}
-               class:is-loading={isLoading}>Submit</button
+               class:is-loading={isLoading}
+               on:click={submitProposal}>Submit</button
             >
          </p>
       </div>

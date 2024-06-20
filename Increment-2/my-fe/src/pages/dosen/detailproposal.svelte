@@ -2,30 +2,36 @@
    import { onMount } from "svelte";
    import { route, apiURL, ppmFile, rabFile } from "../../store";
    import Modalerror from "../../libs/Modalerror.svelte";
-   import Article from "../../libs/Article.svelte";
-   import Icon from "../../libs/Icon.svelte";
-   import Field from "../../libs/Field.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
+   import Article from "../../libs/Article.svelte";
    import Select from "../../libs/Select.svelte";
+   import Field from "../../libs/Field.svelte";
+   import Icon from "../../libs/Icon.svelte";
    import {
       deleteIcon,
       edit,
       downloadIcon,
       cancelIcon,
    } from "../../store/icons";
-
    export let params;
 
-   let error = {};
-   let items = [];
-   let biodataAnggota = [];
-   let newBiodataAnggota = [];
-   let view;
-   let data, dataGP;
-   let itemsRCR;
+   const id = params["1"];
+   const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
 
-   let uidProposal,
-      jenisProposal,
+   let newBiodataAnggota = [];
+   let biodataAnggota = [];
+   let items = [];
+   let error = {};
+   let view;
+   let data;
+   let itemsRCR;
+   let fileRab;
+   let filePpm;
+   let jenisProposal,
       jenisKegiatan,
       jenisSkema,
       kelompokKeahlian,
@@ -39,30 +45,18 @@
       comment,
       status;
 
-   const id = params["1"];
-   let file;
-   let fileRab;
-   let filePpm;
-   let isLoading = false;
-   let editModeProposal = false;
-   let editModeRAB = false;
-   let showModalError = false;
-   let skpVisible = false;
-   let danaPenelitianVisible = false;
    let hasilPenelitianVisible = false;
-   let presentasiVisible = false;
+   let danaPenelitianVisible = false;
    let skPenelitianVisible = false;
-
-   const accessToken = localStorage.getItem("token");
-
-   const headers = {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-   };
+   let presentasiVisible = false;
+   let editModeProposal = false;
+   let showModalError = false;
+   let editModeRAB = false;
+   let skpVisible = false;
+   let isLoading = false;
 
    onMount(async () => {
       isLoading = false;
-
       // ================================================//
       // Get detail proposal
       // ================================================//
@@ -78,11 +72,7 @@
       } else {
          if (response.ok) {
             data = result;
-            // console.log(data);
-            // console.log(data.biodata_anggota);
-
             ppmId = data.id;
-            uidProposal = data.uid;
             jenisProposal = data.jenis_proposal;
             jenisKegiatan = data.jenis_kegiatan;
             jenisSkema = data.jenis_skema;
@@ -91,10 +81,6 @@
             tanggalMulai = data.tanggal_mulai;
             tanggalSelesai = data.tanggal_selesai;
             biayaPenelitian = data.biaya_penelitian;
-            // anggotaTim =
-            //    typeof data.anggota_tim === "string"
-            //       ? JSON.parse(data.anggota_tim)
-            //       : data.anggota_tim;
             anggotaTim = data.anggota_tim;
             biodataAnggota = data.biodata_anggota;
             judul = data.judul;
@@ -129,14 +115,10 @@
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
-            itemsRCR_0 = dataRCR.dbData;
-            console.log(itemsRCR_0);
-
             itemsRCR = dataRCR.dbData.map((item) => ({
                ...item,
                time: formatDate(item.time),
             }));
-            console.log(itemsRCR);
          }
       }
 
@@ -427,7 +409,6 @@
 
       // biodataAnggota = await Promise.all(promises);
       newBiodataAnggota = await Promise.all(promises.filter(Boolean));
-      // console.log(newBiodataAnggota);
    }
 
    function formatDate(dateString) {
@@ -1747,21 +1728,23 @@
                   <p class="control">
                      <button
                         class="button is-info is-light"
-                        on:click={simpanProposal}
-                        class:is-loading={isLoading}>Simpan</button
+                        class:is-loading={isLoading}
+                        on:click={simpanProposal}>Simpan</button
                      >
                   </p>
                   <p class="control">
                      <button
                         class="button is-info"
-                        on:click={submitProposal}
-                        class:is-loading={isLoading}>Submit</button
+                        class:is-loading={isLoading}
+                        on:click={submitProposal}>Submit</button
                      >
                   </p>
                {:else}
                   <p class="control">
-                     <button class="button is-info" on:click={remediasi}
-                        >Remediasi</button
+                     <button
+                        class="button is-info"
+                        class:is-loading={isLoading}
+                        on:click={remediasi}>Remediasi</button
                      >
                   </p>
                {/if}

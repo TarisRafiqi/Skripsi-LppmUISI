@@ -15,26 +15,6 @@
       "Content-Type": "application/json",
    };
 
-   function daysUntil(targetDate) {
-      const today = new Date();
-      const target = new Date(targetDate);
-      const difference = target.getTime() - today.getTime();
-      const positiveDifference = Math.abs(difference);
-      // const days = Math.ceil(difference / (1000 * 3600 * 24));
-      const days = Math.floor(positiveDifference / (1000 * 3600 * 24));
-
-      // Convert the difference from milliseconds to days, weeks, and months
-      const weeks = Math.floor(days / 7);
-      const months = Math.floor(days / 30);
-      const remainingWeeks = weeks % 4;
-      const remainingDays = days % 30;
-      return {
-         months,
-         remainingWeeks,
-         remainingDays,
-      };
-   }
-
    onMount(async () => {
       const response = await fetch($apiURL + "/ppm/all/" + id, {
          method: "GET",
@@ -48,14 +28,6 @@
       } else {
          if (response.ok) {
             items = result.dbData;
-            reminder = [];
-            for (const item of items) {
-               reminder.push({
-                  judul: item.judul,
-                  selesai: item.tanggal_selesai,
-                  tersisa: `${daysUntil(item.tanggal_selesai).months} bulan, ${daysUntil(item.tanggal_selesai).remainingWeeks} minggu dan ${daysUntil(item.tanggal_selesai).remainingDays} hari`,
-               });
-            }
          } else {
             console.log(response);
          }
@@ -72,7 +44,6 @@
       const resultCP = await responseCP.json();
 
       if (responseCP.status === 401) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseCP.ok) {
@@ -93,7 +64,6 @@
       const resultCPM = await responseCPM.json();
 
       if (responseCPM.status === 401) {
-         // localStorage.clear();
          location.pathname = "/tokenexpired";
       } else {
          if (responseCPM.ok) {
@@ -129,7 +99,7 @@
 
    <hr />
 
-   <div class="columns">
+   <div class="columns is-desktop">
       <div class="column">
          <div class="box">
             <div class="flex-item-left">
@@ -160,7 +130,7 @@
                <Icon id="logo" src={jurnal} size="2" />
             </div>
             <div class="flex-item-right has-text-centered">
-               <p class="heading">Ongoing PPM</p>
+               <p class="heading">Ongoing</p>
                <p class="title">...</p>
             </div>
          </div>
@@ -172,7 +142,7 @@
                <Icon id="logo" src={copyright} size="2" />
             </div>
             <div class="flex-item-right has-text-centered">
-               <p class="heading">Completed PPM</p>
+               <p class="heading">Completed</p>
                <p class="title">...</p>
             </div>
          </div>
@@ -188,7 +158,7 @@
          <br />
 
          <div class="child">
-            {#if reminder}
+            {#if items}
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
@@ -196,15 +166,13 @@
                      <tr>
                         <th style="width: 70%;">Judul</th>
                         <th style="width: 15%; text-align: center">Deadline</th>
-                        <!-- <th style="width: 15%; text-align: center">Countdown</th> -->
                      </tr>
                   </thead>
                   <tbody>
-                     {#each reminder as reminder}
+                     {#each items as item}
                         <tr>
-                           <td>{reminder.judul}</td>
-                           <td class="isi">{reminder.selesai}</td>
-                           <!-- <td class="isi">{reminder.tersisa}</td> -->
+                           <td>{item.judul}</td>
+                           <td class="isi">{item.tanggal_selesai}</td>
                         </tr>
                      {/each}
                   </tbody>

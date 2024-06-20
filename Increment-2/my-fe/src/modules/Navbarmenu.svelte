@@ -13,14 +13,6 @@
 
    // console.log($isLogin, token);
 
-   // onMount(() => {
-   // const burgerIcon = document.querySelector("#burger");
-   // const navbarMenu = document.querySelector("#nav-links");
-   // burgerIcon.addEventListener("click", () => {
-   //    navbarMenu.classList.toggle("is-active");
-   // });
-   // });
-
    function test() {
       navbarMenu.classList.toggle("is-active");
    }
@@ -30,6 +22,16 @@
       if (role === "admin") $route("/admin");
       else $route("/dosen");
    }
+
+   onMount(() => {
+      const links = navbarMenu.querySelectorAll(".navbar-item");
+      links.forEach((link) => {
+         link.addEventListener("click", function () {
+            burger.classList.remove("is-active");
+            navbarMenu.classList.remove("is-active");
+         });
+      });
+   });
 </script>
 
 <header>
@@ -93,12 +95,6 @@
             </div>
 
             {#if $isLogin || token}
-               <!-- <a class="navbar-item" href="/">
-                  <h6 class="title is-6" style="color: White;">
-                     {username}
-                  </h6></a
-               > -->
-
                <div class="navbar-item has-dropdown is-hoverable">
                   <!-- svelte-ignore a11y-missing-attribute -->
                   <a class="navbar-link">

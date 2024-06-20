@@ -1,13 +1,7 @@
 <script>
    import menu from "../store/menu";
    import Icon from "../libs/Icon.svelte";
-   import {
-      about,
-      pengumuman,
-      template,
-      approval,
-      logout,
-   } from "../store/icons";
+   import { about, pengumuman, template, approval } from "../store/icons";
 
    const role = localStorage.getItem("role");
    let items;
@@ -20,7 +14,7 @@
    <p class="menu-label">General</p>
    {#each items as item}
       <ul class="menu-list">
-         <li>
+         <li title={item.title}>
             <a
                id={item.title === "Dashboard" ? "dashboard" : null}
                href={item.href}
@@ -35,7 +29,7 @@
       <br />
       <p class="menu-label">Evaluator</p>
       <ul class="menu-list">
-         <li>
+         <li title="Approval Management">
             <a href="/dosen/approvalmanagement">
                <div class="icon"><Icon id="approval" src={approval} /></div>
                <div class="page-title">Approval Management</div>
@@ -48,7 +42,7 @@
       <br />
       <p class="menu-label">Website Settings</p>
       <ul class="menu-list">
-         <li>
+         <li title="Pengumuman">
             <a href="/admin/pengumuman"
                ><div class="icon">
                   <Icon id="pengumuman" src={pengumuman} />
@@ -57,14 +51,14 @@
             </a>
          </li>
 
-         <li>
+         <li title="About UISI">
             <a href="/admin/aboutuisi">
                <div class="icon"><Icon id="aboutUISI" src={about} /></div>
                <div class="page-title">About UISI</div>
             </a>
          </li>
 
-         <li>
+         <li title="Template">
             <a href="/admin/template">
                <div class="icon"><Icon id="template" src={template} /></div>
                <div class="page-title">Template</div>
@@ -90,7 +84,7 @@
       position: fixed;
       top: 0;
       bottom: 0;
-      /* transition: width 0.3s; */
+      /* transition: width 1s; */
    }
 
    .menu-list a {

@@ -29,64 +29,19 @@
 </script>
 
 <Article>
-   <aside class="menu">
-      <p class="menu-label">General</p>
-      <ul class="menu-list">
-         <li>
-            <a href=".">
-               <div class="icon">
-                  <Icon id="dashboard" src={accountAdmin} />
-               </div>
-               Dashboard
-            </a>
-         </li>
-         <li>
-            <a href=".">
-               <div class="icon">
-                  <Icon id="customers" src={uploadIcon} />
-               </div>
-               Customers
-            </a>
-         </li>
-      </ul>
-
-      <p class="menu-label">Transactions</p>
-      <ul class="menu-list">
-         <li><a href=".">Payments</a></li>
-         <li><a href=".">Transfers</a></li>
-         <li><a href=".">Balance</a></li>
-      </ul>
-   </aside>
+   <div class="box">Lorem ipsum</div>
+   <div class="box">lorem</div>
 </Article>
 
 <style>
-   /* .errorMark {
-      color: hsl(348, 100%, 61%);
-      font-size: small;
-   } */
-   /*
-   .toggle-button {
-      cursor: pointer;
-      color: #fc6c78;
-      font-size: small;
-   }
-   */
-
-   /* ul {
-      margin-left: 1.2em;
-      margin-top: -1em;
+   .box {
+      transition: height 0.5s ease;
+      height: 150px;
    }
 
-   ul li {
-      margin-bottom: 4px;
-   } */
-
-   .menu-list a {
-      display: flex;
-      align-items: center;
-   }
-
-   .menu-list a .icon {
-      margin-right: 0.5em;
+   @media (max-width: 768px) {
+      .box {
+         height: 400px;
+      }
    }
 </style>

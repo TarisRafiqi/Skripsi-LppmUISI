@@ -5,6 +5,7 @@
 
    let username = "";
    let password = "";
+   let isLoading = false;
 
    document.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
@@ -13,6 +14,7 @@
    });
 
    async function handleSubmit(ev) {
+      isLoading = true;
       const paragraph = document.getElementById("errorLoginHandler");
 
       const payload = {
@@ -43,6 +45,7 @@
          console.log(response);
          paragraph.style.display = "block";
       }
+      isLoading = false;
    }
 
    async function signGoogle() {
@@ -69,7 +72,11 @@
       <br />
 
       <div>
-         <button class="button is-info" on:click={handleSubmit}>Submit</button>
+         <button
+            class="button is-info"
+            class:is-loading={isLoading}
+            on:click={handleSubmit}>Submit</button
+         >
       </div>
 
       <div>

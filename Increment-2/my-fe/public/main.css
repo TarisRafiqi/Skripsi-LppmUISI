@@ -1541,22 +1541,6 @@ article.svelte-1hdo9mq {
   text-align: center;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/Register.esbuild-svelte-fake-css */
-article.container.svelte-f1u2iy.svelte-f1u2iy {
-  text-align: center;
-}
-div.box.svelte-f1u2iy.svelte-f1u2iy {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-div.box.svelte-f1u2iy div.svelte-f1u2iy {
-  text-align: left;
-}
-button.svelte-f1u2iy.svelte-f1u2iy {
-  width: 100%;
-}
-
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Article.esbuild-svelte-fake-css */
 article.svelte-h8uanz {
   margin-top: 3.5rem;
@@ -1576,22 +1560,6 @@ article.svelte-1axbk4p {
 img.svelte-1axbk4p {
   width: 70px;
   margin-bottom: 15px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/Verify.esbuild-svelte-fake-css */
-article.container.svelte-f1u2iy.svelte-f1u2iy {
-  text-align: center;
-}
-div.box.svelte-f1u2iy.svelte-f1u2iy {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-div.box.svelte-f1u2iy div.svelte-f1u2iy {
-  text-align: left;
-}
-button.svelte-f1u2iy.svelte-f1u2iy {
-  width: 100%;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Field.esbuild-svelte-fake-css */
@@ -1684,6 +1652,15 @@ button.svelte-ivfnq6 {
   margin: -6px 0px 0px 0px;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
+ul.svelte-1p63l8q.svelte-1p63l8q {
+  margin-left: 1.2em;
+  margin-top: -1em;
+}
+ul.svelte-1p63l8q li.svelte-1p63l8q {
+  margin-bottom: 4px;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Modal.esbuild-svelte-fake-css */
 .close.svelte-gcisbw {
   color: #aaaaaa;
@@ -1758,17 +1735,27 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/detailproposal.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-wzx0zq.svelte-wzx0zq {
+.inputf__wrapper.svelte-1wc2hmk.svelte-1wc2hmk {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-wzx0zq input.svelte-wzx0zq {
+.inputf__wrapper.svelte-1wc2hmk input.svelte-1wc2hmk {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-wzx0zq.svelte-wzx0zq {
+.help.svelte-1wc2hmk.svelte-1wc2hmk {
   margin: -6px 0px 0px 0px;
+}
+.toggle-button.svelte-1wc2hmk.svelte-1wc2hmk {
+  cursor: pointer;
+  color: #fc6c78;
+  font-size: small;
+}
+.isi-border.svelte-1wc2hmk.svelte-1wc2hmk {
+  border: 1px solid lightgrey;
+  padding: 15px;
+  border-radius: 3.5px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/home.esbuild-svelte-fake-css */
@@ -1846,7 +1833,8 @@ select.svelte-1amf2xn {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/E404.esbuild-svelte-fake-css */
-article.svelte-12yf9li {
+article.svelte-9f6d4p {
+  margin-top: 3.5rem;
   text-align: center;
 }
 
@@ -1878,26 +1866,22 @@ article.svelte-12yf9li {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/detailapproval.esbuild-svelte-fake-css */
-.inputf__wrapper.svelte-14mnqgg.svelte-14mnqgg {
+.inputf__wrapper.svelte-nrcntm.svelte-nrcntm {
   position: relative;
   display: flex;
 }
-.inputf__wrapper.svelte-14mnqgg input.svelte-14mnqgg {
+.inputf__wrapper.svelte-nrcntm input.svelte-nrcntm {
   width: 0;
   height: 0;
   opacity: 0;
 }
-.help.svelte-14mnqgg.svelte-14mnqgg {
+.help.svelte-nrcntm.svelte-nrcntm {
   margin: -6px 0px 0px 0px;
 }
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
-ul.svelte-1p63l8q.svelte-1p63l8q {
-  margin-left: 1.2em;
-  margin-top: -1em;
-}
-ul.svelte-1p63l8q li.svelte-1p63l8q {
-  margin-bottom: 4px;
+.toggle-button.svelte-nrcntm.svelte-nrcntm {
+  cursor: pointer;
+  color: #fc6c78;
+  font-size: small;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/detailproposal.esbuild-svelte-fake-css */
@@ -2047,12 +2031,14 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.menu-list.svelte-26spyd a.svelte-26spyd {
-  display: flex;
-  align-items: center;
+.box.svelte-1l8gwm3 {
+  transition: height 0.5s ease;
+  height: 150px;
 }
-.menu-list.svelte-26spyd a .icon.svelte-26spyd {
-  margin-right: 0.5em;
+@media (max-width: 768px) {
+  .box.svelte-1l8gwm3 {
+    height: 400px;
+  }
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
@@ -2171,10 +2157,10 @@ a.svelte-5za9if.svelte-5za9if:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Sidebar.esbuild-svelte-fake-css */
-.menu-label.svelte-1bevr5l.svelte-1bevr5l {
+.menu-label.svelte-b3q2it.svelte-b3q2it {
   color: white;
 }
-aside.svelte-1bevr5l.svelte-1bevr5l {
+aside.svelte-b3q2it.svelte-b3q2it {
   padding-top: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2187,29 +2173,29 @@ aside.svelte-1bevr5l.svelte-1bevr5l {
   top: 0;
   bottom: 0;
 }
-.menu-list.svelte-1bevr5l a.svelte-1bevr5l {
+.menu-list.svelte-b3q2it a.svelte-b3q2it {
   color: inherit;
   display: flex;
   align-items: center;
 }
-.menu-list.svelte-1bevr5l a .icon.svelte-1bevr5l {
+.menu-list.svelte-b3q2it a .icon.svelte-b3q2it {
   margin-right: 0.5em;
 }
-.menu-list.svelte-1bevr5l a.svelte-1bevr5l:hover {
+.menu-list.svelte-b3q2it a.svelte-b3q2it:hover {
   color: #4a4a4a;
 }
-a.svelte-1bevr5l.svelte-1bevr5l {
+a.svelte-b3q2it.svelte-b3q2it {
   color: white;
 }
 @media (max-width: 768px) {
-  aside.svelte-1bevr5l.svelte-1bevr5l {
+  aside.svelte-b3q2it.svelte-b3q2it {
     width: var(--narrow);
   }
-  .menu-label.svelte-1bevr5l.svelte-1bevr5l,
-  .menu-list.svelte-1bevr5l a .page-title.svelte-1bevr5l {
+  .menu-label.svelte-b3q2it.svelte-b3q2it,
+  .menu-list.svelte-b3q2it a .page-title.svelte-b3q2it {
     display: none;
   }
-  .menu-list.svelte-1bevr5l a .icon.svelte-1bevr5l {
+  .menu-list.svelte-b3q2it a .icon.svelte-b3q2it {
     margin-right: 0;
   }
 }
