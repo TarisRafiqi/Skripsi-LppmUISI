@@ -1,11 +1,11 @@
 <script>
-   import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Fieldview from "../../libs/Fieldview.svelte";
    import Article from "../../libs/Article.svelte";
    import Select from "../../libs/Select.svelte";
    import Field from "../../libs/Field.svelte";
-   import Fieldview from "../../libs/Fieldview.svelte";
    import Icon from "../../libs/Icon.svelte";
    import {
       deleteIcon,
@@ -23,8 +23,8 @@
       "Content-Type": "application/json",
    };
 
-   let showModalErrorProposal = false;
    let showModalErrorIdentitas = false;
+   let showModalErrorProposal = false;
    let warningFormText = false;
    let isLoading = false;
    let vmataKuliah;
@@ -32,15 +32,17 @@
    let fileRab;
    let filePpm;
 
+   let randomRabFileName = "";
+   let randomPpmFileName = "";
+   let kelompokKeahlian = "";
+   let biayaPenelitian = "";
+   let tanggalSelesai = "";
    let jenisKegiatan = "";
    let jenisProposal = "";
-   let jenisSkema = "";
-   let kelompokKeahlian = "";
-   let judul = "";
    let tanggalMulai = "";
-   let tanggalSelesai = "";
+   let jenisSkema = "";
+   let judul = "";
    let topik = "";
-   let biayaPenelitian = "";
    let anggotaTim = [
       {
          value: localStorage_id,
@@ -48,11 +50,9 @@
          role: "Ketua",
       },
    ];
-   let randomRabFileName = "";
-   let randomPpmFileName = "";
 
-   let mataKuliah = [];
    let biodataAnggota = [];
+   let mataKuliah = [];
    let items = [];
    let error = {};
 

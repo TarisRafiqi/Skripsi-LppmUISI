@@ -207,17 +207,17 @@
                                     <option
                                        value="11"
                                        selected={item.role === 11}
-                                       >Ka. Departemen</option
+                                       >K. Departemen</option
                                     >
                                     <option
                                        value="12"
                                        selected={item.role === 12}
-                                       >Ka. LPPM</option
+                                       >K. LPPM</option
                                     >
                                     <option
                                        value="13"
                                        selected={item.role === 13}
-                                       >Ka. Pusat Kajian</option
+                                       >K. Pusat Kajian</option
                                     >
                                  </select>
                               </div>

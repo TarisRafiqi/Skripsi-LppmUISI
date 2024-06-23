@@ -10,14 +10,14 @@ import authIndex from "./pages/auth/Index.svelte";
 import dosenIndex from "./pages/dosen/Index.svelte";
 
 export default [
-   { path: "/abdimas", page: Abdimas },
-   { path: "/about", page: About },
-   { path: "/", page: Home },
-   { path: "/login", page: Login },
-   { path: "/logout", page: Logout },
-   { path: "/penelitian", page: Penelitian },
-   { path: "/tokenexpired", page: Tokenexpired },
-   { path: "/admin/:0", page: adminIndex },
-   { path: "/auth/:0", page: authIndex },
-   { path: "/dosen/:0", page: dosenIndex },
-];
+	{ path: "/abdimas", page: Abdimas },
+	{ path: "/about", page: About },
+	{ path: "/", page: Home },
+	{ path: "/login", page: Login },
+	{ path: "/logout", page: Logout },
+	{ path: "/penelitian", page: Penelitian },
+	{ path: "/tokenexpired", page: Tokenexpired },
+	{ path: "/admin/:0", page: adminIndex },
+	{ path: "/auth/:0", page: authIndex },
+	{ path: "/dosen/:0", page: dosenIndex },
+]

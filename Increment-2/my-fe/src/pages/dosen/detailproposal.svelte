@@ -3,6 +3,7 @@
    import { route, apiURL, ppmFile, rabFile } from "../../store";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
+   import Status from "../../modules/Status.svelte";
    import Article from "../../libs/Article.svelte";
    import Select from "../../libs/Select.svelte";
    import Field from "../../libs/Field.svelte";
@@ -521,7 +522,7 @@
       }
    }
 
-   async function remediasi() {
+   async function handlePerbaikan() {
       await getBiodataAnggota();
       error = {};
       isLoading = true;
@@ -1005,6 +1006,10 @@
                   {/if}
                </Field>
 
+               <Field name="Status">
+                  <Status code={status} jenisSkema={data.jenis_skema} />
+               </Field>
+
                <hr />
 
                <Field name="Jenis Proposal">
@@ -1147,6 +1152,8 @@
                   {/if}
                </Field>
 
+               <hr />
+
                <Field name="File Proposal">
                   {#if !editModeProposal}
                      <button
@@ -1275,6 +1282,8 @@
                      {/if}
                   </Field>
                {/if}
+
+               <hr />
 
                <Field name="Anggota Tim">
                   <Select start="2" {items} bind:result={anggotaTim} />
@@ -1744,7 +1753,7 @@
                      <button
                         class="button is-info"
                         class:is-loading={isLoading}
-                        on:click={remediasi}>Remediasi</button
+                        on:click={handlePerbaikan}>Perbaikan</button
                      >
                   </p>
                {/if}

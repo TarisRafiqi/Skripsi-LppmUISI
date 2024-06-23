@@ -75,9 +75,9 @@
                </thead>
 
                <tbody>
-                  {#if role === "Ka.PusatKajian"}
+                  {#if role === "K.PusatKajian" || role === "K.LPPM"}
                      {#each items as item}
-                        {#if ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && item.status === 8) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && item.status === 10)}
+                        {#if ((item.jenis_skema === "Riset Eksternal" || item.jenis_skema === "Pengabdian Masyarakat Hibah Eksternal") && item.status === 6) || ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && item.status === 6) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && item.status === 8)}
                            <tr>
                               <td class="judul">{item.judul}</td>
                               <td class="kegiatan"
@@ -108,7 +108,7 @@
 
                   {#if role === "reviewer"}
                      {#each items as item}
-                        {#if item.status === 8 && item.jenis_skema !== "Riset Mandiri" && item.jenis_skema !== "Pengabdian Masyarakat Mandiri"}
+                        {#if (item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && item.status === 6}
                            <tr>
                               <td class="judul">{item.judul}</td>
                               <td class="kegiatan"
@@ -136,37 +136,7 @@
                      {/each}
                   {/if}
 
-                  {#if role === "Ka.LPPM"}
-                     {#each items as item}
-                        {#if item.status === 6}
-                           <tr>
-                              <td class="judul">{item.judul}</td>
-                              <td class="kegiatan"
-                                 ><p>{item.jenis_kegiatan}</p></td
-                              >
-                              <td class="skema"><p>{item.jenis_skema}</p></td>
-                              <td class="status" pid={item.id}>
-                                 <Status
-                                    code={item.status}
-                                    jenisSkema={item.jenis_skema}
-                                 />
-                              </td>
-                              <td class="review"
-                                 ><button
-                                    class="button is-info is-small"
-                                    pid={item.id}
-                                    on:click={detail}
-                                    ><span class="icon">
-                                       <Icon id="orang" src={infoOutline} />
-                                    </span></button
-                                 ></td
-                              >
-                           </tr>
-                        {/if}
-                     {/each}
-                  {/if}
-
-                  {#if role === "Ka.Departemen"}
+                  {#if role === "K.Departemen"}
                      {#each items as item}
                         {#if item.status === 4}
                            <tr>

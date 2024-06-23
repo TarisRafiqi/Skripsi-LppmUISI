@@ -25,7 +25,7 @@
          </li>
       </ul>
    {/each}
-   {#if role === "Ka.Departemen" || role === "Ka.LPPM" || role === "Ka.PusatKajian" || role === "reviewer"}
+   {#if role === "K.Departemen" || role === "K.LPPM" || role === "K.PusatKajian" || role === "reviewer"}
       <br />
       <p class="menu-label">Evaluator</p>
       <ul class="menu-list">

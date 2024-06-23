@@ -696,7 +696,7 @@
          <!-- ========================================== -->
          <!--              Action Button                 -->
          <!-- ========================================== -->
-         {#if role === "Ka.Departemen"}
+         {#if role === "K.Departemen"}
             {#if status === 4}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
@@ -710,7 +710,7 @@
             {/if}
          {/if}
 
-         {#if role === "Ka.LPPM"}
+         {#if role === "K.LPPM"}
             {#if status === 6}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
@@ -745,7 +745,7 @@
             {/if}
          {/if}
 
-         {#if role === "Ka.PusatKajian"}
+         {#if role === "K.PusatKajian"}
             {#if status === 10}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">

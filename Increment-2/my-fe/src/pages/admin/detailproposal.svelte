@@ -8,6 +8,7 @@
    import Modalerror from "../../libs/Modalerror.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Select from "../../libs/Select.svelte";
+   import Status from "../../modules/Status.svelte";
    import {
       deleteIcon,
       edit,
@@ -88,7 +89,7 @@
    onMount(async () => {
       await getDetailProposal();
 
-      // ---------- Generate Penilaian Random Character ---------- //
+      // ========== Generate Penilaian Random Character ========== //
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultPenilaianChar = "";
@@ -100,7 +101,7 @@
 
       randomPenilaianFileName = resultPenilaianChar;
 
-      // ---------- Get Nama Lengkap Evaluator ---------- //
+      // ========== Get Nama Lengkap Evaluator ========== //
       const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, {
          method: "GET",
          headers: headers,
@@ -117,7 +118,7 @@
          }
       }
 
-      // ---------- Get Riwayat Catatan Revisi ---------- //
+      // ========== Get Riwayat Catatan Revisi ========== //
       const responseRCR = await fetch(
          $apiURL + "/riwayatCatatanRevisi/" + ppmId,
          {
@@ -238,7 +239,7 @@
       isLoading = false;
    }
 
-   async function remediasi() {
+   async function handlePerbaikan() {
       error = {};
       isLoading = true;
       const readerRab = new FileReader();
@@ -775,7 +776,7 @@
 
 {#if data}
    <Article>
-      <h2 class="title is-2">Detail Proposal</h2>
+      <h2 class="title is-2">Detail PPM</h2>
 
       <div class="tabs is-boxed">
          <ul>
@@ -801,6 +802,31 @@
       {#if tab1 === true}
          <div class="box">
             {#if !view}
+               <Field name="Judul">
+                  <input
+                     class="input"
+                     type="text"
+                     placeholder="Masukkan Judul"
+                     bind:value={judul}
+                  />
+                  {#if error.judul}
+                     <p class="help error is-danger">{error.judul}</p>
+                  {/if}
+               </Field>
+
+               <Field name="Abstrak">
+                  <textarea class="textarea" bind:value={abstrak}></textarea>
+                  {#if error.abstrak}
+                     <p class="help error is-danger">{error.abstrak}</p>
+                  {/if}
+               </Field>
+
+               <Field name="Status">
+                  <Status code={status} jenisSkema={data.jenis_skema} />
+               </Field>
+
+               <hr />
+
                <Field name="Jenis Proposal">
                   <div class="select is-fullwidth">
                      <select bind:value={jenisProposal}>
@@ -947,78 +973,16 @@
                   {/if}
                </Field>
 
-               <Field name="Anggota Tim">
-                  <Select start="2" {items} bind:result={anggotaTim} />
-                  {#if error.anggotaTim}
-                     <p class="help error is-danger">{error.anggotaTim}</p>
-                  {/if}
-               </Field>
-
-               <br />
-
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th class="is-narrow" style="width:65px"></th>
-                        <th class="is-narrow">Role</th>
-                        <th>Nama</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {#if anggotaTim.length > 0}
-                        {#each anggotaTim as member, idx}
-                           <tr>
-                              <td>
-                                 {#if idx > 0}
-                                    <button
-                                       class="button is-danger is-rounded is-small"
-                                       data-value={member.value}
-                                       on:click={deleteMember}
-                                       ><span class="icon">
-                                          <Icon id="delete" src={deleteIcon} />
-                                       </span>
-                                    </button>
-                                 {/if}
-                              </td>
-                              <td>{member.role}</td>
-                              <td>{member.label}</td>
-                           </tr>
-                        {/each}
-                     {/if}
-                  </tbody>
-               </table>
-
                <hr />
 
-               <Field name="Judul">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Masukkan Judul"
-                     bind:value={judul}
-                  />
-                  {#if error.judul}
-                     <p class="help error is-danger">{error.judul}</p>
-                  {/if}
-               </Field>
-
-               <Field name="Abstrak">
-                  <textarea class="textarea" bind:value={abstrak}></textarea>
-                  {#if error.abstrak}
-                     <p class="help error is-danger">{error.abstrak}</p>
-                  {/if}
-               </Field>
-
-               <Field name="Proposal">
+               <Field name="File Proposal">
                   {#if !editModeProposal}
                      <button
                         class="button is-link button is-small"
                         on:click={handleDownloadPpm}>Download Proposal</button
                      >
                      <button
-                        class="button is-link is-light"
+                        class="button is-link is-light is-small"
                         on:click={toggleEditModeProposal}
                         title="Change files"
                         ><span class="icon">
@@ -1034,7 +998,7 @@
                            type="file"
                            on:change={filePpmChange}
                         />
-                        <div class="file has-name is-success">
+                        <div class="file has-name is-success is-small">
                            <label class="file-label" for="filePpm">
                               <input
                                  class="file-input"
@@ -1055,7 +1019,7 @@
                            </label>
                         </div>
                         <button
-                           class="button is-danger is-light"
+                           class="button is-danger is-light is-small"
                            on:click={toggleEditModeProposal}
                            title="Cancel"
                            ><span class="icon">
@@ -1073,14 +1037,14 @@
                </Field>
 
                {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-                  <Field name="Rencana Anggaran Biaya">
+                  <Field name="File RAB">
                      {#if !editModeRAB}
                         <button
                            class="button is-link button is-small"
                            on:click={handleDownloadRab}>Download RAB</button
                         >
                         <button
-                           class="button is-link is-light"
+                           class="button is-link is-light is-small"
                            on:click={toggleEditModeRAB}
                            title="Change files"
                            ><span class="icon">
@@ -1096,7 +1060,7 @@
                               type="file"
                               on:change={fileRabChange}
                            />
-                           <div class="file has-name is-success">
+                           <div class="file has-name is-success is-small">
                               <label class="file-label" for="fileRab">
                                  <input
                                     class="file-input"
@@ -1122,7 +1086,7 @@
                               </label>
                            </div>
                            <button
-                              class="button is-danger is-light"
+                              class="button is-danger is-light is-small"
                               on:click={toggleEditModeRAB}
                               title="Cancel"
                               ><span class="icon">
@@ -1149,6 +1113,51 @@
                      </Field>
                   {/if}
                {/if}
+
+               <hr />
+
+               <Field name="Anggota Tim">
+                  <Select start="2" {items} bind:result={anggotaTim} />
+                  {#if error.anggotaTim}
+                     <p class="help error is-danger">{error.anggotaTim}</p>
+                  {/if}
+               </Field>
+
+               <br />
+
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th class="is-narrow" style="width:65px"></th>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member, idx}
+                           <tr>
+                              <td>
+                                 {#if idx > 0}
+                                    <button
+                                       class="button is-danger is-small"
+                                       data-value={member.value}
+                                       on:click={deleteMember}
+                                       ><span class="icon">
+                                          <Icon id="delete" src={deleteIcon} />
+                                       </span>
+                                    </button>
+                                 {/if}
+                              </td>
+                              <td>{member.role}</td>
+                              <td>{member.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
             {:else}
                <div class="columns is-desktop">
                   <Fieldview title="Judul" content={data.judul} />
@@ -1384,23 +1393,14 @@
                <hr />
                <Field
                   id={"evaluatorKdept"}
-                  name="Ka. Departemen"
+                  name="K.Departemen"
                   bind:value={ka_departemen}
                   bind:selected={kdeptSelected}
                   select
                   view
                   userId={kdeptSelected}
                />
-               <br />
-               <Field
-                  id={"evaluatorKlppm"}
-                  name="Ka. LPPM"
-                  bind:value={ka_lppm}
-                  bind:selected={klppmSelected}
-                  select
-                  view
-                  userId={klppmSelected}
-               />
+
                <br />
                <Field
                   id={"evaluatorReviewer"}
@@ -1413,8 +1413,18 @@
                />
                <br />
                <Field
+                  id={"evaluatorKlppm"}
+                  name="K.LPPM"
+                  bind:value={ka_lppm}
+                  bind:selected={klppmSelected}
+                  select
+                  view
+                  userId={klppmSelected}
+               />
+               <br />
+               <Field
                   id={"evaluatorKpk"}
-                  name="Ka. Pusat Kajian"
+                  name="K.Pusat Kajian"
                   bind:value={ka_pusat_kajian}
                   bind:selected={kpkSelected}
                   select
@@ -1510,8 +1520,8 @@
                <p class="control">
                   <button
                      class="button is-info"
-                     on:click={remediasi}
-                     class:is-loading={isLoading}>Remediasi</button
+                     on:click={handlePerbaikan}
+                     class:is-loading={isLoading}>Perbaikan</button
                   >
                </p>
             {/if}
