@@ -25,9 +25,9 @@ module.exports = async function (fastify, opts) {
             roleFromToken === "admin" ||
             roleFromToken === "dosen" ||
             roleFromToken === "reviewer" ||
-            roleFromToken === "Ka.Departemen" ||
-            roleFromToken === "Ka.LPPM" ||
-            roleFromToken === "Ka.PusatKajian"
+            roleFromToken === "K.Departemen" ||
+            roleFromToken === "K.LPPM" ||
+            roleFromToken === "K.PusatKajian"
          ) {
             const sql = "SELECT * FROM proposal_ppm WHERE id = ?";
             try {
@@ -144,9 +144,9 @@ module.exports = async function (fastify, opts) {
             roleFromToken === "admin" ||
             roleFromToken === "dosen" ||
             roleFromToken === "reviewer" ||
-            roleFromToken === "Ka.Departemen" ||
-            roleFromToken === "Ka.LPPM" ||
-            roleFromToken === "Ka.PusatKajian"
+            roleFromToken === "K.Departemen" ||
+            roleFromToken === "K.LPPM" ||
+            roleFromToken === "K.PusatKajian"
          ) {
             try {
                connection = await fastify.mysql.getConnection();

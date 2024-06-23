@@ -4,9 +4,9 @@ const groupMap = {
    0: "dosen",
    9: "admin",
    10: "reviewer",
-   11: "Ka.Departemen",
-   12: "Ka.LPPM",
-   13: "Ka.Pusat Kajian",
+   11: "K.Departemen",
+   12: "K.LPPM",
+   13: "K.PusatKajian",
 };
 
 module.exports = async function (fastify, opts) {
