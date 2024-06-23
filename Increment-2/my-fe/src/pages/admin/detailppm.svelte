@@ -29,6 +29,11 @@
    let showModalErrorPassReviewer = false;
    let showModalErrorInputEvaluator = false;
    let isLoading = false;
+   let hasilPenelitianVisible = false;
+   let danaPenelitianVisible = false;
+   let skPenelitianVisible = false;
+   let presentasiVisible = false;
+   let skpVisible = false;
    let randomPenilaianFileName = "";
 
    let jenisProposal;
@@ -1103,7 +1108,8 @@
                      {/if}
                   </Field>
 
-                  {#if status > 8}
+                  <!-- {#if status > 8} -->
+                  {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
                      <Field name="Penilaian Proposal">
                         <button
                            class="button is-link button is-small"
@@ -1236,7 +1242,8 @@
                   {/if}
                </div>
 
-               {#if status === 8}
+               <!-- {#if status === 8} -->
+               {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
                   <div class="field">
                      <p class="title is-6"><b>Penilaian Proposal</b></p>
                   </div>
@@ -1277,9 +1284,7 @@
                      {/if}
                   </span>
                   <p class="help">File Type: xlsx</p>
-               {/if}
-
-               {#if status > 8}
+               {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
                   <div class="field">
                      <p class="title is-6"><b>File Penilaian Proposal</b></p>
                      <p class="subtitle is-6">
@@ -1323,7 +1328,7 @@
          <!-- ========================================== -->
          {#if status != 0}
             <div class="box">
-               <h5 class="title is-5">Informasi Revisi</h5>
+               <h5 class="title is-5">Informasi Revisi Proposal</h5>
                {#if !view}
                   <div class="notification is-warning is-light">
                      <p>
@@ -1448,6 +1453,427 @@
                      {/if}
                   </p>
                </div>
+            </div>
+         {/if}
+
+         {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
+            <!-- ============================================================ -->
+            <!--       Download SK Pendanaan, SK Penelitian, Surat Tugas      -->
+            <!-- ============================================================ -->
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     File SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Upload</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 >File</th
+                              >
+                              <th class="is-narrow">Tanda tangan</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Kontrak Penelitian</td>
+                              <td
+                                 ><div
+                                    class="file has-name is-success is-small"
+                                 >
+                                    <label class="file-label" for="filePpm">
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    </label>
+                                 </div></td
+                              >
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td style="text-align: center"
+                                 ><input type="checkbox" /></td
+                              >
+                           </tr>
+                           <tr>
+                              <td>SK Pendanaan</td>
+                              <td>
+                                 <div class="file has-name is-success is-small">
+                                    <label class="file-label" for="filePpm">
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    </label>
+                                 </div>
+                              </td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td></td>
+                           </tr>
+
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td
+                                 ><div
+                                    class="file has-name is-success is-small"
+                                 >
+                                    <label class="file-label" for="filePpm">
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    </label>
+                                 </div></td
+                              >
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td></td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-success"
+                              class:is-loading={isLoading}>Submit File</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               </div>
+            {:else}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Download Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Upload</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 >File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td
+                                 ><div
+                                    class="file has-name is-success is-small"
+                                 >
+                                    <label class="file-label" for="filePpm">
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    </label>
+                                 </div></td
+                              >
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-success"
+                              class:is-loading={isLoading}>Submit File</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--               Dana Penelitian              -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Dana Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (danaPenelitianVisible = !danaPenelitianVisible)}
+                  >
+                     {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if danaPenelitianVisible}
+                  <hr />
+                  <Field name="Status Dana Penelitian">
+                     <span class="tag is-info">30% dana dicairkan</span></Field
+                  >
+                  <div class="notification is-warning is-light">
+                     <p class="subtitle is-6">
+                        Untuk pengambilan dana dan penjelasan lebih lanjut
+                        terkait dana penelitian, hubungi LPPM UISI.
+                     </p>
+                  </div>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Hasil Penelitian               -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (hasilPenelitianVisible = !hasilPenelitianVisible)}
+                  >
+                     {hasilPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if hasilPenelitianVisible}
+                  <hr />
+                  <div class="field">
+                     <p class="title is-6"><b>Upload Hasil Penelitian</b></p>
+                     <div class="file has-name is-success is-small">
+                        <label class="file-label" for="filePpm">
+                           <input
+                              class="file-input"
+                              type="file"
+                              name="resume"
+                           />
+                           <span class="file-cta">
+                              <span class="file-icon">
+                                 <Icon id="download" src={downloadIcon} />
+                              </span>
+                              <span class="file-label"> Choose a file</span>
+                           </span>
+                           <span class="file-name">No file chosen</span>
+                        </label>
+                     </div>
+                  </div>
+
+                  <hr />
+
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <div class="isi-border">
+                        <p class="subtitle is-6">...</p>
+                     </div>
+                  </div>
+
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 65%;">Riwayat Catatan Revisi</th>
+                           <th
+                              class="is-narrow"
+                              style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th class="is-narrow" style="text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>...</td>
+                           <td style="text-align: center"
+                              >Taris Rafiqi Izatri, S.Kom.</td
+                           >
+                           <td style="text-align: center">...</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--         Presentasi Hasil Penelitian        -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Presentasi Hasil Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() => (presentasiVisible = !presentasiVisible)}
+                  >
+                     {presentasiVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if presentasiVisible}
+                  <hr />
+                  <input type="checkbox" />
+                  Saya sudah presentasi <b>Hasil Penelitian</b>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Download SK Penelitian         -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  File SK Penelitian
+                  <span
+                     class="toggle-button"
+                     on:click={() =>
+                        (skPenelitianVisible = !skPenelitianVisible)}
+                  >
+                     {skPenelitianVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skPenelitianVisible}
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >File</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>SK Penelitian</td>
+                           <td
+                              ><button class="button is-link button is-small"
+                                 >Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
             </div>
          {/if}
 

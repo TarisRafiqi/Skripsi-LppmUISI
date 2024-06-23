@@ -560,62 +560,52 @@
                {/if}
             </div>
 
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
-               {#if status === 8}
-                  <div class="field">
-                     <p class="title is-6"><b>Penilaian Proposal</b></p>
-                  </div>
-                  <span class="inputf__wrapper mb-1">
-                     <input
-                        id="filePenilaian"
-                        class="inputf custom-file-input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={filePenilaianChange}
-                     />
-                     <div class="file has-name is-success is-small">
-                        <label class="file-label" for="filePenilaian">
-                           <input
-                              class="file-input"
-                              type="file"
-                              name="resume"
-                           />
-                           <span class="file-cta">
-                              <span class="file-icon">
-                                 <Icon id="download" src={downloadIcon} />
-                              </span>
-                              <span class="file-label"> Choose a file</span>
+            {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
+               <div class="field">
+                  <p class="title is-6"><b>Penilaian Proposal</b></p>
+               </div>
+               <span class="inputf__wrapper mb-1">
+                  <input
+                     id="filePenilaian"
+                     class="inputf custom-file-input"
+                     accept=".xlsx"
+                     type="file"
+                     on:change={filePenilaianChange}
+                  />
+                  <div class="file has-name is-success is-small">
+                     <label class="file-label" for="filePenilaian">
+                        <input class="file-input" type="file" name="resume" />
+                        <span class="file-cta">
+                           <span class="file-icon">
+                              <Icon id="download" src={downloadIcon} />
                            </span>
-                           {#if $penilaianFile?.name}
-                              <span class="file-name">
-                                 {$penilaianFile.name}</span
-                              >
-                           {:else}
-                              <span class="file-name">No file chosen</span>
-                           {/if}
-                        </label>
-                     </div>
-                     {#if error.filePenilaian}
-                        <p class="error has-text-danger">
-                           {error.filePenilaian}
-                        </p>
-                     {/if}
-                  </span>
-                  <p class="help">File Type: xlsx</p>
-               {/if}
-
-               {#if status > 8}
-                  <div class="field">
-                     <p class="title is-6"><b>File Penilaian Proposal</b></p>
-                     <p class="subtitle is-6">
-                        <button
-                           class="button is-link button is-small"
-                           on:click={handleDownloadPenilaian}
-                           >Download Penilaian</button
-                        >
-                     </p>
+                           <span class="file-label"> Choose a file</span>
+                        </span>
+                        {#if $penilaianFile?.name}
+                           <span class="file-name"> {$penilaianFile.name}</span>
+                        {:else}
+                           <span class="file-name">No file chosen</span>
+                        {/if}
+                     </label>
                   </div>
-               {/if}
+                  {#if error.filePenilaian}
+                     <p class="error has-text-danger">
+                        {error.filePenilaian}
+                     </p>
+                  {/if}
+               </span>
+               <p class="help">File Type: xlsx</p>
+            {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
+               <div class="field">
+                  <p class="title is-6"><b>File Penilaian Proposal</b></p>
+                  <p class="subtitle is-6">
+                     <button
+                        class="button is-link button is-small"
+                        on:click={handleDownloadPenilaian}
+                        >Download Penilaian</button
+                     >
+                  </p>
+               </div>
             {/if}
 
             <div class="field">
@@ -646,29 +636,28 @@
          <!-- ========================================== -->
          <!--              Catatan Revisi                -->
          <!-- ========================================== -->
-         {#if role != "K.Departemen"}
+         {#if role !== "K.Departemen" && role !== "reviewer"}
             <div class="box">
-               <h5 class="title is-5">Informasi Revisi</h5>
+               <h5 class="title is-5">Informasi Revisi Proposal</h5>
+               <div class="notification is-warning is-light">
+                  <p>Berikan catatan revisi jika ingin revisi proposal</p>
+               </div>
 
-               {#if status != 8}
-                  <div class="notification is-warning is-light">
-                     <p>Berikan catatan revisi jika ingin revisi proposal</p>
-                  </div>
+               <div class="field">
+                  <p class="title is-6"><b>Catatan Revisi</b></p>
+                  <textarea
+                     class="textarea mb-1"
+                     bind:value={comment}
+                     name="komentar"
+                     id="komentar"
+                  ></textarea>
+                  {#if error.comment}
+                     <p class="help error is-danger">{error.comment}</p>
+                  {/if}
+               </div>
 
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <textarea
-                        class="textarea mb-1"
-                        bind:value={comment}
-                        name="komentar"
-                        id="komentar"
-                     ></textarea>
-                     {#if error.comment}
-                        <p class="help error is-danger">{error.comment}</p>
-                     {/if}
-                  </div>
-                  <hr />
-               {/if}
+               <hr />
+               <!-- {/if} -->
 
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"

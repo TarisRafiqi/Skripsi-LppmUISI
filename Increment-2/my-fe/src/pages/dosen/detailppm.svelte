@@ -50,10 +50,11 @@
    let danaPenelitianVisible = false;
    let skPenelitianVisible = false;
    let presentasiVisible = false;
+   let skpVisible = false;
+
    let editModeProposal = false;
    let showModalError = false;
    let editModeRAB = false;
-   let skpVisible = false;
    let isLoading = false;
 
    onMount(async () => {
@@ -1461,7 +1462,7 @@
          <!-- ========================================== -->
          {#if !view}
             <div class="box">
-               <h5 class="title is-5">Informasi Revisi</h5>
+               <h5 class="title is-5">Informasi Revisi Proposal</h5>
                <div class="notification is-warning is-light">
                   <p>
                      Perhatikan catatan revisi dari evaluator untuk detail yang
@@ -1506,72 +1507,116 @@
             </div>
          {/if}
 
-         {#if status >= 12}
+         {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
             <!--       Download SK Pendanaan, SK Penelitian, Surat Tugas      -->
             <!-- ============================================================ -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Download SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
-                  <span
-                     class="toggle-button"
-                     on:click={() => (skpVisible = !skpVisible)}
-                  >
-                     {skpVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     File SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if skpVisible}
-                  <hr />
+                  {#if skpVisible}
+                     <hr />
 
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama </th>
-                           <th class="is-narrow" style="text-align: center"
-                              >File</th
-                           >
-                           <th class="is-narrow">Tanda tangan</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td>Surat Kontrak Penelitian</td>
-                           <td
-                              ><button class="button is-link button is-small"
-                                 >Download</button
-                              ></td
-                           >
-                           <td style="text-align: center"
-                              ><input type="checkbox" /></td
-                           >
-                        </tr>
-                        <tr>
-                           <td>SK Pendanaan</td>
-                           <td
-                              ><button class="button is-link button is-small"
-                                 >Download</button
-                              ></td
-                           >
-                           <td></td>
-                        </tr>
-                        <tr>
-                           <td>Surat Tugas</td>
-                           <td
-                              ><button class="button is-link button is-small"
-                                 >Download</button
-                              ></td
-                           >
-                           <td></td>
-                        </tr>
-                     </tbody>
-                  </table>
-               {/if}
-            </div>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >File</th
+                              >
+                              <th class="is-narrow">Tanda tangan</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Kontrak Penelitian</td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td style="text-align: center"
+                                 ><input type="checkbox" /></td
+                              >
+                           </tr>
+                           <tr>
+                              <td>SK Pendanaan</td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td></td>
+                           </tr>
+
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {:else}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Download Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
 
             <!-- ========================================== -->
             <!--               Dana Penelitian              -->
@@ -1714,7 +1759,7 @@
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Download SK Penelitian
+                  File SK Penelitian
                   <span
                      class="toggle-button"
                      on:click={() =>
