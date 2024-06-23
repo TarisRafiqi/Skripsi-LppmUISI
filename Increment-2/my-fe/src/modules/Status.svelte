@@ -55,6 +55,8 @@
    {:else if code === 8}
       <span class="tag is-info">PPM Berlangsung</span>
    {:else if code === 9}
+      <span class="tag is-warning">Upload Hasil Penelitian</span>
+   {:else if code === 10}
       <span class="tag is-success">PPM Selesai</span>
    {/if}
 {:else if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}

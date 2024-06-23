@@ -66,13 +66,14 @@
          headers: headers,
       });
       const result = await response.json();
-      view = !isEdit(result.status);
 
       if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
             data = result;
+            // view = !isEdit(data.status);
+            view = !isEdit(data.status, data.jenis_skema);
             ppmId = data.id;
             jenisProposal = data.jenis_proposal;
             jenisKegiatan = data.jenis_kegiatan;
@@ -451,9 +452,33 @@
       editModeRAB = !editModeRAB;
    }
 
-   function isEdit(code) {
-      const edit = [0, 1, 3, 5, 7];
-      return edit.some((x) => x === code);
+   // function isEdit(code) {
+   //    const edit = [0, 1, 3, 5, 7];
+   //    return edit.some((x) => x === code);
+   // }
+
+   function isEdit(code, jenisSkema) {
+      let editStatus;
+      switch (jenisSkema) {
+         case "Riset Kelompok Keahlian":
+         case "Riset Terapan":
+         case "Riset Kerjasama":
+         case "Pengabdian Masyarakat Desa Binaan":
+         case "Pengabdian Masyarakat UMKM Binaan":
+            editStatus = [0, 1, 3, 5, 7, 11];
+            break;
+         case "Riset Eksternal":
+         case "Pengabdian Masyarakat Hibah Eksternal":
+            editStatus = [0, 1, 3, 5];
+            break;
+         case "Riset Mandiri":
+         case "Pengabdian Masyarakat Mandiri":
+            editStatus = [0, 1, 3, 5, 9];
+            break;
+         default:
+            editStatus = [];
+      }
+      return editStatus.includes(code);
    }
 
    function formatRupiah(angka, prefix) {

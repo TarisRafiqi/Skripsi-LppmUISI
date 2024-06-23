@@ -646,52 +646,57 @@
          <!-- ========================================== -->
          <!--              Catatan Revisi                -->
          <!-- ========================================== -->
-         <div class="box">
-            <h5 class="title is-5">Informasi Revisi</h5>
+         {#if role != "K.Departemen"}
+            <div class="box">
+               <h5 class="title is-5">Informasi Revisi</h5>
 
-            {#if status != 8}
-               <div class="notification is-warning is-light">
-                  <p>Berikan catatan revisi jika ingin revisi proposal</p>
-               </div>
+               {#if status != 8}
+                  <div class="notification is-warning is-light">
+                     <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                  </div>
 
-               <div class="field">
-                  <p class="title is-6"><b>Catatan Revisi</b></p>
-                  <textarea
-                     class="textarea mb-1"
-                     bind:value={comment}
-                     name="komentar"
-                     id="komentar"
-                  ></textarea>
-                  {#if error.comment}
-                     <p class="help error is-danger">{error.comment}</p>
-                  {/if}
-               </div>
-               <hr />
-            {/if}
-
-            <table
-               class="table is-fullwidth is-striped is-hoverable is-bordered"
-            >
-               <thead>
-                  <tr>
-                     <th style="width: 70%;">Catatan Revisi</th>
-                     <th style="width: 15%; text-align: center">Evaluator</th>
-                     <th style="width: 15%; text-align: center">Tanggal</th>
-                  </tr>
-               </thead>
-               {#if itemsRCR}
-                  <tbody>
-                     {#each itemsRCR as item}
-                        <tr>
-                           <td>{item.comment}</td>
-                           <td style="text-align: center">{item.evaluator}</td>
-                           <td style="text-align: center">{item.time}</td>
-                        </tr>
-                     {/each}
-                  </tbody>
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <textarea
+                        class="textarea mb-1"
+                        bind:value={comment}
+                        name="komentar"
+                        id="komentar"
+                     ></textarea>
+                     {#if error.comment}
+                        <p class="help error is-danger">{error.comment}</p>
+                     {/if}
+                  </div>
+                  <hr />
                {/if}
-            </table>
-         </div>
+
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th style="width: 70%;">Catatan Revisi</th>
+                        <th style="width: 15%; text-align: center">Evaluator</th
+                        >
+                        <th style="width: 15%; text-align: center">Tanggal</th>
+                     </tr>
+                  </thead>
+                  {#if itemsRCR}
+                     <tbody>
+                        {#each itemsRCR as item}
+                           <tr>
+                              <td>{item.comment}</td>
+                              <td style="text-align: center"
+                                 >{item.evaluator}</td
+                              >
+                              <td style="text-align: center">{item.time}</td>
+                           </tr>
+                        {/each}
+                     </tbody>
+                  {/if}
+               </table>
+            </div>
+         {/if}
 
          <!-- ========================================== -->
          <!--              Action Button                 -->
@@ -710,27 +715,6 @@
             {/if}
          {/if}
 
-         {#if role === "K.LPPM"}
-            {#if status === 6}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}
-                        class:is-loading={isLoading}>Revisi</button
-                     >
-                  </p>
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        on:click={handlePass}
-                        class:is-loading={isLoading}>Proses</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
-
          {#if role === "reviewer"}
             {#if (data.jenis_skema === "Riset Kelompok Keahlian" || data.jenis_skema === "Riset Terapan" || data.jenis_skema === "Riset Kerjasama" || data.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || data.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && data.status === 6}
                <div class="field is-grouped is-grouped-right">
@@ -738,15 +722,16 @@
                      <button
                         class="button is-info"
                         on:click={handlePassReviewer}
-                        class:is-loading={isLoading}>ProsesReviewer</button
+                        class:is-loading={isLoading}>Proses</button
                      >
                   </p>
                </div>
             {/if}
          {/if}
 
-         {#if role === "K.PusatKajian"}
-            {#if status === 10}
+         {#if role === "K.PusatKajian" || role === "K.LPPM"}
+            <!-- {#if status === 10} -->
+            {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status === 6) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status === 6) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 8)}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
                      <button

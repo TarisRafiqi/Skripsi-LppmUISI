@@ -87,7 +87,7 @@
 
    // pakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      await getDetailProposal();
+      await getDetailPPM();
 
       // ========== Generate Penilaian Random Character ========== //
       const characters =
@@ -138,7 +138,7 @@
       }
    });
 
-   async function getDetailProposal() {
+   async function getDetailPPM() {
       ka_departemen = await findRole(11);
       ka_lppm = await findRole(12);
       ka_pusat_kajian = await findRole(13);
@@ -230,7 +230,7 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               getDetailProposal();
+               getDetailPPM();
             } else {
                console.log(response);
             }

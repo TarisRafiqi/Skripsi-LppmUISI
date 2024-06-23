@@ -55,7 +55,7 @@
 
    function detail(ev) {
       let propId = ev.target.getAttribute("pid");
-      location.href = "/dosen/detailproposal/" + propId;
+      location.href = "/dosen/detailppm/" + propId;
    }
 
    function HandleAddProposal() {

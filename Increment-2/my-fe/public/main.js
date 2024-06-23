@@ -2195,7 +2195,7 @@
     aboutuisi: () => aboutuisi_default,
     buatpengumuman: () => buatpengumuman_default,
     createuser: () => createuser_default,
-    detailproposal: () => detailproposal_default,
+    detailppm: () => detailppm_default,
     home: () => home_default,
     pengumuman: () => pengumuman_default,
     ppmmanagement: () => ppmmanagement_default,
@@ -5241,7 +5241,7 @@
   };
   var createuser_default = Createuser;
 
-  // src/pages/admin/detailproposal.svelte
+  // src/pages/admin/detailppm.svelte
   init_define_process();
 
   // src/libs/Fieldview.svelte
@@ -5249,84 +5249,84 @@
 
   // src/modules/Status.svelte
   init_define_process();
-  function create_if_block_25(ctx) {
+  function create_if_block_26(ctx) {
     let if_block_anchor;
     function select_block_type_3(ctx2, dirty) {
       if (
         /*code*/
         ctx2[0] === 0
       )
-        return create_if_block_26;
+        return create_if_block_27;
       if (
         /*code*/
         ctx2[0] === 1
       )
-        return create_if_block_27;
+        return create_if_block_28;
       if (
         /*code*/
         ctx2[0] === 2
       )
-        return create_if_block_28;
+        return create_if_block_29;
       if (
         /*code*/
         ctx2[0] === 3
       )
-        return create_if_block_29;
+        return create_if_block_30;
       if (
         /*code*/
         ctx2[0] === 4
       )
-        return create_if_block_30;
+        return create_if_block_31;
       if (
         /*code*/
         ctx2[0] === 5
       )
-        return create_if_block_31;
+        return create_if_block_322;
       if (
         /*code*/
         ctx2[0] === 6
       )
-        return create_if_block_322;
+        return create_if_block_33;
       if (
         /*code*/
         ctx2[0] === 7
       )
-        return create_if_block_33;
+        return create_if_block_34;
       if (
         /*code*/
         ctx2[0] === 8
       )
-        return create_if_block_34;
+        return create_if_block_35;
       if (
         /*code*/
         ctx2[0] === 9
       )
-        return create_if_block_35;
+        return create_if_block_36;
       if (
         /*code*/
         ctx2[0] === 10
       )
-        return create_if_block_36;
+        return create_if_block_37;
       if (
         /*code*/
         ctx2[0] === 11
       )
-        return create_if_block_37;
+        return create_if_block_38;
       if (
         /*code*/
         ctx2[0] === 12
       )
-        return create_if_block_38;
+        return create_if_block_39;
       if (
         /*code*/
         ctx2[0] === 13
       )
-        return create_if_block_39;
+        return create_if_block_40;
       if (
         /*code*/
         ctx2[0] === 14
       )
-        return create_if_block_40;
+        return create_if_block_41;
     }
     let current_block_type = select_block_type_3(ctx, -1);
     let if_block = current_block_type && current_block_type(ctx);
@@ -5415,6 +5415,11 @@
         ctx2[0] === 9
       )
         return create_if_block_24;
+      if (
+        /*code*/
+        ctx2[0] === 10
+      )
+        return create_if_block_25;
     }
     let current_block_type = select_block_type_2(ctx, -1);
     let if_block = current_block_type && current_block_type(ctx);
@@ -5553,7 +5558,7 @@
       }
     };
   }
-  function create_if_block_40(ctx) {
+  function create_if_block_41(ctx) {
     let span;
     return {
       c() {
@@ -5571,7 +5576,7 @@
       }
     };
   }
-  function create_if_block_39(ctx) {
+  function create_if_block_40(ctx) {
     let span;
     return {
       c() {
@@ -5589,7 +5594,7 @@
       }
     };
   }
-  function create_if_block_38(ctx) {
+  function create_if_block_39(ctx) {
     let span;
     return {
       c() {
@@ -5607,7 +5612,7 @@
       }
     };
   }
-  function create_if_block_37(ctx) {
+  function create_if_block_38(ctx) {
     let span;
     return {
       c() {
@@ -5625,7 +5630,7 @@
       }
     };
   }
-  function create_if_block_36(ctx) {
+  function create_if_block_37(ctx) {
     let span;
     return {
       c() {
@@ -5643,7 +5648,7 @@
       }
     };
   }
-  function create_if_block_35(ctx) {
+  function create_if_block_36(ctx) {
     let span;
     return {
       c() {
@@ -5661,7 +5666,7 @@
       }
     };
   }
-  function create_if_block_34(ctx) {
+  function create_if_block_35(ctx) {
     let span;
     return {
       c() {
@@ -5679,7 +5684,7 @@
       }
     };
   }
-  function create_if_block_33(ctx) {
+  function create_if_block_34(ctx) {
     let span;
     return {
       c() {
@@ -5697,7 +5702,7 @@
       }
     };
   }
-  function create_if_block_322(ctx) {
+  function create_if_block_33(ctx) {
     let span;
     return {
       c() {
@@ -5715,7 +5720,7 @@
       }
     };
   }
-  function create_if_block_31(ctx) {
+  function create_if_block_322(ctx) {
     let span;
     return {
       c() {
@@ -5733,7 +5738,7 @@
       }
     };
   }
-  function create_if_block_30(ctx) {
+  function create_if_block_31(ctx) {
     let span;
     return {
       c() {
@@ -5751,7 +5756,7 @@
       }
     };
   }
-  function create_if_block_29(ctx) {
+  function create_if_block_30(ctx) {
     let span;
     return {
       c() {
@@ -5769,7 +5774,7 @@
       }
     };
   }
-  function create_if_block_28(ctx) {
+  function create_if_block_29(ctx) {
     let span;
     return {
       c() {
@@ -5787,7 +5792,7 @@
       }
     };
   }
-  function create_if_block_27(ctx) {
+  function create_if_block_28(ctx) {
     let span;
     return {
       c() {
@@ -5805,7 +5810,7 @@
       }
     };
   }
-  function create_if_block_26(ctx) {
+  function create_if_block_27(ctx) {
     let span;
     return {
       c() {
@@ -5823,13 +5828,31 @@
       }
     };
   }
-  function create_if_block_24(ctx) {
+  function create_if_block_25(ctx) {
     let span;
     return {
       c() {
         span = element("span");
         span.textContent = "PPM Selesai";
         attr(span, "class", "tag is-success");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+      }
+    };
+  }
+  function create_if_block_24(ctx) {
+    let span;
+    return {
+      c() {
+        span = element("span");
+        span.textContent = "Upload Hasil Penelitian";
+        attr(span, "class", "tag is-warning");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -6260,7 +6283,7 @@
         ctx2[1] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
         ctx2[1] === "Pengabdian Masyarakat UMKM Binaan"
       )
-        return create_if_block_25;
+        return create_if_block_26;
     }
     let current_block_type = select_block_type(ctx, -1);
     let if_block = current_block_type && current_block_type(ctx);
@@ -7617,7 +7640,7 @@
   var template = "M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h4v-1.91L12.09 18H6v-2h8.09l2-2H6v-2h12.09L20 10.09V8l-6-6zm7 1.5L18.5 9H13zm7.15 9.5a.55.55 0 0 0-.4.16l-1.02 1.02l2.09 2.08l1.02-1.01c.21-.22.21-.58 0-.79l-1.3-1.3a.54.54 0 0 0-.39-.16m-2.01 1.77L12 20.92V23h2.08l6.15-6.15z";
   var approval = "m17.275 20.25l3.475-3.45l-1.05-1.05l-2.425 2.375l-.975-.975l-1.05 1.075zM6 9h12V7H6zm12 14q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23M3 22V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v6.675q-.7-.35-1.463-.513T18 11H6v2h7.1q-.425.425-.787.925T11.675 15H6v2h5.075q-.05.25-.062.488T11 18q0 1.05.288 2.013t.862 1.837L12 22l-1.5-1.5L9 22l-1.5-1.5L6 22l-1.5-1.5z";
 
-  // src/pages/admin/detailproposal.svelte
+  // src/pages/admin/detailppm.svelte
   function get_each_context5(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[121] = list[i];
@@ -10389,7 +10412,7 @@
       }
     };
   }
-  function create_if_block_41(ctx) {
+  function create_if_block_412(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -10427,7 +10450,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[4].topik && create_if_block_41(ctx)
+      ctx[4].topik && create_if_block_412(ctx)
     );
     return {
       c() {
@@ -10478,7 +10501,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_41(ctx2);
+            if_block = create_if_block_412(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -16547,7 +16570,7 @@
       "Content-Type": "application/json"
     };
     onMount(async () => {
-      await getDetailProposal();
+      await getDetailPPM();
       const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let resultPenilaianChar = "";
       for (let i = 0; i < 30; i++) {
@@ -16575,7 +16598,7 @@
         }
       }
     });
-    async function getDetailProposal() {
+    async function getDetailPPM() {
       $$invalidate(26, ka_departemen = await findRole(11));
       $$invalidate(27, ka_lppm = await findRole(12));
       $$invalidate(29, ka_pusat_kajian = await findRole(13));
@@ -16643,7 +16666,7 @@
           location.pathname = "/tokenexpired";
         } else {
           if (response.ok) {
-            getDetailProposal();
+            getDetailPPM();
           } else {
             console.log(response);
           }
@@ -17232,13 +17255,13 @@
       modalerror3_show_binding
     ];
   }
-  var Detailproposal = class extends SvelteComponent {
+  var Detailppm = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance18, create_fragment23, safe_not_equal, { params: 57 }, null, [-1, -1, -1, -1, -1, -1]);
     }
   };
-  var detailproposal_default = Detailproposal;
+  var detailppm_default = Detailppm;
 
   // src/pages/admin/home.svelte
   init_define_process();
@@ -18372,7 +18395,7 @@
     });
     async function handleReview(ev) {
       const id = ev.target.getAttribute("uid");
-      $route("/admin/detailproposal/" + id);
+      $route("/admin/detailppm/" + id);
     }
     function select_change_handler() {
       filterStatus = select_value(this);
@@ -24201,7 +24224,7 @@
       }
     };
   }
-  function create_if_block_412(ctx) {
+  function create_if_block_413(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -24239,7 +24262,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tahunMasukS1 && create_if_block_412(ctx)
+      ctx[1].tahunMasukS1 && create_if_block_413(ctx)
     );
     return {
       c() {
@@ -24289,7 +24312,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_412(ctx2);
+            if_block = create_if_block_413(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -34449,7 +34472,7 @@
   __export(dosen_exports, {
     approvalmanagement: () => approvalmanagement_default,
     detailapproval: () => detailapproval_default,
-    detailproposal: () => detailproposal_default2,
+    detailppm: () => detailppm_default2,
     home: () => home_default2,
     pendaftaranproposal: () => pendaftaranproposal_default,
     ppmmanagement: () => ppmmanagement_default2,
@@ -35013,7 +35036,7 @@
       }
     };
   }
-  function create_if_block_413(ctx) {
+  function create_if_block_414(ctx) {
     let tr;
     let td0;
     let t0_value = (
@@ -35197,7 +35220,7 @@
       ctx[15].jenis_skema === "Riset Kerjasama" || /*item*/
       ctx[15].jenis_skema === "Pengabdian Masyarakat Desa Binaan" || /*item*/
       ctx[15].jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && /*item*/
-      ctx[15].status === 6 && create_if_block_413(ctx)
+      ctx[15].status === 6 && create_if_block_414(ctx)
     );
     return {
       c() {
@@ -35228,7 +35251,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_413(ctx2);
+            if_block = create_if_block_414(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -35996,7 +36019,7 @@
       },
       p(ctx2, dirty) {
         const article_changes = {};
-        if (dirty[0] & /*biodataAnggota, tab2, isLoading, status, data, itemsRCR, error, comment, anggotaTim, $penilaianFile, jenisSkema, tanggalSelesai, tanggalMulai, biayaPenelitian, topik, kelompokKeahlian, jenisKegiatan, jenisProposal, tab1*/
+        if (dirty[0] & /*biodataAnggota, tab2, isLoading, jenisSkema, status, data, itemsRCR, error, comment, anggotaTim, $penilaianFile, tanggalSelesai, tanggalMulai, biayaPenelitian, topik, kelompokKeahlian, jenisKegiatan, jenisProposal, tab1*/
         2097148 | dirty[2] & /*$$scope*/
         4194304) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
@@ -36064,23 +36087,15 @@
     let div10;
     let p2;
     let t19;
-    let table0;
-    let thead0;
+    let table;
+    let thead;
     let t23;
     let tbody;
     let t24;
-    let div12;
-    let h5;
+    let t25;
     let t26;
     let t27;
-    let table1;
-    let thead1;
-    let t33;
-    let t34;
-    let t35;
-    let t36;
-    let t37;
-    let if_block8_anchor;
+    let if_block6_anchor;
     let current;
     let mounted;
     let dispose;
@@ -36194,7 +36209,7 @@
       ctx[9] === "Riset Terapan" || /*jenisSkema*/
       ctx[9] === "Riset Kerjasama" || /*jenisSkema*/
       ctx[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_317(ctx)
+      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_304(ctx)
     );
     let if_block1 = (
       /*jenisSkema*/
@@ -36202,35 +36217,28 @@
       ctx[9] === "Riset Terapan" || /*jenisSkema*/
       ctx[9] === "Riset Kerjasama" || /*jenisSkema*/
       ctx[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_264(ctx)
+      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && create_if_block_254(ctx)
     );
     let if_block2 = (
       /*anggotaTim*/
-      ctx[15].length > 0 && create_if_block_254(ctx)
+      ctx[15].length > 0 && create_if_block_244(ctx)
     );
     let if_block3 = (
-      /*status*/
-      ctx[17] != 8 && create_if_block_235(ctx)
+      /*role*/
+      ctx[21] != "K.Departemen" && create_if_block_204(ctx)
     );
     let if_block4 = (
-      /*itemsRCR*/
-      ctx[6] && create_if_block_225(ctx)
+      /*role*/
+      ctx[21] === "K.Departemen" && create_if_block_184(ctx)
     );
     let if_block5 = (
       /*role*/
-      ctx[21] === "K.Departemen" && create_if_block_204(ctx)
+      ctx[21] === "reviewer" && create_if_block_164(ctx)
     );
     let if_block6 = (
       /*role*/
-      ctx[21] === "K.LPPM" && create_if_block_184(ctx)
-    );
-    let if_block7 = (
-      /*role*/
-      ctx[21] === "reviewer" && create_if_block_164(ctx)
-    );
-    let if_block8 = (
-      /*role*/
-      ctx[21] === "K.PusatKajian" && create_if_block_144(ctx)
+      (ctx[21] === "K.PusatKajian" || /*role*/
+      ctx[21] === "K.LPPM") && create_if_block_144(ctx)
     );
     return {
       c() {
@@ -36286,40 +36294,26 @@
         p2 = element("p");
         p2.innerHTML = `<b>Anggota Tim</b>`;
         t19 = space();
-        table0 = element("table");
-        thead0 = element("thead");
-        thead0.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th class="is-narrow">Role</th> <th>Nama</th></tr>`;
         t23 = space();
         tbody = element("tbody");
         if (if_block2)
           if_block2.c();
         t24 = space();
-        div12 = element("div");
-        h5 = element("h5");
-        h5.textContent = "Informasi Revisi";
-        t26 = space();
         if (if_block3)
           if_block3.c();
-        t27 = space();
-        table1 = element("table");
-        thead1 = element("thead");
-        thead1.innerHTML = `<tr><th style="width: 70%;">Catatan Revisi</th> <th style="width: 15%; text-align: center">Evaluator</th> <th style="width: 15%; text-align: center">Tanggal</th></tr>`;
-        t33 = space();
+        t25 = space();
         if (if_block4)
           if_block4.c();
-        t34 = space();
+        t26 = space();
         if (if_block5)
           if_block5.c();
-        t35 = space();
+        t27 = space();
         if (if_block6)
           if_block6.c();
-        t36 = space();
-        if (if_block7)
-          if_block7.c();
-        t37 = space();
-        if (if_block8)
-          if_block8.c();
-        if_block8_anchor = empty();
+        if_block6_anchor = empty();
         attr(div0, "class", "columns is-desktop");
         attr(div1, "class", "columns is-desktop");
         attr(div2, "class", "columns is-desktop");
@@ -36334,12 +36328,9 @@
         attr(div8, "class", "column");
         attr(div9, "class", "columns is-desktop");
         attr(p2, "class", "title is-6");
-        attr(table0, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
         attr(div10, "class", "field");
         attr(div11, "class", "box");
-        attr(h5, "class", "title is-5");
-        attr(table1, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
-        attr(div12, "class", "box");
       },
       m(target, anchor) {
         insert(target, div11, anchor);
@@ -36391,37 +36382,25 @@
         append(div11, div10);
         append(div10, p2);
         append(div10, t19);
-        append(div10, table0);
-        append(table0, thead0);
-        append(table0, t23);
-        append(table0, tbody);
+        append(div10, table);
+        append(table, thead);
+        append(table, t23);
+        append(table, tbody);
         if (if_block2)
           if_block2.m(tbody, null);
         insert(target, t24, anchor);
-        insert(target, div12, anchor);
-        append(div12, h5);
-        append(div12, t26);
         if (if_block3)
-          if_block3.m(div12, null);
-        append(div12, t27);
-        append(div12, table1);
-        append(table1, thead1);
-        append(table1, t33);
+          if_block3.m(target, anchor);
+        insert(target, t25, anchor);
         if (if_block4)
-          if_block4.m(table1, null);
-        insert(target, t34, anchor);
+          if_block4.m(target, anchor);
+        insert(target, t26, anchor);
         if (if_block5)
           if_block5.m(target, anchor);
-        insert(target, t35, anchor);
+        insert(target, t27, anchor);
         if (if_block6)
           if_block6.m(target, anchor);
-        insert(target, t36, anchor);
-        if (if_block7)
-          if_block7.m(target, anchor);
-        insert(target, t37, anchor);
-        if (if_block8)
-          if_block8.m(target, anchor);
-        insert(target, if_block8_anchor, anchor);
+        insert(target, if_block6_anchor, anchor);
         current = true;
         if (!mounted) {
           dispose = listen(
@@ -36515,7 +36494,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_317(ctx2);
+            if_block0 = create_if_block_304(ctx2);
             if_block0.c();
             if_block0.m(div9, null);
           }
@@ -36538,7 +36517,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_264(ctx2);
+            if_block1 = create_if_block_254(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(div11, t17);
@@ -36557,7 +36536,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_254(ctx2);
+            if_block2 = create_if_block_244(ctx2);
             if_block2.c();
             if_block2.m(tbody, null);
           }
@@ -36566,55 +36545,26 @@
           if_block2 = null;
         }
         if (
-          /*status*/
-          ctx2[17] != 8
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_235(ctx2);
-            if_block3.c();
-            if_block3.m(div12, t27);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-        if (
-          /*itemsRCR*/
-          ctx2[6]
-        ) {
-          if (if_block4) {
-            if_block4.p(ctx2, dirty);
-          } else {
-            if_block4 = create_if_block_225(ctx2);
-            if_block4.c();
-            if_block4.m(table1, null);
-          }
-        } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
-        }
+          /*role*/
+          ctx2[21] != "K.Departemen"
+        )
+          if_block3.p(ctx2, dirty);
         if (
           /*role*/
           ctx2[21] === "K.Departemen"
         )
-          if_block5.p(ctx2, dirty);
-        if (
-          /*role*/
-          ctx2[21] === "K.LPPM"
-        )
-          if_block6.p(ctx2, dirty);
+          if_block4.p(ctx2, dirty);
         if (
           /*role*/
           ctx2[21] === "reviewer"
         )
-          if_block7.p(ctx2, dirty);
+          if_block5.p(ctx2, dirty);
         if (
           /*role*/
-          ctx2[21] === "K.PusatKajian"
+          ctx2[21] === "K.PusatKajian" || /*role*/
+          ctx2[21] === "K.LPPM"
         )
-          if_block8.p(ctx2, dirty);
+          if_block6.p(ctx2, dirty);
       },
       i(local) {
         if (current)
@@ -36652,12 +36602,10 @@
         if (detaching) {
           detach(div11);
           detach(t24);
-          detach(div12);
-          detach(t34);
-          detach(t35);
-          detach(t36);
-          detach(t37);
-          detach(if_block8_anchor);
+          detach(t25);
+          detach(t26);
+          detach(t27);
+          detach(if_block6_anchor);
         }
         destroy_component(fieldview0);
         destroy_component(fieldview1);
@@ -36677,23 +36625,19 @@
         if (if_block2)
           if_block2.d();
         if (if_block3)
-          if_block3.d();
+          if_block3.d(detaching);
         if (if_block4)
-          if_block4.d();
+          if_block4.d(detaching);
         if (if_block5)
           if_block5.d(detaching);
         if (if_block6)
           if_block6.d(detaching);
-        if (if_block7)
-          if_block7.d(detaching);
-        if (if_block8)
-          if_block8.d(detaching);
         mounted = false;
         dispose();
       }
     };
   }
-  function create_if_block_317(ctx) {
+  function create_if_block_304(ctx) {
     let div1;
     let div0;
     let p0;
@@ -36745,17 +36689,17 @@
       }
     };
   }
-  function create_if_block_264(ctx) {
+  function create_if_block_254(ctx) {
     let t;
     let if_block1_anchor;
     let current;
     let if_block0 = (
       /*status*/
-      ctx[17] === 8 && create_if_block_284(ctx)
+      ctx[17] === 8 && create_if_block_274(ctx)
     );
     let if_block1 = (
       /*status*/
-      ctx[17] > 8 && create_if_block_274(ctx)
+      ctx[17] > 8 && create_if_block_264(ctx)
     );
     return {
       c() {
@@ -36787,7 +36731,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_284(ctx2);
+            if_block0 = create_if_block_274(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t.parentNode, t);
@@ -36806,7 +36750,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_274(ctx2);
+            if_block1 = create_if_block_264(ctx2);
             if_block1.c();
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
           }
@@ -36837,7 +36781,7 @@
       }
     };
   }
-  function create_if_block_284(ctx) {
+  function create_if_block_274(ctx) {
     let div0;
     let t1;
     let span3;
@@ -36867,14 +36811,14 @@
         /*$penilaianFile*/
         ctx2[20]?.name
       )
-        return create_if_block_304;
+        return create_if_block_294;
       return create_else_block8;
     }
     let current_block_type = select_block_type(ctx, [-1, -1, -1]);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*error*/
-      ctx[4].filePenilaian && create_if_block_294(ctx)
+      ctx[4].filePenilaian && create_if_block_284(ctx)
     );
     return {
       c() {
@@ -36970,7 +36914,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_294(ctx2);
+            if_block1 = create_if_block_284(ctx2);
             if_block1.c();
             if_block1.m(span3, null);
           }
@@ -37025,7 +36969,7 @@
       }
     };
   }
-  function create_if_block_304(ctx) {
+  function create_if_block_294(ctx) {
     let span;
     let t_value = (
       /*$penilaianFile*/
@@ -37055,7 +36999,7 @@
       }
     };
   }
-  function create_if_block_294(ctx) {
+  function create_if_block_284(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -37085,7 +37029,7 @@
       }
     };
   }
-  function create_if_block_274(ctx) {
+  function create_if_block_264(ctx) {
     let div;
     let p0;
     let t1;
@@ -37133,7 +37077,7 @@
       }
     };
   }
-  function create_if_block_254(ctx) {
+  function create_if_block_244(ctx) {
     let each_1_anchor;
     let each_value_11 = ensure_array_like(
       /*anggotaTim*/
@@ -37242,7 +37186,98 @@
       }
     };
   }
-  function create_if_block_235(ctx) {
+  function create_if_block_204(ctx) {
+    let div;
+    let h5;
+    let t1;
+    let t2;
+    let table;
+    let thead;
+    let t8;
+    let if_block0 = (
+      /*status*/
+      ctx[17] != 8 && create_if_block_225(ctx)
+    );
+    let if_block1 = (
+      /*itemsRCR*/
+      ctx[6] && create_if_block_217(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        h5 = element("h5");
+        h5.textContent = "Informasi Revisi";
+        t1 = space();
+        if (if_block0)
+          if_block0.c();
+        t2 = space();
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th style="width: 70%;">Catatan Revisi</th> <th style="width: 15%; text-align: center">Evaluator</th> <th style="width: 15%; text-align: center">Tanggal</th></tr>`;
+        t8 = space();
+        if (if_block1)
+          if_block1.c();
+        attr(h5, "class", "title is-5");
+        attr(table, "class", "table is-fullwidth is-striped is-hoverable is-bordered");
+        attr(div, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, h5);
+        append(div, t1);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t2);
+        append(div, table);
+        append(table, thead);
+        append(table, t8);
+        if (if_block1)
+          if_block1.m(table, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*status*/
+          ctx2[17] != 8
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_225(ctx2);
+            if_block0.c();
+            if_block0.m(div, t2);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*itemsRCR*/
+          ctx2[6]
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_217(ctx2);
+            if_block1.c();
+            if_block1.m(table, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div);
+        }
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+      }
+    };
+  }
+  function create_if_block_225(ctx) {
     let div0;
     let t1;
     let div1;
@@ -37256,7 +37291,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[4].comment && create_if_block_244(ctx)
+      ctx[4].comment && create_if_block_235(ctx)
     );
     return {
       c() {
@@ -37323,7 +37358,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_244(ctx2);
+            if_block = create_if_block_235(ctx2);
             if_block.c();
             if_block.m(div1, null);
           }
@@ -37347,7 +37382,7 @@
       }
     };
   }
-  function create_if_block_244(ctx) {
+  function create_if_block_235(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -37377,7 +37412,7 @@
       }
     };
   }
-  function create_if_block_225(ctx) {
+  function create_if_block_217(ctx) {
     let tbody;
     let each_value_10 = ensure_array_like(
       /*itemsRCR*/
@@ -37505,11 +37540,11 @@
       }
     };
   }
-  function create_if_block_204(ctx) {
+  function create_if_block_184(ctx) {
     let if_block_anchor;
     let if_block = (
       /*status*/
-      ctx[17] === 4 && create_if_block_217(ctx)
+      ctx[17] === 4 && create_if_block_194(ctx)
     );
     return {
       c() {
@@ -37530,7 +37565,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_217(ctx2);
+            if_block = create_if_block_194(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -37548,7 +37583,7 @@
       }
     };
   }
-  function create_if_block_217(ctx) {
+  function create_if_block_194(ctx) {
     let div;
     let p;
     let button;
@@ -37601,140 +37636,6 @@
         }
         mounted = false;
         dispose();
-      }
-    };
-  }
-  function create_if_block_184(ctx) {
-    let if_block_anchor;
-    let if_block = (
-      /*status*/
-      ctx[17] === 6 && create_if_block_194(ctx)
-    );
-    return {
-      c() {
-        if (if_block)
-          if_block.c();
-        if_block_anchor = empty();
-      },
-      m(target, anchor) {
-        if (if_block)
-          if_block.m(target, anchor);
-        insert(target, if_block_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*status*/
-          ctx2[17] === 6
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_194(ctx2);
-            if_block.c();
-            if_block.m(if_block_anchor.parentNode, if_block_anchor);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(if_block_anchor);
-        }
-        if (if_block)
-          if_block.d(detaching);
-      }
-    };
-  }
-  function create_if_block_194(ctx) {
-    let div;
-    let p0;
-    let button0;
-    let t1;
-    let p1;
-    let button1;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        p0 = element("p");
-        button0 = element("button");
-        button0.textContent = "Revisi";
-        t1 = space();
-        p1 = element("p");
-        button1 = element("button");
-        button1.textContent = "Proses";
-        attr(button0, "class", "button is-info is-light is-outlined");
-        toggle_class(
-          button0,
-          "is-loading",
-          /*isLoading*/
-          ctx[2]
-        );
-        attr(p0, "class", "control");
-        attr(button1, "class", "button is-info");
-        toggle_class(
-          button1,
-          "is-loading",
-          /*isLoading*/
-          ctx[2]
-        );
-        attr(p1, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, p0);
-        append(p0, button0);
-        append(div, t1);
-        append(div, p1);
-        append(p1, button1);
-        if (!mounted) {
-          dispose = [
-            listen(
-              button0,
-              "click",
-              /*handleRevisi*/
-              ctx[22]
-            ),
-            listen(
-              button1,
-              "click",
-              /*handlePass*/
-              ctx[24]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*isLoading*/
-        4) {
-          toggle_class(
-            button0,
-            "is-loading",
-            /*isLoading*/
-            ctx2[2]
-          );
-        }
-        if (dirty[0] & /*isLoading*/
-        4) {
-          toggle_class(
-            button1,
-            "is-loading",
-            /*isLoading*/
-            ctx2[2]
-          );
-        }
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(div);
-        }
-        mounted = false;
-        run_all(dispose);
       }
     };
   }
@@ -37802,7 +37703,7 @@
         div = element("div");
         p = element("p");
         button = element("button");
-        button.textContent = "ProsesReviewer";
+        button.textContent = "Proses";
         attr(button, "class", "button is-info");
         toggle_class(
           button,
@@ -37850,8 +37751,19 @@
   function create_if_block_144(ctx) {
     let if_block_anchor;
     let if_block = (
-      /*status*/
-      ctx[17] === 10 && create_if_block_154(ctx)
+      /*jenisSkema*/
+      ((ctx[9] === "Riset Eksternal" || /*jenisSkema*/
+      ctx[9] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
+      ctx[17] === 6 || /*jenisSkema*/
+      (ctx[9] === "Riset Mandiri" || /*jenisSkema*/
+      ctx[9] === "Pengabdian Masyarakat Mandiri") && /*status*/
+      ctx[17] === 6 || /*jenisSkema*/
+      (ctx[9] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+      ctx[9] === "Riset Terapan" || /*jenisSkema*/
+      ctx[9] === "Riset Kerjasama" || /*jenisSkema*/
+      ctx[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
+      ctx[17] === 8) && create_if_block_154(ctx)
     );
     return {
       c() {
@@ -37866,8 +37778,19 @@
       },
       p(ctx2, dirty) {
         if (
-          /*status*/
-          ctx2[17] === 10
+          /*jenisSkema*/
+          (ctx2[9] === "Riset Eksternal" || /*jenisSkema*/
+          ctx2[9] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
+          ctx2[17] === 6 || /*jenisSkema*/
+          (ctx2[9] === "Riset Mandiri" || /*jenisSkema*/
+          ctx2[9] === "Pengabdian Masyarakat Mandiri") && /*status*/
+          ctx2[17] === 6 || /*jenisSkema*/
+          (ctx2[9] === "Riset Kelompok Keahlian" || /*jenisSkema*/
+          ctx2[9] === "Riset Terapan" || /*jenisSkema*/
+          ctx2[9] === "Riset Kerjasama" || /*jenisSkema*/
+          ctx2[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
+          ctx2[9] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
+          ctx2[17] === 8
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
@@ -38157,7 +38080,7 @@
       }
     };
   }
-  function create_if_block_318(ctx) {
+  function create_if_block_317(ctx) {
     let hr0;
     let t0;
     let h50;
@@ -38425,7 +38348,7 @@
     );
     let if_block8 = (
       /*user*/
-      ctx[48].Phki.length > 0 && create_if_block_414(ctx)
+      ctx[48].Phki.length > 0 && create_if_block_415(ctx)
     );
     return {
       c() {
@@ -38947,7 +38870,7 @@
           if (if_block8) {
             if_block8.p(ctx2, dirty);
           } else {
-            if_block8 = create_if_block_414(ctx2);
+            if_block8 = create_if_block_415(ctx2);
             if_block8.c();
             if_block8.m(tbody8, null);
           }
@@ -40358,7 +40281,7 @@
       }
     };
   }
-  function create_if_block_414(ctx) {
+  function create_if_block_415(ctx) {
     let each_1_anchor;
     let each_value_1 = ensure_array_like(
       /*user*/
@@ -40556,7 +40479,7 @@
       ctx[3][
         /*index*/
         ctx[50]
-      ].profileVisible && create_if_block_318(ctx)
+      ].profileVisible && create_if_block_317(ctx)
     );
     return {
       c() {
@@ -40620,7 +40543,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_318(ctx);
+            if_block = create_if_block_317(ctx);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(div, t5);
@@ -41387,7 +41310,7 @@
   };
   var detailapproval_default = Detailapproval;
 
-  // src/pages/dosen/detailproposal.svelte
+  // src/pages/dosen/detailppm.svelte
   init_define_process();
   var { Boolean: Boolean_1 } = globals;
   function get_each_context11(ctx, list, i) {
@@ -43360,7 +43283,7 @@
       }
     };
   }
-  function create_if_block_415(ctx) {
+  function create_if_block_416(ctx) {
     let option0;
     let option1;
     let option2;
@@ -43450,7 +43373,7 @@
         /*jenisKegiatan*/
         ctx2[7] === "Penelitian"
       )
-        return create_if_block_415;
+        return create_if_block_416;
       return create_else_block_52;
     }
     let current_block_type = select_block_type_1(ctx, [-1, -1, -1, -1]);
@@ -44591,7 +44514,7 @@
         /*$rabFile*/
         ctx2[30]?.name
       )
-        return create_if_block_319;
+        return create_if_block_318;
       return create_else_block_23;
     }
     let current_block_type = select_block_type_5(ctx, [-1, -1, -1, -1]);
@@ -44835,7 +44758,7 @@
       }
     };
   }
-  function create_if_block_319(ctx) {
+  function create_if_block_318(ctx) {
     let span;
     let t_value = (
       /*$rabFile*/
@@ -46535,7 +46458,7 @@
       }
     };
   }
-  function create_if_block_320(ctx) {
+  function create_if_block_319(ctx) {
     let hr0;
     let t0;
     let h50;
@@ -46803,7 +46726,7 @@
     );
     let if_block8 = (
       /*user*/
-      ctx[73].Phki.length > 0 && create_if_block_416(ctx)
+      ctx[73].Phki.length > 0 && create_if_block_417(ctx)
     );
     return {
       c() {
@@ -47325,7 +47248,7 @@
           if (if_block8) {
             if_block8.p(ctx2, dirty);
           } else {
-            if_block8 = create_if_block_416(ctx2);
+            if_block8 = create_if_block_417(ctx2);
             if_block8.c();
             if_block8.m(tbody8, null);
           }
@@ -48736,7 +48659,7 @@
       }
     };
   }
-  function create_if_block_416(ctx) {
+  function create_if_block_417(ctx) {
     let each_1_anchor;
     let each_value_1 = ensure_array_like(
       /*user*/
@@ -48934,7 +48857,7 @@
       ctx[0][
         /*index*/
         ctx[75]
-      ].profileVisible && create_if_block_320(ctx)
+      ].profileVisible && create_if_block_319(ctx)
     );
     return {
       c() {
@@ -48998,7 +48921,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_320(ctx);
+            if_block = create_if_block_319(ctx);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(div, t5);
@@ -49350,9 +49273,28 @@
   function isObjectEmpty3(objectName) {
     return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object;
   }
-  function isEdit2(code) {
-    const edit2 = [0, 1, 3, 5, 7];
-    return edit2.some((x) => x === code);
+  function isEdit2(code, jenisSkema) {
+    let editStatus;
+    switch (jenisSkema) {
+      case "Riset Kelompok Keahlian":
+      case "Riset Terapan":
+      case "Riset Kerjasama":
+      case "Pengabdian Masyarakat Desa Binaan":
+      case "Pengabdian Masyarakat UMKM Binaan":
+        editStatus = [0, 1, 3, 5, 7, 11];
+        break;
+      case "Riset Eksternal":
+      case "Pengabdian Masyarakat Hibah Eksternal":
+        editStatus = [0, 1, 3, 5];
+        break;
+      case "Riset Mandiri":
+      case "Pengabdian Masyarakat Mandiri":
+        editStatus = [0, 1, 3, 5, 9];
+        break;
+      default:
+        editStatus = [];
+    }
+    return editStatus.includes(code);
   }
   function formatRupiah3(angka, prefix) {
     var number_string = angka.replace(/[^,\d]/g, "").toString(), split = number_string.split(","), sisa = split[0].length % 3, rupiah = split[0].substr(0, sisa), ribuan = split[0].substr(sisa).match(/\d{3}/gi);
@@ -49402,12 +49344,12 @@
       $$invalidate(27, isLoading = false);
       const response = await fetch($apiURL + "/ppm/" + id, { method: "GET", headers });
       const result = await response.json();
-      $$invalidate(3, view = !isEdit2(result.status));
       if (response.status === 401) {
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
           $$invalidate(4, data2 = result);
+          $$invalidate(3, view = !isEdit2(data2.status, data2.jenis_skema));
           ppmId = data2.id;
           $$invalidate(6, jenisProposal = data2.jenis_proposal);
           $$invalidate(7, jenisKegiatan = data2.jenis_kegiatan);
@@ -50106,13 +50048,13 @@
       modalerror_show_binding
     ];
   }
-  var Detailproposal2 = class extends SvelteComponent {
+  var Detailppm2 = class extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance28, create_fragment35, safe_not_equal, { params: 44 }, null, [-1, -1, -1, -1]);
     }
   };
-  var detailproposal_default2 = Detailproposal2;
+  var detailppm_default2 = Detailppm2;
 
   // src/pages/dosen/home.svelte
   init_define_process();
@@ -53338,7 +53280,7 @@
     let current;
     let if_block = (
       /*biodataAnggota*/
-      ctx[14].length > 0 && create_if_block_321(ctx)
+      ctx[14].length > 0 && create_if_block_320(ctx)
     );
     return {
       c() {
@@ -53370,7 +53312,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_321(ctx2);
+            if_block = create_if_block_320(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -53404,7 +53346,7 @@
       }
     };
   }
-  function create_if_block_321(ctx) {
+  function create_if_block_320(ctx) {
     let each_1_anchor;
     let current;
     let each_value = ensure_array_like(
@@ -53484,7 +53426,7 @@
       }
     };
   }
-  function create_if_block_417(ctx) {
+  function create_if_block_418(ctx) {
     let hr0;
     let t0;
     let h50;
@@ -55872,7 +55814,7 @@
       ctx[14][
         /*index*/
         ctx[59]
-      ].profileVisible && create_if_block_417(ctx)
+      ].profileVisible && create_if_block_418(ctx)
     );
     return {
       c() {
@@ -55936,7 +55878,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block_417(ctx);
+            if_block = create_if_block_418(ctx);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(div, t5);
@@ -57337,7 +57279,7 @@
         current = true;
       },
       p(ctx2, dirty) {
-        if (dirty & /*items, filterJudul, jenisKegiatan, detail*/
+        if (dirty & /*items, filterJudul, filterJenisKegiatan, detail*/
         14) {
           each_value = ensure_array_like(
             /*items*/
@@ -57505,34 +57447,34 @@
         }
       },
       p(ctx2, dirty) {
-        if ((!current || dirty & /*items, filterJudul, jenisKegiatan*/
+        if ((!current || dirty & /*items, filterJudul, filterJenisKegiatan*/
         14) && t0_value !== (t0_value = /*item*/
         ctx2[12].judul + ""))
           set_data(t0, t0_value);
-        if ((!current || dirty & /*items, filterJudul, jenisKegiatan*/
+        if ((!current || dirty & /*items, filterJudul, filterJenisKegiatan*/
         14) && t2_value !== (t2_value = /*item*/
         ctx2[12].jenis_kegiatan + ""))
           set_data(t2, t2_value);
-        if ((!current || dirty & /*items, filterJudul, jenisKegiatan*/
+        if ((!current || dirty & /*items, filterJudul, filterJenisKegiatan*/
         14) && t4_value !== (t4_value = /*item*/
         ctx2[12].jenis_skema + ""))
           set_data(t4, t4_value);
         const status_changes = {};
-        if (dirty & /*items, filterJudul, jenisKegiatan*/
+        if (dirty & /*items, filterJudul, filterJenisKegiatan*/
         14)
           status_changes.code = /*item*/
           ctx2[12].status;
-        if (dirty & /*items, filterJudul, jenisKegiatan*/
+        if (dirty & /*items, filterJudul, filterJenisKegiatan*/
         14)
           status_changes.jenisSkema = /*item*/
           ctx2[12].jenis_skema;
         status.$set(status_changes);
-        if (!current || dirty & /*items, filterJudul, jenisKegiatan*/
+        if (!current || dirty & /*items, filterJudul, filterJenisKegiatan*/
         14 && td3_pid_value !== (td3_pid_value = /*item*/
         ctx2[12].id)) {
           attr(td3, "pid", td3_pid_value);
         }
-        if (!current || dirty & /*items, filterJudul, jenisKegiatan*/
+        if (!current || dirty & /*items, filterJudul, filterJenisKegiatan*/
         14 && button_pid_value !== (button_pid_value = /*item*/
         ctx2[12].id)) {
           attr(button, "pid", button_pid_value);
@@ -57665,7 +57607,7 @@
         option2.__value = "Pengabdian Masyarakat";
         set_input_value(option2, option2.__value);
         if (
-          /*jenisKegiatan*/
+          /*filterJenisKegiatan*/
           ctx[3] === void 0
         )
           add_render_callback(() => (
@@ -57709,7 +57651,7 @@
         append(select, option2);
         select_option(
           select,
-          /*jenisKegiatan*/
+          /*filterJenisKegiatan*/
           ctx[3],
           true
         );
@@ -57760,11 +57702,11 @@
         }
       },
       p(ctx2, dirty) {
-        if (dirty & /*jenisKegiatan*/
+        if (dirty & /*filterJenisKegiatan*/
         8) {
           select_option(
             select,
-            /*jenisKegiatan*/
+            /*filterJenisKegiatan*/
             ctx2[3]
           );
         }
@@ -57894,7 +57836,7 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, items, filterJudul, jenisKegiatan*/
+        if (dirty & /*$$scope, items, filterJudul, filterJenisKegiatan*/
         32782) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -57936,7 +57878,7 @@
   }
   function detail(ev) {
     let propId = ev.target.getAttribute("pid");
-    location.href = "/dosen/detailproposal/" + propId;
+    location.href = "/dosen/detailppm/" + propId;
   }
   function daysUntil(targetDate) {
     const today = /* @__PURE__ */ new Date();
@@ -57958,7 +57900,7 @@
     let showModalError = false;
     let items;
     let filterJudul = "";
-    let jenisKegiatan = "";
+    let filterJenisKegiatan = "";
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
@@ -57993,14 +57935,14 @@
       }
     }
     function select_change_handler() {
-      jenisKegiatan = select_value(this);
-      $$invalidate(3, jenisKegiatan);
+      filterJenisKegiatan = select_value(this);
+      $$invalidate(3, filterJenisKegiatan);
     }
     function input_input_handler() {
       filterJudul = this.value;
       $$invalidate(2, filterJudul);
     }
-    const func = (item) => item.judul.toLowerCase().includes(filterJudul.toLowerCase()) && (jenisKegiatan === "" || item.jenis_kegiatan === jenisKegiatan);
+    const func = (item) => item.judul.toLowerCase().includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan);
     function modalroute_show_binding(value) {
       showModalError = value;
       $$invalidate(0, showModalError);
@@ -58009,7 +57951,7 @@
       showModalError,
       items,
       filterJudul,
-      jenisKegiatan,
+      filterJenisKegiatan,
       HandleAddProposal,
       select_change_handler,
       input_input_handler,
@@ -63819,7 +63761,7 @@
       }
     };
   }
-  function create_if_block_418(ctx) {
+  function create_if_block_419(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -63857,7 +63799,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tahunMasukS1 && create_if_block_418(ctx)
+      ctx[1].tahunMasukS1 && create_if_block_419(ctx)
     );
     return {
       c() {
@@ -63907,7 +63849,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_418(ctx2);
+            if_block = create_if_block_419(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -69556,7 +69498,7 @@
       }
     };
   }
-  function create_if_block_419(ctx) {
+  function create_if_block_420(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -69594,7 +69536,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tahunHKI && create_if_block_419(ctx)
+      ctx[1].tahunHKI && create_if_block_420(ctx)
     );
     return {
       c() {
@@ -69644,7 +69586,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_419(ctx2);
+            if_block = create_if_block_420(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -69666,7 +69608,7 @@
       }
     };
   }
-  function create_if_block_328(ctx) {
+  function create_if_block_321(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -69704,7 +69646,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].JudulHKI && create_if_block_328(ctx)
+      ctx[1].JudulHKI && create_if_block_321(ctx)
     );
     return {
       c() {
@@ -69754,7 +69696,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_328(ctx2);
+            if_block = create_if_block_321(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
