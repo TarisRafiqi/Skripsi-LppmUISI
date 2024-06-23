@@ -1770,28 +1770,28 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/ppmmanagement.esbuild-svelte-fake-css */
-.judul.svelte-1obq353 {
+.judul.svelte-1x235cl {
   text-align: justify;
 }
-.kegiatan.svelte-1obq353,
-.skema.svelte-1obq353,
-.status.svelte-1obq353,
-.review.svelte-1obq353 {
+.kegiatan.svelte-1x235cl,
+.skema.svelte-1x235cl,
+.status.svelte-1x235cl,
+.review.svelte-1x235cl {
   text-align: center;
 }
-.review.svelte-1obq353 {
+.review.svelte-1x235cl {
   cursor: pointer;
 }
-.parent.svelte-1obq353 {
-  max-height: 400px;
+.parent.svelte-1x235cl {
+  max-height: 600px;
   overflow: hidden;
 }
-.child.svelte-1obq353 {
+.child.svelte-1x235cl {
   max-height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.box.svelte-1obq353 {
+.box.svelte-1x235cl {
   display: flex;
   flex-direction: column;
 }

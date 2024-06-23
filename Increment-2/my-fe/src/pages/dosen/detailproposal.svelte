@@ -452,7 +452,7 @@
    }
 
    function isEdit(code) {
-      const edit = [0, 1, 3, 5, 7, 9];
+      const edit = [0, 1, 3, 5, 7];
       return edit.some((x) => x === code);
    }
 

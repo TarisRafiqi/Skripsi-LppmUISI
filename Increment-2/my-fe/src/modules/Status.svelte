@@ -93,16 +93,14 @@
    {/if}
 {/if}
 
-<!-- ========================================
-              Catatan Warna Tag
-=============================================
+<!-- ===== Catatan Warna Tag =====
 Draft Proposal    = "tag is-warning is-light"
 Revisi            = "tag is-danger is-light"
 Review            = "tag is-warning"
 Proposal Ditolak  = "tag is-danger"
 PPM Berlangsung   = "tag is-info"
 PPM Selesai       = "tag is-success"
-========================================= -->
+-->
 
 <style>
    /* .is-lightDark {

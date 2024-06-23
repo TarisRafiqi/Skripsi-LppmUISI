@@ -8,6 +8,8 @@
 
    let profile;
    let items;
+   let filterUsername = "";
+   let filterRole = "";
    const accessToken = localStorage.getItem("token");
    const roleFromToken = localStorage.getItem("role");
 
@@ -29,6 +31,7 @@
       } else {
          if (response.status === 200) {
             items = result.dbData;
+            console.log(items);
          }
       }
    }
@@ -153,13 +156,30 @@
                </button>
             </div>
 
+            <div class="column is-narrow">
+               <div class="field">
+                  <div class="select is-fullwidth">
+                     <select bind:value={filterRole}>
+                        <option value="" selected disabled hidden>Role</option>
+                        <option value="9">Admin</option>
+                        <option value="0">Dosen</option>
+                        <option value="10">Reviewer</option>
+                        <option value="11">K. Departemen</option>
+                        <option value="12">K. LPPM</option>
+                        <option value="13">K. Pusat Kajian</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+
             <div class="column">
                <div class="field">
                   <div class="control has-icons-left">
                      <input
                         class="input"
                         type="text"
-                        placeholder="Search judul"
+                        placeholder="Search username"
+                        bind:value={filterUsername}
                      />
                      <span class="icon is-left">
                         <Icon id="searchIcon" src={searchIcon} />
@@ -182,7 +202,10 @@
                   </thead>
 
                   <tbody>
-                     {#each items as item, idx}
+                     <!-- {#each items as item, idx} -->
+                     {#each items.filter((item) => item.username
+                              .toLowerCase()
+                              .includes(filterUsername.toLowerCase()) && (filterRole === "" || item.role === Number(filterRole))) as item, idx}
                         <tr>
                            <td>
                               <a href={"/admin/profile/" + item.id}>

@@ -16,8 +16,8 @@
    const id = localStorage.id;
    let showModalError = false;
    let items;
-   let filterText = "";
-   let jenisKegiatan = "";
+   let filterJudul = "";
+   let filterJenisKegiatan = "";
 
    onMount(async () => {
       const accessToken = localStorage.getItem("token");
@@ -108,7 +108,7 @@
       <div class="column is-narrow">
          <div class="field">
             <div class="select is-fullwidth">
-               <select bind:value={jenisKegiatan}>
+               <select bind:value={filterJenisKegiatan}>
                   <option value="" selected disabled hidden
                      >Jenis Kegiatan</option
                   >
@@ -128,7 +128,7 @@
                   class="input"
                   type="text"
                   placeholder="Search judul"
-                  bind:value={filterText}
+                  bind:value={filterJudul}
                />
                <span class="icon is-left">
                   <Icon id="searchIcon" src={searchIcon} />
@@ -157,13 +157,9 @@
 
             {#if items}
                <tbody>
-                  <!-- {#each items as item} -->
-                  <!-- {#each items.filter((item) => item.judul
-                        .toLowerCase()
-                        .includes(filterText.toLowerCase())) as item} -->
                   {#each items.filter((item) => item.judul
                            .toLowerCase()
-                           .includes(filterText.toLowerCase()) && (jenisKegiatan === "" || item.jenis_kegiatan === jenisKegiatan)) as item}
+                           .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan)) as item}
                      <tr>
                         <td class="judul"><p>{item.judul}</p></td>
                         <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
