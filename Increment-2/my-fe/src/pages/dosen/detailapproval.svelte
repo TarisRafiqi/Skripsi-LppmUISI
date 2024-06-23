@@ -732,13 +732,13 @@
          {/if}
 
          {#if role === "reviewer"}
-            {#if status === 8}
+            {#if (data.jenis_skema === "Riset Kelompok Keahlian" || data.jenis_skema === "Riset Terapan" || data.jenis_skema === "Riset Kerjasama" || data.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || data.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && data.status === 6}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
                      <button
                         class="button is-info"
                         on:click={handlePassReviewer}
-                        class:is-loading={isLoading}>Proses</button
+                        class:is-loading={isLoading}>ProsesReviewer</button
                      >
                   </p>
                </div>

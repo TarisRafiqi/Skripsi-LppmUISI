@@ -16,26 +16,8 @@
    const id = localStorage.id;
    let showModalError = false;
    let items;
-
-   function daysUntil(targetDate) {
-      const today = new Date();
-      const target = new Date(targetDate);
-      const difference = target.getTime() - today.getTime();
-      const positiveDifference = Math.abs(difference);
-      // const days = Math.ceil(difference / (1000 * 3600 * 24));
-      const days = Math.floor(positiveDifference / (1000 * 3600 * 24));
-
-      // Convert the difference from milliseconds to days, weeks, and months
-      const weeks = Math.floor(days / 7);
-      const months = Math.floor(days / 30);
-      const remainingWeeks = weeks % 4;
-      const remainingDays = days % 30;
-      return {
-         months,
-         remainingWeeks,
-         remainingDays,
-      };
-   }
+   let filterText = "";
+   let jenisKegiatan = "";
 
    onMount(async () => {
       const accessToken = localStorage.getItem("token");
@@ -86,6 +68,26 @@
          location.href = "/dosen/pendaftaranproposal";
       }
    }
+
+   function daysUntil(targetDate) {
+      const today = new Date();
+      const target = new Date(targetDate);
+      const difference = target.getTime() - today.getTime();
+      const positiveDifference = Math.abs(difference);
+      // const days = Math.ceil(difference / (1000 * 3600 * 24));
+      const days = Math.floor(positiveDifference / (1000 * 3600 * 24));
+
+      // Convert the difference from milliseconds to days, weeks, and months
+      const weeks = Math.floor(days / 7);
+      const months = Math.floor(days / 30);
+      const remainingWeeks = weeks % 4;
+      const remainingDays = days % 30;
+      return {
+         months,
+         remainingWeeks,
+         remainingDays,
+      };
+   }
 </script>
 
 <Article>
@@ -103,10 +105,31 @@
          </button>
       </div>
 
+      <div class="column is-narrow">
+         <div class="field">
+            <div class="select is-fullwidth">
+               <select bind:value={jenisKegiatan}>
+                  <option value="" selected disabled hidden
+                     >Jenis Kegiatan</option
+                  >
+                  <option value="Penelitian">Penelitian</option>
+                  <option value="Pengabdian Masyarakat"
+                     >Pengabdian Masyarakat</option
+                  >
+               </select>
+            </div>
+         </div>
+      </div>
+
       <div class="column">
          <div class="field">
             <div class="control has-icons-left">
-               <input class="input" type="text" placeholder="Search judul" />
+               <input
+                  class="input"
+                  type="text"
+                  placeholder="Search judul"
+                  bind:value={filterText}
+               />
                <span class="icon is-left">
                   <Icon id="searchIcon" src={searchIcon} />
                </span>
@@ -134,7 +157,13 @@
 
             {#if items}
                <tbody>
-                  {#each items as item}
+                  <!-- {#each items as item} -->
+                  <!-- {#each items.filter((item) => item.judul
+                        .toLowerCase()
+                        .includes(filterText.toLowerCase())) as item} -->
+                  {#each items.filter((item) => item.judul
+                           .toLowerCase()
+                           .includes(filterText.toLowerCase()) && (jenisKegiatan === "" || item.jenis_kegiatan === jenisKegiatan)) as item}
                      <tr>
                         <td class="judul"><p>{item.judul}</p></td>
                         <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
