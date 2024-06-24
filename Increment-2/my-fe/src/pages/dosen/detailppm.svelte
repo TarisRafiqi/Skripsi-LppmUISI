@@ -1535,12 +1535,22 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >File</th
+                                 >Download File</th
                               >
                               <th class="is-narrow">Tanda tangan</th>
                            </tr>
                         </thead>
                         <tbody>
+                           <tr>
+                              <td>SK Pendanaan</td>
+                              <td
+                                 ><button class="button is-link button is-small"
+                                    >Download</button
+                                 ></td
+                              >
+                              <td></td>
+                           </tr>
+                           <!-- ====================================================== -->
                            <tr>
                               <td>Surat Kontrak Penelitian</td>
                               <td
@@ -1552,16 +1562,7 @@
                                  ><input type="checkbox" /></td
                               >
                            </tr>
-                           <tr>
-                              <td>SK Pendanaan</td>
-                              <td
-                                 ><button class="button is-link button is-small"
-                                    >Download</button
-                                 ></td
-                              >
-                              <td></td>
-                           </tr>
-
+                           <!-- ====================================================== -->
                            <tr>
                               <td>Surat Tugas</td>
                               <td
@@ -1580,7 +1581,7 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Download Surat Tugas
+                     File Surat Tugas
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
@@ -1599,14 +1600,14 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >File</th
+                                 >Download File</th
                               >
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
                               <td>Surat Tugas</td>
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
@@ -1621,33 +1622,54 @@
             <!-- ========================================== -->
             <!--               Dana Penelitian              -->
             <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Dana Penelitian
-                  <span
-                     class="toggle-button"
-                     on:click={() =>
-                        (danaPenelitianVisible = !danaPenelitianVisible)}
-                  >
-                     {danaPenelitianVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Dana Penelitian
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (danaPenelitianVisible = !danaPenelitianVisible)}
+                     >
+                        {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if danaPenelitianVisible}
-                  <hr />
-                  <Field name="Status Dana Penelitian">
-                     <span class="tag is-info">30% dana dicairkan</span></Field
-                  >
-                  <div class="notification is-warning is-light">
-                     <p class="subtitle is-6">
-                        Untuk pengambilan dana dan penjelasan lebih lanjut
-                        terkait dana penelitian, hubungi LPPM UISI.
-                     </p>
-                  </div>
-               {/if}
-            </div>
+                  {#if danaPenelitianVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Status Dana Penelitian</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 ><span class="tag is-info"
+                                    >30% dana dicairkan</span
+                                 ></th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td colspan="2"
+                                 ><div class="notification is-warning is-light">
+                                    <p class="subtitle is-6">
+                                       Untuk pengambilan dana dan penjelasan
+                                       lebih lanjut terkait dana penelitian,
+                                       hubungi LPPM UISI.
+                                    </p>
+                                 </div></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
 
             <!-- ========================================== -->
             <!--             Hasil Penelitian               -->
@@ -1747,8 +1769,29 @@
 
                {#if presentasiVisible}
                   <hr />
-                  <input type="checkbox" />
-                  Saya sudah presentasi <b>Hasil Penelitian</b>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama Kegiatan</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Checkbox</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td
+                              >Mempresentasikan hasil penelitian di seminar
+                              penelitian bersama UISI di bulan Desember</td
+                           >
+                           <td style="text-align: center"
+                              ><input type="checkbox" /></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
                {/if}
             </div>
 
@@ -1779,14 +1822,14 @@
                         <tr>
                            <th style="width: 70%;">Nama</th>
                            <th class="is-narrow" style="text-align: center"
-                              >File</th
+                              >Download File</th
                            >
                         </tr>
                      </thead>
                      <tbody>
                         <tr>
                            <td>SK Penelitian</td>
-                           <td
+                           <td style="text-align: center"
                               ><button class="button is-link button is-small"
                                  >Download</button
                               ></td

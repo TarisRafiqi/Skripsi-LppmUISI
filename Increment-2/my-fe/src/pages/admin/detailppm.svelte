@@ -1441,13 +1441,13 @@
                   <p class="control">
                      {#if isFormFilled}
                         <button
-                           class="button is-success"
+                           class="button is-info"
                            class:is-loading={isLoading}
                            on:click={handleSubmitEvaluator}
                            >Submit Evaluator</button
                         >
                      {:else}
-                        <button class="button is-success" disabled>
+                        <button class="button is-info" disabled>
                            Submit Evaluator
                         </button>
                      {/if}
@@ -1484,21 +1484,19 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload</th
+                                 >Upload File</th
                               >
                               <th class="is-narrow" style="text-align: center"
-                                 >File</th
+                                 >Download File</th
                               >
                               <th class="is-narrow">Tanda tangan</th>
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
-                              <td>Surat Kontrak Penelitian</td>
+                              <td>SK Pendanaan</td>
                               <td
-                                 ><div
-                                    class="file has-name is-success is-small"
-                                 >
+                                 ><div class="file has-name is-small">
                                     <label class="file-label" for="filePpm">
                                        <input
                                           class="file-input"
@@ -1522,19 +1520,18 @@
                                     </label>
                                  </div></td
                               >
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
                               >
-                              <td style="text-align: center"
-                                 ><input type="checkbox" /></td
-                              >
+                              <td></td>
                            </tr>
+                           <!-- ====================================================== -->
                            <tr>
-                              <td>SK Pendanaan</td>
+                              <td>Surat Kontrak Penelitian</td>
                               <td>
-                                 <div class="file has-name is-success is-small">
+                                 <div class="file has-name is-small">
                                     <label class="file-label" for="filePpm">
                                        <input
                                           class="file-input"
@@ -1558,20 +1555,20 @@
                                     </label>
                                  </div>
                               </td>
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
                               >
-                              <td></td>
+                              <td style="text-align: center"
+                                 ><input type="checkbox" /></td
+                              >
                            </tr>
-
+                           <!-- ====================================================== -->
                            <tr>
                               <td>Surat Tugas</td>
                               <td
-                                 ><div
-                                    class="file has-name is-success is-small"
-                                 >
+                                 ><div class="file has-name is-small">
                                     <label class="file-label" for="filePpm">
                                        <input
                                           class="file-input"
@@ -1595,7 +1592,7 @@
                                     </label>
                                  </div></td
                               >
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
@@ -1608,7 +1605,7 @@
                      <div class="field is-grouped is-grouped-right">
                         <p class="control">
                            <button
-                              class="button is-success"
+                              class="button is-info"
                               class:is-loading={isLoading}>Submit File</button
                            >
                         </p>
@@ -1620,7 +1617,7 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Download Surat Tugas
+                     File Surat Tugas
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
@@ -1639,10 +1636,10 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload</th
+                                 >Upload File</th
                               >
                               <th class="is-narrow" style="text-align: center"
-                                 >File</th
+                                 >Download File</th
                               >
                            </tr>
                         </thead>
@@ -1650,9 +1647,7 @@
                            <tr>
                               <td>Surat Tugas</td>
                               <td
-                                 ><div
-                                    class="file has-name is-success is-small"
-                                 >
+                                 ><div class="file has-name is-small">
                                     <label class="file-label" for="filePpm">
                                        <input
                                           class="file-input"
@@ -1676,7 +1671,7 @@
                                     </label>
                                  </div></td
                               >
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
@@ -1688,7 +1683,7 @@
                      <div class="field is-grouped is-grouped-right">
                         <p class="control">
                            <button
-                              class="button is-success"
+                              class="button is-info"
                               class:is-loading={isLoading}>Submit File</button
                            >
                         </p>
@@ -1700,33 +1695,74 @@
             <!-- ========================================== -->
             <!--               Dana Penelitian              -->
             <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Dana Penelitian
-                  <span
-                     class="toggle-button"
-                     on:click={() =>
-                        (danaPenelitianVisible = !danaPenelitianVisible)}
-                  >
-                     {danaPenelitianVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Dana Penelitian
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (danaPenelitianVisible = !danaPenelitianVisible)}
+                     >
+                        {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if danaPenelitianVisible}
-                  <hr />
-                  <Field name="Status Dana Penelitian">
-                     <span class="tag is-info">30% dana dicairkan</span></Field
-                  >
-                  <div class="notification is-warning is-light">
-                     <p class="subtitle is-6">
-                        Untuk pengambilan dana dan penjelasan lebih lanjut
-                        terkait dana penelitian, hubungi LPPM UISI.
-                     </p>
-                  </div>
-               {/if}
-            </div>
+                  {#if danaPenelitianVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Status Dana Penelitian</th
+                              >
+                              <th class="is-narrow">
+                                 <div class="select">
+                                    <select>
+                                       <option value="" selected disabled hidden
+                                          >Pilih status pendanaan</option
+                                       >
+                                       <option value=""
+                                          >30% dana dicairkan</option
+                                       >
+                                       <option value=""
+                                          >100% dana dicairkan</option
+                                       >
+                                    </select>
+                                 </div>
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td colspan="2"
+                                 ><div class="notification is-warning is-light">
+                                    <p class="subtitle is-6">
+                                       Untuk pengambilan dana dan penjelasan
+                                       lebih lanjut terkait dana penelitian,
+                                       hubungi LPPM UISI.
+                                    </p>
+                                 </div></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              class:is-loading={isLoading}
+                              >Submit Status Pendanaan</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               </div>
+            {/if}
 
             <!-- ========================================== -->
             <!--             Hasil Penelitian               -->
@@ -1826,13 +1862,34 @@
 
                {#if presentasiVisible}
                   <hr />
-                  <input type="checkbox" />
-                  Saya sudah presentasi <b>Hasil Penelitian</b>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama Kegiatan</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Checkbox</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td
+                              >Mempresentasikan hasil penelitian di seminar
+                              penelitian bersama UISI di bulan Desember</td
+                           >
+                           <td style="text-align: center"
+                              ><input type="checkbox" /></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
                {/if}
             </div>
 
             <!-- ========================================== -->
-            <!--             Download SK Penelitian         -->
+            <!--             File SK Penelitian             -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -1858,14 +1915,41 @@
                         <tr>
                            <th style="width: 70%;">Nama</th>
                            <th class="is-narrow" style="text-align: center"
-                              >File</th
+                              >Upload File</th
+                           >
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
                            >
                         </tr>
                      </thead>
                      <tbody>
                         <tr>
                            <td>SK Penelitian</td>
-                           <td
+                           <td>
+                              <div class="file has-name is-small">
+                                 <label class="file-label" for="filePpm">
+                                    <input
+                                       class="file-input"
+                                       type="file"
+                                       name="resume"
+                                    />
+                                    <span class="file-cta">
+                                       <span class="file-icon">
+                                          <Icon
+                                             id="download"
+                                             src={downloadIcon}
+                                          />
+                                       </span>
+                                       <span class="file-label">
+                                          Choose a file</span
+                                       >
+                                    </span>
+                                    <span class="file-name">No file chosen</span
+                                    >
+                                 </label>
+                              </div>
+                           </td>
+                           <td style="text-align: center"
                               ><button class="button is-link button is-small"
                                  >Download</button
                               ></td
@@ -1873,6 +1957,15 @@
                         </tr>
                      </tbody>
                   </table>
+
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           class:is-loading={isLoading}>Submit File</button
+                        >
+                     </p>
+                  </div>
                {/if}
             </div>
          {/if}
