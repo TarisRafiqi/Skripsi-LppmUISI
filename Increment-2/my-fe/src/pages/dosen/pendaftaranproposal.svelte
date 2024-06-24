@@ -27,7 +27,6 @@
    let showModalErrorProposal = false;
    let warningFormText = false;
    let isLoading = false;
-   let vmataKuliah;
    let myAbstract;
    let fileRab;
    let filePpm;
@@ -52,7 +51,6 @@
    ];
 
    let biodataAnggota = [];
-   let mataKuliah = [];
    let items = [];
    let error = {};
 

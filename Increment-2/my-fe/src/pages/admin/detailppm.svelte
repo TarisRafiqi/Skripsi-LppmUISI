@@ -18,12 +18,23 @@
 
    export let params;
    const id = params["1"];
+   const skemaInternal = [
+      "Riset Kelompok Keahlian",
+      "Riset Terapan",
+      "Riset Kerjasama",
+      "Pengabdian Masyarakat Desa Binaan",
+      "Pengabdian Masyarakat UMKM Binaan",
+   ];
+   const skemaEksternal = [
+      "Riset Eksternal",
+      "Pengabdian Masyarakat Hibah Eksternal",
+   ];
+   const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+
    let error = {};
    let biodataAnggota = [];
-
    const idEvaluator = localStorage.getItem("id");
-   let dataRPS1, dataRPS2, dataRPS3;
-   let data, dataGP, dataPP, dataPM, dataPD, dataPPub, dataPPB, dataPHKI;
+   let data;
    let showModalError = false;
    let showModalErrorRevisi = false;
    let showModalErrorPassReviewer = false;
@@ -59,23 +70,6 @@
    let klppmSelected;
    let kpkSelected;
    let reviewerSelected;
-
-   let idProfile,
-      namaLengkap,
-      jabatanFungsional,
-      nip,
-      nidn,
-      tempatLahir,
-      tanggalLahir,
-      alamatRumah,
-      telpFaxRumah,
-      nomorHandphone,
-      alamatKantor,
-      telpFaxKantor,
-      email,
-      mataKuliah = [];
-
-   let uidProposal;
 
    let fileRab;
    let filePpm;
@@ -737,6 +731,94 @@
             console.log(response);
          }
       }
+   }
+
+   function ShowRevisiProsesButton() {
+      const StatusForInternal = [2, 12];
+      const StatusForEksternal = [2, 10];
+      const StatusForMandiri = [2, 10];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusForInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         StatusForEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         StatusForMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowReviewerButton() {
+      const StatusReviewReviewer = [6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusReviewReviewer.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowRDPButton() {
+      const ReviewKpkKlppmSkemaInternal = [8];
+      const ReviewKpkKlppmSkemaEksternal = [6];
+      const ReviewKpkKlppmSkemaMandiri = [6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowButtonPerbaikan() {
+      const RevisiSkemaInternal = [1, 3, 5, 7, 11];
+      const RevisiSkemaEksternal = [1, 3, 5, 9];
+      const RevisiSkemaMandiri = [1, 3, 5, 9];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
    }
 
    function toggleEditModeProposal() {
@@ -1974,7 +2056,7 @@
          <!--              Action Button                 -->
          <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
-            {#if status === 2 || status === 6}
+            {#if ShowRevisiProsesButton()}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
@@ -2001,7 +2083,7 @@
                </p>
             {/if}
 
-            {#if status === 8}
+            {#if ShowReviewerButton()}
                <p class="control">
                   <button
                      class="button is-info"
@@ -2011,7 +2093,7 @@
                </p>
             {/if}
 
-            {#if status === 10}
+            {#if ShowRDPButton()}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"
@@ -2035,7 +2117,7 @@
                </p>
             {/if}
 
-            {#if status === 1 || status === 3 || status === 5 || status === 7 || status === 9}
+            {#if ShowButtonPerbaikan()}
                <p class="control">
                   <button
                      class="button is-info"

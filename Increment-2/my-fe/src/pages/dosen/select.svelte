@@ -26,6 +26,47 @@
    };
 
    let errorMark = true;
+
+   // Function to check the condition
+   function ShowButtonPerbaikan() {
+      const skemaInternal = [
+         "Riset Kelompok Keahlian",
+         "Riset Terapan",
+         "Riset Kerjasama",
+         "Pengabdian Masyarakat Desa Binaan",
+         "Pengabdian Masyarakat UMKM Binaan",
+      ];
+      const skemaEksternal = [
+         "Riset Eksternal",
+         "Pengabdian Masyarakat Hibah Eksternal",
+      ];
+      const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+
+      const StatusRevisiSkemaInternal = [1, 3, 5, 7];
+      const StatusRevisiSkemaEksternal = [1, 3, 5];
+      const StatusRevisiSkemaMandiri = [1, 3, 5];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusRevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         StatusRevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         StatusRevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
 </script>
 
 <Article>
