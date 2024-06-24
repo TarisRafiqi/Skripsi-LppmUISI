@@ -8,6 +8,19 @@
    import { onMount } from "svelte";
    export let params;
 
+   const skemaInternal = [
+      "Riset Kelompok Keahlian",
+      "Riset Terapan",
+      "Riset Kerjasama",
+      "Pengabdian Masyarakat Desa Binaan",
+      "Pengabdian Masyarakat UMKM Binaan",
+   ];
+   const skemaEksternal = [
+      "Riset Eksternal",
+      "Pengabdian Masyarakat Hibah Eksternal",
+   ];
+   const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+
    const namaLengkapEvl = localStorage.getItem("nama_lengkap");
    const role = localStorage.getItem("role");
    const id = params["1"];
@@ -457,6 +470,67 @@
       // Format date "YYYY-MM-DD HH:MM:SS"
       return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
    }
+
+   function ShowRPButton() {
+      const StatusForInternal = [12];
+      const StatusForEksternal = [10];
+      const StatusForMandiri = [10];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusForInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         StatusForEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         StatusForMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowReviewerButton() {
+      const StatusReviewReviewer = [6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusReviewReviewer.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowRDPButton() {
+      const ReviewKpkKlppmSkemaInternal = [8];
+      const ReviewKpkKlppmSkemaEksternal = [6];
+      const ReviewKpkKlppmSkemaMandiri = [6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
 </script>
 
 {#if data}
@@ -705,7 +779,7 @@
          {/if}
 
          {#if role === "reviewer"}
-            {#if (data.jenis_skema === "Riset Kelompok Keahlian" || data.jenis_skema === "Riset Terapan" || data.jenis_skema === "Riset Kerjasama" || data.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || data.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && data.status === 6}
+            {#if ShowReviewerButton()}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
                      <button
@@ -719,8 +793,26 @@
          {/if}
 
          {#if role === "K.PusatKajian" || role === "K.LPPM"}
-            <!-- {#if status === 10} -->
-            {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status === 6) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status === 6) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 8)}
+            {#if ShowRPButton()}
+               <p class="control">
+                  <button
+                     class="button is-info is-light is-outlined"
+                     on:click={handleRevisi}
+                     class:is-loading={isLoading}>Revisi</button
+                  >
+               </p>
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     on:click={handlePass}
+                     class:is-loading={isLoading}>Proses</button
+                  >
+               </p>
+            {/if}
+         {/if}
+
+         {#if role === "K.PusatKajian" || role === "K.LPPM"}
+            {#if ShowRDPButton()}
                <div class="field is-grouped is-grouped-right">
                   <p class="control">
                      <button

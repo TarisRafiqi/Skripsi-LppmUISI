@@ -146,8 +146,8 @@
          <hr />
 
          <div class="columns">
-            <div class="column">
-               <button class="button is-info" on:click={addUser}>
+            <div class="column is-narrow">
+               <button class="button is-info is-fullwidth" on:click={addUser}>
                   <span class="icon">
                      <Icon id="accountAdd" src={accountAdd} />
                   </span>
@@ -195,8 +195,10 @@
                   <thead>
                      <tr>
                         <th>Username</th>
-                        <th>Email</th>
-                        <th class="is-narrow">Role</th>
+                        <th style="text-align: center">Email</th>
+                        <th style="text-align: center" class="is-narrow"
+                           >Role</th
+                        >
                         <th class="is-narrow">Active</th>
                      </tr>
                   </thead>
@@ -212,7 +214,7 @@
                                  {item.username}
                               </a>
                            </td>
-                           <td>{item.email}</td>
+                           <td fixed>{item.email}</td>
                            <td fixed class="group">
                               <div class="select">
                                  <select uid={idx} on:change={handleGroup}>

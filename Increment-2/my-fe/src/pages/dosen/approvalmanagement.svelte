@@ -12,11 +12,26 @@
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
    };
+
+   const skemaInternal = [
+      "Riset Kelompok Keahlian",
+      "Riset Terapan",
+      "Riset Kerjasama",
+      "Pengabdian Masyarakat Desa Binaan",
+      "Pengabdian Masyarakat UMKM Binaan",
+   ];
+   const skemaEksternal = [
+      "Riset Eksternal",
+      "Pengabdian Masyarakat Hibah Eksternal",
+   ];
+   const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+
    const id = localStorage.id;
    let role = localStorage.role;
    let items;
    let filterJudul = "";
    let filterJenisKegiatan = "";
+   let filterJenisSkema = "";
 
    onMount(async () => {
       const response = await fetch($apiURL + "/approval/" + id, {
@@ -49,8 +64,6 @@
    <hr />
 
    <div class="columns">
-      <div class="column"></div>
-
       <div class="column is-narrow">
          <div class="field">
             <div class="select is-fullwidth">
@@ -61,6 +74,35 @@
                   <option value="Penelitian">Penelitian</option>
                   <option value="Pengabdian Masyarakat"
                      >Pengabdian Masyarakat</option
+                  >
+               </select>
+            </div>
+         </div>
+      </div>
+
+      <div class="column is-narrow">
+         <div class="field">
+            <div class="select is-fullwidth">
+               <select bind:value={filterJenisSkema}>
+                  <option value="" selected disabled hidden>Jenis Skema</option>
+                  <option value="Riset Kelompok Keahlian"
+                     >Riset Kelompok Keahlian</option
+                  >
+                  <option value="Riset Terapan">Riset Terapan</option>
+                  <option value="Riset Kerjasama">Riset Kerjasama</option>
+                  <option value="Riset Eksternal">Riset Eksternal</option>
+                  <option value="Riset Mandiri">Riset Mandiri</option>
+                  <option value="Pengabdian Masyarakat Desa Binaan"
+                     >Pengabdian Masyarakat Desa Binaan</option
+                  >
+                  <option value="Pengabdian Masyarakat UMKM Binaan"
+                     >Pengabdian Masyarakat UMKM Binaan</option
+                  >
+                  <option value="Pengabdian Masyarakat Hibah Eksternal"
+                     >Pengabdian Masyarakat Hibah Eksternal</option
+                  >
+                  <option value="Pengabdian Masyarakat Mandiri"
+                     >Pengabdian Masyarakat Mandiri</option
                   >
                </select>
             </div>
@@ -109,8 +151,8 @@
                      <!-- {#each items as item} -->
                      {#each items.filter((item) => item.judul
                               .toLowerCase()
-                              .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan)) as item}
-                        {#if ((item.jenis_skema === "Riset Eksternal" || item.jenis_skema === "Pengabdian Masyarakat Hibah Eksternal") && item.status === 6) || ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && item.status === 6) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && item.status === 8)}
+                              .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan) && (filterJenisSkema === "" || item.jenis_skema === filterJenisSkema)) as item}
+                        {#if ((item.jenis_skema === "Riset Eksternal" || item.jenis_skema === "Pengabdian Masyarakat Hibah Eksternal") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && (item.status === 8 || item.status === 12))}
                            <tr>
                               <td class="judul">{item.judul}</td>
                               <td class="kegiatan"

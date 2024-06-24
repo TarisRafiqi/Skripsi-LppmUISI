@@ -18,6 +18,7 @@
 
    export let params;
    const id = params["1"];
+
    const skemaInternal = [
       "Riset Kelompok Keahlian",
       "Riset Terapan",
@@ -733,7 +734,7 @@
       }
    }
 
-   function ShowRevisiProsesButton() {
+   function ShowRPButton() {
       const StatusForInternal = [2, 12];
       const StatusForEksternal = [2, 10];
       const StatusForMandiri = [2, 10];
@@ -2056,7 +2057,7 @@
          <!--              Action Button                 -->
          <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
-            {#if ShowRevisiProsesButton()}
+            {#if ShowRPButton()}
                <p class="control">
                   <button
                      class="button is-info is-light is-outlined"

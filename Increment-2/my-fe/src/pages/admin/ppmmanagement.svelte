@@ -9,6 +9,8 @@
    let items;
    let filterJudul = "";
    let filterStatus = "";
+   let filterJenisSkema = "";
+   let filterJenisKegiatan = "";
    const accessToken = localStorage.getItem("token");
 
    const headers = {
@@ -51,7 +53,52 @@
       <hr />
 
       <div class="columns">
-         <div class="column"></div>
+         <div class="column is-narrow">
+            <div class="field">
+               <div class="select is-fullwidth">
+                  <select bind:value={filterJenisKegiatan}>
+                     <option value="" selected disabled hidden
+                        >Jenis Kegiatan</option
+                     >
+                     <option value="Penelitian">Penelitian</option>
+                     <option value="Pengabdian Masyarakat"
+                        >Pengabdian Masyarakat</option
+                     >
+                  </select>
+               </div>
+            </div>
+         </div>
+
+         <div class="column is-narrow">
+            <div class="field">
+               <div class="select is-fullwidth">
+                  <select bind:value={filterJenisSkema}>
+                     <option value="" selected disabled hidden
+                        >Jenis Skema</option
+                     >
+                     <option value="Riset Kelompok Keahlian"
+                        >Riset Kelompok Keahlian</option
+                     >
+                     <option value="Riset Terapan">Riset Terapan</option>
+                     <option value="Riset Kerjasama">Riset Kerjasama</option>
+                     <option value="Riset Eksternal">Riset Eksternal</option>
+                     <option value="Riset Mandiri">Riset Mandiri</option>
+                     <option value="Pengabdian Masyarakat Desa Binaan"
+                        >Pengabdian Masyarakat Desa Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat UMKM Binaan"
+                        >Pengabdian Masyarakat UMKM Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat Hibah Eksternal"
+                        >Pengabdian Masyarakat Hibah Eksternal</option
+                     >
+                     <option value="Pengabdian Masyarakat Mandiri"
+                        >Pengabdian Masyarakat Mandiri</option
+                     >
+                  </select>
+               </div>
+            </div>
+         </div>
 
          <div class="column is-narrow">
             <div class="field">
@@ -105,7 +152,7 @@
                   <!-- {#each items as item} -->
                   {#each items.filter((item) => item.judul
                            .toLowerCase()
-                           .includes(filterJudul.toLowerCase()) && (filterStatus === "" || item.status === Number(filterStatus))) as item}
+                           .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan) && (filterJenisSkema === "" || item.jenis_skema === filterJenisSkema) && (filterStatus === "" || item.status === Number(filterStatus))) as item}
                      <tr>
                         <td class="judul"><p>{item.judul}</p> </td>
                         <td class="kegiatan"><p>{item.jenis_kegiatan}</p></td>
