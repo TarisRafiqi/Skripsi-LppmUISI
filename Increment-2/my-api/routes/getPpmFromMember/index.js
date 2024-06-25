@@ -5,12 +5,6 @@ module.exports = async function (fastify, opts) {
       let dbData;
       let connection;
       const id = Number(request.params.id);
-
-      // reply.send({
-      //    id,
-      // });
-      // return;
-
       const sql = `SELECT * FROM proposal_ppm where JSON_CONTAINS(anggota_tim, '{"value": "${id}" }')`;
 
       try {

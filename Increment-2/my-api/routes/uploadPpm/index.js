@@ -17,7 +17,7 @@ module.exports = async function (fastify, opts) {
 
          const filepath = path.join(
             __dirname,
-            "../../upload_ppm",
+            "../../file_ppm",
             randomPpmFileName + ".pdf"
          );
 
@@ -42,7 +42,7 @@ module.exports = async function (fastify, opts) {
          // const decodedToken = fastify.jwt.decode(token);
          const fileData = request.body.filePpm;
          const randomPpmFileName = request.body.randomPpmFileName;
-         const filepath = "./upload_ppm/" + randomPpmFileName + ".pdf";
+         const filepath = "./file_ppm/" + randomPpmFileName + ".pdf";
 
          try {
             const buffer = Buffer.from(fileData.data, "base64");

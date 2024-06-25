@@ -17,7 +17,7 @@ module.exports = async function (fastify, opts) {
 
          const filepath = path.join(
             __dirname,
-            "../../upload_rab",
+            "../../file_rab",
             randomRabFileName + ".xlsx"
          );
 
@@ -42,7 +42,7 @@ module.exports = async function (fastify, opts) {
          // const decodedToken = fastify.jwt.decode(token);
          const fileData = request.body.fileRab;
          const randomRabFileName = request.body.randomRabFileName;
-         const filepath = "./upload_rab/" + randomRabFileName + ".xlsx";
+         const filepath = "./file_rab/" + randomRabFileName + ".xlsx";
 
          try {
             const buffer = Buffer.from(fileData.data, "base64");
