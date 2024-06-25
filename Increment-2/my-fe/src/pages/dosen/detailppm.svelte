@@ -44,7 +44,9 @@
       judul,
       abstrak,
       comment,
-      status;
+      status,
+      ttdSuratKontrak,
+      presentasiHasilPPM;
 
    let hasilPenelitianVisible = false;
    let danaPenelitianVisible = false;
@@ -96,6 +98,8 @@
             reviewerSelected = data.uid_reviewer;
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
          } else {
             console.log(response);
          }
@@ -982,6 +986,50 @@
          return member.value !== uid;
       });
    }
+
+   async function checkboxSuratKontrak(event) {
+      ttdSuratKontrak = event.target.checked ? 1 : 0;
+      payload = {
+         ppmId,
+         ttdSuratKontrak,
+      };
+
+      const response = await fetch($apiURL + "/checkBoxPPM/suratKontrak", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
+   async function checkboxPresentasiHasilPPM(event) {
+      presentasiHasilPPM = event.target.checked ? 1 : 0;
+      payload = {
+         ppmId,
+         presentasiHasilPPM,
+      };
+
+      const response = await fetch($apiURL + "/checkBoxPPM/id/presentasiPPM", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
 </script>
 
 {#if data && items.length > 0}
@@ -1540,10 +1588,11 @@
                               <th class="is-narrow">Tanda tangan</th>
                            </tr>
                         </thead>
+
                         <tbody>
                            <tr>
                               <td>SK Pendanaan</td>
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
@@ -1553,19 +1602,23 @@
                            <!-- ====================================================== -->
                            <tr>
                               <td>Surat Kontrak Penelitian</td>
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
                               >
-                              <td style="text-align: center"
-                                 ><input type="checkbox" /></td
-                              >
+                              <td style="text-align: center">
+                                 <input
+                                    type="checkbox"
+                                    bind:checked={ttdSuratKontrak}
+                                    on:change={checkboxSuratKontrak}
+                                 />
+                              </td>
                            </tr>
                            <!-- ====================================================== -->
                            <tr>
                               <td>Surat Tugas</td>
-                              <td
+                              <td style="text-align: center"
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
@@ -1644,8 +1697,7 @@
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Status Dana Penelitian</th
-                              >
+                              <th style="width: 70%;">Status Pencairan Dana</th>
                               <th class="is-narrow" style="text-align: center"
                                  ><span class="tag is-info"
                                     >30% dana dicairkan</span
@@ -1754,46 +1806,53 @@
             <!-- ========================================== -->
             <!--         Presentasi Hasil Penelitian        -->
             <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Presentasi Hasil Penelitian
-                  <span
-                     class="toggle-button"
-                     on:click={() => (presentasiVisible = !presentasiVisible)}
-                  >
-                     {presentasiVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if jenisSkema !== "Riset Eksternal" && jenisSkema !== "Pengabdian Masyarakat Hibah Eksternal"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Presentasi Hasil Penelitian
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (presentasiVisible = !presentasiVisible)}
+                     >
+                        {presentasiVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if presentasiVisible}
-                  <hr />
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama Kegiatan</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Checkbox</th
-                           >
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td
-                              >Mempresentasikan hasil penelitian di seminar
-                              penelitian bersama UISI di bulan Desember</td
-                           >
-                           <td style="text-align: center"
-                              ><input type="checkbox" /></td
-                           >
-                        </tr>
-                     </tbody>
-                  </table>
-               {/if}
-            </div>
+                  {#if presentasiVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama Kegiatan</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Checkbox</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td
+                                 >Mempresentasikan hasil penelitian di seminar
+                                 penelitian bersama UISI di bulan Desember</td
+                              >
+                              <td style="text-align: center">
+                                 <input
+                                    type="checkbox"
+                                    bind:checked={presentasiHasilPPM}
+                                    on:change={checkboxPresentasiHasilPPM}
+                                 />
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
 
             <!-- ========================================== -->
             <!--             Download SK Penelitian         -->

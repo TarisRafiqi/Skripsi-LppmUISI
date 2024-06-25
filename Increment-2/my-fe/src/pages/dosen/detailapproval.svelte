@@ -794,20 +794,22 @@
 
          {#if role === "K.PusatKajian" || role === "K.LPPM"}
             {#if ShowRPButton()}
-               <p class="control">
-                  <button
-                     class="button is-info is-light is-outlined"
-                     on:click={handleRevisi}
-                     class:is-loading={isLoading}>Revisi</button
-                  >
-               </p>
-               <p class="control">
-                  <button
-                     class="button is-info"
-                     on:click={handlePass}
-                     class:is-loading={isLoading}>Proses</button
-                  >
-               </p>
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}
+                        class:is-loading={isLoading}>Revisi</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Proses</button
+                     >
+                  </p>
+               </div>
             {/if}
          {/if}
 

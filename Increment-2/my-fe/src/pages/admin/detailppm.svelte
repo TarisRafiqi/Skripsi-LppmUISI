@@ -1778,7 +1778,8 @@
             <!-- ========================================== -->
             <!--               Dana Penelitian              -->
             <!-- ========================================== -->
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            <!-- {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"} -->
+            {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -1800,20 +1801,15 @@
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Status Dana Penelitian</th
-                              >
+                              <th style="width: 70%;">Status Pencairan Dana</th>
                               <th class="is-narrow">
                                  <div class="select">
                                     <select>
                                        <option value="" selected disabled hidden
                                           >Pilih status pendanaan</option
                                        >
-                                       <option value=""
-                                          >30% dana dicairkan</option
-                                       >
-                                       <option value=""
-                                          >100% dana dicairkan</option
-                                       >
+                                       <option value="30%">30%</option>
+                                       <option value="100%">100%</option>
                                     </select>
                                  </div>
                               </th>
