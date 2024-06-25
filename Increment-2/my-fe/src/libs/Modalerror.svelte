@@ -20,7 +20,9 @@
          <p>
             <slot />
          </p>
-         <button class="button is-danger" on:click={clickX}>Close</button>
+         <button class="button is-danger is-fullwidth" on:click={clickX}
+            >Tutup</button
+         >
       </div>
    </div>
 </b>
@@ -53,8 +55,8 @@
       color: #000;
       text-align: center;
       border-radius: 10px;
-      /* padding: 30px 30px 70px; */
       padding: 30px;
+      margin: 20px;
    }
 
    img {
@@ -66,14 +68,15 @@
       margin-bottom: 40px;
       font-size: 18px;
    }
-   button {
-      /* background-color: #ed6755; */
+   /* button {
       border: none;
       border-radius: 5px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #adadad;
       width: 200px;
       padding: 14px;
       font-size: 16px;
-      color: white;
-      box-shadow: 0px 6px 18px -5px rgb(247, 145, 138);
-   }
+      color: rgb(0, 0, 0);
+   } */
 </style>

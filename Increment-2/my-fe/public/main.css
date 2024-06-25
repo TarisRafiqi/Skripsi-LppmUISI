@@ -1601,7 +1601,7 @@ div.svelte-1oy4l94 > span * {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Modalerror.esbuild-svelte-fake-css */
-b.svelte-ivfnq6 {
+b.svelte-ryuifz {
   display: block;
   font-weight: normal;
   z-index: 17;
@@ -1613,11 +1613,11 @@ b.svelte-ivfnq6 {
   background-color: rgba(0, 0, 0, 0);
   visibility: hidden;
 }
-b.show.svelte-ivfnq6 {
+b.show.svelte-ryuifz {
   background-color: rgba(0, 0, 0, 0.5);
   visibility: visible;
 }
-.cookiesContent.svelte-ivfnq6 {
+.cookiesContent.svelte-ryuifz {
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -1627,24 +1627,16 @@ b.show.svelte-ivfnq6 {
   text-align: center;
   border-radius: 10px;
   padding: 30px;
+  margin: 20px;
 }
-img.svelte-ivfnq6 {
+img.svelte-ryuifz {
   width: 82px;
   margin-bottom: 15px;
 }
-p.svelte-ivfnq6 {
+p.svelte-ryuifz {
   font-family: "Roboto", sans-serif;
   margin-bottom: 40px;
   font-size: 18px;
-}
-button.svelte-ivfnq6 {
-  border: none;
-  border-radius: 5px;
-  width: 200px;
-  padding: 14px;
-  font-size: 16px;
-  color: white;
-  box-shadow: 0px 6px 18px -5px rgb(247, 145, 138);
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/createuser.esbuild-svelte-fake-css */

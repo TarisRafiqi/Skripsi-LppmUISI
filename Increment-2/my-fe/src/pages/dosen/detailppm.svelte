@@ -57,6 +57,7 @@
 
    let editModeProposal = false;
    let showModalError = false;
+   let ModalFileNotFound = false;
    let editModeRAB = false;
    let isLoading = false;
 
@@ -1059,8 +1060,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File SK Pendanaan tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1088,8 +1088,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File Surat Kontrak tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1117,8 +1116,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File Surat Tugas tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -2451,6 +2449,10 @@
 
 <Modalerror bind:show={showModalError}>
    <p>Lengkapi semua form</p>
+</Modalerror>
+
+<Modalerror bind:show={ModalFileNotFound}>
+   <p>Gagal mengunduh file, silahkan coba beberapa saat lagi.</p>
 </Modalerror>
 
 <style>

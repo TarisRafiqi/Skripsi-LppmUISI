@@ -46,6 +46,7 @@
    const idEvaluator = localStorage.getItem("id");
    let data;
    let showModalError = false;
+   let ModalFileNotFound = false;
    let showModalErrorRevisi = false;
    let showModalErrorPassReviewer = false;
    let showModalErrorInputEvaluator = false;
@@ -992,8 +993,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File SK Pendanaan tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1021,8 +1021,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File Surat Kontrak tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1050,8 +1049,7 @@
             link.download = filename;
             link.click();
          } else {
-            // Handle if data not found (Modal Error)
-            console.log("File Surat Tugas tidak tersedia saat ini");
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -2987,6 +2985,13 @@
 
 <Modalerror bind:show={showModalError}>
    <p>Lengkapi semua form</p>
+</Modalerror>
+
+<Modalerror bind:show={ModalFileNotFound}>
+   <p>
+      Gagal mengunduh file. Pastikan sudah mengupload file atau coba unduh
+      beberapa saat lagi.
+   </p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorRevisi}>
