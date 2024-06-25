@@ -6,6 +6,8 @@ export const isUsername = writable(null);
 export const ppmFile = writable({});
 export const rabFile = writable({});
 export const penilaianFile = writable({});
+export const skPendanaanFile = writable({});
+
 export const apiURL = writable(
    process.ENV.production
       ? "https://lppmuisiapi.dififa.com"

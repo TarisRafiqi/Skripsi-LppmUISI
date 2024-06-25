@@ -46,7 +46,8 @@
       comment,
       status,
       ttdSuratKontrak,
-      presentasiHasilPPM;
+      presentasiHasilPPM,
+      statusPencairanDana;
 
    let hasilPenelitianVisible = false;
    let danaPenelitianVisible = false;
@@ -100,6 +101,9 @@
             randomPpmFileName = data.random_ppm_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
+
+            statusPencairanDana =
+               data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
             console.log(response);
          }
@@ -1700,7 +1704,7 @@
                               <th style="width: 70%;">Status Pencairan Dana</th>
                               <th class="is-narrow" style="text-align: center"
                                  ><span class="tag is-info"
-                                    >30% dana dicairkan</span
+                                    >{statusPencairanDana}</span
                                  ></th
                               >
                            </tr>

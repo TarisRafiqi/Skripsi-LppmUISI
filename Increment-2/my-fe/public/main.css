@@ -2031,14 +2031,17 @@ button.svelte-5cn8hs {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/select.esbuild-svelte-fake-css */
-.box.svelte-1l8gwm3 {
-  transition: height 0.5s ease;
-  height: 150px;
+.inputf__wrapper.svelte-zdesaq.svelte-zdesaq {
+  position: relative;
+  display: flex;
 }
-@media (max-width: 768px) {
-  .box.svelte-1l8gwm3 {
-    height: 400px;
-  }
+.inputf__wrapper.svelte-zdesaq input.svelte-zdesaq {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.help.svelte-zdesaq.svelte-zdesaq {
+  margin: -6px 0px 0px 0px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */

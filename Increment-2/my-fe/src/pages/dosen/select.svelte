@@ -26,63 +26,99 @@
    };
 
    let errorMark = true;
+   let error = {};
 
-   // Function to check the condition
-   function ShowButtonPerbaikan() {
-      const skemaInternal = [
-         "Riset Kelompok Keahlian",
-         "Riset Terapan",
-         "Riset Kerjasama",
-         "Pengabdian Masyarakat Desa Binaan",
-         "Pengabdian Masyarakat UMKM Binaan",
-      ];
-      const skemaEksternal = [
-         "Riset Eksternal",
-         "Pengabdian Masyarakat Hibah Eksternal",
-      ];
-      const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+   function filePpmChange(e) {
+      filePpm = e.target.files[0];
+      $ppmFile = e.target.files[0];
+   }
 
-      const StatusRevisiSkemaInternal = [1, 3, 5, 7];
-      const StatusRevisiSkemaEksternal = [1, 3, 5];
-      const StatusRevisiSkemaMandiri = [1, 3, 5];
+   async function Submit() {
+      error = {};
+      isLoading = true;
 
-      if (
-         skemaInternal.includes(data.jenis_skema) &&
-         StatusRevisiSkemaInternal.includes(data.status)
-      ) {
-         return true;
-      }
-      if (
-         skemaEksternal.includes(data.jenis_skema) &&
-         StatusRevisiSkemaEksternal.includes(data.status)
-      ) {
-         return true;
-      }
-      if (
-         skemaMandiri.includes(data.jenis_skema) &&
-         StatusRevisiSkemaMandiri.includes(data.status)
-      ) {
-         return true;
-      }
+      const readerPpm = new FileReader();
 
-      return false;
+      //============================================================
+      // Upload File Proposal
+      //============================================================
+      readerPpm.onloadend = async () => {
+         const base64Data = readerPpm.result.split(",")[1];
+         const payloadPpmFile = {
+            filePpm: {
+               name: filePpm.name,
+               type: filePpm.type,
+               data: base64Data,
+            },
+            randomPpmFileName,
+         };
+
+         try {
+            const response = await fetch($apiURL + "/uploadPpm", {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadPpmFile),
+            });
+
+            const result = await response.json();
+         } catch (error) {
+            console.error("Error uploading file:", error);
+            // Buat Handle Error
+            // ...
+         }
+      };
+
+      readerPpm.readAsDataURL(filePpm);
    }
 </script>
 
 <Article>
-   <div class="box">Lorem ipsum</div>
-   <div class="box">lorem</div>
+   <Field name="Proposal">
+      <span class="inputf__wrapper">
+         <input
+            id="filePpm"
+            class="inputf custom-file-input"
+            accept="application/pdf"
+            type="file"
+            on:change={filePpmChange}
+         />
+         <div class="file has-name is-success is-small">
+            <label class="file-label" for="filePpm">
+               <input class="file-input" type="file" name="resume" />
+               <span class="file-cta">
+                  <span class="file-icon">
+                     <Icon id="download" src={downloadIcon} />
+                  </span>
+                  <span class="file-label"> Choose a file</span>
+               </span>
+               {#if $ppmFile?.name}
+                  <span class="file-name"> {$ppmFile.name}</span>
+               {:else}
+                  <span class="file-name">No file chosen</span>
+               {/if}
+            </label>
+         </div>
+         {#if error.fileProposal}
+            <p class="error has-text-danger">{error.fileProposal}</p>
+         {/if}
+      </span>
+      <p class="help">File Type: pdf</p>
+   </Field>
 </Article>
 
 <style>
-   .box {
-      transition: height 0.5s ease;
-      height: 150px;
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
    }
 
-   @media (max-width: 768px) {
-      .box {
-         height: 400px;
-      }
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
    }
 </style>

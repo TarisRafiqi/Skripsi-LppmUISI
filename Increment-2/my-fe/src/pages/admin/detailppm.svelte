@@ -1,6 +1,13 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL, ppmFile, rabFile, penilaianFile } from "../../store";
+   import {
+      route,
+      apiURL,
+      ppmFile,
+      rabFile,
+      penilaianFile,
+      skPendanaanFile,
+   } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
@@ -48,6 +55,7 @@
    let skpVisible = false;
    let randomPenilaianFileName = "";
 
+   let ppmid;
    let jenisProposal;
    let jenisKegiatan;
    let jenisSkema;
@@ -62,6 +70,7 @@
    let comment;
    let status;
    let itemsRCR;
+   let statusPencairanDana = "";
 
    let ka_departemen;
    let ka_lppm;
@@ -180,6 +189,9 @@
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
+
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            statusPencairanDana = data.status_pencairan_dana || "";
          }
       }
    }
@@ -195,6 +207,34 @@
          Object.keys(objectName).length === 0 &&
          objectName.constructor === Object
       );
+   }
+
+   async function handleSubmitStatusPendanaan() {
+      isLoading = true;
+
+      payload = {
+         statusPencairanDana,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/submitStatusPencairanDana", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            getDetailPPM();
+         } else {
+            console.log(response);
+         }
+      }
+      isLoading = false;
    }
 
    async function handleSubmitEvaluator() {
@@ -237,6 +277,80 @@
          }
       }
       isLoading = false;
+   }
+
+   function fileSkPendanaanChange(e) {
+      fileSkPendanaan = e.target.files[0];
+      $skPendanaanFile = e.target.files[0];
+   }
+
+   async function handleSubmitFile() {
+      // isLoading = true;
+      const readerSkPendanaan = new FileReader();
+
+      let fileSkPendanaanName = id + "_SK Pendanaan";
+      let fileSuratKontrakName = id + "_Surat Kontrak Penelitian";
+
+      let payloadFileName = {
+         fileSkPendanaanName,
+         fileSuratKontrakName,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/submitFilePPM", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payloadFileName),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response.msg, error);
+            // Buat Handle Error
+         }
+      }
+
+      // ================ Upload File Proposal ================
+      readerSkPendanaan.onloadend = async () => {
+         const base64Data = readerSkPendanaan.result.split(",")[1];
+         const payloadSkPendanaanFile = {
+            fileSkPendanaan: {
+               name: fileSkPendanaan.name,
+               type: fileSkPendanaan.type,
+               data: base64Data,
+            },
+            fileSkPendanaanName,
+         };
+
+         try {
+            const response = await fetch(
+               $apiURL + "/uploadDownloadSKPendanaan",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadSkPendanaanFile),
+               }
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+               // Handle if sukses
+               console.log("File sukses disimpan");
+            } else if (!response.ok) {
+               // Handle if gagal
+               console.log("File gagal disimpan");
+            }
+         } catch (error) {
+            console.error("Error uploading file:", error);
+         }
+      };
+
+      readerSkPendanaan.readAsDataURL(fileSkPendanaan);
    }
 
    async function handlePerbaikan() {
@@ -707,6 +821,35 @@
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSkPendanaan(e) {
+      let filename = "SK_Pendanaan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPendanaan/${fileSkPendanaanNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File tidak tersedia saat ini");
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1572,43 +1715,61 @@
                               <th class="is-narrow" style="text-align: center"
                                  >Download File</th
                               >
-                              <th class="is-narrow">Tanda tangan</th>
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
                               <td>SK Pendanaan</td>
-                              <td
-                                 ><div class="file has-name is-small">
-                                    <label class="file-label" for="filePpm">
-                                       <input
-                                          class="file-input"
-                                          type="file"
-                                          name="resume"
-                                       />
-                                       <span class="file-cta">
-                                          <span class="file-icon">
-                                             <Icon
-                                                id="download"
-                                                src={downloadIcon}
-                                             />
-                                          </span>
-                                          <span class="file-label">
-                                             Choose a file</span
-                                          >
-                                       </span>
-                                       <span class="file-name"
-                                          >No file chosen</span
+                              <td>
+                                 <span class="inputf__wrapper">
+                                    <input
+                                       id="fileSkPendanaan"
+                                       class="inputf custom-file-input"
+                                       accept="application/pdf"
+                                       type="file"
+                                       on:change={fileSkPendanaanChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="fileSkPendanaan"
                                        >
-                                    </label>
-                                 </div></td
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $skPendanaanFile?.name}
+                                             <span class="file-name">
+                                                {$skPendanaanFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span></td
                               >
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSkPendanaan}
                                     >Download</button
                                  ></td
                               >
-                              <td></td>
                            </tr>
                            <!-- ====================================================== -->
                            <tr>
@@ -1642,9 +1803,6 @@
                                  ><button class="button is-link button is-small"
                                     >Download</button
                                  ></td
-                              >
-                              <td style="text-align: center"
-                                 ><input type="checkbox" /></td
                               >
                            </tr>
                            <!-- ====================================================== -->
@@ -1680,7 +1838,6 @@
                                     >Download</button
                                  ></td
                               >
-                              <td></td>
                            </tr>
                         </tbody>
                      </table>
@@ -1689,7 +1846,8 @@
                         <p class="control">
                            <button
                               class="button is-info"
-                              class:is-loading={isLoading}>Submit File</button
+                              class:is-loading={isLoading}
+                              on:click={handleSubmitFile}>Submit File</button
                            >
                         </p>
                      </div>
@@ -1767,7 +1925,8 @@
                         <p class="control">
                            <button
                               class="button is-info"
-                              class:is-loading={isLoading}>Submit File</button
+                              class:is-loading={isLoading}
+                              on:click={handleSubmitFile}>Submit File</button
                            >
                         </p>
                      </div>
@@ -1804,12 +1963,16 @@
                               <th style="width: 70%;">Status Pencairan Dana</th>
                               <th class="is-narrow">
                                  <div class="select">
-                                    <select>
+                                    <select bind:value={statusPencairanDana}>
                                        <option value="" selected disabled hidden
                                           >Pilih status pendanaan</option
                                        >
-                                       <option value="30%">30%</option>
-                                       <option value="100%">100%</option>
+                                       <option value="30% Dana telah dicairkan"
+                                          >30% Dana telah dicairkan</option
+                                       >
+                                       <option value="100% Dana telah dicairkan"
+                                          >100% Dana telah dicairkan</option
+                                       >
                                     </select>
                                  </div>
                               </th>
@@ -1834,6 +1997,7 @@
                         <p class="control">
                            <button
                               class="button is-info"
+                              on:click={handleSubmitStatusPendanaan}
                               class:is-loading={isLoading}
                               >Submit Status Pendanaan</button
                            >
@@ -2041,7 +2205,8 @@
                      <p class="control">
                         <button
                            class="button is-info"
-                           class:is-loading={isLoading}>Submit File</button
+                           class:is-loading={isLoading}
+                           on:click={handleSubmitFile}>Submit File</button
                         >
                      </p>
                   </div>
