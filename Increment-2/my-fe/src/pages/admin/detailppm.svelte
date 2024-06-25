@@ -7,6 +7,8 @@
       rabFile,
       penilaianFile,
       skPendanaanFile,
+      suratKontrakFile,
+      suratTugasFile,
    } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
@@ -71,6 +73,7 @@
    let status;
    let itemsRCR;
    let statusPencairanDana = "";
+   let options;
 
    let ka_departemen;
    let ka_lppm;
@@ -83,6 +86,9 @@
 
    let fileRab;
    let filePpm;
+   let fileSkPendanaan;
+   let fileSuratKontrak;
+   let fileSuratTugas;
    let items = [];
    let view;
    let editModeProposal = false;
@@ -191,6 +197,8 @@
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
 
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
             statusPencairanDana = data.status_pencairan_dana || "";
          }
       }
@@ -279,78 +287,214 @@
       isLoading = false;
    }
 
-   function fileSkPendanaanChange(e) {
-      fileSkPendanaan = e.target.files[0];
-      $skPendanaanFile = e.target.files[0];
-   }
-
    async function handleSubmitFile() {
-      // isLoading = true;
+      isLoading = true;
       const readerSkPendanaan = new FileReader();
+      const readerSuratKontrak = new FileReader();
+      const readerSuratTugas = new FileReader();
 
       let fileSkPendanaanName = id + "_SK Pendanaan";
       let fileSuratKontrakName = id + "_Surat Kontrak Penelitian";
+      let fileSuratTugasName = id + "_Surat Tugas";
 
       let payloadFileName = {
          fileSkPendanaanName,
          fileSuratKontrakName,
+         fileSuratTugasName,
          id,
       };
 
-      const response = await fetch($apiURL + "/submitFilePPM", {
-         method: "PATCH",
-         headers: headers,
-         body: JSON.stringify(payloadFileName),
-      });
-
-      const result = await response.json();
-
-      if (response.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (!response.ok) {
-            console.log(response.msg, error);
-            // Buat Handle Error
-         }
-      }
-
-      // ================ Upload File Proposal ================
-      readerSkPendanaan.onloadend = async () => {
-         const base64Data = readerSkPendanaan.result.split(",")[1];
-         const payloadSkPendanaanFile = {
-            fileSkPendanaan: {
-               name: fileSkPendanaan.name,
-               type: fileSkPendanaan.type,
-               data: base64Data,
-            },
-            fileSkPendanaanName,
-         };
-
+      const submitFileName = new Promise(async (resolve, reject) => {
          try {
-            const response = await fetch(
-               $apiURL + "/uploadDownloadSKPendanaan",
-               {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadSkPendanaanFile),
-               }
-            );
+            const response = await fetch($apiURL + "/submitFilePPM", {
+               method: "PATCH",
+               headers: headers,
+               body: JSON.stringify(payloadFileName),
+            });
 
             const result = await response.json();
 
-            if (response.ok) {
-               // Handle if sukses
-               console.log("File sukses disimpan");
-            } else if (!response.ok) {
-               // Handle if gagal
-               console.log("File gagal disimpan");
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+               reject("Token expired");
+            } else if (response.ok) {
+               resolve(result);
+            } else {
+               console.log(result.msg, error);
+               reject("Error submitting file");
             }
          } catch (error) {
-            console.error("Error uploading file:", error);
+            reject(error);
          }
-      };
+      });
 
-      readerSkPendanaan.readAsDataURL(fileSkPendanaan);
+      // ================================ Upload File Proposal ================================ //
+      const uploadSkPendanaan = new Promise((resolve, reject) => {
+         if (!fileSkPendanaan) {
+            // File not selected, resolve immediately
+            resolve("No file SkPendanaan selected");
+            return;
+         }
+
+         readerSkPendanaan.onloadend = async () => {
+            const base64Data = readerSkPendanaan.result.split(",")[1];
+            const payloadSkPendanaanFile = {
+               fileSkPendanaan: {
+                  name: fileSkPendanaan.name,
+                  type: fileSkPendanaan.type,
+                  data: base64Data,
+               },
+               fileSkPendanaanName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadDownloadSKPendanaan",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadSkPendanaanFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  // Handle if sukses (Modal Sukses)
+                  console.log("File SK Pendanaan sukses disimpan");
+                  resolve(result);
+               } else {
+                  // Handle if gagal (Modal Gagal/Error)
+                  console.log("File SK Pendanaan gagal disimpan");
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+
+         if (fileSkPendanaan) readerSkPendanaan.readAsDataURL(fileSkPendanaan);
+      });
+
+      // ================================ Upload Surat Kontrak ================================ //
+      const uploadSuratKontrak = new Promise((resolve, reject) => {
+         if (!fileSuratKontrak) {
+            // File not selected, resolve immediately
+            resolve("No file SuratKontrak selected");
+            return;
+         }
+
+         readerSuratKontrak.onloadend = async () => {
+            const base64Data = readerSuratKontrak.result.split(",")[1];
+            const payloadSuratKontrakFile = {
+               fileSuratKontrak: {
+                  name: fileSuratKontrak.name,
+                  type: fileSuratKontrak.type,
+                  data: base64Data,
+               },
+               fileSuratKontrakName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadDownloadSuratKontrak",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadSuratKontrakFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  // Handle if sukses (Modal Sukses)
+                  console.log("File Surat Kontrak sukses disimpan");
+                  resolve(result);
+               } else {
+                  // Handle if gagal (Modal Gagal/Error)
+                  console.log("File Surat Kontrak gagal disimpan");
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+
+         if (fileSuratKontrak)
+            readerSuratKontrak.readAsDataURL(fileSuratKontrak);
+      });
+
+      // ================================ Upload Surat Tugas ================================ //
+      const uploadSuratTugas = new Promise((resolve, reject) => {
+         if (!fileSuratTugas) {
+            // File not selected, resolve immediately
+            resolve("No file SuratTugas selected");
+            return;
+         }
+
+         readerSuratTugas.onloadend = async () => {
+            const base64Data = readerSuratTugas.result.split(",")[1];
+            const payloadSuratTugasFile = {
+               fileSuratTugas: {
+                  name: fileSuratTugas.name,
+                  type: fileSuratTugas.type,
+                  data: base64Data,
+               },
+               fileSuratTugasName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadDownloadSuratTugas",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadSuratTugasFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  // Handle if sukses (Modal Sukses)
+                  console.log("File Surat Tugas sukses disimpan");
+                  resolve(result);
+               } else {
+                  // Handle if gagal (Modal Gagal/Error)
+                  console.log("File Surat Tugas gagal disimpan");
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+
+         if (fileSuratTugas) readerSuratTugas.readAsDataURL(fileSuratTugas);
+      });
+
+      try {
+         await Promise.all([
+            submitFileName,
+            uploadSkPendanaan,
+            uploadSuratKontrak,
+            uploadSuratTugas,
+         ]);
+      } finally {
+         isLoading = false;
+      }
    }
 
    async function handlePerbaikan() {
@@ -828,7 +972,7 @@
    }
 
    async function handleDownloadSkPendanaan(e) {
-      let filename = "SK_Pendanaan" + ".pdf";
+      let filename = "SK Pendanaan" + ".pdf";
 
       try {
          const response = await fetch(
@@ -849,14 +993,74 @@
             link.click();
          } else {
             // Handle if data not found (Modal Error)
-            console.log("File tidak tersedia saat ini");
+            console.log("File SK Pendanaan tidak tersedia saat ini");
          }
       } catch (error) {
          console.error("Error downloading file:", error);
       }
    }
 
-   let options;
+   async function handleDownloadSuratKontrak() {
+      let filename = "Surat Kontrak Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratKontrak/${fileSuratKontrakNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File Surat Kontrak tidak tersedia saat ini");
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratTugas() {
+      let filename = "Surat Tugas" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratTugas/${fileSuratTugasNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File Surat Tugas tidak tersedia saat ini");
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSkPenelitian() {
+      console.log("Download SK Penelitian");
+   }
 
    async function findRole(role) {
       const response = await fetch($apiURL + "/role/" + role, {
@@ -986,6 +1190,21 @@
    function filePenilaianChange(e) {
       filePenilaian = e.target.files[0];
       $penilaianFile = e.target.files[0];
+   }
+
+   function fileSkPendanaanChange(e) {
+      fileSkPendanaan = e.target.files[0];
+      $skPendanaanFile = e.target.files[0];
+   }
+
+   function fileSuratKontrakChange(e) {
+      fileSuratKontrak = e.target.files[0];
+      $suratKontrakFile = e.target.files[0];
+   }
+
+   function fileSuratTugasChange(e) {
+      fileSuratTugas = e.target.files[0];
+      $suratTugasFile = e.target.files[0];
    }
 
    let tab1 = true;
@@ -1684,7 +1903,7 @@
 
          {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
-            <!--       Download SK Pendanaan, SK Penelitian, Surat Tugas      -->
+            <!-- Download SK Pendanaan, Surat Kontrak Penelitian, Surat Tugas -->
             <!-- ============================================================ -->
             {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                <div class="box">
@@ -1775,32 +1994,52 @@
                            <tr>
                               <td>Surat Kontrak Penelitian</td>
                               <td>
-                                 <div class="file has-name is-small">
-                                    <label class="file-label" for="filePpm">
-                                       <input
-                                          class="file-input"
-                                          type="file"
-                                          name="resume"
-                                       />
-                                       <span class="file-cta">
-                                          <span class="file-icon">
-                                             <Icon
-                                                id="download"
-                                                src={downloadIcon}
-                                             />
-                                          </span>
-                                          <span class="file-label">
-                                             Choose a file</span
-                                          >
-                                       </span>
-                                       <span class="file-name"
-                                          >No file chosen</span
+                                 <span class="inputf__wrapper">
+                                    <input
+                                       id="fileSuratKontrak"
+                                       class="inputf custom-file-input"
+                                       accept="application/pdf"
+                                       type="file"
+                                       on:change={fileSuratKontrakChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="fileSuratKontrak"
                                        >
-                                    </label>
-                                 </div>
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $suratKontrakFile?.name}
+                                             <span class="file-name">
+                                                {$suratKontrakFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span>
                               </td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratKontrak}
                                     >Download</button
                                  ></td
                               >
@@ -1808,33 +2047,53 @@
                            <!-- ====================================================== -->
                            <tr>
                               <td>Surat Tugas</td>
-                              <td
-                                 ><div class="file has-name is-small">
-                                    <label class="file-label" for="filePpm">
-                                       <input
-                                          class="file-input"
-                                          type="file"
-                                          name="resume"
-                                       />
-                                       <span class="file-cta">
-                                          <span class="file-icon">
-                                             <Icon
-                                                id="download"
-                                                src={downloadIcon}
-                                             />
-                                          </span>
-                                          <span class="file-label">
-                                             Choose a file</span
-                                          >
-                                       </span>
-                                       <span class="file-name"
-                                          >No file chosen</span
+                              <td>
+                                 <span class="inputf__wrapper">
+                                    <input
+                                       id="fileSuratTugas"
+                                       class="inputf custom-file-input"
+                                       accept="application/pdf"
+                                       type="file"
+                                       on:change={fileSuratTugasChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="fileSuratTugas"
                                        >
-                                    </label>
-                                 </div></td
-                              >
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $suratTugasFile?.name}
+                                             <span class="file-name">
+                                                {$suratTugasFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span>
+                              </td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
                                     >Download</button
                                  ></td
                               >
@@ -1887,33 +2146,53 @@
                         <tbody>
                            <tr>
                               <td>Surat Tugas</td>
-                              <td
-                                 ><div class="file has-name is-small">
-                                    <label class="file-label" for="filePpm">
-                                       <input
-                                          class="file-input"
-                                          type="file"
-                                          name="resume"
-                                       />
-                                       <span class="file-cta">
-                                          <span class="file-icon">
-                                             <Icon
-                                                id="download"
-                                                src={downloadIcon}
-                                             />
-                                          </span>
-                                          <span class="file-label">
-                                             Choose a file</span
-                                          >
-                                       </span>
-                                       <span class="file-name"
-                                          >No file chosen</span
+                              <td>
+                                 <span class="inputf__wrapper">
+                                    <input
+                                       id="fileSuratTugas"
+                                       class="inputf custom-file-input"
+                                       accept="application/pdf"
+                                       type="file"
+                                       on:change={fileSuratTugasChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="fileSuratTugas"
                                        >
-                                    </label>
-                                 </div></td
-                              >
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $suratTugasFile?.name}
+                                             <span class="file-name">
+                                                {$suratTugasFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span>
+                              </td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
                                     >Download</button
                                  ></td
                               >
@@ -2193,7 +2472,9 @@
                               </div>
                            </td>
                            <td style="text-align: center"
-                              ><button class="button is-link button is-small"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadSkPenelitian}
                                  >Download</button
                               ></td
                            >

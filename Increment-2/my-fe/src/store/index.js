@@ -7,6 +7,8 @@ export const ppmFile = writable({});
 export const rabFile = writable({});
 export const penilaianFile = writable({});
 export const skPendanaanFile = writable({});
+export const suratKontrakFile = writable({});
+export const suratTugasFile = writable({});
 
 export const apiURL = writable(
    process.ENV.production

@@ -102,6 +102,9 @@
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
 
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
             statusPencairanDana =
                data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
@@ -1034,6 +1037,93 @@
          }
       }
    }
+
+   async function handleDownloadSkPendanaan(e) {
+      let filename = "SK Pendanaan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPendanaan/${fileSkPendanaanNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File SK Pendanaan tidak tersedia saat ini");
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratKontrak() {
+      let filename = "Surat Kontrak Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratKontrak/${fileSuratKontrakNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File Surat Kontrak tidak tersedia saat ini");
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratTugas() {
+      let filename = "Surat Tugas" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratTugas/${fileSuratTugasNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            // Handle if data not found (Modal Error)
+            console.log("File Surat Tugas tidak tersedia saat ini");
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
 </script>
 
 {#if data && items.length > 0}
@@ -1597,7 +1687,9 @@
                            <tr>
                               <td>SK Pendanaan</td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSkPendanaan}
                                     >Download</button
                                  ></td
                               >
@@ -1607,7 +1699,9 @@
                            <tr>
                               <td>Surat Kontrak Penelitian</td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratKontrak}
                                     >Download</button
                                  ></td
                               >
@@ -1623,7 +1717,9 @@
                            <tr>
                               <td>Surat Tugas</td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
                                     >Download</button
                                  ></td
                               >
@@ -1665,7 +1761,9 @@
                            <tr>
                               <td>Surat Tugas</td>
                               <td style="text-align: center"
-                                 ><button class="button is-link button is-small"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
                                     >Download</button
                                  ></td
                               >
