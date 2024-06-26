@@ -1,6 +1,6 @@
 <script>
    import { onMount } from "svelte";
-   import { route, apiURL, ppmFile, rabFile } from "../../store";
+   import { route, apiURL, ppmFile, rabFile, hasilPPMFile } from "../../store";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
    import Status from "../../modules/Status.svelte";
@@ -49,9 +49,9 @@
       presentasiHasilPPM,
       statusPencairanDana;
 
-   let hasilPenelitianVisible = false;
-   let danaPenelitianVisible = false;
-   let skPenelitianVisible = false;
+   let hasilPPMVisible = false;
+   let danaPPMVisible = false;
+   let skPPMVisible = false;
    let presentasiVisible = false;
    let skpVisible = false;
 
@@ -118,7 +118,7 @@
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
             fileSuratTugasNameDB = data.file_surat_tugas;
-            fileSkPenelitianNameDB = data.file_sk_penelitian;
+            fileSkPPMNameDB = data.file_sk_ppm;
             statusPencairanDana =
                data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
@@ -1078,7 +1078,7 @@
    }
 
    async function handleDownloadSuratKontrak() {
-      let filename = "Surat Kontrak Penelitian" + ".pdf";
+      let filename = "Surat Kontrak PPM" + ".pdf";
 
       try {
          const response = await fetch(
@@ -1133,12 +1133,12 @@
       }
    }
 
-   async function handleDownloadSkPenelitian() {
-      let filename = "SK Penelitian" + ".pdf";
+   async function handleDownloadSkPPM() {
+      let filename = "SK PPM" + ".pdf";
 
       try {
          const response = await fetch(
-            $apiURL + `/uploadDownloadSKPenelitian/${fileSkPenelitianNameDB}`,
+            $apiURL + `/uploadDownloadSKPPM/${fileSkPPMNameDB}`,
             {
                method: "GET",
                headers: headers,
@@ -1705,14 +1705,14 @@
 
          {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
-            <!--       Download SK Pendanaan, SK Penelitian, Surat Tugas      -->
+            <!--       Download SK Pendanaan, SK PPM, Surat Tugas      -->
             <!-- ============================================================ -->
             {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     File SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
+                     File SK Pendanaan / Surat Kontrak PPM / Surat Tugas
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
@@ -1751,7 +1751,7 @@
                            </tr>
                            <!-- ====================================================== -->
                            <tr>
-                              <td>Surat Kontrak Penelitian</td>
+                              <td>Surat Kontrak PPM</td>
                               <td style="text-align: center"
                                  ><button
                                     class="button is-link button is-small"
@@ -1829,24 +1829,23 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--               Dana Penelitian              -->
+            <!--               Dana PPM                     -->
             <!-- ========================================== -->
             {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Dana Penelitian
+                     Pendanaan PPM
                      <span
                         class="toggle-button"
-                        on:click={() =>
-                           (danaPenelitianVisible = !danaPenelitianVisible)}
+                        on:click={() => (danaPPMVisible = !danaPPMVisible)}
                      >
-                        {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                        {danaPPMVisible ? "(tutup)" : "(buka)"}
                      </span>
                   </h5>
 
-                  {#if danaPenelitianVisible}
+                  {#if danaPPMVisible}
                      <hr />
                      <table
                         class="table is-fullwidth is-striped is-hoverable is-bordered"
@@ -1867,8 +1866,8 @@
                                  ><div class="notification is-warning is-light">
                                     <p class="subtitle is-6">
                                        Untuk pengambilan dana dan penjelasan
-                                       lebih lanjut terkait dana penelitian,
-                                       hubungi LPPM UISI.
+                                       lebih lanjut terkait Pendanaan, hubungi
+                                       LPPM UISI.
                                     </p>
                                  </div></td
                               >
@@ -1880,26 +1879,25 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--             Hasil Penelitian               -->
+            <!--             Hasil PPM                      -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Hasil Penelitian
+                  Hasil PPM
                   <span
                      class="toggle-button"
-                     on:click={() =>
-                        (hasilPenelitianVisible = !hasilPenelitianVisible)}
+                     on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
                   >
-                     {hasilPenelitianVisible ? "(tutup)" : "(buka)"}
+                     {hasilPPMVisible ? "(tutup)" : "(buka)"}
                   </span>
                </h5>
 
-               {#if hasilPenelitianVisible}
+               {#if hasilPPMVisible}
                   <hr />
                   <div class="field">
-                     <p class="title is-6"><b>Upload Hasil Penelitian</b></p>
+                     <p class="title is-6"><b>Upload Hasil PPM</b></p>
                      <div class="file has-name is-success is-small">
                         <label class="file-label" for="filePpm">
                            <input
@@ -1951,14 +1949,14 @@
             </div>
 
             <!-- ========================================== -->
-            <!--         Presentasi Hasil Penelitian        -->
+            <!--         Presentasi Hasil PPM        -->
             <!-- ========================================== -->
             {#if jenisSkema !== "Riset Eksternal" && jenisSkema !== "Pengabdian Masyarakat Hibah Eksternal"}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Presentasi Hasil Penelitian
+                     Presentasi Hasil PPM
                      <span
                         class="toggle-button"
                         on:click={() =>
@@ -1975,7 +1973,7 @@
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Nama Kegiatan</th>
+                              <th style="width: 70%;">Kegiatan</th>
                               <th class="is-narrow" style="text-align: center"
                                  >Checkbox</th
                               >
@@ -1984,8 +1982,9 @@
                         <tbody>
                            <tr>
                               <td
-                                 >Mempresentasikan hasil penelitian di seminar
-                                 penelitian bersama UISI di bulan Desember</td
+                                 >Mempresentasikan hasil PPM di seminar
+                                 Penelitian / Pengmas bersama UISI di bulan
+                                 Desember</td
                               >
                               <td style="text-align: center">
                                  <input
@@ -2002,23 +2001,22 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--             Download SK Penelitian         -->
+            <!--             Download SK PPM         -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  File SK Penelitian
+                  File SK PPM
                   <span
                      class="toggle-button"
-                     on:click={() =>
-                        (skPenelitianVisible = !skPenelitianVisible)}
+                     on:click={() => (skPPMVisible = !skPPMVisible)}
                   >
-                     {skPenelitianVisible ? "(tutup)" : "(buka)"}
+                     {skPPMVisible ? "(tutup)" : "(buka)"}
                   </span>
                </h5>
 
-               {#if skPenelitianVisible}
+               {#if skPPMVisible}
                   <hr />
 
                   <table
@@ -2034,12 +2032,11 @@
                      </thead>
                      <tbody>
                         <tr>
-                           <td>SK Penelitian</td>
+                           <td>SK PPM</td>
                            <td style="text-align: center"
                               ><button
                                  class="button is-link button is-small"
-                                 on:click={handleDownloadSkPenelitian}
-                                 >Download</button
+                                 on:click={handleDownloadSkPPM}>Download</button
                               ></td
                            >
                         </tr>

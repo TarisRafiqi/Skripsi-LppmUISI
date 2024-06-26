@@ -9,7 +9,8 @@
       skPendanaanFile,
       suratKontrakFile,
       suratTugasFile,
-      skPenelitianFile,
+      skPPMFile,
+      hasilPPMFile,
    } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
@@ -52,9 +53,9 @@
    let showModalErrorPassReviewer = false;
    let showModalErrorInputEvaluator = false;
    let isLoading = false;
-   let hasilPenelitianVisible = false;
-   let danaPenelitianVisible = false;
-   let skPenelitianVisible = false;
+   let hasilPPMVisible = false;
+   let danaPPMVisible = false;
+   let skPPMVisible = false;
    let presentasiVisible = false;
    let skpVisible = false;
    let randomPenilaianFileName = "";
@@ -91,7 +92,8 @@
    let fileSkPendanaan;
    let fileSuratKontrak;
    let fileSuratTugas;
-   let fileSkPenelitian;
+   let fileSkPPM;
+   let fileHasilPPM;
    let items = [];
    let view;
    let editModeProposal = false;
@@ -201,7 +203,8 @@
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
             fileSuratTugasNameDB = data.file_surat_tugas;
-            fileSkPenelitianNameDB = data.file_sk_penelitian;
+            fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
             statusPencairanDana = data.status_pencairan_dana || "";
          }
       }
@@ -295,18 +298,18 @@
       const readerSkPendanaan = new FileReader();
       const readerSuratKontrak = new FileReader();
       const readerSuratTugas = new FileReader();
-      const readerSkPenelitian = new FileReader();
+      const readerSkPPM = new FileReader();
 
       let fileSkPendanaanName = id + "_SK Pendanaan";
-      let fileSuratKontrakName = id + "_Surat Kontrak Penelitian";
+      let fileSuratKontrakName = id + "_Surat Kontrak PPM";
       let fileSuratTugasName = id + "_Surat Tugas";
-      let fileSkPenelitianName = id + "_SK Penelitian";
+      let fileSkPPMName = id + "_SK PPM";
 
       let payloadFileName = {
          fileSkPendanaanName,
          fileSuratKontrakName,
          fileSuratTugasName,
-         fileSkPenelitianName,
+         fileSkPPMName,
          id,
       };
 
@@ -491,32 +494,128 @@
          if (fileSuratTugas) readerSuratTugas.readAsDataURL(fileSuratTugas);
       });
 
-      // ================================ Upload SK Penelitian ================================ //
-      const uploadSkPenelitian = new Promise((resolve, reject) => {
-         if (!fileSkPenelitian) {
+      // ================================ Upload SK PPM ================================ //
+      const uploadSkPPM = new Promise((resolve, reject) => {
+         if (!fileSkPPM) {
             // File not selected, resolve immediately
-            resolve("No file SkPenelitian selected");
+            resolve("No file SkPPM selected");
             return;
          }
 
-         readerSkPenelitian.onloadend = async () => {
-            const base64Data = readerSkPenelitian.result.split(",")[1];
-            const payloadSkPenelitianFile = {
-               fileSkPenelitian: {
-                  name: fileSkPenelitian.name,
-                  type: fileSkPenelitian.type,
+         readerSkPPM.onloadend = async () => {
+            const base64Data = readerSkPPM.result.split(",")[1];
+            const payloadSkPPMFile = {
+               fileSkPPM: {
+                  name: fileSkPPM.name,
+                  type: fileSkPPM.type,
                   data: base64Data,
                },
-               fileSkPenelitianName,
+               fileSkPPMName,
+            };
+
+            try {
+               const response = await fetch($apiURL + "/uploadDownloadSKPPM", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadSkPPMFile),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  // Handle if sukses (Modal Sukses)
+                  console.log("File SK PPM sukses disimpan");
+                  resolve(result);
+               } else {
+                  // Handle if gagal (Modal Gagal/Error)
+                  console.log("File SK PPM gagal disimpan");
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+
+         if (fileSkPPM) readerSkPPM.readAsDataURL(fileSkPPM);
+      });
+
+      try {
+         await Promise.all([
+            submitFileName,
+            uploadSkPendanaan,
+            uploadSuratKontrak,
+            uploadSuratTugas,
+            uploadSkPPM,
+         ]);
+      } finally {
+         isLoading = false;
+      }
+   }
+
+   async function handleSubmitHasilPPM() {
+      isLoading = true;
+      const readerHasilPPM = new FileReader();
+      let fileHasilPPMName = id + "_Laporan Hasil PPM";
+
+      let payloadFileName = {
+         fileHasilPPMName,
+         id,
+      };
+
+      const submitFileName = new Promise(async (resolve, reject) => {
+         try {
+            const response = await fetch($apiURL + "/submitFilePPM/pass", {
+               method: "PATCH",
+               headers: headers,
+               body: JSON.stringify(payloadFileName),
+            });
+
+            const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+               reject("Token expired");
+            } else if (response.ok) {
+               resolve(result);
+            } else {
+               console.log(result.msg, error);
+               reject("Error submitting file");
+            }
+         } catch (error) {
+            reject(error);
+         }
+      });
+
+      // ================================ Upload Hasil PPM ================================ //
+      const uploadHasilPPM = new Promise((resolve, reject) => {
+         if (!fileHasilPPM) {
+            // File not selected, resolve immediately
+            resolve("No file Hasil PPM selected");
+            return;
+         }
+
+         readerHasilPPM.onloadend = async () => {
+            const base64Data = readerHasilPPM.result.split(",")[1];
+            const payloadHasilPPMFile = {
+               fileHasilPPM: {
+                  name: fileHasilPPM.name,
+                  type: fileHasilPPM.type,
+                  data: base64Data,
+               },
+               fileHasilPPMName,
             };
 
             try {
                const response = await fetch(
-                  $apiURL + "/uploadDownloadSKPenelitian",
+                  $apiURL + "/uploadDownloadHasilPPM",
                   {
                      method: "POST",
                      headers: headers,
-                     body: JSON.stringify(payloadSkPenelitianFile),
+                     body: JSON.stringify(payloadHasilPPMFile),
                   }
                );
 
@@ -527,11 +626,11 @@
                   reject("Token expired");
                } else if (response.ok) {
                   // Handle if sukses (Modal Sukses)
-                  console.log("File SK Penelitian sukses disimpan");
+                  console.log("File Laporan Hasil PPM sukses disimpan");
                   resolve(result);
                } else {
                   // Handle if gagal (Modal Gagal/Error)
-                  console.log("File SK Penelitian gagal disimpan");
+                  console.log("File Laporan Hasil PPM gagal disimpan");
                   reject(result);
                }
             } catch (error) {
@@ -540,18 +639,11 @@
             }
          };
 
-         if (fileSkPenelitian)
-            readerSkPenelitian.readAsDataURL(fileSkPenelitian);
+         if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
       });
 
       try {
-         await Promise.all([
-            submitFileName,
-            uploadSkPendanaan,
-            uploadSuratKontrak,
-            uploadSuratTugas,
-            uploadSkPenelitian,
-         ]);
+         await Promise.all([submitFileName, uploadHasilPPM]);
       } finally {
          isLoading = false;
       }
@@ -1113,12 +1205,40 @@
       }
    }
 
-   async function handleDownloadSkPenelitian() {
-      let filename = "SK Penelitian" + ".pdf";
+   async function handleDownloadSkPPM() {
+      let filename = "SK PPM" + ".pdf";
 
       try {
          const response = await fetch(
-            $apiURL + `/uploadDownloadSKPenelitian/${fileSkPenelitianNameDB}`,
+            $apiURL + `/uploadDownloadSKPPM/${fileSkPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadHasilPPM() {
+      let filename = "Laporan Hasil Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadHasilPPM/${fileHasilPPMNameDB}`,
             {
                method: "GET",
                headers: headers,
@@ -1313,9 +1433,14 @@
       $suratTugasFile = e.target.files[0];
    }
 
-   function fileSkPenelitianChange(e) {
-      fileSkPenelitian = e.target.files[0];
-      $skPenelitianFile = e.target.files[0];
+   function fileSkPPMChange(e) {
+      fileSkPPM = e.target.files[0];
+      $skPPMFile = e.target.files[0];
+   }
+
+   function fileHasilPPMChange(e) {
+      fileHasilPPM = e.target.files[0];
+      $hasilPPMFile = e.target.files[0];
    }
 
    let tab1 = true;
@@ -2016,7 +2141,7 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     File SK Pendanaan / Surat Kontrak Penelitian / Surat Tugas
+                     File SK Pendanaan / Surat Kontrak PPM / Surat Tugas
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
@@ -2098,7 +2223,7 @@
                            </tr>
                            <!-- ====================================================== -->
                            <tr>
-                              <td>Surat Kontrak Penelitian</td>
+                              <td>Surat Kontrak PPM</td>
                               <td>
                                  <span class="inputf__wrapper">
                                     <input
@@ -2320,7 +2445,7 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--               Dana Penelitian              -->
+            <!--                  Dana PPM                  -->
             <!-- ========================================== -->
             <!-- {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"} -->
             {#if skemaInternal.includes(jenisSkema)}
@@ -2328,17 +2453,16 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Dana Penelitian
+                     Pendanaan PPM
                      <span
                         class="toggle-button"
-                        on:click={() =>
-                           (danaPenelitianVisible = !danaPenelitianVisible)}
+                        on:click={() => (danaPPMVisible = !danaPPMVisible)}
                      >
-                        {danaPenelitianVisible ? "(tutup)" : "(buka)"}
+                        {danaPPMVisible ? "(tutup)" : "(buka)"}
                      </span>
                   </h5>
 
-                  {#if danaPenelitianVisible}
+                  {#if danaPPMVisible}
                      <hr />
                      <table
                         class="table is-fullwidth is-striped is-hoverable is-bordered"
@@ -2369,8 +2493,8 @@
                                  ><div class="notification is-warning is-light">
                                     <p class="subtitle is-6">
                                        Untuk pengambilan dana dan penjelasan
-                                       lebih lanjut terkait dana penelitian,
-                                       hubungi LPPM UISI.
+                                       lebih lanjut terkait Pendanaan, hubungi
+                                       LPPM UISI.
                                     </p>
                                  </div></td
                               >
@@ -2393,50 +2517,110 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--             Hasil Penelitian               -->
+            <!--               Hasil PPM                    -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Hasil Penelitian
+                  Hasil PPM
                   <span
                      class="toggle-button"
-                     on:click={() =>
-                        (hasilPenelitianVisible = !hasilPenelitianVisible)}
+                     on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
                   >
-                     {hasilPenelitianVisible ? "(tutup)" : "(buka)"}
+                     {hasilPPMVisible ? "(tutup)" : "(buka)"}
                   </span>
                </h5>
 
-               {#if hasilPenelitianVisible}
+               {#if hasilPPMVisible}
                   <hr />
-                  <div class="field">
-                     <p class="title is-6"><b>Upload Hasil Penelitian</b></p>
-                     <div class="file has-name is-success is-small">
-                        <label class="file-label" for="filePpm">
-                           <input
-                              class="file-input"
-                              type="file"
-                              name="resume"
-                           />
-                           <span class="file-cta">
-                              <span class="file-icon">
-                                 <Icon id="download" src={downloadIcon} />
-                              </span>
-                              <span class="file-label"> Choose a file</span>
-                           </span>
-                           <span class="file-name">No file chosen</span>
-                        </label>
-                     </div>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Upload File</th
+                           >
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>Laporan Hasil PPM</td>
+                           <td
+                              ><span class="inputf__wrapper">
+                                 <input
+                                    id="fileHasilPPM"
+                                    class="inputf custom-file-input"
+                                    accept="application/pdf"
+                                    type="file"
+                                    on:change={fileHasilPPMChange}
+                                 />
+                                 <div class="file has-name is-small">
+                                    <label
+                                       class="file-label"
+                                       for="fileHasilPPM"
+                                    >
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       {#if $hasilPPMFile?.name}
+                                          <span class="file-name">
+                                             {$hasilPPMFile.name}</span
+                                          >
+                                       {:else}
+                                          <span class="file-name"
+                                             >No file chosen</span
+                                          >
+                                       {/if}
+                                    </label>
+                                 </div>
+                              </span></td
+                           >
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadHasilPPM}
+                                 >Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
+
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           class:is-loading={isLoading}
+                           on:click={handleSubmitHasilPPM}
+                           >Submit Hasil PPM</button
+                        >
+                     </p>
                   </div>
 
                   <hr />
+
                   <div class="notification is-warning is-light">
-                     <p>
-                        Berikan catatan revisi jika ingin revisi Hasil
-                        Penelitian
-                     </p>
+                     <p>Berikan catatan revisi jika ingin revisi Hasil PPM</p>
                   </div>
 
                   <div class="field">
@@ -2481,13 +2665,13 @@
             </div>
 
             <!-- ========================================== -->
-            <!--         Presentasi Hasil Penelitian        -->
+            <!--             Presentasi Hasil PPM           -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Presentasi Hasil Penelitian
+                  Presentasi Hasil PPM
                   <span
                      class="toggle-button"
                      on:click={() => (presentasiVisible = !presentasiVisible)}
@@ -2503,7 +2687,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Nama Kegiatan</th>
+                           <th style="width: 70%;">Kegiatan</th>
                            <th class="is-narrow" style="text-align: center"
                               >Checkbox</th
                            >
@@ -2512,8 +2696,8 @@
                      <tbody>
                         <tr>
                            <td
-                              >Mempresentasikan hasil penelitian di seminar
-                              penelitian bersama UISI di bulan Desember</td
+                              >Mempresentasikan hasil PPM di seminar Penelitian
+                              / Pengmas bersama UISI di bulan Desember</td
                            >
                            <td style="text-align: center"
                               ><input type="checkbox" /></td
@@ -2525,23 +2709,22 @@
             </div>
 
             <!-- ========================================== -->
-            <!--             File SK Penelitian             -->
+            <!--                 File SK PPM                  -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  File SK Penelitian
+                  File SK PPM
                   <span
                      class="toggle-button"
-                     on:click={() =>
-                        (skPenelitianVisible = !skPenelitianVisible)}
+                     on:click={() => (skPPMVisible = !skPPMVisible)}
                   >
-                     {skPenelitianVisible ? "(tutup)" : "(buka)"}
+                     {skPPMVisible ? "(tutup)" : "(buka)"}
                   </span>
                </h5>
 
-               {#if skPenelitianVisible}
+               {#if skPPMVisible}
                   <hr />
 
                   <table
@@ -2560,21 +2743,18 @@
                      </thead>
                      <tbody>
                         <tr>
-                           <td>SK Penelitian</td>
+                           <td>SK PPM</td>
                            <td
                               ><span class="inputf__wrapper">
                                  <input
-                                    id="fileSkPenelitian"
+                                    id="fileSkPPM"
                                     class="inputf custom-file-input"
                                     accept="application/pdf"
                                     type="file"
-                                    on:change={fileSkPenelitianChange}
+                                    on:change={fileSkPPMChange}
                                  />
                                  <div class="file has-name is-small">
-                                    <label
-                                       class="file-label"
-                                       for="fileSkPenelitian"
-                                    >
+                                    <label class="file-label" for="fileSkPPM">
                                        <input
                                           class="file-input"
                                           type="file"
@@ -2591,9 +2771,9 @@
                                              Choose a file</span
                                           >
                                        </span>
-                                       {#if $skPenelitianFile?.name}
+                                       {#if $skPPMFile?.name}
                                           <span class="file-name">
-                                             {$skPenelitianFile.name}</span
+                                             {$skPPMFile.name}</span
                                           >
                                        {:else}
                                           <span class="file-name"
@@ -2607,8 +2787,7 @@
                            <td style="text-align: center"
                               ><button
                                  class="button is-link button is-small"
-                                 on:click={handleDownloadSkPenelitian}
-                                 >Download</button
+                                 on:click={handleDownloadSkPPM}>Download</button
                               ></td
                            >
                         </tr>
