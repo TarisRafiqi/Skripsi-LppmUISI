@@ -10,13 +10,13 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
          let connection;
          const sql =
-            "INSERT INTO riwayat_catatan_revisi (ppm_id, comment, evaluator) values (?, ?, ?)";
+            "INSERT INTO riwayat_catatan_revisi_proposal (ppm_id, catatan_revisi_proposal, evaluator) values (?, ?, ?)";
 
          try {
             connection = await fastify.mysql.getConnection();
             await connection.query(sql, [
                data.ppmId,
-               data.comment,
+               data.catatanRevisiProposal,
                data.namaLengkapEvl,
             ]);
             connection.release();
@@ -41,7 +41,8 @@ module.exports = async function (fastify, opts) {
          const id = Number(request.params.id);
          let dbData;
          let connection;
-         const sql = "SELECT * FROM riwayat_catatan_revisi WHERE ppm_id = ?";
+         const sql =
+            "SELECT * FROM riwayat_catatan_revisi_proposal WHERE ppm_id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();

@@ -29,7 +29,7 @@ module.exports = async function (fastify, opts) {
             roleFromToken === "K.LPPM" ||
             roleFromToken === "K.PusatKajian"
          ) {
-            const sql = "SELECT * FROM proposal_ppm WHERE id = ?";
+            const sql = "SELECT * FROM ppm WHERE id = ?";
             try {
                connection = await fastify.mysql.getConnection();
                const [rows] = await connection.query(sql, [id]);
@@ -68,7 +68,7 @@ module.exports = async function (fastify, opts) {
          let connection;
 
          if (idFromToken === uid) {
-            const sql = `SELECT * FROM proposal_ppm where JSON_CONTAINS(anggota_tim, '{"value": "${uid}" }')`;
+            const sql = `SELECT * FROM ppm where JSON_CONTAINS(anggota_tim, '{"value": "${uid}" }')`;
             try {
                connection = await fastify.mysql.getConnection();
                const [rows] = await connection.query(sql, [uid]);
@@ -98,7 +98,7 @@ module.exports = async function (fastify, opts) {
          const roleFromToken = decodedToken.role;
 
          const sql =
-            "SELECT id, uid, judul, jenis_kegiatan, jenis_skema, status FROM proposal_ppm";
+            "SELECT id, uid, judul, jenis_kegiatan, jenis_skema, status FROM ppm";
          let dbData;
          let connection;
 
@@ -138,7 +138,7 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "INSERT INTO proposal_ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, biodata_anggota, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "INSERT INTO ppm (uid, judul, abstrak, status, jenis_proposal, jenis_kegiatan, jenis_skema, kelompok_keahlian, topik, biaya_penelitian, anggota_tim, biodata_anggota, tanggal_mulai, tanggal_selesai, random_rab_file_name, random_ppm_file_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
          if (
             roleFromToken === "admin" ||
@@ -199,7 +199,7 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "UPDATE proposal_ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, biodata_anggota = ?, judul = ?, abstrak = ?,  comment = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
+            "UPDATE ppm SET jenis_proposal = ?, jenis_kegiatan = ?, jenis_skema = ?, kelompok_keahlian = ?, topik = ?, tanggal_mulai = ?, tanggal_selesai = ?, biaya_penelitian = ?, anggota_tim = ?, biodata_anggota = ?, judul = ?, abstrak = ?, status = ?, uid_kdept = ?, uid_klppm = ?, uid_kpk = ?, uid_reviewer = ?, random_rab_file_name = ?, random_ppm_file_name = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
@@ -216,7 +216,6 @@ module.exports = async function (fastify, opts) {
                JSON.stringify(data.newBiodataAnggota),
                data.judul,
                data.abstrak,
-               data.comment,
                data.status,
                data.kdeptSelected,
                data.klppmSelected,

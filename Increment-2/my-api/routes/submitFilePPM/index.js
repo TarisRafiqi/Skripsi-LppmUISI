@@ -12,7 +12,7 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "UPDATE proposal_ppm SET file_sk_pendanaan = ?, file_surat_kontrak = ?, file_surat_tugas = ? WHERE id = ?";
+            "UPDATE ppm SET file_sk_pendanaan = ?, file_surat_kontrak = ?, file_surat_tugas = ?, file_sk_penelitian = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
@@ -20,6 +20,7 @@ module.exports = async function (fastify, opts) {
                data.fileSkPendanaanName,
                data.fileSuratKontrakName,
                data.fileSuratTugasName,
+               data.fileSkPenelitianName,
                data.id,
             ]);
             dbData = rows;

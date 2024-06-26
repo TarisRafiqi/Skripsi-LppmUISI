@@ -16,12 +16,11 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "UPDATE proposal_ppm SET comment = ?, status = ?, random_penilaian_file_name = ? WHERE id = ?";
+            "UPDATE ppm SET status = ?, random_penilaian_file_name = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
             const [rows] = await connection.query(sql, [
-               data.comment,
                data.status,
                data.randomPenilaianFileName,
                data.id,
@@ -51,16 +50,11 @@ module.exports = async function (fastify, opts) {
          let connection;
          let data = request.body;
 
-         const sql =
-            "UPDATE proposal_ppm SET comment = ?, status = ? WHERE id = ?";
+         const sql = "UPDATE ppm SET status = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [
-               data.comment,
-               data.status,
-               data.id,
-            ]);
+            const [rows] = await connection.query(sql, [data.status, data.id]);
             dbData = rows;
             connection.release();
             reply.send({

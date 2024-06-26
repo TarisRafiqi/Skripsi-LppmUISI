@@ -11,8 +11,7 @@ module.exports = async function (fastify, opts) {
          let connection;
          let data = request.body;
 
-         const sql =
-            "UPDATE proposal_ppm SET ttd_surat_kontrak = ? WHERE id = ?";
+         const sql = "UPDATE ppm SET ttd_surat_kontrak = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
@@ -44,8 +43,7 @@ module.exports = async function (fastify, opts) {
          let connection;
          let data = request.body;
 
-         const sql =
-            "UPDATE proposal_ppm SET presentasi_hasil_ppm = ? WHERE id = ?";
+         const sql = "UPDATE ppm SET presentasi_hasil_ppm = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
