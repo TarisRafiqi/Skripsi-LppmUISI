@@ -3,6 +3,8 @@
    import { route, apiURL, ppmFile } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
+   import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
    import { onMount } from "svelte";
    import Select from "../../libs/Select.svelte";
    import Field from "../../libs/Field.svelte";
@@ -25,100 +27,32 @@
       "Content-Type": "application/json",
    };
 
-   let errorMark = true;
-   let error = {};
+   let showModalError = false;
+   let showModalChecked = false;
 
-   function filePpmChange(e) {
-      filePpm = e.target.files[0];
-      $ppmFile = e.target.files[0];
+   function button1() {
+      showModalError = true;
    }
 
-   async function Submit() {
-      error = {};
-      isLoading = true;
-
-      const readerPpm = new FileReader();
-
-      //============================================================
-      // Upload File Proposal
-      //============================================================
-      readerPpm.onloadend = async () => {
-         const base64Data = readerPpm.result.split(",")[1];
-         const payloadPpmFile = {
-            filePpm: {
-               name: filePpm.name,
-               type: filePpm.type,
-               data: base64Data,
-            },
-            randomPpmFileName,
-         };
-
-         try {
-            const response = await fetch($apiURL + "/uploadPpm", {
-               method: "POST",
-               headers: headers,
-               body: JSON.stringify(payloadPpmFile),
-            });
-
-            const result = await response.json();
-         } catch (error) {
-            console.error("Error uploading file:", error);
-            // Buat Handle Error
-            // ...
-         }
-      };
-
-      readerPpm.readAsDataURL(filePpm);
+   function button2() {
+      showModalChecked = true;
    }
 </script>
 
 <Article>
-   <Field name="Proposal">
-      <span class="inputf__wrapper">
-         <input
-            id="filePpm"
-            class="inputf custom-file-input"
-            accept="application/pdf"
-            type="file"
-            on:change={filePpmChange}
-         />
-         <div class="file has-name is-success is-small">
-            <label class="file-label" for="filePpm">
-               <input class="file-input" type="file" name="resume" />
-               <span class="file-cta">
-                  <span class="file-icon">
-                     <Icon id="download" src={downloadIcon} />
-                  </span>
-                  <span class="file-label"> Choose a file</span>
-               </span>
-               {#if $ppmFile?.name}
-                  <span class="file-name"> {$ppmFile.name}</span>
-               {:else}
-                  <span class="file-name">No file chosen</span>
-               {/if}
-            </label>
-         </div>
-         {#if error.fileProposal}
-            <p class="error has-text-danger">{error.fileProposal}</p>
-         {/if}
-      </span>
-      <p class="help">File Type: pdf</p>
-   </Field>
+   <button class="button is-danger" on:click={button1}>Modal Error</button>
+   <br />
+   <br />
+   <button class="button is-success" on:click={button2}>Modal Checked</button>
 </Article>
 
-<style>
-   .inputf__wrapper {
-      position: relative;
-      display: flex;
-   }
-   .inputf__wrapper input {
-      width: 0;
-      height: 0;
-      opacity: 0;
-   }
+<Modalerror bind:show={showModalError}>
+   <p>Lengkapi semua form</p>
+</Modalerror>
 
-   .help {
-      /* top, right, bottom, left */
-      margin: -6px 0px 0px 0px;
-   }
+<Modalchecked bind:show={showModalChecked}>
+   <p>Data berhasil disimpan</p></Modalchecked
+>
+
+<style>
 </style>

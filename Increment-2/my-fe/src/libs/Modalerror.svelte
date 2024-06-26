@@ -55,7 +55,7 @@
       color: #000;
       text-align: center;
       border-radius: 10px;
-      padding: 30px;
+      padding: 20px;
       margin: 20px;
    }
 
@@ -68,15 +68,4 @@
       margin-bottom: 40px;
       font-size: 18px;
    }
-   /* button {
-      border: none;
-      border-radius: 5px;
-      border-style: solid;
-      border-width: 2px;
-      border-color: #adadad;
-      width: 200px;
-      padding: 14px;
-      font-size: 16px;
-      color: rgb(0, 0, 0);
-   } */
 </style>

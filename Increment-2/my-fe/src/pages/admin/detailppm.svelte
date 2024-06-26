@@ -44,6 +44,7 @@
    const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
 
    let error = {};
+   let newBiodataAnggota = [];
    let biodataAnggota = [];
    const idEvaluator = localStorage.getItem("id");
    let data;
@@ -51,6 +52,7 @@
    let ModalFileNotFound = false;
    let showModalErrorRevisi = false;
    let showModalErrorPassReviewer = false;
+   let showModalErrorHasilPPM = false;
    let showModalErrorInputEvaluator = false;
    let isLoading = false;
    let hasilPPMVisible = false;
@@ -74,9 +76,11 @@
    let abstrak;
    let status;
    let itemsRCR;
+   let itemsCHP;
    let statusPencairanDana = "";
    let options;
    let catatanRevisiProposal;
+   let catatanRevisiHasilPPM;
 
    let ka_departemen;
    let ka_lppm;
@@ -153,7 +157,34 @@
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
-            itemsRCR = dataRCR.dbData;
+            // itemsRCR = dataRCR.dbData;
+            itemsRCR = dataRCR.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+         }
+      }
+
+      // ========== Get Riwayat Catatan Revisi Hasil PPM ========== //
+      const responseCHP = await fetch(
+         $apiURL + "/riwayatCatatanRevisiHasilPPM/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataCHP = await responseCHP.json();
+
+      if (responseCHP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseCHP.ok) {
+            // itemsCHP = dataCHP.dbData;
+            itemsCHP = dataCHP.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
          }
       }
    });
@@ -210,6 +241,265 @@
       }
    }
 
+   //============================================================
+   // Get Biodata Anggota
+   //============================================================
+   async function getBiodataAnggota() {
+      let ids = anggotaTim.map((anggota) => anggota.value);
+      let promises = ids.map(async (idAnggota) => {
+         try {
+            // ==============================================
+            // Get profile
+            // ==============================================
+            const profileResponse = await fetch(
+               $apiURL + "/user/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (profileResponse.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!profileResponse.ok) {
+               throw new Error(`Failed to fetch profile for ID ${idAnggota}`);
+            }
+            const profileResult = await profileResponse.json();
+
+            // ==============================================
+            // Get RPS1
+            // ==============================================
+            const RPS1Response = await fetch(
+               $apiURL + "/riwayatPendidikanS1/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS1Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS1Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S1 for ID ${idAnggota}`
+               );
+            }
+            const RPS1Result = await RPS1Response.json();
+
+            // ==============================================
+            // Get RPS2
+            // ==============================================
+            const RPS2Response = await fetch(
+               $apiURL + "/riwayatPendidikanS2/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS2Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS2Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S2 for ID ${idAnggota}`
+               );
+            }
+            const RPS2Result = await RPS2Response.json();
+
+            // ==============================================
+            // Get RPS3
+            // ==============================================
+            const RPS3Response = await fetch(
+               $apiURL + "/riwayatPendidikanS3/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (RPS3Response.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!RPS3Response.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const RPS3Result = await RPS3Response.json();
+
+            // ==============================================
+            // Get Pengalaman Penelitian
+            // ==============================================
+            const responsePP = await fetch(
+               $apiURL + "/pengalamanPenelitian/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePP.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePP.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPP = await responsePP.json();
+
+            // ==============================================
+            // Get Pengalaman Pengmas
+            // ==============================================
+            const responsePM = await fetch(
+               $apiURL + "/pengalamanPengmas/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePM.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePM.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPM = await responsePM.json();
+
+            // ==============================================
+            // Get Pengalaman Diseminasi
+            // ==============================================
+            const responsePD = await fetch(
+               $apiURL + "/pengalamanDiseminasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePD.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePD.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPD = await responsePD.json();
+
+            // ==============================================
+            // Get Pengalaman Publikasi
+            // ==============================================
+            const responsePPub = await fetch(
+               $apiURL + "/pengalamanPublikasi/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPub.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPub.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPub = await responsePPub.json();
+
+            // ==============================================
+            // Get Pengalaman Penulisan Buku
+            // ==============================================
+            const responsePPB = await fetch(
+               $apiURL + "/pengalamanPenulisanBuku/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePPB.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePPB.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPPB = await responsePPB.json();
+
+            // ==============================================
+            // Get Pengalaman Hak Kekayaan Intelektual
+            // ==============================================
+            const responsePHKI = await fetch(
+               $apiURL + "/pengalamanHKI/" + idAnggota,
+               {
+                  method: "GET",
+                  headers: headers,
+               }
+            );
+
+            if (responsePHKI.status === 401) {
+               location.pathname = "/tokenexpired";
+               return;
+            }
+            if (!responsePHKI.ok) {
+               throw new Error(
+                  `Failed to fetch Riwayat Pendidikan S3 for ID ${idAnggota}`
+               );
+            }
+            const resultPHKI = await responsePHKI.json();
+
+            return {
+               profile: profileResult,
+               RPS1: RPS1Result.dbData,
+               RPS2: RPS2Result.dbData,
+               RPS3: RPS3Result.dbData,
+               Ppenelitian: resultPP.dbData,
+               Ppengmas: resultPM.dbData,
+               Pdiseminasi: resultPD.dbData,
+               Ppublikasi: resultPPub.dbData,
+               PpenulisanBuku: resultPPB.dbData,
+               Phki: resultPHKI.dbData,
+            };
+         } catch (error) {
+            console.error(`Error fetching data for ID ${idAnggota}:`, error);
+            return {
+               profile: null,
+               RPS1: [],
+               RPS2: [],
+               RPS3: [],
+               Ppenelitian: [],
+               Ppengmas: [],
+               Pdiseminasi: [],
+               Ppublikasi: [],
+               PpenulisanBuku: [],
+               Phki: [],
+               error: error.message,
+            };
+         }
+      });
+
+      // biodataAnggota = await Promise.all(promises);
+      newBiodataAnggota = await Promise.all(promises.filter(Boolean));
+   }
+
    function isEdit(code) {
       const edit = [0, 1, 3, 5, 7, 9];
       return edit.some((x) => x === code);
@@ -221,6 +511,19 @@
          Object.keys(objectName).length === 0 &&
          objectName.constructor === Object
       );
+   }
+
+   function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const hours = String(date.getUTCHours()).padStart(2, "0");
+      const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+      const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+
+      // Format date "YYYY-MM-DD HH:MM:SS"
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
    }
 
    async function handleSubmitStatusPendanaan() {
@@ -562,62 +865,76 @@
       let fileHasilPPMName = id + "_Laporan Hasil PPM";
 
       let payloadFileName = {
+         status: Number(data.status) + 2,
          fileHasilPPMName,
          id,
       };
 
-      const submitFileName = new Promise(async (resolve, reject) => {
-         try {
-            const response = await fetch($apiURL + "/submitFilePPM/pass", {
-               method: "PATCH",
-               headers: headers,
-               body: JSON.stringify(payloadFileName),
-            });
-
-            const result = await response.json();
-
-            if (response.status === 401) {
-               location.pathname = "/tokenexpired";
-               reject("Token expired");
-            } else if (response.ok) {
-               resolve(result);
-            } else {
-               console.log(result.msg, error);
-               reject("Error submitting file");
+      if (hasilPPMisRequired && !fileHasilPPM) {
+         showModalErrorHasilPPM = true;
+         isLoading = false;
+         return;
+      } else {
+         // ================================ Upload Hasil PPM ================================ //
+         const uploadHasilPPM = new Promise((resolve, reject) => {
+            if (!fileHasilPPM) {
+               resolve("No file Hasil PPM selected");
+               return;
             }
-         } catch (error) {
-            reject(error);
-         }
-      });
 
-      // ================================ Upload Hasil PPM ================================ //
-      const uploadHasilPPM = new Promise((resolve, reject) => {
-         if (!fileHasilPPM) {
-            // File not selected, resolve immediately
-            resolve("No file Hasil PPM selected");
-            return;
-         }
+            readerHasilPPM.onloadend = async () => {
+               const base64Data = readerHasilPPM.result.split(",")[1];
+               const payloadHasilPPMFile = {
+                  fileHasilPPM: {
+                     name: fileHasilPPM.name,
+                     type: fileHasilPPM.type,
+                     data: base64Data,
+                  },
+                  fileHasilPPMName,
+               };
 
-         readerHasilPPM.onloadend = async () => {
-            const base64Data = readerHasilPPM.result.split(",")[1];
-            const payloadHasilPPMFile = {
-               fileHasilPPM: {
-                  name: fileHasilPPM.name,
-                  type: fileHasilPPM.type,
-                  data: base64Data,
-               },
-               fileHasilPPMName,
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadDownloadHasilPPM",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadHasilPPMFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     // Handle if sukses (Modal Sukses)
+                     console.log("File Laporan Hasil PPM sukses disimpan");
+                     resolve(result);
+                  } else {
+                     // Handle if gagal (Modal Gagal/Error)
+                     console.log("File Laporan Hasil PPM gagal disimpan");
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
             };
 
+            if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
+            // readerHasilPPM.readAsDataURL(fileHasilPPM);
+         });
+
+         // ================================ Update Data PPM ================================ //
+         const submitFileName = new Promise(async (resolve, reject) => {
             try {
-               const response = await fetch(
-                  $apiURL + "/uploadDownloadHasilPPM",
-                  {
-                     method: "POST",
-                     headers: headers,
-                     body: JSON.stringify(payloadHasilPPMFile),
-                  }
-               );
+               const response = await fetch($apiURL + "/submitFilePPM/pass", {
+                  method: "PATCH",
+                  headers: headers,
+                  body: JSON.stringify(payloadFileName),
+               });
 
                const result = await response.json();
 
@@ -625,31 +942,26 @@
                   location.pathname = "/tokenexpired";
                   reject("Token expired");
                } else if (response.ok) {
-                  // Handle if sukses (Modal Sukses)
-                  console.log("File Laporan Hasil PPM sukses disimpan");
                   resolve(result);
                } else {
-                  // Handle if gagal (Modal Gagal/Error)
-                  console.log("File Laporan Hasil PPM gagal disimpan");
-                  reject(result);
+                  console.log(result.msg, error);
+                  reject("Error submitting file");
                }
             } catch (error) {
-               console.error("Error uploading file:", error);
                reject(error);
             }
-         };
+         });
 
-         if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
-      });
-
-      try {
-         await Promise.all([submitFileName, uploadHasilPPM]);
-      } finally {
-         isLoading = false;
+         try {
+            await Promise.all([uploadHasilPPM, submitFileName]);
+         } finally {
+            isLoading = false;
+         }
       }
    }
 
    async function handlePerbaikan() {
+      await getBiodataAnggota();
       error = {};
       isLoading = true;
       const readerRab = new FileReader();
@@ -665,6 +977,7 @@
          tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
+         newBiodataAnggota,
          id,
          judul,
          abstrak,
@@ -806,19 +1119,29 @@
          catatanRevisiProposal,
          namaLengkapEvl,
       };
+      const payloadCttnRevisiHasilPPM = {
+         ppmId,
+         catatanRevisiHasilPPM,
+         namaLengkapEvl,
+      };
 
-      if (InputCttnRevisiProposal()) {
+      if (cttnRevisiProposalisRequired()) {
          if (!payloadCttnRevisiProposal.catatanRevisiProposal) {
             error.catatanRevisiProposal = `This field is required`;
+         }
+      }
+      if (cttnRevisiHasilPPMisRequired()) {
+         if (!payloadCttnRevisiHasilPPM.catatanRevisiHasilPPM) {
+            error.catatanRevisiHasilPPM = `This field is required`;
          }
       }
 
       if (Object.keys(error).length > 0) {
          showModalErrorRevisi = true;
       } else {
-         // ===========  API RiwayatCttnRevisiProposal  =========== //
-         if (InputCttnRevisiProposal()) {
-            const responseRev = await fetch(
+         // ===========  Post Catatan Revisi Proposal  =========== //
+         if (cttnRevisiProposalisRequired()) {
+            const responseRevisiProposal = await fetch(
                $apiURL + "/riwayatCatatanRevisiProposal",
                {
                   method: "POST",
@@ -827,15 +1150,37 @@
                }
             );
 
-            const resultRev = await responseRev.json();
+            const resultRevisiProposal = await responseRevisiProposal.json();
 
-            if (responseRev.status === 401) {
+            if (responseRevisiProposal.status === 401) {
                location.pathname = "/tokenexpired";
             } else {
-               if (!responseRev.ok) {
-                  console.log(responseRev);
+               if (!responseRevisiProposal.ok) {
+                  console.log(responseRevisiProposal);
                   // Buat Handle Error
-                  // ...
+               }
+            }
+         }
+
+         // ===========  Post Catatan Revisi Hasil PPM  =========== //
+         if (cttnRevisiHasilPPMisRequired()) {
+            const responseRevisiHasilPPM = await fetch(
+               $apiURL + "/riwayatCatatanRevisiHasilPPM",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiHasilPPM),
+               }
+            );
+
+            const resultRevisiHasilPPM = await responseRevisiHasilPPM.json();
+
+            if (responseRevisiHasilPPM.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRevisiHasilPPM.ok) {
+                  console.log(responseRevisiHasilPPM);
+                  // Buat Handle Error
                }
             }
          }
@@ -1316,6 +1661,31 @@
       }
    }
 
+   function hasilPPMisRequired() {
+      const ReviewKpkKlppmSkemaInternal = [10];
+      const ReviewKpkKlppmSkemaEksternal = [8];
+      const ReviewKpkKlppmSkemaMandiri = [8];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
    function ShowRDPButton() {
       const ReviewKpkKlppmSkemaInternal = [8];
       const ReviewKpkKlppmSkemaEksternal = [6];
@@ -1341,10 +1711,37 @@
       }
    }
 
-   function InputCttnRevisiProposal() {
+   function cttnRevisiProposalisRequired() {
       const RevisiSkemaInternal = [2, 8];
       const RevisiSkemaEksternal = [2, 6];
       const RevisiSkemaMandiri = [2, 6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
+
+   function cttnRevisiHasilPPMisRequired() {
+      const RevisiSkemaInternal = [12];
+      const RevisiSkemaEksternal = [10];
+      const RevisiSkemaMandiri = [10];
 
       if (
          skemaInternal.includes(data.jenis_skema) &&
@@ -2010,7 +2407,7 @@
          {#if status != 0}
             <div class="box">
                <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               {#if InputCttnRevisiProposal()}
+               {#if cttnRevisiProposalisRequired()}
                   <div class="notification is-warning is-light">
                      <p>Berikan catatan revisi jika ingin revisi proposal</p>
                   </div>
@@ -2046,17 +2443,21 @@
                   <thead>
                      <tr>
                         <th style="width: 70%;">Catatan Revisi</th>
-                        <th style="width: 15%;">Evaluator</th>
-                        <th style="width: 15%;">Waktu</th>
+                        <th style="width: 15%; text-align: center">Evaluator</th
+                        >
+                        <th style="width: 15%; text-align: center">Tanggal</th>
                      </tr>
                   </thead>
+
                   {#if itemsRCR}
                      <tbody>
                         {#each itemsRCR as item}
                            <tr>
                               <td>{item.catatan_revisi_proposal}</td>
-                              <td>{item.evaluator}</td>
-                              <td>{item.time}</td>
+                              <td style="text-align: center"
+                                 >{item.evaluator}</td
+                              >
+                              <td style="text-align: center">{item.time}</td>
                            </tr>
                         {/each}
                      </tbody>
@@ -2136,7 +2537,7 @@
             <!-- ============================================================ -->
             <!-- Download SK Pendanaan, Surat Kontrak Penelitian, Surat Tugas -->
             <!-- ============================================================ -->
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -2523,7 +2924,7 @@
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Hasil PPM
+                  Laporan Hasil PPM
                   <span
                      class="toggle-button"
                      on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
@@ -2606,17 +3007,6 @@
                      </tbody>
                   </table>
 
-                  <div class="field is-grouped is-grouped-right">
-                     <p class="control">
-                        <button
-                           class="button is-info"
-                           class:is-loading={isLoading}
-                           on:click={handleSubmitHasilPPM}
-                           >Submit Hasil PPM</button
-                        >
-                     </p>
-                  </div>
-
                   <hr />
 
                   <div class="notification is-warning is-light">
@@ -2629,7 +3019,13 @@
                         class="textarea mb-1"
                         name="catatanRevisiHasilPPM"
                         id="catatanRevisiHasilPPM"
+                        bind:value={catatanRevisiHasilPPM}
                      ></textarea>
+                     {#if error.catatanRevisiHasilPPM}
+                        <p class="help error is-danger">
+                           {error.catatanRevisiHasilPPM}
+                        </p>
+                     {/if}
                   </div>
 
                   <hr />
@@ -2639,27 +3035,29 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 65%;">Catatan Revisi</th>
-                           <th
-                              class="is-narrow"
-                              style="width: 15%; text-align: center"
+                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >
-                           <th class="is-narrow" style="text-align: center"
+                           <th style="width: 15%; text-align: center"
                               >Tanggal</th
                            >
                         </tr>
                      </thead>
 
-                     <tbody>
-                        <tr>
-                           <td>...</td>
-                           <td style="text-align: center"
-                              >Taris Rafiqi Izatri, S.Kom.</td
-                           >
-                           <td style="text-align: center">...</td>
-                        </tr>
-                     </tbody>
+                     {#if itemsCHP}
+                        <tbody>
+                           {#each itemsCHP as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_hasil_ppm}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
                   </table>
                {/if}
             </div>
@@ -2868,6 +3266,16 @@
                      class="button is-info"
                      on:click={handlePass}
                      class:is-loading={isLoading}>Proses</button
+                  >
+               </p>
+            {/if}
+
+            {#if hasilPPMisRequired()}
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     class:is-loading={isLoading}
+                     on:click={handleSubmitHasilPPM}>Submit Hasil PPM</button
                   >
                </p>
             {/if}
@@ -3309,11 +3717,15 @@
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorRevisi}>
-   <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+   <p>Anda belum memasukkan catatan revisi</p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorPassReviewer}>
    <p>Anda belum mengupload file penilaian proposal</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorHasilPPM}>
+   <p>Anda belum mengupload file Laporan Hasil PPM</p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorInputEvaluator}>

@@ -31,8 +31,10 @@
    let data;
    let catatanRevisiProposal;
    let itemsRCR;
+   let itemsCHP;
    let fileRab;
    let filePpm;
+   let fileHasilPPM;
    let jenisProposal,
       jenisKegiatan,
       jenisSkema,
@@ -58,6 +60,7 @@
    let editModeProposal = false;
    let showModalError = false;
    let ModalFileNotFound = false;
+   let showModalErrorHasilPPM = false;
    let editModeRAB = false;
    let isLoading = false;
 
@@ -119,6 +122,7 @@
             fileSuratKontrakNameDB = data.file_surat_kontrak;
             fileSuratTugasNameDB = data.file_surat_tugas;
             fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
             statusPencairanDana =
                data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
@@ -144,6 +148,31 @@
       } else {
          if (responseRCR.ok) {
             itemsRCR = dataRCR.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+         }
+      }
+
+      // ================================================//
+      // Get Riwayat Catatan Revisi Hasil PPM
+      // ================================================//
+      const responseCHP = await fetch(
+         $apiURL + "/riwayatCatatanRevisiHasilPPM/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataCHP = await responseCHP.json();
+
+      if (responseCHP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseCHP.ok) {
+            // itemsCHP = dataCHP.dbData;
+            itemsCHP = dataCHP.dbData.map((item) => ({
                ...item,
                time: formatDate(item.time),
             }));
@@ -468,6 +497,11 @@
    function fileRabChange(e) {
       fileRab = e.target.files[0];
       $rabFile = e.target.files[0];
+   }
+
+   function fileHasilPPMChange(e) {
+      fileHasilPPM = e.target.files[0];
+      $hasilPPMFile = e.target.files[0];
    }
 
    function toggleEditModeProposal() {
@@ -985,6 +1019,107 @@
       isLoading = false;
    }
 
+   async function handleSubmitHasilPPM() {
+      isLoading = true;
+      const readerHasilPPM = new FileReader();
+      let fileHasilPPMName = id + "_Laporan Hasil PPM";
+
+      let payloadFileName = {
+         status: Number(data.status) + 2,
+         fileHasilPPMName,
+         id,
+      };
+
+      if (hasilPPMisRequired && !fileHasilPPM) {
+         showModalErrorHasilPPM = true;
+         isLoading = false;
+         return;
+      } else {
+         // ================================ Upload Hasil PPM ================================ //
+         const uploadHasilPPM = new Promise((resolve, reject) => {
+            if (!fileHasilPPM) {
+               resolve("No file Hasil PPM selected");
+               return;
+            }
+
+            readerHasilPPM.onloadend = async () => {
+               const base64Data = readerHasilPPM.result.split(",")[1];
+               const payloadHasilPPMFile = {
+                  fileHasilPPM: {
+                     name: fileHasilPPM.name,
+                     type: fileHasilPPM.type,
+                     data: base64Data,
+                  },
+                  fileHasilPPMName,
+               };
+
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadDownloadHasilPPM",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadHasilPPMFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     // Handle if sukses (Modal Sukses)
+                     console.log("File Laporan Hasil PPM sukses disimpan");
+                     resolve(result);
+                  } else {
+                     // Handle if gagal (Modal Gagal/Error)
+                     console.log("File Laporan Hasil PPM gagal disimpan");
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
+            // readerHasilPPM.readAsDataURL(fileHasilPPM);
+         });
+
+         // ================================ Update Data PPM ================================ //
+         const submitFileName = new Promise(async (resolve, reject) => {
+            try {
+               const response = await fetch($apiURL + "/submitFilePPM/pass", {
+                  method: "PATCH",
+                  headers: headers,
+                  body: JSON.stringify(payloadFileName),
+               });
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  resolve(result);
+               } else {
+                  console.log(result.msg, error);
+                  reject("Error submitting file");
+               }
+            } catch (error) {
+               reject(error);
+            }
+         });
+
+         try {
+            await Promise.all([uploadHasilPPM, submitFileName]);
+         } finally {
+            isLoading = false;
+         }
+      }
+   }
+
    let tab1 = true;
    let tab2;
 
@@ -1161,6 +1296,34 @@
       }
    }
 
+   async function handleDownloadHasilPPM() {
+      let filename = "Laporan Hasil Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadHasilPPM/${fileHasilPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
    function ShowButtonPerbaikan() {
       const RevisiSkemaInternal = [1, 3, 5, 7, 11];
       const RevisiSkemaEksternal = [1, 3, 5, 9];
@@ -1186,6 +1349,31 @@
       }
 
       return false;
+   }
+
+   function hasilPPMisRequired() {
+      const ReviewKpkKlppmSkemaInternal = [10];
+      const ReviewKpkKlppmSkemaEksternal = [8];
+      const ReviewKpkKlppmSkemaMandiri = [8];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
    }
 </script>
 
@@ -1885,7 +2073,7 @@
                <!-- svelte-ignore a11y-no-static-element-interactions -->
                <!-- svelte-ignore a11y-click-events-have-key-events -->
                <h5 class="title is-6">
-                  Hasil PPM
+                  Laporan Hasil PPM
                   <span
                      class="toggle-button"
                      on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
@@ -1896,54 +2084,115 @@
 
                {#if hasilPPMVisible}
                   <hr />
-                  <div class="field">
-                     <p class="title is-6"><b>Upload Hasil PPM</b></p>
-                     <div class="file has-name is-success is-small">
-                        <label class="file-label" for="filePpm">
-                           <input
-                              class="file-input"
-                              type="file"
-                              name="resume"
-                           />
-                           <span class="file-cta">
-                              <span class="file-icon">
-                                 <Icon id="download" src={downloadIcon} />
-                              </span>
-                              <span class="file-label"> Choose a file</span>
-                           </span>
-                           <span class="file-name">No file chosen</span>
-                        </label>
-                     </div>
-                  </div>
-
-                  <hr />
-
                   <table
                      class="table is-fullwidth is-striped is-hoverable is-bordered"
                   >
                      <thead>
                         <tr>
-                           <th style="width: 65%;">Catatan Revisi</th>
-                           <th
-                              class="is-narrow"
-                              style="width: 15%; text-align: center"
-                              >Evaluator</th
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Upload File</th
                            >
                            <th class="is-narrow" style="text-align: center"
-                              >Tanggal</th
+                              >Download File</th
                            >
                         </tr>
                      </thead>
 
                      <tbody>
                         <tr>
-                           <td>...</td>
-                           <td style="text-align: center"
-                              >Taris Rafiqi Izatri, S.Kom.</td
+                           <td>Laporan Hasil PPM</td>
+                           <td
+                              ><span class="inputf__wrapper">
+                                 <input
+                                    id="fileHasilPPM"
+                                    class="inputf custom-file-input"
+                                    accept="application/pdf"
+                                    type="file"
+                                    on:change={fileHasilPPMChange}
+                                 />
+                                 <div class="file has-name is-small">
+                                    <label
+                                       class="file-label"
+                                       for="fileHasilPPM"
+                                    >
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       {#if $hasilPPMFile?.name}
+                                          <span class="file-name">
+                                             {$hasilPPMFile.name}</span
+                                          >
+                                       {:else}
+                                          <span class="file-name"
+                                             >No file chosen</span
+                                          >
+                                       {/if}
+                                    </label>
+                                 </div>
+                              </span></td
                            >
-                           <td style="text-align: center">...</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadHasilPPM}
+                                 >Download</button
+                              ></td
+                           >
                         </tr>
                      </tbody>
+                  </table>
+
+                  <hr />
+
+                  <div class="notification is-warning is-light">
+                     <p>
+                        Perhatikan catatan revisi dari evaluator untuk detail
+                        yang akan direvisi!
+                     </p>
+                  </div>
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     {#if itemsCHP}
+                        <tbody>
+                           {#each itemsCHP as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_hasil_ppm}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
                   </table>
                {/if}
             </div>
@@ -2063,6 +2312,16 @@
                      class="button is-info"
                      class:is-loading={isLoading}
                      on:click={submitProposal}>Submit</button
+                  >
+               </p>
+            {/if}
+
+            {#if hasilPPMisRequired()}
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     class:is-loading={isLoading}
+                     on:click={handleSubmitHasilPPM}>Submit Hasil PPM</button
                   >
                </p>
             {/if}
@@ -2499,6 +2758,10 @@
 
 <Modalerror bind:show={ModalFileNotFound}>
    <p>Gagal mengunduh file, silahkan coba beberapa saat lagi.</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorHasilPPM}>
+   <p>Anda belum mengupload file Laporan Hasil PPM</p>
 </Modalerror>
 
 <style>

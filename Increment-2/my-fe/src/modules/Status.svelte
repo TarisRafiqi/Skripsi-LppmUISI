@@ -25,9 +25,9 @@
    {:else if code === 8}
       <span class="tag is-info">PPM Berlangsung</span>
    {:else if code === 9}
-      <span class="tag is-danger is-light">Revisi Hasil Penelitian</span>
+      <span class="tag is-danger is-light">Revisi Hasil PPM</span>
    {:else if code === 10}
-      <span class="tag is-warning">Review Hasil Penelitian</span>
+      <span class="tag is-warning">Review Hasil PPM</span>
    {:else if code === 12}
       <span class="tag is-success">PPM Selesai</span>
    {/if}
@@ -53,9 +53,9 @@
    {:else if code === 8}
       <span class="tag is-info">PPM Berlangsung</span>
    {:else if code === 9}
-      <span class="tag is-danger is-light">Revisi Hasil Penelitian</span>
+      <span class="tag is-danger is-light">Revisi Hasil PPM</span>
    {:else if code === 10}
-      <span class="tag is-warning">Review Hasil Penelitian</span>
+      <span class="tag is-warning">Review Hasil PPM</span>
    {:else if code === 12}
       <span class="tag is-success">PPM Selesai</span>
    {/if}
@@ -85,9 +85,9 @@
    {:else if code === 10}
       <span class="tag is-info">PPM Berlangsung</span>
    {:else if code === 11}
-      <span class="tag is-danger is-light">Revisi Hasil Penelitian</span>
+      <span class="tag is-danger is-light">Revisi Hasil PPM</span>
    {:else if code === 12}
-      <span class="tag is-warning">Review Hasil Penelitian</span>
+      <span class="tag is-warning">Review Hasil PPM</span>
    {:else if code === 14}
       <span class="tag is-success">PPM Selesai</span>
    {/if}
