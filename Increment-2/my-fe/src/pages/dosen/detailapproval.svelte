@@ -47,8 +47,9 @@
       rab,
       judul,
       abstrak,
-      comment,
       status;
+
+   let catatanRevisiProposal;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -86,7 +87,6 @@
             rab = data.rab;
             judul = data.judul;
             abstrak = data.abstrak;
-            comment = data.comment;
             status = data.status;
 
             randomRabFileName = data.random_rab_file_name;
@@ -98,10 +98,10 @@
       }
 
       // ================================================//
-      // Get Riwayat Catatan Revisi
+      //        Get Riwayat Catatan Revisi Proposal
       // ================================================//
       const responseRCR = await fetch(
-         $apiURL + "/riwayatCatatanRevisi/" + ppmId,
+         $apiURL + "/riwayatCatatanRevisiProposal/" + ppmId,
          {
             method: "GET",
             headers: headers,
@@ -141,47 +141,50 @@
       isLoading = true;
 
       let payload = {
-         comment,
          status: Number(data.status) - 1,
          id,
       };
 
-      let payloadCttnRevisi = {
+      let payloadCttnRevisiProposal = {
          ppmId,
-         comment,
+         catatanRevisiProposal,
          namaLengkapEvl,
       };
 
-      if (!payload.comment) {
-         error.comment = `This field is required`;
+      if (InputCttnRevisiProposal()) {
+         if (!payloadCttnRevisiProposal.catatanRevisiProposal) {
+            error.catatanRevisiProposal = `This field is required`;
+         }
       }
 
       if (Object.keys(error).length > 0) {
          showModalErrorRevisi = true;
       } else {
-         // ==========================//
-         //    API RiwayatCttnRevisi
-         // ==========================//
-         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadCttnRevisi),
-         });
+         // ===========  API RiwayatCttnRevisiProposal  =========== //
+         if (InputCttnRevisiProposal()) {
+            const responseRev = await fetch(
+               $apiURL + "/riwayatCatatanRevisiProposal",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiProposal),
+               }
+            );
 
-         const resultRev = await responseRev.json();
+            const resultRev = await responseRev.json();
 
-         if (responseRev.status === 401) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (!responseRev.ok) {
-               console.log(responseRev);
-               // Buat Handle Error
-               // ...
+            if (responseRev.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRev.ok) {
+                  console.log(responseRev);
+                  // Buat Handle Error
+                  // ...
+               }
             }
          }
-         // ==========================//
-         //          API PPM
-         // ==========================//
+
+         // ================  API PPM  ================ //
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
@@ -209,7 +212,6 @@
       isLoading = true;
 
       const payload = {
-         comment: "",
          status: Number(data.status) + 1,
          id,
       };
@@ -240,7 +242,6 @@
       isLoading = true;
 
       const payload = {
-         comment: "",
          status: Number(data.status) + 2,
          id,
       };
@@ -273,7 +274,6 @@
       const readerPenilaian = new FileReader();
 
       const payload = {
-         comment: "",
          status: Number(data.status) + 2,
          randomPenilaianFileName,
          id,
@@ -531,6 +531,33 @@
          return true;
       }
    }
+
+   function InputCttnRevisiProposal() {
+      const RevisiSkemaInternal = [2, 8];
+      const RevisiSkemaEksternal = [2, 6];
+      const RevisiSkemaMandiri = [2, 6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
 </script>
 
 {#if data}
@@ -708,27 +735,31 @@
          </div>
 
          <!-- ========================================== -->
-         <!--              Catatan Revisi                -->
+         <!--           Catatan Revisi Proposal          -->
          <!-- ========================================== -->
          {#if role !== "K.Departemen" && role !== "reviewer"}
             <div class="box">
                <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               <div class="notification is-warning is-light">
-                  <p>Berikan catatan revisi jika ingin revisi proposal</p>
-               </div>
+               {#if InputCttnRevisiProposal()}
+                  <div class="notification is-warning is-light">
+                     <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                  </div>
 
-               <div class="field">
-                  <p class="title is-6"><b>Catatan Revisi</b></p>
-                  <textarea
-                     class="textarea mb-1"
-                     bind:value={comment}
-                     name="komentar"
-                     id="komentar"
-                  ></textarea>
-                  {#if error.comment}
-                     <p class="help error is-danger">{error.comment}</p>
-                  {/if}
-               </div>
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <textarea
+                        class="textarea mb-1"
+                        bind:value={catatanRevisiProposal}
+                        name="komentar"
+                        id="komentar"
+                     ></textarea>
+                     {#if error.catatanRevisiProposal}
+                        <p class="help error is-danger">
+                           {error.catatanRevisiProposal}
+                        </p>
+                     {/if}
+                  </div>
+               {/if}
 
                <hr />
                <!-- {/if} -->
@@ -748,7 +779,7 @@
                      <tbody>
                         {#each itemsRCR as item}
                            <tr>
-                              <td>{item.comment}</td>
+                              <td>{item.catatan_revisi_proposal}</td>
                               <td style="text-align: center"
                                  >{item.evaluator}</td
                               >

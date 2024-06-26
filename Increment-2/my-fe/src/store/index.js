@@ -9,6 +9,7 @@ export const penilaianFile = writable({});
 export const skPendanaanFile = writable({});
 export const suratKontrakFile = writable({});
 export const suratTugasFile = writable({});
+export const skPenelitianFile = writable({});
 
 export const apiURL = writable(
    process.ENV.production

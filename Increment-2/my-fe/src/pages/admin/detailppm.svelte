@@ -9,6 +9,7 @@
       skPendanaanFile,
       suratKontrakFile,
       suratTugasFile,
+      skPenelitianFile,
    } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
@@ -70,11 +71,11 @@
    let anggotaTim = [];
    let judul;
    let abstrak;
-   let comment;
    let status;
    let itemsRCR;
    let statusPencairanDana = "";
    let options;
+   let catatanRevisiProposal;
 
    let ka_departemen;
    let ka_lppm;
@@ -90,6 +91,7 @@
    let fileSkPendanaan;
    let fileSuratKontrak;
    let fileSuratTugas;
+   let fileSkPenelitian;
    let items = [];
    let view;
    let editModeProposal = false;
@@ -134,9 +136,9 @@
          }
       }
 
-      // ========== Get Riwayat Catatan Revisi ========== //
+      // ========== Get Riwayat Catatan Revisi Proposal ========== //
       const responseRCR = await fetch(
-         $apiURL + "/riwayatCatatanRevisi/" + ppmId,
+         $apiURL + "/riwayatCatatanRevisiProposal/" + ppmId,
          {
             method: "GET",
             headers: headers,
@@ -187,7 +189,6 @@
             judul = data.judul;
             abstrak = data.abstrak;
             isi = data.isi;
-            comment = data.comment;
             status = data.status;
             kdeptSelected = data.uid_kdept;
             klppmSelected = data.uid_klppm;
@@ -200,6 +201,7 @@
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
             fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPenelitianNameDB = data.file_sk_penelitian;
             statusPencairanDana = data.status_pencairan_dana || "";
          }
       }
@@ -293,15 +295,18 @@
       const readerSkPendanaan = new FileReader();
       const readerSuratKontrak = new FileReader();
       const readerSuratTugas = new FileReader();
+      const readerSkPenelitian = new FileReader();
 
       let fileSkPendanaanName = id + "_SK Pendanaan";
       let fileSuratKontrakName = id + "_Surat Kontrak Penelitian";
       let fileSuratTugasName = id + "_Surat Tugas";
+      let fileSkPenelitianName = id + "_SK Penelitian";
 
       let payloadFileName = {
          fileSkPendanaanName,
          fileSuratKontrakName,
          fileSuratTugasName,
+         fileSkPenelitianName,
          id,
       };
 
@@ -329,7 +334,7 @@
          }
       });
 
-      // ================================ Upload File Proposal ================================ //
+      // ================================ Upload SK Pendanaan ================================ //
       const uploadSkPendanaan = new Promise((resolve, reject) => {
          if (!fileSkPendanaan) {
             // File not selected, resolve immediately
@@ -486,12 +491,66 @@
          if (fileSuratTugas) readerSuratTugas.readAsDataURL(fileSuratTugas);
       });
 
+      // ================================ Upload SK Penelitian ================================ //
+      const uploadSkPenelitian = new Promise((resolve, reject) => {
+         if (!fileSkPenelitian) {
+            // File not selected, resolve immediately
+            resolve("No file SkPenelitian selected");
+            return;
+         }
+
+         readerSkPenelitian.onloadend = async () => {
+            const base64Data = readerSkPenelitian.result.split(",")[1];
+            const payloadSkPenelitianFile = {
+               fileSkPenelitian: {
+                  name: fileSkPenelitian.name,
+                  type: fileSkPenelitian.type,
+                  data: base64Data,
+               },
+               fileSkPenelitianName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadDownloadSKPenelitian",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadSkPenelitianFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  // Handle if sukses (Modal Sukses)
+                  console.log("File SK Penelitian sukses disimpan");
+                  resolve(result);
+               } else {
+                  // Handle if gagal (Modal Gagal/Error)
+                  console.log("File SK Penelitian gagal disimpan");
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+
+         if (fileSkPenelitian)
+            readerSkPenelitian.readAsDataURL(fileSkPenelitian);
+      });
+
       try {
          await Promise.all([
             submitFileName,
             uploadSkPendanaan,
             uploadSuratKontrak,
             uploadSuratTugas,
+            uploadSkPenelitian,
          ]);
       } finally {
          isLoading = false;
@@ -517,7 +576,6 @@
          id,
          judul,
          abstrak,
-         comment: "",
          status: Number(data.status) + 1,
          kdeptSelected,
          klppmSelected,
@@ -541,7 +599,7 @@
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["comment"].includes(key) && !value) ||
+            (!["catatanRevisiProposal"].includes(key) && !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -647,48 +705,50 @@
       isLoading = true;
 
       let payload = {
-         comment,
          status: Number(data.status) - 1,
          id,
       };
 
-      const payloadCttnRevisi = {
+      const payloadCttnRevisiProposal = {
          ppmId,
-         comment,
+         catatanRevisiProposal,
          namaLengkapEvl,
       };
 
-      if (!payload.comment) {
-         error.comment = `This field is required`;
+      if (InputCttnRevisiProposal()) {
+         if (!payloadCttnRevisiProposal.catatanRevisiProposal) {
+            error.catatanRevisiProposal = `This field is required`;
+         }
       }
 
       if (Object.keys(error).length > 0) {
          showModalErrorRevisi = true;
       } else {
-         // ==========================//
-         //    API RiwayatCttnRevisi
-         // ==========================//
-         const responseRev = await fetch($apiURL + "/riwayatCatatanRevisi", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadCttnRevisi),
-         });
+         // ===========  API RiwayatCttnRevisiProposal  =========== //
+         if (InputCttnRevisiProposal()) {
+            const responseRev = await fetch(
+               $apiURL + "/riwayatCatatanRevisiProposal",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiProposal),
+               }
+            );
 
-         const resultRev = await responseRev.json();
+            const resultRev = await responseRev.json();
 
-         if (responseRev.status === 401) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (!responseRev.ok) {
-               console.log(responseRev);
-               // Buat Handle Error
-               // ...
+            if (responseRev.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRev.ok) {
+                  console.log(responseRev);
+                  // Buat Handle Error
+                  // ...
+               }
             }
          }
 
-         // ==========================//
-         //          API PPM
-         // ==========================//
+         // ================  API PPM  ================ //
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
@@ -714,7 +774,6 @@
       isLoading = true;
 
       const payload = {
-         comment: "",
          status: Number(data.status) + 1,
          id,
       };
@@ -745,7 +804,6 @@
       const readerPenilaian = new FileReader();
 
       const payload = {
-         comment: "",
          status: Number(data.status) + 2,
          randomPenilaianFileName,
          id,
@@ -827,7 +885,6 @@
       let db_Kpk = data.uid_kpk;
       let db_Reviewer = data.uid_reviewer;
       let payload = {
-         comment: "",
          status: Number(data.status) + 2,
          id,
       };
@@ -1057,7 +1114,31 @@
    }
 
    async function handleDownloadSkPenelitian() {
-      console.log("Download SK Penelitian");
+      let filename = "SK Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPenelitian/${fileSkPenelitianNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
    }
 
    async function findRole(role) {
@@ -1140,6 +1221,33 @@
       }
    }
 
+   function InputCttnRevisiProposal() {
+      const RevisiSkemaInternal = [2, 8];
+      const RevisiSkemaEksternal = [2, 6];
+      const RevisiSkemaMandiri = [2, 6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
+
    function ShowButtonPerbaikan() {
       const RevisiSkemaInternal = [1, 3, 5, 7, 11];
       const RevisiSkemaEksternal = [1, 3, 5, 9];
@@ -1203,6 +1311,11 @@
    function fileSuratTugasChange(e) {
       fileSuratTugas = e.target.files[0];
       $suratTugasFile = e.target.files[0];
+   }
+
+   function fileSkPenelitianChange(e) {
+      fileSkPenelitian = e.target.files[0];
+      $skPenelitianFile = e.target.files[0];
    }
 
    let tab1 = true;
@@ -1767,26 +1880,12 @@
          </div>
 
          <!-- ========================================== -->
-         <!--              Catatan Revisi                -->
+         <!--           Catatan Revisi Proposal          -->
          <!-- ========================================== -->
          {#if status != 0}
             <div class="box">
                <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               {#if !view}
-                  <div class="notification is-warning is-light">
-                     <p>
-                        Perhatikan catatan revisi dari evaluator untuk detail
-                        yang akan direvisi!
-                     </p>
-                  </div>
-
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <div class="isi-border">
-                        <p class="subtitle is-6">{comment}</p>
-                     </div>
-                  </div>
-               {:else if status != 8}
+               {#if InputCttnRevisiProposal()}
                   <div class="notification is-warning is-light">
                      <p>Berikan catatan revisi jika ingin revisi proposal</p>
                   </div>
@@ -1795,13 +1894,22 @@
                      <p class="title is-6"><b>Catatan Revisi</b></p>
                      <textarea
                         class="textarea mb-1"
-                        bind:value={comment}
-                        name="komentar"
-                        id="komentar"
+                        bind:value={catatanRevisiProposal}
+                        name="catatanRevisiProposal"
+                        id="catatanRevisiProposal"
                      ></textarea>
-                     {#if error.comment}
-                        <p class="help error is-danger">{error.comment}</p>
+                     {#if error.catatanRevisiProposal}
+                        <p class="help error is-danger">
+                           {error.catatanRevisiProposal}
+                        </p>
                      {/if}
+                  </div>
+               {:else}
+                  <div class="notification is-warning is-light">
+                     <p>
+                        Perhatikan catatan revisi dari evaluator untuk detail
+                        yang akan direvisi!
+                     </p>
                   </div>
                {/if}
 
@@ -1812,7 +1920,7 @@
                >
                   <thead>
                      <tr>
-                        <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                        <th style="width: 70%;">Catatan Revisi</th>
                         <th style="width: 15%;">Evaluator</th>
                         <th style="width: 15%;">Waktu</th>
                      </tr>
@@ -1821,7 +1929,7 @@
                      <tbody>
                         {#each itemsRCR as item}
                            <tr>
-                              <td>{item.comment}</td>
+                              <td>{item.catatan_revisi_proposal}</td>
                               <td>{item.evaluator}</td>
                               <td>{item.time}</td>
                            </tr>
@@ -2324,12 +2432,20 @@
                   </div>
 
                   <hr />
+                  <div class="notification is-warning is-light">
+                     <p>
+                        Berikan catatan revisi jika ingin revisi Hasil
+                        Penelitian
+                     </p>
+                  </div>
 
                   <div class="field">
                      <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <div class="isi-border">
-                        <p class="subtitle is-6">...</p>
-                     </div>
+                     <textarea
+                        class="textarea mb-1"
+                        name="catatanRevisiHasilPPM"
+                        id="catatanRevisiHasilPPM"
+                     ></textarea>
                   </div>
 
                   <hr />
@@ -2339,7 +2455,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 65%;">Riwayat Catatan Revisi</th>
+                           <th style="width: 65%;">Catatan Revisi</th>
                            <th
                               class="is-narrow"
                               style="width: 15%; text-align: center"
@@ -2445,30 +2561,49 @@
                      <tbody>
                         <tr>
                            <td>SK Penelitian</td>
-                           <td>
-                              <div class="file has-name is-small">
-                                 <label class="file-label" for="filePpm">
-                                    <input
-                                       class="file-input"
-                                       type="file"
-                                       name="resume"
-                                    />
-                                    <span class="file-cta">
-                                       <span class="file-icon">
-                                          <Icon
-                                             id="download"
-                                             src={downloadIcon}
-                                          />
-                                       </span>
-                                       <span class="file-label">
-                                          Choose a file</span
-                                       >
-                                    </span>
-                                    <span class="file-name">No file chosen</span
+                           <td
+                              ><span class="inputf__wrapper">
+                                 <input
+                                    id="fileSkPenelitian"
+                                    class="inputf custom-file-input"
+                                    accept="application/pdf"
+                                    type="file"
+                                    on:change={fileSkPenelitianChange}
+                                 />
+                                 <div class="file has-name is-small">
+                                    <label
+                                       class="file-label"
+                                       for="fileSkPenelitian"
                                     >
-                                 </label>
-                              </div>
-                           </td>
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       {#if $skPenelitianFile?.name}
+                                          <span class="file-name">
+                                             {$skPenelitianFile.name}</span
+                                          >
+                                       {:else}
+                                          <span class="file-name"
+                                             >No file chosen</span
+                                          >
+                                       {/if}
+                                    </label>
+                                 </div>
+                              </span></td
+                           >
                            <td style="text-align: center"
                               ><button
                                  class="button is-link button is-small"
@@ -3017,7 +3152,6 @@
       opacity: 0;
    }
    .help {
-      /* top, right, bottom, left */
       margin: -6px 0px 0px 0px;
    }
 
@@ -3025,10 +3159,5 @@
       cursor: pointer;
       color: #fc6c78;
       font-size: small;
-   }
-   .isi-border {
-      border: 1px solid lightgrey;
-      padding: 15px;
-      border-radius: 3.5px;
    }
 </style>

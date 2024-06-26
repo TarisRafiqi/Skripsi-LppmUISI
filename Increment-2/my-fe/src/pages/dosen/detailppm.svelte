@@ -29,6 +29,7 @@
    let error = {};
    let view;
    let data;
+   let catatanRevisiProposal;
    let itemsRCR;
    let fileRab;
    let filePpm;
@@ -43,7 +44,6 @@
       anggotaTim = [],
       judul,
       abstrak,
-      comment,
       status,
       ttdSuratKontrak,
       presentasiHasilPPM,
@@ -60,6 +60,19 @@
    let ModalFileNotFound = false;
    let editModeRAB = false;
    let isLoading = false;
+
+   const skemaInternal = [
+      "Riset Kelompok Keahlian",
+      "Riset Terapan",
+      "Riset Kerjasama",
+      "Pengabdian Masyarakat Desa Binaan",
+      "Pengabdian Masyarakat UMKM Binaan",
+   ];
+   const skemaEksternal = [
+      "Riset Eksternal",
+      "Pengabdian Masyarakat Hibah Eksternal",
+   ];
+   const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
 
    onMount(async () => {
       isLoading = false;
@@ -92,7 +105,6 @@
             biodataAnggota = data.biodata_anggota;
             judul = data.judul;
             abstrak = data.abstrak;
-            comment = data.comment;
             status = data.status;
             kdeptSelected = data.uid_kdept;
             klppmSelected = data.uid_klppm;
@@ -106,6 +118,7 @@
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
             fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPenelitianNameDB = data.file_sk_penelitian;
             statusPencairanDana =
                data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
@@ -114,10 +127,10 @@
       }
 
       // ================================================//
-      // Get Riwayat Catatan Revisi
+      // Get Riwayat Catatan Revisi Proposal
       // ================================================//
       const responseRCR = await fetch(
-         $apiURL + "/riwayatCatatanRevisi/" + ppmId,
+         $apiURL + "/riwayatCatatanRevisiProposal/" + ppmId,
          {
             method: "GET",
             headers: headers,
@@ -581,7 +594,6 @@
          id,
          judul,
          abstrak,
-         comment: "",
          status: Number(data.status) + 1,
          kdeptSelected,
          klppmSelected,
@@ -605,7 +617,7 @@
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["comment"].includes(key) && !value) ||
+            (!["catatanRevisiProposal"].includes(key) && !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -645,7 +657,6 @@
             } catch (error) {
                console.error("Error uploading file:", error);
                // Buat Handle Error
-               // ...
             }
          };
 
@@ -679,7 +690,6 @@
             } catch (error) {
                console.error("Error uploading file:", error);
                // Buat Handle Error
-               // ...
             }
          };
 
@@ -729,7 +739,6 @@
          id,
          judul,
          abstrak,
-         comment: "",
          status: Number(data.status) + 2,
          kdeptSelected,
          klppmSelected,
@@ -741,7 +750,7 @@
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["comment"].includes(key) && !value) ||
+            (!["catatanRevisiProposal"].includes(key) && !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -818,7 +827,9 @@
          };
 
          if (fileRab) readerRab.readAsDataURL(fileRab);
-         // -----------------------------------------------------------------------------//
+         // ================================================//
+         // Patch ppm
+         // ================================================//
          const response = await fetch($apiURL + "/ppm", {
             method: "PATCH",
             headers: headers,
@@ -861,7 +872,6 @@
          id,
          judul,
          abstrak,
-         comment: "",
          status: Number(data.status),
          kdeptSelected,
          klppmSelected,
@@ -873,7 +883,7 @@
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["comment", "status"].includes(key) && !value) ||
+            (!["catatanRevisiProposal", "status"].includes(key) && !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -1121,6 +1131,61 @@
       } catch (error) {
          console.error("Error downloading file:", error);
       }
+   }
+
+   async function handleDownloadSkPenelitian() {
+      let filename = "SK Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPenelitian/${fileSkPenelitianNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   function ShowButtonPerbaikan() {
+      const RevisiSkemaInternal = [1, 3, 5, 7, 11];
+      const RevisiSkemaEksternal = [1, 3, 5, 9];
+      const RevisiSkemaMandiri = [1, 3, 5, 9];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
    }
 </script>
 
@@ -1598,7 +1663,7 @@
          </div>
 
          <!-- ========================================== -->
-         <!--              Catatan Revisi                -->
+         <!--            Catatan Revisi Proposal         -->
          <!-- ========================================== -->
          {#if !view}
             <div class="box">
@@ -1610,21 +1675,12 @@
                   </p>
                </div>
 
-               <div class="field">
-                  <p class="title is-6"><b>Catatan Revisi</b></p>
-                  <div class="isi-border">
-                     <p class="subtitle is-6">{comment}</p>
-                  </div>
-               </div>
-
-               <hr />
-
                <table
                   class="table is-fullwidth is-striped is-hoverable is-bordered"
                >
                   <thead>
                      <tr>
-                        <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                        <th style="width: 70%;">Catatan Revisi</th>
                         <th style="width: 15%; text-align: center">Evaluator</th
                         >
                         <th style="width: 15%; text-align: center">Tanggal</th>
@@ -1634,7 +1690,7 @@
                      <tbody>
                         {#each itemsRCR as item}
                            <tr>
-                              <td>{item.comment}</td>
+                              <td>{item.catatan_revisi_proposal}</td>
                               <td style="text-align: center"
                                  >{item.evaluator}</td
                               >
@@ -1864,21 +1920,12 @@
 
                   <hr />
 
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <div class="isi-border">
-                        <p class="subtitle is-6">...</p>
-                     </div>
-                  </div>
-
-                  <hr />
-
                   <table
                      class="table is-fullwidth is-striped is-hoverable is-bordered"
                   >
                      <thead>
                         <tr>
-                           <th style="width: 65%;">Riwayat Catatan Revisi</th>
+                           <th style="width: 65%;">Catatan Revisi</th>
                            <th
                               class="is-narrow"
                               style="width: 15%; text-align: center"
@@ -1989,7 +2036,9 @@
                         <tr>
                            <td>SK Penelitian</td>
                            <td style="text-align: center"
-                              ><button class="button is-link button is-small"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadSkPenelitian}
                                  >Download</button
                               ></td
                            >
@@ -2004,31 +2053,31 @@
          <!--               Action Button                -->
          <!-- ========================================== -->
          <div class="field is-grouped is-grouped-right">
-            {#if !view}
-               {#if status === 0}
-                  <p class="control">
-                     <button
-                        class="button is-info is-light"
-                        class:is-loading={isLoading}
-                        on:click={simpanProposal}>Simpan</button
-                     >
-                  </p>
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        class:is-loading={isLoading}
-                        on:click={submitProposal}>Submit</button
-                     >
-                  </p>
-               {:else}
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        class:is-loading={isLoading}
-                        on:click={handlePerbaikan}>Perbaikan</button
-                     >
-                  </p>
-               {/if}
+            {#if status === 0}
+               <p class="control">
+                  <button
+                     class="button is-info is-light"
+                     class:is-loading={isLoading}
+                     on:click={simpanProposal}>Simpan</button
+                  >
+               </p>
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     class:is-loading={isLoading}
+                     on:click={submitProposal}>Submit</button
+                  >
+               </p>
+            {/if}
+
+            {#if ShowButtonPerbaikan()}
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     class:is-loading={isLoading}
+                     on:click={handlePerbaikan}>Perbaikan</button
+                  >
+               </p>
             {/if}
          </div>
       {/if}
@@ -2474,11 +2523,5 @@
       cursor: pointer;
       color: #fc6c78;
       font-size: small;
-   }
-
-   .isi-border {
-      border: 1px solid lightgrey;
-      padding: 15px;
-      border-radius: 3.5px;
    }
 </style>
