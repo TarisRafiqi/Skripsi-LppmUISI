@@ -1,59 +1,52 @@
 "use strict";
 
 module.exports = async function (fastify, opts) {
-   fastify.patch(
+   fastify.post(
       "/",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         let dbData;
-         let connection;
          let data = request.body;
-
+         let connection;
          const sql =
-            "UPDATE ppm SET file_sk_pendanaan = ?, file_surat_kontrak = ?, file_surat_tugas = ?, file_sk_ppm = ? WHERE id = ?";
+            "INSERT INTO riwayat_catatan_revisi_hasil_ppm (ppm_id, catatan_revisi_hasil_ppm, evaluator) values (?, ?, ?)";
 
          try {
             connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [
-               data.fileSkPendanaanName,
-               data.fileSuratKontrakName,
-               data.fileSuratTugasName,
-               data.fileSkPPMName,
-               data.id,
+            await connection.query(sql, [
+               data.ppmId,
+               data.catatanRevisiHasilPPM,
+               data.namaLengkapEvl,
             ]);
-            dbData = rows;
             connection.release();
             reply.send({
-               dbData,
+               msg: "Sukses Menambahkan Data",
             });
          } catch (error) {
             reply.send({
                msg: "gagal terkoneksi ke db",
+               error,
             });
          }
       }
    );
 
-   fastify.patch(
+   fastify.get(
       "/:id",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
+         const id = Number(request.params.id);
          let dbData;
          let connection;
-         let data = request.body;
-
-         const sql = "UPDATE ppm SET file_hasil_ppm = ? WHERE id = ?";
+         const sql =
+            "SELECT * FROM riwayat_catatan_revisi_hasil_ppm WHERE ppm_id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
-            const [rows] = await connection.query(sql, [
-               data.fileHasilPPMName,
-               data.id,
-            ]);
+            const [rows] = await connection.query(sql, [id]);
             dbData = rows;
             connection.release();
             reply.send({
@@ -62,6 +55,7 @@ module.exports = async function (fastify, opts) {
          } catch (error) {
             reply.send({
                msg: "gagal terkoneksi ke db",
+               error,
             });
          }
       }

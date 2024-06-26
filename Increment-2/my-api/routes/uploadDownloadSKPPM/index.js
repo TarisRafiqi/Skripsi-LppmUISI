@@ -6,17 +6,17 @@ const path = require("path");
 module.exports = async function (fastify, opts) {
    // Download File
    fastify.get(
-      "/:fileSkPenelitianName",
+      "/:fileSkPPMName",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const fileSkPenelitianName = request.params.fileSkPenelitianName;
+         const fileSkPPMName = request.params.fileSkPPMName;
 
          const filepath = path.join(
             __dirname,
-            "../../file_SkPenelitian",
-            fileSkPenelitianName + ".pdf"
+            "../../file_SkPPM",
+            fileSkPPMName + ".pdf"
          );
 
          try {
@@ -36,10 +36,9 @@ module.exports = async function (fastify, opts) {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
-         const fileData = request.body.fileSkPenelitian;
-         const fileSkPenelitianName = request.body.fileSkPenelitianName;
-         const filepath =
-            "./file_SkPenelitian/" + fileSkPenelitianName + ".pdf";
+         const fileData = request.body.fileSkPPM;
+         const fileSkPPMName = request.body.fileSkPPMName;
+         const filepath = "./file_SkPPM/" + fileSkPPMName + ".pdf";
 
          try {
             const buffer = Buffer.from(fileData.data, "base64");
