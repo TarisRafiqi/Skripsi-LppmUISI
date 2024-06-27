@@ -29,8 +29,11 @@
    let showModalErrorRevisi = false;
    let ModalFileNotFound = false;
    let isLoading = false;
-
    let skpVisible = false;
+   let danaPPMVisible = false;
+   let hasilPPMVisible = false;
+   let presentasiVisible = false;
+   let skPPMVisible = false;
 
    let randomPenilaianFileName = "";
    let biodataAnggota = [];
@@ -38,6 +41,7 @@
    let filePenilaian;
    let data;
    let itemsRCR;
+   let itemsCHP;
    let jenisProposal,
       jenisKegiatan,
       jenisSkema,
@@ -50,7 +54,10 @@
       rab,
       judul,
       abstrak,
-      status;
+      status,
+      ttdSuratKontrak,
+      presentasiHasilPPM,
+      statusPencairanDana;
 
    let catatanRevisiProposal;
    let catatanRevisiHasilPPM;
@@ -95,6 +102,8 @@
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
 
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
@@ -265,7 +274,6 @@
             } else {
                console.log(response);
                // Buat Handle Error
-               // ...
             }
          }
       }
@@ -633,6 +641,28 @@
          }
       } catch (error) {
          console.error("Error downloading file:", error);
+      }
+   }
+
+   async function checkboxPresentasiHasilPPM(event) {
+      presentasiHasilPPM = event.target.checked ? 1 : 0;
+      payload = {
+         ppmId,
+         presentasiHasilPPM,
+      };
+
+      const response = await fetch($apiURL + "/checkBoxPPM/id/presentasiPPM", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
       }
    }
 
@@ -1025,7 +1055,7 @@
 
          {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
-            <!-- Download SK Pendanaan, Surat Kontrak Penelitian, Surat Tugas -->
+            <!--     Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas    -->
             <!-- ============================================================ -->
             {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
@@ -1117,9 +1147,6 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload File</th
-                              >
-                              <th class="is-narrow" style="text-align: center"
                                  >Download File</th
                               >
                            </tr>
@@ -1140,6 +1167,252 @@
                   {/if}
                </div>
             {/if}
+
+            <!-- ========================================== -->
+            <!--                  Dana PPM                  -->
+            <!-- ========================================== -->
+            {#if skemaInternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Pendanaan PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() => (danaPPMVisible = !danaPPMVisible)}
+                     >
+                        {danaPPMVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if danaPPMVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Status Pencairan Dana</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 ><span class="tag is-info"
+                                    >{statusPencairanDana}</span
+                                 ></th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td colspan="2"
+                                 ><div class="notification is-warning is-light">
+                                    <p class="subtitle is-6">
+                                       Untuk pengambilan dana dan penjelasan
+                                       lebih lanjut terkait Pendanaan, hubungi
+                                       LPPM UISI.
+                                    </p>
+                                 </div></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--               Hasil PPM                    -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Laporan Hasil PPM
+                  <span
+                     class="toggle-button"
+                     on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
+                  >
+                     {hasilPPMVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if hasilPPMVisible}
+                  <hr />
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>Laporan Hasil PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadHasilPPM}
+                                 >Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <div class="notification is-warning is-light">
+                     <p>Berikan catatan revisi jika ingin revisi Hasil PPM</p>
+                  </div>
+
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <textarea
+                        class="textarea mb-1"
+                        name="catatanRevisiHasilPPM"
+                        id="catatanRevisiHasilPPM"
+                        bind:value={catatanRevisiHasilPPM}
+                     ></textarea>
+                     {#if error.catatanRevisiHasilPPM}
+                        <p class="help error is-danger">
+                           {error.catatanRevisiHasilPPM}
+                        </p>
+                     {/if}
+                  </div>
+
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     {#if itemsCHP}
+                        <tbody>
+                           {#each itemsCHP as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_hasil_ppm}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Presentasi Hasil PPM           -->
+            <!-- ========================================== -->
+            {#if !skemaEksternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Presentasi Hasil PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (presentasiVisible = !presentasiVisible)}
+                     >
+                        {presentasiVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if presentasiVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Kegiatan</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Checkbox</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td
+                                 >Mempresentasikan hasil PPM di seminar
+                                 Penelitian / Pengmas bersama UISI di bulan
+                                 Desember</td
+                              >
+                              <td style="text-align: center">
+                                 <input
+                                    type="checkbox"
+                                    bind:checked={presentasiHasilPPM}
+                                    on:change={checkboxPresentasiHasilPPM}
+                                 />
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--                File SK PPM                 -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  File SK PPM
+                  <span
+                     class="toggle-button"
+                     on:click={() => (skPPMVisible = !skPPMVisible)}
+                  >
+                     {skPPMVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skPPMVisible}
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>SK PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadSkPPM}>Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
          {/if}
 
          <!-- ========================================== -->

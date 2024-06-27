@@ -1980,9 +1980,9 @@
 
          {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
-            <!--       Download SK Pendanaan, SK PPM, Surat Tugas      -->
+            <!--      Download SK Pendanaan, SK Kontrak PPM, Surat Tugas      -->
             <!-- ============================================================ -->
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -2106,7 +2106,8 @@
             <!-- ========================================== -->
             <!--               Dana PPM                     -->
             <!-- ========================================== -->
-            {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+            <!-- {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"} -->
+            {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -2285,9 +2286,9 @@
             </div>
 
             <!-- ========================================== -->
-            <!--         Presentasi Hasil PPM        -->
+            <!--         Presentasi Hasil PPM               -->
             <!-- ========================================== -->
-            {#if jenisSkema !== "Riset Eksternal" && jenisSkema !== "Pengabdian Masyarakat Hibah Eksternal"}
+            {#if !skemaEksternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -2337,7 +2338,7 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--             Download SK PPM         -->
+            <!--                File SK PPM                 -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->

@@ -48,7 +48,7 @@
    let newBiodataAnggota = [];
    let biodataAnggota = [];
    const idEvaluator = localStorage.getItem("id");
-   let data;
+
    let showModalError = false;
    let ModalFileNotFound = false;
    let showModalErrorRevisi = false;
@@ -62,48 +62,50 @@
    let presentasiVisible = false;
    let skpVisible = false;
    let showModalChecked = false;
-   let randomPenilaianFileName = "";
-
-   let ppmid;
-   let jenisProposal;
-   let jenisKegiatan;
-   let jenisSkema;
-   let kelompokKeahlian;
-   let topik;
-   let tanggalMulai;
-   let tanggalSelesai;
-   let biayaPenelitian;
-   let anggotaTim = [];
-   let judul;
-   let abstrak;
-   let status;
-   let itemsRCR;
-   let itemsCHP;
-   let statusPencairanDana = "";
-   let options;
-   let catatanRevisiProposal;
-   let catatanRevisiHasilPPM;
-
-   let ka_departemen;
-   let ka_lppm;
-   let reviewer;
-   let ka_pusat_kajian;
-   let kdeptSelected;
-   let klppmSelected;
-   let kpkSelected;
-   let reviewerSelected;
-
-   let fileRab;
-   let filePpm;
-   let fileSkPendanaan;
-   let fileSuratKontrak;
-   let fileSuratTugas;
-   let fileSkPPM;
-   let fileHasilPPM;
-   let items = [];
-   let view;
    let editModeProposal = false;
    let editModeRAB = false;
+
+   let randomPenilaianFileName = "";
+   let statusPencairanDana = "";
+
+   let anggotaTim = [];
+   let data;
+   let ppmid,
+      jenisProposal,
+      jenisKegiatan,
+      jenisSkema,
+      kelompokKeahlian,
+      topik,
+      tanggalMulai,
+      tanggalSelesai,
+      biayaPenelitian,
+      judul,
+      abstrak,
+      status,
+      ttdSuratKontrak,
+      ka_departemen,
+      ka_lppm,
+      reviewer,
+      ka_pusat_kajian,
+      kdeptSelected,
+      klppmSelected,
+      kpkSelected,
+      reviewerSelected,
+      presentasiHasilPPM;
+
+   let options;
+   let itemsRCR, itemsCHP;
+   let fileRab,
+      filePpm,
+      fileSkPendanaan,
+      fileSuratKontrak,
+      fileSuratTugas,
+      fileSkPPM,
+      fileHasilPPM;
+   let catatanRevisiProposal, catatanRevisiHasilPPM;
+
+   let items = [];
+   let view;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -181,7 +183,6 @@
          location.pathname = "/tokenexpired";
       } else {
          if (responseCHP.ok) {
-            // itemsCHP = dataCHP.dbData;
             itemsCHP = dataCHP.dbData.map((item) => ({
                ...item,
                time: formatDate(item.time),
@@ -233,6 +234,8 @@
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
 
             fileSkPendanaanNameDB = data.file_sk_pendanaan;
             fileSuratKontrakNameDB = data.file_surat_kontrak;
@@ -1699,6 +1702,28 @@
       }
    }
 
+   async function checkboxPresentasiHasilPPM(event) {
+      presentasiHasilPPM = event.target.checked ? 1 : 0;
+      payload = {
+         ppmId,
+         presentasiHasilPPM,
+      };
+
+      const response = await fetch($apiURL + "/checkBoxPPM/id/presentasiPPM", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
    async function findRole(role) {
       const response = await fetch($apiURL + "/role/" + role, {
          method: "GET",
@@ -2628,7 +2653,7 @@
 
          {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
             <!-- ============================================================ -->
-            <!-- Download SK Pendanaan, Surat Kontrak Penelitian, Surat Tugas -->
+            <!-- Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas        -->
             <!-- ============================================================ -->
             {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
@@ -2941,7 +2966,6 @@
             <!-- ========================================== -->
             <!--                  Dana PPM                  -->
             <!-- ========================================== -->
-            <!-- {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"} -->
             {#if skemaInternal.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -3158,49 +3182,57 @@
             <!-- ========================================== -->
             <!--             Presentasi Hasil PPM           -->
             <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Presentasi Hasil PPM
-                  <span
-                     class="toggle-button"
-                     on:click={() => (presentasiVisible = !presentasiVisible)}
-                  >
-                     {presentasiVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if !skemaEksternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Presentasi Hasil PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (presentasiVisible = !presentasiVisible)}
+                     >
+                        {presentasiVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if presentasiVisible}
-                  <hr />
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Kegiatan</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Checkbox</th
-                           >
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td
-                              >Mempresentasikan hasil PPM di seminar Penelitian
-                              / Pengmas bersama UISI di bulan Desember</td
-                           >
-                           <td style="text-align: center"
-                              ><input type="checkbox" /></td
-                           >
-                        </tr>
-                     </tbody>
-                  </table>
-               {/if}
-            </div>
+                  {#if presentasiVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Kegiatan</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Checkbox</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td
+                                 >Mempresentasikan hasil PPM di seminar
+                                 Penelitian / Pengmas bersama UISI di bulan
+                                 Desember</td
+                              >
+                              <td style="text-align: center">
+                                 <input
+                                    type="checkbox"
+                                    bind:checked={presentasiHasilPPM}
+                                    on:change={checkboxPresentasiHasilPPM}
+                                 />
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
 
             <!-- ========================================== -->
-            <!--                 File SK PPM                  -->
+            <!--                 File SK PPM                -->
             <!-- ========================================== -->
             <div class="box">
                <!-- svelte-ignore a11y-no-static-element-interactions -->
