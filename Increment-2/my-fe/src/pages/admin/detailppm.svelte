@@ -17,6 +17,7 @@
    import Fieldview from "../../libs/Fieldview.svelte";
    import Modal from "../../libs/Modal.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
    import Icon from "../../libs/Icon.svelte";
    import Select from "../../libs/Select.svelte";
    import Status from "../../modules/Status.svelte";
@@ -60,6 +61,7 @@
    let skPPMVisible = false;
    let presentasiVisible = false;
    let skpVisible = false;
+   let showModalChecked = false;
    let randomPenilaianFileName = "";
 
    let ppmid;
@@ -157,7 +159,6 @@
          location.pathname = "/tokenexpired";
       } else {
          if (responseRCR.ok) {
-            // itemsRCR = dataRCR.dbData;
             itemsRCR = dataRCR.dbData.map((item) => ({
                ...item,
                time: formatDate(item.time),
@@ -200,13 +201,15 @@
          headers: headers,
       });
       const result = await response.json();
-      view = !isEdit(result.status);
 
       if (response.status === 401) {
          location.pathname = "/tokenexpired";
       } else {
          if (response.ok) {
             data = result;
+
+            // view = !isEdit(result.status);
+            view = !isEdit(data.status, data.jenis_skema);
             ppmId = data.id;
             uidProposal = data.uid;
             jenisProposal = data.jenis_proposal;
@@ -500,9 +503,33 @@
       newBiodataAnggota = await Promise.all(promises.filter(Boolean));
    }
 
-   function isEdit(code) {
-      const edit = [0, 1, 3, 5, 7, 9];
-      return edit.some((x) => x === code);
+   // function isEdit(code) {
+   //    const edit = [0, 1, 3, 5, 7, 9];
+   //    return edit.some((x) => x === code);
+   // }
+
+   function isEdit(code, jenisSkema) {
+      let editStatus;
+      switch (jenisSkema) {
+         case "Riset Kelompok Keahlian":
+         case "Riset Terapan":
+         case "Riset Kerjasama":
+         case "Pengabdian Masyarakat Desa Binaan":
+         case "Pengabdian Masyarakat UMKM Binaan":
+            editStatus = [0, 1, 3, 5, 7];
+            break;
+         case "Riset Eksternal":
+         case "Pengabdian Masyarakat Hibah Eksternal":
+            editStatus = [0, 1, 3, 5];
+            break;
+         case "Riset Mandiri":
+         case "Pengabdian Masyarakat Mandiri":
+            editStatus = [0, 1, 3, 5];
+            break;
+         default:
+            editStatus = [];
+      }
+      return editStatus.includes(code);
    }
 
    function isObjectEmpty(objectName) {
@@ -551,6 +578,7 @@
             console.log(response);
          }
       }
+      showModalChecked = true;
       isLoading = false;
    }
 
@@ -588,6 +616,7 @@
          } else {
             if (response.ok) {
                getDetailPPM();
+               showModalChecked = true;
             } else {
                console.log(response);
             }
@@ -643,7 +672,6 @@
       // ================================ Upload SK Pendanaan ================================ //
       const uploadSkPendanaan = new Promise((resolve, reject) => {
          if (!fileSkPendanaan) {
-            // File not selected, resolve immediately
             resolve("No file SkPendanaan selected");
             return;
          }
@@ -675,12 +703,8 @@
                   location.pathname = "/tokenexpired";
                   reject("Token expired");
                } else if (response.ok) {
-                  // Handle if sukses (Modal Sukses)
-                  console.log("File SK Pendanaan sukses disimpan");
                   resolve(result);
                } else {
-                  // Handle if gagal (Modal Gagal/Error)
-                  console.log("File SK Pendanaan gagal disimpan");
                   reject(result);
                }
             } catch (error) {
@@ -695,7 +719,6 @@
       // ================================ Upload Surat Kontrak ================================ //
       const uploadSuratKontrak = new Promise((resolve, reject) => {
          if (!fileSuratKontrak) {
-            // File not selected, resolve immediately
             resolve("No file SuratKontrak selected");
             return;
          }
@@ -727,12 +750,8 @@
                   location.pathname = "/tokenexpired";
                   reject("Token expired");
                } else if (response.ok) {
-                  // Handle if sukses (Modal Sukses)
-                  console.log("File Surat Kontrak sukses disimpan");
                   resolve(result);
                } else {
-                  // Handle if gagal (Modal Gagal/Error)
-                  console.log("File Surat Kontrak gagal disimpan");
                   reject(result);
                }
             } catch (error) {
@@ -748,7 +767,6 @@
       // ================================ Upload Surat Tugas ================================ //
       const uploadSuratTugas = new Promise((resolve, reject) => {
          if (!fileSuratTugas) {
-            // File not selected, resolve immediately
             resolve("No file SuratTugas selected");
             return;
          }
@@ -780,12 +798,8 @@
                   location.pathname = "/tokenexpired";
                   reject("Token expired");
                } else if (response.ok) {
-                  // Handle if sukses (Modal Sukses)
-                  console.log("File Surat Tugas sukses disimpan");
                   resolve(result);
                } else {
-                  // Handle if gagal (Modal Gagal/Error)
-                  console.log("File Surat Tugas gagal disimpan");
                   reject(result);
                }
             } catch (error) {
@@ -800,7 +814,6 @@
       // ================================ Upload SK PPM ================================ //
       const uploadSkPPM = new Promise((resolve, reject) => {
          if (!fileSkPPM) {
-            // File not selected, resolve immediately
             resolve("No file SkPPM selected");
             return;
          }
@@ -829,12 +842,8 @@
                   location.pathname = "/tokenexpired";
                   reject("Token expired");
                } else if (response.ok) {
-                  // Handle if sukses (Modal Sukses)
-                  console.log("File SK PPM sukses disimpan");
                   resolve(result);
                } else {
-                  // Handle if gagal (Modal Gagal/Error)
-                  console.log("File SK PPM gagal disimpan");
                   reject(result);
                }
             } catch (error) {
@@ -855,6 +864,7 @@
             uploadSkPPM,
          ]);
       } finally {
+         showModalChecked = true;
          isLoading = false;
       }
    }
@@ -909,12 +919,8 @@
                      location.pathname = "/tokenexpired";
                      reject("Token expired");
                   } else if (response.ok) {
-                     // Handle if sukses (Modal Sukses)
-                     console.log("File Laporan Hasil PPM sukses disimpan");
                      resolve(result);
                   } else {
-                     // Handle if gagal (Modal Gagal/Error)
-                     console.log("File Laporan Hasil PPM gagal disimpan");
                      reject(result);
                   }
                } catch (error) {
@@ -964,8 +970,12 @@
       await getBiodataAnggota();
       error = {};
       isLoading = true;
+
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
+      const readerHasilPPM = new FileReader();
+
+      let fileHasilPPMName = id + "_Laporan Hasil PPM";
 
       const payload = {
          jenisProposal,
@@ -1013,96 +1023,178 @@
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
+         isLoading = false;
       } else {
-         // ================================================//
-         // Upload File PPM
-         // ================================================//
-         readerPpm.onloadend = async () => {
-            const base64Data = readerPpm.result.split(",")[1];
-            const payloadPpmFile = {
-               filePpm: {
-                  name: filePpm.name,
-                  type: filePpm.type,
-                  data: base64Data,
-               },
-               randomPpmFileName,
+         // ================================ Upload File Proposal ================================ //
+         const cekFileProposal = new Promise((resolve, reject) => {
+            if (!filePpm) {
+               resolve("No fileProposal selected");
+               return;
+            }
+            readerPpm.onloadend = async () => {
+               const base64Data = readerPpm.result.split(",")[1];
+               const payloadPpmFile = {
+                  filePpm: {
+                     name: filePpm.name,
+                     type: filePpm.type,
+                     data: base64Data,
+                  },
+                  randomPpmFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadPpm", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadPpmFile),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
             };
 
-            try {
-               const response = await fetch($apiURL + "/uploadPpm", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadPpmFile),
-               });
-
-               const result = await response.json();
-
-               if (response.status === 401) {
-                  location.pathname = "/tokenexpired";
-               }
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-
-         if (filePpm) readerPpm.readAsDataURL(filePpm);
-
-         // ================================================//
-         // Upload File RAB
-         // ================================================//
-         readerRab.onloadend = async () => {
-            const base64Data = readerRab.result.split(",")[1];
-            const payloadRabFile = {
-               fileRab: {
-                  name: fileRab.name,
-                  type: fileRab.type,
-                  data: base64Data,
-               },
-               randomRabFileName,
-            };
-
-            try {
-               const response = await fetch($apiURL + "/uploadRab", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadRabFile),
-               });
-
-               const result = await response.json();
-
-               if (response.status === 401) {
-                  location.pathname = "/tokenexpired";
-               }
-            } catch (error) {
-               console.error("Error uploading file:", error);
-            }
-         };
-
-         if (fileRab) readerRab.readAsDataURL(fileRab);
-
-         // ================================================//
-         // Patch Data Proposal PPM
-         // ================================================//
-
-         const response = await fetch($apiURL + "/ppm", {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify(payload),
+            if (filePpm) readerPpm.readAsDataURL(filePpm);
          });
 
-         const result = await response.json();
-
-         if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (response.ok) {
-               $route("/admin/ppmmanagement");
-            } else {
-               console.log(response);
+         // ================================ Upload File RAB ================================ //
+         const cekFileRAB = new Promise((resolve, reject) => {
+            if (!fileRab) {
+               resolve("No fileRab selected");
+               return;
             }
+
+            readerRab.onloadend = async () => {
+               const base64Data = readerRab.result.split(",")[1];
+               const payloadRabFile = {
+                  fileRab: {
+                     name: fileRab.name,
+                     type: fileRab.type,
+                     data: base64Data,
+                  },
+                  randomRabFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadRab", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadRabFile),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileRab) readerRab.readAsDataURL(fileRab);
+         });
+
+         // ================================ Upload File Hasil PPM ================================ //
+         const cekFileHasilPPM = new Promise((resolve, reject) => {
+            if (!fileHasilPPM) {
+               resolve("No fileHasilPPM selected");
+               return;
+            }
+
+            readerHasilPPM.onloadend = async () => {
+               const base64Data = readerHasilPPM.result.split(",")[1];
+               const payloadHasilPPMFile = {
+                  fileHasilPPM: {
+                     name: fileHasilPPM.name,
+                     type: fileHasilPPM.type,
+                     data: base64Data,
+                  },
+                  fileHasilPPMName,
+               };
+
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadDownloadHasilPPM",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadHasilPPMFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
+         });
+
+         // ================================ Patch Data PPM ================================ //
+         const cekPatchDataPPM = new Promise(async (resolve, reject) => {
+            const response = await fetch($apiURL + "/ppm", {
+               method: "PATCH",
+               headers: headers,
+               body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+               reject("Token expired");
+            } else {
+               if (response.ok) {
+                  // $route("/admin/ppmmanagement");
+                  resolve(result);
+               } else {
+                  console.log(response);
+                  reject("Error submitting file");
+               }
+            }
+         });
+
+         try {
+            await Promise.all([
+               cekFileProposal,
+               cekFileRAB,
+               cekFileHasilPPM,
+               cekPatchDataPPM,
+            ]);
+         } finally {
+            isLoading = false;
+            $route("/admin/ppmmanagement");
          }
       }
-      isLoading = false;
    }
 
    async function handleRevisi() {
@@ -1130,6 +1222,7 @@
             error.catatanRevisiProposal = `This field is required`;
          }
       }
+
       if (cttnRevisiHasilPPMisRequired()) {
          if (!payloadCttnRevisiHasilPPM.catatanRevisiHasilPPM) {
             error.catatanRevisiHasilPPM = `This field is required`;
@@ -1185,7 +1278,7 @@
             }
          }
 
-         // ================  API PPM  ================ //
+         // ================  Update Data PPM  ================ //
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
@@ -1579,7 +1672,7 @@
    }
 
    async function handleDownloadHasilPPM() {
-      let filename = "Laporan Hasil Penelitian" + ".pdf";
+      let filename = "Laporan Hasil PPM" + ".pdf";
 
       try {
          const response = await fetch(
@@ -3731,6 +3824,10 @@
 <Modalerror bind:show={showModalErrorInputEvaluator}>
    <p>Lengkapi form input evaluator</p>
 </Modalerror>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .inputf__wrapper {

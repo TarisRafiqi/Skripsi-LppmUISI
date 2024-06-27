@@ -3,6 +3,7 @@
    import { route, apiURL } from "../../store";
    import Field from "../../libs/Field.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
 
    let createUsername, createPassword, createEmail, createRole;
    let selectedActivation = "";
@@ -10,6 +11,8 @@
    let error = {};
    let showModalError = false;
    let showModalErrorEmptyForm = false;
+   let showModalChecked = false;
+
    const role = localStorage.getItem("role");
    const accessToken = localStorage.getItem("token");
 
@@ -54,11 +57,16 @@
             const result = await response.json();
 
             if (response.status === 401) {
-               // localStorage.clear();
                location.pathname = "/tokenexpired";
             } else {
                if (response.ok) {
-                  $route("/admin/usersmanagement");
+                  // $route("/admin/usersmanagement");
+                  showModalChecked = true;
+                  createUsername = "";
+                  createPassword = "";
+                  createEmail = "";
+                  selectedActivation = "";
+                  jenisRole = "";
                } else {
                   showModalError = true;
                }
@@ -71,16 +79,6 @@
 </script>
 
 <Article>
-   <Modalerror bind:show={showModalError}>
-      <p>
-         Username yang anda gunakan telah terdaftar, silahkan gunakan username
-         lain
-      </p>
-   </Modalerror>
-   <Modalerror bind:show={showModalErrorEmptyForm}>
-      <p>Lengkapi seluruh form!</p>
-   </Modalerror>
-
    <h2 class="title is-2">Create User</h2>
    <hr />
 
@@ -136,6 +134,7 @@
                      >Pilih Jenis Role</option
                   >
                   <option value="0">Dosen</option>
+                  <option value="9">Admin</option>
                   <option value="10">Reviewer</option>
                   <option value="11">Kepala Departemen</option>
                   <option value="12">Kepala LPPM</option>
@@ -194,6 +193,20 @@
       <h4 class="title is-4">Anda tidak memiliki hak akses halaman ini!</h4>
    {/if}
 </Article>
+
+<Modalerror bind:show={showModalError}>
+   <p>
+      Username yang anda gunakan telah terdaftar, silahkan gunakan username lain
+   </p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorEmptyForm}>
+   <p>Lengkapi seluruh form!</p>
+</Modalerror>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .help {

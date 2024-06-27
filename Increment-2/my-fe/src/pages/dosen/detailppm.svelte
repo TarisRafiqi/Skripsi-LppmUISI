@@ -525,7 +525,7 @@
          case "Riset Kerjasama":
          case "Pengabdian Masyarakat Desa Binaan":
          case "Pengabdian Masyarakat UMKM Binaan":
-            editStatus = [0, 1, 3, 5, 7, 11];
+            editStatus = [0, 1, 3, 5, 7];
             break;
          case "Riset Eksternal":
          case "Pengabdian Masyarakat Hibah Eksternal":
@@ -533,7 +533,7 @@
             break;
          case "Riset Mandiri":
          case "Pengabdian Masyarakat Mandiri":
-            editStatus = [0, 1, 3, 5, 9];
+            editStatus = [0, 1, 3, 5];
             break;
          default:
             editStatus = [];
@@ -611,8 +611,12 @@
       await getBiodataAnggota();
       error = {};
       isLoading = true;
+
       const readerPpm = new FileReader();
       const readerRab = new FileReader();
+      const readerHasilPPM = new FileReader();
+
+      let fileHasilPPMName = id + "_Laporan Hasil PPM";
 
       let payload = {
          jenisProposal,
@@ -660,98 +664,179 @@
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
-         console.log(error);
+         isLoading = false;
       } else {
-         // ================================================//
-         // Upload File PPM
-         // ================================================//
-         readerPpm.onloadend = async () => {
-            const base64Data = readerPpm.result.split(",")[1];
-            const payloadPpmFile = {
-               filePpm: {
-                  name: filePpm.name,
-                  type: filePpm.type,
-                  data: base64Data,
-               },
-               randomPpmFileName,
+         // ================================ Upload File Proposal ================================ //
+         const cekFileProposal = new Promise((resolve, reject) => {
+            if (!filePpm) {
+               resolve("No fileProposal selected");
+               return;
+            }
+
+            readerPpm.onloadend = async () => {
+               const base64Data = readerPpm.result.split(",")[1];
+               const payloadPpmFile = {
+                  filePpm: {
+                     name: filePpm.name,
+                     type: filePpm.type,
+                     data: base64Data,
+                  },
+                  randomPpmFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadPpm", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadPpmFile),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
             };
 
-            try {
-               const response = await fetch($apiURL + "/uploadPpm", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadPpmFile),
-               });
-
-               const result = await response.json();
-
-               if (response.status === 401) {
-                  location.pathname = "/tokenexpired";
-               }
-            } catch (error) {
-               console.error("Error uploading file:", error);
-               // Buat Handle Error
-            }
-         };
-
-         if (filePpm) readerPpm.readAsDataURL(filePpm);
-         // ================================================//
-         // Upload File RAB
-         // ================================================//
-         readerRab.onloadend = async () => {
-            const base64Data = readerRab.result.split(",")[1];
-            const payloadRabFile = {
-               fileRab: {
-                  name: fileRab.name,
-                  type: fileRab.type,
-                  data: base64Data,
-               },
-               randomRabFileName,
-            };
-
-            try {
-               const response = await fetch($apiURL + "/uploadRab", {
-                  method: "POST",
-                  headers: headers,
-                  body: JSON.stringify(payloadRabFile),
-               });
-
-               const result = await response.json();
-
-               if (response.status === 401) {
-                  location.pathname = "/tokenexpired";
-               }
-            } catch (error) {
-               console.error("Error uploading file:", error);
-               // Buat Handle Error
-            }
-         };
-
-         if (fileRab) readerRab.readAsDataURL(fileRab);
-         // ================================================//
-         // Patch data proposal
-         // ================================================//
-         const response = await fetch($apiURL + "/ppm", {
-            method: "PATCH",
-            headers: headers,
-            body: JSON.stringify(payload),
+            if (filePpm) readerPpm.readAsDataURL(filePpm);
          });
 
-         const result = await response.json();
-
-         if (response.status === 401) {
-            location.pathname = "/tokenexpired";
-         } else {
-            if (response.ok) {
-               $route("/dosen/ppmmanagement");
-            } else {
-               console.log(response);
-               // Buat Handle Error
-               // ...
+         // ================================ Upload File RAB ================================ //
+         const cekFileRAB = new Promise((resolve, reject) => {
+            if (!fileRab) {
+               resolve("No fileRab selected");
+               return;
             }
+
+            readerRab.onloadend = async () => {
+               const base64Data = readerRab.result.split(",")[1];
+               const payloadRabFile = {
+                  fileRab: {
+                     name: fileRab.name,
+                     type: fileRab.type,
+                     data: base64Data,
+                  },
+                  randomRabFileName,
+               };
+
+               try {
+                  const response = await fetch($apiURL + "/uploadRab", {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadRabFile),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileRab) readerRab.readAsDataURL(fileRab);
+         });
+
+         // ================================ Upload File Hasil PPM ================================ //
+         const cekFileHasilPPM = new Promise((resolve, reject) => {
+            if (!fileHasilPPM) {
+               resolve("No fileHasilPPM selected");
+               return;
+            }
+
+            readerHasilPPM.onloadend = async () => {
+               const base64Data = readerHasilPPM.result.split(",")[1];
+               const payloadHasilPPMFile = {
+                  fileHasilPPM: {
+                     name: fileHasilPPM.name,
+                     type: fileHasilPPM.type,
+                     data: base64Data,
+                  },
+                  fileHasilPPMName,
+               };
+
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadDownloadHasilPPM",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadHasilPPMFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
+         });
+
+         // ================================ Patch Data PPM ================================ //
+         const cekPatchDataPPM = new Promise(async (resolve, reject) => {
+            const response = await fetch($apiURL + "/ppm", {
+               method: "PATCH",
+               headers: headers,
+               body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (response.status === 401) {
+               location.pathname = "/tokenexpired";
+               reject("Token expired");
+            } else {
+               if (response.ok) {
+                  // $route("/dosen/ppmmanagement");
+                  resolve(result);
+               } else {
+                  console.log(response);
+                  reject("Error submitting file");
+               }
+            }
+         });
+
+         try {
+            await Promise.all([
+               cekFileProposal,
+               cekFileRAB,
+               cekFileHasilPPM,
+               cekPatchDataPPM,
+            ]);
+         } finally {
+            isLoading = false;
+            $route("/dosen/ppmmanagement");
          }
       }
-      isLoading = false;
    }
 
    async function submitProposal() {
@@ -793,6 +878,7 @@
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
+         isLoading = false;
       } else {
          // ================================================//
          // Upload File PPM
@@ -926,6 +1012,7 @@
 
       if (Object.keys(error).length > 0) {
          showModalError = true;
+         isLoading = false;
       } else {
          // ================================================//
          // Upload File PPM
@@ -1297,7 +1384,7 @@
    }
 
    async function handleDownloadHasilPPM() {
-      let filename = "Laporan Hasil Penelitian" + ".pdf";
+      let filename = "Laporan Hasil PPM" + ".pdf";
 
       try {
          const response = await fetch(
@@ -2757,7 +2844,7 @@
 </Modalerror>
 
 <Modalerror bind:show={ModalFileNotFound}>
-   <p>Gagal mengunduh file, silahkan coba beberapa saat lagi.</p>
+   <p>Gagal mengunduh file, coba unduh beberapa saat lagi.</p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorHasilPPM}>

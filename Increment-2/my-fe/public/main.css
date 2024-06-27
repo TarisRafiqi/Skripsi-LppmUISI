@@ -1639,6 +1639,69 @@ p.svelte-l76t32 {
   font-size: 18px;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Modalchecked.esbuild-svelte-fake-css */
+b.svelte-14lwwno {
+  display: block;
+  font-weight: normal;
+  z-index: 17;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
+}
+b.show.svelte-14lwwno {
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+}
+.cookiesContent.svelte-14lwwno {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+img.svelte-14lwwno {
+  width: 82px;
+  margin-bottom: 15px;
+}
+p.svelte-14lwwno {
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.loader-wrapper.svelte-14lwwno {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 82px;
+  height: 82px;
+  margin-bottom: 15px;
+}
+.loader.is-loading.svelte-14lwwno {
+  border: 8px solid rgb(199, 199, 199);
+  border-top: 8px solid #0ca170;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: svelte-14lwwno-spin 0.4s linear infinite;
+}
+@keyframes svelte-14lwwno-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/createuser.esbuild-svelte-fake-css */
 .help.svelte-1lhj3n7 {
   margin: -6px 0px 0px 0px;
@@ -2010,69 +2073,6 @@ button.svelte-5cn8hs {
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/dosen/profile.esbuild-svelte-fake-css */
 .help.svelte-1lhj3n7 {
   margin: -6px 0px 0px 0px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Modalchecked.esbuild-svelte-fake-css */
-b.svelte-14lwwno {
-  display: block;
-  font-weight: normal;
-  z-index: 17;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0);
-  visibility: hidden;
-}
-b.show.svelte-14lwwno {
-  background-color: rgba(0, 0, 0, 0.5);
-  visibility: visible;
-}
-.cookiesContent.svelte-14lwwno {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-}
-img.svelte-14lwwno {
-  width: 82px;
-  margin-bottom: 15px;
-}
-p.svelte-14lwwno {
-  font-family: "Roboto", sans-serif;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-.loader-wrapper.svelte-14lwwno {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 82px;
-  height: 82px;
-  margin-bottom: 15px;
-}
-.loader.is-loading.svelte-14lwwno {
-  border: 8px solid rgb(199, 199, 199);
-  border-top: 8px solid #0ca170;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: svelte-14lwwno-spin 0.4s linear infinite;
-}
-@keyframes svelte-14lwwno-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */

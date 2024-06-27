@@ -7,6 +7,7 @@
    import Field from "../../libs/Field.svelte";
    import Icon from "../../libs/Icon.svelte";
    import { deleteIcon, add } from "../../store/icons";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
 
    export let params;
    const id = params["1"];
@@ -65,6 +66,7 @@
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
    let showModalErrorForm = false;
+   let showModalChecked = false;
 
    async function modalInputRiwayatPendidikanS1() {
       showModalRiwayatPendidikanS1 = true;
@@ -889,7 +891,8 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/usersmanagement");
+               // $route("/admin/usersmanagement");
+               showModalChecked = true;
             } else {
                console.log(response);
             }
@@ -2417,6 +2420,12 @@
 <Modalerror bind:show={showModalErrorForm}>
    <p>Lengkapi semua form sebelum disimpan</p>
 </Modalerror>
+<!-- ------------------------------------------------------------------------>
+<!-- Modal Checked -->
+<!-- ------------------------------------------------------------------------>
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .help {

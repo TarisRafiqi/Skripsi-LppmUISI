@@ -1,12 +1,13 @@
 <script>
    import { onMount } from "svelte";
+   import Icon from "../../libs/Icon.svelte";
    import { route, apiURL } from "../../store";
-   import { deleteIcon, add } from "../../store/icons";
-   import Article from "../../libs/Article.svelte";
    import Modal from "../../libs/Modal.svelte";
    import Field from "../../libs/Field.svelte";
-   import Icon from "../../libs/Icon.svelte";
+   import Article from "../../libs/Article.svelte";
+   import { deleteIcon, add } from "../../store/icons";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
 
    const id = localStorage.getItem("id");
    let vmataKuliah;
@@ -64,6 +65,7 @@
    let showModalPenulisanBuku = false;
    let showModalHKI = false;
    let showModalErrorForm = false;
+   let showModalChecked = false;
 
    async function modalInputRiwayatPendidikanS1() {
       showModalRiwayatPendidikanS1 = true;
@@ -115,7 +117,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (response.status === 401) {
          location.pathname = "/tokenexpired";
@@ -402,7 +403,8 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/dosen");
+               // $route("/dosen");
+               showModalChecked = true;
             } else {
                console.log(response);
             }
@@ -2394,12 +2396,15 @@
    </div>
 </Modal>
 
-<!-- ------------------------------------------------------------------------>
-<!-- Modal Error -->
-<!-- ------------------------------------------------------------------------>
+<!-- ---------------- Modal Error ------------------>
 <Modalerror bind:show={showModalErrorForm}>
    <p>Lengkapi semua form sebelum disimpan</p>
 </Modalerror>
+
+<!-- ---------------- Modal Checked ---------------->
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .help {

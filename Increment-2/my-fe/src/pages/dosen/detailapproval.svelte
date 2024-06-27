@@ -27,7 +27,10 @@
 
    let showModalErrorPassReviewer = false;
    let showModalErrorRevisi = false;
+   let ModalFileNotFound = false;
    let isLoading = false;
+
+   let skpVisible = false;
 
    let randomPenilaianFileName = "";
    let biodataAnggota = [];
@@ -50,6 +53,7 @@
       status;
 
    let catatanRevisiProposal;
+   let catatanRevisiHasilPPM;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -88,18 +92,23 @@
             judul = data.judul;
             abstrak = data.abstrak;
             status = data.status;
-
             randomRabFileName = data.random_rab_file_name;
             randomPpmFileName = data.random_ppm_file_name;
             randomPenilaianFileNamedb = data.random_penilaian_file_name;
+
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
+            statusPencairanDana =
+               data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
             console.log(response);
          }
       }
 
-      // ================================================//
-      //        Get Riwayat Catatan Revisi Proposal
-      // ================================================//
+      // ========== Get Riwayat Catatan Revisi Proposal ========== //
       const responseRCR = await fetch(
          $apiURL + "/riwayatCatatanRevisiProposal/" + ppmId,
          {
@@ -115,6 +124,28 @@
       } else {
          if (responseRCR.ok) {
             itemsRCR = dataRCR.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+         }
+      }
+
+      // ========== Get Riwayat Catatan Revisi Hasil PPM ========== //
+      const responseCHP = await fetch(
+         $apiURL + "/riwayatCatatanRevisiHasilPPM/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataCHP = await responseCHP.json();
+
+      if (responseCHP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseCHP.ok) {
+            itemsCHP = dataCHP.dbData.map((item) => ({
                ...item,
                time: formatDate(item.time),
             }));
@@ -150,18 +181,29 @@
          catatanRevisiProposal,
          namaLengkapEvl,
       };
+      const payloadCttnRevisiHasilPPM = {
+         ppmId,
+         catatanRevisiHasilPPM,
+         namaLengkapEvl,
+      };
 
-      if (InputCttnRevisiProposal()) {
+      if (cttnRevisiProposalisRequired()) {
          if (!payloadCttnRevisiProposal.catatanRevisiProposal) {
             error.catatanRevisiProposal = `This field is required`;
+         }
+      }
+
+      if (cttnRevisiHasilPPMisRequired()) {
+         if (!payloadCttnRevisiHasilPPM.catatanRevisiHasilPPM) {
+            error.catatanRevisiHasilPPM = `This field is required`;
          }
       }
 
       if (Object.keys(error).length > 0) {
          showModalErrorRevisi = true;
       } else {
-         // ===========  API RiwayatCttnRevisiProposal  =========== //
-         if (InputCttnRevisiProposal()) {
+         // ===========  Post Catatan Revisi Proposal  =========== //
+         if (cttnRevisiProposalisRequired()) {
             const responseRev = await fetch(
                $apiURL + "/riwayatCatatanRevisiProposal",
                {
@@ -179,12 +221,34 @@
                if (!responseRev.ok) {
                   console.log(responseRev);
                   // Buat Handle Error
-                  // ...
                }
             }
          }
 
-         // ================  API PPM  ================ //
+         // ===========  Post Catatan Revisi Hasil PPM  =========== //
+         if (cttnRevisiHasilPPMisRequired()) {
+            const responseRevisiHasilPPM = await fetch(
+               $apiURL + "/riwayatCatatanRevisiHasilPPM",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiHasilPPM),
+               }
+            );
+
+            const resultRevisiHasilPPM = await responseRevisiHasilPPM.json();
+
+            if (responseRevisiHasilPPM.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRevisiHasilPPM.ok) {
+                  console.log(responseRevisiHasilPPM);
+                  // Buat Handle Error
+               }
+            }
+         }
+
+         // ================  Update Data PPM  ================ //
          const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
             method: "PATCH",
             headers: headers,
@@ -432,6 +496,146 @@
       }
    }
 
+   async function handleDownloadSkPendanaan(e) {
+      let filename = "SK Pendanaan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPendanaan/${fileSkPendanaanNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratKontrak() {
+      let filename = "Surat Kontrak Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratKontrak/${fileSuratKontrakNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratTugas() {
+      let filename = "Surat Tugas" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratTugas/${fileSuratTugasNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSkPPM() {
+      let filename = "SK PPM" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPPM/${fileSkPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadHasilPPM() {
+      let filename = "Laporan Hasil PPM" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadHasilPPM/${fileHasilPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
    let tab1 = true;
    let tab2;
 
@@ -532,10 +736,37 @@
       }
    }
 
-   function InputCttnRevisiProposal() {
+   function cttnRevisiProposalisRequired() {
       const RevisiSkemaInternal = [2, 8];
       const RevisiSkemaEksternal = [2, 6];
       const RevisiSkemaMandiri = [2, 6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
+
+   function cttnRevisiHasilPPMisRequired() {
+      const RevisiSkemaInternal = [12];
+      const RevisiSkemaEksternal = [10];
+      const RevisiSkemaMandiri = [10];
 
       if (
          skemaInternal.includes(data.jenis_skema) &&
@@ -740,7 +971,7 @@
          {#if role !== "K.Departemen" && role !== "reviewer"}
             <div class="box">
                <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               {#if InputCttnRevisiProposal()}
+               {#if cttnRevisiProposalisRequired()}
                   <div class="notification is-warning is-light">
                      <p>Berikan catatan revisi jika ingin revisi proposal</p>
                   </div>
@@ -790,6 +1021,125 @@
                   {/if}
                </table>
             </div>
+         {/if}
+
+         {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)}
+            <!-- ============================================================ -->
+            <!-- Download SK Pendanaan, Surat Kontrak Penelitian, Surat Tugas -->
+            <!-- ============================================================ -->
+            {#if skemaInternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     File SK Pendanaan / Surat Kontrak PPM / Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>SK Pendanaan</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSkPendanaan}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                           <!-- ====================================================== -->
+                           <tr>
+                              <td>Surat Kontrak PPM</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratKontrak}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                           <!-- ====================================================== -->
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {:else}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     File Surat Tugas
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Upload File</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
          {/if}
 
          <!-- ========================================== -->
@@ -1289,11 +1639,15 @@
 {/if}
 
 <Modalerror bind:show={showModalErrorRevisi}>
-   <p>Berikan catatan revisi jika ingin revisi proposal.</p>
+   <p>Anda belum memasukkan catatan revisi</p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorPassReviewer}>
    <p>Anda belum mengupload file penilaian proposal</p>
+</Modalerror>
+
+<Modalerror bind:show={ModalFileNotFound}>
+   <p>Gagal mengunduh file, coba unduh beberapa saat lagi.</p>
 </Modalerror>
 
 <style>
