@@ -8210,32 +8210,50 @@
     let t0;
     let t1;
     let t2;
+    let show_if_5 = (
+      /*skemaInternal*/
+      ctx[56].includes(
+        /*jenisSkema*/
+        ctx[26]
+      ) && /*status*/
+      ctx[34] >= 10 || /*skemaEksternal*/
+      ctx[57].includes(
+        /*jenisSkema*/
+        ctx[26]
+      ) && /*status*/
+      ctx[34] >= 8 || /*skemaMandiri*/
+      ctx[58].includes(
+        /*jenisSkema*/
+        ctx[26]
+      ) && /*status*/
+      ctx[34] >= 8
+    );
     let t3;
     let div1;
     let show_if_4 = (
       /*ShowRPButton*/
-      ctx[78]()
+      ctx[79]()
     );
     let t4;
     let t5;
     let show_if_3 = (
       /*ShowReviewerButton*/
-      ctx[79]()
+      ctx[80]()
     );
     let t6;
     let show_if_2 = (
       /*ShowRDPButton*/
-      ctx[81]()
+      ctx[82]()
     );
     let t7;
     let show_if_1 = (
       /*hasilPPMisRequired*/
-      ctx[80]()
+      ctx[81]()
     );
     let t8;
     let show_if = (
       /*ShowButtonPerbaikan*/
-      ctx[83]()
+      ctx[84]()
     );
     let current;
     const if_block_creators = [create_if_block_442, create_else_block_14];
@@ -8256,21 +8274,7 @@
       /*status*/
       ctx[34] != 0 && create_if_block_382(ctx)
     );
-    let if_block3 = (
-      /*jenisSkema*/
-      ((ctx[26] === "Riset Eksternal" || /*jenisSkema*/
-      ctx[26] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-      ctx[34] >= 8 || /*jenisSkema*/
-      (ctx[26] === "Riset Mandiri" || /*jenisSkema*/
-      ctx[26] === "Pengabdian Masyarakat Mandiri") && /*status*/
-      ctx[34] >= 8 || /*jenisSkema*/
-      (ctx[26] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[26] === "Riset Terapan" || /*jenisSkema*/
-      ctx[26] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[26] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[26] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-      ctx[34] >= 10) && create_if_block_202(ctx)
-    );
+    let if_block3 = show_if_5 && create_if_block_202(ctx);
     let if_block4 = show_if_4 && create_if_block_192(ctx);
     let if_block5 = (
       /*status*/
@@ -8407,21 +8411,26 @@
           });
           check_outros();
         }
-        if (
-          /*jenisSkema*/
-          (ctx2[26] === "Riset Eksternal" || /*jenisSkema*/
-          ctx2[26] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-          ctx2[34] >= 8 || /*jenisSkema*/
-          (ctx2[26] === "Riset Mandiri" || /*jenisSkema*/
-          ctx2[26] === "Pengabdian Masyarakat Mandiri") && /*status*/
-          ctx2[34] >= 8 || /*jenisSkema*/
-          (ctx2[26] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[26] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[26] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[26] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[26] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-          ctx2[34] >= 10
-        ) {
+        if (dirty[0] & /*jenisSkema*/
+        67108864 | dirty[1] & /*status*/
+        8)
+          show_if_5 = /*skemaInternal*/
+          ctx2[56].includes(
+            /*jenisSkema*/
+            ctx2[26]
+          ) && /*status*/
+          ctx2[34] >= 10 || /*skemaEksternal*/
+          ctx2[57].includes(
+            /*jenisSkema*/
+            ctx2[26]
+          ) && /*status*/
+          ctx2[34] >= 8 || /*skemaMandiri*/
+          ctx2[58].includes(
+            /*jenisSkema*/
+            ctx2[26]
+          ) && /*status*/
+          ctx2[34] >= 8;
+        if (show_if_5) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
             if (dirty[0] & /*jenisSkema*/
@@ -8850,7 +8859,7 @@
             button,
             "click",
             /*handleDownloadPpm*/
-            ctx[70]
+            ctx[71]
           );
           mounted = true;
         }
@@ -9574,7 +9583,7 @@
             button,
             "click",
             /*handleDownloadRab*/
-            ctx[69]
+            ctx[70]
           );
           mounted = true;
         }
@@ -9622,7 +9631,7 @@
             button,
             "click",
             /*handleDownloadPenilaian*/
-            ctx[71]
+            ctx[72]
           );
           mounted = true;
         }
@@ -9749,7 +9758,7 @@
             input0,
             "change",
             /*filePenilaianChange*/
-            ctx[88]
+            ctx[89]
           );
           mounted = true;
         }
@@ -10063,7 +10072,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[97]
+            ctx[98]
           );
           mounted = true;
         }
@@ -10172,7 +10181,7 @@
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[98]
+            ctx[99]
           );
           mounted = true;
         }
@@ -10338,7 +10347,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[99].call(select)
+            ctx[100].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -10363,7 +10372,7 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[99]
+            ctx[100]
           );
           mounted = true;
         }
@@ -10479,7 +10488,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[100].call(select)
+            ctx[101].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -10504,7 +10513,7 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[100]
+            ctx[101]
           );
           mounted = true;
         }
@@ -10708,7 +10717,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_2*/
-            ctx[101].call(select)
+            ctx[102].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -10732,7 +10741,7 @@
             select,
             "change",
             /*select_change_handler_2*/
-            ctx[101]
+            ctx[102]
           );
           mounted = true;
         }
@@ -10851,7 +10860,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[102]
+            ctx[103]
           );
           mounted = true;
         }
@@ -10962,7 +10971,7 @@
             input,
             "input",
             /*input_input_handler_2*/
-            ctx[103]
+            ctx[104]
           );
           mounted = true;
         }
@@ -11076,7 +11085,7 @@
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[104]
+            ctx[105]
           );
           mounted = true;
         }
@@ -11189,7 +11198,7 @@
             input,
             "input",
             /*input_input_handler_4*/
-            ctx[105]
+            ctx[106]
           );
           mounted = true;
         }
@@ -11300,13 +11309,13 @@
               input,
               "input",
               /*input_input_handler_5*/
-              ctx[106]
+              ctx[107]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[107]
+              ctx[108]
             )
           ];
           mounted = true;
@@ -11470,13 +11479,13 @@
               input0,
               "change",
               /*filePpmChange*/
-              ctx[86]
+              ctx[87]
             ),
             listen(
               button,
               "click",
               /*toggleEditModeProposal*/
-              ctx[84]
+              ctx[85]
             )
           ];
           mounted = true;
@@ -11573,13 +11582,13 @@
               button0,
               "click",
               /*handleDownloadPpm*/
-              ctx[70]
+              ctx[71]
             ),
             listen(
               button1,
               "click",
               /*toggleEditModeProposal*/
-              ctx[84]
+              ctx[85]
             )
           ];
           mounted = true;
@@ -11970,13 +11979,13 @@
               input0,
               "change",
               /*fileRabChange*/
-              ctx[87]
+              ctx[88]
             ),
             listen(
               button,
               "click",
               /*toggleEditModeRAB*/
-              ctx[85]
+              ctx[86]
             )
           ];
           mounted = true;
@@ -12073,13 +12082,13 @@
               button0,
               "click",
               /*handleDownloadRab*/
-              ctx[69]
+              ctx[70]
             ),
             listen(
               button1,
               "click",
               /*toggleEditModeRAB*/
-              ctx[85]
+              ctx[86]
             )
           ];
           mounted = true;
@@ -12310,7 +12319,7 @@
             button,
             "click",
             /*handleDownloadPenilaian*/
-            ctx[71]
+            ctx[72]
           );
           mounted = true;
         }
@@ -12362,11 +12371,11 @@
     let if_block_anchor;
     let current;
     function select_result_binding(value) {
-      ctx[108](value);
+      ctx[109](value);
     }
     let select_props = { start: "2", items: (
       /*items*/
-      ctx[58]
+      ctx[59]
     ) };
     if (
       /*anggotaTim*/
@@ -12477,7 +12486,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
         4194304 | dirty[2] & /*deleteMember*/
-        64) {
+        128) {
           each_value_12 = ensure_array_like(
             /*anggotaTim*/
             ctx2[22]
@@ -12554,7 +12563,7 @@
             button,
             "click",
             /*deleteMember*/
-            ctx[68]
+            ctx[69]
           );
           mounted = true;
         }
@@ -12685,7 +12694,7 @@
     function select_block_type_8(ctx2, dirty) {
       if (
         /*cttnRevisiProposalisRequired*/
-        ctx2[82]()
+        ctx2[83]()
       )
         return create_if_block_422;
       return create_else_block_8;
@@ -12832,7 +12841,7 @@
             textarea,
             "input",
             /*textarea_input_handler_1*/
-            ctx[109]
+            ctx[110]
           );
           mounted = true;
         }
@@ -13065,10 +13074,10 @@
     let p;
     let current;
     function field0_value_binding(value) {
-      ctx[110](value);
+      ctx[111](value);
     }
     function field0_selected_binding(value) {
-      ctx[111](value);
+      ctx[112](value);
     }
     let field0_props = {
       id: "evaluatorKdept",
@@ -13098,10 +13107,10 @@
     binding_callbacks.push(() => bind(field0, "value", field0_value_binding));
     binding_callbacks.push(() => bind(field0, "selected", field0_selected_binding));
     function field1_value_binding(value) {
-      ctx[112](value);
+      ctx[113](value);
     }
     function field1_selected_binding(value) {
-      ctx[113](value);
+      ctx[114](value);
     }
     let field1_props = {
       id: "evaluatorReviewer",
@@ -13131,10 +13140,10 @@
     binding_callbacks.push(() => bind(field1, "value", field1_value_binding));
     binding_callbacks.push(() => bind(field1, "selected", field1_selected_binding));
     function field2_value_binding(value) {
-      ctx[114](value);
+      ctx[115](value);
     }
     function field2_selected_binding(value) {
-      ctx[115](value);
+      ctx[116](value);
     }
     let field2_props = {
       id: "evaluatorKlppm",
@@ -13164,10 +13173,10 @@
     binding_callbacks.push(() => bind(field2, "value", field2_value_binding));
     binding_callbacks.push(() => bind(field2, "selected", field2_selected_binding));
     function field3_value_binding(value) {
-      ctx[116](value);
+      ctx[117](value);
     }
     function field3_selected_binding(value) {
-      ctx[117](value);
+      ctx[118](value);
     }
     let field3_props = {
       id: "evaluatorKpk",
@@ -13424,7 +13433,7 @@
             button,
             "click",
             /*handleSubmitEvaluator*/
-            ctx[60]
+            ctx[61]
           );
           mounted = true;
         }
@@ -13587,13 +13596,13 @@
               span0,
               "click",
               /*click_handler_3*/
-              ctx[122]
+              ctx[123]
             ),
             listen(
               span1,
               "click",
               /*click_handler_5*/
-              ctx[126]
+              ctx[127]
             )
           ];
           mounted = true;
@@ -13797,7 +13806,7 @@
             span,
             "click",
             /*click_handler_1*/
-            ctx[119]
+            ctx[120]
           );
           mounted = true;
         }
@@ -13899,7 +13908,7 @@
             span,
             "click",
             /*click_handler*/
-            ctx[118]
+            ctx[119]
           );
           mounted = true;
         }
@@ -14105,19 +14114,19 @@
               input0,
               "change",
               /*fileSuratTugasChange*/
-              ctx[91]
+              ctx[92]
             ),
             listen(
               button0,
               "click",
               /*handleDownloadSuratTugas*/
-              ctx[74]
+              ctx[75]
             ),
             listen(
               button1,
               "click",
               /*handleSubmitFile*/
-              ctx[61]
+              ctx[62]
             )
           ];
           mounted = true;
@@ -14563,43 +14572,43 @@
               input0,
               "change",
               /*fileSkPendanaanChange*/
-              ctx[89]
+              ctx[90]
             ),
             listen(
               button0,
               "click",
               /*handleDownloadSkPendanaan*/
-              ctx[72]
+              ctx[73]
             ),
             listen(
               input2,
               "change",
               /*fileSuratKontrakChange*/
-              ctx[90]
+              ctx[91]
             ),
             listen(
               button1,
               "click",
               /*handleDownloadSuratKontrak*/
-              ctx[73]
+              ctx[74]
             ),
             listen(
               input4,
               "change",
               /*fileSuratTugasChange*/
-              ctx[91]
+              ctx[92]
             ),
             listen(
               button2,
               "click",
               /*handleDownloadSuratTugas*/
-              ctx[74]
+              ctx[75]
             ),
             listen(
               button3,
               "click",
               /*handleSubmitFile*/
-              ctx[61]
+              ctx[62]
             )
           ];
           mounted = true;
@@ -14871,7 +14880,7 @@
             span,
             "click",
             /*click_handler_2*/
-            ctx[120]
+            ctx[121]
           );
           mounted = true;
         }
@@ -14975,7 +14984,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_3*/
-            ctx[121].call(select)
+            ctx[122].call(select)
           ));
         attr(div0, "class", "select");
         attr(th1, "class", "is-narrow");
@@ -15022,13 +15031,13 @@
               select,
               "change",
               /*select_change_handler_3*/
-              ctx[121]
+              ctx[122]
             ),
             listen(
               button,
               "click",
               /*handleSubmitStatusPendanaan*/
-              ctx[59]
+              ctx[60]
             )
           ];
           mounted = true;
@@ -15274,19 +15283,19 @@
               input0,
               "change",
               /*fileHasilPPMChange*/
-              ctx[93]
+              ctx[94]
             ),
             listen(
               button,
               "click",
               /*handleDownloadHasilPPM*/
-              ctx[76]
+              ctx[77]
             ),
             listen(
               textarea,
               "input",
               /*textarea_input_handler_2*/
-              ctx[123]
+              ctx[124]
             )
           ];
           mounted = true;
@@ -15631,7 +15640,7 @@
             span,
             "click",
             /*click_handler_4*/
-            ctx[124]
+            ctx[125]
           );
           mounted = true;
         }
@@ -15721,13 +15730,13 @@
               input,
               "change",
               /*input_change_handler*/
-              ctx[125]
+              ctx[126]
             ),
             listen(
               input,
               "change",
               /*checkboxPresentasiHasilPPM*/
-              ctx[77]
+              ctx[78]
             )
           ];
           mounted = true;
@@ -15902,19 +15911,19 @@
               input0,
               "change",
               /*fileSkPPMChange*/
-              ctx[92]
+              ctx[93]
             ),
             listen(
               button0,
               "click",
               /*handleDownloadSkPPM*/
-              ctx[75]
+              ctx[76]
             ),
             listen(
               button1,
               "click",
               /*handleSubmitFile*/
-              ctx[61]
+              ctx[62]
             )
           ];
           mounted = true;
@@ -16061,13 +16070,13 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[64]
+              ctx[65]
             ),
             listen(
               button1,
               "click",
               /*handlePass*/
-              ctx[67]
+              ctx[68]
             )
           ];
           mounted = true;
@@ -16131,7 +16140,7 @@
             button,
             "click",
             /*handlePass*/
-            ctx[67]
+            ctx[68]
           );
           mounted = true;
         }
@@ -16183,7 +16192,7 @@
             button,
             "click",
             /*handlePassReviewer*/
-            ctx[66]
+            ctx[67]
           );
           mounted = true;
         }
@@ -16272,19 +16281,19 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[64]
+              ctx[65]
             ),
             listen(
               button1,
               "click",
               /*handleDitolak*/
-              ctx[65]
+              ctx[66]
             ),
             listen(
               button2,
               "click",
               /*handlePass*/
-              ctx[67]
+              ctx[68]
             )
           ];
           mounted = true;
@@ -16359,7 +16368,7 @@
             button,
             "click",
             /*handleSubmitHasilPPM*/
-            ctx[62]
+            ctx[63]
           );
           mounted = true;
         }
@@ -16411,7 +16420,7 @@
             button,
             "click",
             /*handlePerbaikan*/
-            ctx[63]
+            ctx[64]
           );
           mounted = true;
         }
@@ -18967,7 +18976,7 @@
     function click_handler_6() {
       return (
         /*click_handler_6*/
-        ctx[127](
+        ctx[128](
           /*index*/
           ctx[160]
         )
@@ -19154,13 +19163,13 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[94]
+              ctx[95]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[95]
+              ctx[96]
             )
           ];
           mounted = true;
@@ -19416,7 +19425,7 @@
       ctx[23] && create_if_block8(ctx)
     );
     function modalerror0_show_binding(value) {
-      ctx[128](value);
+      ctx[129](value);
     }
     let modalerror0_props = {
       $$slots: { default: [create_default_slot_62] },
@@ -19432,7 +19441,7 @@
     modalerror0 = new Modalerror_default({ props: modalerror0_props });
     binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
     function modalerror1_show_binding(value) {
-      ctx[129](value);
+      ctx[130](value);
     }
     let modalerror1_props = {
       $$slots: { default: [create_default_slot_52] },
@@ -19448,7 +19457,7 @@
     modalerror1 = new Modalerror_default({ props: modalerror1_props });
     binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
     function modalerror2_show_binding(value) {
-      ctx[130](value);
+      ctx[131](value);
     }
     let modalerror2_props = {
       $$slots: { default: [create_default_slot_42] },
@@ -19464,7 +19473,7 @@
     modalerror2 = new Modalerror_default({ props: modalerror2_props });
     binding_callbacks.push(() => bind(modalerror2, "show", modalerror2_show_binding));
     function modalerror3_show_binding(value) {
-      ctx[131](value);
+      ctx[132](value);
     }
     let modalerror3_props = {
       $$slots: { default: [create_default_slot_32] },
@@ -19480,7 +19489,7 @@
     modalerror3 = new Modalerror_default({ props: modalerror3_props });
     binding_callbacks.push(() => bind(modalerror3, "show", modalerror3_show_binding));
     function modalerror4_show_binding(value) {
-      ctx[132](value);
+      ctx[133](value);
     }
     let modalerror4_props = {
       $$slots: { default: [create_default_slot_23] },
@@ -19496,7 +19505,7 @@
     modalerror4 = new Modalerror_default({ props: modalerror4_props });
     binding_callbacks.push(() => bind(modalerror4, "show", modalerror4_show_binding));
     function modalerror5_show_binding(value) {
-      ctx[133](value);
+      ctx[134](value);
     }
     let modalerror5_props = {
       $$slots: { default: [create_default_slot_110] },
@@ -19512,7 +19521,7 @@
     modalerror5 = new Modalerror_default({ props: modalerror5_props });
     binding_callbacks.push(() => bind(modalerror5, "show", modalerror5_show_binding));
     function modalchecked_show_binding(value) {
-      ctx[134](value);
+      ctx[135](value);
     }
     let modalchecked_props = {
       $$slots: { default: [create_default_slot4] },
@@ -19792,8 +19801,8 @@
     component_subscribe($$self, penilaianFile, ($$value) => $$invalidate(53, $penilaianFile = $$value));
     component_subscribe($$self, rabFile, ($$value) => $$invalidate(54, $rabFile = $$value));
     component_subscribe($$self, ppmFile, ($$value) => $$invalidate(55, $ppmFile = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(146, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(147, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(147, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(148, $route = $$value));
     let { params } = $$props;
     const id = params["1"];
     const skemaInternal = [
@@ -21224,7 +21233,7 @@
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(96, params = $$props2.params);
+        $$invalidate(97, params = $$props2.params);
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty[0] & /*kdeptSelected, klppmSelected, reviewerSelected, kpkSelected*/
@@ -21292,6 +21301,7 @@
       $ppmFile,
       skemaInternal,
       skemaEksternal,
+      skemaMandiri,
       items,
       handleSubmitStatusPendanaan,
       handleSubmitEvaluator,
@@ -21374,7 +21384,7 @@
   var Detailppm = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance19, create_fragment24, safe_not_equal, { params: 96 }, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance19, create_fragment24, safe_not_equal, { params: 97 }, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var detailppm_default = Detailppm;
@@ -40588,6 +40598,24 @@
     let tbody;
     let t24;
     let t25;
+    let show_if = (
+      /*skemaInternal*/
+      ctx[31].includes(
+        /*jenisSkema*/
+        ctx[16]
+      ) && /*status*/
+      ctx[23] >= 10 || /*skemaEksternal*/
+      ctx[32].includes(
+        /*jenisSkema*/
+        ctx[16]
+      ) && /*status*/
+      ctx[23] >= 8 || /*skemaMandiri*/
+      ctx[33].includes(
+        /*jenisSkema*/
+        ctx[16]
+      ) && /*status*/
+      ctx[23] >= 8
+    );
     let t26;
     let t27;
     let t28;
@@ -40742,41 +40770,27 @@
     );
     let if_block3 = (
       /*role*/
-      ctx[33] !== "K.Departemen" && /*role*/
-      ctx[33] !== "reviewer" && create_if_block_344(ctx)
+      ctx[34] !== "K.Departemen" && /*role*/
+      ctx[34] !== "reviewer" && create_if_block_344(ctx)
     );
-    let if_block4 = (
-      /*jenisSkema*/
-      ((ctx[16] === "Riset Eksternal" || /*jenisSkema*/
-      ctx[16] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-      ctx[23] >= 8 || /*jenisSkema*/
-      (ctx[16] === "Riset Mandiri" || /*jenisSkema*/
-      ctx[16] === "Pengabdian Masyarakat Mandiri") && /*status*/
-      ctx[23] >= 8 || /*jenisSkema*/
-      (ctx[16] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[16] === "Riset Terapan" || /*jenisSkema*/
-      ctx[16] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[16] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[16] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-      ctx[23] >= 10) && create_if_block_225(ctx)
-    );
+    let if_block4 = show_if && create_if_block_225(ctx);
     let if_block5 = (
       /*role*/
-      ctx[33] === "K.Departemen" && create_if_block_204(ctx)
+      ctx[34] === "K.Departemen" && create_if_block_204(ctx)
     );
     let if_block6 = (
       /*role*/
-      ctx[33] === "reviewer" && create_if_block_184(ctx)
+      ctx[34] === "reviewer" && create_if_block_184(ctx)
     );
     let if_block7 = (
       /*role*/
-      (ctx[33] === "K.PusatKajian" || /*role*/
-      ctx[33] === "K.LPPM") && create_if_block_164(ctx)
+      (ctx[34] === "K.PusatKajian" || /*role*/
+      ctx[34] === "K.LPPM") && create_if_block_164(ctx)
     );
     let if_block8 = (
       /*role*/
-      (ctx[33] === "K.PusatKajian" || /*role*/
-      ctx[33] === "K.LPPM") && create_if_block_144(ctx)
+      (ctx[34] === "K.PusatKajian" || /*role*/
+      ctx[34] === "K.LPPM") && create_if_block_144(ctx)
     );
     return {
       c() {
@@ -40958,7 +40972,7 @@
             button,
             "click",
             /*handleDownloadPpm*/
-            ctx[39]
+            ctx[40]
           );
           mounted = true;
         }
@@ -41098,25 +41112,29 @@
         }
         if (
           /*role*/
-          ctx2[33] !== "K.Departemen" && /*role*/
-          ctx2[33] !== "reviewer"
+          ctx2[34] !== "K.Departemen" && /*role*/
+          ctx2[34] !== "reviewer"
         )
           if_block3.p(ctx2, dirty);
-        if (
-          /*jenisSkema*/
-          (ctx2[16] === "Riset Eksternal" || /*jenisSkema*/
-          ctx2[16] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-          ctx2[23] >= 8 || /*jenisSkema*/
-          (ctx2[16] === "Riset Mandiri" || /*jenisSkema*/
-          ctx2[16] === "Pengabdian Masyarakat Mandiri") && /*status*/
-          ctx2[23] >= 8 || /*jenisSkema*/
-          (ctx2[16] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[16] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[16] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[16] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[16] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-          ctx2[23] >= 10
-        ) {
+        if (dirty[0] & /*jenisSkema, status*/
+        8454144)
+          show_if = /*skemaInternal*/
+          ctx2[31].includes(
+            /*jenisSkema*/
+            ctx2[16]
+          ) && /*status*/
+          ctx2[23] >= 10 || /*skemaEksternal*/
+          ctx2[32].includes(
+            /*jenisSkema*/
+            ctx2[16]
+          ) && /*status*/
+          ctx2[23] >= 8 || /*skemaMandiri*/
+          ctx2[33].includes(
+            /*jenisSkema*/
+            ctx2[16]
+          ) && /*status*/
+          ctx2[23] >= 8;
+        if (show_if) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
           } else {
@@ -41130,24 +41148,24 @@
         }
         if (
           /*role*/
-          ctx2[33] === "K.Departemen"
+          ctx2[34] === "K.Departemen"
         )
           if_block5.p(ctx2, dirty);
         if (
           /*role*/
-          ctx2[33] === "reviewer"
+          ctx2[34] === "reviewer"
         )
           if_block6.p(ctx2, dirty);
         if (
           /*role*/
-          ctx2[33] === "K.PusatKajian" || /*role*/
-          ctx2[33] === "K.LPPM"
+          ctx2[34] === "K.PusatKajian" || /*role*/
+          ctx2[34] === "K.LPPM"
         )
           if_block7.p(ctx2, dirty);
         if (
           /*role*/
-          ctx2[33] === "K.PusatKajian" || /*role*/
-          ctx2[33] === "K.LPPM"
+          ctx2[34] === "K.PusatKajian" || /*role*/
+          ctx2[34] === "K.LPPM"
         )
           if_block8.p(ctx2, dirty);
       },
@@ -41266,7 +41284,7 @@
             button,
             "click",
             /*handleDownloadRab*/
-            ctx[38]
+            ctx[39]
           );
           mounted = true;
         }
@@ -41314,7 +41332,7 @@
             button,
             "click",
             /*handleDownloadPenilaian*/
-            ctx[40]
+            ctx[41]
           );
           mounted = true;
         }
@@ -41441,7 +41459,7 @@
             input0,
             "change",
             /*filePenilaianChange*/
-            ctx[49]
+            ctx[50]
           );
           mounted = true;
         }
@@ -41694,7 +41712,7 @@
     let t1;
     let show_if = (
       /*cttnRevisiProposalisRequired*/
-      ctx[53]()
+      ctx[54]()
     );
     let t2;
     let hr;
@@ -41827,7 +41845,7 @@
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[55]
+            ctx[56]
           );
           mounted = true;
         }
@@ -42160,13 +42178,13 @@
               span0,
               "click",
               /*click_handler_3*/
-              ctx[59]
+              ctx[60]
             ),
             listen(
               span1,
               "click",
               /*click_handler_5*/
-              ctx[63]
+              ctx[64]
             )
           ];
           mounted = true;
@@ -42328,7 +42346,7 @@
             span,
             "click",
             /*click_handler_1*/
-            ctx[57]
+            ctx[58]
           );
           mounted = true;
         }
@@ -42410,7 +42428,7 @@
             span,
             "click",
             /*click_handler*/
-            ctx[56]
+            ctx[57]
           );
           mounted = true;
         }
@@ -42498,7 +42516,7 @@
             button,
             "click",
             /*handleDownloadSuratTugas*/
-            ctx[43]
+            ctx[44]
           );
           mounted = true;
         }
@@ -42611,19 +42629,19 @@
               button0,
               "click",
               /*handleDownloadSkPendanaan*/
-              ctx[41]
+              ctx[42]
             ),
             listen(
               button1,
               "click",
               /*handleDownloadSuratKontrak*/
-              ctx[42]
+              ctx[43]
             ),
             listen(
               button2,
               "click",
               /*handleDownloadSuratTugas*/
-              ctx[43]
+              ctx[44]
             )
           ];
           mounted = true;
@@ -42686,7 +42704,7 @@
             span,
             "click",
             /*click_handler_2*/
-            ctx[58]
+            ctx[59]
           );
           mounted = true;
         }
@@ -42926,13 +42944,13 @@
               button,
               "click",
               /*handleDownloadHasilPPM*/
-              ctx[45]
+              ctx[46]
             ),
             listen(
               textarea,
               "input",
               /*textarea_input_handler_1*/
-              ctx[60]
+              ctx[61]
             )
           ];
           mounted = true;
@@ -43206,7 +43224,7 @@
             span,
             "click",
             /*click_handler_4*/
-            ctx[61]
+            ctx[62]
           );
           mounted = true;
         }
@@ -43296,13 +43314,13 @@
               input,
               "change",
               /*input_change_handler*/
-              ctx[62]
+              ctx[63]
             ),
             listen(
               input,
               "change",
               /*checkboxPresentasiHasilPPM*/
-              ctx[46]
+              ctx[47]
             )
           ];
           mounted = true;
@@ -43377,7 +43395,7 @@
             button,
             "click",
             /*handleDownloadSkPPM*/
-            ctx[44]
+            ctx[45]
           );
           mounted = true;
         }
@@ -43468,7 +43486,7 @@
             button,
             "click",
             /*handlePass*/
-            ctx[36]
+            ctx[37]
           );
           mounted = true;
         }
@@ -43496,7 +43514,7 @@
   function create_if_block_184(ctx) {
     let show_if = (
       /*ShowReviewerButton*/
-      ctx[51]()
+      ctx[52]()
     );
     let if_block_anchor;
     let if_block = show_if && create_if_block_194(ctx);
@@ -43555,7 +43573,7 @@
             button,
             "click",
             /*handlePassReviewer*/
-            ctx[37]
+            ctx[38]
           );
           mounted = true;
         }
@@ -43583,7 +43601,7 @@
   function create_if_block_164(ctx) {
     let show_if = (
       /*ShowRPButton*/
-      ctx[50]()
+      ctx[51]()
     );
     let if_block_anchor;
     let if_block = show_if && create_if_block_174(ctx);
@@ -43661,13 +43679,13 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[34]
+              ctx[35]
             ),
             listen(
               button1,
               "click",
               /*handlePass*/
-              ctx[36]
+              ctx[37]
             )
           ];
           mounted = true;
@@ -43705,7 +43723,7 @@
   function create_if_block_144(ctx) {
     let show_if = (
       /*ShowRDPButton*/
-      ctx[52]()
+      ctx[53]()
     );
     let if_block_anchor;
     let if_block = show_if && create_if_block_154(ctx);
@@ -43801,19 +43819,19 @@
               button0,
               "click",
               /*handleRevisi*/
-              ctx[34]
+              ctx[35]
             ),
             listen(
               button1,
               "click",
               /*handleDitolak*/
-              ctx[35]
+              ctx[36]
             ),
             listen(
               button2,
               "click",
               /*handlePass*/
-              ctx[36]
+              ctx[37]
             )
           ];
           mounted = true;
@@ -46388,7 +46406,7 @@
     function click_handler_6() {
       return (
         /*click_handler_6*/
-        ctx[64](
+        ctx[65](
           /*index*/
           ctx[84]
         )
@@ -46575,13 +46593,13 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[47]
+              ctx[48]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[48]
+              ctx[49]
             )
           ];
           mounted = true;
@@ -46753,7 +46771,7 @@
       ctx[11] && create_if_block15(ctx)
     );
     function modalerror0_show_binding(value) {
-      ctx[65](value);
+      ctx[66](value);
     }
     let modalerror0_props = {
       $$slots: { default: [create_default_slot_213] },
@@ -46769,7 +46787,7 @@
     modalerror0 = new Modalerror_default({ props: modalerror0_props });
     binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
     function modalerror1_show_binding(value) {
-      ctx[66](value);
+      ctx[67](value);
     }
     let modalerror1_props = {
       $$slots: { default: [create_default_slot_114] },
@@ -46785,7 +46803,7 @@
     modalerror1 = new Modalerror_default({ props: modalerror1_props });
     binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
     function modalerror2_show_binding(value) {
-      ctx[67](value);
+      ctx[68](value);
     }
     let modalerror2_props = {
       $$slots: { default: [create_default_slot12] },
@@ -46934,8 +46952,8 @@
     let $apiURL;
     let $route;
     component_subscribe($$self, penilaianFile, ($$value) => $$invalidate(30, $penilaianFile = $$value));
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(74, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(75, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(75, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(76, $route = $$value));
     let { params } = $$props;
     const skemaInternal = [
       "Riset Kelompok Keahlian",
@@ -47485,7 +47503,7 @@
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(54, params = $$props2.params);
+        $$invalidate(55, params = $$props2.params);
     };
     return [
       showModalErrorPassReviewer,
@@ -47521,6 +47539,7 @@
       $penilaianFile,
       skemaInternal,
       skemaEksternal,
+      skemaMandiri,
       role,
       handleRevisi,
       handleDitolak,
@@ -47561,7 +47580,7 @@
   var Detailapproval = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance28, create_fragment35, safe_not_equal, { params: 54 }, null, [-1, -1, -1, -1]);
+      init(this, options, instance28, create_fragment35, safe_not_equal, { params: 55 }, null, [-1, -1, -1, -1]);
     }
   };
   var detailapproval_default = Detailapproval;
@@ -47689,17 +47708,35 @@
     let if_block0;
     let t0;
     let t1;
+    let show_if_2 = (
+      /*skemaInternal*/
+      ctx[38].includes(
+        /*jenisSkema*/
+        ctx[9]
+      ) && /*status*/
+      ctx[18] >= 10 || /*skemaEksternal*/
+      ctx[39].includes(
+        /*jenisSkema*/
+        ctx[9]
+      ) && /*status*/
+      ctx[18] >= 8 || /*skemaMandiri*/
+      ctx[40].includes(
+        /*jenisSkema*/
+        ctx[9]
+      ) && /*status*/
+      ctx[18] >= 8
+    );
     let t2;
     let div1;
     let t3;
     let show_if_1 = (
       /*hasilPPMisRequired*/
-      ctx[62]()
+      ctx[63]()
     );
     let t4;
     let show_if = (
       /*ShowButtonPerbaikan*/
-      ctx[61]()
+      ctx[62]()
     );
     let current;
     const if_block_creators = [create_if_block_319, create_else_block_72];
@@ -47714,21 +47751,7 @@
     if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
     let if_block1 = !/*view*/
     ctx[3] && create_if_block_295(ctx);
-    let if_block2 = (
-      /*jenisSkema*/
-      ((ctx[9] === "Riset Eksternal" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-      ctx[18] >= 8 || /*jenisSkema*/
-      (ctx[9] === "Riset Mandiri" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat Mandiri") && /*status*/
-      ctx[18] >= 8 || /*jenisSkema*/
-      (ctx[9] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-      ctx[9] === "Riset Terapan" || /*jenisSkema*/
-      ctx[9] === "Riset Kerjasama" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-      ctx[9] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-      ctx[18] >= 10) && create_if_block_175(ctx)
-    );
+    let if_block2 = show_if_2 && create_if_block_175(ctx);
     let if_block3 = (
       /*status*/
       ctx[18] === 0 && create_if_block_165(ctx)
@@ -47813,21 +47836,25 @@
           if_block1.d(1);
           if_block1 = null;
         }
-        if (
-          /*jenisSkema*/
-          (ctx2[9] === "Riset Eksternal" || /*jenisSkema*/
-          ctx2[9] === "Pengabdian Masyarakat Hibah Eksternal") && /*status*/
-          ctx2[18] >= 8 || /*jenisSkema*/
-          (ctx2[9] === "Riset Mandiri" || /*jenisSkema*/
-          ctx2[9] === "Pengabdian Masyarakat Mandiri") && /*status*/
-          ctx2[18] >= 8 || /*jenisSkema*/
-          (ctx2[9] === "Riset Kelompok Keahlian" || /*jenisSkema*/
-          ctx2[9] === "Riset Terapan" || /*jenisSkema*/
-          ctx2[9] === "Riset Kerjasama" || /*jenisSkema*/
-          ctx2[9] === "Pengabdian Masyarakat Desa Binaan" || /*jenisSkema*/
-          ctx2[9] === "Pengabdian Masyarakat UMKM Binaan") && /*status*/
-          ctx2[18] >= 10
-        ) {
+        if (dirty[0] & /*jenisSkema, status*/
+        262656)
+          show_if_2 = /*skemaInternal*/
+          ctx2[38].includes(
+            /*jenisSkema*/
+            ctx2[9]
+          ) && /*status*/
+          ctx2[18] >= 10 || /*skemaEksternal*/
+          ctx2[39].includes(
+            /*jenisSkema*/
+            ctx2[9]
+          ) && /*status*/
+          ctx2[18] >= 8 || /*skemaMandiri*/
+          ctx2[40].includes(
+            /*jenisSkema*/
+            ctx2[9]
+          ) && /*status*/
+          ctx2[18] >= 8;
+        if (show_if_2) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[0] & /*jenisSkema, status*/
@@ -48200,7 +48227,7 @@
             button,
             "click",
             /*handleDownloadPpm*/
-            ctx[46]
+            ctx[47]
           );
           mounted = true;
         }
@@ -48886,7 +48913,7 @@
             button,
             "click",
             /*handleDownloadRab*/
-            ctx[45]
+            ctx[46]
           );
           mounted = true;
         }
@@ -49077,7 +49104,7 @@
             input,
             "input",
             /*input_input_handler*/
-            ctx[64]
+            ctx[65]
           );
           mounted = true;
         }
@@ -49186,7 +49213,7 @@
             textarea,
             "input",
             /*textarea_input_handler*/
-            ctx[65]
+            ctx[66]
           );
           mounted = true;
         }
@@ -49353,7 +49380,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler*/
-            ctx[66].call(select)
+            ctx[67].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -49378,7 +49405,7 @@
             select,
             "change",
             /*select_change_handler*/
-            ctx[66]
+            ctx[67]
           );
           mounted = true;
         }
@@ -49494,7 +49521,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_1*/
-            ctx[67].call(select)
+            ctx[68].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -49519,7 +49546,7 @@
             select,
             "change",
             /*select_change_handler_1*/
-            ctx[67]
+            ctx[68]
           );
           mounted = true;
         }
@@ -49723,7 +49750,7 @@
         )
           add_render_callback(() => (
             /*select_change_handler_2*/
-            ctx[68].call(select)
+            ctx[69].call(select)
           ));
         attr(div, "class", "select is-fullwidth");
       },
@@ -49747,7 +49774,7 @@
             select,
             "change",
             /*select_change_handler_2*/
-            ctx[68]
+            ctx[69]
           );
           mounted = true;
         }
@@ -49866,7 +49893,7 @@
             input,
             "input",
             /*input_input_handler_1*/
-            ctx[69]
+            ctx[70]
           );
           mounted = true;
         }
@@ -49977,7 +50004,7 @@
             input,
             "input",
             /*input_input_handler_2*/
-            ctx[70]
+            ctx[71]
           );
           mounted = true;
         }
@@ -50087,7 +50114,7 @@
             input,
             "input",
             /*input_input_handler_3*/
-            ctx[71]
+            ctx[72]
           );
           mounted = true;
         }
@@ -50196,7 +50223,7 @@
             input,
             "input",
             /*input_input_handler_4*/
-            ctx[72]
+            ctx[73]
           );
           mounted = true;
         }
@@ -50307,13 +50334,13 @@
               input,
               "input",
               /*input_input_handler_5*/
-              ctx[73]
+              ctx[74]
             ),
             listen(
               input,
               "keyup",
               /*keyup_handler*/
-              ctx[74]
+              ctx[75]
             )
           ];
           mounted = true;
@@ -50477,13 +50504,13 @@
               input0,
               "change",
               /*filePpmChange*/
-              ctx[40]
+              ctx[41]
             ),
             listen(
               button,
               "click",
               /*toggleEditModeProposal*/
-              ctx[43]
+              ctx[44]
             )
           ];
           mounted = true;
@@ -50580,13 +50607,13 @@
               button0,
               "click",
               /*handleDownloadPpm*/
-              ctx[46]
+              ctx[47]
             ),
             listen(
               button1,
               "click",
               /*toggleEditModeProposal*/
-              ctx[43]
+              ctx[44]
             )
           ];
           mounted = true;
@@ -50921,13 +50948,13 @@
               input0,
               "change",
               /*fileRabChange*/
-              ctx[41]
+              ctx[42]
             ),
             listen(
               button,
               "click",
               /*toggleEditModeRAB*/
-              ctx[44]
+              ctx[45]
             )
           ];
           mounted = true;
@@ -51024,13 +51051,13 @@
               button0,
               "click",
               /*handleDownloadRab*/
-              ctx[45]
+              ctx[46]
             ),
             listen(
               button1,
               "click",
               /*toggleEditModeRAB*/
-              ctx[44]
+              ctx[45]
             )
           ];
           mounted = true;
@@ -51240,7 +51267,7 @@
     let if_block_anchor;
     let current;
     function select_result_binding(value) {
-      ctx[75](value);
+      ctx[76](value);
     }
     let select_props = { start: "2", items: (
       /*items*/
@@ -51359,7 +51386,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*anggotaTim*/
         32768 | dirty[1] & /*deleteMember*/
-        4194304) {
+        8388608) {
           each_value_12 = ensure_array_like(
             /*anggotaTim*/
             ctx2[15]
@@ -51436,7 +51463,7 @@
             button,
             "click",
             /*deleteMember*/
-            ctx[53]
+            ctx[54]
           );
           mounted = true;
         }
@@ -51887,13 +51914,13 @@
               span0,
               "click",
               /*click_handler_3*/
-              ctx[80]
+              ctx[81]
             ),
             listen(
               span1,
               "click",
               /*click_handler_5*/
-              ctx[83]
+              ctx[84]
             )
           ];
           mounted = true;
@@ -52073,7 +52100,7 @@
             span,
             "click",
             /*click_handler_1*/
-            ctx[78]
+            ctx[79]
           );
           mounted = true;
         }
@@ -52155,7 +52182,7 @@
             span,
             "click",
             /*click_handler*/
-            ctx[76]
+            ctx[77]
           );
           mounted = true;
         }
@@ -52243,7 +52270,7 @@
             button,
             "click",
             /*handleDownloadSuratTugas*/
-            ctx[58]
+            ctx[59]
           );
           mounted = true;
         }
@@ -52381,31 +52408,31 @@
               button0,
               "click",
               /*handleDownloadSkPendanaan*/
-              ctx[56]
+              ctx[57]
             ),
             listen(
               button1,
               "click",
               /*handleDownloadSuratKontrak*/
-              ctx[57]
+              ctx[58]
             ),
             listen(
               input,
               "change",
               /*input_change_handler*/
-              ctx[77]
+              ctx[78]
             ),
             listen(
               input,
               "change",
               /*checkboxSuratKontrak*/
-              ctx[54]
+              ctx[55]
             ),
             listen(
               button2,
               "click",
               /*handleDownloadSuratTugas*/
-              ctx[58]
+              ctx[59]
             )
           ];
           mounted = true;
@@ -52474,7 +52501,7 @@
             span,
             "click",
             /*click_handler_2*/
-            ctx[79]
+            ctx[80]
           );
           mounted = true;
         }
@@ -52749,13 +52776,13 @@
               input0,
               "change",
               /*fileHasilPPMChange*/
-              ctx[42]
+              ctx[43]
             ),
             listen(
               button,
               "click",
               /*handleDownloadHasilPPM*/
-              ctx[60]
+              ctx[61]
             )
           ];
           mounted = true;
@@ -53041,7 +53068,7 @@
             span,
             "click",
             /*click_handler_4*/
-            ctx[81]
+            ctx[82]
           );
           mounted = true;
         }
@@ -53131,13 +53158,13 @@
               input,
               "change",
               /*input_change_handler_1*/
-              ctx[82]
+              ctx[83]
             ),
             listen(
               input,
               "change",
               /*checkboxPresentasiHasilPPM*/
-              ctx[55]
+              ctx[56]
             )
           ];
           mounted = true;
@@ -53212,7 +53239,7 @@
             button,
             "click",
             /*handleDownloadSkPPM*/
-            ctx[59]
+            ctx[60]
           );
           mounted = true;
         }
@@ -53275,13 +53302,13 @@
               button0,
               "click",
               /*simpanProposal*/
-              ctx[49]
+              ctx[50]
             ),
             listen(
               button1,
               "click",
               /*submitProposal*/
-              ctx[48]
+              ctx[49]
             )
           ];
           mounted = true;
@@ -53345,7 +53372,7 @@
             button,
             "click",
             /*handleSubmitHasilPPM*/
-            ctx[50]
+            ctx[51]
           );
           mounted = true;
         }
@@ -53397,7 +53424,7 @@
             button,
             "click",
             /*handlePerbaikan*/
-            ctx[47]
+            ctx[48]
           );
           mounted = true;
         }
@@ -55953,7 +55980,7 @@
     function click_handler_6() {
       return (
         /*click_handler_6*/
-        ctx[84](
+        ctx[85](
           /*index*/
           ctx[102]
         )
@@ -56140,13 +56167,13 @@
               li0,
               "click",
               /*clicktab1*/
-              ctx[51]
+              ctx[52]
             ),
             listen(
               li1,
               "click",
               /*clicktab2*/
-              ctx[52]
+              ctx[53]
             )
           ];
           mounted = true;
@@ -56319,7 +56346,7 @@
       ctx[1].length > 0 && create_if_block16(ctx)
     );
     function modalerror0_show_binding(value) {
-      ctx[85](value);
+      ctx[86](value);
     }
     let modalerror0_props = {
       $$slots: { default: [create_default_slot_214] },
@@ -56335,7 +56362,7 @@
     modalerror0 = new Modalerror_default({ props: modalerror0_props });
     binding_callbacks.push(() => bind(modalerror0, "show", modalerror0_show_binding));
     function modalerror1_show_binding(value) {
-      ctx[86](value);
+      ctx[87](value);
     }
     let modalerror1_props = {
       $$slots: { default: [create_default_slot_116] },
@@ -56351,7 +56378,7 @@
     modalerror1 = new Modalerror_default({ props: modalerror1_props });
     binding_callbacks.push(() => bind(modalerror1, "show", modalerror1_show_binding));
     function modalerror2_show_binding(value) {
-      ctx[87](value);
+      ctx[88](value);
     }
     let modalerror2_props = {
       $$slots: { default: [create_default_slot13] },
@@ -56534,8 +56561,8 @@
     let $rabFile;
     let $ppmFile;
     let $hasilPPMFile;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(92, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(93, $route = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(93, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(94, $route = $$value));
     component_subscribe($$self, rabFile, ($$value) => $$invalidate(35, $rabFile = $$value));
     component_subscribe($$self, ppmFile, ($$value) => $$invalidate(36, $ppmFile = $$value));
     component_subscribe($$self, hasilPPMFile, ($$value) => $$invalidate(37, $hasilPPMFile = $$value));
@@ -57565,7 +57592,7 @@
     }
     $$self.$$set = ($$props2) => {
       if ("params" in $$props2)
-        $$invalidate(63, params = $$props2.params);
+        $$invalidate(64, params = $$props2.params);
     };
     return [
       biodataAnggota,
@@ -57608,6 +57635,7 @@
       $hasilPPMFile,
       skemaInternal,
       skemaEksternal,
+      skemaMandiri,
       filePpmChange,
       fileRabChange,
       fileHasilPPMChange,
@@ -57661,7 +57689,7 @@
   var Detailppm2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance29, create_fragment36, safe_not_equal, { params: 63 }, null, [-1, -1, -1, -1, -1]);
+      init(this, options, instance29, create_fragment36, safe_not_equal, { params: 64 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var detailppm_default2 = Detailppm2;
