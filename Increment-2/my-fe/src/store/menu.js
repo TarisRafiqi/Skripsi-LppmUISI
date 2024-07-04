@@ -1,4 +1,4 @@
-import { dashboardFill, profile, article } from "../store/icons";
+import { dashboardFill, profile, article, addProposal } from "../store/icons";
 
 const admin = [
    {
@@ -33,6 +33,11 @@ const dosen = [
       title: "PPM Management",
       href: "/dosen/ppmmanagement",
       icon: article,
+   },
+   {
+      title: "Pendaftaran Proposal",
+      href: "/dosen/pendaftaran",
+      icon: addProposal,
    },
 ];
 export default {

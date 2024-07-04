@@ -40,7 +40,7 @@
 
    {#if role === "admin"}
       <br />
-      <p class="menu-label">Website Settings</p>
+      <p class="menu-label">Content Management</p>
       <ul class="menu-list">
          <li title="Pengumuman">
             <a href="/admin/pengumuman"

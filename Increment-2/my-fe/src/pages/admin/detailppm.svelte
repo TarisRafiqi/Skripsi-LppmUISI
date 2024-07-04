@@ -2661,7 +2661,8 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     File SK Pendanaan / Surat Kontrak PPM / Surat Tugas
+                     <!-- File SK Pendanaan / Surat Kontrak PPM / Surat Tugas -->
+                     Dokumen Pendukung
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
@@ -2868,7 +2869,7 @@
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     File Surat Tugas
+                     Dokumen Pendukung
                      <span
                         class="toggle-button"
                         on:click={() => (skpVisible = !skpVisible)}
