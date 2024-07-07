@@ -106,6 +106,7 @@
             biayaPenelitian = data.biaya_penelitian;
             anggotaTim = data.anggota_tim;
             biodataAnggota = data.biodata_anggota;
+            // console.log(biodataAnggota);
             judul = data.judul;
             abstrak = data.abstrak;
             status = data.status;
@@ -113,8 +114,8 @@
             klppmSelected = data.uid_klppm;
             kpkSelected = data.uid_kpk;
             reviewerSelected = data.uid_reviewer;
-            randomRabFileName = data.random_rab_file_name;
-            randomPpmFileName = data.random_ppm_file_name;
+            rabFileName = data.rab_file_name;
+            ppmFileName = data.ppm_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
 
@@ -560,13 +561,10 @@
    async function handleDownloadRab(e) {
       let filename = "RAB_" + judul + ".xlsx";
       try {
-         const response = await fetch(
-            $apiURL + `/uploadRab/${randomRabFileName}`,
-            {
-               method: "GET",
-               headers: headers,
-            }
-         );
+         const response = await fetch($apiURL + `/uploadRab/${rabFileName}`, {
+            method: "GET",
+            headers: headers,
+         });
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
@@ -585,22 +583,21 @@
    async function handleDownloadPpm(e) {
       let filename = "Proposal_" + judul + ".pdf";
       try {
-         const response = await fetch(
-            $apiURL + `/uploadPpm/${randomPpmFileName}`,
-            {
-               method: "GET",
-               headers: headers,
-            }
-         );
+         const response = await fetch($apiURL + `/uploadPpm/${ppmFileName}`, {
+            method: "GET",
+            headers: headers,
+         });
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -637,8 +634,8 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         rabFileName,
+         ppmFileName,
       };
 
       if (editModeProposal) {
@@ -681,7 +678,7 @@
                      type: filePpm.type,
                      data: base64Data,
                   },
-                  randomPpmFileName,
+                  ppmFileName,
                };
 
                try {
@@ -725,7 +722,7 @@
                      type: fileRab.type,
                      data: base64Data,
                   },
-                  randomRabFileName,
+                  rabFileName,
                };
 
                try {
@@ -840,8 +837,10 @@
    }
 
    async function submitProposal() {
+      await getBiodataAnggota();
       error = {};
       isLoading = true;
+
       const readerPpm = new FileReader();
       const readerRab = new FileReader();
 
@@ -855,6 +854,7 @@
          tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
+         newBiodataAnggota,
          id,
          judul,
          abstrak,
@@ -863,13 +863,21 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         rabFileName,
+         ppmFileName,
       };
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["catatanRevisiProposal"].includes(key) && !value) ||
+            (![
+               "catatanRevisiProposal",
+               "status",
+               "kdeptSelected",
+               "klppmSelected",
+               "kpkSelected",
+               "reviewerSelected",
+            ].includes(key) &&
+               !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -891,7 +899,7 @@
                   type: filePpm.type,
                   data: base64Data,
                },
-               randomPpmFileName,
+               ppmFileName,
             };
 
             try {
@@ -924,7 +932,7 @@
                   type: fileRab.type,
                   data: base64Data,
                },
-               randomRabFileName,
+               rabFileName,
             };
 
             try {
@@ -974,8 +982,10 @@
    }
 
    async function simpanProposal() {
+      await getBiodataAnggota();
       error = {};
       isLoading = true;
+
       const readerPpm = new FileReader();
       const readerRab = new FileReader();
 
@@ -989,6 +999,7 @@
          tanggalSelesai,
          biayaPenelitian,
          anggotaTim,
+         newBiodataAnggota,
          id,
          judul,
          abstrak,
@@ -997,13 +1008,21 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         rabFileName,
+         ppmFileName,
       };
 
       for (const [key, value] of Object.entries(payload)) {
          if (
-            (!["catatanRevisiProposal", "status"].includes(key) && !value) ||
+            (![
+               "catatanRevisiProposal",
+               "status",
+               "kdeptSelected",
+               "klppmSelected",
+               "kpkSelected",
+               "reviewerSelected",
+            ].includes(key) &&
+               !value) ||
             (key === "anggotaTim" && Array.isArray(value) && value.length <= 1)
          ) {
             error[key] = `This field is required`;
@@ -1025,7 +1044,7 @@
                   type: filePpm.type,
                   data: base64Data,
                },
-               randomPpmFileName,
+               ppmFileName,
             };
 
             try {
@@ -1059,7 +1078,7 @@
                   type: fileRab.type,
                   data: base64Data,
                },
-               randomRabFileName,
+               rabFileName,
             };
 
             try {

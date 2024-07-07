@@ -59,16 +59,16 @@
       location.href = "/dosen/detailppm/" + propId;
    }
 
-   function HandleAddProposal() {
-      if (
-         localStorage_namaLengkap === null ||
-         localStorage_namaLengkap === ""
-      ) {
-         showModalError = true;
-      } else {
-         location.href = "/dosen/pendaftaranproposal";
-      }
-   }
+   // function HandleAddProposal() {
+   //    if (
+   //       localStorage_namaLengkap === null ||
+   //       localStorage_namaLengkap === ""
+   //    ) {
+   //       showModalError = true;
+   //    } else {
+   //       location.href = "/dosen/pendaftaranproposal";
+   //    }
+   // }
 
    function daysUntil(targetDate) {
       const today = new Date();
@@ -97,19 +97,6 @@
 
    <div class="columns">
       <div class="column is-narrow">
-         <button
-            class="button is-info is-fullwidth"
-            on:click={HandleAddProposal}
-         >
-            <span class="icon">
-               <Icon id="addProposal" src={addProposal} />
-            </span>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <span><a>Buat Proposal</a></span>
-         </button>
-      </div>
-
-      <div class="column is-narrow">
          <div class="field">
             <div class="select is-fullwidth">
                <select bind:value={filterJenisKegiatan}>
@@ -130,25 +117,30 @@
             <div class="select is-fullwidth">
                <select bind:value={filterJenisSkema}>
                   <option value="" selected disabled hidden>Jenis Skema</option>
-                  <option value="Riset Kelompok Keahlian"
-                     >Riset Kelompok Keahlian</option
-                  >
-                  <option value="Riset Terapan">Riset Terapan</option>
-                  <option value="Riset Kerjasama">Riset Kerjasama</option>
-                  <option value="Riset Eksternal">Riset Eksternal</option>
-                  <option value="Riset Mandiri">Riset Mandiri</option>
-                  <option value="Pengabdian Masyarakat Desa Binaan"
-                     >Pengabdian Masyarakat Desa Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat UMKM Binaan"
-                     >Pengabdian Masyarakat UMKM Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat Hibah Eksternal"
-                     >Pengabdian Masyarakat Hibah Eksternal</option
-                  >
-                  <option value="Pengabdian Masyarakat Mandiri"
-                     >Pengabdian Masyarakat Mandiri</option
-                  >
+                  <optgroup label="Penelitian">
+                     <option value="Riset Kelompok Keahlian"
+                        >Riset Kelompok Keahlian</option
+                     >
+                     <option value="Riset Terapan">Riset Terapan</option>
+                     <option value="Riset Kerjasama">Riset Kerjasama</option>
+                     <option value="Riset Eksternal">Riset Eksternal</option>
+                     <option value="Riset Mandiri">Riset Mandiri</option>
+                  </optgroup>
+
+                  <optgroup label="Pengabdian Masyarakat">
+                     <option value="Pengabdian Masyarakat Desa Binaan"
+                        >Pengabdian Masyarakat Desa Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat UMKM Binaan"
+                        >Pengabdian Masyarakat UMKM Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat Hibah Eksternal"
+                        >Pengabdian Masyarakat Hibah Eksternal</option
+                     >
+                     <option value="Pengabdian Masyarakat Mandiri"
+                        >Pengabdian Masyarakat Mandiri</option
+                     >
+                  </optgroup>
                </select>
             </div>
          </div>

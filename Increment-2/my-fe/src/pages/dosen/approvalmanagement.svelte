@@ -85,25 +85,31 @@
             <div class="select is-fullwidth">
                <select bind:value={filterJenisSkema}>
                   <option value="" selected disabled hidden>Jenis Skema</option>
-                  <option value="Riset Kelompok Keahlian"
-                     >Riset Kelompok Keahlian</option
-                  >
-                  <option value="Riset Terapan">Riset Terapan</option>
-                  <option value="Riset Kerjasama">Riset Kerjasama</option>
-                  <option value="Riset Eksternal">Riset Eksternal</option>
-                  <option value="Riset Mandiri">Riset Mandiri</option>
-                  <option value="Pengabdian Masyarakat Desa Binaan"
-                     >Pengabdian Masyarakat Desa Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat UMKM Binaan"
-                     >Pengabdian Masyarakat UMKM Binaan</option
-                  >
-                  <option value="Pengabdian Masyarakat Hibah Eksternal"
-                     >Pengabdian Masyarakat Hibah Eksternal</option
-                  >
-                  <option value="Pengabdian Masyarakat Mandiri"
-                     >Pengabdian Masyarakat Mandiri</option
-                  >
+
+                  <optgroup label="Penelitian">
+                     <option value="Riset Kelompok Keahlian"
+                        >Riset Kelompok Keahlian</option
+                     >
+                     <option value="Riset Terapan">Riset Terapan</option>
+                     <option value="Riset Kerjasama">Riset Kerjasama</option>
+                     <option value="Riset Eksternal">Riset Eksternal</option>
+                     <option value="Riset Mandiri">Riset Mandiri</option>
+                  </optgroup>
+
+                  <optgroup label="Pengabdian Masyarakat">
+                     <option value="Pengabdian Masyarakat Desa Binaan"
+                        >Pengabdian Masyarakat Desa Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat UMKM Binaan"
+                        >Pengabdian Masyarakat UMKM Binaan</option
+                     >
+                     <option value="Pengabdian Masyarakat Hibah Eksternal"
+                        >Pengabdian Masyarakat Hibah Eksternal</option
+                     >
+                     <option value="Pengabdian Masyarakat Mandiri"
+                        >Pengabdian Masyarakat Mandiri</option
+                     >
+                  </optgroup>
                </select>
             </div>
          </div>

@@ -99,9 +99,9 @@
             judul = data.judul;
             abstrak = data.abstrak;
             status = data.status;
-            randomRabFileName = data.random_rab_file_name;
-            randomPpmFileName = data.random_ppm_file_name;
-            randomPenilaianFileNamedb = data.random_penilaian_file_name;
+            randomRabFileName = data.rab_file_name;
+            randomPpmFileName = data.ppm_file_name;
+            randomPenilaianFileNamedb = data.penilaian_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
 

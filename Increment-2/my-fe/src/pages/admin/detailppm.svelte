@@ -231,9 +231,9 @@
             klppmSelected = data.uid_klppm;
             kpkSelected = data.uid_kpk;
             reviewerSelected = data.uid_reviewer;
-            randomRabFileName = data.random_rab_file_name;
-            randomPpmFileName = data.random_ppm_file_name;
-            randomPenilaianFileNamedb = data.random_penilaian_file_name;
+            randomRabFileName = data.rab_file_name;
+            randomPpmFileName = data.ppm_file_name;
+            randomPenilaianFileNamedb = data.penilaian_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
 
@@ -1034,6 +1034,7 @@
                resolve("No fileProposal selected");
                return;
             }
+
             readerPpm.onloadend = async () => {
                const base64Data = readerPpm.result.split(",")[1];
                const payloadPpmFile = {

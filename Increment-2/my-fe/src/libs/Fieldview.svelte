@@ -20,7 +20,7 @@
                {#if content}
                   {content}
                {:else}
-                  <p class="subtitle is-6">...</p>
+                  ...
                {/if}
             {:else if type === "list"}
                {#if content && content.length > 0}
@@ -30,13 +30,13 @@
                      {/each}
                   </ul>
                {:else}
-                  <p class="subtitle is-6">...</p>
+                  ...
                {/if}
             {:else if type === "status"}
                {#if content}
                   <Status code={content} jenisSkema={skema} />
                {:else}
-                  <p class="subtitle is-6">...</p>
+                  ...
                {/if}
             {/if}
          </p>
