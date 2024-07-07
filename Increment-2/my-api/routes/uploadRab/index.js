@@ -6,19 +6,19 @@ const path = require("path");
 module.exports = async function (fastify, opts) {
    // Download File
    fastify.get(
-      "/:randomRabFileName",
+      "/:rabFileName",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
          // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-         const randomRabFileName = request.params.randomRabFileName;
+         const rabFileName = request.params.rabFileName;
 
          const filepath = path.join(
             __dirname,
             "../../file_rab",
-            randomRabFileName + ".xlsx"
+            rabFileName + ".xlsx"
          );
 
          try {
@@ -41,8 +41,8 @@ module.exports = async function (fastify, opts) {
          // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
          const fileData = request.body.fileRab;
-         const randomRabFileName = request.body.randomRabFileName;
-         const filepath = "./file_rab/" + randomRabFileName + ".xlsx";
+         const rabFileName = request.body.rabFileName;
+         const filepath = "./file_rab/" + rabFileName + ".xlsx";
 
          try {
             const buffer = Buffer.from(fileData.data, "base64");

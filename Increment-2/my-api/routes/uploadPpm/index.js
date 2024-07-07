@@ -6,19 +6,19 @@ const path = require("path");
 module.exports = async function (fastify, opts) {
    // Download File
    fastify.get(
-      "/:randomPpmFileName",
+      "/:ppmFileName",
       {
          onRequest: [fastify.authenticate],
       },
       async function (request, reply) {
          // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
-         const randomPpmFileName = request.params.randomPpmFileName;
+         const ppmFileName = request.params.ppmFileName;
 
          const filepath = path.join(
             __dirname,
             "../../file_ppm",
-            randomPpmFileName + ".pdf"
+            ppmFileName + ".pdf"
          );
 
          try {
@@ -41,8 +41,8 @@ module.exports = async function (fastify, opts) {
          // const token = request.headers.authorization;
          // const decodedToken = fastify.jwt.decode(token);
          const fileData = request.body.filePpm;
-         const randomPpmFileName = request.body.randomPpmFileName;
-         const filepath = "./file_ppm/" + randomPpmFileName + ".pdf";
+         const ppmFileName = request.body.ppmFileName;
+         const filepath = "./file_ppm/" + ppmFileName + ".pdf";
 
          try {
             const buffer = Buffer.from(fileData.data, "base64");
