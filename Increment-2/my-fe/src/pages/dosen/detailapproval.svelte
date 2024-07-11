@@ -1,6 +1,7 @@
 <script>
    import { route, apiURL, penilaianFile } from "../../store";
    import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
    import { downloadIcon } from "../../store/icons";
    import Article from "../../libs/Article.svelte";
@@ -27,6 +28,7 @@
 
    let showModalErrorPassReviewer = false;
    let showModalErrorRevisi = false;
+   let showModalChecked = false;
    let ModalFileNotFound = false;
    let isLoading = false;
    let skpVisible = false;
@@ -34,8 +36,10 @@
    let hasilPPMVisible = false;
    let presentasiVisible = false;
    let skPPMVisible = false;
+   let iPPVisible = false;
+   let CRPVisible = false;
 
-   let randomPenilaianFileName = "";
+   let randomPenilaianFileName;
    let biodataAnggota = [];
    let error = {};
    let filePenilaian;
@@ -70,52 +74,7 @@
 
    // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
    onMount(async () => {
-      // ================================================//
-      // Get detail proposal
-      // ================================================//
-      const response = await fetch($apiURL + "/ppm/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-      const result = await response.json();
-
-      if (response.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (response.ok) {
-            data = result;
-            ppmId = data.id;
-            jenisProposal = data.jenis_proposal;
-            jenisKegiatan = data.jenis_kegiatan;
-            jenisSkema = data.jenis_skema;
-            kelompokKeahlian = data.kelompok_keahlian;
-            topik = data.topik;
-            tanggalMulai = data.tanggal_mulai;
-            tanggalSelesai = data.tanggal_selesai;
-            biayaPenelitian = data.biaya_penelitian;
-            anggotaTim = data.anggota_tim;
-            biodataAnggota = data.biodata_anggota;
-            rab = data.rab;
-            judul = data.judul;
-            abstrak = data.abstrak;
-            status = data.status;
-            randomRabFileName = data.rab_file_name;
-            randomPpmFileName = data.ppm_file_name;
-            randomPenilaianFileNamedb = data.penilaian_file_name;
-            ttdSuratKontrak = data.ttd_surat_kontrak;
-            presentasiHasilPPM = data.presentasi_hasil_ppm;
-
-            fileSkPendanaanNameDB = data.file_sk_pendanaan;
-            fileSuratKontrakNameDB = data.file_surat_kontrak;
-            fileSuratTugasNameDB = data.file_surat_tugas;
-            fileSkPPMNameDB = data.file_sk_ppm;
-            fileHasilPPMNameDB = data.file_hasil_ppm;
-            statusPencairanDana =
-               data.status_pencairan_dana || "Menunggu pencairan dana";
-         } else {
-            console.log(response);
-         }
-      }
+      await getDetailPPM();
 
       // ========== Get Riwayat Catatan Revisi Proposal ========== //
       const responseRCR = await fetch(
@@ -161,20 +120,68 @@
          }
       }
 
-      //------------------------------------------------------------
-      // Generate Penilaian Random Character
-      //------------------------------------------------------------
+      // ========================== Generate Random Character ========================== //
+      let randomChar = "";
+      let resultGenerateRandomChar = "";
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultPenilaianChar = "";
 
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 10; i++) {
          const randomIndex = Math.floor(Math.random() * characters.length);
-         resultPenilaianChar += characters.charAt(randomIndex);
+         resultGenerateRandomChar += characters.charAt(randomIndex);
       }
 
-      randomPenilaianFileName = resultPenilaianChar;
+      randomChar = resultGenerateRandomChar;
+
+      randomPenilaianFileName = id + "_Penilaian Proposal PPM_" + randomChar;
    });
+
+   // ========== Get Detail Proposal PPM ========== //
+   async function getDetailPPM() {
+      const response = await fetch($apiURL + "/ppm/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            ppmId = data.id;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim = data.anggota_tim;
+            biodataAnggota = data.biodata_anggota;
+            rab = data.rab;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            status = data.status;
+            randomRabFileName = data.rab_file_name;
+            randomPpmFileName = data.ppm_file_name;
+            randomPenilaianFileNamedb = data.penilaian_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
+
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
+            statusPencairanDana =
+               data.status_pencairan_dana || "Menunggu pencairan dana";
+         } else {
+            console.log(response);
+         }
+      }
+   }
 
    async function handleRevisi() {
       error = {};
@@ -340,13 +347,13 @@
       isLoading = false;
    }
 
-   async function handlePassReviewer() {
+   async function handleSimpanPenilaian() {
       error = {};
       isLoading = true;
       const readerPenilaian = new FileReader();
 
       const payload = {
-         status: Number(data.status) + 2,
+         status: Number(data.status),
          randomPenilaianFileName,
          id,
       };
@@ -397,7 +404,6 @@
                } catch (error) {
                   console.error("Error uploading file:", error);
                   // Buat Handle Error
-                  // ...
                }
             };
             readerPenilaian.readAsDataURL(filePenilaian);
@@ -415,14 +421,16 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/dosen/approvalmanagement");
+               getDetailPPM();
+               showModalChecked = true;
+               // $route("/dosen/approvalmanagement");
             } else {
                console.log(response);
                // Buat Handle Error
-               // ...
             }
          }
       }
+
       isLoading = false;
    }
 
@@ -492,12 +500,14 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -706,7 +716,7 @@
    }
 
    function ShowRPButton() {
-      const StatusForInternal = [12];
+      const StatusForInternal = [10];
       const StatusForEksternal = [10];
       const StatusForMandiri = [10];
 
@@ -730,19 +740,8 @@
       }
    }
 
-   function ShowReviewerButton() {
-      const StatusReviewReviewer = [6];
-
-      if (
-         skemaInternal.includes(data.jenis_skema) &&
-         StatusReviewReviewer.includes(data.status)
-      ) {
-         return true;
-      }
-   }
-
    function ShowRDPButton() {
-      const ReviewKpkKlppmSkemaInternal = [8];
+      const ReviewKpkKlppmSkemaInternal = [6];
       const ReviewKpkKlppmSkemaEksternal = [6];
       const ReviewKpkKlppmSkemaMandiri = [6];
 
@@ -767,7 +766,7 @@
    }
 
    function cttnRevisiProposalisRequired() {
-      const RevisiSkemaInternal = [2, 8];
+      const RevisiSkemaInternal = [2, 6];
       const RevisiSkemaEksternal = [2, 6];
       const RevisiSkemaMandiri = [2, 6];
 
@@ -794,7 +793,7 @@
    }
 
    function cttnRevisiHasilPPMisRequired() {
-      const RevisiSkemaInternal = [12];
+      const RevisiSkemaInternal = [10];
       const RevisiSkemaEksternal = [10];
       const RevisiSkemaMandiri = [10];
 
@@ -922,40 +921,11 @@
                {/if}
             </div>
 
-            {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
+            <!-- {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
                <div class="field">
                   <p class="title is-6"><b>Penilaian Proposal</b></p>
                </div>
-               <span class="inputf__wrapper mb-1">
-                  <input
-                     id="filePenilaian"
-                     class="inputf custom-file-input"
-                     accept=".xlsx"
-                     type="file"
-                     on:change={filePenilaianChange}
-                  />
-                  <div class="file has-name is-success is-small">
-                     <label class="file-label" for="filePenilaian">
-                        <input class="file-input" type="file" name="resume" />
-                        <span class="file-cta">
-                           <span class="file-icon">
-                              <Icon id="download" src={downloadIcon} />
-                           </span>
-                           <span class="file-label"> Choose a file</span>
-                        </span>
-                        {#if $penilaianFile?.name}
-                           <span class="file-name"> {$penilaianFile.name}</span>
-                        {:else}
-                           <span class="file-name">No file chosen</span>
-                        {/if}
-                     </label>
-                  </div>
-                  {#if error.filePenilaian}
-                     <p class="error has-text-danger">
-                        {error.filePenilaian}
-                     </p>
-                  {/if}
-               </span>
+               
                <p class="help">File Type: xlsx</p>
             {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
                <div class="field">
@@ -968,7 +938,7 @@
                      >
                   </p>
                </div>
-            {/if}
+            {/if} -->
 
             <div class="field">
                <p class="title is-6"><b>Anggota Tim</b></p>
@@ -996,60 +966,216 @@
          </div>
 
          <!-- ========================================== -->
+         <!--           Input Penilaian Proposal         -->
+         <!-- ========================================== -->
+         {#if role === "reviewer"}
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Penilaian Proposal
+                  <span
+                     class="toggle-button"
+                     on:click={() => (iPPVisible = !iPPVisible)}
+                  >
+                     {iPPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if iPPVisible}
+                  <hr />
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Upload File</th
+                           >
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <td>Penilaian Proposal PPM</td>
+                        <td>
+                           <span class="inputf__wrapper mb-1">
+                              <input
+                                 id="filePenilaian"
+                                 class="inputf custom-file-input"
+                                 accept=".xlsx"
+                                 type="file"
+                                 on:change={filePenilaianChange}
+                              />
+                              <div class="file has-name is-small">
+                                 <label class="file-label" for="filePenilaian">
+                                    <input
+                                       class="file-input"
+                                       type="file"
+                                       name="resume"
+                                    />
+                                    <span class="file-cta">
+                                       <span class="file-icon">
+                                          <Icon
+                                             id="download"
+                                             src={downloadIcon}
+                                          />
+                                       </span>
+                                       <span class="file-label">
+                                          Choose a file</span
+                                       >
+                                    </span>
+                                    {#if $penilaianFile?.name}
+                                       <span class="file-name">
+                                          {$penilaianFile.name}</span
+                                       >
+                                    {:else}
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    {/if}
+                                 </label>
+                              </div>
+                           </span>
+                        </td>
+                        <td style="text-align: center"
+                           ><button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadPenilaian}
+                              >Download
+                           </button></td
+                        >
+                     </tbody>
+                  </table>
+
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           on:click={handleSimpanPenilaian}
+                           class:is-loading={isLoading}>Simpan Penilaian</button
+                        >
+                     </p>
+                  </div>
+               {/if}
+            </div>
+         {:else if role !== "K.Departemen"}
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Penilaian Proposal
+                  <span
+                     class="toggle-button"
+                     on:click={() => (iPPVisible = !iPPVisible)}
+                  >
+                     {iPPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if iPPVisible}
+                  <hr />
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <td>Penilaian Proposal PPM</td>
+                        <td style="text-align: center"
+                           ><button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadPenilaian}
+                              >Download
+                           </button></td
+                        >
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
+         {/if}
+
+         <!-- ========================================== -->
          <!--           Catatan Revisi Proposal          -->
          <!-- ========================================== -->
          {#if role !== "K.Departemen" && role !== "reviewer"}
             <div class="box">
-               <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               {#if cttnRevisiProposalisRequired()}
-                  <div class="notification is-warning is-light">
-                     <p>Berikan catatan revisi jika ingin revisi proposal</p>
-                  </div>
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Informasi Revisi Proposal <span
+                     class="toggle-button"
+                     on:click={() => (CRPVisible = !CRPVisible)}
+                  >
+                     {CRPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
 
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <textarea
-                        class="textarea mb-1"
-                        bind:value={catatanRevisiProposal}
-                        name="komentar"
-                        id="komentar"
-                     ></textarea>
-                     {#if error.catatanRevisiProposal}
-                        <p class="help error is-danger">
-                           {error.catatanRevisiProposal}
-                        </p>
-                     {/if}
-                  </div>
-               {/if}
+               {#if CRPVisible}
+                  <hr />
+                  {#if cttnRevisiProposalisRequired()}
+                     <div class="notification is-warning is-light">
+                        <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                     </div>
 
-               <hr />
-               <!-- {/if} -->
-
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th style="width: 70%;">Catatan Revisi</th>
-                        <th style="width: 15%; text-align: center">Evaluator</th
-                        >
-                        <th style="width: 15%; text-align: center">Tanggal</th>
-                     </tr>
-                  </thead>
-                  {#if itemsRCR}
-                     <tbody>
-                        {#each itemsRCR as item}
-                           <tr>
-                              <td>{item.catatan_revisi_proposal}</td>
-                              <td style="text-align: center"
-                                 >{item.evaluator}</td
-                              >
-                              <td style="text-align: center">{item.time}</td>
-                           </tr>
-                        {/each}
-                     </tbody>
+                     <div class="field">
+                        <p class="title is-6"><b>Catatan Revisi</b></p>
+                        <textarea
+                           class="textarea mb-1"
+                           bind:value={catatanRevisiProposal}
+                           name="komentar"
+                           id="komentar"
+                        ></textarea>
+                        {#if error.catatanRevisiProposal}
+                           <p class="help error is-danger">
+                              {error.catatanRevisiProposal}
+                           </p>
+                        {/if}
+                     </div>
+                     <hr />
                   {/if}
-               </table>
+
+                  <!-- {/if} -->
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+                     {#if itemsRCR}
+                        <tbody>
+                           {#each itemsRCR as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_proposal}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               {/if}
             </div>
          {/if}
 
@@ -1427,21 +1553,7 @@
                      <button
                         class="button is-info"
                         on:click={handlePass}
-                        class:is-loading={isLoading}>Proses</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
-
-         {#if role === "reviewer"}
-            {#if ShowReviewerButton()}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        on:click={handlePassReviewer}
-                        class:is-loading={isLoading}>Proses</button
+                        class:is-loading={isLoading}>Setujui</button
                      >
                   </p>
                </div>
@@ -1462,7 +1574,7 @@
                      <button
                         class="button is-info"
                         on:click={handlePass}
-                        class:is-loading={isLoading}>Proses</button
+                        class:is-loading={isLoading}>Setujui</button
                      >
                   </p>
                </div>
@@ -1492,7 +1604,7 @@
                      <button
                         class="button is-info"
                         on:click={handlePass}
-                        class:is-loading={isLoading}>Proses</button
+                        class:is-loading={isLoading}>Setujui</button
                      >
                   </p>
                </div>
@@ -1922,8 +2034,15 @@
 </Modalerror>
 
 <Modalerror bind:show={ModalFileNotFound}>
-   <p>Gagal mengunduh file, coba unduh beberapa saat lagi.</p>
+   <p>
+      Gagal mengunduh file, pastikan file telah di upload. Atau coba unduh
+      beberapa saat lagi.
+   </p>
 </Modalerror>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .inputf__wrapper {

@@ -71,24 +71,20 @@
    {:else if code === 4}
       <span class="tag is-warning">Review K. Departemen</span>
    {:else if code === 5}
-      <span class="tag is-danger is-light">Revisi Reviewer</span>
-   {:else if code === 6}
-      <span class="tag is-warning">Review Reviewer</span>
-   {:else if code === 7}
       <span class="tag is-danger is-light"
          >Revisi K. LPPM / K. Pusat Kajian</span
       >
-   {:else if code === 8}
+   {:else if code === 6}
       <span class="tag is-warning">Review K. LPPM / K. Pusat Kajian</span>
-   {:else if code === 9}
+   {:else if code === 7}
       <span class="tag is-danger">Proposal Ditolak</span>
-   {:else if code === 10}
+   {:else if code === 8}
       <span class="tag is-info">PPM Berlangsung</span>
-   {:else if code === 11}
+   {:else if code === 9}
       <span class="tag is-danger is-light">Revisi Hasil PPM</span>
-   {:else if code === 12}
+   {:else if code === 10}
       <span class="tag is-warning">Review Hasil PPM</span>
-   {:else if code === 14}
+   {:else if code === 12}
       <span class="tag is-success">PPM Selesai</span>
    {/if}
 {/if}

@@ -519,7 +519,7 @@
          case "Riset Kerjasama":
          case "Pengabdian Masyarakat Desa Binaan":
          case "Pengabdian Masyarakat UMKM Binaan":
-            editStatus = [0, 1, 3, 5, 7];
+            editStatus = [0, 1, 3, 5];
             break;
          case "Riset Eksternal":
          case "Pengabdian Masyarakat Hibah Eksternal":
@@ -1745,7 +1745,7 @@
    }
 
    function ShowRPButton() {
-      const StatusForInternal = [2, 12];
+      const StatusForInternal = [2, 10];
       const StatusForEksternal = [2, 10];
       const StatusForMandiri = [2, 10];
 
@@ -1781,7 +1781,7 @@
    }
 
    function hasilPPMisRequired() {
-      const ReviewKpkKlppmSkemaInternal = [10];
+      const ReviewKpkKlppmSkemaInternal = [8];
       const ReviewKpkKlppmSkemaEksternal = [8];
       const ReviewKpkKlppmSkemaMandiri = [8];
 
@@ -1806,7 +1806,7 @@
    }
 
    function ShowRDPButton() {
-      const ReviewKpkKlppmSkemaInternal = [8];
+      const ReviewKpkKlppmSkemaInternal = [6];
       const ReviewKpkKlppmSkemaEksternal = [6];
       const ReviewKpkKlppmSkemaMandiri = [6];
 
@@ -1831,7 +1831,7 @@
    }
 
    function cttnRevisiProposalisRequired() {
-      const RevisiSkemaInternal = [2, 8];
+      const RevisiSkemaInternal = [2, 6];
       const RevisiSkemaEksternal = [2, 6];
       const RevisiSkemaMandiri = [2, 6];
 
@@ -1858,7 +1858,7 @@
    }
 
    function cttnRevisiHasilPPMisRequired() {
-      const RevisiSkemaInternal = [12];
+      const RevisiSkemaInternal = [10];
       const RevisiSkemaEksternal = [10];
       const RevisiSkemaMandiri = [10];
 
@@ -1885,7 +1885,7 @@
    }
 
    function ShowButtonPerbaikan() {
-      const RevisiSkemaInternal = [1, 3, 5, 7, 11];
+      const RevisiSkemaInternal = [1, 3, 5, 9];
       const RevisiSkemaEksternal = [1, 3, 5, 9];
       const RevisiSkemaMandiri = [1, 3, 5, 9];
 
@@ -2653,7 +2653,7 @@
          {/if}
 
          <!-- {#if ((jenisSkema === "Riset Eksternal" || jenisSkema === "Pengabdian Masyarakat Hibah Eksternal") && status >= 8) || ((jenisSkema === "Riset Mandiri" || jenisSkema === "Pengabdian Masyarakat Mandiri") && status >= 8) || ((jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 10)} -->
-         {#if (skemaInternal.includes(jenisSkema) && status >= 10) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
+         {#if (skemaInternal.includes(jenisSkema) && status >= 8) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
             <!-- ============================================================ -->
             <!-- Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas        -->
             <!-- ============================================================ -->
@@ -3349,7 +3349,7 @@
                   <button
                      class="button is-info"
                      on:click={handlePass}
-                     class:is-loading={isLoading}>Proses</button
+                     class:is-loading={isLoading}>Setujui</button
                   >
                </p>
             {/if}
@@ -3359,7 +3359,7 @@
                   <button
                      class="button is-info"
                      on:click={handlePass}
-                     class:is-loading={isLoading}>Proses</button
+                     class:is-loading={isLoading}>Setujui</button
                   >
                </p>
             {/if}
@@ -3369,7 +3369,7 @@
                   <button
                      class="button is-info"
                      on:click={handlePassReviewer}
-                     class:is-loading={isLoading}>Proses</button
+                     class:is-loading={isLoading}>Simpan Penilaian</button
                   >
                </p>
             {/if}
@@ -3393,7 +3393,7 @@
                   <button
                      class="button is-info"
                      on:click={handlePass}
-                     class:is-loading={isLoading}>Proses</button
+                     class:is-loading={isLoading}>Setujui</button
                   >
                </p>
             {/if}

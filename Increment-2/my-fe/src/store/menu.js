@@ -30,14 +30,14 @@ const dosen = [
       icon: profile,
    },
    {
-      title: "PPM Management",
-      href: "/dosen/ppmmanagement",
-      icon: article,
-   },
-   {
       title: "Pendaftaran Proposal",
       href: "/dosen/pendaftaran",
       icon: addProposal,
+   },
+   {
+      title: "PPM Management",
+      href: "/dosen/ppmmanagement",
+      icon: article,
    },
 ];
 export default {

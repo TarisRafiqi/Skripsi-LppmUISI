@@ -26,6 +26,8 @@
    ];
    const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
 
+   const showPPMinKPKandKLPPM = [2, 7, 12];
+
    const id = localStorage.id;
    let role = localStorage.role;
    let items;
@@ -158,7 +160,8 @@
                      {#each items.filter((item) => item.judul
                               .toLowerCase()
                               .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan) && (filterJenisSkema === "" || item.jenis_skema === filterJenisSkema)) as item}
-                        {#if ((item.jenis_skema === "Riset Eksternal" || item.jenis_skema === "Pengabdian Masyarakat Hibah Eksternal") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && (item.status === 8 || item.status === 12))}
+                        <!-- {#if ((item.jenis_skema === "Riset Eksternal" || item.jenis_skema === "Pengabdian Masyarakat Hibah Eksternal") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Mandiri" || item.jenis_skema === "Pengabdian Masyarakat Mandiri") && (item.status === 6 || item.status === 10)) || ((item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && (item.status === 8 || item.status === 12))} -->
+                        {#if item.status > 4 && item.status !== 7 && item.status !== 12}
                            <tr>
                               <td class="judul">{item.judul}</td>
                               <td class="kegiatan"
@@ -192,7 +195,7 @@
                      {#each items.filter((item) => item.judul
                               .toLowerCase()
                               .includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan)) as item}
-                        {#if (item.jenis_skema === "Riset Kelompok Keahlian" || item.jenis_skema === "Riset Terapan" || item.jenis_skema === "Riset Kerjasama" || item.jenis_skema === "Pengabdian Masyarakat Desa Binaan" || item.jenis_skema === "Pengabdian Masyarakat UMKM Binaan") && item.status === 6}
+                        {#if skemaInternal.includes(item.jenis_skema) && item.status === 6}
                            <tr>
                               <td class="judul">{item.judul}</td>
                               <td class="kegiatan"
