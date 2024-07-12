@@ -61,11 +61,14 @@
    let skPPMVisible = false;
    let presentasiVisible = false;
    let skpVisible = false;
+   let CRPVisible = false;
+   let iPPVisible = false;
+   let inputEvlVisible = false;
    let showModalChecked = false;
    let editModeProposal = false;
    let editModeRAB = false;
 
-   let randomPenilaianFileName = "";
+   let randomPenilaianFileName;
    let statusPencairanDana = "";
 
    let anggotaTim = [];
@@ -118,16 +121,19 @@
       await getDetailPPM();
 
       // ========== Generate Penilaian Random Character ========== //
+      let randomChar = "";
+      let resultGenerateRandomChar = "";
       const characters =
          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let resultPenilaianChar = "";
 
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 10; i++) {
          const randomIndex = Math.floor(Math.random() * characters.length);
-         resultPenilaianChar += characters.charAt(randomIndex);
+         resultGenerateRandomChar += characters.charAt(randomIndex);
       }
 
-      randomPenilaianFileName = resultPenilaianChar;
+      randomChar = resultGenerateRandomChar;
+
+      randomPenilaianFileName = id + "_Penilaian Proposal PPM_" + randomChar;
 
       // ========== Get Nama Lengkap Evaluator ========== //
       const responseEvl = await fetch($apiURL + "/user/" + idEvaluator, {
@@ -1332,19 +1338,17 @@
       isLoading = false;
    }
 
-   async function handlePassReviewer() {
+   async function handleSimpanPenilaian() {
       error = {};
       isLoading = true;
       const readerPenilaian = new FileReader();
 
       const payload = {
-         status: Number(data.status) + 2,
+         status: Number(data.status),
          randomPenilaianFileName,
          id,
       };
-      // -------------------------------------------------------------------//
-      // Upload File Penilaian
-      // -------------------------------------------------------------------//
+
       if (isObjectEmpty($penilaianFile)) {
          error["filePenilaian"] = `*`;
       }
@@ -1352,6 +1356,9 @@
       if (Object.keys(error).length > 0) {
          showModalErrorPassReviewer = true;
       } else {
+         // ==================================================//
+         // Upload File Penilaian
+         // ==================================================//
          if (
             jenisSkema === "Riset Kelompok Keahlian" ||
             jenisSkema === "Riset Terapan" ||
@@ -1404,7 +1411,8 @@
             location.pathname = "/tokenexpired";
          } else {
             if (response.ok) {
-               $route("/admin/ppmmanagement");
+               getDetailPPM();
+               showModalChecked = true;
             } else {
                console.log(response);
             }
@@ -1551,12 +1559,14 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -2440,59 +2450,18 @@
                </div>
 
                <!-- {#if status === 8} -->
-               {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
+               <!-- {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
                   <div class="field">
                      <p class="title is-6"><b>Penilaian Proposal</b></p>
                   </div>
-                  <span class="inputf__wrapper mb-1">
-                     <input
-                        id="filePenilaian"
-                        class="inputf custom-file-input"
-                        accept=".xlsx"
-                        type="file"
-                        on:change={filePenilaianChange}
-                     />
-                     <div class="file has-name is-success is-small">
-                        <label class="file-label" for="filePenilaian">
-                           <input
-                              class="file-input"
-                              type="file"
-                              name="resume"
-                           />
-                           <span class="file-cta">
-                              <span class="file-icon">
-                                 <Icon id="download" src={downloadIcon} />
-                              </span>
-                              <span class="file-label"> Choose a file</span>
-                           </span>
-                           {#if $penilaianFile?.name}
-                              <span class="file-name">
-                                 {$penilaianFile.name}</span
-                              >
-                           {:else}
-                              <span class="file-name">No file chosen</span>
-                           {/if}
-                        </label>
-                     </div>
-                     {#if error.filePenilaian}
-                        <p class="error has-text-danger">
-                           {error.filePenilaian}
-                        </p>
-                     {/if}
-                  </span>
+
                   <p class="help">File Type: xlsx</p>
                {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
                   <div class="field">
                      <p class="title is-6"><b>File Penilaian Proposal</b></p>
-                     <p class="subtitle is-6">
-                        <button
-                           class="button is-link button is-small"
-                           on:click={handleDownloadPenilaian}
-                           >Download Penilaian</button
-                        >
-                     </p>
+                     <p class="subtitle is-6"></p>
                   </div>
-               {/if}
+               {/if} -->
 
                <div class="field">
                   <p class="title is-6"><b>Anggota Tim</b></p>
@@ -2521,67 +2490,186 @@
          </div>
 
          <!-- ========================================== -->
+         <!--           Input Penilaian Proposal         -->
+         <!-- ========================================== -->
+         {#if skemaInternal.includes(jenisSkema)}
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Penilaian Proposal
+                  <span
+                     class="toggle-button"
+                     on:click={() => (iPPVisible = !iPPVisible)}
+                  >
+                     {iPPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if iPPVisible}
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Upload File</th
+                           >
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <td>Penilaian Proposal PPM</td>
+                        <td>
+                           <span class="inputf__wrapper mb-1">
+                              <input
+                                 id="filePenilaian"
+                                 class="inputf custom-file-input"
+                                 accept=".xlsx"
+                                 type="file"
+                                 on:change={filePenilaianChange}
+                              />
+                              <div class="file has-name is-small">
+                                 <label class="file-label" for="filePenilaian">
+                                    <input
+                                       class="file-input"
+                                       type="file"
+                                       name="resume"
+                                    />
+                                    <span class="file-cta">
+                                       <span class="file-icon">
+                                          <Icon
+                                             id="download"
+                                             src={downloadIcon}
+                                          />
+                                       </span>
+                                       <span class="file-label">
+                                          Choose a file</span
+                                       >
+                                    </span>
+                                    {#if $penilaianFile?.name}
+                                       <span class="file-name">
+                                          {$penilaianFile.name}</span
+                                       >
+                                    {:else}
+                                       <span class="file-name"
+                                          >No file chosen</span
+                                       >
+                                    {/if}
+                                 </label>
+                              </div>
+                           </span>
+                        </td>
+                        <td style="text-align: center"
+                           ><button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadPenilaian}
+                              >Download</button
+                           ></td
+                        >
+                     </tbody>
+                  </table>
+
+                  {#if ShowReviewerButton()}
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              on:click={handleSimpanPenilaian}
+                              class:is-loading={isLoading}
+                              >Simpan Penilaian</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               {/if}
+            </div>
+         {/if}
+
+         <!-- ========================================== -->
          <!--           Catatan Revisi Proposal          -->
          <!-- ========================================== -->
          {#if status != 0}
             <div class="box">
-               <h5 class="title is-5">Informasi Revisi Proposal</h5>
-               {#if cttnRevisiProposalisRequired()}
-                  <div class="notification is-warning is-light">
-                     <p>Berikan catatan revisi jika ingin revisi proposal</p>
-                  </div>
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Informasi Revisi Proposal <span
+                     class="toggle-button"
+                     on:click={() => (CRPVisible = !CRPVisible)}
+                  >
+                     {CRPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
 
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <textarea
-                        class="textarea mb-1"
-                        bind:value={catatanRevisiProposal}
-                        name="catatanRevisiProposal"
-                        id="catatanRevisiProposal"
-                     ></textarea>
-                     {#if error.catatanRevisiProposal}
-                        <p class="help error is-danger">
-                           {error.catatanRevisiProposal}
+               {#if CRPVisible}
+                  <hr />
+                  {#if cttnRevisiProposalisRequired()}
+                     <div class="notification is-warning is-light">
+                        <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                     </div>
+
+                     <div class="field">
+                        <p class="title is-6"><b>Catatan Revisi</b></p>
+                        <textarea
+                           class="textarea mb-1"
+                           bind:value={catatanRevisiProposal}
+                           name="catatanRevisiProposal"
+                           id="catatanRevisiProposal"
+                        ></textarea>
+                        {#if error.catatanRevisiProposal}
+                           <p class="help error is-danger">
+                              {error.catatanRevisiProposal}
+                           </p>
+                        {/if}
+                     </div>
+                  {:else}
+                     <div class="notification is-warning is-light">
+                        <p>
+                           Perhatikan catatan revisi dari evaluator untuk detail
+                           yang akan direvisi!
                         </p>
-                     {/if}
-                  </div>
-               {:else}
-                  <div class="notification is-warning is-light">
-                     <p>
-                        Perhatikan catatan revisi dari evaluator untuk detail
-                        yang akan direvisi!
-                     </p>
-                  </div>
-               {/if}
-
-               <hr />
-
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th style="width: 70%;">Catatan Revisi</th>
-                        <th style="width: 15%; text-align: center">Evaluator</th
-                        >
-                        <th style="width: 15%; text-align: center">Tanggal</th>
-                     </tr>
-                  </thead>
-
-                  {#if itemsRCR}
-                     <tbody>
-                        {#each itemsRCR as item}
-                           <tr>
-                              <td>{item.catatan_revisi_proposal}</td>
-                              <td style="text-align: center"
-                                 >{item.evaluator}</td
-                              >
-                              <td style="text-align: center">{item.time}</td>
-                           </tr>
-                        {/each}
-                     </tbody>
+                     </div>
                   {/if}
-               </table>
+
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     {#if itemsRCR}
+                        <tbody>
+                           {#each itemsRCR as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_proposal}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               {/if}
             </div>
          {/if}
 
@@ -2590,65 +2678,77 @@
          <!-- ========================================== -->
          {#if status != 0}
             <div class="box">
-               <h5 class="title is-5">Input Evaluator</h5>
-               <hr />
-               <Field
-                  id={"evaluatorKdept"}
-                  name="K.Departemen"
-                  bind:value={ka_departemen}
-                  bind:selected={kdeptSelected}
-                  select
-                  view
-                  userId={kdeptSelected}
-               />
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Input Evaluator <span
+                     class="toggle-button"
+                     on:click={() => (inputEvlVisible = !inputEvlVisible)}
+                  >
+                     {inputEvlVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
 
-               <br />
-               <Field
-                  id={"evaluatorReviewer"}
-                  name="Reviewer"
-                  bind:value={reviewer}
-                  bind:selected={reviewerSelected}
-                  select
-                  view
-                  userId={reviewerSelected}
-               />
-               <br />
-               <Field
-                  id={"evaluatorKlppm"}
-                  name="K.LPPM"
-                  bind:value={ka_lppm}
-                  bind:selected={klppmSelected}
-                  select
-                  view
-                  userId={klppmSelected}
-               />
-               <br />
-               <Field
-                  id={"evaluatorKpk"}
-                  name="K.Pusat Kajian"
-                  bind:value={ka_pusat_kajian}
-                  bind:selected={kpkSelected}
-                  select
-                  view
-                  userId={kpkSelected}
-               />
+               {#if inputEvlVisible}
+                  <hr />
+                  <Field
+                     id={"evaluatorKdept"}
+                     name="K.Departemen"
+                     bind:value={ka_departemen}
+                     bind:selected={kdeptSelected}
+                     select
+                     view
+                     userId={kdeptSelected}
+                  />
 
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     {#if isFormFilled}
-                        <button
-                           class="button is-info"
-                           class:is-loading={isLoading}
-                           on:click={handleSubmitEvaluator}
-                           >Submit Evaluator</button
-                        >
-                     {:else}
-                        <button class="button is-info" disabled>
-                           Submit Evaluator
-                        </button>
-                     {/if}
-                  </p>
-               </div>
+                  <br />
+                  <Field
+                     id={"evaluatorReviewer"}
+                     name="Reviewer"
+                     bind:value={reviewer}
+                     bind:selected={reviewerSelected}
+                     select
+                     view
+                     userId={reviewerSelected}
+                  />
+                  <br />
+                  <Field
+                     id={"evaluatorKlppm"}
+                     name="K.LPPM"
+                     bind:value={ka_lppm}
+                     bind:selected={klppmSelected}
+                     select
+                     view
+                     userId={klppmSelected}
+                  />
+                  <br />
+                  <Field
+                     id={"evaluatorKpk"}
+                     name="K.Pusat Kajian"
+                     bind:value={ka_pusat_kajian}
+                     bind:selected={kpkSelected}
+                     select
+                     view
+                     userId={kpkSelected}
+                  />
+
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        {#if isFormFilled}
+                           <button
+                              class="button is-info"
+                              class:is-loading={isLoading}
+                              on:click={handleSubmitEvaluator}
+                              >Submit Evaluator</button
+                           >
+                        {:else}
+                           <button class="button is-info" disabled>
+                              Submit Evaluator
+                           </button>
+                        {/if}
+                     </p>
+                  </div>
+               {/if}
             </div>
          {/if}
 
@@ -3364,16 +3464,6 @@
                </p>
             {/if}
 
-            {#if ShowReviewerButton()}
-               <p class="control">
-                  <button
-                     class="button is-info"
-                     on:click={handlePassReviewer}
-                     class:is-loading={isLoading}>Simpan Penilaian</button
-                  >
-               </p>
-            {/if}
-
             {#if ShowRDPButton()}
                <p class="control">
                   <button
@@ -3839,7 +3929,7 @@
 
 <Modalerror bind:show={ModalFileNotFound}>
    <p>
-      Gagal mengunduh file. Pastikan sudah mengupload file atau coba unduh
+      Gagal mengunduh file. Pastikan file telah di upload atau coba unduh
       beberapa saat lagi.
    </p>
 </Modalerror>

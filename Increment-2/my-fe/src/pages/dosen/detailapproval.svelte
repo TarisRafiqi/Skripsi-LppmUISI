@@ -968,141 +968,147 @@
          <!-- ========================================== -->
          <!--           Input Penilaian Proposal         -->
          <!-- ========================================== -->
-         {#if role === "reviewer"}
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Penilaian Proposal
-                  <span
-                     class="toggle-button"
-                     on:click={() => (iPPVisible = !iPPVisible)}
-                  >
-                     {iPPVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+         {#if skemaInternal.includes(jenisSkema)}
+            {#if role === "reviewer"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Penilaian Proposal
+                     <span
+                        class="toggle-button"
+                        on:click={() => (iPPVisible = !iPPVisible)}
+                     >
+                        {iPPVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
 
-               {#if iPPVisible}
-                  <hr />
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Upload File</th
-                           >
-                           <th class="is-narrow" style="text-align: center"
-                              >Download File</th
-                           >
-                        </tr>
-                     </thead>
+                  {#if iPPVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Upload File</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
 
-                     <tbody>
-                        <td>Penilaian Proposal PPM</td>
-                        <td>
-                           <span class="inputf__wrapper mb-1">
-                              <input
-                                 id="filePenilaian"
-                                 class="inputf custom-file-input"
-                                 accept=".xlsx"
-                                 type="file"
-                                 on:change={filePenilaianChange}
-                              />
-                              <div class="file has-name is-small">
-                                 <label class="file-label" for="filePenilaian">
-                                    <input
-                                       class="file-input"
-                                       type="file"
-                                       name="resume"
-                                    />
-                                    <span class="file-cta">
-                                       <span class="file-icon">
-                                          <Icon
-                                             id="download"
-                                             src={downloadIcon}
-                                          />
+                        <tbody>
+                           <td>Penilaian Proposal PPM</td>
+                           <td>
+                              <span class="inputf__wrapper mb-1">
+                                 <input
+                                    id="filePenilaian"
+                                    class="inputf custom-file-input"
+                                    accept=".xlsx"
+                                    type="file"
+                                    on:change={filePenilaianChange}
+                                 />
+                                 <div class="file has-name is-small">
+                                    <label
+                                       class="file-label"
+                                       for="filePenilaian"
+                                    >
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
                                        </span>
-                                       <span class="file-label">
-                                          Choose a file</span
-                                       >
-                                    </span>
-                                    {#if $penilaianFile?.name}
-                                       <span class="file-name">
-                                          {$penilaianFile.name}</span
-                                       >
-                                    {:else}
-                                       <span class="file-name"
-                                          >No file chosen</span
-                                       >
-                                    {/if}
-                                 </label>
-                              </div>
-                           </span>
-                        </td>
-                        <td style="text-align: center"
-                           ><button
-                              class="button is-link button is-small"
-                              on:click={handleDownloadPenilaian}
-                              >Download
-                           </button></td
-                        >
-                     </tbody>
-                  </table>
-
-                  <div class="field is-grouped is-grouped-right">
-                     <p class="control">
-                        <button
-                           class="button is-info"
-                           on:click={handleSimpanPenilaian}
-                           class:is-loading={isLoading}>Simpan Penilaian</button
-                        >
-                     </p>
-                  </div>
-               {/if}
-            </div>
-         {:else if role !== "K.Departemen"}
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Penilaian Proposal
-                  <span
-                     class="toggle-button"
-                     on:click={() => (iPPVisible = !iPPVisible)}
-                  >
-                     {iPPVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
-
-               {#if iPPVisible}
-                  <hr />
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Download File</th
+                                       {#if $penilaianFile?.name}
+                                          <span class="file-name">
+                                             {$penilaianFile.name}</span
+                                          >
+                                       {:else}
+                                          <span class="file-name"
+                                             >No file chosen</span
+                                          >
+                                       {/if}
+                                    </label>
+                                 </div>
+                              </span>
+                           </td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadPenilaian}
+                                 >Download
+                              </button></td
                            >
-                        </tr>
-                     </thead>
+                        </tbody>
+                     </table>
 
-                     <tbody>
-                        <td>Penilaian Proposal PPM</td>
-                        <td style="text-align: center"
-                           ><button
-                              class="button is-link button is-small"
-                              on:click={handleDownloadPenilaian}
-                              >Download
-                           </button></td
-                        >
-                     </tbody>
-                  </table>
-               {/if}
-            </div>
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              on:click={handleSimpanPenilaian}
+                              class:is-loading={isLoading}
+                              >Simpan Penilaian</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               </div>
+            {:else if role !== "K.Departemen"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Penilaian Proposal
+                     <span
+                        class="toggle-button"
+                        on:click={() => (iPPVisible = !iPPVisible)}
+                     >
+                        {iPPVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if iPPVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+
+                        <tbody>
+                           <td>Penilaian Proposal PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadPenilaian}
+                                 >Download
+                              </button></td
+                           >
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
          {/if}
 
          <!-- ========================================== -->
@@ -2035,7 +2041,7 @@
 
 <Modalerror bind:show={ModalFileNotFound}>
    <p>
-      Gagal mengunduh file, pastikan file telah di upload. Atau coba unduh
+      Gagal mengunduh file. Pastikan file telah di upload atau coba unduh
       beberapa saat lagi.
    </p>
 </Modalerror>
