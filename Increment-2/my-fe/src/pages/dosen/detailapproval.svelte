@@ -423,7 +423,6 @@
             if (response.ok) {
                getDetailPPM();
                showModalChecked = true;
-               // $route("/dosen/approvalmanagement");
             } else {
                console.log(response);
                // Buat Handle Error
@@ -921,25 +920,6 @@
                {/if}
             </div>
 
-            <!-- {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
-               <div class="field">
-                  <p class="title is-6"><b>Penilaian Proposal</b></p>
-               </div>
-               
-               <p class="help">File Type: xlsx</p>
-            {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
-               <div class="field">
-                  <p class="title is-6"><b>File Penilaian Proposal</b></p>
-                  <p class="subtitle is-6">
-                     <button
-                        class="button is-link button is-small"
-                        on:click={handleDownloadPenilaian}
-                        >Download Penilaian</button
-                     >
-                  </p>
-               </div>
-            {/if} -->
-
             <div class="field">
                <p class="title is-6"><b>Anggota Tim</b></p>
                <table
@@ -992,7 +972,7 @@
                            <tr>
                               <th style="width: 70%;">Nama</th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload File</th
+                                 >Upload File (.xlsx)</th
                               >
                               <th class="is-narrow" style="text-align: center"
                                  >Download File</th
@@ -1158,7 +1138,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
                            <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >
@@ -1424,7 +1404,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
                            <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >

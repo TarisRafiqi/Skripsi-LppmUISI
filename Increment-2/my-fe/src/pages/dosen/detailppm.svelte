@@ -1129,12 +1129,21 @@
       isLoading = true;
       const readerHasilPPM = new FileReader();
       let fileHasilPPMName = id + "_Laporan Hasil PPM";
+      let payloadFileName;
 
-      let payloadFileName = {
-         status: Number(data.status) + 2,
-         fileHasilPPMName,
-         id,
-      };
+      if (hasilPPMisRequired()) {
+         payloadFileName = {
+            status: Number(data.status) + 2,
+            fileHasilPPMName,
+            id,
+         };
+      } else if (hasilPPMisRevisi()) {
+         payloadFileName = {
+            status: Number(data.status) + 1,
+            fileHasilPPMName,
+            id,
+         };
+      }
 
       if (hasilPPMisRequired && !fileHasilPPM) {
          showModalErrorHasilPPM = true;
@@ -1222,6 +1231,7 @@
             await Promise.all([uploadHasilPPM, submitFileName]);
          } finally {
             isLoading = false;
+            $route("/dosen/ppmmanagement");
          }
       }
    }
@@ -1431,9 +1441,9 @@
    }
 
    function ShowButtonPerbaikan() {
-      const RevisiSkemaInternal = [1, 3, 5, 9];
-      const RevisiSkemaEksternal = [1, 3, 5, 9];
-      const RevisiSkemaMandiri = [1, 3, 5, 9];
+      const RevisiSkemaInternal = [1, 3, 5];
+      const RevisiSkemaEksternal = [1, 3, 5];
+      const RevisiSkemaMandiri = [1, 3, 5];
 
       if (
          skemaInternal.includes(data.jenis_skema) &&
@@ -1457,10 +1467,59 @@
       return false;
    }
 
+   function showSubmitHasilPPM_Button() {
+      const ReviewKpkKlppmSkemaInternal = [8, 9];
+      const ReviewKpkKlppmSkemaEksternal = [8, 9];
+      const ReviewKpkKlppmSkemaMandiri = [8, 9];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
    function hasilPPMisRequired() {
       const ReviewKpkKlppmSkemaInternal = [8];
       const ReviewKpkKlppmSkemaEksternal = [8];
       const ReviewKpkKlppmSkemaMandiri = [8];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function hasilPPMisRevisi() {
+      const ReviewKpkKlppmSkemaInternal = [9];
+      const ReviewKpkKlppmSkemaEksternal = [9];
+      const ReviewKpkKlppmSkemaMandiri = [9];
 
       if (
          skemaInternal.includes(data.jenis_skema) &&
@@ -1974,7 +2033,7 @@
                >
                   <thead>
                      <tr>
-                        <th style="width: 70%;">Catatan Revisi</th>
+                        <th style="width: 70%;">Riwayat Catatan Revisi</th>
                         <th style="width: 15%; text-align: center">Evaluator</th
                         >
                         <th style="width: 15%; text-align: center">Tanggal</th>
@@ -2264,6 +2323,20 @@
                      </tbody>
                   </table>
 
+                  <!-- {#if hasilPPMisRequired()} -->
+                  {#if showSubmitHasilPPM_Button()}
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              class:is-loading={isLoading}
+                              on:click={handleSubmitHasilPPM}
+                              >Submit Hasil PPM</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+
                   <hr />
 
                   <div class="notification is-warning is-light">
@@ -2278,7 +2351,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
                            <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >
@@ -2416,16 +2489,6 @@
                      class="button is-info"
                      class:is-loading={isLoading}
                      on:click={handleSubmitProposal}>Submit</button
-                  >
-               </p>
-            {/if}
-
-            {#if hasilPPMisRequired()}
-               <p class="control">
-                  <button
-                     class="button is-info"
-                     class:is-loading={isLoading}
-                     on:click={handleSubmitHasilPPM}>Submit Hasil PPM</button
                   >
                </p>
             {/if}
@@ -2861,7 +2924,10 @@
 </Modalerror>
 
 <Modalerror bind:show={ModalFileNotFound}>
-   <p>Gagal mengunduh file, coba unduh beberapa saat lagi.</p>
+   <p>
+      Gagal mengunduh file. Pastikan file telah di upload atau coba unduh
+      beberapa saat lagi.
+   </p>
 </Modalerror>
 
 <Modalerror bind:show={showModalErrorHasilPPM}>

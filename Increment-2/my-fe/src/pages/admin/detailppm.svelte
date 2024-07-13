@@ -1779,16 +1779,16 @@
       }
    }
 
-   function ShowReviewerButton() {
-      const StatusReviewReviewer = [6];
+   // function ShowReviewerButton() {
+   //    const StatusReviewReviewer = [6];
 
-      if (
-         skemaInternal.includes(data.jenis_skema) &&
-         StatusReviewReviewer.includes(data.status)
-      ) {
-         return true;
-      }
-   }
+   //    if (
+   //       skemaInternal.includes(data.jenis_skema) &&
+   //       StatusReviewReviewer.includes(data.status)
+   //    ) {
+   //       return true;
+   //    }
+   // }
 
    function hasilPPMisRequired() {
       const ReviewKpkKlppmSkemaInternal = [8];
@@ -2314,17 +2314,6 @@
                         <p class="help">File Type: xlsx</p>
                      {/if}
                   </Field>
-
-                  <!-- {#if status > 8} -->
-                  {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
-                     <Field name="Penilaian Proposal">
-                        <button
-                           class="button is-link button is-small"
-                           on:click={handleDownloadPenilaian}
-                           >Download Penilaian</button
-                        >
-                     </Field>
-                  {/if}
                {/if}
 
                <hr />
@@ -2449,20 +2438,6 @@
                   {/if}
                </div>
 
-               <!-- {#if status === 8} -->
-               <!-- {#if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status === 6}
-                  <div class="field">
-                     <p class="title is-6"><b>Penilaian Proposal</b></p>
-                  </div>
-
-                  <p class="help">File Type: xlsx</p>
-               {:else if (jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan") && status >= 6}
-                  <div class="field">
-                     <p class="title is-6"><b>File Penilaian Proposal</b></p>
-                     <p class="subtitle is-6"></p>
-                  </div>
-               {/if} -->
-
                <div class="field">
                   <p class="title is-6"><b>Anggota Tim</b></p>
                   <table
@@ -2516,7 +2491,7 @@
                         <tr>
                            <th style="width: 70%;">Nama</th>
                            <th class="is-narrow" style="text-align: center"
-                              >Upload File</th
+                              >Upload File (.xlsx)</th
                            >
                            <th class="is-narrow" style="text-align: center"
                               >Download File</th
@@ -2576,18 +2551,15 @@
                      </tbody>
                   </table>
 
-                  {#if ShowReviewerButton()}
-                     <div class="field is-grouped is-grouped-right">
-                        <p class="control">
-                           <button
-                              class="button is-info"
-                              on:click={handleSimpanPenilaian}
-                              class:is-loading={isLoading}
-                              >Simpan Penilaian</button
-                           >
-                        </p>
-                     </div>
-                  {/if}
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           on:click={handleSimpanPenilaian}
+                           class:is-loading={isLoading}>Simpan Penilaian</button
+                        >
+                     </p>
+                  </div>
                {/if}
             </div>
          {/if}
@@ -2645,7 +2617,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
                            <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >
@@ -2782,7 +2754,7 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload File</th
+                                 >Upload File (.pdf)</th
                               >
                               <th class="is-narrow" style="text-align: center"
                                  >Download File</th
@@ -3162,7 +3134,7 @@
                         <tr>
                            <th style="width: 70%;">Nama</th>
                            <th class="is-narrow" style="text-align: center"
-                              >Upload File</th
+                              >Upload File (.pdf)</th
                            >
                            <th class="is-narrow" style="text-align: center"
                               >Download File</th
@@ -3227,6 +3199,19 @@
                      </tbody>
                   </table>
 
+                  <!-- {#if hasilPPMisRequired()} -->
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           class:is-loading={isLoading}
+                           on:click={handleSubmitHasilPPM}
+                           >Submit Hasil PPM</button
+                        >
+                     </p>
+                  </div>
+                  <!-- {/if} -->
+
                   <hr />
 
                   <div class="notification is-warning is-light">
@@ -3255,7 +3240,7 @@
                   >
                      <thead>
                         <tr>
-                           <th style="width: 70%;">Catatan Revisi</th>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
                            <th style="width: 15%; text-align: center"
                               >Evaluator</th
                            >
@@ -3484,16 +3469,6 @@
                      class="button is-info"
                      on:click={handlePass}
                      class:is-loading={isLoading}>Setujui</button
-                  >
-               </p>
-            {/if}
-
-            {#if hasilPPMisRequired()}
-               <p class="control">
-                  <button
-                     class="button is-info"
-                     class:is-loading={isLoading}
-                     on:click={handleSubmitHasilPPM}>Submit Hasil PPM</button
                   >
                </p>
             {/if}
