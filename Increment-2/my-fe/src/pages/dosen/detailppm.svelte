@@ -1,6 +1,7 @@
 <script>
    import { onMount } from "svelte";
    import { route, apiURL, ppmFile, rabFile, hasilPPMFile } from "../../store";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
    import Status from "../../modules/Status.svelte";
@@ -59,8 +60,9 @@
 
    let editModeProposal = false;
    let showModalError = false;
-   let ModalFileNotFound = false;
    let showModalErrorHasilPPM = false;
+   let showModalChecked = false;
+   let ModalFileNotFound = false;
    let editModeRAB = false;
    let isLoading = false;
 
@@ -78,58 +80,57 @@
    const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
 
    onMount(async () => {
-      isLoading = false;
-      // ================================================//
-      // Get detail proposal
-      // ================================================//
-      const response = await fetch($apiURL + "/ppm/" + id, {
-         method: "GET",
-         headers: headers,
-      });
-      const result = await response.json();
+      await getDetailPPM();
 
-      if (response.status === 401) {
-         location.pathname = "/tokenexpired";
-      } else {
-         if (response.ok) {
-            data = result;
-            // view = !isEdit(data.status);
-            view = !isEdit(data.status, data.jenis_skema);
-            ppmId = data.id;
-            jenisProposal = data.jenis_proposal;
-            jenisKegiatan = data.jenis_kegiatan;
-            jenisSkema = data.jenis_skema;
-            kelompokKeahlian = data.kelompok_keahlian;
-            topik = data.topik;
-            tanggalMulai = data.tanggal_mulai;
-            tanggalSelesai = data.tanggal_selesai;
-            biayaPenelitian = data.biaya_penelitian;
-            anggotaTim = data.anggota_tim;
-            biodataAnggota = data.biodata_anggota;
-            // console.log(biodataAnggota);
-            judul = data.judul;
-            abstrak = data.abstrak;
-            status = data.status;
-            kdeptSelected = data.uid_kdept;
-            klppmSelected = data.uid_klppm;
-            kpkSelected = data.uid_kpk;
-            reviewerSelected = data.uid_reviewer;
-            rabFileName = data.rab_file_name;
-            ppmFileName = data.ppm_file_name;
-            ttdSuratKontrak = data.ttd_surat_kontrak;
-            presentasiHasilPPM = data.presentasi_hasil_ppm;
+      // // ================================================//
+      // // Get detail proposal
+      // // ================================================//
+      // const response = await fetch($apiURL + "/ppm/" + id, {
+      //    method: "GET",
+      //    headers: headers,
+      // });
+      // const result = await response.json();
 
-            fileSkPendanaanNameDB = data.file_sk_pendanaan;
-            fileSuratKontrakNameDB = data.file_surat_kontrak;
-            fileSuratTugasNameDB = data.file_surat_tugas;
-            fileSkPPMNameDB = data.file_sk_ppm;
-            fileHasilPPMNameDB = data.file_hasil_ppm;
-            statusPencairanDana =
-               data.status_pencairan_dana || "Menunggu pencairan dana";
-         } else {
-            console.log(response);
-         }
-      }
+      // if (response.status === 401) {
+      //    location.pathname = "/tokenexpired";
+      // } else {
+      //    if (response.ok) {
+      //       data = result;
+      //       view = !isEdit(data.status, data.jenis_skema);
+      //       ppmId = data.id;
+      //       jenisProposal = data.jenis_proposal;
+      //       jenisKegiatan = data.jenis_kegiatan;
+      //       jenisSkema = data.jenis_skema;
+      //       kelompokKeahlian = data.kelompok_keahlian;
+      //       topik = data.topik;
+      //       tanggalMulai = data.tanggal_mulai;
+      //       tanggalSelesai = data.tanggal_selesai;
+      //       biayaPenelitian = data.biaya_penelitian;
+      //       anggotaTim = data.anggota_tim;
+      //       biodataAnggota = data.biodata_anggota;
+      //       judul = data.judul;
+      //       abstrak = data.abstrak;
+      //       status = data.status;
+      //       kdeptSelected = data.uid_kdept;
+      //       klppmSelected = data.uid_klppm;
+      //       kpkSelected = data.uid_kpk;
+      //       reviewerSelected = data.uid_reviewer;
+      //       rabFileName = data.rab_file_name;
+      //       ppmFileName = data.ppm_file_name;
+      //       ttdSuratKontrak = data.ttd_surat_kontrak;
+      //       presentasiHasilPPM = data.presentasi_hasil_ppm;
+
+      //       fileSkPendanaanNameDB = data.file_sk_pendanaan;
+      //       fileSuratKontrakNameDB = data.file_surat_kontrak;
+      //       fileSuratTugasNameDB = data.file_surat_tugas;
+      //       fileSkPPMNameDB = data.file_sk_ppm;
+      //       fileHasilPPMNameDB = data.file_hasil_ppm;
+      //       statusPencairanDana =
+      //          data.status_pencairan_dana || "Menunggu pencairan dana";
+      //    } else {
+      //       console.log(response);
+      //    }
+      // }
 
       // ================================================//
       // Get Riwayat Catatan Revisi Proposal
@@ -209,6 +210,56 @@
          }
       }
    });
+
+   // ========== Get Detail Proposal PPM ========== //
+   async function getDetailPPM() {
+      const response = await fetch($apiURL + "/ppm/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            view = !isEdit(data.status, data.jenis_skema);
+            ppmId = data.id;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim = data.anggota_tim;
+            biodataAnggota = data.biodata_anggota;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            status = data.status;
+            kdeptSelected = data.uid_kdept;
+            klppmSelected = data.uid_klppm;
+            kpkSelected = data.uid_kpk;
+            reviewerSelected = data.uid_reviewer;
+            rabFileName = data.rab_file_name;
+            ppmFileName = data.ppm_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
+
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
+            statusPencairanDana =
+               data.status_pencairan_dana || "Menunggu pencairan dana";
+         } else {
+            console.log(response);
+         }
+      }
+   }
 
    //============================================================
    // Get Biodata Anggota
@@ -974,7 +1025,6 @@
             } else {
                console.log(response);
                // Buat Handle Error
-               // ...
             }
          }
       }
@@ -1231,7 +1281,10 @@
             await Promise.all([uploadHasilPPM, submitFileName]);
          } finally {
             isLoading = false;
-            $route("/dosen/ppmmanagement");
+            showModalChecked = true;
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
          }
       }
    }
@@ -1491,6 +1544,7 @@
          return true;
       }
    }
+
    function hasilPPMisRequired() {
       const ReviewKpkKlppmSkemaInternal = [8];
       const ReviewKpkKlppmSkemaEksternal = [8];
@@ -2933,6 +2987,10 @@
 <Modalerror bind:show={showModalErrorHasilPPM}>
    <p>Anda belum mengupload file Laporan Hasil PPM</p>
 </Modalerror>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
 
 <style>
    .inputf__wrapper {

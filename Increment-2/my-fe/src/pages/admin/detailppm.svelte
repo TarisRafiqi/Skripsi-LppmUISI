@@ -882,12 +882,21 @@
       isLoading = true;
       const readerHasilPPM = new FileReader();
       let fileHasilPPMName = id + "_Laporan Hasil PPM";
+      let payloadFileName;
 
-      let payloadFileName = {
-         status: Number(data.status) + 2,
-         fileHasilPPMName,
-         id,
-      };
+      if (hasilPPMisRequired()) {
+         payloadFileName = {
+            status: Number(data.status) + 2,
+            fileHasilPPMName,
+            id,
+         };
+      } else if (hasilPPMisRevisi()) {
+         payloadFileName = {
+            status: Number(data.status) + 1,
+            fileHasilPPMName,
+            id,
+         };
+      }
 
       if (hasilPPMisRequired && !fileHasilPPM) {
          showModalErrorHasilPPM = true;
@@ -971,6 +980,10 @@
             await Promise.all([uploadHasilPPM, submitFileName]);
          } finally {
             isLoading = false;
+            showModalChecked = true;
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
          }
       }
    }
@@ -1867,6 +1880,31 @@
       return false;
    }
 
+   function showSubmitHasilPPM_Button() {
+      const ReviewKpkKlppmSkemaInternal = [8, 9];
+      const ReviewKpkKlppmSkemaEksternal = [8, 9];
+      const ReviewKpkKlppmSkemaMandiri = [8, 9];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
    function cttnRevisiHasilPPMisRequired() {
       const RevisiSkemaInternal = [10];
       const RevisiSkemaEksternal = [10];
@@ -1894,10 +1932,35 @@
       return false;
    }
 
+   function hasilPPMisRevisi() {
+      const ReviewKpkKlppmSkemaInternal = [9];
+      const ReviewKpkKlppmSkemaEksternal = [9];
+      const ReviewKpkKlppmSkemaMandiri = [9];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
    function ShowButtonPerbaikan() {
-      const RevisiSkemaInternal = [1, 3, 5, 9];
-      const RevisiSkemaEksternal = [1, 3, 5, 9];
-      const RevisiSkemaMandiri = [1, 3, 5, 9];
+      const RevisiSkemaInternal = [1, 3, 5];
+      const RevisiSkemaEksternal = [1, 3, 5];
+      const RevisiSkemaMandiri = [1, 3, 5];
 
       if (
          skemaInternal.includes(data.jenis_skema) &&
@@ -3200,17 +3263,18 @@
                   </table>
 
                   <!-- {#if hasilPPMisRequired()} -->
-                  <div class="field is-grouped is-grouped-right">
-                     <p class="control">
-                        <button
-                           class="button is-info"
-                           class:is-loading={isLoading}
-                           on:click={handleSubmitHasilPPM}
-                           >Submit Hasil PPM</button
-                        >
-                     </p>
-                  </div>
-                  <!-- {/if} -->
+                  {#if showSubmitHasilPPM_Button()}
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              class:is-loading={isLoading}
+                              on:click={handleSubmitHasilPPM}
+                              >Submit Hasil PPM</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
 
                   <hr />
 
