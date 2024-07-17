@@ -47,13 +47,14 @@ module.exports = async function (fastify, opts) {
          let data = request.body;
 
          const sql =
-            "UPDATE ppm SET status = ?, file_hasil_ppm = ? WHERE id = ?";
+            "UPDATE ppm SET status = ?, file_hasil_ppm = ?, file_laporan_keuangan = ? WHERE id = ?";
 
          try {
             connection = await fastify.mysql.getConnection();
             const [rows] = await connection.query(sql, [
                data.status,
                data.fileHasilPPMName,
+               data.fileLaporanKeuanganName,
                data.id,
             ]);
             dbData = rows;
