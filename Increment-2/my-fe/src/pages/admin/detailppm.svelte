@@ -5,6 +5,7 @@
       apiURL,
       ppmFile,
       rabFile,
+      kontrakFile,
       penilaianFile,
       skPendanaanFile,
       suratKontrakFile,
@@ -67,6 +68,7 @@
    let showModalChecked = false;
    let editModeProposal = false;
    let editModeRAB = false;
+   let editModeKontrakPPM = false;
 
    let randomPenilaianFileName;
    let statusPencairanDana = "";
@@ -237,8 +239,9 @@
             klppmSelected = data.uid_klppm;
             kpkSelected = data.uid_kpk;
             reviewerSelected = data.uid_reviewer;
-            randomRabFileName = data.rab_file_name;
-            randomPpmFileName = data.ppm_file_name;
+            rabFileName = data.rab_file_name;
+            ppmFileName = data.ppm_file_name;
+            kontrakFileName = data.kontrak_ppm_eksternal_file_name;
             randomPenilaianFileNamedb = data.penilaian_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
             presentasiHasilPPM = data.presentasi_hasil_ppm;
@@ -996,6 +999,7 @@
       const readerRab = new FileReader();
       const readerPpm = new FileReader();
       const readerHasilPPM = new FileReader();
+      const readerKontrakPpm = new FileReader();
 
       let fileHasilPPMName = id + "_Laporan Hasil PPM";
 
@@ -1018,21 +1022,21 @@
          klppmSelected,
          kpkSelected,
          reviewerSelected,
-         randomRabFileName,
-         randomPpmFileName,
+         rabFileName,
+         ppmFileName,
       };
 
-      if (editModeProposal) {
-         if (isObjectEmpty($ppmFile)) {
-            error["fileProposal"] = `*`;
-         }
-      }
+      // if (editModeProposal) {
+      //    if (isObjectEmpty($ppmFile)) {
+      //       error["fileProposal"] = `*`;
+      //    }
+      // }
 
-      if (editModeRAB) {
-         if (isObjectEmpty($rabFile)) {
-            error["fileRAB"] = `*`;
-         }
-      }
+      // if (editModeRAB) {
+      //    if (isObjectEmpty($rabFile)) {
+      //       error["fileRAB"] = `*`;
+      //    }
+      // }
 
       for (const [key, value] of Object.entries(payload)) {
          if (
@@ -1062,7 +1066,7 @@
                      type: filePpm.type,
                      data: base64Data,
                   },
-                  randomPpmFileName,
+                  ppmFileName,
                };
 
                try {
@@ -1091,6 +1095,52 @@
             if (filePpm) readerPpm.readAsDataURL(filePpm);
          });
 
+         // ========================== Upload File Kontrak PPM Eksternal ========================== //
+         const cekFileKontrakPPM = new Promise((resolve, reject) => {
+            if (!fileKontrak) {
+               resolve("No fileKontrak selected");
+               return;
+            }
+
+            readerKontrakPpm.onloadend = async () => {
+               const base64Data = readerKontrakPpm.result.split(",")[1];
+               const payloadKontrakPpmFile = {
+                  fileKontrak: {
+                     name: fileKontrak.name,
+                     type: fileKontrak.type,
+                     data: base64Data,
+                  },
+                  kontrakFileName,
+               };
+
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadKontrakPPMEksternal",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadKontrakPpmFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+            if (fileKontrak) readerKontrakPpm.readAsDataURL(fileKontrak);
+         });
+
          // ================================ Upload File RAB ================================ //
          const cekFileRAB = new Promise((resolve, reject) => {
             if (!fileRab) {
@@ -1106,7 +1156,7 @@
                      type: fileRab.type,
                      data: base64Data,
                   },
-                  randomRabFileName,
+                  rabFileName,
                };
 
                try {
@@ -1510,22 +1560,21 @@
    async function handleDownloadRab(e) {
       let filename = "RAB_" + judul + ".xlsx";
       try {
-         const response = await fetch(
-            $apiURL + `/uploadRab/${randomRabFileName}`,
-            {
-               method: "GET",
-               headers: headers,
-            }
-         );
+         const response = await fetch($apiURL + `/uploadRab/${rabFileName}`, {
+            method: "GET",
+            headers: headers,
+         });
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1536,8 +1585,32 @@
       let filename = "Proposal_" + judul + ".pdf";
 
       try {
+         const response = await fetch($apiURL + `/uploadPpm/${ppmFileName}`, {
+            method: "GET",
+            headers: headers,
+         });
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadKontrakPpmEksternal(e) {
+      let filename = "Kontrak PPM_" + judul + ".pdf";
+      try {
          const response = await fetch(
-            $apiURL + `/uploadPpm/${randomPpmFileName}`,
+            $apiURL + `/uploadKontrakPPMEksternal/${kontrakFileName}`,
             {
                method: "GET",
                headers: headers,
@@ -1546,12 +1619,14 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -1992,9 +2067,18 @@
       editModeRAB = !editModeRAB;
    }
 
+   function toggleEditModeKontrakPPM() {
+      editModeKontrakPPM = !editModeKontrakPPM;
+   }
+
    function filePpmChange(e) {
       filePpm = e.target.files[0];
       $ppmFile = e.target.files[0];
+   }
+
+   function fileKontrakChange(e) {
+      fileKontrak = e.target.files[0];
+      $kontrakFile = e.target.files[0];
    }
 
    function fileRabChange(e) {
@@ -2311,7 +2395,76 @@
                   {/if}
                </Field>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               {#if skemaEksternal.includes(jenisSkema)}
+                  <Field name="File Kontrak PPM">
+                     {#if !editModeKontrakPPM}
+                        <button
+                           class="button is-link button is-small"
+                           on:click={handleDownloadKontrakPpmEksternal}
+                           >Download Kontrak PPM</button
+                        >
+                        <button
+                           class="button is-link is-light is-small"
+                           on:click={toggleEditModeKontrakPPM}
+                           title="Change files"
+                           ><span class="icon">
+                              <Icon id="edit" src={edit} />
+                           </span></button
+                        >
+                     {:else}
+                        <span class="inputf__wrapper">
+                           <input
+                              id="fileKontrak"
+                              class="inputf custom-file-input"
+                              accept="application/pdf"
+                              type="file"
+                              on:change={fileKontrakChange}
+                           />
+                           <div class="file has-name is-success is-small">
+                              <label class="file-label" for="fileKontrak">
+                                 <input
+                                    class="file-input"
+                                    type="file"
+                                    name="resume"
+                                 />
+                                 <span class="file-cta">
+                                    <span class="file-icon">
+                                       <Icon id="download" src={downloadIcon} />
+                                    </span>
+                                    <span class="file-label">
+                                       Choose a file</span
+                                    >
+                                 </span>
+                                 {#if $kontrakFile?.name}
+                                    <span class="file-name">
+                                       {$kontrakFile.name}</span
+                                    >
+                                 {:else}
+                                    <span class="file-name">No file chosen</span
+                                    >
+                                 {/if}
+                              </label>
+                           </div>
+                           <button
+                              class="button is-danger is-light is-small"
+                              on:click={toggleEditModeKontrakPPM}
+                              title="Cancel"
+                              ><span class="icon">
+                                 <Icon id="cancel" src={cancelIcon} />
+                              </span></button
+                           >
+                           {#if error.fileKontrak}
+                              <p class="error has-text-danger">
+                                 {error.fileKontrak}
+                              </p>
+                           {/if}
+                        </span>
+                        <p class="help">File Type: pdf</p>
+                     {/if}
+                  </Field>
+               {/if}
+
+               {#if skemaInternal.includes(jenisSkema)}
                   <Field name="File RAB">
                      {#if !editModeRAB}
                         <button
@@ -2483,7 +2636,20 @@
                      </div>
                   </div>
 
-                  {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+                  {#if skemaEksternal.includes(jenisSkema)}
+                     <div class="column">
+                        <p class="title is-6"><b>File Kontrak PPM</b></p>
+                        <p class="subtitle is-6">
+                           <button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadKontrakPpmEksternal}
+                              >Download Kontrak PPM</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+
+                  {#if skemaInternal.includes(jenisSkema)}
                      <div class="column">
                         <div class="field">
                            <p class="title is-6">
@@ -3334,7 +3500,7 @@
             <!-- ========================================== -->
             <!--             Presentasi Hasil PPM           -->
             <!-- ========================================== -->
-            {#if !skemaEksternal.includes(jenisSkema)}
+            {#if !skemaEksternal.includes(jenisSkema) && !skemaMandiri.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->

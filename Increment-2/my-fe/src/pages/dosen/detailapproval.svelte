@@ -165,6 +165,7 @@
             abstrak = data.abstrak;
             status = data.status;
             randomRabFileName = data.rab_file_name;
+            kontrakFileName = data.kontrak_ppm_eksternal_file_name;
             randomPpmFileName = data.ppm_file_name;
             randomPenilaianFileNamedb = data.penilaian_file_name;
             ttdSuratKontrak = data.ttd_surat_kontrak;
@@ -447,12 +448,14 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -473,12 +476,41 @@
 
          if (response.status === 401) {
             location.pathname = "/tokenexpired";
-         } else {
+         } else if (response.ok) {
             const blob = await response.blob();
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = filename;
             link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadKontrakPpmEksternal(e) {
+      let filename = "Kontrak PPM_" + judul + ".pdf";
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadKontrakPPMEksternal/${kontrakFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
          }
       } catch (error) {
          console.error("Error downloading file:", error);
@@ -903,7 +935,20 @@
                   </div>
                </div>
 
-               {#if jenisSkema === "Riset Kelompok Keahlian" || jenisSkema === "Riset Terapan" || jenisSkema === "Riset Kerjasama" || jenisSkema === "Pengabdian Masyarakat Desa Binaan" || jenisSkema === "Pengabdian Masyarakat UMKM Binaan"}
+               {#if skemaEksternal.includes(jenisSkema)}
+                  <div class="column">
+                     <p class="title is-6"><b>File Kontrak PPM</b></p>
+                     <p class="subtitle is-6">
+                        <button
+                           class="button is-link button is-small"
+                           on:click={handleDownloadKontrakPpmEksternal}
+                           >Download Kontrak PPM</button
+                        >
+                     </p>
+                  </div>
+               {/if}
+
+               {#if skemaInternal.includes(jenisSkema)}
                   <div class="column">
                      <div class="field">
                         <p class="title is-6">
@@ -1165,7 +1210,7 @@
             </div>
          {/if}
 
-         {#if (skemaInternal.includes(jenisSkema) && status >= 10) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
+         {#if (skemaInternal.includes(jenisSkema) && status >= 8) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
             <!-- ============================================================ -->
             <!--     Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas    -->
             <!-- ============================================================ -->
@@ -1434,7 +1479,7 @@
             <!-- ========================================== -->
             <!--             Presentasi Hasil PPM           -->
             <!-- ========================================== -->
-            {#if !skemaEksternal.includes(jenisSkema)}
+            {#if !skemaEksternal.includes(jenisSkema) && !skemaMandiri.includes(jenisSkema)}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->

@@ -5,6 +5,7 @@ export const isLogin = writable(false);
 export const isUsername = writable(null);
 export const ppmFile = writable({});
 export const rabFile = writable({});
+export const kontrakFile = writable({});
 export const penilaianFile = writable({});
 export const skPendanaanFile = writable({});
 export const suratKontrakFile = writable({});

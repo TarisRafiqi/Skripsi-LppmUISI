@@ -1,5 +1,5 @@
 <script>
-   import { route, apiURL, ppmFile } from "../../store";
+   import { route, apiURL, ppmFile, kontrakFile } from "../../store";
    import { onMount, afterUpdate, beforeUpdate } from "svelte";
    import Modalerror from "../../libs/Modalerror.svelte";
    import Fieldview from "../../libs/Fieldview.svelte";
@@ -31,6 +31,7 @@
    let filePpm;
    let ppmFileName;
    let rabFileName;
+   let kontrakFileName;
 
    let kelompokKeahlian = "";
    let biayaPenelitian = "";
@@ -72,6 +73,7 @@
 
       ppmFileName = id + "_Proposal PPM_" + randomChar;
       rabFileName = id + "_RAB PPM_" + randomChar;
+      kontrakFileName = id + "_Kontrak PPM Eksternal_" + randomChar;
 
       //============================================================
       // Get Users for Form Select Anggota Tim
@@ -368,6 +370,7 @@
       isLoading = true;
 
       const readerPpm = new FileReader();
+      const readerKontrakPpm = new FileReader();
 
       if (jenisKegiatan === "Penelitian") {
          jenisSkema = "Riset Eksternal";
@@ -392,6 +395,7 @@
          status: 0,
          rabFileName,
          ppmFileName,
+         kontrakFileName,
       };
 
       // Validasi biodataAnggota profiles
@@ -452,16 +456,65 @@
                reject(error);
             }
          };
-         readerPpm.readAsDataURL(filePpm);
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+      });
+
+      // ========================== Upload File Kontrak PPM Eksternal ========================== //
+      const cekFileKontrakPPM = new Promise((resolve, reject) => {
+         if (!fileKontrak) {
+            resolve("No fileKontrak selected");
+            return;
+         }
+
+         readerKontrakPpm.onloadend = async () => {
+            const base64Data = readerKontrakPpm.result.split(",")[1];
+            const payloadKontrakPpmFile = {
+               fileKontrak: {
+                  name: fileKontrak.name,
+                  type: fileKontrak.type,
+                  data: base64Data,
+               },
+               kontrakFileName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadKontrakPPMEksternal",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadKontrakPpmFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  resolve(result);
+               } else {
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+         readerKontrakPpm.readAsDataURL(fileKontrak);
       });
 
       // ========================== Post Data Proposal PPM ========================== //
       const cekDataProposalPPM = new Promise(async (resolve, reject) => {
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadProposal),
-         });
+         const responseProposal = await fetch(
+            $apiURL + "/pendaftaranPPMEksternal",
+            {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadProposal),
+            }
+         );
 
          const resultProposal = await responseProposal.json();
 
@@ -479,7 +532,11 @@
       });
 
       try {
-         await Promise.all([cekFileProposal, cekDataProposalPPM]);
+         await Promise.all([
+            cekFileProposal,
+            cekFileKontrakPPM,
+            cekDataProposalPPM,
+         ]);
       } finally {
          isLoading = false;
          $route("/dosen/pendaftaran");
@@ -494,6 +551,7 @@
       isLoading = true;
 
       const readerPpm = new FileReader();
+      const readerKontrakPpm = new FileReader();
 
       if (jenisKegiatan === "Penelitian") {
          jenisSkema = "Riset Eksternal";
@@ -518,6 +576,7 @@
          status: 2,
          ppmFileName,
          rabFileName,
+         kontrakFileName,
       };
 
       // Validasi  profiles biodata anggota
@@ -578,16 +637,65 @@
                reject(error);
             }
          };
-         readerPpm.readAsDataURL(filePpm);
+         if (filePpm) readerPpm.readAsDataURL(filePpm);
+      });
+
+      // ========================== Upload File Kontrak PPM Eksternal ========================== //
+      const cekFileKontrakPPM = new Promise((resolve, reject) => {
+         if (!fileKontrak) {
+            resolve("No fileKontrak selected");
+            return;
+         }
+
+         readerKontrakPpm.onloadend = async () => {
+            const base64Data = readerKontrakPpm.result.split(",")[1];
+            const payloadKontrakPpmFile = {
+               fileKontrak: {
+                  name: fileKontrak.name,
+                  type: fileKontrak.type,
+                  data: base64Data,
+               },
+               kontrakFileName,
+            };
+
+            try {
+               const response = await fetch(
+                  $apiURL + "/uploadKontrakPPMEksternal",
+                  {
+                     method: "POST",
+                     headers: headers,
+                     body: JSON.stringify(payloadKontrakPpmFile),
+                  }
+               );
+
+               const result = await response.json();
+
+               if (response.status === 401) {
+                  location.pathname = "/tokenexpired";
+                  reject("Token expired");
+               } else if (response.ok) {
+                  resolve(result);
+               } else {
+                  reject(result);
+               }
+            } catch (error) {
+               console.error("Error uploading file:", error);
+               reject(error);
+            }
+         };
+         readerKontrakPpm.readAsDataURL(fileKontrak);
       });
 
       // ========================== Post Data Proposal PPM ========================== //
       const cekDataProposalPPM = new Promise(async (resolve, reject) => {
-         const responseProposal = await fetch($apiURL + "/ppm", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payloadProposal),
-         });
+         const responseProposal = await fetch(
+            $apiURL + "/pendaftaranPPMEksternal",
+            {
+               method: "POST",
+               headers: headers,
+               body: JSON.stringify(payloadProposal),
+            }
+         );
 
          const resultProposal = await responseProposal.json();
 
@@ -605,7 +713,11 @@
       });
 
       try {
-         await Promise.all([cekFileProposal, cekDataProposalPPM]);
+         await Promise.all([
+            cekFileProposal,
+            cekFileKontrakPPM,
+            cekDataProposalPPM,
+         ]);
       } finally {
          isLoading = false;
          $route("/dosen/pendaftaran");
@@ -645,6 +757,7 @@
          judul,
          myAbstract,
          ppmFileName,
+         kontrakFileName,
       };
 
       for (const [key, value] of Object.entries(payloadProposal)) {
@@ -656,8 +769,8 @@
          }
       }
 
-      if (isObjectEmpty($ppmFile)) {
-         error["fileProposal"] = `*`;
+      if (isObjectEmpty($kontrakFile)) {
+         error["fileKontrak"] = `*`;
       }
 
       if (Object.keys(error).length > 0) {
@@ -674,6 +787,11 @@
    function filePpmChange(e) {
       filePpm = e.target.files[0];
       $ppmFile = e.target.files[0];
+   }
+
+   function fileKontrakChange(e) {
+      fileKontrak = e.target.files[0];
+      $kontrakFile = e.target.files[0];
    }
 
    // Delete Member Anggota Tim
@@ -932,6 +1050,38 @@
                </div>
                {#if error.fileProposal}
                   <p class="error has-text-danger">{error.fileProposal}</p>
+               {/if}
+            </span>
+            <p class="help">File Type: pdf</p>
+         </Field>
+
+         <Field name="File Kontrak">
+            <span class="inputf__wrapper">
+               <input
+                  id="fileKontrak"
+                  class="inputf custom-file-input"
+                  accept="application/pdf"
+                  type="file"
+                  on:change={fileKontrakChange}
+               />
+               <div class="file has-name is-success is-small">
+                  <label class="file-label" for="fileKontrak">
+                     <input class="file-input" type="file" name="resume" />
+                     <span class="file-cta">
+                        <span class="file-icon">
+                           <Icon id="download" src={downloadIcon} />
+                        </span>
+                        <span class="file-label"> Choose a file</span>
+                     </span>
+                     {#if $kontrakFile?.name}
+                        <span class="file-name"> {$kontrakFile.name}</span>
+                     {:else}
+                        <span class="file-name">No file chosen</span>
+                     {/if}
+                  </label>
+               </div>
+               {#if error.fileKontrak}
+                  <p class="error has-text-danger">{error.fileKontrak}</p>
                {/if}
             </span>
             <p class="help">File Type: pdf</p>
