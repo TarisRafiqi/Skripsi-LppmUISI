@@ -1753,12 +1753,12 @@ div.svelte-gcisbw {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Select.esbuild-svelte-fake-css */
-div.svelte-zkhzei.svelte-zkhzei {
+div.svelte-96jy70.svelte-96jy70 {
   position: relative;
   display: inline-flex;
   width: 100%;
 }
-span.svelte-zkhzei.svelte-zkhzei {
+span.svelte-96jy70.svelte-96jy70 {
   z-index: 10;
   position: absolute;
   display: none;
@@ -1768,8 +1768,11 @@ span.svelte-zkhzei.svelte-zkhzei {
   background: white;
   border: 1px solid #ccc;
   cursor: pointer;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
-a.svelte-zkhzei.svelte-zkhzei {
+a.svelte-96jy70.svelte-96jy70 {
   position: relative;
   display: block;
   margin: 0;
@@ -1777,7 +1780,7 @@ a.svelte-zkhzei.svelte-zkhzei {
   text-decoration: none;
   color: inherit;
 }
-a.svelte-zkhzei.svelte-zkhzei:hover {
+a.svelte-96jy70.svelte-96jy70:hover {
   background: #f0f6fd;
 }
 .select a.selected::after {
@@ -1785,7 +1788,7 @@ a.svelte-zkhzei.svelte-zkhzei:hover {
   position: absolute;
   right: 0.25rem;
 }
-.focused.svelte-zkhzei + span.svelte-zkhzei {
+.focused.svelte-96jy70 + span.svelte-96jy70 {
   display: block;
 }
 

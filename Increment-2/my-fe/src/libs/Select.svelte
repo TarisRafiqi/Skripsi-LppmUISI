@@ -98,6 +98,9 @@
       background: white;
       border: 1px solid #ccc;
       cursor: pointer;
+      max-height: 200px;
+      overflow-y: auto;
+      scrollbar-width: thin;
    }
    a {
       position: relative;
