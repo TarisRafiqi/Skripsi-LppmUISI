@@ -12,6 +12,7 @@
       suratTugasFile,
       skPPMFile,
       hasilPPMFile,
+      laporanKeuanganFile,
    } from "../../store";
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
@@ -251,6 +252,7 @@
             fileSuratTugasNameDB = data.file_surat_tugas;
             fileSkPPMNameDB = data.file_sk_ppm;
             fileHasilPPMNameDB = data.file_hasil_ppm;
+            fileLaporanKeuanganNameDB = data.file_laporan_keuangan;
             statusPencairanDana = data.status_pencairan_dana || "";
          }
       }
@@ -883,25 +885,39 @@
 
    async function handleSubmitHasilPPM() {
       isLoading = true;
+
       const readerHasilPPM = new FileReader();
-      let fileHasilPPMName = id + "_Laporan Hasil PPM";
+      const readerLaporanKeuanganPPM = new FileReader();
+
       let payloadFileName;
+      let fileHasilPPMName = id + "_Laporan Hasil PPM";
+      let fileLaporanKeuanganName = id + "_Laporan Keuangan PPM";
 
       if (hasilPPMisRequired()) {
          payloadFileName = {
             status: Number(data.status) + 2,
             fileHasilPPMName,
+            fileLaporanKeuanganName,
             id,
          };
       } else if (hasilPPMisRevisi()) {
          payloadFileName = {
             status: Number(data.status) + 1,
             fileHasilPPMName,
+            fileLaporanKeuanganName,
             id,
          };
       }
 
-      if (hasilPPMisRequired && !fileHasilPPM) {
+      if (
+         skemaInternal.includes(jenisSkema) &&
+         hasilPPMisRequired() &&
+         (!fileHasilPPM || !fileLaporanKeuangan)
+      ) {
+         showModalErrorHasilPPM = true;
+         isLoading = false;
+         return;
+      } else if (hasilPPMisRequired() && !fileHasilPPM) {
          showModalErrorHasilPPM = true;
          isLoading = false;
          return;
@@ -951,7 +967,54 @@
             };
 
             if (fileHasilPPM) readerHasilPPM.readAsDataURL(fileHasilPPM);
-            // readerHasilPPM.readAsDataURL(fileHasilPPM);
+         });
+
+         // ================================ Upload Laporan Keuangan Hasil PPM ================================ //
+         const laporanKeuanganPPM = new Promise((resolve, reject) => {
+            if (!fileLaporanKeuangan) {
+               resolve("No file Hasil PPM selected");
+               return;
+            }
+
+            readerLaporanKeuanganPPM.onloadend = async () => {
+               const base64Data = readerLaporanKeuanganPPM.result.split(",")[1];
+               const payloadLaporanKeuanganFile = {
+                  fileLaporanKeuangan: {
+                     name: fileLaporanKeuangan.name,
+                     type: fileLaporanKeuangan.type,
+                     data: base64Data,
+                  },
+                  fileLaporanKeuanganName,
+               };
+
+               try {
+                  const response = await fetch(
+                     $apiURL + "/uploadDownloadLaporanKeuangan",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadLaporanKeuanganFile),
+                     }
+                  );
+
+                  const result = await response.json();
+
+                  if (response.status === 401) {
+                     location.pathname = "/tokenexpired";
+                     reject("Token expired");
+                  } else if (response.ok) {
+                     resolve(result);
+                  } else {
+                     reject(result);
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  reject(error);
+               }
+            };
+
+            if (fileLaporanKeuangan)
+               readerLaporanKeuanganPPM.readAsDataURL(fileLaporanKeuangan);
          });
 
          // ================================ Update Data PPM ================================ //
@@ -980,7 +1043,11 @@
          });
 
          try {
-            await Promise.all([uploadHasilPPM, submitFileName]);
+            await Promise.all([
+               uploadHasilPPM,
+               laporanKeuanganPPM,
+               submitFileName,
+            ]);
          } finally {
             isLoading = false;
             showModalChecked = true;
@@ -1801,6 +1868,35 @@
       }
    }
 
+   async function handleDownloadLaporanKeuangan() {
+      let filename = "Laporan Keuangan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL +
+               `/uploadDownloadLaporanKeuangan/${fileLaporanKeuanganNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
    async function checkboxPresentasiHasilPPM(event) {
       presentasiHasilPPM = event.target.checked ? 1 : 0;
       payload = {
@@ -2114,6 +2210,11 @@
    function fileHasilPPMChange(e) {
       fileHasilPPM = e.target.files[0];
       $hasilPPMFile = e.target.files[0];
+   }
+
+   function fileLaporanKeuanganChange(e) {
+      fileLaporanKeuangan = e.target.files[0];
+      $laporanKeuanganFile = e.target.files[0];
    }
 
    let tab1 = true;
@@ -3425,6 +3526,61 @@
                               ></td
                            >
                         </tr>
+                        {#if skemaInternal.includes(jenisSkema)}
+                           <tr>
+                              <td>Laporan Keuangan</td>
+                              <td
+                                 ><span class="inputf__wrapper">
+                                    <input
+                                       id="fileLaporanKeuangan"
+                                       class="inputf custom-file-input"
+                                       accept="application/pdf"
+                                       type="file"
+                                       on:change={fileLaporanKeuanganChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="fileLaporanKeuangan"
+                                       >
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $laporanKeuanganFile?.name}
+                                             <span class="file-name">
+                                                {$laporanKeuanganFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span></td
+                              >
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadLaporanKeuangan}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        {/if}
                      </tbody>
                   </table>
 

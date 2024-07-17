@@ -176,6 +176,7 @@
             fileSuratTugasNameDB = data.file_surat_tugas;
             fileSkPPMNameDB = data.file_sk_ppm;
             fileHasilPPMNameDB = data.file_hasil_ppm;
+            fileLaporanKeuanganNameDB = data.file_laporan_keuangan;
             statusPencairanDana =
                data.status_pencairan_dana || "Menunggu pencairan dana";
          } else {
@@ -663,6 +664,35 @@
       try {
          const response = await fetch(
             $apiURL + `/uploadDownloadHasilPPM/${fileHasilPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadLaporanKeuangan() {
+      let filename = "Laporan Keuangan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL +
+               `/uploadDownloadLaporanKeuangan/${fileLaporanKeuanganNameDB}`,
             {
                method: "GET",
                headers: headers,
@@ -1418,6 +1448,18 @@
                               ></td
                            >
                         </tr>
+                        {#if skemaInternal.includes(jenisSkema)}
+                           <tr>
+                              <td>Laporan Keuangan</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadLaporanKeuangan}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        {/if}
                      </tbody>
                   </table>
 

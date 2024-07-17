@@ -1520,9 +1520,6 @@
 
    async function handleSubmitHasilPPM() {
       isLoading = true;
-      // console.log(fileHasilPPM);
-      // console.log(fileLaporanKeuangan);
-      // return;
 
       const readerHasilPPM = new FileReader();
       const readerLaporanKeuanganPPM = new FileReader();
@@ -1594,12 +1591,8 @@
                      location.pathname = "/tokenexpired";
                      reject("Token expired");
                   } else if (response.ok) {
-                     // Handle if sukses (Modal Sukses)
-                     console.log("File Laporan Hasil PPM sukses disimpan");
                      resolve(result);
                   } else {
-                     // Handle if gagal (Modal Gagal/Error)
-                     console.log("File Laporan Hasil PPM gagal disimpan");
                      reject(result);
                   }
                } catch (error) {
@@ -1645,12 +1638,8 @@
                      location.pathname = "/tokenexpired";
                      reject("Token expired");
                   } else if (response.ok) {
-                     // Handle if sukses (Modal Sukses)
-                     console.log("File Laporan Keuangan sukses disimpan");
                      resolve(result);
                   } else {
-                     // Handle if gagal (Modal Gagal/Error)
-                     console.log("File Laporan Keuangan gagal disimpan");
                      reject(result);
                   }
                } catch (error) {
