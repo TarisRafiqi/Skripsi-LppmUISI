@@ -12,6 +12,7 @@ export const suratKontrakFile = writable({});
 export const suratTugasFile = writable({});
 export const skPPMFile = writable({});
 export const hasilPPMFile = writable({});
+export const laporanKeuanganFile = writable({});
 
 export const apiURL = writable(
    process.ENV.production

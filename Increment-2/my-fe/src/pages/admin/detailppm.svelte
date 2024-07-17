@@ -3190,7 +3190,7 @@
                            <tr>
                               <th style="width: 70%;">Nama </th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Upload File</th
+                                 >Upload File (.pdf)</th
                               >
                               <th class="is-narrow" style="text-align: center"
                                  >Download File</th
