@@ -22405,59 +22405,189 @@
 
   // src/pages/admin/home.svelte
   init_define_process();
+  function get_each_context6(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[0] = list[i];
+    return child_ctx;
+  }
+  function create_else_block6(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "...";
+        attr(p, "class", "title");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_if_block9(ctx) {
+    let p;
+    let t_value = (
+      /*cardCounter*/
+      ctx[0].title + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "title");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*cardCounter*/
+        1 && t_value !== (t_value = /*cardCounter*/
+        ctx2[0].title + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_each_block6(ctx) {
+    let div3;
+    let div2;
+    let div0;
+    let icon;
+    let t0;
+    let div1;
+    let p;
+    let t1_value = (
+      /*cardCounter*/
+      ctx[0].heading + ""
+    );
+    let t1;
+    let t2;
+    let t3;
+    let current;
+    icon = new Icon_default({
+      props: {
+        id: "logo",
+        src: (
+          /*cardCounter*/
+          ctx[0].icon
+        ),
+        size: "2"
+      }
+    });
+    function select_block_type(ctx2, dirty) {
+      if (
+        /*cardCounter*/
+        ctx2[0].title
+      )
+        return create_if_block9;
+      return create_else_block6;
+    }
+    let current_block_type = select_block_type(ctx, -1);
+    let if_block = current_block_type(ctx);
+    return {
+      c() {
+        div3 = element("div");
+        div2 = element("div");
+        div0 = element("div");
+        create_component(icon.$$.fragment);
+        t0 = space();
+        div1 = element("div");
+        p = element("p");
+        t1 = text(t1_value);
+        t2 = space();
+        if_block.c();
+        t3 = space();
+        attr(div0, "class", "flex-item-left svelte-g8zc3i");
+        attr(p, "class", "heading");
+        attr(div1, "class", "flex-item-right has-text-centered svelte-g8zc3i");
+        attr(div2, "class", "box cardCounter svelte-g8zc3i");
+        attr(div3, "class", "column");
+      },
+      m(target, anchor) {
+        insert(target, div3, anchor);
+        append(div3, div2);
+        append(div2, div0);
+        mount_component(icon, div0, null);
+        append(div2, t0);
+        append(div2, div1);
+        append(div1, p);
+        append(p, t1);
+        append(div1, t2);
+        if_block.m(div1, null);
+        append(div3, t3);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const icon_changes = {};
+        if (dirty & /*cardCounter*/
+        1)
+          icon_changes.src = /*cardCounter*/
+          ctx2[0].icon;
+        icon.$set(icon_changes);
+        if ((!current || dirty & /*cardCounter*/
+        1) && t1_value !== (t1_value = /*cardCounter*/
+        ctx2[0].heading + ""))
+          set_data(t1, t1_value);
+        if (current_block_type === (current_block_type = select_block_type(ctx2, dirty)) && if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block.d(1);
+          if_block = current_block_type(ctx2);
+          if (if_block) {
+            if_block.c();
+            if_block.m(div1, null);
+          }
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div3);
+        }
+        destroy_component(icon);
+        if_block.d();
+      }
+    };
+  }
   function create_default_slot5(ctx) {
     let h2;
     let t1;
     let hr;
     let t2;
-    let div16;
-    let div3;
-    let div2;
     let div0;
-    let icon0;
     let t3;
-    let div1;
-    let p0;
-    let t5;
-    let p1;
-    let t6;
-    let t7;
-    let div7;
-    let div6;
-    let div4;
-    let icon1;
-    let t8;
     let div5;
-    let p2;
-    let t10;
-    let p3;
-    let t11;
-    let t12;
-    let div11;
-    let div10;
-    let div8;
-    let icon2;
-    let t13;
-    let div9;
-    let t17;
-    let div15;
-    let div14;
-    let div12;
-    let icon3;
-    let t18;
-    let div13;
     let current;
-    icon0 = new Icon_default({
-      props: { id: "logo", src: penelitian, size: "2" }
-    });
-    icon1 = new Icon_default({
-      props: { id: "logo", src: pengmas, size: "2" }
-    });
-    icon2 = new Icon_default({
-      props: { id: "logo", src: jurnal, size: "2" }
-    });
-    icon3 = new Icon_default({
-      props: { id: "logo", src: copyright, size: "2" }
+    let each_value = ensure_array_like(
+      /*cardCounter*/
+      ctx[0]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block6(get_each_context6(ctx, each_value, i));
+    }
+    const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
+      each_blocks[i] = null;
     });
     return {
       c() {
@@ -22466,148 +22596,72 @@
         t1 = space();
         hr = element("hr");
         t2 = space();
-        div16 = element("div");
-        div3 = element("div");
-        div2 = element("div");
         div0 = element("div");
-        create_component(icon0.$$.fragment);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
         t3 = space();
-        div1 = element("div");
-        p0 = element("p");
-        p0.textContent = "Penelitian";
-        t5 = space();
-        p1 = element("p");
-        t6 = text(
-          /*penelitianCounter*/
-          ctx[0]
-        );
-        t7 = space();
-        div7 = element("div");
-        div6 = element("div");
-        div4 = element("div");
-        create_component(icon1.$$.fragment);
-        t8 = space();
         div5 = element("div");
-        p2 = element("p");
-        p2.textContent = "Pengmas";
-        t10 = space();
-        p3 = element("p");
-        t11 = text(
-          /*pengmasCounter*/
-          ctx[1]
-        );
-        t12 = space();
-        div11 = element("div");
-        div10 = element("div");
-        div8 = element("div");
-        create_component(icon2.$$.fragment);
-        t13 = space();
-        div9 = element("div");
-        div9.innerHTML = `<p class="heading">Ongoing</p> <p class="title">...</p>`;
-        t17 = space();
-        div15 = element("div");
-        div14 = element("div");
-        div12 = element("div");
-        create_component(icon3.$$.fragment);
-        t18 = space();
-        div13 = element("div");
-        div13.innerHTML = `<p class="heading">Completed</p> <p class="title">...</p>`;
+        div5.innerHTML = `<div class="column"><div class="box"><h5 class="title is-5">Waktu Pendaftaran Proposal PPM</h5> <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"><thead><tr><th>Jenis Skema</th> <th class="is-narrow" style="text-align: center;">Periode Pendaftaran</th> <th class="is-narrow" style="text-align: center;">Buka Pendaftaran</th></tr></thead> <tbody><tr><td>Pendanaan Hibah Internal UISI</td> <td class="centerText svelte-g8zc3i">Januari - Februari</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Hibah Eksternal</td> <td class="centerText svelte-g8zc3i">-</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Mandiri</td> <td class="centerText svelte-g8zc3i">Januari - November</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr></tbody></table></div></div> <div class="column"><div class="box"><h5 class="title is-5">Pengumuman</h5></div></div>`;
         attr(h2, "class", "title is-2");
-        attr(div0, "class", "flex-item-left svelte-lfygnb");
-        attr(p0, "class", "heading");
-        attr(p1, "class", "title");
-        attr(div1, "class", "flex-item-right has-text-centered svelte-lfygnb");
-        attr(div2, "class", "box svelte-lfygnb");
-        attr(div3, "class", "column");
-        attr(div4, "class", "flex-item-left svelte-lfygnb");
-        attr(p2, "class", "heading");
-        attr(p3, "class", "title");
-        attr(div5, "class", "flex-item-right has-text-centered svelte-lfygnb");
-        attr(div6, "class", "box svelte-lfygnb");
-        attr(div7, "class", "column");
-        attr(div8, "class", "flex-item-left svelte-lfygnb");
-        attr(div9, "class", "flex-item-right has-text-centered svelte-lfygnb");
-        attr(div10, "class", "box svelte-lfygnb");
-        attr(div11, "class", "column");
-        attr(div12, "class", "flex-item-left svelte-lfygnb");
-        attr(div13, "class", "flex-item-right has-text-centered svelte-lfygnb");
-        attr(div14, "class", "box svelte-lfygnb");
-        attr(div15, "class", "column");
-        attr(div16, "class", "columns");
+        attr(div0, "class", "columns cardCounter-container is-desktop");
+        attr(div5, "class", "columns is-desktop");
       },
       m(target, anchor) {
         insert(target, h2, anchor);
         insert(target, t1, anchor);
         insert(target, hr, anchor);
         insert(target, t2, anchor);
-        insert(target, div16, anchor);
-        append(div16, div3);
-        append(div3, div2);
-        append(div2, div0);
-        mount_component(icon0, div0, null);
-        append(div2, t3);
-        append(div2, div1);
-        append(div1, p0);
-        append(div1, t5);
-        append(div1, p1);
-        append(p1, t6);
-        append(div16, t7);
-        append(div16, div7);
-        append(div7, div6);
-        append(div6, div4);
-        mount_component(icon1, div4, null);
-        append(div6, t8);
-        append(div6, div5);
-        append(div5, p2);
-        append(div5, t10);
-        append(div5, p3);
-        append(p3, t11);
-        append(div16, t12);
-        append(div16, div11);
-        append(div11, div10);
-        append(div10, div8);
-        mount_component(icon2, div8, null);
-        append(div10, t13);
-        append(div10, div9);
-        append(div16, t17);
-        append(div16, div15);
-        append(div15, div14);
-        append(div14, div12);
-        mount_component(icon3, div12, null);
-        append(div14, t18);
-        append(div14, div13);
+        insert(target, div0, anchor);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(div0, null);
+          }
+        }
+        insert(target, t3, anchor);
+        insert(target, div5, anchor);
         current = true;
       },
       p(ctx2, dirty) {
-        if (!current || dirty & /*penelitianCounter*/
-        1)
-          set_data(
-            t6,
-            /*penelitianCounter*/
+        if (dirty & /*cardCounter*/
+        1) {
+          each_value = ensure_array_like(
+            /*cardCounter*/
             ctx2[0]
           );
-        if (!current || dirty & /*pengmasCounter*/
-        2)
-          set_data(
-            t11,
-            /*pengmasCounter*/
-            ctx2[1]
-          );
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context6(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+              transition_in(each_blocks[i], 1);
+            } else {
+              each_blocks[i] = create_each_block6(child_ctx);
+              each_blocks[i].c();
+              transition_in(each_blocks[i], 1);
+              each_blocks[i].m(div0, null);
+            }
+          }
+          group_outros();
+          for (i = each_value.length; i < each_blocks.length; i += 1) {
+            out(i);
+          }
+          check_outros();
+        }
       },
       i(local) {
         if (current)
           return;
-        transition_in(icon0.$$.fragment, local);
-        transition_in(icon1.$$.fragment, local);
-        transition_in(icon2.$$.fragment, local);
-        transition_in(icon3.$$.fragment, local);
+        for (let i = 0; i < each_value.length; i += 1) {
+          transition_in(each_blocks[i]);
+        }
         current = true;
       },
       o(local) {
-        transition_out(icon0.$$.fragment, local);
-        transition_out(icon1.$$.fragment, local);
-        transition_out(icon2.$$.fragment, local);
-        transition_out(icon3.$$.fragment, local);
+        each_blocks = each_blocks.filter(Boolean);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          transition_out(each_blocks[i]);
+        }
         current = false;
       },
       d(detaching) {
@@ -22616,12 +22670,11 @@
           detach(t1);
           detach(hr);
           detach(t2);
-          detach(div16);
+          detach(div0);
+          detach(t3);
+          detach(div5);
         }
-        destroy_component(icon0);
-        destroy_component(icon1);
-        destroy_component(icon2);
-        destroy_component(icon3);
+        destroy_each(each_blocks, detaching);
       }
     };
   }
@@ -22644,8 +22697,8 @@
       },
       p(ctx2, [dirty]) {
         const article_changes = {};
-        if (dirty & /*$$scope, pengmasCounter, penelitianCounter*/
-        11) {
+        if (dirty & /*$$scope, cardCounter*/
+        65) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article2.$set(article_changes);
@@ -22667,8 +22720,9 @@
   }
   function instance20($$self, $$props, $$invalidate) {
     let $apiURL;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
     let penelitianCounter, pengmasCounter;
+    let cardCounter = [];
     onMount(async () => {
       const accessToken = localStorage.getItem("token");
       const headers = {
@@ -22681,7 +22735,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (responseCP.ok) {
-          $$invalidate(0, penelitianCounter = resultCP.penelitianCounter);
+          penelitianCounter = resultCP.penelitianCounter;
         } else {
           console.log(responseCP);
         }
@@ -22692,13 +22746,35 @@
         location.pathname = "/tokenexpired";
       } else {
         if (responseCPM.ok) {
-          $$invalidate(1, pengmasCounter = resultCPM.pengmasCounter);
+          pengmasCounter = resultCPM.pengmasCounter;
         } else {
           console.log(responseCPM);
         }
       }
+      $$invalidate(0, cardCounter = [
+        {
+          heading: "Penelitian",
+          title: penelitianCounter,
+          icon: penelitian
+        },
+        {
+          heading: "Pengmas",
+          title: pengmasCounter,
+          icon: pengmas
+        },
+        {
+          heading: "Ongoing",
+          title: "...",
+          icon: jurnal
+        },
+        {
+          heading: "Completed",
+          title: "...",
+          icon: copyright
+        }
+      ]);
     });
-    return [penelitianCounter, pengmasCounter];
+    return [cardCounter];
   }
   var Home = class extends SvelteComponent {
     constructor(options) {
@@ -22961,12 +23037,12 @@
 
   // src/pages/admin/ppmmanagement.svelte
   init_define_process();
-  function get_each_context6(ctx, list, i) {
+  function get_each_context7(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[15] = list[i];
     return child_ctx;
   }
-  function create_if_block9(ctx) {
+  function create_if_block10(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -23006,7 +23082,7 @@
       }
     };
   }
-  function create_each_block6(ctx) {
+  function create_each_block7(ctx) {
     let tr;
     let td0;
     let p0;
@@ -23245,7 +23321,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block6(get_each_context6(ctx, each_value, i));
+      each_blocks[i] = create_each_block7(get_each_context7(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -23571,12 +23647,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context6(ctx2, each_value, i);
+            const child_ctx = get_each_context7(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block6(child_ctx);
+              each_blocks[i] = create_each_block7(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(tbody, null);
@@ -23628,7 +23704,7 @@
     let current;
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block9(ctx)
+      ctx[0] && create_if_block10(ctx)
     );
     return {
       c() {
@@ -23654,7 +23730,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block9(ctx2);
+            if_block = create_if_block10(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -23757,7 +23833,7 @@
 
   // src/pages/admin/profile.svelte
   init_define_process();
-  function get_each_context7(ctx, list, i) {
+  function get_each_context8(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[201] = list[i];
     return child_ctx;
@@ -28855,7 +28931,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block7(get_each_context7(ctx, each_value, i));
+      each_blocks[i] = create_each_block8(get_each_context8(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -28886,12 +28962,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context7(ctx2, each_value, i);
+            const child_ctx = get_each_context8(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block7(child_ctx);
+              each_blocks[i] = create_each_block8(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -28927,7 +29003,7 @@
       }
     };
   }
-  function create_each_block7(ctx) {
+  function create_each_block8(ctx) {
     let tr;
     let td0;
     let button;
@@ -35732,7 +35808,7 @@
       }
     };
   }
-  function create_if_block10(ctx) {
+  function create_if_block11(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -35770,7 +35846,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].noHKI && create_if_block10(ctx)
+      ctx[1].noHKI && create_if_block11(ctx)
     );
     return {
       c() {
@@ -35820,7 +35896,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block10(ctx2);
+            if_block = create_if_block11(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -38409,13 +38485,13 @@
 
   // src/pages/admin/usersmanagement.svelte
   init_define_process();
-  function get_each_context8(ctx, list, i) {
+  function get_each_context9(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[18] = list[i];
     child_ctx[20] = i;
     return child_ctx;
   }
-  function create_else_block6(ctx) {
+  function create_else_block7(ctx) {
     let h4;
     return {
       c() {
@@ -38436,7 +38512,7 @@
       }
     };
   }
-  function create_if_block11(ctx) {
+  function create_if_block12(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -38556,7 +38632,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block8(get_each_context8(ctx, each_value, i));
+      each_blocks[i] = create_each_block9(get_each_context9(ctx, each_value, i));
     }
     return {
       c() {
@@ -38765,11 +38841,11 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context8(ctx2, each_value, i);
+            const child_ctx = get_each_context9(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
             } else {
-              each_blocks[i] = create_each_block8(child_ctx);
+              each_blocks[i] = create_each_block9(child_ctx);
               each_blocks[i].c();
               each_blocks[i].m(tbody, null);
             }
@@ -38810,7 +38886,7 @@
       }
     };
   }
-  function create_each_block8(ctx) {
+  function create_each_block9(ctx) {
     let tr;
     let td0;
     let a;
@@ -39053,7 +39129,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block11, create_else_block6];
+    const if_block_creators = [create_if_block12, create_else_block7];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -39322,7 +39398,7 @@
   var E404_default = E404;
 
   // src/pages/admin/Index.svelte
-  function create_else_block7(ctx) {
+  function create_else_block8(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -39429,7 +39505,7 @@
       }
     };
   }
-  function create_if_block12(ctx) {
+  function create_if_block13(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -39509,7 +39585,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block12, create_if_block_117, create_else_block7];
+    const if_block_creators = [create_if_block13, create_if_block_117, create_else_block8];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -39608,7 +39684,7 @@
   // src/pages/auth/Index.svelte
   init_define_process();
   var pages = __toESM(require_auth());
-  function create_else_block8(ctx) {
+  function create_else_block9(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -39715,7 +39791,7 @@
       }
     };
   }
-  function create_if_block13(ctx) {
+  function create_if_block14(ctx) {
     let article2;
     return {
       c() {
@@ -39741,7 +39817,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block13, create_if_block_118, create_else_block8];
+    const if_block_creators = [create_if_block14, create_if_block_118, create_else_block9];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -39884,7 +39960,7 @@
 
   // src/pages/dosen/approvalmanagement.svelte
   init_define_process();
-  function get_each_context9(ctx, list, i) {
+  function get_each_context10(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[21] = list[i];
     return child_ctx;
@@ -39899,7 +39975,7 @@
     child_ctx[21] = list[i];
     return child_ctx;
   }
-  function create_if_block14(ctx) {
+  function create_if_block15(ctx) {
     let div1;
     let div0;
     let table;
@@ -40677,7 +40753,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block9(get_each_context9(ctx, each_value, i));
+      each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -40710,12 +40786,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context9(ctx2, each_value, i);
+            const child_ctx = get_each_context10(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block9(child_ctx);
+              each_blocks[i] = create_each_block10(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -40925,7 +41001,7 @@
       }
     };
   }
-  function create_each_block9(ctx) {
+  function create_each_block10(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -41036,7 +41112,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block14(ctx)
+      ctx[0] && create_if_block15(ctx)
     );
     return {
       c() {
@@ -41282,7 +41358,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block14(ctx2);
+            if_block = create_if_block15(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -41449,7 +41525,7 @@
 
   // src/pages/dosen/detailapproval.svelte
   init_define_process();
-  function get_each_context10(ctx, list, i) {
+  function get_each_context11(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[91] = list[i];
     child_ctx[93] = i;
@@ -41515,7 +41591,7 @@
     child_ctx[126] = list[i];
     return child_ctx;
   }
-  function create_if_block15(ctx) {
+  function create_if_block16(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -43511,7 +43587,7 @@
         );
       if (show_if_2)
         return create_if_block_304;
-      return create_else_block9;
+      return create_else_block10;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -43718,7 +43794,7 @@
       }
     };
   }
-  function create_else_block9(ctx) {
+  function create_else_block10(ctx) {
     let div;
     let h5;
     let t0;
@@ -45359,7 +45435,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block10(get_each_context10(ctx, each_value, i));
+      each_blocks[i] = create_each_block11(get_each_context11(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -45389,12 +45465,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context10(ctx2, each_value, i);
+            const child_ctx = get_each_context11(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block10(child_ctx);
+              each_blocks[i] = create_each_block11(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -47791,7 +47867,7 @@
       }
     };
   }
-  function create_each_block10(ctx) {
+  function create_each_block11(ctx) {
     let div;
     let h6;
     let t0;
@@ -48201,7 +48277,7 @@
     let current;
     let if_block = (
       /*data*/
-      ctx[14] && create_if_block15(ctx)
+      ctx[14] && create_if_block16(ctx)
     );
     function modalerror0_show_binding(value) {
       ctx[73](value);
@@ -48305,7 +48381,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block15(ctx2);
+            if_block = create_if_block16(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t0.parentNode, t0);
@@ -49122,7 +49198,7 @@
   // src/pages/dosen/detailppm.svelte
   init_define_process();
   var { Boolean: Boolean_12 } = globals;
-  function get_each_context11(ctx, list, i) {
+  function get_each_context12(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[113] = list[i];
     child_ctx[115] = i;
@@ -49194,7 +49270,7 @@
     child_ctx[150] = i;
     return child_ctx;
   }
-  function create_if_block16(ctx) {
+  function create_if_block17(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -55092,7 +55168,7 @@
         ctx2[37]?.name
       )
         return create_if_block_245;
-      return create_else_block10;
+      return create_else_block11;
     }
     let current_block_type = select_block_type_10(ctx, [-1, -1, -1, -1, -1]);
     let if_block = current_block_type(ctx);
@@ -55213,7 +55289,7 @@
       }
     };
   }
-  function create_else_block10(ctx) {
+  function create_else_block11(ctx) {
     let span;
     return {
       c() {
@@ -55871,7 +55947,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block11(get_each_context11(ctx, each_value, i));
+      each_blocks[i] = create_each_block12(get_each_context12(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -55901,12 +55977,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context11(ctx2, each_value, i);
+            const child_ctx = get_each_context12(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block11(child_ctx);
+              each_blocks[i] = create_each_block12(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -58303,7 +58379,7 @@
       }
     };
   }
-  function create_each_block11(ctx) {
+  function create_each_block12(ctx) {
     let div;
     let h6;
     let t0;
@@ -58714,7 +58790,7 @@
     let if_block = (
       /*data*/
       ctx[4] && /*items*/
-      ctx[1].length > 0 && create_if_block16(ctx)
+      ctx[1].length > 0 && create_if_block17(ctx)
     );
     function modalerror0_show_binding(value) {
       ctx[93](value);
@@ -58819,7 +58895,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block16(ctx2);
+            if_block = create_if_block17(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t0.parentNode, t0);
@@ -60353,12 +60429,12 @@
 
   // src/pages/dosen/home.svelte
   init_define_process();
-  function get_each_context12(ctx, list, i) {
+  function get_each_context13(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[8] = list[i];
     return child_ctx;
   }
-  function create_if_block17(ctx) {
+  function create_if_block18(ctx) {
     let table;
     let thead;
     let t3;
@@ -60369,7 +60445,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block12(get_each_context12(ctx, each_value, i));
+      each_blocks[i] = create_each_block13(get_each_context13(ctx, each_value, i));
     }
     return {
       c() {
@@ -60403,11 +60479,11 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context12(ctx2, each_value, i);
+            const child_ctx = get_each_context13(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
             } else {
-              each_blocks[i] = create_each_block12(child_ctx);
+              each_blocks[i] = create_each_block13(child_ctx);
               each_blocks[i].c();
               each_blocks[i].m(tbody, null);
             }
@@ -60426,7 +60502,7 @@
       }
     };
   }
-  function create_each_block12(ctx) {
+  function create_each_block13(ctx) {
     let tr;
     let td0;
     let t0_value = (
@@ -60543,7 +60619,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block17(ctx)
+      ctx[0] && create_if_block18(ctx)
     );
     return {
       c() {
@@ -60710,7 +60786,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block17(ctx2);
+            if_block = create_if_block18(ctx2);
             if_block.c();
             if_block.m(div18, null);
           }
@@ -60862,12 +60938,12 @@
 
   // src/pages/dosen/pendaftaran.svelte
   init_define_process();
-  function get_each_context13(ctx, list, i) {
+  function get_each_context14(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[0] = list[i];
     return child_ctx;
   }
-  function create_each_block13(ctx) {
+  function create_each_block14(ctx) {
     let div3;
     let div2;
     let header;
@@ -60957,7 +61033,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block13(get_each_context13(ctx, each_value, i));
+      each_blocks[i] = create_each_block14(get_each_context14(ctx, each_value, i));
     }
     return {
       c() {
@@ -61018,11 +61094,11 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context13(ctx2, each_value, i);
+            const child_ctx = get_each_context14(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
             } else {
-              each_blocks[i] = create_each_block13(child_ctx);
+              each_blocks[i] = create_each_block14(child_ctx);
               each_blocks[i].c();
               each_blocks[i].m(div4, null);
             }
@@ -61147,7 +61223,7 @@
   // src/pages/dosen/pendaftaranproposal.svelte
   init_define_process();
   var { Boolean: Boolean_13 } = globals;
-  function get_each_context14(ctx, list, i) {
+  function get_each_context15(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[55] = list[i];
     child_ctx[57] = i;
@@ -63219,7 +63295,7 @@
       }
     };
   }
-  function create_else_block11(ctx) {
+  function create_else_block12(ctx) {
     let span;
     return {
       c() {
@@ -63327,7 +63403,7 @@
         ctx2[19]?.name
       )
         return create_if_block_2110;
-      return create_else_block11;
+      return create_else_block12;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -63934,7 +64010,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block14(get_each_context14(ctx, each_value, i));
+      each_blocks[i] = create_each_block15(get_each_context15(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -63964,12 +64040,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context14(ctx2, each_value, i);
+            const child_ctx = get_each_context15(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block14(child_ctx);
+              each_blocks[i] = create_each_block15(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -66355,7 +66431,7 @@
       }
     };
   }
-  function create_each_block14(ctx) {
+  function create_each_block15(ctx) {
     let div;
     let h6;
     let t0;
@@ -66531,7 +66607,7 @@
       }
     };
   }
-  function create_if_block18(ctx) {
+  function create_if_block19(ctx) {
     let div;
     let p0;
     let button0;
@@ -66686,7 +66762,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[18] === true && create_if_block18(ctx)
+      ctx[18] === true && create_if_block19(ctx)
     );
     return {
       c() {
@@ -66890,7 +66966,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block18(ctx2);
+            if_block3 = create_if_block19(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -67817,12 +67893,12 @@
   var Modalroute_default = Modalroute;
 
   // src/pages/dosen/ppmmanagement.svelte
-  function get_each_context15(ctx, list, i) {
+  function get_each_context16(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[13] = list[i];
     return child_ctx;
   }
-  function create_if_block19(ctx) {
+  function create_if_block20(ctx) {
     let tbody;
     let current;
     let each_value = ensure_array_like(
@@ -67834,7 +67910,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block15(get_each_context15(ctx, each_value, i));
+      each_blocks[i] = create_each_block16(get_each_context16(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -67867,12 +67943,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context15(ctx2, each_value, i);
+            const child_ctx = get_each_context16(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block15(child_ctx);
+              each_blocks[i] = create_each_block16(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(tbody, null);
@@ -67908,7 +67984,7 @@
       }
     };
   }
-  function create_each_block15(ctx) {
+  function create_each_block16(ctx) {
     let tr;
     let td0;
     let p0;
@@ -68132,7 +68208,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[1] && create_if_block19(ctx)
+      ctx[1] && create_if_block20(ctx)
     );
     return {
       c() {
@@ -68390,7 +68466,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block19(ctx2);
+            if_block = create_if_block20(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(table, null);
@@ -68625,7 +68701,7 @@
 
   // src/pages/dosen/profile.svelte
   init_define_process();
-  function get_each_context16(ctx, list, i) {
+  function get_each_context17(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[200] = list[i];
     return child_ctx;
@@ -73717,7 +73793,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block16(get_each_context16(ctx, each_value, i));
+      each_blocks[i] = create_each_block17(get_each_context17(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -73748,12 +73824,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context16(ctx2, each_value, i);
+            const child_ctx = get_each_context17(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block16(child_ctx);
+              each_blocks[i] = create_each_block17(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -73789,7 +73865,7 @@
       }
     };
   }
-  function create_each_block16(ctx) {
+  function create_each_block17(ctx) {
     let tr;
     let td0;
     let button;
@@ -80594,7 +80670,7 @@
       }
     };
   }
-  function create_if_block20(ctx) {
+  function create_if_block21(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -80632,7 +80708,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].noHKI && create_if_block20(ctx)
+      ctx[1].noHKI && create_if_block21(ctx)
     );
     return {
       c() {
@@ -80682,7 +80758,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block20(ctx2);
+            if_block = create_if_block21(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -82778,7 +82854,7 @@
   // src/pages/dosen/proposalhibaheksternal.svelte
   init_define_process();
   var { Boolean: Boolean_14 } = globals;
-  function get_each_context17(ctx, list, i) {
+  function get_each_context18(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[54] = list[i];
     child_ctx[56] = i;
@@ -84650,7 +84726,7 @@
       }
     };
   }
-  function create_else_block12(ctx) {
+  function create_else_block13(ctx) {
     let span;
     return {
       c() {
@@ -84758,7 +84834,7 @@
         ctx2[18]?.name
       )
         return create_if_block_208;
-      return create_else_block12;
+      return create_else_block13;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -85365,7 +85441,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block17(get_each_context17(ctx, each_value, i));
+      each_blocks[i] = create_each_block18(get_each_context18(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -85395,12 +85471,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context17(ctx2, each_value, i);
+            const child_ctx = get_each_context18(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block17(child_ctx);
+              each_blocks[i] = create_each_block18(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -87786,7 +87862,7 @@
       }
     };
   }
-  function create_each_block17(ctx) {
+  function create_each_block18(ctx) {
     let div;
     let h6;
     let t0;
@@ -87962,7 +88038,7 @@
       }
     };
   }
-  function create_if_block21(ctx) {
+  function create_if_block22(ctx) {
     let div;
     let p0;
     let button0;
@@ -88117,7 +88193,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[17] === true && create_if_block21(ctx)
+      ctx[17] === true && create_if_block22(ctx)
     );
     return {
       c() {
@@ -88321,7 +88397,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block21(ctx2);
+            if_block3 = create_if_block22(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -89202,7 +89278,7 @@
   // src/pages/dosen/proposalhibahinternal.svelte
   init_define_process();
   var { Boolean: Boolean_15 } = globals;
-  function get_each_context18(ctx, list, i) {
+  function get_each_context19(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[55] = list[i];
     child_ctx[57] = i;
@@ -91181,7 +91257,7 @@
       }
     };
   }
-  function create_else_block13(ctx) {
+  function create_else_block14(ctx) {
     let span;
     return {
       c() {
@@ -91289,7 +91365,7 @@
         ctx2[19]?.name
       )
         return create_if_block_209;
-      return create_else_block13;
+      return create_else_block14;
     }
     let current_block_type = select_block_type_2(ctx, [-1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -91896,7 +91972,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block18(get_each_context18(ctx, each_value, i));
+      each_blocks[i] = create_each_block19(get_each_context19(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -91926,12 +92002,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context18(ctx2, each_value, i);
+            const child_ctx = get_each_context19(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block18(child_ctx);
+              each_blocks[i] = create_each_block19(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -94317,7 +94393,7 @@
       }
     };
   }
-  function create_each_block18(ctx) {
+  function create_each_block19(ctx) {
     let div;
     let h6;
     let t0;
@@ -94493,7 +94569,7 @@
       }
     };
   }
-  function create_if_block22(ctx) {
+  function create_if_block23(ctx) {
     let div;
     let p0;
     let button0;
@@ -94648,7 +94724,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[18] === true && create_if_block22(ctx)
+      ctx[18] === true && create_if_block23(ctx)
     );
     return {
       c() {
@@ -94852,7 +94928,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block22(ctx2);
+            if_block3 = create_if_block23(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -95728,7 +95804,7 @@
   // src/pages/dosen/proposalmandiri.svelte
   init_define_process();
   var { Boolean: Boolean_16 } = globals;
-  function get_each_context19(ctx, list, i) {
+  function get_each_context20(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[51] = list[i];
     child_ctx[53] = i;
@@ -97339,7 +97415,7 @@
       }
     };
   }
-  function create_else_block14(ctx) {
+  function create_else_block15(ctx) {
     let span;
     return {
       c() {
@@ -97447,7 +97523,7 @@
         ctx2[18]?.name
       )
         return create_if_block_2010;
-      return create_else_block14;
+      return create_else_block15;
     }
     let current_block_type = select_block_type_1(ctx, [-1, -1, -1]);
     let if_block0 = current_block_type(ctx);
@@ -98054,7 +98130,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block19(get_each_context19(ctx, each_value, i));
+      each_blocks[i] = create_each_block20(get_each_context20(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -98084,12 +98160,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context19(ctx2, each_value, i);
+            const child_ctx = get_each_context20(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block19(child_ctx);
+              each_blocks[i] = create_each_block20(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
@@ -100475,7 +100551,7 @@
       }
     };
   }
-  function create_each_block19(ctx) {
+  function create_each_block20(ctx) {
     let div;
     let h6;
     let t0;
@@ -100651,7 +100727,7 @@
       }
     };
   }
-  function create_if_block23(ctx) {
+  function create_if_block24(ctx) {
     let div;
     let p0;
     let button0;
@@ -100806,7 +100882,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[17] === true && create_if_block23(ctx)
+      ctx[17] === true && create_if_block24(ctx)
     );
     return {
       c() {
@@ -101010,7 +101086,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block23(ctx2);
+            if_block3 = create_if_block24(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -102690,7 +102766,7 @@
   var testform_default = Testform;
 
   // src/pages/dosen/Index.svelte
-  function create_else_block15(ctx) {
+  function create_else_block16(ctx) {
     let e404;
     let current;
     e404 = new E404_default({});
@@ -102797,7 +102873,7 @@
       }
     };
   }
-  function create_if_block24(ctx) {
+  function create_if_block25(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -102877,7 +102953,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block24, create_if_block_150, create_else_block15];
+    const if_block_creators = [create_if_block25, create_if_block_150, create_else_block16];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -103040,12 +103116,12 @@
   };
 
   // src/modules/Sidebar.svelte
-  function get_each_context20(ctx, list, i) {
+  function get_each_context21(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[2] = list[i];
     return child_ctx;
   }
-  function create_each_block20(ctx) {
+  function create_each_block21(ctx) {
     let ul;
     let li;
     let a;
@@ -103228,7 +103304,7 @@
       }
     };
   }
-  function create_if_block25(ctx) {
+  function create_if_block26(ctx) {
     let br;
     let t0;
     let p;
@@ -103378,7 +103454,7 @@
     );
     let each_blocks = [];
     for (let i = 0; i < each_value.length; i += 1) {
-      each_blocks[i] = create_each_block20(get_each_context20(ctx, each_value, i));
+      each_blocks[i] = create_each_block21(get_each_context21(ctx, each_value, i));
     }
     const out = (i) => transition_out(each_blocks[i], 1, 1, () => {
       each_blocks[i] = null;
@@ -103392,7 +103468,7 @@
     );
     let if_block1 = (
       /*role*/
-      ctx[1] === "admin" && create_if_block25(ctx)
+      ctx[1] === "admin" && create_if_block26(ctx)
     );
     return {
       c() {
@@ -103438,12 +103514,12 @@
           );
           let i;
           for (i = 0; i < each_value.length; i += 1) {
-            const child_ctx = get_each_context20(ctx2, each_value, i);
+            const child_ctx = get_each_context21(ctx2, each_value, i);
             if (each_blocks[i]) {
               each_blocks[i].p(child_ctx, dirty);
               transition_in(each_blocks[i], 1);
             } else {
-              each_blocks[i] = create_each_block20(child_ctx);
+              each_blocks[i] = create_each_block21(child_ctx);
               each_blocks[i].c();
               transition_in(each_blocks[i], 1);
               each_blocks[i].m(aside, t2);
@@ -103506,7 +103582,7 @@
 
   // src/modules/Navbarmenu.svelte
   init_define_process();
-  function create_else_block16(ctx) {
+  function create_else_block17(ctx) {
     let div1;
     return {
       c() {
@@ -103527,7 +103603,7 @@
       }
     };
   }
-  function create_if_block26(ctx) {
+  function create_if_block27(ctx) {
     let div1;
     let a0;
     let icon;
@@ -103647,7 +103723,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block26, create_else_block16];
+    const if_block_creators = [create_if_block27, create_else_block17];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -103859,7 +103935,7 @@
       }
     };
   }
-  function create_if_block27(ctx) {
+  function create_if_block28(ctx) {
     let main;
     let switch_instance;
     let current;
@@ -103952,7 +104028,7 @@
     );
     let if_block1 = (
       /*cmp*/
-      ctx[0] && create_if_block27(ctx)
+      ctx[0] && create_if_block28(ctx)
     );
     return {
       c() {
@@ -104011,7 +104087,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block27(ctx2);
+            if_block1 = create_if_block28(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);

@@ -1812,13 +1812,16 @@ a.svelte-96jy70.svelte-96jy70:hover {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/pages/admin/home.esbuild-svelte-fake-css */
-.box.svelte-lfygnb {
+.centerText.svelte-g8zc3i {
+  text-align: center;
+}
+.box.cardCounter.svelte-g8zc3i {
   display: flex;
 }
-.flex-item-left.svelte-lfygnb {
+.flex-item-left.svelte-g8zc3i {
   flex: 50%;
 }
-.flex-item-right.svelte-lfygnb {
+.flex-item-right.svelte-g8zc3i {
   flex: 50%;
 }
 
