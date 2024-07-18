@@ -1627,7 +1627,7 @@ fieldset[disabled] .button.is-warning.is-inverted.is-outlined {
    color: #946c00;
 }
 .button.is-danger {
-   background-color: #f14668;
+   background-color: #da251c;
    border-color: transparent;
    color: #fff;
 }
@@ -1654,13 +1654,13 @@ fieldset[disabled] .button.is-warning.is-inverted.is-outlined {
 }
 .button.is-danger[disabled],
 fieldset[disabled] .button.is-danger {
-   background-color: #f14668;
-   border-color: #f14668;
+   background-color: #da251c;
+   border-color: #da251c;
    box-shadow: none;
 }
 .button.is-danger.is-inverted {
    background-color: #fff;
-   color: #f14668;
+   color: #da251c;
 }
 .button.is-danger.is-inverted.is-hovered,
 .button.is-danger.is-inverted:hover {
@@ -1671,26 +1671,26 @@ fieldset[disabled] .button.is-danger.is-inverted {
    background-color: #fff;
    border-color: transparent;
    box-shadow: none;
-   color: #f14668;
+   color: #da251c;
 }
 .button.is-danger.is-loading::after {
    border-color: transparent transparent #fff #fff !important;
 }
 .button.is-danger.is-outlined {
    background-color: transparent;
-   border-color: #f14668;
-   color: #f14668;
+   border-color: #da251c;
+   color: #da251c;
 }
 .button.is-danger.is-outlined.is-focused,
 .button.is-danger.is-outlined.is-hovered,
 .button.is-danger.is-outlined:focus,
 .button.is-danger.is-outlined:hover {
-   background-color: #f14668;
-   border-color: #f14668;
+   background-color: #da251c;
+   border-color: #da251c;
    color: #fff;
 }
 .button.is-danger.is-outlined.is-loading::after {
-   border-color: transparent transparent #f14668 #f14668 !important;
+   border-color: transparent transparent #da251c #da251c !important;
 }
 .button.is-danger.is-outlined.is-loading.is-focused::after,
 .button.is-danger.is-outlined.is-loading.is-hovered::after,
@@ -1701,9 +1701,9 @@ fieldset[disabled] .button.is-danger.is-inverted {
 .button.is-danger.is-outlined[disabled],
 fieldset[disabled] .button.is-danger.is-outlined {
    background-color: transparent;
-   border-color: #f14668;
+   border-color: #da251c;
    box-shadow: none;
-   color: #f14668;
+   color: #da251c;
 }
 .button.is-danger.is-inverted.is-outlined {
    background-color: transparent;
@@ -1715,13 +1715,13 @@ fieldset[disabled] .button.is-danger.is-outlined {
 .button.is-danger.is-inverted.is-outlined:focus,
 .button.is-danger.is-inverted.is-outlined:hover {
    background-color: #fff;
-   color: #f14668;
+   color: #da251c;
 }
 .button.is-danger.is-inverted.is-outlined.is-loading.is-focused::after,
 .button.is-danger.is-inverted.is-outlined.is-loading.is-hovered::after,
 .button.is-danger.is-inverted.is-outlined.is-loading:focus::after,
 .button.is-danger.is-inverted.is-outlined.is-loading:hover::after {
-   border-color: transparent transparent #f14668 #f14668 !important;
+   border-color: transparent transparent #da251c #da251c !important;
 }
 .button.is-danger.is-inverted.is-outlined[disabled],
 fieldset[disabled] .button.is-danger.is-inverted.is-outlined {
@@ -2359,7 +2359,7 @@ div.icon-text {
    color: #946c00;
 }
 .notification.is-danger {
-   background-color: #f14668;
+   background-color: #da251c;
    color: #fff;
 }
 .notification.is-danger.is-light {
@@ -2499,16 +2499,16 @@ div.icon-text {
    background-image: linear-gradient(to right, #ffe08a 30%, #ededed 30%);
 }
 .progress.is-danger::-webkit-progress-value {
-   background-color: #f14668;
+   background-color: #da251c;
 }
 .progress.is-danger::-moz-progress-bar {
-   background-color: #f14668;
+   background-color: #da251c;
 }
 .progress.is-danger::-ms-fill {
-   background-color: #f14668;
+   background-color: #da251c;
 }
 .progress.is-danger:indeterminate {
-   background-image: linear-gradient(to right, #f14668 30%, #ededed 30%);
+   background-image: linear-gradient(to right, #da251c 30%, #ededed 30%);
 }
 .progress:indeterminate {
    -webkit-animation-duration: 1.5s;
@@ -2626,8 +2626,8 @@ div.icon-text {
 }
 .table td.is-danger,
 .table th.is-danger {
-   background-color: #f14668;
-   border-color: #f14668;
+   background-color: #da251c;
+   border-color: #da251c;
    color: #fff;
 }
 .table td.is-narrow,
@@ -2852,7 +2852,7 @@ div.icon-text {
    color: #946c00;
 }
 .tag:not(body).is-danger {
-   background-color: #f14668;
+   background-color: #da251c;
    color: #fff;
 }
 .tag:not(body).is-danger.is-light {
@@ -3266,7 +3266,7 @@ fieldset[disabled] .textarea:-ms-input-placeholder {
 }
 .is-danger.input,
 .is-danger.textarea {
-   border-color: #f14668;
+   border-color: #da251c;
 }
 .is-danger.input:active,
 .is-danger.input:focus,
@@ -3547,10 +3547,10 @@ fieldset[disabled] .select select:hover {
    box-shadow: 0 0 0 0.125em rgba(255, 224, 138, 0.25);
 }
 .select.is-danger:not(:hover)::after {
-   border-color: #f14668;
+   border-color: #da251c;
 }
 .select.is-danger select {
-   border-color: #f14668;
+   border-color: #da251c;
 }
 .select.is-danger select.is-hovered,
 .select.is-danger select:hover {
@@ -3812,7 +3812,7 @@ fieldset[disabled] .select select:hover {
    color: rgba(0, 0, 0, 0.7);
 }
 .file.is-danger .file-cta {
-   background-color: #f14668;
+   background-color: #da251c;
    border-color: transparent;
    color: #fff;
 }
@@ -4037,7 +4037,7 @@ fieldset[disabled] .select select:hover {
    color: #ffe08a;
 }
 .help.is-danger {
-   color: #f14668;
+   color: #da251c;
 }
 .field:not(:last-child) {
    margin-bottom: 0.75rem;
@@ -4825,11 +4825,11 @@ button.dropdown-item.is-active {
    background-color: #feecf0;
 }
 .message.is-danger .message-header {
-   background-color: #f14668;
+   background-color: #da251c;
    color: #fff;
 }
 .message.is-danger .message-body {
-   border-color: #f14668;
+   border-color: #da251c;
    color: #cc0f35;
 }
 .message-header {
@@ -5500,7 +5500,7 @@ button.dropdown-item.is-active {
    }
 }
 .navbar.is-danger {
-   background-color: #f14668;
+   background-color: #da251c;
    color: #fff;
 }
 .navbar.is-danger .navbar-brand .navbar-link,
@@ -5555,7 +5555,7 @@ button.dropdown-item.is-active {
       color: #fff;
    }
    .navbar.is-danger .navbar-dropdown a.navbar-item.is-active {
-      background-color: #f14668;
+      background-color: #da251c;
       color: #fff;
    }
 }
@@ -6265,14 +6265,14 @@ a.navbar-item:hover {
    color: #ffe08a;
 }
 .panel.is-danger .panel-heading {
-   background-color: #f14668;
+   background-color: #da251c;
    color: #fff;
 }
 .panel.is-danger .panel-tabs a.is-active {
-   border-bottom-color: #f14668;
+   border-bottom-color: #da251c;
 }
 .panel.is-danger .panel-block.is-active .panel-icon {
-   color: #f14668;
+   color: #da251c;
 }
 .panel-block:not(:last-child),
 .panel-tabs:not(:last-child) {
@@ -8461,14 +8461,14 @@ a.has-text-warning-dark:hover {
    background-color: #946c00 !important;
 }
 .has-text-danger {
-   color: #f14668 !important;
+   color: #da251c !important;
 }
 a.has-text-danger:focus,
 a.has-text-danger:hover {
    color: #ee1742 !important;
 }
 .has-background-danger {
-   background-color: #f14668 !important;
+   background-color: #da251c !important;
 }
 .has-text-danger-light {
    color: #feecf0 !important;
@@ -10586,7 +10586,8 @@ a.has-text-danger-dark:hover {
    }
 }
 .hero.is-danger {
-   background-color: #f14668;
+   /* background-color: #xf14668; */
+   background-color: #da251c;
    color: #fff;
 }
 .hero.is-danger
@@ -10608,7 +10609,7 @@ a.has-text-danger-dark:hover {
 }
 @media screen and (max-width: 1023px) {
    .hero.is-danger .navbar-menu {
-      background-color: #f14668;
+      background-color: #da251c;
    }
 }
 .hero.is-danger .navbar-item,
@@ -10630,7 +10631,7 @@ a.has-text-danger-dark:hover {
    opacity: 1;
 }
 .hero.is-danger .tabs li.is-active a {
-   color: #f14668 !important;
+   color: #da251c !important;
    opacity: 1;
 }
 .hero.is-danger .tabs.is-boxed a,
@@ -10647,13 +10648,13 @@ a.has-text-danger-dark:hover {
 .hero.is-danger .tabs.is-toggle li.is-active a:hover {
    background-color: #fff;
    border-color: #fff;
-   color: #f14668;
+   color: #da251c;
 }
 .hero.is-danger.is-bold {
    background-image: linear-gradient(
       141deg,
       #fa0a62 0,
-      #f14668 71%,
+      #da251c 71%,
       #f7595f 100%
    );
 }
@@ -10662,7 +10663,7 @@ a.has-text-danger-dark:hover {
       background-image: linear-gradient(
          141deg,
          #fa0a62 0,
-         #f14668 71%,
+         #da251c 71%,
          #f7595f 100%
       );
    }

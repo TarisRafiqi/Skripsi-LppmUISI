@@ -1427,19 +1427,25 @@ article.svelte-9f6d4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Hero.esbuild-svelte-fake-css */
-.title.svelte-ifdiuw {
+.box.boxHero-Kanan.svelte-1dw2uoc {
+  height: 300px;
+}
+.title.svelte-1dw2uoc {
   color: black;
 }
-.subtitle.svelte-ifdiuw {
+.subtitle.svelte-1dw2uoc {
   color: black;
   text-align: justify;
 }
 @media (min-width: 768px) {
 }
-.hero-body.svelte-ifdiuw {
-  margin-top: 5rem;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+.hero.svelte-1dw2uoc {
+  background-color: #eff2f6;
+}
+.hero-body.svelte-1dw2uoc {
+  padding-top: 5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
   border-radius: 20px;
   background-image: var(--url);
   background-repeat: no-repeat;
@@ -1448,25 +1454,25 @@ article.svelte-9f6d4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Pengumuman.esbuild-svelte-fake-css */
-.content.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+.content.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   text-align: center;
 }
-section.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+section.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   padding: 60px 0;
 }
-#accordion.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-#accordion.svelte-1k7wu1i li.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6 li.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   width: 100%;
   margin-bottom: 10px;
-  background: #f7f7f7;
+  background: #eff2f6;
   padding: 10px;
   border-radius: 10px;
 }
-#accordion.svelte-1k7wu1i li label.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6 li label.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   padding: 10px;
   display: flex;
   align-items: center;
@@ -1476,13 +1482,13 @@ section.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
   cursor: pointer;
   color: #2dabf9;
 }
-#accordion.svelte-1k7wu1i label.svelte-1k7wu1i + [hidden].svelte-1k7wu1i.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6 label.svelte-qn2kg6 + [hidden].svelte-qn2kg6.svelte-qn2kg6 {
   display: none;
 }
-#accordion.svelte-1k7wu1i label.svelte-1k7wu1i + [hidden].svelte-1k7wu1i:checked + .content.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6 label.svelte-qn2kg6 + [hidden].svelte-qn2kg6:checked + .content.svelte-qn2kg6 {
   max-height: 400px;
 }
-#accordion.svelte-1k7wu1i .content.svelte-1k7wu1i.svelte-1k7wu1i.svelte-1k7wu1i {
+#accordion.svelte-qn2kg6 .content.svelte-qn2kg6.svelte-qn2kg6.svelte-qn2kg6 {
   padding: 0 10px;
   line-height: 26px;
   max-height: 0;
@@ -2167,131 +2173,16 @@ ul.svelte-1iurio9.svelte-1iurio9 {
   font-size: small;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbar.esbuild-svelte-fake-css */
-.svelte-5za9if.svelte-5za9if {
-  padding: 0;
-}
-header.svelte-5za9if.svelte-5za9if {
-  background-color: #2a2d2e;
-  color: white;
-  position: relative;
-  padding: 0 2rem;
-}
-li.svelte-5za9if.svelte-5za9if {
-  list-style: none;
-}
-a.svelte-5za9if.svelte-5za9if {
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 1rem;
-}
-a.svelte-5za9if.svelte-5za9if:hover {
-  color: orange;
-}
-.navbar.svelte-5za9if.svelte-5za9if {
-  width: 100%;
-  height: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.navbar.svelte-5za9if .logo a.svelte-5za9if {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.navbar.svelte-5za9if .links.svelte-5za9if {
-  display: flex;
-  gap: 2rem;
-}
-.navbar.svelte-5za9if .toggle_btn.svelte-5za9if {
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: none;
-}
-.action_btn.svelte-5za9if.svelte-5za9if {
-  background-color: orange;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  outline: none;
-  border-radius: 0.6em;
-  font-size: 0.8rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: scale 0.2 ease;
-}
-.action_btn.svelte-5za9if.svelte-5za9if:hover {
-  scale: 1.05;
-  color: #fff;
-}
-.action_btn.svelte-5za9if.svelte-5za9if:active {
-  scale: 0.95;
-}
-.dropdown_menu.svelte-5za9if.svelte-5za9if {
-  display: none;
-  position: absolute;
-  right: 2rem;
-  top: 60px;
-  height: 0;
-  width: 300px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.dropdown_menu.open.svelte-5za9if.svelte-5za9if {
-  height: 300px;
-}
-.dropdown_menu.svelte-5za9if li.svelte-5za9if {
-  padding: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.dropdown_menu.svelte-5za9if .action_btn.svelte-5za9if {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-@media screen and (max-width: 576px) {
-  .dropdown_menu.svelte-5za9if.svelte-5za9if {
-    right: 1rem;
-    left: 1rem;
-    width: unset;
-  }
-}
-@media screen and (max-width: 768px) {
-  .navbar.svelte-5za9if .links.svelte-5za9if,
-  .navbar.svelte-5za9if .action_btn.svelte-5za9if {
-    display: none;
-  }
-  .navbar.svelte-5za9if .toggle_btn.svelte-5za9if {
-    display: block;
-  }
-  .dropdown_menu.svelte-5za9if.svelte-5za9if {
-    display: block;
-  }
-}
-@media screen and (max-width: 992px) {
-}
-@media screen and (max-width: 1200px) {
-}
-@media screen and (max-width: 1400px) {
-}
-
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Sidebar.esbuild-svelte-fake-css */
-.menu-label.svelte-b3q2it.svelte-b3q2it {
+.menu-label.svelte-hu16du.svelte-hu16du {
   color: white;
 }
-aside.svelte-b3q2it.svelte-b3q2it {
+aside.svelte-hu16du.svelte-hu16du {
   padding-top: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   color: var(--sb-color);
-  background: var(--sb-background);
+  background: #434a54;
   width: var(--wide);
   display: flex;
   flex-direction: column;
@@ -2299,35 +2190,35 @@ aside.svelte-b3q2it.svelte-b3q2it {
   top: 0;
   bottom: 0;
 }
-.menu-list.svelte-b3q2it a.svelte-b3q2it {
+.menu-list.svelte-hu16du a.svelte-hu16du {
   color: inherit;
   display: flex;
   align-items: center;
 }
-.menu-list.svelte-b3q2it a .icon.svelte-b3q2it {
+.menu-list.svelte-hu16du a .icon.svelte-hu16du {
   margin-right: 0.5em;
 }
-.menu-list.svelte-b3q2it a.svelte-b3q2it:hover {
-  color: #4a4a4a;
+.menu-list.svelte-hu16du a.svelte-hu16du:hover {
+  color: #434a54;
 }
-a.svelte-b3q2it.svelte-b3q2it {
+a.svelte-hu16du.svelte-hu16du {
   color: white;
 }
 @media (max-width: 768px) {
-  aside.svelte-b3q2it.svelte-b3q2it {
+  aside.svelte-hu16du.svelte-hu16du {
     width: var(--narrow);
   }
-  .menu-label.svelte-b3q2it.svelte-b3q2it,
-  .menu-list.svelte-b3q2it a .page-title.svelte-b3q2it {
+  .menu-label.svelte-hu16du.svelte-hu16du,
+  .menu-list.svelte-hu16du a .page-title.svelte-hu16du {
     display: none;
   }
-  .menu-list.svelte-b3q2it a .icon.svelte-b3q2it {
+  .menu-list.svelte-hu16du a .icon.svelte-hu16du {
     margin-right: 0;
   }
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbarmenu.esbuild-svelte-fake-css */
-header.svelte-gab4e {
+header.svelte-1xy7v1.svelte-1xy7v1 {
   z-index: 100;
   position: fixed;
   top: 0;
@@ -2335,9 +2226,13 @@ header.svelte-gab4e {
   right: 0;
   height: 3.5rem;
 }
-nav.svelte-gab4e {
-  padding: 0 2rem;
+nav.svelte-1xy7v1.svelte-1xy7v1 {
+  padding: 0 10rem;
   height: inherit;
+  box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.295);
+}
+.navbar-item.svelte-1xy7v1 img.svelte-1xy7v1 {
+  max-height: 3rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/App.esbuild-svelte-fake-css */

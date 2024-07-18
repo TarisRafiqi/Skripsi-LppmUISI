@@ -120,7 +120,10 @@
                   <tr>
                      <th>Jenis Skema</th>
                      <th class="is-narrow" style="text-align: center;"
-                        >Periode Pendaftaran</th
+                        >Tanggal Mulai</th
+                     >
+                     <th class="is-narrow" style="text-align: center;"
+                        >Tanggal Selesai</th
                      >
                      <th class="is-narrow" style="text-align: center;"
                         >Buka Pendaftaran</th
@@ -130,19 +133,32 @@
                <tbody>
                   <tr>
                      <td>Pendanaan Hibah Internal UISI</td>
-                     <td class="centerText">Januari - Februari</td>
+                     <td class="centerText"
+                        ><input type="date" class="input is-small" /></td
+                     >
+                     <td class="centerText"
+                        ><input type="date" class="input is-small" /></td
+                     >
                      <td class="centerText">
                         <input type="checkbox" />
                      </td>
                   </tr>
+
                   <tr>
                      <td>Pendanaan Hibah Eksternal</td>
-                     <td class="centerText">-</td>
+                     <td></td>
+                     <td></td>
                      <td class="centerText"><input type="checkbox" /></td>
                   </tr>
+
                   <tr>
                      <td>Pendanaan Mandiri</td>
-                     <td class="centerText">Januari - November</td>
+                     <td class="centerText"
+                        ><input type="date" class="input is-small" /></td
+                     >
+                     <td class="centerText"
+                        ><input type="date" class="input is-small" /></td
+                     >
                      <td class="centerText"><input type="checkbox" /></td>
                   </tr>
                </tbody>

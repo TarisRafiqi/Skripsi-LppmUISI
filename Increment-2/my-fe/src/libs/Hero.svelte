@@ -5,22 +5,44 @@
       : "url(https://lppmuisi.dififa.com/img/vector-gradient.jpg";
 </script>
 
-<section class="hero is-medium">
+<!-- <section class="hero is-large">
    <div class="hero-body" style:--url={urlImage}>
       <p class="title">LPPM Universitas Internasional Semen Indonesia</p>
-      <p class="subtitle">
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-         mollit anim id est laborum.
-      </p>
+      <p class="subtitle">test</p>
+   </div>
+</section> -->
+
+<section class="hero is-fullheight">
+   <div class="hero-body">
+      <div class="columns">
+         <div class="column is-6">
+            <p class="subtitle is-3">
+               Universitas Internasional Semen Indonesia
+            </p>
+            <p class="title is-1">
+               Lembaga Penelitian Dan Pengabdian Kepada Masyarakat
+            </p>
+            <button class="button is-dark">Panduan PPM UISI</button>
+            <button class="button is-danger is-outlined">Pengumuman</button>
+         </div>
+
+         <div class="column">
+            <div class="box boxHero-Kanan">
+               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
+               et, suscipit veniam voluptatibus exercitationem reprehenderit
+               atque accusantium dignissimos minus dicta beatae debitis
+               asperiores libero optio facilis quod dolorum? Facilis, in?
+            </div>
+         </div>
+      </div>
    </div>
 </section>
 
 <style>
+   .box.boxHero-Kanan {
+      height: 300px;
+   }
+
    .title {
       color: black;
    }
@@ -29,33 +51,22 @@
       color: black;
       text-align: justify;
    }
-   /* div {
-      display: grid;
-      min-height: 15rem;
-      background: var(--hero-background);
-      color: var(--hero-color);
-      padding: 5rem 2rem;
-      gap: 2rem;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-   } */
-
-   /* div > :global(*) {
-      display: inline-flex;
-      flex-direction: column;
-   } */
 
    @media (min-width: 768px) {
       /* div {
          grid-template-columns: 2fr 0.6fr;
       } */
    }
+   .hero {
+      background-color: #eff2f6;
+   }
 
    .hero-body {
-      margin-top: 5rem;
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
+      /* margin-top: 5rem; */
+      /* margin-bottom: 5rem; */
+      padding-top: 5rem;
+      margin-left: 5rem;
+      margin-right: 5rem;
       border-radius: 20px;
       background-image: var(--url);
       background-repeat: no-repeat;

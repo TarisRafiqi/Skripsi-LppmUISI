@@ -35,15 +35,10 @@
 </script>
 
 <header>
-   <nav class="navbar is-dark">
+   <nav class="navbar">
       <div class="navbar-brand">
          <a class="navbar-item" href="/">
-            <img
-               src="/img/logo-uisi-negatif.png"
-               width="112"
-               height="28"
-               alt="Logo UISI"
-            />
+            <img src="/img/LogoLppmUISI.png" alt="Logo UISI" />
          </a>
          <!-- svelte-ignore a11y-missing-attribute -->
          <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -121,7 +116,10 @@
             {:else}
                <div class="navbar-item">
                   <div class="buttons">
-                     <a class="button is-info is-fullwidth" href="/login">
+                     <a
+                        class="button is-dark is-small is-fullwidth"
+                        href="/login"
+                     >
                         Login
                      </a>
                   </div>
@@ -143,7 +141,12 @@
    }
    nav {
       /* position: relative; */
-      padding: 0 2rem;
+      padding: 0 10rem;
       height: inherit;
+      box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.295);
+   }
+
+   .navbar-item img {
+      max-height: 3rem;
    }
 </style>

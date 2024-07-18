@@ -28,7 +28,7 @@
 <section>
    <article class="container">
       <div class="content">
-         <h2>PENGUMUMAN</h2>
+         <p class="title is-3">PENGUMUMAN</p>
          <!-- <hr
             style="height:1px;border-width:0;color:gray;background-color:gray;width:50%"
          /> -->
@@ -36,7 +36,7 @@
          <!-- <hr
             style="height:2px;border-width:0;color:gray;background-color:gray"
          /> -->
-         <p>
+         <p class="subtitle is-5">
             Daftar Pengumuman terkait kegiatan Penelitian & Pengabdian
             Masyarakat LPPM UISI
          </p>
@@ -88,7 +88,7 @@
    #accordion li {
       width: 100%;
       margin-bottom: 10px;
-      background: #f7f7f7;
+      background: #eff2f6;
       padding: 10px;
       border-radius: 10px;
    }

@@ -77,7 +77,8 @@
       padding-left: 1rem;
       padding-right: 1rem;
       color: var(--sb-color);
-      background: var(--sb-background);
+      /* background: var(--sb-background); */
+      background: #434a54;
       width: var(--wide);
       display: flex;
       flex-direction: column;
@@ -98,7 +99,7 @@
    }
 
    .menu-list a:hover {
-      color: #4a4a4a;
+      color: #434a54;
    }
 
    a {

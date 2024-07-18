@@ -5,7 +5,6 @@
    import { route } from "./store";
 
    import E404 from "./modules/E404.svelte";
-   import Navbar from "./modules/Navbar.svelte";
    import Sidebar from "./modules/Sidebar.svelte";
    import Navbarmenu from "./modules/Navbarmenu.svelte";
 

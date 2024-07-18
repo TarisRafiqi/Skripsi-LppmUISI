@@ -1356,30 +1356,17 @@
   init_define_process();
   function create_fragment3(ctx) {
     let section;
-    let div;
     return {
       c() {
         section = element("section");
-        div = element("div");
-        div.innerHTML = `<p class="title svelte-ifdiuw">LPPM Universitas Internasional Semen Indonesia</p> <p class="subtitle svelte-ifdiuw">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-         velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-         mollit anim id est laborum.</p>`;
-        attr(div, "class", "hero-body svelte-ifdiuw");
-        set_style(
-          div,
-          "--url",
-          /*urlImage*/
-          ctx[0]
-        );
-        attr(section, "class", "hero is-medium");
+        section.innerHTML = `<div class="hero-body svelte-1dw2uoc"><div class="columns"><div class="column is-6"><p class="subtitle is-3 svelte-1dw2uoc">Universitas Internasional Semen Indonesia</p> <p class="title is-1 svelte-1dw2uoc">Lembaga Penelitian Dan Pengabdian Kepada Masyarakat</p> <button class="button is-dark">Panduan PPM UISI</button> <button class="button is-danger is-outlined">Pengumuman</button></div> <div class="column"><div class="box boxHero-Kanan svelte-1dw2uoc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
+               et, suscipit veniam voluptatibus exercitationem reprehenderit
+               atque accusantium dignissimos minus dicta beatae debitis
+               asperiores libero optio facilis quod dolorum? Facilis, in?</div></div></div></div>`;
+        attr(section, "class", "hero is-fullheight svelte-1dw2uoc");
       },
       m(target, anchor) {
         insert(target, section, anchor);
-        append(section, div);
       },
       p: noop,
       i: noop,
@@ -1394,7 +1381,7 @@
   function instance($$self) {
     let dev = !define_process_default.ENV.production;
     let urlImage = dev ? "url(http://localhost:3000/img/vector-gradient.jpg" : "url(https://lppmuisi.dififa.com/img/vector-gradient.jpg";
-    return [urlImage];
+    return [];
   }
   var Hero = class extends SvelteComponent {
     constructor(options) {
@@ -1442,7 +1429,7 @@
         t4 = space();
         attr(label, "for", label_for_value = /*p*/
         ctx[2].label);
-        attr(label, "class", "svelte-1k7wu1i");
+        attr(label, "class", "svelte-qn2kg6");
         input.hidden = true;
         attr(input, "type", "checkbox");
         attr(
@@ -1453,9 +1440,9 @@
         );
         attr(input, "id", input_id_value = /*p*/
         ctx[2].idPengumuman);
-        attr(input, "class", "svelte-1k7wu1i");
-        attr(div, "class", "content svelte-1k7wu1i");
-        attr(li, "class", "svelte-1k7wu1i");
+        attr(input, "class", "svelte-qn2kg6");
+        attr(div, "class", "content svelte-qn2kg6");
+        attr(li, "class", "svelte-qn2kg6");
       },
       m(target, anchor) {
         insert(target, li, anchor);
@@ -1498,7 +1485,7 @@
         section = element("section");
         article2 = element("article");
         div0 = element("div");
-        div0.innerHTML = `<h2>PENGUMUMAN</h2> <p>Daftar Pengumuman terkait kegiatan Penelitian &amp; Pengabdian
+        div0.innerHTML = `<p class="title is-3">PENGUMUMAN</p> <p class="subtitle is-5">Daftar Pengumuman terkait kegiatan Penelitian &amp; Pengabdian
             Masyarakat LPPM UISI</p>`;
         t3 = space();
         br = element("br");
@@ -1508,12 +1495,12 @@
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
         }
-        attr(div0, "class", "content svelte-1k7wu1i");
+        attr(div0, "class", "content svelte-qn2kg6");
         attr(ul, "id", "accordion");
-        attr(ul, "class", "svelte-1k7wu1i");
+        attr(ul, "class", "svelte-qn2kg6");
         attr(div1, "class", "list pengumuman");
         attr(article2, "class", "container");
-        attr(section, "class", "svelte-1k7wu1i");
+        attr(section, "class", "svelte-qn2kg6");
       },
       m(target, anchor) {
         insert(target, section, anchor);
@@ -22602,7 +22589,7 @@
         }
         t3 = space();
         div5 = element("div");
-        div5.innerHTML = `<div class="column"><div class="box"><h5 class="title is-5">Waktu Pendaftaran Proposal PPM</h5> <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"><thead><tr><th>Jenis Skema</th> <th class="is-narrow" style="text-align: center;">Periode Pendaftaran</th> <th class="is-narrow" style="text-align: center;">Buka Pendaftaran</th></tr></thead> <tbody><tr><td>Pendanaan Hibah Internal UISI</td> <td class="centerText svelte-g8zc3i">Januari - Februari</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Hibah Eksternal</td> <td class="centerText svelte-g8zc3i">-</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Mandiri</td> <td class="centerText svelte-g8zc3i">Januari - November</td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr></tbody></table></div></div> <div class="column"><div class="box"><h5 class="title is-5">Pengumuman</h5></div></div>`;
+        div5.innerHTML = `<div class="column"><div class="box"><h5 class="title is-5">Waktu Pendaftaran Proposal PPM</h5> <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"><thead><tr><th>Jenis Skema</th> <th class="is-narrow" style="text-align: center;">Tanggal Mulai</th> <th class="is-narrow" style="text-align: center;">Tanggal Selesai</th> <th class="is-narrow" style="text-align: center;">Buka Pendaftaran</th></tr></thead> <tbody><tr><td>Pendanaan Hibah Internal UISI</td> <td class="centerText svelte-g8zc3i"><input type="date" class="input is-small"/></td> <td class="centerText svelte-g8zc3i"><input type="date" class="input is-small"/></td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Hibah Eksternal</td> <td></td> <td></td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr> <tr><td>Pendanaan Mandiri</td> <td class="centerText svelte-g8zc3i"><input type="date" class="input is-small"/></td> <td class="centerText svelte-g8zc3i"><input type="date" class="input is-small"/></td> <td class="centerText svelte-g8zc3i"><input type="checkbox"/></td></tr></tbody></table></div></div> <div class="column"><div class="box"><h5 class="title is-5">Pengumuman</h5></div></div>`;
         attr(h2, "class", "title is-2");
         attr(div0, "class", "columns cardCounter-container is-desktop");
         attr(div5, "class", "columns is-desktop");
@@ -103063,9 +103050,6 @@
     { path: "/dosen/:0", page: Index_default4 }
   ];
 
-  // src/modules/Navbar.svelte
-  init_define_process();
-
   // src/modules/Sidebar.svelte
   init_define_process();
 
@@ -103160,16 +103144,16 @@
         t0 = space();
         div1 = element("div");
         t1 = text(t1_value);
-        attr(div0, "class", "icon svelte-b3q2it");
-        attr(div1, "class", "page-title svelte-b3q2it");
+        attr(div0, "class", "icon svelte-hu16du");
+        attr(div1, "class", "page-title svelte-hu16du");
         attr(a, "id", a_id_value = /*item*/
         ctx[2].title === "Dashboard" ? "dashboard" : null);
         attr(a, "href", a_href_value = /*item*/
         ctx[2].href);
-        attr(a, "class", "svelte-b3q2it");
+        attr(a, "class", "svelte-hu16du");
         attr(li, "title", li_title_value = /*item*/
         ctx[2].title);
-        attr(ul, "class", "menu-list svelte-b3q2it");
+        attr(ul, "class", "menu-list svelte-hu16du");
       },
       m(target, anchor) {
         insert(target, ul, anchor);
@@ -103260,13 +103244,13 @@
         t3 = space();
         div1 = element("div");
         div1.textContent = "Approval Management";
-        attr(p, "class", "menu-label svelte-b3q2it");
-        attr(div0, "class", "icon svelte-b3q2it");
-        attr(div1, "class", "page-title svelte-b3q2it");
+        attr(p, "class", "menu-label svelte-hu16du");
+        attr(div0, "class", "icon svelte-hu16du");
+        attr(div1, "class", "page-title svelte-hu16du");
         attr(a, "href", "/dosen/approvalmanagement");
-        attr(a, "class", "svelte-b3q2it");
+        attr(a, "class", "svelte-hu16du");
         attr(li, "title", "Approval Management");
-        attr(ul, "class", "menu-list svelte-b3q2it");
+        attr(ul, "class", "menu-list svelte-hu16du");
       },
       m(target, anchor) {
         insert(target, br, anchor);
@@ -103367,23 +103351,23 @@
         t9 = space();
         div5 = element("div");
         div5.textContent = "Template";
-        attr(p, "class", "menu-label svelte-b3q2it");
-        attr(div0, "class", "icon svelte-b3q2it");
-        attr(div1, "class", "page-title svelte-b3q2it");
+        attr(p, "class", "menu-label svelte-hu16du");
+        attr(div0, "class", "icon svelte-hu16du");
+        attr(div1, "class", "page-title svelte-hu16du");
         attr(a0, "href", "/admin/pengumuman");
-        attr(a0, "class", "svelte-b3q2it");
+        attr(a0, "class", "svelte-hu16du");
         attr(li0, "title", "Pengumuman");
-        attr(div2, "class", "icon svelte-b3q2it");
-        attr(div3, "class", "page-title svelte-b3q2it");
+        attr(div2, "class", "icon svelte-hu16du");
+        attr(div3, "class", "page-title svelte-hu16du");
         attr(a1, "href", "/admin/aboutuisi");
-        attr(a1, "class", "svelte-b3q2it");
+        attr(a1, "class", "svelte-hu16du");
         attr(li1, "title", "About UISI");
-        attr(div4, "class", "icon svelte-b3q2it");
-        attr(div5, "class", "page-title svelte-b3q2it");
+        attr(div4, "class", "icon svelte-hu16du");
+        attr(div5, "class", "page-title svelte-hu16du");
         attr(a2, "href", "/admin/template");
-        attr(a2, "class", "svelte-b3q2it");
+        attr(a2, "class", "svelte-hu16du");
         attr(li2, "title", "Template");
-        attr(ul, "class", "menu-list svelte-b3q2it");
+        attr(ul, "class", "menu-list svelte-hu16du");
       },
       m(target, anchor) {
         insert(target, br, anchor);
@@ -103485,8 +103469,8 @@
         t3 = space();
         if (if_block1)
           if_block1.c();
-        attr(p, "class", "menu-label svelte-b3q2it");
-        attr(aside, "class", "menu svelte-b3q2it");
+        attr(p, "class", "menu-label svelte-hu16du");
+        attr(aside, "class", "menu svelte-hu16du");
       },
       m(target, anchor) {
         insert(target, aside, anchor);
@@ -103587,7 +103571,7 @@
     return {
       c() {
         div1 = element("div");
-        div1.innerHTML = `<div class="buttons"><a class="button is-info is-fullwidth" href="/login">Login</a></div>`;
+        div1.innerHTML = `<div class="buttons"><a class="button is-dark is-small is-fullwidth" href="/login">Login</a></div>`;
         attr(div1, "class", "navbar-item");
       },
       m(target, anchor) {
@@ -103742,7 +103726,7 @@
         nav = element("nav");
         div0 = element("div");
         a0 = element("a");
-        a0.innerHTML = `<img src="/img/logo-uisi-negatif.png" width="112" height="28" alt="Logo UISI"/>`;
+        a0.innerHTML = `<img src="/img/LogoLppmUISI.png" alt="Logo UISI" class="svelte-1xy7v1"/>`;
         t0 = space();
         a1 = element("a");
         a1.innerHTML = `<span></span> <span></span> <span></span>`;
@@ -103762,7 +103746,7 @@
         div4.innerHTML = `<a class="navbar-link">Pengabdian Masyarakat</a> <div class="navbar-dropdown"><a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Internal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Eksternal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Mandiri</a></div>`;
         t23 = space();
         if_block.c();
-        attr(a0, "class", "navbar-item");
+        attr(a0, "class", "navbar-item svelte-1xy7v1");
         attr(a0, "href", "/");
         attr(a1, "class", "navbar-burger");
         attr(a1, "id", "burger");
@@ -103776,8 +103760,8 @@
         attr(div5, "class", "navbar-end");
         attr(div6, "class", "navbar-menu");
         attr(div6, "id", "nav-links");
-        attr(nav, "class", "navbar is-dark svelte-gab4e");
-        attr(header, "class", "svelte-gab4e");
+        attr(nav, "class", "navbar svelte-1xy7v1");
+        attr(header, "class", "svelte-1xy7v1");
       },
       m(target, anchor) {
         insert(target, header, anchor);
