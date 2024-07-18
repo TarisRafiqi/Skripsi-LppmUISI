@@ -11,16 +11,45 @@
    } from "../../store/icons";
    import { apiURL } from "../../store";
 
+   const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
+
    let penelitianCounter, pengmasCounter;
    let cardCounter = [];
+   let pendaftaranHibahInternal, pendaftaranHibahEksternal, pendaftaranMandiri;
+   let tanggalMulai_HibahInternal, tanggalSelesai_HibahInternal;
+   let tanggalMulai_PPMMandiri, tanggalSelesai_PPMMandiri;
 
    onMount(async () => {
-      const accessToken = localStorage.getItem("token");
+      // ===================== Waktu Pendaftaran Proposal PPM =====================
+      const responseWP = await fetch($apiURL + "/waktuPendaftaranPPMInternal", {
+         method: "GET",
+         headers: headers,
+      });
 
-      const headers = {
-         Authorization: `Bearer ${accessToken}`,
-         "Content-Type": "application/json",
-      };
+      const resultWP = await responseWP.json();
+
+      if (responseWP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseWP.ok) {
+            tanggalMulai_HibahInternal = resultWP.tanggal_mulai_hibah_internal;
+            tanggalSelesai_HibahInternal =
+               resultWP.tanggal_selesai_hibah_internal;
+            tanggalMulai_PPMMandiri = resultWP.tanggal_mulai_ppm_mandiri;
+            tanggalSelesai_PPMMandiri = resultWP.tanggal_selesai_ppm_mandiri;
+
+            pendaftaranHibahInternal = resultWP.buka_pendaftaran_hibah_internal;
+            pendaftaranHibahEksternal =
+               resultWP.buka_pendaftaran_hibah_eksternal;
+            pendaftaranMandiri = resultWP.buka_pendaftaran_mandiri;
+         } else {
+            console.log(responseWP);
+         }
+      }
 
       // ===================== Counter Penelitian =====================
       const responseCP = await fetch($apiURL + "/counterPenelitian", {
@@ -82,6 +111,98 @@
          },
       ];
    });
+
+   async function checkPendaftaranInternal(event) {
+      pendaftaranHibahInternal = event.target.checked ? 1 : 0;
+
+      payload = {
+         pendaftaranHibahInternal,
+      };
+
+      const response = await fetch($apiURL + "/waktuPendaftaranPPMInternal", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
+   async function checkPendaftaranEksternal(event) {
+      pendaftaranHibahEksternal = event.target.checked ? 1 : 0;
+
+      payload = {
+         pendaftaranHibahEksternal,
+      };
+
+      const response = await fetch($apiURL + "/waktuPendaftaranPPMEksternal", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
+   async function checkPendaftaranMandiri(event) {
+      pendaftaranMandiri = event.target.checked ? 1 : 0;
+
+      payload = {
+         pendaftaranMandiri,
+      };
+
+      const response = await fetch($apiURL + "/waktuPendaftaranPPMMandiri", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
+   async function onChange_waktuPendaftaran_HibahInternal() {
+      payload = {
+         tanggalMulai_HibahInternal,
+         tanggalSelesai_HibahInternal,
+         tanggalMulai_PPMMandiri,
+         tanggalSelesai_PPMMandiri,
+      };
+
+      const response = await fetch(
+         $apiURL + "/waktuPendaftaranPPMInternal/time",
+         {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         }
+      );
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
 </script>
 
 <Article>
@@ -134,13 +255,27 @@
                   <tr>
                      <td>Pendanaan Hibah Internal UISI</td>
                      <td class="centerText"
-                        ><input type="date" class="input is-small" /></td
+                        ><input
+                           type="date"
+                           class="input is-small"
+                           bind:value={tanggalMulai_HibahInternal}
+                           on:change={onChange_waktuPendaftaran_HibahInternal}
+                        /></td
                      >
                      <td class="centerText"
-                        ><input type="date" class="input is-small" /></td
+                        ><input
+                           type="date"
+                           class="input is-small"
+                           bind:value={tanggalSelesai_HibahInternal}
+                           on:change={onChange_waktuPendaftaran_HibahInternal}
+                        /></td
                      >
                      <td class="centerText">
-                        <input type="checkbox" />
+                        <input
+                           type="checkbox"
+                           bind:checked={pendaftaranHibahInternal}
+                           on:change={checkPendaftaranInternal}
+                        />
                      </td>
                   </tr>
 
@@ -148,18 +283,40 @@
                      <td>Pendanaan Hibah Eksternal</td>
                      <td></td>
                      <td></td>
-                     <td class="centerText"><input type="checkbox" /></td>
+                     <td class="centerText">
+                        <input
+                           type="checkbox"
+                           bind:checked={pendaftaranHibahEksternal}
+                           on:change={checkPendaftaranEksternal}
+                        />
+                     </td>
                   </tr>
 
                   <tr>
                      <td>Pendanaan Mandiri</td>
                      <td class="centerText"
-                        ><input type="date" class="input is-small" /></td
+                        ><input
+                           type="date"
+                           class="input is-small"
+                           bind:value={tanggalMulai_PPMMandiri}
+                           on:change={onChange_waktuPendaftaran_HibahInternal}
+                        /></td
                      >
                      <td class="centerText"
-                        ><input type="date" class="input is-small" /></td
+                        ><input
+                           type="date"
+                           class="input is-small"
+                           bind:value={tanggalSelesai_PPMMandiri}
+                           on:change={onChange_waktuPendaftaran_HibahInternal}
+                        /></td
                      >
-                     <td class="centerText"><input type="checkbox" /></td>
+                     <td class="centerText">
+                        <input
+                           type="checkbox"
+                           bind:checked={pendaftaranMandiri}
+                           on:change={checkPendaftaranMandiri}
+                        />
+                     </td>
                   </tr>
                </tbody>
             </table>

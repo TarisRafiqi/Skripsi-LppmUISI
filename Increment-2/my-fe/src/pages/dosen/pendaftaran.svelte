@@ -1,14 +1,18 @@
 <script>
-   import { onMount } from "svelte";
+   import Modalerror from "../../libs/Modalerror.svelte";
    import Article from "../../libs/Article.svelte";
+   import { infoOutline } from "../../store/icons";
    import { route, apiURL } from "../../store";
    import Icon from "../../libs/Icon.svelte";
-   import { infoOutline } from "../../store/icons";
+   import { onMount } from "svelte";
 
    const id = Number(localStorage.getItem("id"));
    const accessToken = localStorage.getItem("token");
+   let cardPendaftaran = [];
    let Interval;
    let distance;
+   let periodePendaftaran_PPMInternal, periodePendaftaran_PPMMandiri;
+   let outOfPeriodModal = false;
 
    const countDownDate = new Date("July 7, 2024 18:00:00").getTime();
    const countdownElements = [
@@ -16,30 +20,6 @@
       { id: "hours", label: "Jam" },
       { id: "minutes", label: "Menit" },
       { id: "seconds", label: "Detik" },
-   ];
-
-   const cardPendaftaran = [
-      {
-         title: "Proposal PPM Pendanaan Hibah Internal",
-         description:
-            "LPPM UISI membuka Hibah Internal untuk kegiatan Penelitian dan Pengabdian Masyarakat. Tujuan hibah ini, adalah untuk meningkatkan kualitas PPM dan Publikasi UISI.",
-         buttonText: "Buat Proposal",
-         buttonLink: "/dosen/proposalhibahinternal",
-      },
-      {
-         title: "Proposal PPM Pendanaan Hibah Eksternal",
-         description:
-            "Penelitian dan Pengabdian Masyarakat dapat didanai oleh pihak eksternal, yang meliputi; Kementerian, Pemerintah Daerah, Industri, Lembaga Penelitian Luar dan Dalam Negeri, Perguruan Tinggi Luar dan Dalam Negeri, Yayasan, dan instansi lain.",
-         buttonText: "Buat Proposal",
-         buttonLink: "/dosen/proposalhibaheksternal",
-      },
-      {
-         title: "Proposal PPM Pendanaan Mandiri",
-         description:
-            "PPM Mandiri adalah kegiatan Penelitian dan Pengabdian Masyarakat dengan skema mandiri, yang berarti sumber pendanaan kegiatan berasal dari pribadi ataupun tim pelaksana.",
-         buttonText: "Buat Proposal",
-         buttonLink: "/dosen/proposalmandiri",
-      },
    ];
 
    const headers = {
@@ -86,9 +66,87 @@
    //    });
    // }
 
-   // onMount(() => {
-   //    startCountdown();
-   // });
+   onMount(async () => {
+      // startCountdown();
+
+      // ===================== Waktu Pendaftaran Proposal PPM =====================
+      const responseWP = await fetch($apiURL + "/waktuPendaftaranPPMInternal", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const resultWP = await responseWP.json();
+
+      if (responseWP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseWP.ok) {
+            tanggalMulai_HibahInternal = resultWP.tanggal_mulai_hibah_internal;
+            tanggalSelesai_HibahInternal =
+               resultWP.tanggal_selesai_hibah_internal;
+            tanggalMulai_PPMMandiri = resultWP.tanggal_mulai_ppm_mandiri;
+            tanggalSelesai_PPMMandiri = resultWP.tanggal_selesai_ppm_mandiri;
+
+            pendaftaranHibahInternal = resultWP.buka_pendaftaran_hibah_internal;
+            pendaftaranHibahEksternal =
+               resultWP.buka_pendaftaran_hibah_eksternal;
+            pendaftaranMandiri = resultWP.buka_pendaftaran_mandiri;
+
+            if (tanggalMulai_HibahInternal && tanggalSelesai_HibahInternal) {
+               periodePendaftaran_PPMInternal =
+                  tanggalMulai_HibahInternal +
+                  " s/d " +
+                  tanggalSelesai_HibahInternal;
+            } else {
+               periodePendaftaran_PPMInternal = "";
+            }
+
+            if (tanggalMulai_PPMMandiri && tanggalSelesai_PPMMandiri) {
+               periodePendaftaran_PPMMandiri =
+                  tanggalMulai_PPMMandiri + " s/d " + tanggalSelesai_PPMMandiri;
+            } else {
+               periodePendaftaran_PPMMandiri = "";
+            }
+         } else {
+            console.log(responseWP);
+         }
+      }
+
+      // ===================== Data Card Pendaftaran =====================
+      cardPendaftaran = [
+         {
+            title: "Proposal PPM Pendanaan Hibah Internal",
+            isOpen: pendaftaranHibahInternal,
+            periode: periodePendaftaran_PPMInternal,
+            description:
+               "LPPM UISI membuka Hibah Internal untuk kegiatan Penelitian dan Pengabdian Masyarakat. Tujuan hibah ini, adalah untuk meningkatkan kualitas PPM dan Publikasi UISI.",
+            buttonText: "Buat Proposal",
+            buttonLink: "/dosen/proposalhibahinternal",
+         },
+         {
+            title: "Proposal PPM Pendanaan Hibah Eksternal",
+            isOpen: pendaftaranHibahEksternal,
+            periode: "",
+            description:
+               "Penelitian dan Pengabdian Masyarakat dapat didanai oleh pihak eksternal, yang meliputi; Kementerian, Pemerintah Daerah, Industri, Lembaga Penelitian Luar dan Dalam Negeri, Perguruan Tinggi Luar dan Dalam Negeri, Yayasan, dan instansi lain.",
+            buttonText: "Buat Proposal",
+            buttonLink: "/dosen/proposalhibaheksternal",
+         },
+         {
+            title: "Proposal PPM Pendanaan Mandiri",
+            isOpen: pendaftaranMandiri,
+            periode: periodePendaftaran_PPMMandiri,
+            description:
+               "PPM Mandiri adalah kegiatan Penelitian dan Pengabdian Masyarakat dengan skema mandiri, yang berarti sumber pendanaan kegiatan berasal dari pribadi ataupun tim pelaksana.",
+            buttonText: "Buat Proposal",
+            buttonLink: "/dosen/proposalmandiri",
+         },
+      ];
+   });
+
+   function outOfPeriod() {
+      outOfPeriodModal = true;
+   }
 </script>
 
 <Article>
@@ -143,6 +201,22 @@
                   </h4>
                </header>
 
+               <div class="card-info">
+                  {#if cardPendaftaran.isOpen === 0}
+                     <span class="tag is-danger is-light"
+                        >Pendaftaran ditutup</span
+                     >
+                  {:else if cardPendaftaran.isOpen === 1}
+                     <span class="tag is-success">Pendaftaran dibuka</span>
+                  {/if}
+
+                  {#if cardPendaftaran.periode !== ""}
+                     <span class="tag is-light"
+                        >{cardPendaftaran.periode}
+                     </span>
+                  {/if}
+               </div>
+
                <div class="card-body">
                   <p>
                      {cardPendaftaran.description}
@@ -150,17 +224,29 @@
                </div>
 
                <div class="card-button">
-                  <button
-                     class="button is-success"
-                     href={cardPendaftaran.buttonLink}
-                     >{cardPendaftaran.buttonText}</button
-                  >
+                  {#if cardPendaftaran.isOpen === 1}
+                     <button
+                        class="button is-dark is-small"
+                        href={cardPendaftaran.buttonLink}
+                        >{cardPendaftaran.buttonText}</button
+                     >
+                  {:else if cardPendaftaran.isOpen === 0}
+                     <button
+                        class="button is-dark is-small"
+                        on:click={outOfPeriod}
+                        >{cardPendaftaran.buttonText}</button
+                     >
+                  {/if}
                </div>
             </div>
          </div>
       {/each}
    </div>
 </Article>
+
+<Modalerror bind:show={outOfPeriodModal}>
+   <p>Pendaftaran sedang ditutup</p>
+</Modalerror>
 
 <style>
    /* .countdown-container {

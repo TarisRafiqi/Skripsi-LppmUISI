@@ -117,7 +117,7 @@
                <div class="navbar-item">
                   <div class="buttons">
                      <a
-                        class="button is-dark is-small is-fullwidth"
+                        class="button is-dark is-small is-rounded is-fullwidth"
                         href="/login"
                      >
                         Login

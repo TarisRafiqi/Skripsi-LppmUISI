@@ -31,7 +31,6 @@
       } else {
          if (response.status === 200) {
             items = result.dbData;
-            console.log(items);
          }
       }
    }

@@ -22,8 +22,10 @@
             <p class="title is-1">
                Lembaga Penelitian Dan Pengabdian Kepada Masyarakat
             </p>
-            <button class="button is-dark">Panduan PPM UISI</button>
-            <button class="button is-danger is-outlined">Pengumuman</button>
+            <button class="button is-dark is-rounded">Panduan PPM UISI</button>
+            <button class="button is-danger is-outlined is-rounded"
+               >Pengumuman</button
+            >
          </div>
 
          <div class="column">
