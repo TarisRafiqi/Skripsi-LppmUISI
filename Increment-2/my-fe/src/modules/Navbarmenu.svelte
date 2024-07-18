@@ -131,6 +131,15 @@
 </header>
 
 <style>
+   @media (min-width: 768px) {
+      /* div {
+         grid-template-columns: 2fr 0.6fr;
+      } */
+      nav {
+         padding: 0 10rem;
+      }
+   }
+
    header {
       z-index: 100;
       position: fixed;
@@ -141,7 +150,6 @@
    }
    nav {
       /* position: relative; */
-      padding: 0 10rem;
       height: inherit;
       box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.295);
    }

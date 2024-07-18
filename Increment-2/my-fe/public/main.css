@@ -1427,25 +1427,32 @@ article.svelte-9f6d4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/libs/Hero.esbuild-svelte-fake-css */
-.box.boxHero-Kanan.svelte-1dw2uoc {
+.box.boxHero-Kanan.svelte-m03nsc {
   height: 300px;
 }
-.title.svelte-1dw2uoc {
+.title.svelte-m03nsc {
   color: black;
 }
-.subtitle.svelte-1dw2uoc {
+.subtitle.svelte-m03nsc {
   color: black;
-  text-align: justify;
 }
 @media (min-width: 768px) {
+  .hero-body.svelte-m03nsc {
+    padding-right: 10rem;
+    padding-left: 10rem;
+  }
+  .custom-subtitle.svelte-m03nsc {
+    font-size: 1.5rem;
+  }
+  .custom-title.svelte-m03nsc {
+    font-size: 3rem;
+  }
 }
-.hero.svelte-1dw2uoc {
+.hero.svelte-m03nsc {
   background-color: #eff2f6;
 }
-.hero-body.svelte-1dw2uoc {
+.hero-body.svelte-m03nsc {
   padding-top: 5rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
   border-radius: 20px;
   background-image: var(--url);
   background-repeat: no-repeat;
@@ -2236,7 +2243,12 @@ a.svelte-hu16du.svelte-hu16du {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-2/my-fe/src/modules/Navbarmenu.esbuild-svelte-fake-css */
-header.svelte-1xy7v1.svelte-1xy7v1 {
+@media (min-width: 768px) {
+  nav.svelte-s13wua.svelte-s13wua {
+    padding: 0 10rem;
+  }
+}
+header.svelte-s13wua.svelte-s13wua {
   z-index: 100;
   position: fixed;
   top: 0;
@@ -2244,12 +2256,11 @@ header.svelte-1xy7v1.svelte-1xy7v1 {
   right: 0;
   height: 3.5rem;
 }
-nav.svelte-1xy7v1.svelte-1xy7v1 {
-  padding: 0 10rem;
+nav.svelte-s13wua.svelte-s13wua {
   height: inherit;
   box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.295);
 }
-.navbar-item.svelte-1xy7v1 img.svelte-1xy7v1 {
+.navbar-item.svelte-s13wua img.svelte-s13wua {
   max-height: 3rem;
 }
 

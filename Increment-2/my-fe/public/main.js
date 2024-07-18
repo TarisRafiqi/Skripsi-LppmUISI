@@ -1359,11 +1359,12 @@
     return {
       c() {
         section = element("section");
-        section.innerHTML = `<div class="hero-body svelte-1dw2uoc"><div class="columns"><div class="column is-6"><p class="subtitle is-3 svelte-1dw2uoc">Universitas Internasional Semen Indonesia</p> <p class="title is-1 svelte-1dw2uoc">Lembaga Penelitian Dan Pengabdian Kepada Masyarakat</p> <button class="button is-dark is-rounded">Panduan PPM UISI</button> <button class="button is-danger is-outlined is-rounded">Pengumuman</button></div> <div class="column"><div class="box boxHero-Kanan svelte-1dw2uoc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi
-               et, suscipit veniam voluptatibus exercitationem reprehenderit
-               atque accusantium dignissimos minus dicta beatae debitis
-               asperiores libero optio facilis quod dolorum? Facilis, in?</div></div></div></div>`;
-        attr(section, "class", "hero is-fullheight svelte-1dw2uoc");
+        section.innerHTML = `<div class="hero-body svelte-m03nsc"><div class="columns"><div class="column is-6"><p class="subtitle custom-subtitle svelte-m03nsc">Universitas Internasional Semen Indonesia</p> <p class="title custom-title svelte-m03nsc">Lembaga Penelitian Dan Pengabdian Kepada Masyarakat</p> <button class="button is-dark is-rounded">Panduan PPM UISI</button> <button class="button is-danger is-outlined is-rounded">Pengumuman</button></div> <div class="column"><div class="box boxHero-Kanan svelte-m03nsc"><p class="subtitle is-6 svelte-m03nsc">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Sequi et, suscipit veniam voluptatibus exercitationem
+                  reprehenderit atque accusantium dignissimos minus dicta beatae
+                  debitis asperiores libero optio facilis quod dolorum? Facilis,
+                  in?</p></div></div></div></div>`;
+        attr(section, "class", "hero is-fullheight svelte-m03nsc");
       },
       m(target, anchor) {
         insert(target, section, anchor);
@@ -22563,10 +22564,10 @@
     let t2;
     let div0;
     let t3;
-    let div5;
+    let div3;
     let div2;
     let div1;
-    let h50;
+    let h5;
     let t5;
     let table;
     let thead;
@@ -22605,8 +22606,6 @@
     let t27;
     let td11;
     let input6;
-    let t28;
-    let div4;
     let current;
     let mounted;
     let dispose;
@@ -22633,11 +22632,11 @@
           each_blocks[i].c();
         }
         t3 = space();
-        div5 = element("div");
+        div3 = element("div");
         div2 = element("div");
         div1 = element("div");
-        h50 = element("h5");
-        h50.textContent = "Waktu Pendaftaran Proposal PPM";
+        h5 = element("h5");
+        h5.textContent = "Waktu Pendaftaran Proposal PPM";
         t5 = space();
         table = element("table");
         thead = element("thead");
@@ -22680,12 +22679,9 @@
         t27 = space();
         td11 = element("td");
         input6 = element("input");
-        t28 = space();
-        div4 = element("div");
-        div4.innerHTML = `<div class="box"><h5 class="title is-5">Pengumuman</h5></div>`;
         attr(h2, "class", "title is-2");
         attr(div0, "class", "columns cardCounter-container is-desktop");
-        attr(h50, "class", "title is-5");
+        attr(h5, "class", "title is-5");
         attr(input0, "type", "date");
         attr(input0, "class", "input is-small");
         attr(td1, "class", "centerText svelte-g8zc3i");
@@ -22707,8 +22703,7 @@
         attr(table, "class", "table is-bordered is-striped is-narrow is-hoverable is-fullwidth");
         attr(div1, "class", "box");
         attr(div2, "class", "column");
-        attr(div4, "class", "column");
-        attr(div5, "class", "columns is-desktop");
+        attr(div3, "class", "columns is-desktop");
       },
       m(target, anchor) {
         insert(target, h2, anchor);
@@ -22722,10 +22717,10 @@
           }
         }
         insert(target, t3, anchor);
-        insert(target, div5, anchor);
-        append(div5, div2);
+        insert(target, div3, anchor);
+        append(div3, div2);
         append(div2, div1);
-        append(div1, h50);
+        append(div1, h5);
         append(div1, t5);
         append(div1, table);
         append(table, thead);
@@ -22790,8 +22785,6 @@
         append(td11, input6);
         input6.checked = /*pendaftaranMandiri*/
         ctx[2];
-        append(div5, t28);
-        append(div5, div4);
         current = true;
         if (!mounted) {
           dispose = [
@@ -22980,7 +22973,7 @@
           detach(t2);
           detach(div0);
           detach(t3);
-          detach(div5);
+          detach(div3);
         }
         destroy_each(each_blocks, detaching);
         mounted = false;
@@ -105130,7 +105123,7 @@
         nav = element("nav");
         div0 = element("div");
         a0 = element("a");
-        a0.innerHTML = `<img src="/img/LogoLppmUISI.png" alt="Logo UISI" class="svelte-1xy7v1"/>`;
+        a0.innerHTML = `<img src="/img/LogoLppmUISI.png" alt="Logo UISI" class="svelte-s13wua"/>`;
         t0 = space();
         a1 = element("a");
         a1.innerHTML = `<span></span> <span></span> <span></span>`;
@@ -105150,7 +105143,7 @@
         div4.innerHTML = `<a class="navbar-link">Pengabdian Masyarakat</a> <div class="navbar-dropdown"><a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Internal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Eksternal</a> <a class="navbar-item" href="/abdimas">Pengabdian Masyarakat Mandiri</a></div>`;
         t23 = space();
         if_block.c();
-        attr(a0, "class", "navbar-item svelte-1xy7v1");
+        attr(a0, "class", "navbar-item svelte-s13wua");
         attr(a0, "href", "/");
         attr(a1, "class", "navbar-burger");
         attr(a1, "id", "burger");
@@ -105164,8 +105157,8 @@
         attr(div5, "class", "navbar-end");
         attr(div6, "class", "navbar-menu");
         attr(div6, "id", "nav-links");
-        attr(nav, "class", "navbar svelte-1xy7v1");
-        attr(header, "class", "svelte-1xy7v1");
+        attr(nav, "class", "navbar svelte-s13wua");
+        attr(header, "class", "svelte-s13wua");
       },
       m(target, anchor) {
         insert(target, header, anchor);

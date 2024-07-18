@@ -323,11 +323,17 @@
          </div>
       </div>
 
-      <div class="column">
+      <!-- <div class="column">
          <div class="box">
             <h5 class="title is-5">Pengumuman</h5>
+            <p class="subtitle is-6">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ea,
+               odit eveniet quia laborum perferendis consequuntur qui suscipit
+               nam temporibus voluptatibus ducimus exercitationem, culpa quasi
+               eaque dolore. Doloribus, tenetur aliquam!
+            </p>
          </div>
-      </div>
+      </div> -->
    </div>
 </Article>
 
