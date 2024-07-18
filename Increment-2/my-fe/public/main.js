@@ -39818,8 +39818,8 @@
     return {
       c() {
         article2 = element("article");
-        article2.innerHTML = `<h1>404</h1> <h6>PAGE NOT FOUND</h6>`;
-        attr(article2, "class", "svelte-9f6d4p");
+        article2.innerHTML = `<p class="title is-2">404</p> <p class="subtitle is-5">PAGE NOT FOUND</p>`;
+        attr(article2, "class", "svelte-w5hzam");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
