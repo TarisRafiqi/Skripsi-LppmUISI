@@ -1,0 +1,2139 @@
+<script>
+   import { route, apiURL, penilaianFile } from "../../store";
+   import Modalerror from "../../libs/Modalerror.svelte";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
+   import Fieldview from "../../libs/Fieldview.svelte";
+   import { downloadIcon } from "../../store/icons";
+   import Article from "../../libs/Article.svelte";
+   import Icon from "../../libs/Icon.svelte";
+   import { onMount } from "svelte";
+   export let params;
+
+   const skemaInternal = [
+      "Riset Kelompok Keahlian",
+      "Riset Terapan",
+      "Riset Kerjasama",
+      "Pengabdian Masyarakat Desa Binaan",
+      "Pengabdian Masyarakat UMKM Binaan",
+   ];
+   const skemaEksternal = [
+      "Riset Eksternal",
+      "Pengabdian Masyarakat Hibah Eksternal",
+   ];
+   const skemaMandiri = ["Riset Mandiri", "Pengabdian Masyarakat Mandiri"];
+
+   const namaLengkapEvl = localStorage.getItem("nama_lengkap");
+   const role = localStorage.getItem("role");
+   const id = params["1"];
+
+   let showModalErrorPassReviewer = false;
+   let showModalErrorRevisi = false;
+   let showModalChecked = false;
+   let ModalFileNotFound = false;
+   let isLoading = false;
+   let skpVisible = false;
+   let danaPPMVisible = false;
+   let hasilPPMVisible = false;
+   let presentasiVisible = false;
+   let skPPMVisible = false;
+   let iPPVisible = false;
+   let CRPVisible = false;
+
+   let randomPenilaianFileName;
+   let biodataAnggota = [];
+   let error = {};
+   let filePenilaian;
+   let data;
+   let itemsRCR;
+   let itemsCHP;
+   let jenisProposal,
+      jenisKegiatan,
+      jenisSkema,
+      kelompokKeahlian,
+      topik,
+      tanggalMulai,
+      tanggalSelesai,
+      biayaPenelitian,
+      anggotaTim,
+      rab,
+      judul,
+      abstrak,
+      status,
+      ttdSuratKontrak,
+      presentasiHasilPPM,
+      statusPencairanDana;
+
+   let catatanRevisiProposal;
+   let catatanRevisiHasilPPM;
+
+   const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
+
+   // Memakai akses token, hanya uid yang bersangkutan, dan role admin yang boleh mengakses halaman ini
+   onMount(async () => {
+      await getDetailPPM();
+
+      // ========== Get Riwayat Catatan Revisi Proposal ========== //
+      const responseRCR = await fetch(
+         $apiURL + "/riwayatCatatanRevisiProposal/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataRCR = await responseRCR.json();
+
+      if (responseRCR.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseRCR.ok) {
+            itemsRCR = dataRCR.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+         }
+      }
+
+      // ========== Get Riwayat Catatan Revisi Hasil PPM ========== //
+      const responseCHP = await fetch(
+         $apiURL + "/riwayatCatatanRevisiHasilPPM/" + ppmId,
+         {
+            method: "GET",
+            headers: headers,
+         }
+      );
+
+      const dataCHP = await responseCHP.json();
+
+      if (responseCHP.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (responseCHP.ok) {
+            itemsCHP = dataCHP.dbData.map((item) => ({
+               ...item,
+               time: formatDate(item.time),
+            }));
+         }
+      }
+
+      // ========================== Generate Random Character ========================== //
+      let randomChar = "";
+      let resultGenerateRandomChar = "";
+      const characters =
+         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (let i = 0; i < 10; i++) {
+         const randomIndex = Math.floor(Math.random() * characters.length);
+         resultGenerateRandomChar += characters.charAt(randomIndex);
+      }
+
+      randomChar = resultGenerateRandomChar;
+
+      randomPenilaianFileName = id + "_Penilaian Proposal PPM_" + randomChar;
+   });
+
+   // ========== Get Detail Proposal PPM ========== //
+   async function getDetailPPM() {
+      const response = await fetch($apiURL + "/ppm/" + id, {
+         method: "GET",
+         headers: headers,
+      });
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            data = result;
+            ppmId = data.id;
+            jenisProposal = data.jenis_proposal;
+            jenisKegiatan = data.jenis_kegiatan;
+            jenisSkema = data.jenis_skema;
+            kelompokKeahlian = data.kelompok_keahlian;
+            topik = data.topik;
+            tanggalMulai = data.tanggal_mulai;
+            tanggalSelesai = data.tanggal_selesai;
+            biayaPenelitian = data.biaya_penelitian;
+            anggotaTim = data.anggota_tim;
+            biodataAnggota = data.biodata_anggota;
+            rab = data.rab;
+            judul = data.judul;
+            abstrak = data.abstrak;
+            status = data.status;
+            randomRabFileName = data.rab_file_name;
+            kontrakFileName = data.kontrak_ppm_eksternal_file_name;
+            randomPpmFileName = data.ppm_file_name;
+            randomPenilaianFileNamedb = data.penilaian_file_name;
+            ttdSuratKontrak = data.ttd_surat_kontrak;
+            presentasiHasilPPM = data.presentasi_hasil_ppm;
+
+            fileSkPendanaanNameDB = data.file_sk_pendanaan;
+            fileSuratKontrakNameDB = data.file_surat_kontrak;
+            fileSuratTugasNameDB = data.file_surat_tugas;
+            fileSkPPMNameDB = data.file_sk_ppm;
+            fileHasilPPMNameDB = data.file_hasil_ppm;
+            fileLaporanKeuanganNameDB = data.file_laporan_keuangan;
+            statusPencairanDana =
+               data.status_pencairan_dana || "Menunggu pencairan dana";
+         } else {
+            console.log(response);
+         }
+      }
+   }
+
+   async function handleRevisi() {
+      error = {};
+      isLoading = true;
+
+      let payload = {
+         status: Number(data.status) - 1,
+         id,
+      };
+
+      let payloadCttnRevisiProposal = {
+         ppmId,
+         catatanRevisiProposal,
+         namaLengkapEvl,
+      };
+      const payloadCttnRevisiHasilPPM = {
+         ppmId,
+         catatanRevisiHasilPPM,
+         namaLengkapEvl,
+      };
+
+      if (cttnRevisiProposalisRequired()) {
+         if (!payloadCttnRevisiProposal.catatanRevisiProposal) {
+            error.catatanRevisiProposal = `This field is required`;
+         }
+      }
+
+      if (cttnRevisiHasilPPMisRequired()) {
+         if (!payloadCttnRevisiHasilPPM.catatanRevisiHasilPPM) {
+            error.catatanRevisiHasilPPM = `This field is required`;
+         }
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorRevisi = true;
+      } else {
+         // ===========  Post Catatan Revisi Proposal  =========== //
+         if (cttnRevisiProposalisRequired()) {
+            const responseRev = await fetch(
+               $apiURL + "/riwayatCatatanRevisiProposal",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiProposal),
+               }
+            );
+
+            const resultRev = await responseRev.json();
+
+            if (responseRev.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRev.ok) {
+                  console.log(responseRev);
+                  // Buat Handle Error
+               }
+            }
+         }
+
+         // ===========  Post Catatan Revisi Hasil PPM  =========== //
+         if (cttnRevisiHasilPPMisRequired()) {
+            const responseRevisiHasilPPM = await fetch(
+               $apiURL + "/riwayatCatatanRevisiHasilPPM",
+               {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify(payloadCttnRevisiHasilPPM),
+               }
+            );
+
+            const resultRevisiHasilPPM = await responseRevisiHasilPPM.json();
+
+            if (responseRevisiHasilPPM.status === 401) {
+               location.pathname = "/tokenexpired";
+            } else {
+               if (!responseRevisiHasilPPM.ok) {
+                  console.log(responseRevisiHasilPPM);
+                  // Buat Handle Error
+               }
+            }
+         }
+
+         // ================  Update Data PPM  ================ //
+         const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               $route("/dosen/approvalmanagement");
+            } else {
+               console.log(response);
+               // Buat Handle Error
+            }
+         }
+      }
+      isLoading = false;
+   }
+
+   async function handleDitolak() {
+      isLoading = true;
+
+      const payload = {
+         status: Number(data.status) + 1,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            $route("/dosen/approvalmanagement");
+         } else {
+            console.log(response);
+            // Buat Handle Error
+            // ...
+         }
+      }
+      isLoading = false;
+   }
+
+   async function handlePass() {
+      isLoading = true;
+
+      const payload = {
+         status: Number(data.status) + 2,
+         id,
+      };
+
+      const response = await fetch($apiURL + "/handleEvaluatorAction/pass", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            $route("/dosen/approvalmanagement");
+         } else {
+            console.log(response);
+            // Buat Handle Error
+            // ...
+         }
+      }
+      isLoading = false;
+   }
+
+   async function handleSimpanPenilaian() {
+      error = {};
+      isLoading = true;
+      const readerPenilaian = new FileReader();
+
+      const payload = {
+         status: Number(data.status),
+         randomPenilaianFileName,
+         id,
+      };
+
+      if (isObjectEmpty($penilaianFile)) {
+         error["filePenilaian"] = `*`;
+      }
+
+      if (Object.keys(error).length > 0) {
+         showModalErrorPassReviewer = true;
+      } else {
+         // ==================================================//
+         // Upload File Penilaian
+         // ==================================================//
+         if (
+            jenisSkema === "Riset Kelompok Keahlian" ||
+            jenisSkema === "Riset Terapan" ||
+            jenisSkema === "Riset Kerjasama" ||
+            jenisSkema === "Pengabdian Masyarakat Desa Binaan" ||
+            jenisSkema === "Pengabdian Masyarakat UMKM Binaan"
+         ) {
+            readerPenilaian.onloadend = async () => {
+               const base64Data = readerPenilaian.result.split(",")[1];
+               const payloadPenilaianFile = {
+                  filePenilaian: {
+                     name: filePenilaian.name,
+                     type: filePenilaian.type,
+                     data: base64Data,
+                  },
+                  randomPenilaianFileName,
+               };
+
+               try {
+                  const responseUpload = await fetch(
+                     $apiURL + "/uploadPenilaian",
+                     {
+                        method: "POST",
+                        headers: headers,
+                        body: JSON.stringify(payloadPenilaianFile),
+                     }
+                  );
+
+                  const resultUpload = await responseUpload.json();
+
+                  if (responseUpload.status === 401) {
+                     location.pathname = "/tokenexpired";
+                  }
+               } catch (error) {
+                  console.error("Error uploading file:", error);
+                  // Buat Handle Error
+               }
+            };
+            readerPenilaian.readAsDataURL(filePenilaian);
+         }
+         // =================================================================//
+         const response = await fetch($apiURL + "/handleEvaluatorAction", {
+            method: "PATCH",
+            headers: headers,
+            body: JSON.stringify(payload),
+         });
+
+         const result = await response.json();
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else {
+            if (response.ok) {
+               getDetailPPM();
+               showModalChecked = true;
+            } else {
+               console.log(response);
+               // Buat Handle Error
+            }
+         }
+      }
+
+      isLoading = false;
+   }
+
+   async function handleDownloadRab(e) {
+      let filename = "RAB_" + judul + ".xlsx";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadRab/${randomRabFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadPpm(e) {
+      let filename = "Proposal_" + judul + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPpm/${randomPpmFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadKontrakPpmEksternal(e) {
+      let filename = "Kontrak PPM_" + judul + ".pdf";
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadKontrakPPMEksternal/${kontrakFileName}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadPenilaian(e) {
+      let filename = "Penilaian Proposal_" + judul + ".xlsx";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadPenilaian/${randomPenilaianFileNamedb}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSkPendanaan(e) {
+      let filename = "SK Pendanaan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPendanaan/${fileSkPendanaanNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratKontrak() {
+      let filename = "Surat Kontrak Penelitian" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratKontrak/${fileSuratKontrakNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSuratTugas() {
+      let filename = "Surat Tugas" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSuratTugas/${fileSuratTugasNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadSkPPM() {
+      let filename = "SK PPM" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadSKPPM/${fileSkPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadHasilPPM() {
+      let filename = "Laporan Hasil PPM" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL + `/uploadDownloadHasilPPM/${fileHasilPPMNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function handleDownloadLaporanKeuangan() {
+      let filename = "Laporan Keuangan" + ".pdf";
+
+      try {
+         const response = await fetch(
+            $apiURL +
+               `/uploadDownloadLaporanKeuangan/${fileLaporanKeuanganNameDB}`,
+            {
+               method: "GET",
+               headers: headers,
+            }
+         );
+
+         if (response.status === 401) {
+            location.pathname = "/tokenexpired";
+         } else if (response.ok) {
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+         } else {
+            ModalFileNotFound = true;
+         }
+      } catch (error) {
+         console.error("Error downloading file:", error);
+      }
+   }
+
+   async function checkboxPresentasiHasilPPM(event) {
+      presentasiHasilPPM = event.target.checked ? 1 : 0;
+      payload = {
+         ppmId,
+         presentasiHasilPPM,
+      };
+
+      const response = await fetch($apiURL + "/checkBoxPPM/id/presentasiPPM", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
+   }
+
+   let tab1 = true;
+   let tab2;
+
+   function clicktab1() {
+      tab1 = true;
+      tab2 = false;
+   }
+
+   function clicktab2() {
+      tab1 = false;
+      tab2 = true;
+   }
+
+   function filePenilaianChange(e) {
+      filePenilaian = e.target.files[0];
+      $penilaianFile = e.target.files[0];
+   }
+
+   function isObjectEmpty(objectName) {
+      return (
+         objectName &&
+         Object.keys(objectName).length === 0 &&
+         objectName.constructor === Object
+      );
+   }
+
+   function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const hours = String(date.getUTCHours()).padStart(2, "0");
+      const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+      const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+
+      // Format date "YYYY-MM-DD HH:MM:SS"
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+   }
+
+   function ShowRPButton() {
+      const StatusForInternal = [10];
+      const StatusForEksternal = [10];
+      const StatusForMandiri = [10];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         StatusForInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         StatusForEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         StatusForMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function ShowRDPButton() {
+      const ReviewKpkKlppmSkemaInternal = [6];
+      const ReviewKpkKlppmSkemaEksternal = [6];
+      const ReviewKpkKlppmSkemaMandiri = [6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         ReviewKpkKlppmSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+   }
+
+   function cttnRevisiProposalisRequired() {
+      const RevisiSkemaInternal = [2, 6];
+      const RevisiSkemaEksternal = [2, 6];
+      const RevisiSkemaMandiri = [2, 6];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
+
+   function cttnRevisiHasilPPMisRequired() {
+      const RevisiSkemaInternal = [10];
+      const RevisiSkemaEksternal = [10];
+      const RevisiSkemaMandiri = [10];
+
+      if (
+         skemaInternal.includes(data.jenis_skema) &&
+         RevisiSkemaInternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaEksternal.includes(data.jenis_skema) &&
+         RevisiSkemaEksternal.includes(data.status)
+      ) {
+         return true;
+      }
+      if (
+         skemaMandiri.includes(data.jenis_skema) &&
+         RevisiSkemaMandiri.includes(data.status)
+      ) {
+         return true;
+      }
+
+      return false;
+   }
+</script>
+
+{#if data}
+   <Article>
+      <h2 class="title is-2">Detail PPM</h2>
+
+      <div class="tabs is-boxed">
+         <ul>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab1} class:is-active={tab1}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Detail PPM</span>
+               </a>
+            </li>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab2} class:is-active={tab2}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Biodata Peneliti</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+
+      <!-- Tab Detail PPM -->
+      {#if tab1 === true}
+         <div class="box">
+            <div class="columns is-desktop">
+               <Fieldview title="Judul" content={data.judul} />
+            </div>
+
+            <div class="columns is-desktop">
+               <Fieldview title="Abstrak" content={data.abstrak} />
+            </div>
+
+            <div class="columns is-desktop">
+               <Fieldview
+                  title="Status"
+                  content={status}
+                  skema={data.jenis_skema}
+                  type="status"
+               />
+            </div>
+
+            <hr />
+
+            <div class="columns is-desktop">
+               <Fieldview title="Jenis Proposal" content={jenisProposal} />
+               <Fieldview title="Jenis Kegiatan" content={jenisKegiatan} />
+            </div>
+
+            <div class="columns is-desktop">
+               <Fieldview title="Jenis Skema" content={jenisSkema} />
+               <Fieldview
+                  title="Kelompok Keahlian"
+                  content={kelompokKeahlian}
+               />
+            </div>
+
+            <div class="columns is-desktop">
+               <Fieldview title="Topik" content={topik} />
+               <Fieldview title="Biaya Penelitian" content={biayaPenelitian} />
+            </div>
+
+            <div class="columns is-desktop">
+               <Fieldview title="Tanggal Mulai" content={tanggalMulai} />
+               <Fieldview title="Tanggal Selesai" content={tanggalSelesai} />
+            </div>
+
+            <div class="columns is-desktop">
+               <div class="column">
+                  <div class="field">
+                     <p class="title is-6"><b>File Proposal</b></p>
+                     <p class="subtitle is-6">
+                        <button
+                           class="button is-link button is-small"
+                           on:click={handleDownloadPpm}
+                           >Download Proposal</button
+                        >
+                     </p>
+                  </div>
+               </div>
+
+               {#if skemaEksternal.includes(jenisSkema)}
+                  <div class="column">
+                     <p class="title is-6"><b>File Kontrak PPM</b></p>
+                     <p class="subtitle is-6">
+                        <button
+                           class="button is-link button is-small"
+                           on:click={handleDownloadKontrakPpmEksternal}
+                           >Download Kontrak PPM</button
+                        >
+                     </p>
+                  </div>
+               {/if}
+
+               {#if skemaInternal.includes(jenisSkema)}
+                  <div class="column">
+                     <div class="field">
+                        <p class="title is-6">
+                           <b>File RAB (Rencana Anggaran Biaya)</b>
+                        </p>
+                        <p class="subtitle is-6">
+                           <button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadRab}>Download RAB</button
+                           >
+                        </p>
+                     </div>
+                  </div>
+               {/if}
+            </div>
+
+            <div class="field">
+               <p class="title is-6"><b>Anggota Tim</b></p>
+               <table
+                  class="table is-fullwidth is-striped is-hoverable is-bordered"
+               >
+                  <thead>
+                     <tr>
+                        <th class="is-narrow">Role</th>
+                        <th>Nama</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {#if anggotaTim.length > 0}
+                        {#each anggotaTim as member}
+                           <tr>
+                              <td>{member.role}</td>
+                              <td>{member.label}</td>
+                           </tr>
+                        {/each}
+                     {/if}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+
+         <!-- ========================================== -->
+         <!--           Input Penilaian Proposal         -->
+         <!-- ========================================== -->
+         {#if skemaInternal.includes(jenisSkema)}
+            {#if role === "reviewer"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Penilaian Proposal
+                     <span
+                        class="toggle-button"
+                        on:click={() => (iPPVisible = !iPPVisible)}
+                     >
+                        {iPPVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if iPPVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Upload File (.xlsx)</th
+                              >
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+
+                        <tbody>
+                           <td>Penilaian Proposal PPM</td>
+                           <td>
+                              <span class="inputf__wrapper mb-1">
+                                 <input
+                                    id="filePenilaian"
+                                    class="inputf custom-file-input"
+                                    accept=".xlsx"
+                                    type="file"
+                                    on:change={filePenilaianChange}
+                                 />
+                                 <div class="file has-name is-small">
+                                    <label
+                                       class="file-label"
+                                       for="filePenilaian"
+                                    >
+                                       <input
+                                          class="file-input"
+                                          type="file"
+                                          name="resume"
+                                       />
+                                       <span class="file-cta">
+                                          <span class="file-icon">
+                                             <Icon
+                                                id="download"
+                                                src={downloadIcon}
+                                             />
+                                          </span>
+                                          <span class="file-label">
+                                             Choose a file</span
+                                          >
+                                       </span>
+                                       {#if $penilaianFile?.name}
+                                          <span class="file-name">
+                                             {$penilaianFile.name}</span
+                                          >
+                                       {:else}
+                                          <span class="file-name"
+                                             >No file chosen</span
+                                          >
+                                       {/if}
+                                    </label>
+                                 </div>
+                              </span>
+                           </td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadPenilaian}
+                                 >Download
+                              </button></td
+                           >
+                        </tbody>
+                     </table>
+
+                     <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                           <button
+                              class="button is-info"
+                              on:click={handleSimpanPenilaian}
+                              class:is-loading={isLoading}
+                              >Simpan Penilaian</button
+                           >
+                        </p>
+                     </div>
+                  {/if}
+               </div>
+            {:else if role !== "K.Departemen"}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Penilaian Proposal
+                     <span
+                        class="toggle-button"
+                        on:click={() => (iPPVisible = !iPPVisible)}
+                     >
+                        {iPPVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if iPPVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+
+                        <tbody>
+                           <td>Penilaian Proposal PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadPenilaian}
+                                 >Download
+                              </button></td
+                           >
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+         {/if}
+
+         <!-- ========================================== -->
+         <!--           Catatan Revisi Proposal          -->
+         <!-- ========================================== -->
+         {#if role !== "K.Departemen" && role !== "reviewer"}
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Informasi Revisi Proposal <span
+                     class="toggle-button"
+                     on:click={() => (CRPVisible = !CRPVisible)}
+                  >
+                     {CRPVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if CRPVisible}
+                  <hr />
+                  {#if cttnRevisiProposalisRequired()}
+                     <div class="notification is-warning is-light">
+                        <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                     </div>
+
+                     <div class="field">
+                        <p class="title is-6"><b>Catatan Revisi</b></p>
+                        <textarea
+                           class="textarea mb-1"
+                           bind:value={catatanRevisiProposal}
+                           name="komentar"
+                           id="komentar"
+                        ></textarea>
+                        {#if error.catatanRevisiProposal}
+                           <p class="help error is-danger">
+                              {error.catatanRevisiProposal}
+                           </p>
+                        {/if}
+                     </div>
+                     <hr />
+                  {/if}
+
+                  <!-- {/if} -->
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+                     {#if itemsRCR}
+                        <tbody>
+                           {#each itemsRCR as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_proposal}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               {/if}
+            </div>
+         {/if}
+
+         {#if (skemaInternal.includes(jenisSkema) && status >= 8) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
+            <!-- ============================================================ -->
+            <!--     Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas    -->
+            <!-- ============================================================ -->
+            {#if skemaInternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     <!-- File SK Pendanaan / Surat Kontrak PPM / Surat Tugas -->
+                     Download Dokumen Pendukung
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>SK Pendanaan</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSkPendanaan}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                           <!-- ====================================================== -->
+                           <tr>
+                              <td>Surat Kontrak PPM</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratKontrak}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                           <!-- ====================================================== -->
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {:else}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     <!-- File Surat Tugas -->
+                     Download Dokumen Pendukung
+                     <span
+                        class="toggle-button"
+                        on:click={() => (skpVisible = !skpVisible)}
+                     >
+                        {skpVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if skpVisible}
+                     <hr />
+
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama </th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Surat Tugas</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSuratTugas}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--                  Dana PPM                  -->
+            <!-- ========================================== -->
+            {#if skemaInternal.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Pendanaan PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() => (danaPPMVisible = !danaPPMVisible)}
+                     >
+                        {danaPPMVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if danaPPMVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Status Pencairan Dana</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 ><span class="tag is-info"
+                                    >{statusPencairanDana}</span
+                                 ></th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td colspan="2"
+                                 ><div class="notification is-warning is-light">
+                                    <p class="subtitle is-6">
+                                       Untuk pengambilan dana dan penjelasan
+                                       lebih lanjut terkait Pendanaan, hubungi
+                                       LPPM UISI.
+                                    </p>
+                                 </div></td
+                              >
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--               Hasil PPM                    -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  Laporan Hasil PPM
+                  <span
+                     class="toggle-button"
+                     on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
+                  >
+                     {hasilPPMVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if hasilPPMVisible}
+                  <hr />
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td>Laporan Hasil PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadHasilPPM}
+                                 >Download</button
+                              ></td
+                           >
+                        </tr>
+                        {#if skemaInternal.includes(jenisSkema)}
+                           <tr>
+                              <td>Laporan Keuangan</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadLaporanKeuangan}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                        {/if}
+                     </tbody>
+                  </table>
+
+                  <hr />
+
+                  <div class="notification is-warning is-light">
+                     <p>Berikan catatan revisi jika ingin revisi Hasil PPM</p>
+                  </div>
+
+                  <div class="field">
+                     <p class="title is-6"><b>Catatan Revisi</b></p>
+                     <textarea
+                        class="textarea mb-1"
+                        name="catatanRevisiHasilPPM"
+                        id="catatanRevisiHasilPPM"
+                        bind:value={catatanRevisiHasilPPM}
+                     ></textarea>
+                     {#if error.catatanRevisiHasilPPM}
+                        <p class="help error is-danger">
+                           {error.catatanRevisiHasilPPM}
+                        </p>
+                     {/if}
+                  </div>
+
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
+                           <th style="width: 15%; text-align: center"
+                              >Evaluator</th
+                           >
+                           <th style="width: 15%; text-align: center"
+                              >Tanggal</th
+                           >
+                        </tr>
+                     </thead>
+
+                     {#if itemsCHP}
+                        <tbody>
+                           {#each itemsCHP as item}
+                              <tr>
+                                 <td>{item.catatan_revisi_hasil_ppm}</td>
+                                 <td style="text-align: center"
+                                    >{item.evaluator}</td
+                                 >
+                                 <td style="text-align: center">{item.time}</td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     {/if}
+                  </table>
+               {/if}
+            </div>
+
+            <!-- ========================================== -->
+            <!--             Presentasi Hasil PPM           -->
+            <!-- ========================================== -->
+            {#if !skemaEksternal.includes(jenisSkema) && !skemaMandiri.includes(jenisSkema)}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Presentasi Hasil PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (presentasiVisible = !presentasiVisible)}
+                     >
+                        {presentasiVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if presentasiVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Kegiatan</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Checkbox</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td
+                                 >Mempresentasikan hasil PPM di seminar
+                                 Penelitian / Pengmas bersama UISI di bulan
+                                 Desember</td
+                              >
+                              <td style="text-align: center">
+                                 <input
+                                    type="checkbox"
+                                    bind:checked={presentasiHasilPPM}
+                                    on:change={checkboxPresentasiHasilPPM}
+                                 />
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/if}
+
+            <!-- ========================================== -->
+            <!--                File SK PPM                 -->
+            <!-- ========================================== -->
+            <div class="box">
+               <!-- svelte-ignore a11y-no-static-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <h5 class="title is-6">
+                  File SK PPM
+                  <span
+                     class="toggle-button"
+                     on:click={() => (skPPMVisible = !skPPMVisible)}
+                  >
+                     {skPPMVisible ? "(tutup)" : "(buka)"}
+                  </span>
+               </h5>
+
+               {#if skPPMVisible}
+                  <hr />
+
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th style="width: 70%;">Nama</th>
+                           <th class="is-narrow" style="text-align: center"
+                              >Download File</th
+                           >
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>SK PPM</td>
+                           <td style="text-align: center"
+                              ><button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadSkPPM}>Download</button
+                              ></td
+                           >
+                        </tr>
+                     </tbody>
+                  </table>
+               {/if}
+            </div>
+         {/if}
+
+         <!-- ========================================== -->
+         <!--              Action Button                 -->
+         <!-- ========================================== -->
+         {#if role === "K.Departemen"}
+            {#if status === 4}
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Setujui</button
+                     >
+                  </p>
+               </div>
+            {/if}
+         {/if}
+
+         {#if role === "K.PusatKajian" || role === "K.LPPM"}
+            {#if ShowRPButton()}
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}
+                        class:is-loading={isLoading}>Revisi</button
+                     >
+                  </p>
+                  <p class="control">
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Setujui</button
+                     >
+                  </p>
+               </div>
+            {/if}
+         {/if}
+
+         {#if role === "K.PusatKajian" || role === "K.LPPM"}
+            {#if ShowRDPButton()}
+               <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                     <button
+                        class="button is-info is-light is-outlined"
+                        on:click={handleRevisi}
+                        class:is-loading={isLoading}>Revisi</button
+                     >
+                  </p>
+
+                  <p class="control">
+                     <button
+                        class="button is-danger is-light is-outlined"
+                        on:click={handleDitolak}
+                        class:is-loading={isLoading}>Ditolak</button
+                     >
+                  </p>
+
+                  <p class="control">
+                     <button
+                        class="button is-info"
+                        on:click={handlePass}
+                        class:is-loading={isLoading}>Setujui</button
+                     >
+                  </p>
+               </div>
+            {/if}
+         {/if}
+      {/if}
+
+      {#if tab2 === true}
+         {#if biodataAnggota.length > 0}
+            {#each biodataAnggota as user, index}
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h6 class="title is-6">
+                     Biodata - {user.profile.nama_lengkap}
+                     <span
+                        class="toggle-button"
+                        on:click={() =>
+                           (biodataAnggota[index].profileVisible =
+                              !biodataAnggota[index].profileVisible)}
+                     >
+                        {biodataAnggota[index].profileVisible
+                           ? "(tutup)"
+                           : "(buka)"}
+                     </span>
+                  </h6>
+
+                  {#if biodataAnggota[index].profileVisible}
+                     <!-- =================== -->
+                     <!-- Identitas -->
+                     <!-- =================== -->
+                     <hr class="has-background-grey-light" />
+
+                     <h5 class="title is-5">Identitas Diri</h5>
+                     <div class="notification is-info is-light">
+                        <p>Pastikan untuk melengkapi Identitas Diri.</p>
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview
+                           title="Nama Lengkap"
+                           content={user.profile.nama_lengkap}
+                        />
+                        <Fieldview
+                           title="Jabatan Fungsional"
+                           content={user.profile.jabatan_fungsional}
+                        />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview title="NIP" content={user.profile.nip} />
+                        <Fieldview title="NIDN" content={user.profile.nidn} />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview title="Email" content={user.profile.email} />
+                        <Fieldview
+                           title="Nomor Handphone"
+                           content={user.profile.nomor_handphone}
+                        />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview
+                           title="Tempat Lahir"
+                           content={user.profile.tempat_lahir}
+                        />
+                        <Fieldview
+                           title="Tanggal Lahir"
+                           content={user.profile.tanggal_lahir}
+                        />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview
+                           title="Alamat Rumah"
+                           content={user.profile.alamat_rumah}
+                        />
+                        <Fieldview
+                           title="Telp/Fax Rumah"
+                           content={user.profile.telp_fax_rumah}
+                        />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview
+                           title="Alamat Kantor"
+                           content={user.profile.alamat_kantor}
+                        />
+                        <Fieldview
+                           title="Telp/Fax Kantor"
+                           content={user.profile.telp_fax_kantor}
+                        />
+                     </div>
+
+                     <div class="columns is-desktop">
+                        <Fieldview
+                           title="Mata Kuliah yang diampu"
+                           content={user.profile.mata_kuliah}
+                           type="list"
+                        />
+                        <Fieldview title="" content="" />
+                     </div>
+
+                     <hr class="has-background-grey-light" />
+
+                     <!-- ===================== -->
+                     <!-- Riwayat Pendidikan S1 -->
+                     <!-- ===================== -->
+                     <h5 class="title is-5">Riwayat Pendidikan</h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 25%;"
+                                 >Nama Perguruan Tinggi (S1)</th
+                              >
+                              <th style="width: 20%;">Bidang Ilmu</th>
+                              <th style="width: 10%;">Tahun Masuk</th>
+                              <th style="width: 10%;">Tahun Lulus</th>
+                              <th style="width: 35%;">Judul Skripsi</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.RPS1.length > 0}
+                              {#each user.RPS1 as RPS1}
+                                 <tr>
+                                    <td>{RPS1.nama_perguruan_tinggi}</td>
+                                    <td>{RPS1.bidang_ilmu}</td>
+                                    <td>{RPS1.tahun_masuk}</td>
+                                    <td>{RPS1.tahun_lulus}</td>
+                                    <td>{RPS1.judul_skripsi}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <!-- ===================== -->
+                     <!-- Riwayat Pendidikan S2 -->
+                     <!-- ===================== -->
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 25%;"
+                                 >Nama Perguruan Tinggi (S2)</th
+                              >
+                              <th style="width: 20%;">Bidang Ilmu</th>
+                              <th style="width: 10%;">Tahun Masuk</th>
+                              <th style="width: 10%;">Tahun Lulus</th>
+                              <th style="width: 35%;">Judul Tesis</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.RPS2.length > 0}
+                              {#each user.RPS2 as RPS2}
+                                 <tr>
+                                    <td>{RPS2.nama_perguruan_tinggi}</td>
+                                    <td>{RPS2.bidang_ilmu}</td>
+                                    <td>{RPS2.tahun_masuk}</td>
+                                    <td>{RPS2.tahun_lulus}</td>
+                                    <td>{RPS2.judul_tesis}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <!-- ===================== -->
+                     <!-- Riwayat Pendidikan S3 -->
+                     <!-- ===================== -->
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 25%;"
+                                 >Nama Perguruan Tinggi (S3)</th
+                              >
+                              <th style="width: 20%;">Bidang Ilmu</th>
+                              <th style="width: 10%;">Tahun Masuk</th>
+                              <th style="width: 10%;">Tahun Lulus</th>
+                              <th style="width: 35%;">Judul Disertasi</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.RPS3.length > 0}
+                              {#each user.RPS3 as RPS3}
+                                 <tr>
+                                    <td>{RPS3.nama_perguruan_tinggi}</td>
+                                    <td>{RPS3.bidang_ilmu}</td>
+                                    <td>{RPS3.tahun_masuk}</td>
+                                    <td>{RPS3.tahun_lulus}</td>
+                                    <td>{RPS3.judul_disertasi}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- ===================== -->
+                     <!-- Pengalaman Penelitian -->
+                     <!-- ===================== -->
+                     <h5 class="title is-5">Pengalaman Penelitian</h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul Penelitian</th>
+                              <th class="is-narrow">Role</th>
+                              <th class="is-narrow">Sumber Dana</th>
+                              <th>Jumlah Rp.</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.Ppenelitian.length > 0}
+                              {#each user.Ppenelitian as PP}
+                                 <tr>
+                                    <td>{PP.tahun_penelitian}</td>
+                                    <td>{PP.judul_penelitian}</td>
+                                    <td>{PP.role_penelitian}</td>
+                                    <td>{PP.sumber_dana}</td>
+                                    <td>{PP.jumlah}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- ===================== -->
+                     <!-- Pengalaman Pengmas    -->
+                     <!-- ===================== -->
+                     <h5 class="title is-5">
+                        Pengalaman Pengabdian Masyarakat
+                     </h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul Pengabdian Masyarakat</th>
+                              <th class="is-narrow">Role</th>
+                              <th class="is-narrow">Sumber Dana</th>
+                              <th>Jumlah Rp.</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.Ppengmas.length > 0}
+                              {#each user.Ppengmas as PM}
+                                 <tr>
+                                    <td>{PM.tahun_pengmas}</td>
+                                    <td>{PM.judul_pengmas}</td>
+                                    <td>{PM.role_pengmas}</td>
+                                    <td>{PM.sumber_dana}</td>
+                                    <td>{PM.jumlah}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- =============================== -->
+                     <!-- Pengalaman Diseminasi Ilmiah    -->
+                     <!-- =============================== -->
+                     <h5 class="title is-5">
+                        Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
+                     </h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul Artikel</th>
+                              <th>Nama Pemakalah</th>
+                              <th class="is-narrow"
+                                 >Nama Pertemuan Ilmiah / Pameran</th
+                              >
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.Pdiseminasi.length > 0}
+                              {#each user.Pdiseminasi as PD}
+                                 <tr>
+                                    <td>{PD.tahun_diseminasi}</td>
+                                    <td>{PD.judul_artikel}</td>
+                                    <td>{PD.nama_pemakalah}</td>
+                                    <td>{PD.nama_pertemuan}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- =============================== -->
+                     <!-- Pengalaman Publikasi Ilmiah     -->
+                     <!-- =============================== -->
+                     <h5 class="title is-5">
+                        Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
+                        Proceeding)
+                     </h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul Artikel</th>
+                              <th>Nama Penulis</th>
+                              <th
+                                 >Nama Jurnal, Vol., No Issue/No Artikel,
+                                 Halaman</th
+                              >
+                              <th>Impact Factor/Scopus Quarter/Akreditasi</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.Ppublikasi.length > 0}
+                              {#each user.Ppublikasi as PPub}
+                                 <tr>
+                                    <td>{PPub.tahun_publikasi}</td>
+                                    <td>{PPub.judul_artikel}</td>
+                                    <td>{PPub.nama_penulis}</td>
+                                    <td>{PPub.nama_jurnal}</td>
+                                    <td>{PPub.impact}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- ============================= -->
+                     <!-- Pengalaman Penulisan Buku     -->
+                     <!-- ============================= -->
+                     <h5 class="title is-5">Pengalaman Penulisan Buku</h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul Buku</th>
+                              <th>Nama Penulis</th>
+                              <th>Penerbit</th>
+                              <th>ISBN</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.PpenulisanBuku.length > 0}
+                              {#each user.PpenulisanBuku as PPB}
+                                 <tr>
+                                    <td>{PPB.tahun_buku}</td>
+                                    <td>{PPB.judul_buku}</td>
+                                    <td>{PPB.nama_penulis}</td>
+                                    <td>{PPB.penerbit}</td>
+                                    <td>{PPB.isbn}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
+                     <!-- ======================================= -->
+                     <!-- Pengalaman Hak Kekayaan Intelektual     -->
+                     <!-- ======================================= -->
+                     <h5 class="title is-5">
+                        Pengalaman Hak Kekayaan Intelektual
+                     </h5>
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th class="is-narrow">Tahun</th>
+                              <th>Judul HKI</th>
+                              <th>Nama Penulis</th>
+                              <th>Jenis HKI</th>
+                              <th>No HKI</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {#if user.Phki.length > 0}
+                              {#each user.Phki as PHKI}
+                                 <tr>
+                                    <td>{PHKI.tahun_hki}</td>
+                                    <td>{PHKI.judul_hki}</td>
+                                    <td>{PHKI.nama_penulis}</td>
+                                    <td>{PHKI.jenis_hki}</td>
+                                    <td>{PHKI.no_hki}</td>
+                                 </tr>
+                              {/each}
+                           {/if}
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
+            {/each}
+         {/if}
+      {/if}
+   </Article>
+{/if}
+
+<Modalerror bind:show={showModalErrorRevisi}>
+   <p>Anda belum memasukkan catatan revisi</p>
+</Modalerror>
+
+<Modalerror bind:show={showModalErrorPassReviewer}>
+   <p>Anda belum mengupload file penilaian proposal</p>
+</Modalerror>
+
+<Modalerror bind:show={ModalFileNotFound}>
+   <p>
+      Gagal mengunduh file. Pastikan file telah di upload atau coba unduh
+      beberapa saat lagi.
+   </p>
+</Modalerror>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
+
+<style>
+   .inputf__wrapper {
+      position: relative;
+      display: flex;
+   }
+   .inputf__wrapper input {
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+   .help {
+      /* top, right, bottom, left */
+      margin: -6px 0px 0px 0px;
+   }
+   .toggle-button {
+      cursor: pointer;
+      color: #fc6c78;
+      font-size: small;
+   }
+</style>
