@@ -17,7 +17,7 @@ import authIndex from "./pages/auth/Index.svelte";
 import dosenIndex from "./pages/dosen/Index.svelte";
 
 export default [
-   { path: "/detailpengumuman", page: Detailpengumuman },
+   { path: "/detailpengumuman/:0", page: Detailpengumuman },
    { path: "/", page: Home },
    { path: "/login", page: Login },
    { path: "/logout", page: Logout },
@@ -28,7 +28,7 @@ export default [
    { path: "/pengmasinternal", page: Pengmasinternal },
    { path: "/pengmasmandiri", page: Pengmasmandiri },
    { path: "/profil", page: Profil },
-   { path: "/strukturorganisasi", page: Strukturorganisasi },
+   { path: "/struktur-organisasi", page: Strukturorganisasi },
    { path: "/tokenexpired", page: Tokenexpired },
    { path: "/visidanmisi", page: Visidanmisi },
    { path: "/admin/:0", page: adminIndex },

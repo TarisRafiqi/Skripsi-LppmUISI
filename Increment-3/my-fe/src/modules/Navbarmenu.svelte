@@ -61,7 +61,7 @@
                <div class="navbar-dropdown">
                   <a class="navbar-item" href="/profil"> Profil </a>
                   <a class="navbar-item" href="/visidanmisi"> Visi dan Misi </a>
-                  <a class="navbar-item" href="/strukturorganisasi">
+                  <a class="navbar-item" href="/struktur-organisasi">
                      Struktur Organisasi
                   </a>
                </div>

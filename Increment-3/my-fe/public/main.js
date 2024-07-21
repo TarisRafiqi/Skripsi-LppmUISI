@@ -1837,6 +1837,7 @@
       } else {
         if (response.ok) {
           $$invalidate(0, items = result.dbData);
+          console.log(items);
         }
       }
     });
@@ -105994,7 +105995,7 @@
 
   // src/routes.js
   var routes_default = [
-    { path: "/detailpengumuman", page: Detailpengumuman_default },
+    { path: "/detailpengumuman/:0", page: Detailpengumuman_default },
     { path: "/", page: Index_default },
     { path: "/login", page: Login_default },
     { path: "/logout", page: Logout_default },
@@ -106005,7 +106006,7 @@
     { path: "/pengmasinternal", page: Pengmasinternal_default },
     { path: "/pengmasmandiri", page: Pengmasmandiri_default },
     { path: "/profil", page: Profil_default },
-    { path: "/strukturorganisasi", page: Strukturorganisasi_default },
+    { path: "/struktur-organisasi", page: Strukturorganisasi_default },
     { path: "/tokenexpired", page: Tokenexpired_default },
     { path: "/visidanmisi", page: Visidanmisi_default },
     { path: "/admin/:0", page: Index_default2 },
@@ -106700,7 +106701,7 @@
         a2.textContent = "Beranda";
         t5 = space();
         div2 = element("div");
-        div2.innerHTML = `<a class="navbar-link">About UISI</a> <div class="navbar-dropdown"><a class="navbar-item" href="/profil">Profil</a> <a class="navbar-item" href="/visidanmisi">Visi dan Misi</a> <a class="navbar-item" href="/strukturorganisasi">Struktur Organisasi</a></div>`;
+        div2.innerHTML = `<a class="navbar-link">About UISI</a> <div class="navbar-dropdown"><a class="navbar-item" href="/profil">Profil</a> <a class="navbar-item" href="/visidanmisi">Visi dan Misi</a> <a class="navbar-item" href="/struktur-organisasi">Struktur Organisasi</a></div>`;
         t13 = space();
         div4 = element("div");
         div4.innerHTML = `<a class="navbar-link">Penelitian</a> <div class="navbar-dropdown"><a class="navbar-item" href="/penelitianinternal">Penelitian Internal</a> <a class="navbar-item" href="/penelitianeksternal">Penelitian Eksternal</a> <a class="navbar-item" href="/penelitianmandiri">Penelitian Mandiri</a></div>`;
@@ -107093,7 +107094,7 @@
         // "/detailpengumuman",
         "/profil",
         "/visidanmisi",
-        "/strukturorganisasi",
+        "/struktur-organisasi",
         "/penelitianinternal",
         "/penelitianeksternal",
         "/penelitianmandiri",
