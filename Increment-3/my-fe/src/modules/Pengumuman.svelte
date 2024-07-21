@@ -30,7 +30,7 @@
 
    async function handleClickPengumuman(event) {
       let idP = Number(event.currentTarget.getAttribute("pid"));
-      $route("/detail-pengumuman/" + idP);
+      $route("/detailpengumuman/" + idP);
    }
 </script>
 

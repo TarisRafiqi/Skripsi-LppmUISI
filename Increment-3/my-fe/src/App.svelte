@@ -22,22 +22,22 @@
 
       const paths = [
          "/",
-         // "/detail-pengumuman",
+         // "/detailpengumuman",
          "/profil",
          "/visidanmisi",
-         "/struktur-organisasi",
-         "/penelitian-internal",
-         "/penelitian-eksternal",
-         "/penelitian-mandiri",
-         "/pengmas-internal",
-         "/pengmas-eksternal",
-         "/pengmas-mandiri",
+         "/strukturorganisasi",
+         "/penelitianinternal",
+         "/penelitianeksternal",
+         "/penelitianmandiri",
+         "/pengmasinternal",
+         "/pengmaseksternal",
+         "/pengmasmandiri",
          "/abdimas",
       ];
       inBeranda = paths.some(
          (path) =>
             path === location.pathname ||
-            location.pathname.includes("detail-pengumuman")
+            location.pathname.includes("detailpengumuman")
       );
       // console.log("loc:", location.pathname);
       // console.log("test:", inBeranda);

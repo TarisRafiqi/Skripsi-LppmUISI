@@ -61,7 +61,7 @@
                <div class="navbar-dropdown">
                   <a class="navbar-item" href="/profil"> Profil </a>
                   <a class="navbar-item" href="/visidanmisi"> Visi dan Misi </a>
-                  <a class="navbar-item" href="/struktur-organisasi">
+                  <a class="navbar-item" href="/strukturorganisasi">
                      Struktur Organisasi
                   </a>
                </div>
@@ -72,13 +72,13 @@
                <a class="navbar-link"> Penelitian </a>
 
                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/penelitian-internal">
+                  <a class="navbar-item" href="/penelitianinternal">
                      Penelitian Internal
                   </a>
-                  <a class="navbar-item" href="/penelitian-eksternal">
+                  <a class="navbar-item" href="/penelitianeksternal">
                      Penelitian Eksternal
                   </a>
-                  <a class="navbar-item" href="/penelitian-mandiri">
+                  <a class="navbar-item" href="/penelitianmandiri">
                      Penelitian Mandiri
                   </a>
                </div>
@@ -89,13 +89,13 @@
                <a class="navbar-link"> Pengabdian Masyarakat </a>
 
                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/pengmas-internal">
+                  <a class="navbar-item" href="/pengmasinternal">
                      Pengabdian Masyarakat Internal
                   </a>
-                  <a class="navbar-item" href="/pengmas-eksternal">
+                  <a class="navbar-item" href="/pengmaseksternal">
                      Pengabdian Masyarakat Eksternal
                   </a>
-                  <a class="navbar-item" href="/pengmas-mandiri">
+                  <a class="navbar-item" href="/pengmasmandiri">
                      Pengabdian Masyarakat Mandiri
                   </a>
                </div>
