@@ -115,7 +115,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
 
       if (result.statusCode != 200) {
          location.pathname = "/tokenexpired";
