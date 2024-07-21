@@ -1,0 +1,11 @@
+export { default as aboutuisi } from "./aboutuisi.svelte";
+export { default as buatpengumuman } from "./buatpengumuman.svelte";
+export { default as createuser } from "./createuser.svelte";
+export { default as detailppm } from "./detailppm.svelte";
+export { default as editpengumuman } from "./editpengumuman.svelte";
+export { default as home } from "./home.svelte";
+export { default as pengumumanmanagement } from "./pengumumanmanagement.svelte";
+export { default as ppmmanagement } from "./ppmmanagement.svelte";
+export { default as profile } from "./profile.svelte";
+export { default as template } from "./template.svelte";
+export { default as usersmanagement } from "./usersmanagement.svelte";
