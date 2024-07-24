@@ -10,7 +10,7 @@ module.exports = async function (fastify, opts) {
          let dbData;
          let connection;
 
-         const sql = `SELECT COUNT(uid) AS penelitianCounter FROM ppm WHERE jenis_kegiatan = 'penelitian'`;
+         const sql = `SELECT COUNT(id) AS penelitianCounter FROM ppm WHERE jenis_kegiatan = 'penelitian'`;
          try {
             connection = await fastify.mysql.getConnection();
             const [rows] = await connection.query(sql);

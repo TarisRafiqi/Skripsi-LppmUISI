@@ -59,11 +59,12 @@ module.exports = async function (fastify, opts) {
          }
       }
    );
+
    fastify.get("/:public", async function (request, reply) {
       let dbData;
       let connection;
 
-      const sql = "SELECT id, judul FROM pengumuman";
+      const sql = "SELECT id, judul FROM pengumuman WHERE active = 1";
 
       try {
          connection = await fastify.mysql.getConnection();
@@ -168,12 +169,6 @@ module.exports = async function (fastify, opts) {
          let connection;
          let dbData;
 
-         // reply.send({
-         //    test: "Sukses ke API PATCH Pengumuman",
-         //    data,
-         // });
-         // return;
-
          const sql =
             "UPDATE pengumuman SET judul = ?, isi = ?, active = ? WHERE id = ?";
 
@@ -187,7 +182,38 @@ module.exports = async function (fastify, opts) {
             ]);
             connection.release();
             reply.send({
-               msg: "Sukses Mengubah Data Pengumuman",
+               msg: "Sukses Mengubah Data",
+            });
+         } catch (error) {
+            reply.send({
+               error,
+               msg: "gagal terkoneksi ke db",
+            });
+         }
+      }
+   );
+
+   fastify.patch(
+      "/tableEdit",
+      {
+         onRequest: [fastify.authenticate],
+      },
+      async function (request, reply) {
+         let data = request.body;
+         let connection;
+         let dbData;
+
+         const sql = "UPDATE pengumuman SET active = ? WHERE id = ?";
+
+         try {
+            connection = await fastify.mysql.getConnection();
+            const [rows] = await connection.query(sql, [
+               data.pengumumanAktif,
+               data.idPengumuman,
+            ]);
+            connection.release();
+            reply.send({
+               msg: "Sukses Mengubah Data",
             });
          } catch (error) {
             reply.send({
