@@ -198,7 +198,7 @@
                         <th style="text-align: center" class="is-narrow"
                            >Role</th
                         >
-                        <th class="is-narrow">Active</th>
+                        <th class="is-narrow">Aktif</th>
                      </tr>
                   </thead>
 

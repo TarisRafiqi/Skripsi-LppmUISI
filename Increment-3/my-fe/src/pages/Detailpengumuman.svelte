@@ -9,9 +9,7 @@
    export let params;
    const idP = params["0"];
 
-   const accessToken = localStorage.getItem("token");
    const headers = {
-      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
    };
 
@@ -28,7 +26,6 @@
       } else {
          if (response.ok) {
             items = result.dbData;
-            console.log(items);
          }
       }
    });
@@ -79,6 +76,9 @@
    article {
       margin-top: 3.5rem;
       /* text-align: center; */
+      /* letter-spacing: 0.1em; */
+      /* line-height: 1.7; */
+      word-spacing: 0.2em;
    }
 
    .timestamp {

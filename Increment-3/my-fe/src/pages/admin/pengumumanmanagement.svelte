@@ -5,7 +5,7 @@
    import Icon from "../../libs/Icon.svelte";
    import { add, searchIcon, edit, deleteIcon } from "../../store/icons";
 
-   let items;
+   let items, aktifPengumuman;
 
    const accessToken = localStorage.getItem("token");
    const headers = {
@@ -19,6 +19,28 @@
 
    function addPengumuman() {
       location.href = "/admin/buatpengumuman";
+   }
+
+   async function checkboxAktifPengumuman(idPengumuman, active) {
+      const pengumumanAktif = active ? 1 : 0;
+      payload = {
+         pengumumanAktif,
+         idPengumuman,
+      };
+
+      const response = await fetch($apiURL + "/pengumuman/tableEdit", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (!response.ok) {
+            console.log(response);
+         }
+      }
    }
 
    async function getAllPengumuman() {
@@ -99,8 +121,9 @@
                <thead>
                   <tr>
                      <th>Judul</th>
-                     <th class="is-narrow" style="text-align: center;"
-                        >Action</th
+                     <th style="text-align: center;">Aktif</th>
+                     <th style="text-align: center;" class="is-narrow"
+                        >Delete/Edit</th
                      >
                   </tr>
                </thead>
@@ -109,6 +132,14 @@
                   {#each items as item}
                      <tr>
                         <td>{item.judul}</td>
+                        <td style="text-align: center;">
+                           <input
+                              type="checkbox"
+                              bind:checked={item.active}
+                              on:change={() =>
+                                 checkboxAktifPengumuman(item.id, item.active)}
+                           /></td
+                        >
                         <td>
                            <div class="field is-grouped">
                               <p class="control">

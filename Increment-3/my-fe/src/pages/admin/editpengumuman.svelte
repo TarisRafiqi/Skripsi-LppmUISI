@@ -8,7 +8,7 @@
    import Modalchecked from "../../libs/Modalchecked.svelte";
 
    let judulPengumuman, isiPengumuman;
-   let activePengumuman = "";
+   let activePengumuman = 0;
    let showModalChecked = false;
    export let params;
    const idP = params["1"];
@@ -50,8 +50,6 @@
 
    async function simpanPengumuman() {
       isiPengumuman = tinymce.get("isi").getContent();
-      // console.log(isiPengumuman);
-      // return;
 
       let payload = {
          judulPengumuman,
@@ -67,8 +65,6 @@
       });
 
       const result = await response.json();
-      // console.log(result);
-      // return;
 
       if (response.status === 401) {
          location.pathname = "/tokenexpired";
@@ -111,7 +107,7 @@
                      id="activePengumuman"
                      type="radio"
                      name="active"
-                     value="1"
+                     value={1}
                      bind:group={activePengumuman}
                   />
                   Yes
@@ -121,7 +117,7 @@
                      id="activePengumuman"
                      type="radio"
                      name="active"
-                     value="0"
+                     value={0}
                      bind:group={activePengumuman}
                   />
                   No

@@ -79,7 +79,7 @@
                   id="activePengumuman"
                   type="radio"
                   name="active"
-                  value="1"
+                  value={1}
                   bind:group={activePengumuman}
                />
                Yes
@@ -89,7 +89,7 @@
                   id="activePengumuman"
                   type="radio"
                   name="active"
-                  value="0"
+                  value={0}
                   bind:group={activePengumuman}
                />
                No

@@ -955,7 +955,7 @@
     }
     component.$$.dirty[i / 31 | 0] |= 1 << i % 31;
   }
-  function init(component, options, instance49, create_fragment60, not_equal, props, append_styles = null, dirty = [-1]) {
+  function init(component, options, instance54, create_fragment61, not_equal, props, append_styles = null, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $$ = component.$$ = {
@@ -981,7 +981,7 @@
     };
     append_styles && append_styles($$.root);
     let ready = false;
-    $$.ctx = instance49 ? instance49(component, options.props || {}, (i, ret, ...rest) => {
+    $$.ctx = instance54 ? instance54(component, options.props || {}, (i, ret, ...rest) => {
       const value = rest.length ? rest[0] : ret;
       if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
         if (!$$.skip_bound && $$.bound[i])
@@ -994,7 +994,7 @@
     $$.update();
     ready = true;
     run_all($$.before_update);
-    $$.fragment = create_fragment60 ? create_fragment60($$.ctx) : false;
+    $$.fragment = create_fragment61 ? create_fragment61($$.ctx) : false;
     if (options.target) {
       if (options.hydrate) {
         start_hydrating();
@@ -1703,7 +1703,7 @@
         html_tag = new HtmlTag(false);
         html_anchor = empty();
         attr(p0, "class", "title is-2");
-        attr(p1, "class", "subtitle is-6 timestamp svelte-15actsu");
+        attr(p1, "class", "subtitle is-6 timestamp svelte-rfs8l0");
         html_tag.a = html_anchor;
       },
       m(target, anchor) {
@@ -1759,7 +1759,7 @@
         article2 = element("article");
         if (if_block)
           if_block.c();
-        attr(article2, "class", "container svelte-15actsu");
+        attr(article2, "class", "container svelte-rfs8l0");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
@@ -1821,14 +1821,10 @@
   function instance3($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
-    let items;
+    let items2;
     let { params } = $$props;
     const idP = params["0"];
-    const accessToken = localStorage.getItem("token");
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json"
-    };
+    const headers = { "Content-Type": "application/json" };
     onMount(async () => {
       const response = await fetch($apiURL + "/pengumuman/detail/" + idP, { method: "GET", headers });
       const result = await response.json();
@@ -1836,8 +1832,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
-          console.log(items);
+          $$invalidate(0, items2 = result.dbData);
         }
       }
     });
@@ -1845,7 +1840,7 @@
       if ("params" in $$props2)
         $$invalidate(1, params = $$props2.params);
     };
-    return [items, params];
+    return [items2, params];
   }
   var Detailpengumuman = class extends SvelteComponent {
     constructor(options) {
@@ -1904,7 +1899,7 @@
   init_define_process();
   function get_each_context(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[6] = list[i];
+    child_ctx[5] = list[i];
     return child_ctx;
   }
   function create_if_block2(ctx) {
@@ -1968,13 +1963,13 @@
       }
     };
   }
-  function create_each_block(ctx) {
+  function create_if_block_1(ctx) {
     let tr;
     let td;
     let p;
     let t0_value = (
       /*item*/
-      ctx[6].judul + ""
+      ctx[5].judul + ""
     );
     let t0;
     let t1;
@@ -1988,9 +1983,9 @@
         p = element("p");
         t0 = text(t0_value);
         t1 = space();
-        attr(p, "class", "subtitle is-6 p-pengumuman svelte-17yw29t");
+        attr(p, "class", "subtitle is-6 p-pengumuman svelte-1s7g61s");
         attr(tr, "pid", tr_pid_value = /*item*/
-        ctx[6].id);
+        ctx[5].id);
       },
       m(target, anchor) {
         insert(target, tr, anchor);
@@ -2011,11 +2006,11 @@
       p(ctx2, dirty) {
         if (dirty & /*items*/
         1 && t0_value !== (t0_value = /*item*/
-        ctx2[6].judul + ""))
+        ctx2[5].judul + ""))
           set_data(t0, t0_value);
         if (dirty & /*items*/
         1 && tr_pid_value !== (tr_pid_value = /*item*/
-        ctx2[6].id)) {
+        ctx2[5].id)) {
           attr(tr, "pid", tr_pid_value);
         }
       },
@@ -2028,8 +2023,51 @@
       }
     };
   }
+  function create_each_block(ctx) {
+    let if_block_anchor;
+    let if_block = (
+      /*item*/
+      ctx[5].active === 1 && create_if_block_1(ctx)
+    );
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*item*/
+          ctx2[5].active === 1
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_1(ctx2);
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(if_block_anchor);
+        }
+        if (if_block)
+          if_block.d(detaching);
+      }
+    };
+  }
   function create_fragment5(ctx) {
-    let section;
+    let article2;
     let div4;
     let div0;
     let t1;
@@ -2044,7 +2082,7 @@
     );
     return {
       c() {
-        section = element("section");
+        article2 = element("article");
         div4 = element("div");
         div0 = element("div");
         div0.innerHTML = `<p class="title is-3">PENGUMUMAN</p>`;
@@ -2056,16 +2094,16 @@
         div1 = element("div");
         if (if_block)
           if_block.c();
-        attr(div0, "class", "header-pengumuman svelte-17yw29t");
-        attr(div1, "class", "child svelte-17yw29t");
-        attr(div2, "class", "box parent svelte-17yw29t");
+        attr(div0, "class", "header-pengumuman svelte-1s7g61s");
+        attr(div1, "class", "child svelte-1s7g61s");
+        attr(div2, "class", "box parent svelte-1s7g61s");
         attr(div3, "class", "list-pengumuman");
-        attr(div4, "class", "pengumuman-container svelte-17yw29t");
-        attr(section, "class", "svelte-17yw29t");
+        attr(div4, "class", "pengumuman-container svelte-1s7g61s");
+        attr(article2, "class", "container");
       },
       m(target, anchor) {
-        insert(target, section, anchor);
-        append(section, div4);
+        insert(target, article2, anchor);
+        append(article2, div4);
         append(div4, div0);
         append(div4, t1);
         append(div4, hr);
@@ -2097,7 +2135,7 @@
       o: noop,
       d(detaching) {
         if (detaching) {
-          detach(section);
+          detach(article2);
         }
         if (if_block)
           if_block.d();
@@ -2109,8 +2147,7 @@
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(2, $route = $$value));
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
-    let items;
-    const accessToken = localStorage.getItem("token");
+    let items2;
     const headers = { "Content-Type": "application/json" };
     onMount(async () => {
       const response = await fetch($apiURL + "/pengumuman/public", { method: "GET", headers });
@@ -2119,7 +2156,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         }
       }
     });
@@ -2127,7 +2164,7 @@
       let idP = Number(event.currentTarget.getAttribute("pid"));
       $route("/detailpengumuman/" + idP);
     }
-    return [items, handleClickPengumuman];
+    return [items2, handleClickPengumuman];
   }
   var Pengumuman = class extends SvelteComponent {
     constructor(options) {
@@ -2137,23 +2174,237 @@
   };
   var Pengumuman_default = Pengumuman;
 
-  // src/pages/Index.svelte
+  // src/modules/Totalppm.svelte
+  init_define_process();
   function create_fragment6(ctx) {
+    let section;
+    let article2;
+    let div11;
+    let div0;
+    let t1;
+    let div5;
+    let div4;
+    let div3;
+    let div1;
+    let icon0;
+    let t2;
+    let div2;
+    let p1;
+    let t4;
+    let p2;
+    let t5;
+    let t6;
+    let div10;
+    let div9;
+    let div8;
+    let div6;
+    let icon1;
+    let t7;
+    let div7;
+    let p3;
+    let t9;
+    let p4;
+    let t10;
+    let current;
+    icon0 = new Icon_default({
+      props: { id: "logo", src: penelitian, size: "2.5" }
+    });
+    icon1 = new Icon_default({
+      props: { id: "logo", src: pengmas, size: "2.5" }
+    });
+    return {
+      c() {
+        section = element("section");
+        article2 = element("article");
+        div11 = element("div");
+        div0 = element("div");
+        div0.innerHTML = `<p class="title is-4" style="color:white">Total PPM yang telah diselesaikan</p>`;
+        t1 = space();
+        div5 = element("div");
+        div4 = element("div");
+        div3 = element("div");
+        div1 = element("div");
+        create_component(icon0.$$.fragment);
+        t2 = space();
+        div2 = element("div");
+        p1 = element("p");
+        p1.textContent = "Penelitian";
+        t4 = space();
+        p2 = element("p");
+        t5 = text(
+          /*penelitianSelesai*/
+          ctx[0]
+        );
+        t6 = space();
+        div10 = element("div");
+        div9 = element("div");
+        div8 = element("div");
+        div6 = element("div");
+        create_component(icon1.$$.fragment);
+        t7 = space();
+        div7 = element("div");
+        p3 = element("p");
+        p3.textContent = "Pengmas";
+        t9 = space();
+        p4 = element("p");
+        t10 = text(
+          /*pengmasSelesai*/
+          ctx[1]
+        );
+        attr(div0, "class", "column is-flex is-align-items-center has-text-centered");
+        attr(div1, "class", "column");
+        attr(p1, "class", "subtitle is-6");
+        set_style(p1, "text-align", "center");
+        attr(p2, "class", "title");
+        set_style(p2, "text-align", "center");
+        attr(div2, "class", "column");
+        attr(div3, "class", "columns is-mobile");
+        attr(div4, "class", "box");
+        attr(div5, "class", "column");
+        attr(div6, "class", "column");
+        attr(p3, "class", "subtitle is-6");
+        set_style(p3, "text-align", "center");
+        attr(p4, "class", "title");
+        set_style(p4, "text-align", "center");
+        attr(div7, "class", "column");
+        attr(div8, "class", "columns is-mobile");
+        attr(div9, "class", "box");
+        attr(div10, "class", "column");
+        attr(div11, "class", "columns");
+        attr(article2, "class", "container");
+        attr(section, "class", "svelte-1kehiwo");
+      },
+      m(target, anchor) {
+        insert(target, section, anchor);
+        append(section, article2);
+        append(article2, div11);
+        append(div11, div0);
+        append(div11, t1);
+        append(div11, div5);
+        append(div5, div4);
+        append(div4, div3);
+        append(div3, div1);
+        mount_component(icon0, div1, null);
+        append(div3, t2);
+        append(div3, div2);
+        append(div2, p1);
+        append(div2, t4);
+        append(div2, p2);
+        append(p2, t5);
+        append(div11, t6);
+        append(div11, div10);
+        append(div10, div9);
+        append(div9, div8);
+        append(div8, div6);
+        mount_component(icon1, div6, null);
+        append(div8, t7);
+        append(div8, div7);
+        append(div7, p3);
+        append(div7, t9);
+        append(div7, p4);
+        append(p4, t10);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (!current || dirty & /*penelitianSelesai*/
+        1)
+          set_data(
+            t5,
+            /*penelitianSelesai*/
+            ctx2[0]
+          );
+        if (!current || dirty & /*pengmasSelesai*/
+        2)
+          set_data(
+            t10,
+            /*pengmasSelesai*/
+            ctx2[1]
+          );
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(section);
+        }
+        destroy_component(icon0);
+        destroy_component(icon1);
+      }
+    };
+  }
+  function instance6($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(2, $apiURL = $$value));
+    let penelitianSelesai, pengmasSelesai;
+    const headers = { "Content-Type": "application/json" };
+    onMount(async () => {
+      const responseCPS = await fetch($apiURL + "/counterPenelitianSelesai", { method: "GET", headers });
+      const resultCPS = await responseCPS.json();
+      if (responseCPS.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responseCPS.ok) {
+          $$invalidate(0, penelitianSelesai = resultCPS.counterPenelitianSelesai);
+        } else {
+          console.log(responseCPS);
+        }
+      }
+      const responsePMS = await fetch($apiURL + "/counterPengmasSelesai", { method: "GET", headers });
+      const resultPMS = await responsePMS.json();
+      if (responsePMS.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (responsePMS.ok) {
+          $$invalidate(1, pengmasSelesai = resultPMS.counterPengmasSelesai);
+        } else {
+          console.log(responsePMS);
+        }
+      }
+    });
+    return [penelitianSelesai, pengmasSelesai];
+  }
+  var Totalppm = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance6, create_fragment6, safe_not_equal, {});
+    }
+  };
+  var Totalppm_default = Totalppm;
+
+  // src/pages/Index.svelte
+  function create_fragment7(ctx) {
     let hero;
-    let t;
+    let t0;
+    let totalppm;
+    let t1;
     let pengumuman2;
     let current;
     hero = new Hero_default({});
+    totalppm = new Totalppm_default({});
     pengumuman2 = new Pengumuman_default({});
     return {
       c() {
         create_component(hero.$$.fragment);
-        t = space();
+        t0 = space();
+        create_component(totalppm.$$.fragment);
+        t1 = space();
         create_component(pengumuman2.$$.fragment);
       },
       m(target, anchor) {
         mount_component(hero, target, anchor);
-        insert(target, t, anchor);
+        insert(target, t0, anchor);
+        mount_component(totalppm, target, anchor);
+        insert(target, t1, anchor);
         mount_component(pengumuman2, target, anchor);
         current = true;
       },
@@ -2162,19 +2413,23 @@
         if (current)
           return;
         transition_in(hero.$$.fragment, local);
+        transition_in(totalppm.$$.fragment, local);
         transition_in(pengumuman2.$$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(hero.$$.fragment, local);
+        transition_out(totalppm.$$.fragment, local);
         transition_out(pengumuman2.$$.fragment, local);
         current = false;
       },
       d(detaching) {
         if (detaching) {
-          detach(t);
+          detach(t0);
+          detach(t1);
         }
         destroy_component(hero, detaching);
+        destroy_component(totalppm, detaching);
         destroy_component(pengumuman2, detaching);
       }
     };
@@ -2182,14 +2437,14 @@
   var Index = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment6, safe_not_equal, {});
+      init(this, options, null, create_fragment7, safe_not_equal, {});
     }
   };
   var Index_default = Index;
 
   // src/pages/Login.svelte
   init_define_process();
-  function create_fragment7(ctx) {
+  function create_fragment8(ctx) {
     let article2;
     let div6;
     let h3;
@@ -2374,7 +2629,7 @@
       }
     };
   }
-  function instance6($$self, $$props, $$invalidate) {
+  function instance7($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     let $isUsername;
@@ -2444,14 +2699,14 @@
   var Login = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance6, create_fragment7, safe_not_equal, {});
+      init(this, options, instance7, create_fragment8, safe_not_equal, {});
     }
   };
   var Login_default = Login;
 
   // src/pages/Logout.svelte
   init_define_process();
-  function create_fragment8(ctx) {
+  function create_fragment9(ctx) {
     let article2;
     return {
       c() {
@@ -2472,7 +2727,7 @@
       }
     };
   }
-  function instance7($$self, $$props, $$invalidate) {
+  function instance8($$self, $$props, $$invalidate) {
     let $isLogin;
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(0, $isLogin = $$value));
     localStorage.clear();
@@ -2488,14 +2743,14 @@
   var Logout = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance7, create_fragment8, safe_not_equal, {});
+      init(this, options, instance8, create_fragment9, safe_not_equal, {});
     }
   };
   var Logout_default = Logout;
 
   // src/pages/Penelitianeksternal.svelte
   init_define_process();
-  function create_fragment9(ctx) {
+  function create_fragment10(ctx) {
     let article2;
     return {
       c() {
@@ -2519,45 +2774,175 @@
   var Penelitianeksternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment9, safe_not_equal, {});
+      init(this, options, null, create_fragment10, safe_not_equal, {});
     }
   };
   var Penelitianeksternal_default = Penelitianeksternal;
 
   // src/pages/Penelitianinternal.svelte
   init_define_process();
-  function create_fragment10(ctx) {
+  function create_fragment11(ctx) {
     let article2;
+    let p;
+    let t1;
+    let hr;
+    let t2;
+    let div4;
+    let div0;
+    let t3;
+    let div3;
+    let div2;
+    let div1;
+    let input;
+    let t4;
+    let span0;
+    let icon0;
+    let t5;
+    let table;
+    let thead;
+    let t13;
+    let tbody;
+    let tr1;
+    let td0;
+    let t15;
+    let td1;
+    let t17;
+    let td2;
+    let t19;
+    let td3;
+    let button;
+    let span1;
+    let icon1;
+    let current;
+    icon0 = new Icon_default({
+      props: { id: "searchIcon", src: searchIcon }
+    });
+    icon1 = new Icon_default({ props: { id: "detil", src: infoOutline } });
     return {
       c() {
         article2 = element("article");
-        article2.innerHTML = `<p class="title is-2">Penelitian Hibah Internal UISI</p> <p class="subtitle is-5">Page Coming Soon</p>`;
-        attr(article2, "class", "container svelte-9f6d4p");
+        p = element("p");
+        p.textContent = "Penelitian Hibah Internal UISI";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div4 = element("div");
+        div0 = element("div");
+        t3 = space();
+        div3 = element("div");
+        div2 = element("div");
+        div1 = element("div");
+        input = element("input");
+        t4 = space();
+        span0 = element("span");
+        create_component(icon0.$$.fragment);
+        t5 = space();
+        table = element("table");
+        thead = element("thead");
+        thead.innerHTML = `<tr><th>Judul Penelitian</th> <th>Jenis Skema</th> <th>Sumber Dana</th> <th style="text-align: center;">Detil</th></tr>`;
+        t13 = space();
+        tbody = element("tbody");
+        tr1 = element("tr");
+        td0 = element("td");
+        td0.textContent = "Penggunaan Material Kaca Dalam Upaya Penurunan Suhu Udara Dalam\r\n               Ruang";
+        t15 = space();
+        td1 = element("td");
+        td1.textContent = "Riset Kelompok Keahlian";
+        t17 = space();
+        td2 = element("td");
+        td2.textContent = "Hibah Internal";
+        t19 = space();
+        td3 = element("td");
+        button = element("button");
+        span1 = element("span");
+        create_component(icon1.$$.fragment);
+        attr(p, "class", "title is-2");
+        attr(div0, "class", "column");
+        attr(input, "class", "input");
+        attr(input, "type", "text");
+        attr(span0, "class", "icon is-left");
+        attr(div1, "class", "control has-icons-left");
+        attr(div2, "class", "field");
+        attr(div3, "class", "column");
+        attr(div4, "class", "columns");
+        attr(span1, "class", "icon");
+        attr(button, "class", "button is-info is-small");
+        set_style(td3, "text-align", "center");
+        attr(table, "class", "table is-striped is-narrow is-hoverable is-fullwidth");
+        attr(article2, "class", "container svelte-b4a7is");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
+        append(article2, p);
+        append(article2, t1);
+        append(article2, hr);
+        append(article2, t2);
+        append(article2, div4);
+        append(div4, div0);
+        append(div4, t3);
+        append(div4, div3);
+        append(div3, div2);
+        append(div2, div1);
+        append(div1, input);
+        append(div1, t4);
+        append(div1, span0);
+        mount_component(icon0, span0, null);
+        append(article2, t5);
+        append(article2, table);
+        append(table, thead);
+        append(table, t13);
+        append(table, tbody);
+        append(tbody, tr1);
+        append(tr1, td0);
+        append(tr1, t15);
+        append(tr1, td1);
+        append(tr1, t17);
+        append(tr1, td2);
+        append(tr1, t19);
+        append(tr1, td3);
+        append(td3, button);
+        append(button, span1);
+        mount_component(icon1, span1, null);
+        current = true;
       },
       p: noop,
-      i: noop,
-      o: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icon0.$$.fragment, local);
+        transition_in(icon1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icon0.$$.fragment, local);
+        transition_out(icon1.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching) {
           detach(article2);
         }
+        destroy_component(icon0);
+        destroy_component(icon1);
       }
     };
+  }
+  function instance9($$self) {
+    let items2;
+    const headers = { "Content-Type": "application/json" };
+    return [];
   }
   var Penelitianinternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment10, safe_not_equal, {});
+      init(this, options, instance9, create_fragment11, safe_not_equal, {});
     }
   };
   var Penelitianinternal_default = Penelitianinternal;
 
   // src/pages/Penelitianmandiri.svelte
   init_define_process();
-  function create_fragment11(ctx) {
+  function create_fragment12(ctx) {
     let article2;
     return {
       c() {
@@ -2581,14 +2966,14 @@
   var Penelitianmandiri = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment11, safe_not_equal, {});
+      init(this, options, null, create_fragment12, safe_not_equal, {});
     }
   };
   var Penelitianmandiri_default = Penelitianmandiri;
 
   // src/pages/Pengmaseksternal.svelte
   init_define_process();
-  function create_fragment12(ctx) {
+  function create_fragment13(ctx) {
     let article2;
     return {
       c() {
@@ -2612,14 +2997,14 @@
   var Pengmaseksternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment12, safe_not_equal, {});
+      init(this, options, null, create_fragment13, safe_not_equal, {});
     }
   };
   var Pengmaseksternal_default = Pengmaseksternal;
 
   // src/pages/Pengmasinternal.svelte
   init_define_process();
-  function create_fragment13(ctx) {
+  function create_fragment14(ctx) {
     let article2;
     return {
       c() {
@@ -2643,14 +3028,14 @@
   var Pengmasinternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment13, safe_not_equal, {});
+      init(this, options, null, create_fragment14, safe_not_equal, {});
     }
   };
   var Pengmasinternal_default = Pengmasinternal;
 
   // src/pages/Pengmasmandiri.svelte
   init_define_process();
-  function create_fragment14(ctx) {
+  function create_fragment15(ctx) {
     let article2;
     return {
       c() {
@@ -2674,76 +3059,258 @@
   var Pengmasmandiri = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment14, safe_not_equal, {});
+      init(this, options, null, create_fragment15, safe_not_equal, {});
     }
   };
   var Pengmasmandiri_default = Pengmasmandiri;
 
   // src/pages/Profil.svelte
   init_define_process();
-  function create_fragment15(ctx) {
+  function create_if_block3(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*items*/
+      ctx[0].profil + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*items*/
+        1 && raw_value !== (raw_value = /*items*/
+        ctx2[0].profil + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(html_anchor);
+          html_tag.d();
+        }
+      }
+    };
+  }
+  function create_fragment16(ctx) {
     let article2;
+    let p;
+    let t1;
+    let hr;
+    let t2;
+    let if_block = (
+      /*items*/
+      ctx[0] && create_if_block3(ctx)
+    );
     return {
       c() {
         article2 = element("article");
-        article2.innerHTML = `<p class="title is-2">Profile</p> <p class="subtitle is-5">Page Coming Soon</p>`;
-        attr(article2, "class", "container profile svelte-1baaygb");
+        p = element("p");
+        p.textContent = "Profil LPPM UISI";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        if (if_block)
+          if_block.c();
+        attr(p, "class", "title is-2");
+        set_style(p, "text-align", "center");
+        attr(article2, "class", "container svelte-b4a7is");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
+        append(article2, p);
+        append(article2, t1);
+        append(article2, hr);
+        append(article2, t2);
+        if (if_block)
+          if_block.m(article2, null);
       },
-      p: noop,
+      p(ctx2, [dirty]) {
+        if (
+          /*items*/
+          ctx2[0]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block3(ctx2);
+            if_block.c();
+            if_block.m(article2, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
       i: noop,
       o: noop,
       d(detaching) {
         if (detaching) {
           detach(article2);
         }
+        if (if_block)
+          if_block.d();
       }
     };
+  }
+  function instance10($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(1, $apiURL = $$value));
+    let items2;
+    const headers = { "Content-Type": "application/json" };
+    onMount(async () => {
+      const response = await fetch($apiURL + "/UISI_Profil/public", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(0, items2 = result.dbData);
+        }
+      }
+    });
+    return [items2];
   }
   var Profil = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment15, safe_not_equal, {});
+      init(this, options, instance10, create_fragment16, safe_not_equal, {});
     }
   };
   var Profil_default = Profil;
 
   // src/pages/Strukturorganisasi.svelte
   init_define_process();
-  function create_fragment16(ctx) {
+  function create_if_block4(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*items*/
+      ctx[0].struktur_organisasi + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*items*/
+        1 && raw_value !== (raw_value = /*items*/
+        ctx2[0].struktur_organisasi + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(html_anchor);
+          html_tag.d();
+        }
+      }
+    };
+  }
+  function create_fragment17(ctx) {
     let article2;
+    let p;
+    let t1;
+    let hr;
+    let t2;
+    let div;
+    let if_block = (
+      /*items*/
+      ctx[0] && create_if_block4(ctx)
+    );
     return {
       c() {
         article2 = element("article");
-        article2.innerHTML = `<p class="title is-2">Struktur Organisasi</p> <p class="subtitle is-5">Page Coming Soon</p>`;
-        attr(article2, "class", "container svelte-9f6d4p");
+        p = element("p");
+        p.textContent = "Struktur Organisasi";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div = element("div");
+        if (if_block)
+          if_block.c();
+        attr(p, "class", "title is-2");
+        set_style(p, "text-align", "center");
+        attr(div, "class", "strukturOrganisasi-cotent svelte-1jxn14j");
+        attr(article2, "class", "container svelte-1jxn14j");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
+        append(article2, p);
+        append(article2, t1);
+        append(article2, hr);
+        append(article2, t2);
+        append(article2, div);
+        if (if_block)
+          if_block.m(div, null);
       },
-      p: noop,
+      p(ctx2, [dirty]) {
+        if (
+          /*items*/
+          ctx2[0]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block4(ctx2);
+            if_block.c();
+            if_block.m(div, null);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+      },
       i: noop,
       o: noop,
       d(detaching) {
         if (detaching) {
           detach(article2);
         }
+        if (if_block)
+          if_block.d();
       }
     };
+  }
+  function instance11($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(1, $apiURL = $$value));
+    let items2;
+    const headers = { "Content-Type": "application/json" };
+    onMount(async () => {
+      const response = await fetch($apiURL + "/UISI_StrukturOrganisasi/public", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(0, items2 = result.dbData);
+        }
+      }
+    });
+    return [items2];
   }
   var Strukturorganisasi = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment16, safe_not_equal, {});
+      init(this, options, instance11, create_fragment17, safe_not_equal, {});
     }
   };
   var Strukturorganisasi_default = Strukturorganisasi;
 
   // src/pages/Tokenexpired.svelte
   init_define_process();
-  function create_fragment17(ctx) {
+  function create_fragment18(ctx) {
     let article2;
     return {
       c() {
@@ -2764,7 +3331,7 @@
       }
     };
   }
-  function instance8($$self, $$props, $$invalidate) {
+  function instance12($$self, $$props, $$invalidate) {
     let $isLogin;
     component_subscribe($$self, isLogin, ($$value) => $$invalidate(0, $isLogin = $$value));
     localStorage.clear();
@@ -2780,38 +3347,217 @@
   var Tokenexpired = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance8, create_fragment17, safe_not_equal, {});
+      init(this, options, instance12, create_fragment18, safe_not_equal, {});
     }
   };
   var Tokenexpired_default = Tokenexpired;
 
   // src/pages/Visidanmisi.svelte
   init_define_process();
-  function create_fragment18(ctx) {
+  function create_if_block_12(ctx) {
+    let p;
+    let t_value = (
+      /*items*/
+      ctx[0].visi + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        attr(p, "class", "subtitle is-6 svelte-mm8ndj");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*items*/
+        1 && t_value !== (t_value = /*items*/
+        ctx2[0].visi + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_if_block5(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*items*/
+      ctx[0].misi + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*items*/
+        1 && raw_value !== (raw_value = /*items*/
+        ctx2[0].misi + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(html_anchor);
+          html_tag.d();
+        }
+      }
+    };
+  }
+  function create_fragment19(ctx) {
     let article2;
+    let p0;
+    let t1;
+    let hr;
+    let t2;
+    let div2;
+    let div0;
+    let t4;
+    let div1;
+    let t5;
+    let div5;
+    let div3;
+    let t7;
+    let div4;
+    let if_block0 = (
+      /*items*/
+      ctx[0] && create_if_block_12(ctx)
+    );
+    let if_block1 = (
+      /*items*/
+      ctx[0] && create_if_block5(ctx)
+    );
     return {
       c() {
         article2 = element("article");
-        article2.innerHTML = `<p class="title is-2">Visi dan Misi</p> <p class="subtitle is-5">Page Coming Soon</p>`;
-        attr(article2, "class", "container svelte-9f6d4p");
+        p0 = element("p");
+        p0.textContent = "Visi dan Misi";
+        t1 = space();
+        hr = element("hr");
+        t2 = space();
+        div2 = element("div");
+        div0 = element("div");
+        div0.innerHTML = `<p class="title is-3"><b>VISI</b></p>`;
+        t4 = space();
+        div1 = element("div");
+        if (if_block0)
+          if_block0.c();
+        t5 = space();
+        div5 = element("div");
+        div3 = element("div");
+        div3.innerHTML = `<p class="title is-3"><b>MISI</b></p>`;
+        t7 = space();
+        div4 = element("div");
+        if (if_block1)
+          if_block1.c();
+        attr(p0, "class", "title is-2");
+        set_style(p0, "text-align", "center");
+        attr(div0, "class", "visi-header");
+        attr(div1, "class", "visi-content svelte-mm8ndj");
+        attr(div2, "class", "visi-container svelte-mm8ndj");
+        attr(div3, "class", "misi-header");
+        attr(div4, "class", "misi-content svelte-mm8ndj");
+        attr(div5, "class", "misi-container");
+        attr(article2, "class", "container svelte-mm8ndj");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
+        append(article2, p0);
+        append(article2, t1);
+        append(article2, hr);
+        append(article2, t2);
+        append(article2, div2);
+        append(div2, div0);
+        append(div2, t4);
+        append(div2, div1);
+        if (if_block0)
+          if_block0.m(div1, null);
+        append(article2, t5);
+        append(article2, div5);
+        append(div5, div3);
+        append(div5, t7);
+        append(div5, div4);
+        if (if_block1)
+          if_block1.m(div4, null);
       },
-      p: noop,
+      p(ctx2, [dirty]) {
+        if (
+          /*items*/
+          ctx2[0]
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_12(ctx2);
+            if_block0.c();
+            if_block0.m(div1, null);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*items*/
+          ctx2[0]
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block5(ctx2);
+            if_block1.c();
+            if_block1.m(div4, null);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+      },
       i: noop,
       o: noop,
       d(detaching) {
         if (detaching) {
           detach(article2);
         }
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
       }
     };
+  }
+  function instance13($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(1, $apiURL = $$value));
+    let items2;
+    const headers = { "Content-Type": "application/json" };
+    onMount(async () => {
+      const response = await fetch($apiURL + "/UISI_visiMisi/public", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(0, items2 = result.dbData);
+        }
+      }
+    });
+    return [items2];
   }
   var Visidanmisi = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment18, safe_not_equal, {});
+      init(this, options, instance13, create_fragment19, safe_not_equal, {});
     }
   };
   var Visidanmisi_default = Visidanmisi;
@@ -3114,7 +3860,7 @@
       }
     };
   }
-  function create_if_block_1(ctx) {
+  function create_if_block_13(ctx) {
     let textarea_1;
     let mounted;
     let dispose;
@@ -3186,7 +3932,7 @@
       }
     };
   }
-  function create_if_block3(ctx) {
+  function create_if_block6(ctx) {
     let a;
     let current;
     const default_slot_template = (
@@ -3308,7 +4054,7 @@
       }
     };
   }
-  function create_fragment19(ctx) {
+  function create_fragment20(ctx) {
     let div;
     let b;
     let t0;
@@ -3317,8 +4063,8 @@
     let if_block;
     let current;
     const if_block_creators = [
-      create_if_block3,
-      create_if_block_1,
+      create_if_block6,
+      create_if_block_13,
       create_if_block_2,
       create_if_block_3,
       create_if_block_4,
@@ -3441,7 +4187,7 @@
       }
     };
   }
-  function instance9($$self, $$props, $$invalidate) {
+  function instance14($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { id } = $$props;
     let { name = "" } = $$props;
@@ -3535,7 +4281,7 @@
   var Field = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance9, create_fragment19, safe_not_equal, {
+      init(this, options, instance14, create_fragment20, safe_not_equal, {
         id: 2,
         name: 0,
         value: 1,
@@ -3554,7 +4300,7 @@
 
   // src/libs/Wysiwyg.svelte
   init_define_process();
-  function create_fragment20(ctx) {
+  function create_fragment21(ctx) {
     let div;
     let textarea;
     let textarea_value_value;
@@ -3580,7 +4326,7 @@
       m(target, anchor) {
         insert(target, div, anchor);
         append(div, textarea);
-        ctx[4](textarea);
+        ctx[5](textarea);
       },
       p(ctx2, [dirty]) {
         if (dirty & /*name*/
@@ -3613,14 +4359,15 @@
         if (detaching) {
           detach(div);
         }
-        ctx[4](null);
+        ctx[5](null);
       }
     };
   }
-  function instance10($$self, $$props, $$invalidate) {
+  function instance15($$self, $$props, $$invalidate) {
     let { id } = $$props;
     let { content = "" } = $$props;
     let { name } = $$props;
+    let { fewFeatures = false } = $$props;
     let me;
     let selector = "#" + id;
     onMount(() => {
@@ -3628,11 +4375,13 @@
         tinymce.remove(selector);
       } catch (error2) {
       }
+      const plugins = fewFeatures ? "lists table visualblocks wordcount " : "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ";
+      const toolbar = fewFeatures ? "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | table | align lineheight | numlist bullist indent outdent | removeformat" : "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat";
       tinymce.init({
         selector,
         height: 500,
-        plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ",
-        toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+        plugins,
+        toolbar,
         tinycomments_mode: "embedded",
         tinycomments_author: "Author name",
         mergetags_list: [
@@ -3654,744 +4403,23 @@
         $$invalidate(1, content = $$props2.content);
       if ("name" in $$props2)
         $$invalidate(2, name = $$props2.name);
+      if ("fewFeatures" in $$props2)
+        $$invalidate(4, fewFeatures = $$props2.fewFeatures);
     };
-    return [id, content, name, me, textarea_binding];
+    return [id, content, name, me, fewFeatures, textarea_binding];
   }
   var Wysiwyg = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance10, create_fragment20, safe_not_equal, { id: 0, content: 1, name: 2 });
+      init(this, options, instance15, create_fragment21, safe_not_equal, {
+        id: 0,
+        content: 1,
+        name: 2,
+        fewFeatures: 4
+      });
     }
   };
   var Wysiwyg_default = Wysiwyg;
-
-  // src/pages/admin/aboutuisi.svelte
-  function create_if_block_22(ctx) {
-    let wysiwyg;
-    let t0;
-    let hr;
-    let t1;
-    let div;
-    let p;
-    let button;
-    let current;
-    let mounted;
-    let dispose;
-    wysiwyg = new Wysiwyg_default({
-      props: { id: "isi", content: (
-        /*lppmUisi*/
-        ctx[3]
-      ) }
-    });
-    return {
-      c() {
-        create_component(wysiwyg.$$.fragment);
-        t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Simpan";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, button);
-        current = true;
-        if (!mounted) {
-          dispose = listen(button, "click", simpanLppmUISI);
-          mounted = true;
-        }
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(wysiwyg, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_12(ctx) {
-    let wysiwyg;
-    let t0;
-    let hr;
-    let t1;
-    let div;
-    let p;
-    let button;
-    let current;
-    let mounted;
-    let dispose;
-    wysiwyg = new Wysiwyg_default({
-      props: {
-        id: "isi",
-        content: (
-          /*fungsiTujuan*/
-          ctx[4]
-        )
-      }
-    });
-    return {
-      c() {
-        create_component(wysiwyg.$$.fragment);
-        t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Simpan";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, button);
-        current = true;
-        if (!mounted) {
-          dispose = listen(button, "click", simpanFungsiTujuan);
-          mounted = true;
-        }
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(wysiwyg, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block4(ctx) {
-    let wysiwyg;
-    let t0;
-    let hr;
-    let t1;
-    let div;
-    let p;
-    let button;
-    let current;
-    let mounted;
-    let dispose;
-    wysiwyg = new Wysiwyg_default({
-      props: { id: "isi", content: (
-        /*visiMisi*/
-        ctx[5]
-      ) }
-    });
-    return {
-      c() {
-        create_component(wysiwyg.$$.fragment);
-        t0 = space();
-        hr = element("hr");
-        t1 = space();
-        div = element("div");
-        p = element("p");
-        button = element("button");
-        button.textContent = "Simpan";
-        attr(button, "class", "button is-info");
-        attr(p, "class", "control");
-        attr(div, "class", "field is-grouped is-grouped-right");
-      },
-      m(target, anchor) {
-        mount_component(wysiwyg, target, anchor);
-        insert(target, t0, anchor);
-        insert(target, hr, anchor);
-        insert(target, t1, anchor);
-        insert(target, div, anchor);
-        append(div, p);
-        append(p, button);
-        current = true;
-        if (!mounted) {
-          dispose = listen(button, "click", simpanVisiMisi);
-          mounted = true;
-        }
-      },
-      p: noop,
-      i(local) {
-        if (current)
-          return;
-        transition_in(wysiwyg.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(wysiwyg.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(t0);
-          detach(hr);
-          detach(t1);
-          detach(div);
-        }
-        destroy_component(wysiwyg, detaching);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_default_slot(ctx) {
-    let h2;
-    let t1;
-    let hr;
-    let t2;
-    let div;
-    let ul;
-    let li0;
-    let t4;
-    let li1;
-    let t6;
-    let li2;
-    let t8;
-    let t9;
-    let t10;
-    let if_block2_anchor;
-    let current;
-    let mounted;
-    let dispose;
-    let if_block0 = (
-      /*tab1*/
-      ctx[0] === true && create_if_block_22(ctx)
-    );
-    let if_block1 = (
-      /*tab2*/
-      ctx[1] === true && create_if_block_12(ctx)
-    );
-    let if_block2 = (
-      /*tab3*/
-      ctx[2] === true && create_if_block4(ctx)
-    );
-    return {
-      c() {
-        h2 = element("h2");
-        h2.textContent = "About UISI";
-        t1 = space();
-        hr = element("hr");
-        t2 = space();
-        div = element("div");
-        ul = element("ul");
-        li0 = element("li");
-        li0.innerHTML = `<a><span>Profil</span></a>`;
-        t4 = space();
-        li1 = element("li");
-        li1.innerHTML = `<a><span>Visi dan Misi</span></a>`;
-        t6 = space();
-        li2 = element("li");
-        li2.innerHTML = `<a><span>Struktur Organisasi</span></a>`;
-        t8 = space();
-        if (if_block0)
-          if_block0.c();
-        t9 = space();
-        if (if_block1)
-          if_block1.c();
-        t10 = space();
-        if (if_block2)
-          if_block2.c();
-        if_block2_anchor = empty();
-        attr(h2, "class", "title is-2");
-        toggle_class(
-          li0,
-          "is-active",
-          /*tab1*/
-          ctx[0]
-        );
-        toggle_class(
-          li1,
-          "is-active",
-          /*tab2*/
-          ctx[1]
-        );
-        toggle_class(
-          li2,
-          "is-active",
-          /*tab3*/
-          ctx[2]
-        );
-        attr(div, "class", "tabs is-boxed");
-      },
-      m(target, anchor) {
-        insert(target, h2, anchor);
-        insert(target, t1, anchor);
-        insert(target, hr, anchor);
-        insert(target, t2, anchor);
-        insert(target, div, anchor);
-        append(div, ul);
-        append(ul, li0);
-        append(ul, t4);
-        append(ul, li1);
-        append(ul, t6);
-        append(ul, li2);
-        insert(target, t8, anchor);
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t9, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t10, anchor);
-        if (if_block2)
-          if_block2.m(target, anchor);
-        insert(target, if_block2_anchor, anchor);
-        current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              li0,
-              "click",
-              /*clicktab1*/
-              ctx[6]
-            ),
-            listen(
-              li1,
-              "click",
-              /*clicktab2*/
-              ctx[7]
-            ),
-            listen(
-              li2,
-              "click",
-              /*clicktab3*/
-              ctx[8]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (!current || dirty & /*tab1*/
-        1) {
-          toggle_class(
-            li0,
-            "is-active",
-            /*tab1*/
-            ctx2[0]
-          );
-        }
-        if (!current || dirty & /*tab2*/
-        2) {
-          toggle_class(
-            li1,
-            "is-active",
-            /*tab2*/
-            ctx2[1]
-          );
-        }
-        if (!current || dirty & /*tab3*/
-        4) {
-          toggle_class(
-            li2,
-            "is-active",
-            /*tab3*/
-            ctx2[2]
-          );
-        }
-        if (
-          /*tab1*/
-          ctx2[0] === true
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-            if (dirty & /*tab1*/
-            1) {
-              transition_in(if_block0, 1);
-            }
-          } else {
-            if_block0 = create_if_block_22(ctx2);
-            if_block0.c();
-            transition_in(if_block0, 1);
-            if_block0.m(t9.parentNode, t9);
-          }
-        } else if (if_block0) {
-          group_outros();
-          transition_out(if_block0, 1, 1, () => {
-            if_block0 = null;
-          });
-          check_outros();
-        }
-        if (
-          /*tab2*/
-          ctx2[1] === true
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty & /*tab2*/
-            2) {
-              transition_in(if_block1, 1);
-            }
-          } else {
-            if_block1 = create_if_block_12(ctx2);
-            if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(t10.parentNode, t10);
-          }
-        } else if (if_block1) {
-          group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
-          check_outros();
-        }
-        if (
-          /*tab3*/
-          ctx2[2] === true
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-            if (dirty & /*tab3*/
-            4) {
-              transition_in(if_block2, 1);
-            }
-          } else {
-            if_block2 = create_if_block4(ctx2);
-            if_block2.c();
-            transition_in(if_block2, 1);
-            if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
-          }
-        } else if (if_block2) {
-          group_outros();
-          transition_out(if_block2, 1, 1, () => {
-            if_block2 = null;
-          });
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(if_block0);
-        transition_in(if_block1);
-        transition_in(if_block2);
-        current = true;
-      },
-      o(local) {
-        transition_out(if_block0);
-        transition_out(if_block1);
-        transition_out(if_block2);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(h2);
-          detach(t1);
-          detach(hr);
-          detach(t2);
-          detach(div);
-          detach(t8);
-          detach(t9);
-          detach(t10);
-          detach(if_block2_anchor);
-        }
-        if (if_block0)
-          if_block0.d(detaching);
-        if (if_block1)
-          if_block1.d(detaching);
-        if (if_block2)
-          if_block2.d(detaching);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function create_fragment21(ctx) {
-    let article2;
-    let current;
-    article2 = new Article_default({
-      props: {
-        $$slots: { default: [create_default_slot] },
-        $$scope: { ctx }
-      }
-    });
-    return {
-      c() {
-        create_component(article2.$$.fragment);
-      },
-      m(target, anchor) {
-        mount_component(article2, target, anchor);
-        current = true;
-      },
-      p(ctx2, [dirty]) {
-        const article_changes = {};
-        if (dirty & /*$$scope, tab3, tab2, tab1*/
-        519) {
-          article_changes.$$scope = { dirty, ctx: ctx2 };
-        }
-        article2.$set(article_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(article2.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(article2.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        destroy_component(article2, detaching);
-      }
-    };
-  }
-  function simpanLppmUISI() {
-  }
-  function simpanFungsiTujuan() {
-  }
-  function simpanVisiMisi() {
-  }
-  function instance11($$self, $$props, $$invalidate) {
-    let lppmUisi, fungsiTujuan, visiMisi;
-    let tab1 = true;
-    let tab2;
-    let tab3;
-    function clicktab1() {
-      $$invalidate(0, tab1 = true);
-      $$invalidate(1, tab2 = false);
-      $$invalidate(2, tab3 = false);
-    }
-    function clicktab2() {
-      $$invalidate(0, tab1 = false);
-      $$invalidate(1, tab2 = true);
-      $$invalidate(2, tab3 = false);
-    }
-    function clicktab3() {
-      $$invalidate(0, tab1 = false);
-      $$invalidate(1, tab2 = false);
-      $$invalidate(2, tab3 = true);
-    }
-    return [
-      tab1,
-      tab2,
-      tab3,
-      lppmUisi,
-      fungsiTujuan,
-      visiMisi,
-      clicktab1,
-      clicktab2,
-      clicktab3
-    ];
-  }
-  var Aboutuisi = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance11, create_fragment21, safe_not_equal, {});
-    }
-  };
-  var aboutuisi_default = Aboutuisi;
-
-  // src/pages/admin/buatpengumuman.svelte
-  init_define_process();
-
-  // src/libs/Modalerror.svelte
-  init_define_process();
-  function create_fragment22(ctx) {
-    let b;
-    let div1;
-    let div0;
-    let img;
-    let img_src_value;
-    let t0;
-    let p;
-    let t1;
-    let button;
-    let current;
-    let mounted;
-    let dispose;
-    const default_slot_template = (
-      /*#slots*/
-      ctx[4].default
-    );
-    const default_slot = create_slot(
-      default_slot_template,
-      ctx,
-      /*$$scope*/
-      ctx[3],
-      null
-    );
-    return {
-      c() {
-        b = element("b");
-        div1 = element("div");
-        div0 = element("div");
-        img = element("img");
-        t0 = space();
-        p = element("p");
-        if (default_slot)
-          default_slot.c();
-        t1 = space();
-        button = element("button");
-        button.textContent = "Tutup";
-        if (!src_url_equal(img.src, img_src_value = "/img/warning.png"))
-          attr(img, "src", img_src_value);
-        attr(img, "alt", "alert-icon");
-        attr(img, "class", "svelte-l76t32");
-        attr(p, "class", "svelte-l76t32");
-        attr(button, "class", "button is-danger is-fullwidth");
-        attr(div0, "class", "cookiesContent svelte-l76t32");
-        attr(b, "class", "svelte-l76t32");
-        toggle_class(
-          b,
-          "show",
-          /*show*/
-          ctx[0]
-        );
-      },
-      m(target, anchor) {
-        insert(target, b, anchor);
-        append(b, div1);
-        append(div1, div0);
-        append(div0, img);
-        append(div0, t0);
-        append(div0, p);
-        if (default_slot) {
-          default_slot.m(p, null);
-        }
-        append(div0, t1);
-        append(div0, button);
-        current = true;
-        if (!mounted) {
-          dispose = [
-            listen(
-              button,
-              "click",
-              /*clickX*/
-              ctx[2]
-            ),
-            listen(
-              b,
-              "click",
-              /*handleClick*/
-              ctx[1]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (default_slot) {
-          if (default_slot.p && (!current || dirty & /*$$scope*/
-          8)) {
-            update_slot_base(
-              default_slot,
-              default_slot_template,
-              ctx2,
-              /*$$scope*/
-              ctx2[3],
-              !current ? get_all_dirty_from_scope(
-                /*$$scope*/
-                ctx2[3]
-              ) : get_slot_changes(
-                default_slot_template,
-                /*$$scope*/
-                ctx2[3],
-                dirty,
-                null
-              ),
-              null
-            );
-          }
-        }
-        if (!current || dirty & /*show*/
-        1) {
-          toggle_class(
-            b,
-            "show",
-            /*show*/
-            ctx2[0]
-          );
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(default_slot, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(default_slot, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching) {
-          detach(b);
-        }
-        if (default_slot)
-          default_slot.d(detaching);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function instance12($$self, $$props, $$invalidate) {
-    let { $$slots: slots = {}, $$scope } = $$props;
-    let { show = false } = $$props;
-    function handleClick(e) {
-      if (e.target === e.currentTarget) {
-        $$invalidate(0, show = false);
-      }
-    }
-    function clickX() {
-      $$invalidate(0, show = false);
-    }
-    $$self.$$set = ($$props2) => {
-      if ("show" in $$props2)
-        $$invalidate(0, show = $$props2.show);
-      if ("$$scope" in $$props2)
-        $$invalidate(3, $$scope = $$props2.$$scope);
-    };
-    return [show, handleClick, clickX, $$scope, slots];
-  }
-  var Modalerror = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance12, create_fragment22, safe_not_equal, { show: 0 });
-    }
-  };
-  var Modalerror_default = Modalerror;
 
   // src/libs/Modalchecked.svelte
   init_define_process();
@@ -4445,7 +4473,7 @@
       }
     };
   }
-  function create_if_block5(ctx) {
+  function create_if_block7(ctx) {
     let div1;
     let div0;
     let div0_intro;
@@ -4495,7 +4523,7 @@
       }
     };
   }
-  function create_fragment23(ctx) {
+  function create_fragment22(ctx) {
     let b;
     let div1;
     let div0;
@@ -4510,7 +4538,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block5, create_else_block2];
+    const if_block_creators = [create_if_block7, create_else_block2];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -4669,7 +4697,7 @@
       }
     };
   }
-  function instance13($$self, $$props, $$invalidate) {
+  function instance16($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { show = false } = $$props;
     let showLoader = true;
@@ -4707,13 +4735,1164 @@
   var Modalchecked = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance13, create_fragment23, safe_not_equal, { show: 0 });
+      init(this, options, instance16, create_fragment22, safe_not_equal, { show: 0 });
     }
   };
   var Modalchecked_default = Modalchecked;
 
-  // src/pages/admin/buatpengumuman.svelte
+  // src/pages/admin/aboutuisi.svelte
+  function create_if_block_22(ctx) {
+    let field;
+    let t0;
+    let br;
+    let t1;
+    let div;
+    let p;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    field = new Field_default({
+      props: {
+        name: "Profil",
+        $$slots: { default: [create_default_slot_5] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field.$$.fragment);
+        t0 = space();
+        br = element("br");
+        t1 = space();
+        div = element("div");
+        p = element("p");
+        button = element("button");
+        button.textContent = "Simpan";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        mount_component(field, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, br, anchor);
+        insert(target, t1, anchor);
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, button);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*simpanProfilUISI*/
+            ctx[8]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const field_changes = {};
+        if (dirty & /*$$scope, profilUISI*/
+        4194305) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(br);
+          detach(t1);
+          detach(div);
+        }
+        destroy_component(field, detaching);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_5(ctx) {
+    let wysiwyg;
+    let current;
+    wysiwyg = new Wysiwyg_default({
+      props: {
+        id: "profilUISI",
+        content: (
+          /*profilUISI*/
+          ctx[0]
+        ),
+        fewFeatures: true
+      }
+    });
+    return {
+      c() {
+        create_component(wysiwyg.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(wysiwyg, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const wysiwyg_changes = {};
+        if (dirty & /*profilUISI*/
+        1)
+          wysiwyg_changes.content = /*profilUISI*/
+          ctx2[0];
+        wysiwyg.$set(wysiwyg_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(wysiwyg.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(wysiwyg.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(wysiwyg, detaching);
+      }
+    };
+  }
+  function create_if_block_14(ctx) {
+    let field0;
+    let t0;
+    let field1;
+    let t1;
+    let br;
+    let t2;
+    let div;
+    let p;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    field0 = new Field_default({
+      props: {
+        name: "Visi",
+        $$slots: { default: [create_default_slot_4] },
+        $$scope: { ctx }
+      }
+    });
+    field1 = new Field_default({
+      props: {
+        name: "Misi",
+        $$slots: { default: [create_default_slot_3] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field0.$$.fragment);
+        t0 = space();
+        create_component(field1.$$.fragment);
+        t1 = space();
+        br = element("br");
+        t2 = space();
+        div = element("div");
+        p = element("p");
+        button = element("button");
+        button.textContent = "Simpan";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        mount_component(field0, target, anchor);
+        insert(target, t0, anchor);
+        mount_component(field1, target, anchor);
+        insert(target, t1, anchor);
+        insert(target, br, anchor);
+        insert(target, t2, anchor);
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, button);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*simpanVisidanMisi*/
+            ctx[9]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const field0_changes = {};
+        if (dirty & /*$$scope, visi*/
+        4194306) {
+          field0_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field0.$set(field0_changes);
+        const field1_changes = {};
+        if (dirty & /*$$scope, misi*/
+        4194308) {
+          field1_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field1.$set(field1_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field0.$$.fragment, local);
+        transition_in(field1.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field0.$$.fragment, local);
+        transition_out(field1.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(t1);
+          detach(br);
+          detach(t2);
+          detach(div);
+        }
+        destroy_component(field0, detaching);
+        destroy_component(field1, detaching);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
   function create_default_slot_4(ctx) {
+    let textarea;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        textarea = element("textarea");
+        attr(textarea, "class", "textarea");
+        attr(textarea, "id", "visi");
+        attr(textarea, "placeholder", "Masukkan Visi");
+      },
+      m(target, anchor) {
+        insert(target, textarea, anchor);
+        set_input_value(
+          textarea,
+          /*visi*/
+          ctx[1]
+        );
+        if (!mounted) {
+          dispose = listen(
+            textarea,
+            "input",
+            /*textarea_input_handler*/
+            ctx[14]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*visi*/
+        2) {
+          set_input_value(
+            textarea,
+            /*visi*/
+            ctx2[1]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(textarea);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_3(ctx) {
+    let wysiwyg;
+    let current;
+    wysiwyg = new Wysiwyg_default({
+      props: {
+        id: "misi",
+        content: (
+          /*misi*/
+          ctx[2]
+        ),
+        fewFeatures: true
+      }
+    });
+    return {
+      c() {
+        create_component(wysiwyg.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(wysiwyg, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const wysiwyg_changes = {};
+        if (dirty & /*misi*/
+        4)
+          wysiwyg_changes.content = /*misi*/
+          ctx2[2];
+        wysiwyg.$set(wysiwyg_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(wysiwyg.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(wysiwyg.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(wysiwyg, detaching);
+      }
+    };
+  }
+  function create_if_block8(ctx) {
+    let field;
+    let t0;
+    let br;
+    let t1;
+    let div;
+    let p;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    field = new Field_default({
+      props: {
+        name: "Struktur Organisasi",
+        $$slots: { default: [create_default_slot_2] },
+        $$scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        create_component(field.$$.fragment);
+        t0 = space();
+        br = element("br");
+        t1 = space();
+        div = element("div");
+        p = element("p");
+        button = element("button");
+        button.textContent = "Simpan";
+        attr(button, "class", "button is-info");
+        attr(p, "class", "control");
+        attr(div, "class", "field is-grouped is-grouped-right");
+      },
+      m(target, anchor) {
+        mount_component(field, target, anchor);
+        insert(target, t0, anchor);
+        insert(target, br, anchor);
+        insert(target, t1, anchor);
+        insert(target, div, anchor);
+        append(div, p);
+        append(p, button);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*simpanStrukturOrganisasi*/
+            ctx[10]
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        const field_changes = {};
+        if (dirty & /*$$scope, strukturOrganisasi*/
+        4194312) {
+          field_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        field.$set(field_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(field.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(field.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t0);
+          detach(br);
+          detach(t1);
+          detach(div);
+        }
+        destroy_component(field, detaching);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_default_slot_2(ctx) {
+    let wysiwyg;
+    let current;
+    wysiwyg = new Wysiwyg_default({
+      props: {
+        id: "strukturOrganisasi",
+        content: (
+          /*strukturOrganisasi*/
+          ctx[3]
+        ),
+        fewFeatures: true
+      }
+    });
+    return {
+      c() {
+        create_component(wysiwyg.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(wysiwyg, target, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        const wysiwyg_changes = {};
+        if (dirty & /*strukturOrganisasi*/
+        8)
+          wysiwyg_changes.content = /*strukturOrganisasi*/
+          ctx2[3];
+        wysiwyg.$set(wysiwyg_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(wysiwyg.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(wysiwyg.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        destroy_component(wysiwyg, detaching);
+      }
+    };
+  }
+  function create_default_slot_1(ctx) {
+    let h2;
+    let t1;
+    let div0;
+    let ul;
+    let li0;
+    let t3;
+    let li1;
+    let t5;
+    let li2;
+    let t7;
+    let div1;
+    let t8;
+    let t9;
+    let current;
+    let mounted;
+    let dispose;
+    let if_block0 = (
+      /*tab1*/
+      ctx[5] === true && create_if_block_22(ctx)
+    );
+    let if_block1 = (
+      /*tab2*/
+      ctx[6] === true && create_if_block_14(ctx)
+    );
+    let if_block2 = (
+      /*tab3*/
+      ctx[7] === true && create_if_block8(ctx)
+    );
+    return {
+      c() {
+        h2 = element("h2");
+        h2.textContent = "About UISI";
+        t1 = space();
+        div0 = element("div");
+        ul = element("ul");
+        li0 = element("li");
+        li0.innerHTML = `<a><span>Profil</span></a>`;
+        t3 = space();
+        li1 = element("li");
+        li1.innerHTML = `<a><span>Visi dan Misi</span></a>`;
+        t5 = space();
+        li2 = element("li");
+        li2.innerHTML = `<a><span>Struktur Organisasi</span></a>`;
+        t7 = space();
+        div1 = element("div");
+        if (if_block0)
+          if_block0.c();
+        t8 = space();
+        if (if_block1)
+          if_block1.c();
+        t9 = space();
+        if (if_block2)
+          if_block2.c();
+        attr(h2, "class", "title is-2");
+        toggle_class(
+          li0,
+          "is-active",
+          /*tab1*/
+          ctx[5]
+        );
+        toggle_class(
+          li1,
+          "is-active",
+          /*tab2*/
+          ctx[6]
+        );
+        toggle_class(
+          li2,
+          "is-active",
+          /*tab3*/
+          ctx[7]
+        );
+        attr(div0, "class", "tabs is-boxed");
+        attr(div1, "class", "box");
+      },
+      m(target, anchor) {
+        insert(target, h2, anchor);
+        insert(target, t1, anchor);
+        insert(target, div0, anchor);
+        append(div0, ul);
+        append(ul, li0);
+        append(ul, t3);
+        append(ul, li1);
+        append(ul, t5);
+        append(ul, li2);
+        insert(target, t7, anchor);
+        insert(target, div1, anchor);
+        if (if_block0)
+          if_block0.m(div1, null);
+        append(div1, t8);
+        if (if_block1)
+          if_block1.m(div1, null);
+        append(div1, t9);
+        if (if_block2)
+          if_block2.m(div1, null);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              li0,
+              "click",
+              /*clicktab1*/
+              ctx[11]
+            ),
+            listen(
+              li1,
+              "click",
+              /*clicktab2*/
+              ctx[12]
+            ),
+            listen(
+              li2,
+              "click",
+              /*clicktab3*/
+              ctx[13]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (!current || dirty & /*tab1*/
+        32) {
+          toggle_class(
+            li0,
+            "is-active",
+            /*tab1*/
+            ctx2[5]
+          );
+        }
+        if (!current || dirty & /*tab2*/
+        64) {
+          toggle_class(
+            li1,
+            "is-active",
+            /*tab2*/
+            ctx2[6]
+          );
+        }
+        if (!current || dirty & /*tab3*/
+        128) {
+          toggle_class(
+            li2,
+            "is-active",
+            /*tab3*/
+            ctx2[7]
+          );
+        }
+        if (
+          /*tab1*/
+          ctx2[5] === true
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+            if (dirty & /*tab1*/
+            32) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_22(ctx2);
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(div1, t8);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*tab2*/
+          ctx2[6] === true
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty & /*tab2*/
+            64) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block_14(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(div1, t9);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*tab3*/
+          ctx2[7] === true
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+            if (dirty & /*tab3*/
+            128) {
+              transition_in(if_block2, 1);
+            }
+          } else {
+            if_block2 = create_if_block8(ctx2);
+            if_block2.c();
+            transition_in(if_block2, 1);
+            if_block2.m(div1, null);
+          }
+        } else if (if_block2) {
+          group_outros();
+          transition_out(if_block2, 1, 1, () => {
+            if_block2 = null;
+          });
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block0);
+        transition_in(if_block1);
+        transition_in(if_block2);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block0);
+        transition_out(if_block1);
+        transition_out(if_block2);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(h2);
+          detach(t1);
+          detach(div0);
+          detach(t7);
+          detach(div1);
+        }
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot(ctx) {
+    let p;
+    return {
+      c() {
+        p = element("p");
+        p.textContent = "Berhasil menyimpan data";
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(p);
+        }
+      }
+    };
+  }
+  function create_fragment23(ctx) {
+    let article2;
+    let t;
+    let modalchecked;
+    let updating_show;
+    let current;
+    article2 = new Article_default({
+      props: {
+        $$slots: { default: [create_default_slot_1] },
+        $$scope: { ctx }
+      }
+    });
+    function modalchecked_show_binding(value) {
+      ctx[15](value);
+    }
+    let modalchecked_props = {
+      $$slots: { default: [create_default_slot] },
+      $$scope: { ctx }
+    };
+    if (
+      /*showModalChecked*/
+      ctx[4] !== void 0
+    ) {
+      modalchecked_props.show = /*showModalChecked*/
+      ctx[4];
+    }
+    modalchecked = new Modalchecked_default({ props: modalchecked_props });
+    binding_callbacks.push(() => bind(modalchecked, "show", modalchecked_show_binding));
+    return {
+      c() {
+        create_component(article2.$$.fragment);
+        t = space();
+        create_component(modalchecked.$$.fragment);
+      },
+      m(target, anchor) {
+        mount_component(article2, target, anchor);
+        insert(target, t, anchor);
+        mount_component(modalchecked, target, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const article_changes = {};
+        if (dirty & /*$$scope, strukturOrganisasi, tab3, misi, visi, tab2, profilUISI, tab1*/
+        4194543) {
+          article_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        article2.$set(article_changes);
+        const modalchecked_changes = {};
+        if (dirty & /*$$scope*/
+        4194304) {
+          modalchecked_changes.$$scope = { dirty, ctx: ctx2 };
+        }
+        if (!updating_show && dirty & /*showModalChecked*/
+        16) {
+          updating_show = true;
+          modalchecked_changes.show = /*showModalChecked*/
+          ctx2[4];
+          add_flush_callback(() => updating_show = false);
+        }
+        modalchecked.$set(modalchecked_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(article2.$$.fragment, local);
+        transition_in(modalchecked.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(article2.$$.fragment, local);
+        transition_out(modalchecked.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+        destroy_component(article2, detaching);
+        destroy_component(modalchecked, detaching);
+      }
+    };
+  }
+  function instance17($$self, $$props, $$invalidate) {
+    let $apiURL;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(16, $apiURL = $$value));
+    let profilUISI, visi, misi, strukturOrganisasi;
+    let showModalChecked = false;
+    const accessToken = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    };
+    onMount(async () => {
+      await getProfilUISI();
+      await getVisiMisi();
+      await getStrukturOrganisasi();
+    });
+    async function getProfilUISI() {
+      const response = await fetch($apiURL + "/UISI_Profil", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          items = result.dbData;
+          $$invalidate(0, profilUISI = items.profil);
+        }
+      }
+    }
+    async function getVisiMisi() {
+      const response = await fetch($apiURL + "/UISI_visiMisi", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          items = result.dbData;
+          $$invalidate(1, visi = items.visi);
+          $$invalidate(2, misi = items.misi);
+        }
+      }
+    }
+    async function getStrukturOrganisasi() {
+      const response = await fetch($apiURL + "/UISI_StrukturOrganisasi", { method: "GET", headers });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          items = result.dbData;
+          $$invalidate(3, strukturOrganisasi = items.struktur_organisasi);
+        }
+      }
+    }
+    async function simpanProfilUISI() {
+      $$invalidate(0, profilUISI = tinymce.get("profilUISI").getContent());
+      let payload2 = { profilUISI };
+      const response = await fetch($apiURL + "/UISI_Profil", {
+        method: "PATCH",
+        headers,
+        body: JSON.stringify(payload2)
+      });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(4, showModalChecked = true);
+          setTimeout(
+            () => {
+              window.location.reload();
+            },
+            500
+          );
+        } else {
+          console.log(response.msg, error);
+        }
+      }
+    }
+    async function simpanVisidanMisi() {
+      $$invalidate(2, misi = tinymce.get("misi").getContent());
+      let payload2 = { visi, misi };
+      const response = await fetch($apiURL + "/UISI_visiMisi", {
+        method: "PATCH",
+        headers,
+        body: JSON.stringify(payload2)
+      });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(4, showModalChecked = true);
+          setTimeout(
+            () => {
+              window.location.reload();
+            },
+            500
+          );
+        } else {
+          console.log(response.msg, error);
+        }
+      }
+    }
+    async function simpanStrukturOrganisasi() {
+      $$invalidate(3, strukturOrganisasi = tinymce.get("strukturOrganisasi").getContent());
+      let payload2 = { strukturOrganisasi };
+      const response = await fetch($apiURL + "/UISI_StrukturOrganisasi", {
+        method: "PATCH",
+        headers,
+        body: JSON.stringify(payload2)
+      });
+      const result = await response.json();
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (response.ok) {
+          $$invalidate(4, showModalChecked = true);
+          setTimeout(
+            () => {
+              window.location.reload();
+            },
+            500
+          );
+        } else {
+          console.log(response.msg, error);
+        }
+      }
+    }
+    let tab1 = true;
+    let tab2;
+    let tab3;
+    function clicktab1() {
+      $$invalidate(5, tab1 = true);
+      $$invalidate(6, tab2 = false);
+      $$invalidate(7, tab3 = false);
+    }
+    function clicktab2() {
+      $$invalidate(5, tab1 = false);
+      $$invalidate(6, tab2 = true);
+      $$invalidate(7, tab3 = false);
+    }
+    function clicktab3() {
+      $$invalidate(5, tab1 = false);
+      $$invalidate(6, tab2 = false);
+      $$invalidate(7, tab3 = true);
+    }
+    function textarea_input_handler() {
+      visi = this.value;
+      $$invalidate(1, visi);
+    }
+    function modalchecked_show_binding(value) {
+      showModalChecked = value;
+      $$invalidate(4, showModalChecked);
+    }
+    return [
+      profilUISI,
+      visi,
+      misi,
+      strukturOrganisasi,
+      showModalChecked,
+      tab1,
+      tab2,
+      tab3,
+      simpanProfilUISI,
+      simpanVisidanMisi,
+      simpanStrukturOrganisasi,
+      clicktab1,
+      clicktab2,
+      clicktab3,
+      textarea_input_handler,
+      modalchecked_show_binding
+    ];
+  }
+  var Aboutuisi = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance17, create_fragment23, safe_not_equal, {});
+    }
+  };
+  var aboutuisi_default = Aboutuisi;
+
+  // src/pages/admin/buatpengumuman.svelte
+  init_define_process();
+
+  // src/libs/Modalerror.svelte
+  init_define_process();
+  function create_fragment24(ctx) {
+    let b;
+    let div1;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let p;
+    let t1;
+    let button;
+    let current;
+    let mounted;
+    let dispose;
+    const default_slot_template = (
+      /*#slots*/
+      ctx[4].default
+    );
+    const default_slot = create_slot(
+      default_slot_template,
+      ctx,
+      /*$$scope*/
+      ctx[3],
+      null
+    );
+    return {
+      c() {
+        b = element("b");
+        div1 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        p = element("p");
+        if (default_slot)
+          default_slot.c();
+        t1 = space();
+        button = element("button");
+        button.textContent = "Tutup";
+        if (!src_url_equal(img.src, img_src_value = "/img/warning.png"))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "alert-icon");
+        attr(img, "class", "svelte-l76t32");
+        attr(p, "class", "svelte-l76t32");
+        attr(button, "class", "button is-danger is-fullwidth");
+        attr(div0, "class", "cookiesContent svelte-l76t32");
+        attr(b, "class", "svelte-l76t32");
+        toggle_class(
+          b,
+          "show",
+          /*show*/
+          ctx[0]
+        );
+      },
+      m(target, anchor) {
+        insert(target, b, anchor);
+        append(b, div1);
+        append(div1, div0);
+        append(div0, img);
+        append(div0, t0);
+        append(div0, p);
+        if (default_slot) {
+          default_slot.m(p, null);
+        }
+        append(div0, t1);
+        append(div0, button);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              button,
+              "click",
+              /*clickX*/
+              ctx[2]
+            ),
+            listen(
+              b,
+              "click",
+              /*handleClick*/
+              ctx[1]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & /*$$scope*/
+          8)) {
+            update_slot_base(
+              default_slot,
+              default_slot_template,
+              ctx2,
+              /*$$scope*/
+              ctx2[3],
+              !current ? get_all_dirty_from_scope(
+                /*$$scope*/
+                ctx2[3]
+              ) : get_slot_changes(
+                default_slot_template,
+                /*$$scope*/
+                ctx2[3],
+                dirty,
+                null
+              ),
+              null
+            );
+          }
+        }
+        if (!current || dirty & /*show*/
+        1) {
+          toggle_class(
+            b,
+            "show",
+            /*show*/
+            ctx2[0]
+          );
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(b);
+        }
+        if (default_slot)
+          default_slot.d(detaching);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function instance18($$self, $$props, $$invalidate) {
+    let { $$slots: slots = {}, $$scope } = $$props;
+    let { show = false } = $$props;
+    function handleClick(e) {
+      if (e.target === e.currentTarget) {
+        $$invalidate(0, show = false);
+      }
+    }
+    function clickX() {
+      $$invalidate(0, show = false);
+    }
+    $$self.$$set = ($$props2) => {
+      if ("show" in $$props2)
+        $$invalidate(0, show = $$props2.show);
+      if ("$$scope" in $$props2)
+        $$invalidate(3, $$scope = $$props2.$$scope);
+    };
+    return [show, handleClick, clickX, $$scope, slots];
+  }
+  var Modalerror = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance18, create_fragment24, safe_not_equal, { show: 0 });
+    }
+  };
+  var Modalerror_default = Modalerror;
+
+  // src/pages/admin/buatpengumuman.svelte
+  function create_default_slot_42(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4761,7 +5940,7 @@
       }
     };
   }
-  function create_default_slot_3(ctx) {
+  function create_default_slot_32(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
@@ -4804,14 +5983,16 @@
       }
     };
   }
-  function create_default_slot_2(ctx) {
+  function create_default_slot_22(ctx) {
     let div;
     let label0;
     let input0;
+    let input0_value_value;
     let t0;
     let t1;
     let label1;
     let input1;
+    let input1_value_value;
     let t2;
     let binding_group;
     let mounted;
@@ -4833,13 +6014,13 @@
         attr(input0, "id", "activePengumuman");
         attr(input0, "type", "radio");
         attr(input0, "name", "active");
-        input0.__value = "1";
+        input0.__value = input0_value_value = 1;
         set_input_value(input0, input0.__value);
         attr(label0, "class", "radio");
         attr(input1, "id", "activePengumuman");
         attr(input1, "type", "radio");
         attr(input1, "name", "active");
-        input1.__value = "0";
+        input1.__value = input1_value_value = 0;
         set_input_value(input1, input1.__value);
         attr(label1, "class", "radio");
         attr(div, "class", "control");
@@ -4898,7 +6079,7 @@
       }
     };
   }
-  function create_default_slot_1(ctx) {
+  function create_default_slot_12(ctx) {
     let h2;
     let t1;
     let hr;
@@ -4921,21 +6102,21 @@
     field0 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_4] },
+        $$slots: { default: [create_default_slot_42] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Isi Pengumuman",
-        $$slots: { default: [create_default_slot_3] },
+        $$slots: { default: [create_default_slot_32] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Aktif",
-        $$slots: { default: [create_default_slot_2] },
+        $$slots: { default: [create_default_slot_22] },
         $$scope: { ctx }
       }
     });
@@ -5068,7 +6249,7 @@
       }
     };
   }
-  function create_fragment24(ctx) {
+  function create_fragment25(ctx) {
     let article2;
     let t;
     let modalchecked;
@@ -5076,7 +6257,7 @@
     let current;
     article2 = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot_1] },
+        $$slots: { default: [create_default_slot_12] },
         $$scope: { ctx }
       }
     });
@@ -5153,7 +6334,7 @@
   function kembali() {
     location.href = "/admin/pengumumanmanagement";
   }
-  function instance14($$self, $$props, $$invalidate) {
+  function instance19($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(10, $apiURL = $$value));
     let judulPengumuman, isiPengumuman;
@@ -5226,7 +6407,7 @@
   var Buatpengumuman = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance14, create_fragment24, safe_not_equal, {});
+      init(this, options, instance19, create_fragment25, safe_not_equal, {});
     }
   };
   var buatpengumuman_default = Buatpengumuman;
@@ -5254,7 +6435,7 @@
       }
     };
   }
-  function create_if_block6(ctx) {
+  function create_if_block9(ctx) {
     let div1;
     let div0;
     let t1;
@@ -5301,14 +6482,14 @@
     field3 = new Field_default({
       props: {
         name: "Role",
-        $$slots: { default: [create_default_slot_5] },
+        $$slots: { default: [create_default_slot_52] },
         $$scope: { ctx }
       }
     });
     field4 = new Field_default({
       props: {
         name: "Active",
-        $$slots: { default: [create_default_slot_42] },
+        $$slots: { default: [create_default_slot_43] },
         $$scope: { ctx }
       }
     });
@@ -5815,7 +6996,7 @@
       }
     };
   }
-  function create_default_slot_5(ctx) {
+  function create_default_slot_52(ctx) {
     let div;
     let select;
     let option0;
@@ -5951,7 +7132,7 @@
       }
     };
   }
-  function create_if_block_13(ctx) {
+  function create_if_block_15(ctx) {
     let span;
     let t_value = (
       /*error*/
@@ -5981,7 +7162,7 @@
       }
     };
   }
-  function create_default_slot_42(ctx) {
+  function create_default_slot_43(ctx) {
     let div;
     let label0;
     let input0;
@@ -5997,7 +7178,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[5].selectedActivation && create_if_block_13(ctx)
+      ctx[5].selectedActivation && create_if_block_15(ctx)
     );
     binding_group = init_binding_group(
       /*$$binding_groups*/
@@ -6085,7 +7266,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_13(ctx2);
+            if_block = create_if_block_15(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -6108,7 +7289,7 @@
       }
     };
   }
-  function create_default_slot_32(ctx) {
+  function create_default_slot_33(ctx) {
     let h2;
     let t1;
     let hr;
@@ -6117,7 +7298,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block6, create_else_block3];
+    const if_block_creators = [create_if_block9, create_else_block3];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -6174,7 +7355,7 @@
       }
     };
   }
-  function create_default_slot_22(ctx) {
+  function create_default_slot_23(ctx) {
     let p;
     return {
       c() {
@@ -6192,7 +7373,7 @@
       }
     };
   }
-  function create_default_slot_12(ctx) {
+  function create_default_slot_13(ctx) {
     let p;
     return {
       c() {
@@ -6228,7 +7409,7 @@
       }
     };
   }
-  function create_fragment25(ctx) {
+  function create_fragment26(ctx) {
     let article2;
     let t0;
     let modalerror0;
@@ -6242,7 +7423,7 @@
     let current;
     article2 = new Article_default({
       props: {
-        $$slots: { default: [create_default_slot_32] },
+        $$slots: { default: [create_default_slot_33] },
         $$scope: { ctx }
       }
     });
@@ -6250,7 +7431,7 @@
       ctx[19](value);
     }
     let modalerror0_props = {
-      $$slots: { default: [create_default_slot_22] },
+      $$slots: { default: [create_default_slot_23] },
       $$scope: { ctx }
     };
     if (
@@ -6266,7 +7447,7 @@
       ctx[20](value);
     }
     let modalerror1_props = {
-      $$slots: { default: [create_default_slot_12] },
+      $$slots: { default: [create_default_slot_13] },
       $$scope: { ctx }
     };
     if (
@@ -6390,7 +7571,7 @@
       }
     };
   }
-  function instance15($$self, $$props, $$invalidate) {
+  function instance20($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(22, $apiURL = $$value));
@@ -6526,7 +7707,7 @@
   var Createuser = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance15, create_fragment25, safe_not_equal, {});
+      init(this, options, instance20, create_fragment26, safe_not_equal, {});
     }
   };
   var createuser_default = Createuser;
@@ -6644,12 +7825,12 @@
         /*code*/
         ctx2[0] === 0
       )
-        return create_if_block_14;
+        return create_if_block_142;
       if (
         /*code*/
         ctx2[0] === 1
       )
-        return create_if_block_15;
+        return create_if_block_152;
       if (
         /*code*/
         ctx2[0] === 2
@@ -6735,7 +7916,7 @@
       }
     };
   }
-  function create_if_block7(ctx) {
+  function create_if_block10(ctx) {
     let if_block_anchor;
     function select_block_type_1(ctx2, dirty) {
       if (
@@ -7229,7 +8410,7 @@
       }
     };
   }
-  function create_if_block_15(ctx) {
+  function create_if_block_152(ctx) {
     let span;
     return {
       c() {
@@ -7247,7 +8428,7 @@
       }
     };
   }
-  function create_if_block_14(ctx) {
+  function create_if_block_142(ctx) {
     let span;
     return {
       c() {
@@ -7481,7 +8662,7 @@
       }
     };
   }
-  function create_fragment26(ctx) {
+  function create_fragment27(ctx) {
     let if_block_anchor;
     function select_block_type(ctx2, dirty) {
       if (
@@ -7489,7 +8670,7 @@
         ctx2[1] === "Riset Mandiri" || /*jenisSkema*/
         ctx2[1] === "Pengabdian Masyarakat Mandiri"
       )
-        return create_if_block7;
+        return create_if_block10;
       if (
         /*jenisSkema*/
         ctx2[1] === "Riset Eksternal" || /*jenisSkema*/
@@ -7544,7 +8725,7 @@
       }
     };
   }
-  function instance16($$self, $$props, $$invalidate) {
+  function instance21($$self, $$props, $$invalidate) {
     let { code } = $$props;
     let { jenisSkema } = $$props;
     $$self.$$set = ($$props2) => {
@@ -7558,7 +8739,7 @@
   var Status = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance16, create_fragment26, safe_not_equal, { code: 0, jenisSkema: 1 });
+      init(this, options, instance21, create_fragment27, safe_not_equal, { code: 0, jenisSkema: 1 });
     }
   };
   var Status_default = Status;
@@ -7690,7 +8871,7 @@
       }
     };
   }
-  function create_if_block8(ctx) {
+  function create_if_block11(ctx) {
     let p0;
     let t;
     let p1;
@@ -8130,13 +9311,13 @@
       }
     };
   }
-  function create_fragment27(ctx) {
+  function create_fragment28(ctx) {
     let div1;
     let div0;
     let current_block_type_index;
     let if_block;
     let current;
-    const if_block_creators = [create_if_block8, create_else_block4];
+    const if_block_creators = [create_if_block11, create_else_block4];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -8203,7 +9384,7 @@
       }
     };
   }
-  function instance17($$self, $$props, $$invalidate) {
+  function instance22($$self, $$props, $$invalidate) {
     let { title } = $$props;
     let { content } = $$props;
     let { skema } = $$props;
@@ -8223,7 +9404,7 @@
   var Fieldview = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance17, create_fragment27, safe_not_equal, { title: 0, content: 1, skema: 2, type: 3 });
+      init(this, options, instance22, create_fragment28, safe_not_equal, { title: 0, content: 1, skema: 2, type: 3 });
     }
   };
   var Fieldview_default = Fieldview;
@@ -8232,7 +9413,7 @@
   init_define_process();
   var get_header_slot_changes = (dirty) => ({});
   var get_header_slot_context = (ctx) => ({});
-  function create_fragment28(ctx) {
+  function create_fragment29(ctx) {
     let b;
     let div;
     let span1;
@@ -8407,7 +9588,7 @@
       }
     };
   }
-  function instance18($$self, $$props, $$invalidate) {
+  function instance23($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { show = false } = $$props;
     function handleClick(e) {
@@ -8429,7 +9610,7 @@
   var Modal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance18, create_fragment28, safe_not_equal, { show: 0 });
+      init(this, options, instance23, create_fragment29, safe_not_equal, { show: 0 });
     }
   };
   var Modal_default = Modal;
@@ -8441,7 +9622,7 @@
     child_ctx[10] = list[i];
     return child_ctx;
   }
-  function create_if_block9(ctx) {
+  function create_if_block12(ctx) {
     let span;
     let each_value = ensure_array_like(
       /*filteredItems*/
@@ -8550,7 +9731,7 @@
       }
     };
   }
-  function create_fragment29(ctx) {
+  function create_fragment30(ctx) {
     let div;
     let input;
     let t;
@@ -8558,7 +9739,7 @@
     let dispose;
     let if_block = (
       /*filteredItems*/
-      ctx[2] && create_if_block9(ctx)
+      ctx[2] && create_if_block12(ctx)
     );
     return {
       c() {
@@ -8624,7 +9805,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block9(ctx2);
+            if_block = create_if_block12(ctx2);
             if_block.c();
             if_block.m(div, null);
           }
@@ -8646,13 +9827,13 @@
       }
     };
   }
-  function instance19($$self, $$props, $$invalidate) {
-    let { items } = $$props;
+  function instance24($$self, $$props, $$invalidate) {
+    let { items: items2 } = $$props;
     let { start = 1 } = $$props;
     let { result = [] } = $$props;
     let focused = 0;
     let value = "";
-    let filteredItems = items;
+    let filteredItems = items2;
     function setSelected(e) {
       e.preventDefault();
       let el = e.target;
@@ -8675,7 +9856,7 @@
     }
     function doFilter() {
       if (value.length >= start) {
-        $$invalidate(2, filteredItems = items.filter((item) => {
+        $$invalidate(2, filteredItems = items2.filter((item) => {
           let it;
           if (item.label) {
             let idUser2 = Number(localStorage.getItem("id"));
@@ -8687,7 +9868,7 @@
           return it;
         }));
       } else {
-        $$invalidate(2, filteredItems = items);
+        $$invalidate(2, filteredItems = items2);
       }
     }
     function clickOutside(e) {
@@ -8704,7 +9885,7 @@
     }
     $$self.$$set = ($$props2) => {
       if ("items" in $$props2)
-        $$invalidate(5, items = $$props2.items);
+        $$invalidate(5, items2 = $$props2.items);
       if ("start" in $$props2)
         $$invalidate(6, start = $$props2.start);
       if ("result" in $$props2)
@@ -8723,7 +9904,7 @@
       filteredItems,
       setSelected,
       result,
-      items,
+      items2,
       start,
       input_input_handler
     ];
@@ -8731,7 +9912,7 @@
   var Select = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance19, create_fragment29, safe_not_equal, { items: 5, start: 6, result: 4 });
+      init(this, options, instance24, create_fragment30, safe_not_equal, { items: 5, start: 6, result: 4 });
     }
   };
   var Select_default = Select;
@@ -8810,7 +9991,7 @@
     child_ctx[210] = i;
     return child_ctx;
   }
-  function create_if_block10(ctx) {
+  function create_if_block13(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -8928,8 +10109,8 @@
       /*status*/
       ctx[38] === 4 && create_if_block_162(ctx)
     );
-    let if_block7 = show_if_1 && create_if_block_152(ctx);
-    let if_block8 = show_if && create_if_block_142(ctx);
+    let if_block7 = show_if_1 && create_if_block_153(ctx);
+    let if_block8 = show_if && create_if_block_143(ctx);
     return {
       c() {
         div0 = element("div");
@@ -9826,7 +11007,7 @@
     field9 = new Field_default({
       props: {
         name: "Tanggal Selesai",
-        $$slots: { default: [create_default_slot_13] },
+        $$slots: { default: [create_default_slot_132] },
         $$scope: { ctx }
       }
     });
@@ -11587,7 +12768,7 @@
       }
     };
   }
-  function create_default_slot_13(ctx) {
+  function create_default_slot_132(ctx) {
     let div;
     let input;
     let t;
@@ -17785,7 +18966,7 @@
       }
     };
   }
-  function create_if_block_152(ctx) {
+  function create_if_block_153(ctx) {
     let p0;
     let button0;
     let t1;
@@ -17909,7 +19090,7 @@
       }
     };
   }
-  function create_if_block_142(ctx) {
+  function create_if_block_143(ctx) {
     let p;
     let button;
     let mounted;
@@ -20805,7 +21986,7 @@
       }
     };
   }
-  function create_default_slot_52(ctx) {
+  function create_default_slot_53(ctx) {
     let p;
     return {
       c() {
@@ -20823,7 +22004,7 @@
       }
     };
   }
-  function create_default_slot_43(ctx) {
+  function create_default_slot_44(ctx) {
     let p;
     return {
       c() {
@@ -20841,7 +22022,7 @@
       }
     };
   }
-  function create_default_slot_33(ctx) {
+  function create_default_slot_34(ctx) {
     let p;
     return {
       c() {
@@ -20859,7 +22040,7 @@
       }
     };
   }
-  function create_default_slot_23(ctx) {
+  function create_default_slot_24(ctx) {
     let p;
     return {
       c() {
@@ -20913,7 +22094,7 @@
       }
     };
   }
-  function create_fragment30(ctx) {
+  function create_fragment31(ctx) {
     let t0;
     let modalerror0;
     let updating_show;
@@ -20938,7 +22119,7 @@
     let current;
     let if_block = (
       /*data*/
-      ctx[27] && create_if_block10(ctx)
+      ctx[27] && create_if_block13(ctx)
     );
     function modalerror0_show_binding(value) {
       ctx[142](value);
@@ -20960,7 +22141,7 @@
       ctx[143](value);
     }
     let modalerror1_props = {
-      $$slots: { default: [create_default_slot_52] },
+      $$slots: { default: [create_default_slot_53] },
       $$scope: { ctx }
     };
     if (
@@ -20976,7 +22157,7 @@
       ctx[144](value);
     }
     let modalerror2_props = {
-      $$slots: { default: [create_default_slot_43] },
+      $$slots: { default: [create_default_slot_44] },
       $$scope: { ctx }
     };
     if (
@@ -20992,7 +22173,7 @@
       ctx[145](value);
     }
     let modalerror3_props = {
-      $$slots: { default: [create_default_slot_33] },
+      $$slots: { default: [create_default_slot_34] },
       $$scope: { ctx }
     };
     if (
@@ -21008,7 +22189,7 @@
       ctx[146](value);
     }
     let modalerror4_props = {
-      $$slots: { default: [create_default_slot_23] },
+      $$slots: { default: [create_default_slot_24] },
       $$scope: { ctx }
     };
     if (
@@ -21102,7 +22283,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block10(ctx2);
+            if_block = create_if_block13(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t0.parentNode, t0);
@@ -21297,7 +22478,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance20($$self, $$props, $$invalidate) {
+  function instance25($$self, $$props, $$invalidate) {
     let isFormFilled;
     let $laporanKeuanganFile;
     let $hasilPPMFile;
@@ -21366,7 +22547,7 @@
     let itemsRCR, itemsCHP;
     let fileRab, filePpm, fileSkPendanaan, fileSuratKontrak, fileSuratTugas, fileSkPPM, fileHasilPPM;
     let catatanRevisiProposal, catatanRevisiHasilPPM;
-    let items = [];
+    let items2 = [];
     let view;
     const accessToken = localStorage.getItem("token");
     const headers = {
@@ -23008,7 +24189,7 @@
       skemaInternal,
       skemaEksternal,
       skemaMandiri,
-      items,
+      items2,
       handleSubmitStatusPendanaan,
       handleSubmitEvaluator,
       handleSubmitFile,
@@ -23097,14 +24278,14 @@
   var Detailppm = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance20, create_fragment30, safe_not_equal, { params: 107 }, null, [-1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance25, create_fragment31, safe_not_equal, { params: 107 }, null, [-1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var detailppm_default = Detailppm;
 
   // src/pages/admin/editpengumuman.svelte
   init_define_process();
-  function create_if_block11(ctx) {
+  function create_if_block14(ctx) {
     let div;
     let field0;
     let t0;
@@ -23115,21 +24296,21 @@
     field0 = new Field_default({
       props: {
         name: "Judul",
-        $$slots: { default: [create_default_slot_44] },
+        $$slots: { default: [create_default_slot_45] },
         $$scope: { ctx }
       }
     });
     field1 = new Field_default({
       props: {
         name: "Isi Pengumuman",
-        $$slots: { default: [create_default_slot_34] },
+        $$slots: { default: [create_default_slot_35] },
         $$scope: { ctx }
       }
     });
     field2 = new Field_default({
       props: {
         name: "Aktif",
-        $$slots: { default: [create_default_slot_24] },
+        $$slots: { default: [create_default_slot_25] },
         $$scope: { ctx }
       }
     });
@@ -23196,7 +24377,7 @@
       }
     };
   }
-  function create_default_slot_44(ctx) {
+  function create_default_slot_45(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -23244,7 +24425,7 @@
       }
     };
   }
-  function create_default_slot_34(ctx) {
+  function create_default_slot_35(ctx) {
     let wysiwyg;
     let current;
     wysiwyg = new Wysiwyg_default({
@@ -23287,14 +24468,16 @@
       }
     };
   }
-  function create_default_slot_24(ctx) {
+  function create_default_slot_25(ctx) {
     let div;
     let label0;
     let input0;
+    let input0_value_value;
     let t0;
     let t1;
     let label1;
     let input1;
+    let input1_value_value;
     let t2;
     let binding_group;
     let mounted;
@@ -23316,13 +24499,13 @@
         attr(input0, "id", "activePengumuman");
         attr(input0, "type", "radio");
         attr(input0, "name", "active");
-        input0.__value = "1";
+        input0.__value = input0_value_value = 1;
         set_input_value(input0, input0.__value);
         attr(label0, "class", "radio");
         attr(input1, "id", "activePengumuman");
         attr(input1, "type", "radio");
         attr(input1, "name", "active");
-        input1.__value = "0";
+        input1.__value = input1_value_value = 0;
         set_input_value(input1, input1.__value);
         attr(label1, "class", "radio");
         attr(div, "class", "control");
@@ -23397,7 +24580,7 @@
     let dispose;
     let if_block = (
       /*items*/
-      ctx[4] && create_if_block11(ctx)
+      ctx[4] && create_if_block14(ctx)
     );
     return {
       c() {
@@ -23461,7 +24644,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block11(ctx2);
+            if_block = create_if_block14(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t3.parentNode, t3);
@@ -23518,7 +24701,7 @@
       }
     };
   }
-  function create_fragment31(ctx) {
+  function create_fragment32(ctx) {
     let article2;
     let t;
     let modalchecked;
@@ -23603,15 +24786,15 @@
   function kembali2() {
     location.href = "/admin/pengumumanmanagement";
   }
-  function instance21($$self, $$props, $$invalidate) {
+  function instance26($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(12, $apiURL = $$value));
     let judulPengumuman, isiPengumuman;
-    let activePengumuman = "";
+    let activePengumuman = 0;
     let showModalChecked = false;
     let { params } = $$props;
     const idP = params["1"];
-    let items;
+    let items2;
     const accessToken = localStorage.getItem("token");
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -23624,11 +24807,11 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(4, items = result.dbData);
-          $$invalidate(0, judulPengumuman = items.judul);
-          $$invalidate(1, isiPengumuman = items.isi);
-          $$invalidate(2, activePengumuman = items.active);
-          idPengumuman = items.id;
+          $$invalidate(4, items2 = result.dbData);
+          $$invalidate(0, judulPengumuman = items2.judul);
+          $$invalidate(1, isiPengumuman = items2.isi);
+          $$invalidate(2, activePengumuman = items2.active);
+          idPengumuman = items2.id;
         }
       }
     });
@@ -23688,7 +24871,7 @@
       isiPengumuman,
       activePengumuman,
       showModalChecked,
-      items,
+      items2,
       simpanPengumuman,
       params,
       input_input_handler,
@@ -23701,7 +24884,7 @@
   var Editpengumuman = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance21, create_fragment31, safe_not_equal, { params: 6 });
+      init(this, options, instance26, create_fragment32, safe_not_equal, { params: 6 });
     }
   };
   var editpengumuman_default = Editpengumuman;
@@ -23732,7 +24915,7 @@
       }
     };
   }
-  function create_if_block12(ctx) {
+  function create_if_block15(ctx) {
     let p;
     let t_value = (
       /*cardCounter*/
@@ -23793,7 +24976,7 @@
         /*cardCounter*/
         ctx2[7].title
       )
-        return create_if_block12;
+        return create_if_block15;
       return create_else_block6;
     }
     let current_block_type = select_block_type(ctx, -1);
@@ -24296,7 +25479,7 @@
       }
     };
   }
-  function create_fragment32(ctx) {
+  function create_fragment33(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -24336,7 +25519,7 @@
       }
     };
   }
-  function instance22($$self, $$props, $$invalidate) {
+  function instance27($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(21, $apiURL = $$value));
     const accessToken = localStorage.getItem("token");
@@ -24533,7 +25716,7 @@
   var Home = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance22, create_fragment32, safe_not_equal, {});
+      init(this, options, instance27, create_fragment33, safe_not_equal, {});
     }
   };
   var home_default = Home;
@@ -24542,15 +25725,17 @@
   init_define_process();
   function get_each_context7(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[8] = list[i];
+    child_ctx[12] = list[i];
+    child_ctx[13] = list;
+    child_ctx[14] = i;
     return child_ctx;
   }
-  function create_if_block13(ctx) {
+  function create_if_block16(ctx) {
     let div1;
     let div0;
     let table;
     let thead;
-    let t3;
+    let t5;
     let tbody;
     let current;
     let each_value = ensure_array_like(
@@ -24570,8 +25755,8 @@
         div0 = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Judul</th> <th class="is-narrow" style="text-align: center;">Action</th></tr>`;
-        t3 = space();
+        thead.innerHTML = `<tr><th>Judul</th> <th style="text-align: center;">Aktif</th> <th style="text-align: center;" class="is-narrow">Delete/Edit</th></tr>`;
+        t5 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
           each_blocks[i].c();
@@ -24585,7 +25770,7 @@
         append(div1, div0);
         append(div0, table);
         append(table, thead);
-        append(table, t3);
+        append(table, t5);
         append(table, tbody);
         for (let i = 0; i < each_blocks.length; i += 1) {
           if (each_blocks[i]) {
@@ -24595,8 +25780,8 @@
         current = true;
       },
       p(ctx2, dirty) {
-        if (dirty & /*items, editPengumuman, deletePengumuman*/
-        7) {
+        if (dirty & /*items, editPengumuman, deletePengumuman, checkboxAktifPengumuman*/
+        15) {
           each_value = ensure_array_like(
             /*items*/
             ctx2[0]
@@ -24649,27 +25834,48 @@
     let td0;
     let t0_value = (
       /*item*/
-      ctx[8].judul + ""
+      ctx[12].judul + ""
     );
     let t0;
     let t1;
     let td1;
+    let input;
+    let t2;
+    let td2;
     let div;
     let p0;
     let button0;
     let span0;
     let icon0;
     let button0_pid_value;
-    let t2;
+    let t3;
     let p1;
     let button1;
     let span1;
     let icon1;
     let button1_pid_value;
-    let t3;
+    let t4;
     let current;
     let mounted;
     let dispose;
+    function input_change_handler() {
+      ctx[4].call(
+        input,
+        /*each_value*/
+        ctx[13],
+        /*item_index*/
+        ctx[14]
+      );
+    }
+    function change_handler() {
+      return (
+        /*change_handler*/
+        ctx[5](
+          /*item*/
+          ctx[12]
+        )
+      );
+    }
     icon0 = new Icon_default({ props: { id: "delete", src: deleteIcon } });
     icon1 = new Icon_default({ props: { id: "edit", src: edit } });
     return {
@@ -24679,26 +25885,31 @@
         t0 = text(t0_value);
         t1 = space();
         td1 = element("td");
+        input = element("input");
+        t2 = space();
+        td2 = element("td");
         div = element("div");
         p0 = element("p");
         button0 = element("button");
         span0 = element("span");
         create_component(icon0.$$.fragment);
-        t2 = space();
+        t3 = space();
         p1 = element("p");
         button1 = element("button");
         span1 = element("span");
         create_component(icon1.$$.fragment);
-        t3 = space();
+        t4 = space();
+        attr(input, "type", "checkbox");
+        set_style(td1, "text-align", "center");
         attr(span0, "class", "icon");
         attr(button0, "class", "button is-danger is-outlined is-small");
         attr(button0, "pid", button0_pid_value = /*item*/
-        ctx[8].id);
+        ctx[12].id);
         attr(p0, "class", "control");
         attr(span1, "class", "icon");
         attr(button1, "class", "button is-link is-outlined is-small");
         attr(button1, "pid", button1_pid_value = /*item*/
-        ctx[8].id);
+        ctx[12].id);
         attr(p1, "class", "control");
         attr(div, "class", "field is-grouped");
       },
@@ -24708,49 +25919,62 @@
         append(td0, t0);
         append(tr, t1);
         append(tr, td1);
-        append(td1, div);
+        append(td1, input);
+        input.checked = /*item*/
+        ctx[12].active;
+        append(tr, t2);
+        append(tr, td2);
+        append(td2, div);
         append(div, p0);
         append(p0, button0);
         append(button0, span0);
         mount_component(icon0, span0, null);
-        append(div, t2);
+        append(div, t3);
         append(div, p1);
         append(p1, button1);
         append(button1, span1);
         mount_component(icon1, span1, null);
-        append(tr, t3);
+        append(tr, t4);
         current = true;
         if (!mounted) {
           dispose = [
+            listen(input, "change", input_change_handler),
+            listen(input, "change", change_handler),
             listen(
               button0,
               "click",
               /*deletePengumuman*/
-              ctx[2]
+              ctx[3]
             ),
             listen(
               button1,
               "click",
               /*editPengumuman*/
-              ctx[1]
+              ctx[2]
             )
           ];
           mounted = true;
         }
       },
-      p(ctx2, dirty) {
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
         if ((!current || dirty & /*items*/
         1) && t0_value !== (t0_value = /*item*/
-        ctx2[8].judul + ""))
+        ctx[12].judul + ""))
           set_data(t0, t0_value);
+        if (dirty & /*items*/
+        1) {
+          input.checked = /*item*/
+          ctx[12].active;
+        }
         if (!current || dirty & /*items*/
         1 && button0_pid_value !== (button0_pid_value = /*item*/
-        ctx2[8].id)) {
+        ctx[12].id)) {
           attr(button0, "pid", button0_pid_value);
         }
         if (!current || dirty & /*items*/
         1 && button1_pid_value !== (button1_pid_value = /*item*/
-        ctx2[8].id)) {
+        ctx[12].id)) {
           attr(button1, "pid", button1_pid_value);
         }
       },
@@ -24808,7 +26032,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block13(ctx)
+      ctx[0] && create_if_block16(ctx)
     );
     return {
       c() {
@@ -24892,7 +26116,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block13(ctx2);
+            if_block = create_if_block16(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -24938,7 +26162,7 @@
       }
     };
   }
-  function create_fragment33(ctx) {
+  function create_fragment34(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -24958,7 +26182,7 @@
       p(ctx2, [dirty]) {
         const article_changes = {};
         if (dirty & /*$$scope, items*/
-        2049) {
+        32769) {
           article_changes.$$scope = { dirty, ctx: ctx2 };
         }
         article2.$set(article_changes);
@@ -24981,12 +26205,12 @@
   function addPengumuman() {
     location.href = "/admin/buatpengumuman";
   }
-  function instance23($$self, $$props, $$invalidate) {
+  function instance28($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
-    component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
-    component_subscribe($$self, route, ($$value) => $$invalidate(4, $route = $$value));
-    let items;
+    component_subscribe($$self, apiURL, ($$value) => $$invalidate(6, $apiURL = $$value));
+    component_subscribe($$self, route, ($$value) => $$invalidate(7, $route = $$value));
+    let items2, aktifPengumuman;
     const accessToken = localStorage.getItem("token");
     const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -24995,6 +26219,22 @@
     onMount(async () => {
       await getAllPengumuman();
     });
+    async function checkboxAktifPengumuman(idPengumuman2, active2) {
+      const pengumumanAktif = active2 ? 1 : 0;
+      payload = { pengumumanAktif, idPengumuman: idPengumuman2 };
+      const response = await fetch($apiURL + "/pengumuman/tableEdit", {
+        method: "PATCH",
+        headers,
+        body: JSON.stringify(payload)
+      });
+      if (response.status === 401) {
+        location.pathname = "/tokenexpired";
+      } else {
+        if (!response.ok) {
+          console.log(response);
+        }
+      }
+    }
     async function getAllPengumuman() {
       const response = await fetch($apiURL + "/pengumuman", { method: "GET", headers });
       const result = await response.json();
@@ -25002,7 +26242,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         }
       }
     }
@@ -25024,12 +26264,24 @@
         }
       }
     }
-    return [items, editPengumuman, deletePengumuman];
+    function input_change_handler(each_value, item_index) {
+      each_value[item_index].active = this.checked;
+      $$invalidate(0, items2);
+    }
+    const change_handler = (item) => checkboxAktifPengumuman(item.id, item.active);
+    return [
+      items2,
+      checkboxAktifPengumuman,
+      editPengumuman,
+      deletePengumuman,
+      input_change_handler,
+      change_handler
+    ];
   }
   var Pengumumanmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance23, create_fragment33, safe_not_equal, {});
+      init(this, options, instance28, create_fragment34, safe_not_equal, {});
     }
   };
   var pengumumanmanagement_default = Pengumumanmanagement;
@@ -25041,7 +26293,7 @@
     child_ctx[15] = list[i];
     return child_ctx;
   }
-  function create_if_block14(ctx) {
+  function create_if_block17(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -25698,12 +26950,12 @@
       }
     };
   }
-  function create_fragment34(ctx) {
+  function create_fragment35(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block14(ctx)
+      ctx[0] && create_if_block17(ctx)
     );
     return {
       c() {
@@ -25729,7 +26981,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block14(ctx2);
+            if_block = create_if_block17(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -25761,12 +27013,12 @@
       }
     };
   }
-  function instance24($$self, $$props, $$invalidate) {
+  function instance29($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(11, $route = $$value));
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(12, $apiURL = $$value));
-    let items;
+    let items2;
     let filterJudul = "";
     let filterStatus = "";
     let filterJenisSkema = "";
@@ -25783,7 +27035,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         }
       }
     });
@@ -25809,7 +27061,7 @@
     }
     const func = (item) => item.judul.toLowerCase().includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan) && (filterJenisSkema === "" || item.jenis_skema === filterJenisSkema) && (filterStatus === "" || item.status === Number(filterStatus));
     return [
-      items,
+      items2,
       filterJudul,
       filterStatus,
       filterJenisSkema,
@@ -25825,7 +27077,7 @@
   var Ppmmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance24, create_fragment34, safe_not_equal, {});
+      init(this, options, instance29, create_fragment35, safe_not_equal, {});
     }
   };
   var ppmmanagement_default = Ppmmanagement;
@@ -31550,7 +32802,7 @@
       }
     };
   }
-  function create_default_slot_53(ctx) {
+  function create_default_slot_532(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -31989,7 +33241,7 @@
     field1 = new Field_default({
       props: {
         name: "Bidang Ilmu",
-        $$slots: { default: [create_default_slot_53] },
+        $$slots: { default: [create_default_slot_532] },
         $$scope: { ctx }
       }
     });
@@ -32519,7 +33771,7 @@
       }
     };
   }
-  function create_default_slot_45(ctx) {
+  function create_default_slot_452(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -32752,7 +34004,7 @@
     field3 = new Field_default({
       props: {
         name: "Tahun Lulus",
-        $$slots: { default: [create_default_slot_45] },
+        $$slots: { default: [create_default_slot_452] },
         $$scope: { ctx }
       }
     });
@@ -33797,7 +35049,7 @@
       }
     };
   }
-  function create_default_slot_35(ctx) {
+  function create_default_slot_352(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -34276,7 +35528,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul Penelitian",
-        $$slots: { default: [create_default_slot_35] },
+        $$slots: { default: [create_default_slot_352] },
         $$scope: { ctx }
       }
     });
@@ -35036,7 +36288,7 @@
       }
     };
   }
-  function create_default_slot_25(ctx) {
+  function create_default_slot_252(ctx) {
     let field0;
     let t0;
     let field1;
@@ -35570,7 +36822,7 @@
       }
     };
   }
-  function create_if_block_153(ctx) {
+  function create_if_block_154(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -35608,7 +36860,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].namaPertemuanDiseminasi && create_if_block_153(ctx)
+      ctx[1].namaPertemuanDiseminasi && create_if_block_154(ctx)
     );
     return {
       c() {
@@ -35658,7 +36910,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_153(ctx2);
+            if_block = create_if_block_154(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -35859,7 +37111,7 @@
       }
     };
   }
-  function create_if_block_143(ctx) {
+  function create_if_block_144(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -35897,7 +37149,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tahunPublikasi && create_if_block_143(ctx)
+      ctx[1].tahunPublikasi && create_if_block_144(ctx)
     );
     return {
       c() {
@@ -35947,7 +37199,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_143(ctx2);
+            if_block = create_if_block_144(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -36643,7 +37895,7 @@
       }
     };
   }
-  function create_default_slot_132(ctx) {
+  function create_default_slot_133(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -37185,7 +38437,7 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_132] },
+        $$slots: { default: [create_default_slot_133] },
         $$scope: { ctx }
       }
     });
@@ -37807,7 +39059,7 @@
       }
     };
   }
-  function create_if_block15(ctx) {
+  function create_if_block18(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -37845,7 +39097,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].noHKI && create_if_block15(ctx)
+      ctx[1].noHKI && create_if_block18(ctx)
     );
     return {
       c() {
@@ -37895,7 +39147,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block15(ctx2);
+            if_block = create_if_block18(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -38157,7 +39409,7 @@
       }
     };
   }
-  function create_fragment35(ctx) {
+  function create_fragment36(ctx) {
     let article2;
     let t0;
     let modal0;
@@ -38281,7 +39533,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_4],
-        default: [create_default_slot_25]
+        default: [create_default_slot_252]
       },
       $$scope: { ctx }
     };
@@ -38692,7 +39944,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance25($$self, $$props, $$invalidate) {
+  function instance30($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(188, $apiURL = $$value));
     let { params } = $$props;
@@ -39941,7 +41193,7 @@
   var Profile = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance25, create_fragment35, safe_not_equal, { params: 115 }, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance30, create_fragment36, safe_not_equal, { params: 115 }, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default = Profile;
@@ -40360,7 +41612,7 @@
       }
     };
   }
-  function create_fragment36(ctx) {
+  function create_fragment37(ctx) {
     let article2;
     let t;
     let modal;
@@ -40449,7 +41701,7 @@
   }
   function handleDownloadTemplate() {
   }
-  function instance26($$self, $$props, $$invalidate) {
+  function instance31($$self, $$props, $$invalidate) {
     let namaTemplate;
     let file;
     let showModalTambahTemplate = false;
@@ -40477,7 +41729,7 @@
   var Template = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance26, create_fragment36, safe_not_equal, {});
+      init(this, options, instance31, create_fragment37, safe_not_equal, {});
     }
   };
   var template_default = Template;
@@ -40511,7 +41763,7 @@
       }
     };
   }
-  function create_if_block16(ctx) {
+  function create_if_block19(ctx) {
     let if_block_anchor;
     let current;
     let if_block = (
@@ -40680,7 +41932,7 @@
         div8 = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Username</th> <th style="text-align: center">Email</th> <th style="text-align: center" class="is-narrow">Role</th> <th class="is-narrow">Active</th></tr>`;
+        thead.innerHTML = `<tr><th>Username</th> <th style="text-align: center">Email</th> <th style="text-align: center" class="is-narrow">Role</th> <th class="is-narrow">Aktif</th></tr>`;
         t23 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
@@ -41128,7 +42380,7 @@
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block16, create_else_block7];
+    const if_block_creators = [create_if_block19, create_else_block7];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -41171,7 +42423,7 @@
       }
     };
   }
-  function create_fragment37(ctx) {
+  function create_fragment38(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -41211,14 +42463,14 @@
       }
     };
   }
-  function instance27($$self, $$props, $$invalidate) {
+  function instance32($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(12, $route = $$value));
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(13, $apiURL = $$value));
     let { params } = $$props;
     let profile2;
-    let items;
+    let items2;
     let filterUsername = "";
     let filterRole = "";
     const accessToken = localStorage.getItem("token");
@@ -41234,7 +42486,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.status === 200) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         }
       }
     }
@@ -41242,9 +42494,9 @@
       const value = ev.target.getAttribute("role");
       const id = ev.target.getAttribute("uid");
       const payload2 = {
-        id: items[id].id,
+        id: items2[id].id,
         role: Number(value),
-        active: !items[id].active
+        active: !items2[id].active
       };
       const response = await fetch($apiURL + "/user", {
         method: "PATCH",
@@ -41269,9 +42521,9 @@
       const value = ev.target.value;
       const id = ev.target.getAttribute("uid");
       const payload2 = {
-        id: items[id].id,
+        id: items2[id].id,
         role: Number(value),
-        active: items[id].active
+        active: items2[id].active
       };
       const response = await fetch($apiURL + "/user", {
         method: "PATCH",
@@ -41338,11 +42590,11 @@
       if ($$self.$$.dirty & /*profile*/
       256) {
         $:
-          profile2, profile2 ? $$invalidate(0, items = null) : populateTable();
+          profile2, profile2 ? $$invalidate(0, items2 = null) : populateTable();
       }
     };
     return [
-      items,
+      items2,
       filterUsername,
       filterRole,
       roleFromToken,
@@ -41359,14 +42611,14 @@
   var Usersmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance27, create_fragment37, safe_not_equal, { params: 7 });
+      init(this, options, instance32, create_fragment38, safe_not_equal, { params: 7 });
     }
   };
   var usersmanagement_default = Usersmanagement;
 
   // src/modules/E404.svelte
   init_define_process();
-  function create_fragment38(ctx) {
+  function create_fragment39(ctx) {
     let article2;
     return {
       c() {
@@ -41390,7 +42642,7 @@
   var E404 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment38, safe_not_equal, {});
+      init(this, options, null, create_fragment39, safe_not_equal, {});
     }
   };
   var E404_default = E404;
@@ -41503,7 +42755,7 @@
       }
     };
   }
-  function create_if_block17(ctx) {
+  function create_if_block20(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -41577,13 +42829,13 @@
       }
     };
   }
-  function create_fragment39(ctx) {
+  function create_fragment40(ctx) {
     let show_if;
     let current_block_type_index;
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block17, create_if_block_117, create_else_block8];
+    const if_block_creators = [create_if_block20, create_if_block_117, create_else_block8];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -41655,7 +42907,7 @@
       }
     };
   }
-  function instance28($$self, $$props, $$invalidate) {
+  function instance33($$self, $$props, $$invalidate) {
     let { params = {} } = $$props;
     let cmp;
     $$self.$$set = ($$props2) => {
@@ -41674,7 +42926,7 @@
   var Index2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance28, create_fragment39, safe_not_equal, { params: 0 });
+      init(this, options, instance33, create_fragment40, safe_not_equal, { params: 0 });
     }
   };
   var Index_default2 = Index2;
@@ -41789,7 +43041,7 @@
       }
     };
   }
-  function create_if_block18(ctx) {
+  function create_if_block21(ctx) {
     let article2;
     return {
       c() {
@@ -41809,13 +43061,13 @@
       }
     };
   }
-  function create_fragment40(ctx) {
+  function create_fragment41(ctx) {
     let show_if;
     let current_block_type_index;
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block18, create_if_block_118, create_else_block9];
+    const if_block_creators = [create_if_block21, create_if_block_118, create_else_block9];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -41887,7 +43139,7 @@
       }
     };
   }
-  function instance29($$self, $$props, $$invalidate) {
+  function instance34($$self, $$props, $$invalidate) {
     let $route;
     let $isUsername;
     let $isLogin;
@@ -41929,7 +43181,7 @@
   var Index3 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance29, create_fragment40, safe_not_equal, { params: 0 });
+      init(this, options, instance34, create_fragment41, safe_not_equal, { params: 0 });
     }
   };
   var Index_default3 = Index3;
@@ -41973,7 +43225,7 @@
     child_ctx[21] = list[i];
     return child_ctx;
   }
-  function create_if_block19(ctx) {
+  function create_if_block22(ctx) {
     let div1;
     let div0;
     let table;
@@ -43110,7 +44362,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block19(ctx)
+      ctx[0] && create_if_block22(ctx)
     );
     return {
       c() {
@@ -43356,7 +44608,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block19(ctx2);
+            if_block = create_if_block22(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -43399,7 +44651,7 @@
       }
     };
   }
-  function create_fragment41(ctx) {
+  function create_fragment42(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -43439,7 +44691,7 @@
       }
     };
   }
-  function instance30($$self, $$props, $$invalidate) {
+  function instance35($$self, $$props, $$invalidate) {
     let $route;
     let $apiURL;
     component_subscribe($$self, route, ($$value) => $$invalidate(13, $route = $$value));
@@ -43461,7 +44713,7 @@
     const showPPMinKPKandKLPPM = [2, 7, 12];
     const id = localStorage.id;
     let role = localStorage.role;
-    let items;
+    let items2;
     let filterJudul = "";
     let filterJenisKegiatan = "";
     let filterJenisSkema = "";
@@ -43472,7 +44724,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         } else {
           console.log(response);
         }
@@ -43498,7 +44750,7 @@
     const func_1 = (item) => item.judul.toLowerCase().includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan);
     const func_2 = (item) => item.judul.toLowerCase().includes(filterJudul.toLowerCase()) && (filterJenisKegiatan === "" || item.jenis_kegiatan === filterJenisKegiatan);
     return [
-      items,
+      items2,
       filterJudul,
       filterJenisKegiatan,
       filterJenisSkema,
@@ -43516,7 +44768,7 @@
   var Approvalmanagement = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance30, create_fragment41, safe_not_equal, {});
+      init(this, options, instance35, create_fragment42, safe_not_equal, {});
     }
   };
   var approvalmanagement_default = Approvalmanagement;
@@ -43589,7 +44841,7 @@
     child_ctx[126] = list[i];
     return child_ctx;
   }
-  function create_if_block20(ctx) {
+  function create_if_block23(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -43859,7 +45111,7 @@
     let if_block8 = (
       /*role*/
       (ctx[37] === "K.PusatKajian" || /*role*/
-      ctx[37] === "K.LPPM") && create_if_block_144(ctx)
+      ctx[37] === "K.LPPM") && create_if_block_145(ctx)
     );
     return {
       c() {
@@ -47206,13 +48458,13 @@
       }
     };
   }
-  function create_if_block_144(ctx) {
+  function create_if_block_145(ctx) {
     let show_if = (
       /*ShowRDPButton*/
       ctx[57]()
     );
     let if_block_anchor;
-    let if_block = show_if && create_if_block_154(ctx);
+    let if_block = show_if && create_if_block_155(ctx);
     return {
       c() {
         if (if_block)
@@ -47237,7 +48489,7 @@
       }
     };
   }
-  function create_if_block_154(ctx) {
+  function create_if_block_155(ctx) {
     let div;
     let p0;
     let button0;
@@ -50259,7 +51511,7 @@
       }
     };
   }
-  function create_fragment42(ctx) {
+  function create_fragment43(ctx) {
     let t0;
     let modalerror0;
     let updating_show;
@@ -50275,7 +51527,7 @@
     let current;
     let if_block = (
       /*data*/
-      ctx[14] && create_if_block20(ctx)
+      ctx[14] && create_if_block23(ctx)
     );
     function modalerror0_show_binding(value) {
       ctx[73](value);
@@ -50379,7 +51631,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block20(ctx2);
+            if_block = create_if_block23(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t0.parentNode, t0);
@@ -50491,7 +51743,7 @@
     const seconds = String(date.getUTCSeconds()).padStart(2, "0");
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
-  function instance31($$self, $$props, $$invalidate) {
+  function instance36($$self, $$props, $$invalidate) {
     let $penilaianFile;
     let $apiURL;
     let $route;
@@ -51188,7 +52440,7 @@
   var Detailapproval = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance31, create_fragment42, safe_not_equal, { params: 59 }, null, [-1, -1, -1, -1, -1]);
+      init(this, options, instance36, create_fragment43, safe_not_equal, { params: 59 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var detailapproval_default = Detailapproval;
@@ -51268,7 +52520,7 @@
     child_ctx[150] = i;
     return child_ctx;
   }
-  function create_if_block21(ctx) {
+  function create_if_block24(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -51357,9 +52609,9 @@
     let if_block2 = show_if_1 && create_if_block_165(ctx);
     let if_block3 = (
       /*status*/
-      ctx[18] === 0 && create_if_block_155(ctx)
+      ctx[18] === 0 && create_if_block_156(ctx)
     );
-    let if_block4 = show_if && create_if_block_145(ctx);
+    let if_block4 = show_if && create_if_block_146(ctx);
     return {
       c() {
         div0 = element("div");
@@ -51477,7 +52729,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block_155(ctx2);
+            if_block3 = create_if_block_156(ctx2);
             if_block3.c();
             if_block3.m(div1, t3);
           }
@@ -52139,7 +53391,7 @@
     field6 = new Field_default({
       props: {
         name: "Kelompok Keahlian",
-        $$slots: { default: [create_default_slot_133] },
+        $$slots: { default: [create_default_slot_134] },
         $$scope: { ctx }
       }
     });
@@ -53579,7 +54831,7 @@
       }
     };
   }
-  function create_default_slot_133(ctx) {
+  function create_default_slot_134(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -57732,7 +58984,7 @@
       }
     };
   }
-  function create_if_block_155(ctx) {
+  function create_if_block_156(ctx) {
     let p0;
     let button0;
     let t1;
@@ -57821,7 +59073,7 @@
       }
     };
   }
-  function create_if_block_145(ctx) {
+  function create_if_block_146(ctx) {
     let p;
     let button;
     let mounted;
@@ -60771,7 +62023,7 @@
       }
     };
   }
-  function create_fragment43(ctx) {
+  function create_fragment44(ctx) {
     let t0;
     let modalerror0;
     let updating_show;
@@ -60788,7 +62040,7 @@
     let if_block = (
       /*data*/
       ctx[4] && /*items*/
-      ctx[1].length > 0 && create_if_block21(ctx)
+      ctx[1].length > 0 && create_if_block24(ctx)
     );
     function modalerror0_show_binding(value) {
       ctx[93](value);
@@ -60893,7 +62145,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block21(ctx2);
+            if_block = create_if_block24(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(t0.parentNode, t0);
@@ -61034,7 +62286,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance32($$self, $$props, $$invalidate) {
+  function instance37($$self, $$props, $$invalidate) {
     let $apiURL;
     let $route;
     let $laporanKeuanganFile;
@@ -61058,7 +62310,7 @@
     };
     let newBiodataAnggota = [];
     let biodataAnggota = [];
-    let items = [];
+    let items2 = [];
     let error2 = {};
     let view;
     let data2;
@@ -61121,8 +62373,8 @@
         if (responsee.ok) {
           listUser = results;
           for (const [key, value] of Object.entries(listUser)) {
-            $$invalidate(1, items = [
-              ...items,
+            $$invalidate(1, items2 = [
+              ...items2,
               {
                 value: value.uid,
                 label: value.nama_lengkap
@@ -62319,7 +63571,7 @@
     };
     return [
       biodataAnggota,
-      items,
+      items2,
       error2,
       view,
       data2,
@@ -62420,7 +63672,7 @@
   var Detailppm2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance32, create_fragment43, safe_not_equal, { params: 72 }, null, [-1, -1, -1, -1, -1]);
+      init(this, options, instance37, create_fragment44, safe_not_equal, { params: 72 }, null, [-1, -1, -1, -1, -1]);
     }
   };
   var detailppm_default2 = Detailppm2;
@@ -62432,7 +63684,7 @@
     child_ctx[8] = list[i];
     return child_ctx;
   }
-  function create_if_block22(ctx) {
+  function create_if_block25(ctx) {
     let table;
     let thead;
     let t3;
@@ -62617,7 +63869,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[0] && create_if_block22(ctx)
+      ctx[0] && create_if_block25(ctx)
     );
     return {
       c() {
@@ -62784,7 +64036,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block22(ctx2);
+            if_block = create_if_block25(ctx2);
             if_block.c();
             if_block.m(div18, null);
           }
@@ -62828,7 +64080,7 @@
       }
     };
   }
-  function create_fragment44(ctx) {
+  function create_fragment45(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -62868,10 +64120,10 @@
       }
     };
   }
-  function instance33($$self, $$props, $$invalidate) {
+  function instance38($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(3, $apiURL = $$value));
-    let items, penelitianCounter, pengmasCounter;
+    let items2, penelitianCounter, pengmasCounter;
     let reminder;
     const id = Number(localStorage.getItem("id"));
     const accessToken = localStorage.getItem("token");
@@ -62886,7 +64138,7 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(0, items = result.dbData);
+          $$invalidate(0, items2 = result.dbData);
         } else {
           console.log(response);
         }
@@ -62924,12 +64176,12 @@
         }
       }
     });
-    return [items, penelitianCounter, pengmasCounter];
+    return [items2, penelitianCounter, pengmasCounter];
   }
   var Home2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance33, create_fragment44, safe_not_equal, {});
+      init(this, options, instance38, create_fragment45, safe_not_equal, {});
     }
   };
   var home_default2 = Home2;
@@ -63050,7 +64302,7 @@
       }
     };
   }
-  function create_if_block23(ctx) {
+  function create_if_block26(ctx) {
     let button;
     let t_value = (
       /*cardPendaftaran*/
@@ -63135,7 +64387,7 @@
         /*cardPendaftaran*/
         ctx2[1].isOpen === 1
       )
-        return create_if_block23;
+        return create_if_block26;
       if (
         /*cardPendaftaran*/
         ctx2[1].isOpen === 0
@@ -63399,7 +64651,7 @@
       }
     };
   }
-  function create_fragment45(ctx) {
+  function create_fragment46(ctx) {
     let article2;
     let t;
     let modalerror;
@@ -63481,7 +64733,7 @@
       }
     };
   }
-  function instance34($$self, $$props, $$invalidate) {
+  function instance39($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(6, $apiURL = $$value));
     const id = Number(localStorage.getItem("id"));
@@ -63569,7 +64821,7 @@
   var Pendaftaran = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance34, create_fragment45, safe_not_equal, {});
+      init(this, options, instance39, create_fragment46, safe_not_equal, {});
     }
   };
   var pendaftaran_default = Pendaftaran;
@@ -63634,7 +64886,7 @@
     child_ctx[87] = i;
     return child_ctx;
   }
-  function create_if_block_146(ctx) {
+  function create_if_block_147(ctx) {
     let div;
     let field0;
     let t0;
@@ -63686,7 +64938,7 @@
     field2 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_134] },
+        $$slots: { default: [create_default_slot_135] },
         $$scope: { ctx }
       }
     });
@@ -63760,7 +65012,7 @@
     );
     let if_block2 = (
       /*anggotaTim*/
-      ctx[13].length > 0 && create_if_block_156(ctx)
+      ctx[13].length > 0 && create_if_block_157(ctx)
     );
     return {
       c() {
@@ -63988,7 +65240,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block_156(ctx2);
+            if_block2 = create_if_block_157(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(tbody, null);
@@ -64313,7 +65565,7 @@
       }
     };
   }
-  function create_default_slot_134(ctx) {
+  function create_default_slot_135(ctx) {
     let div;
     let select;
     let option0;
@@ -66056,7 +67308,7 @@
       }
     };
   }
-  function create_if_block_156(ctx) {
+  function create_if_block_157(ctx) {
     let each_1_anchor;
     let current;
     let each_value_10 = ensure_array_like(
@@ -68961,7 +70213,7 @@
       }
     };
   }
-  function create_if_block24(ctx) {
+  function create_if_block27(ctx) {
     let div;
     let p0;
     let button0;
@@ -69104,7 +70356,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[17] === true && create_if_block_146(ctx)
+      ctx[17] === true && create_if_block_147(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -69116,7 +70368,7 @@
     );
     let if_block3 = (
       /*tab2*/
-      ctx[18] === true && create_if_block24(ctx)
+      ctx[18] === true && create_if_block27(ctx)
     );
     return {
       c() {
@@ -69263,7 +70515,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_146(ctx2);
+            if_block0 = create_if_block_147(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t13.parentNode, t13);
@@ -69320,7 +70572,7 @@
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block24(ctx2);
+            if_block3 = create_if_block27(ctx2);
             if_block3.c();
             if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
           }
@@ -69409,7 +70661,7 @@
       }
     };
   }
-  function create_fragment46(ctx) {
+  function create_fragment47(ctx) {
     let article2;
     let t0;
     let modalerror0;
@@ -69541,7 +70793,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance35($$self, $$props, $$invalidate) {
+  function instance40($$self, $$props, $$invalidate) {
     let $rabFile;
     let $ppmFile;
     let $route;
@@ -69583,7 +70835,7 @@
       }
     ];
     let biodataAnggota = [];
-    let items = [];
+    let items2 = [];
     let error2 = {};
     onMount(async () => {
       $$invalidate(2, isLoading = false);
@@ -69594,9 +70846,9 @@
       } else {
         if (response.ok) {
           listUser = result;
-          $$invalidate(15, items = []);
+          $$invalidate(15, items2 = []);
           for (const [key, value] of Object.entries(listUser)) {
-            items.push({
+            items2.push({
               value: value.uid,
               label: value.nama_lengkap
             });
@@ -70049,7 +71301,7 @@
       topik,
       anggotaTim,
       biodataAnggota,
-      items,
+      items2,
       error2,
       tab1,
       tab2,
@@ -70082,7 +71334,7 @@
   var Pendaftaranproposal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance35, create_fragment46, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance40, create_fragment47, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   };
   var pendaftaranproposal_default = Pendaftaranproposal;
@@ -70092,7 +71344,7 @@
 
   // src/libs/Modalroute.svelte
   init_define_process();
-  function create_fragment47(ctx) {
+  function create_fragment48(ctx) {
     let b;
     let div1;
     let div0;
@@ -70219,7 +71471,7 @@
       }
     };
   }
-  function instance36($$self, $$props, $$invalidate) {
+  function instance41($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { show = false } = $$props;
     function handleClick(e) {
@@ -70241,7 +71493,7 @@
   var Modalroute = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance36, create_fragment47, safe_not_equal, { show: 0 });
+      init(this, options, instance41, create_fragment48, safe_not_equal, { show: 0 });
     }
   };
   var Modalroute_default = Modalroute;
@@ -70252,7 +71504,7 @@
     child_ctx[13] = list[i];
     return child_ctx;
   }
-  function create_if_block25(ctx) {
+  function create_if_block28(ctx) {
     let tbody;
     let current;
     let each_value = ensure_array_like(
@@ -70562,7 +71814,7 @@
     });
     let if_block = (
       /*items*/
-      ctx[1] && create_if_block25(ctx)
+      ctx[1] && create_if_block28(ctx)
     );
     return {
       c() {
@@ -70820,7 +72072,7 @@
               transition_in(if_block, 1);
             }
           } else {
-            if_block = create_if_block25(ctx2);
+            if_block = create_if_block28(ctx2);
             if_block.c();
             transition_in(if_block, 1);
             if_block.m(table, null);
@@ -70881,7 +72133,7 @@
       }
     };
   }
-  function create_fragment48(ctx) {
+  function create_fragment49(ctx) {
     let article2;
     let t;
     let modalroute;
@@ -70979,13 +72231,13 @@
     const remainingDays = days % 30;
     return { months, remainingWeeks, remainingDays };
   }
-  function instance37($$self, $$props, $$invalidate) {
+  function instance42($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(10, $apiURL = $$value));
     const localStorage_namaLengkap = localStorage.getItem("nama_lengkap");
     const id = localStorage.id;
     let showModalError = false;
-    let items;
+    let items2;
     let filterJudul = "";
     let filterJenisKegiatan = "";
     let filterJenisSkema = "";
@@ -71002,8 +72254,8 @@
         location.pathname = "/tokenexpired";
       } else {
         if (response.ok) {
-          $$invalidate(1, items = result.dbData);
-          for (const item of items) {
+          $$invalidate(1, items2 = result.dbData);
+          for (const item of items2) {
             reminder.push({
               judul: item.judul,
               selesai: item.tanggal_selesai,
@@ -71034,7 +72286,7 @@
     }
     return [
       showModalError,
-      items,
+      items2,
       filterJudul,
       filterJenisKegiatan,
       filterJenisSkema,
@@ -71048,7 +72300,7 @@
   var Ppmmanagement2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance37, create_fragment48, safe_not_equal, {});
+      init(this, options, instance42, create_fragment49, safe_not_equal, {});
     }
   };
   var ppmmanagement_default2 = Ppmmanagement2;
@@ -76767,7 +78019,7 @@
       }
     };
   }
-  function create_default_slot_532(ctx) {
+  function create_default_slot_533(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -77206,7 +78458,7 @@
     field1 = new Field_default({
       props: {
         name: "Bidang Ilmu",
-        $$slots: { default: [create_default_slot_532] },
+        $$slots: { default: [create_default_slot_533] },
         $$scope: { ctx }
       }
     });
@@ -77736,7 +78988,7 @@
       }
     };
   }
-  function create_default_slot_452(ctx) {
+  function create_default_slot_453(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -77969,7 +79221,7 @@
     field3 = new Field_default({
       props: {
         name: "Tahun Lulus",
-        $$slots: { default: [create_default_slot_452] },
+        $$slots: { default: [create_default_slot_453] },
         $$scope: { ctx }
       }
     });
@@ -79014,7 +80266,7 @@
       }
     };
   }
-  function create_default_slot_352(ctx) {
+  function create_default_slot_353(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -79493,7 +80745,7 @@
     field1 = new Field_default({
       props: {
         name: "Judul Penelitian",
-        $$slots: { default: [create_default_slot_352] },
+        $$slots: { default: [create_default_slot_353] },
         $$scope: { ctx }
       }
     });
@@ -80253,7 +81505,7 @@
       }
     };
   }
-  function create_default_slot_252(ctx) {
+  function create_default_slot_253(ctx) {
     let field0;
     let t0;
     let field1;
@@ -80787,7 +82039,7 @@
       }
     };
   }
-  function create_if_block_157(ctx) {
+  function create_if_block_158(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -80825,7 +82077,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].namaPertemuanDiseminasi && create_if_block_157(ctx)
+      ctx[1].namaPertemuanDiseminasi && create_if_block_158(ctx)
     );
     return {
       c() {
@@ -80875,7 +82127,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_157(ctx2);
+            if_block = create_if_block_158(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -81076,7 +82328,7 @@
       }
     };
   }
-  function create_if_block_147(ctx) {
+  function create_if_block_148(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -81114,7 +82366,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].tahunPublikasi && create_if_block_147(ctx)
+      ctx[1].tahunPublikasi && create_if_block_148(ctx)
     );
     return {
       c() {
@@ -81164,7 +82416,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block_147(ctx2);
+            if_block = create_if_block_148(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -81860,7 +83112,7 @@
       }
     };
   }
-  function create_default_slot_135(ctx) {
+  function create_default_slot_136(ctx) {
     let input;
     let t;
     let if_block_anchor;
@@ -82402,7 +83654,7 @@
     field0 = new Field_default({
       props: {
         name: "Tahun",
-        $$slots: { default: [create_default_slot_135] },
+        $$slots: { default: [create_default_slot_136] },
         $$scope: { ctx }
       }
     });
@@ -83024,7 +84276,7 @@
       }
     };
   }
-  function create_if_block26(ctx) {
+  function create_if_block29(ctx) {
     let p;
     let t_value = (
       /*error*/
@@ -83062,7 +84314,7 @@
     let dispose;
     let if_block = (
       /*error*/
-      ctx[1].noHKI && create_if_block26(ctx)
+      ctx[1].noHKI && create_if_block29(ctx)
     );
     return {
       c() {
@@ -83112,7 +84364,7 @@
           if (if_block) {
             if_block.p(ctx2, dirty);
           } else {
-            if_block = create_if_block26(ctx2);
+            if_block = create_if_block29(ctx2);
             if_block.c();
             if_block.m(if_block_anchor.parentNode, if_block_anchor);
           }
@@ -83374,7 +84626,7 @@
       }
     };
   }
-  function create_fragment49(ctx) {
+  function create_fragment50(ctx) {
     let article2;
     let t0;
     let modal0;
@@ -83498,7 +84750,7 @@
     let modal4_props = {
       $$slots: {
         header: [create_header_slot_42],
-        default: [create_default_slot_252]
+        default: [create_default_slot_253]
       },
       $$scope: { ctx }
     };
@@ -83909,7 +85161,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance38($$self, $$props, $$invalidate) {
+  function instance43($$self, $$props, $$invalidate) {
     let $apiURL;
     component_subscribe($$self, apiURL, ($$value) => $$invalidate(187, $apiURL = $$value));
     const id = localStorage.getItem("id");
@@ -85200,7 +86452,7 @@
   var Profile2 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance38, create_fragment49, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
+      init(this, options, instance43, create_fragment50, safe_not_equal, {}, null, [-1, -1, -1, -1, -1, -1, -1, -1]);
     }
   };
   var profile_default2 = Profile2;
@@ -85210,7 +86462,7 @@
 
   // src/libs/ArticleError.svelte
   init_define_process();
-  function create_fragment50(ctx) {
+  function create_fragment51(ctx) {
     let article2;
     let article_intro;
     let current;
@@ -85291,7 +86543,7 @@
       }
     };
   }
-  function instance39($$self, $$props, $$invalidate) {
+  function instance44($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     $$self.$$set = ($$props2) => {
       if ("$$scope" in $$props2)
@@ -85302,7 +86554,7 @@
   var ArticleError = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance39, create_fragment50, safe_not_equal, {});
+      init(this, options, instance44, create_fragment51, safe_not_equal, {});
     }
   };
   var ArticleError_default = ArticleError;
@@ -85406,7 +86658,7 @@
       }
     };
   }
-  function create_if_block27(ctx) {
+  function create_if_block30(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -85476,7 +86728,7 @@
       }
     };
   }
-  function create_if_block_158(ctx) {
+  function create_if_block_159(ctx) {
     let div;
     let field0;
     let t0;
@@ -85529,7 +86781,7 @@
     field2 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_136] },
+        $$slots: { default: [create_default_slot_137] },
         $$scope: { ctx }
       }
     });
@@ -86132,7 +87384,7 @@
       }
     };
   }
-  function create_default_slot_136(ctx) {
+  function create_default_slot_137(ctx) {
     let div;
     let select;
     let option0;
@@ -88310,7 +89562,7 @@
     });
     let if_block0 = (
       /*user*/
-      ctx[55].RPS1.length > 0 && create_if_block_148(ctx)
+      ctx[55].RPS1.length > 0 && create_if_block_149(ctx)
     );
     let if_block1 = (
       /*user*/
@@ -88740,7 +89992,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_148(ctx2);
+            if_block0 = create_if_block_149(ctx2);
             if_block0.c();
             if_block0.m(tbody0, null);
           }
@@ -89005,7 +90257,7 @@
       }
     };
   }
-  function create_if_block_148(ctx) {
+  function create_if_block_149(ctx) {
     let each_1_anchor;
     let each_value_9 = ensure_array_like(
       /*user*/
@@ -90747,7 +91999,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[17] === true && create_if_block_158(ctx)
+      ctx[17] === true && create_if_block_159(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -90906,7 +92158,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_158(ctx2);
+            if_block0 = create_if_block_159(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t13.parentNode, t13);
@@ -91052,7 +92304,7 @@
       }
     };
   }
-  function create_fragment51(ctx) {
+  function create_fragment52(ctx) {
     let current_block_type_index;
     let if_block;
     let t0;
@@ -91062,7 +92314,7 @@
     let modalerror1;
     let updating_show_1;
     let current;
-    const if_block_creators = [create_if_block27, create_if_block_357];
+    const if_block_creators = [create_if_block30, create_if_block_357];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -91226,7 +92478,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance40($$self, $$props, $$invalidate) {
+  function instance45($$self, $$props, $$invalidate) {
     let $kontrakFile;
     let $ppmFile;
     let $route;
@@ -91269,7 +92521,7 @@
       }
     ];
     let biodataAnggota = [];
-    let items = [];
+    let items2 = [];
     let error2 = {};
     onMount(async () => {
       $$invalidate(2, isLoading = false);
@@ -91291,9 +92543,9 @@
       } else {
         if (response.ok) {
           listUser = result;
-          $$invalidate(15, items = []);
+          $$invalidate(15, items2 = []);
           for (const [key, value] of Object.entries(listUser)) {
-            items.push({
+            items2.push({
               value: value.uid,
               label: value.nama_lengkap
             });
@@ -91856,7 +93108,7 @@
       topik,
       anggotaTim,
       biodataAnggota,
-      items,
+      items2,
       error2,
       tab1,
       tab2,
@@ -91888,7 +93140,7 @@
   var Proposalhibaheksternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance40, create_fragment51, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance45, create_fragment52, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   };
   var proposalhibaheksternal_default = Proposalhibaheksternal;
@@ -91993,7 +93245,7 @@
       }
     };
   }
-  function create_if_block28(ctx) {
+  function create_if_block31(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -92063,7 +93315,7 @@
       }
     };
   }
-  function create_if_block_159(ctx) {
+  function create_if_block_1510(ctx) {
     let div;
     let field0;
     let t0;
@@ -92116,7 +93368,7 @@
     field2 = new Field_default({
       props: {
         name: "Jenis Proposal",
-        $$slots: { default: [create_default_slot_137] },
+        $$slots: { default: [create_default_slot_138] },
         $$scope: { ctx }
       }
     });
@@ -92719,7 +93971,7 @@
       }
     };
   }
-  function create_default_slot_137(ctx) {
+  function create_default_slot_138(ctx) {
     let div;
     let select;
     let option0;
@@ -95004,7 +96256,7 @@
     });
     let if_block0 = (
       /*user*/
-      ctx[56].RPS1.length > 0 && create_if_block_149(ctx)
+      ctx[56].RPS1.length > 0 && create_if_block_1410(ctx)
     );
     let if_block1 = (
       /*user*/
@@ -95434,7 +96686,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_149(ctx2);
+            if_block0 = create_if_block_1410(ctx2);
             if_block0.c();
             if_block0.m(tbody0, null);
           }
@@ -95699,7 +96951,7 @@
       }
     };
   }
-  function create_if_block_149(ctx) {
+  function create_if_block_1410(ctx) {
     let each_1_anchor;
     let each_value_9 = ensure_array_like(
       /*user*/
@@ -97441,7 +98693,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[18] === true && create_if_block_159(ctx)
+      ctx[18] === true && create_if_block_1510(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -97600,7 +98852,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_159(ctx2);
+            if_block0 = create_if_block_1510(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t13.parentNode, t13);
@@ -97746,7 +98998,7 @@
       }
     };
   }
-  function create_fragment52(ctx) {
+  function create_fragment53(ctx) {
     let current_block_type_index;
     let if_block;
     let t0;
@@ -97756,7 +99008,7 @@
     let modalerror1;
     let updating_show_1;
     let current;
-    const if_block_creators = [create_if_block28, create_if_block_358];
+    const if_block_creators = [create_if_block31, create_if_block_358];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -97920,7 +99172,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance41($$self, $$props, $$invalidate) {
+  function instance46($$self, $$props, $$invalidate) {
     let $rabFile;
     let $ppmFile;
     let $route;
@@ -97963,7 +99215,7 @@
       }
     ];
     let biodataAnggota = [];
-    let items = [];
+    let items2 = [];
     let error2 = {};
     onMount(async () => {
       $$invalidate(2, isLoading = false);
@@ -97984,9 +99236,9 @@
       } else {
         if (response.ok) {
           listUser = result;
-          $$invalidate(16, items = []);
+          $$invalidate(16, items2 = []);
           for (const [key, value] of Object.entries(listUser)) {
-            items.push({
+            items2.push({
               value: value.uid,
               label: value.nama_lengkap
             });
@@ -98544,7 +99796,7 @@
       topik,
       anggotaTim,
       biodataAnggota,
-      items,
+      items2,
       error2,
       tab1,
       tab2,
@@ -98577,7 +99829,7 @@
   var Proposalhibahinternal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance41, create_fragment52, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance46, create_fragment53, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   };
   var proposalhibahinternal_default = Proposalhibahinternal;
@@ -98682,7 +99934,7 @@
       }
     };
   }
-  function create_if_block29(ctx) {
+  function create_if_block32(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -98752,7 +100004,7 @@
       }
     };
   }
-  function create_if_block_1510(ctx) {
+  function create_if_block_1511(ctx) {
     let div;
     let field0;
     let t0;
@@ -98796,7 +100048,7 @@
     field1 = new Field_default({
       props: {
         name: "Abstrak",
-        $$slots: { default: [create_default_slot_138] },
+        $$slots: { default: [create_default_slot_139] },
         $$scope: { ctx }
       }
     });
@@ -99275,7 +100527,7 @@
       }
     };
   }
-  function create_default_slot_138(ctx) {
+  function create_default_slot_139(ctx) {
     let textarea;
     let t;
     let if_block_anchor;
@@ -101325,7 +102577,7 @@
     });
     let if_block0 = (
       /*user*/
-      ctx[52].RPS1.length > 0 && create_if_block_1410(ctx)
+      ctx[52].RPS1.length > 0 && create_if_block_1411(ctx)
     );
     let if_block1 = (
       /*user*/
@@ -101755,7 +103007,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_1410(ctx2);
+            if_block0 = create_if_block_1411(ctx2);
             if_block0.c();
             if_block0.m(tbody0, null);
           }
@@ -102020,7 +103272,7 @@
       }
     };
   }
-  function create_if_block_1410(ctx) {
+  function create_if_block_1411(ctx) {
     let each_1_anchor;
     let each_value_9 = ensure_array_like(
       /*user*/
@@ -103762,7 +105014,7 @@
     });
     let if_block0 = (
       /*tab1*/
-      ctx[17] === true && create_if_block_1510(ctx)
+      ctx[17] === true && create_if_block_1511(ctx)
     );
     let if_block1 = (
       /*tab2*/
@@ -103921,7 +105173,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_1510(ctx2);
+            if_block0 = create_if_block_1511(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(t13.parentNode, t13);
@@ -104067,7 +105319,7 @@
       }
     };
   }
-  function create_fragment53(ctx) {
+  function create_fragment54(ctx) {
     let current_block_type_index;
     let if_block;
     let t0;
@@ -104077,7 +105329,7 @@
     let modalerror1;
     let updating_show_1;
     let current;
-    const if_block_creators = [create_if_block29, create_if_block_3310];
+    const if_block_creators = [create_if_block32, create_if_block_3310];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -104241,7 +105493,7 @@
     rupiah = split[1] !== void 0 ? rupiah + "," + split[1] : rupiah;
     return prefix === void 0 ? rupiah : rupiah ? "Rp. " + rupiah : "";
   }
-  function instance42($$self, $$props, $$invalidate) {
+  function instance47($$self, $$props, $$invalidate) {
     let $ppmFile;
     let $route;
     let $apiURL;
@@ -104281,7 +105533,7 @@
       }
     ];
     let biodataAnggota = [];
-    let items = [];
+    let items2 = [];
     let error2 = {};
     onMount(async () => {
       $$invalidate(2, isLoading = false);
@@ -104302,9 +105554,9 @@
       } else {
         if (response.ok) {
           listUser = result;
-          $$invalidate(15, items = []);
+          $$invalidate(15, items2 = []);
           for (const [key, value] of Object.entries(listUser)) {
-            items.push({
+            items2.push({
               value: value.uid,
               label: value.nama_lengkap
             });
@@ -104782,7 +106034,7 @@
       topik,
       anggotaTim,
       biodataAnggota,
-      items,
+      items2,
       error2,
       tab1,
       tab2,
@@ -104812,7 +106064,7 @@
   var Proposalmandiri = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance42, create_fragment53, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance47, create_fragment54, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   };
   var proposalmandiri_default = Proposalmandiri;
@@ -104885,7 +106137,7 @@
       }
     };
   }
-  function create_default_slot_139(ctx) {
+  function create_default_slot_140(ctx) {
     let p;
     return {
       c() {
@@ -104921,7 +106173,7 @@
       }
     };
   }
-  function create_fragment54(ctx) {
+  function create_fragment55(ctx) {
     let article2;
     let t0;
     let modalerror;
@@ -104940,7 +106192,7 @@
       ctx[4](value);
     }
     let modalerror_props = {
-      $$slots: { default: [create_default_slot_139] },
+      $$slots: { default: [create_default_slot_140] },
       $$scope: { ctx }
     };
     if (
@@ -105043,7 +106295,7 @@
       }
     };
   }
-  function instance43($$self, $$props, $$invalidate) {
+  function instance48($$self, $$props, $$invalidate) {
     const accessToken = localStorage.getItem("token");
     const id = Number(localStorage.getItem("id"));
     const headers = {
@@ -105078,7 +106330,7 @@
   var Select_1 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance43, create_fragment54, safe_not_equal, {});
+      init(this, options, instance48, create_fragment55, safe_not_equal, {});
     }
   };
   var select_default = Select_1;
@@ -105620,7 +106872,7 @@
       }
     };
   }
-  function create_fragment55(ctx) {
+  function create_fragment56(ctx) {
     let article2;
     let current;
     article2 = new Article_default({
@@ -105662,7 +106914,7 @@
   }
   var username = "";
   var email = "";
-  function instance44($$self) {
+  function instance49($$self) {
     let error2 = {};
     const form = { username, email };
     function handleSubmit() {
@@ -105704,7 +106956,7 @@
   var Testform = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance44, create_fragment55, safe_not_equal, {});
+      init(this, options, instance49, create_fragment56, safe_not_equal, {});
     }
   };
   var testform_default = Testform;
@@ -105817,7 +107069,7 @@
       }
     };
   }
-  function create_if_block30(ctx) {
+  function create_if_block33(ctx) {
     let switch_instance;
     let switch_instance_anchor;
     let current;
@@ -105891,13 +107143,13 @@
       }
     };
   }
-  function create_fragment56(ctx) {
+  function create_fragment57(ctx) {
     let show_if;
     let current_block_type_index;
     let if_block;
     let if_block_anchor;
     let current;
-    const if_block_creators = [create_if_block30, create_if_block_150, create_else_block16];
+    const if_block_creators = [create_if_block33, create_if_block_150, create_else_block16];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (dirty & /*params*/
@@ -105969,7 +107221,7 @@
       }
     };
   }
-  function instance45($$self, $$props, $$invalidate) {
+  function instance50($$self, $$props, $$invalidate) {
     let { params = {} } = $$props;
     let cmp;
     $$self.$$set = ($$props2) => {
@@ -105988,14 +107240,14 @@
   var Index4 = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance45, create_fragment56, safe_not_equal, { params: 0 });
+      init(this, options, instance50, create_fragment57, safe_not_equal, { params: 0 });
     }
   };
   var Index_default4 = Index4;
 
   // src/routes.js
   var routes_default = [
-    { path: "/detailpengumuman/:0", page: Detailpengumuman_default },
+    { path: "/detailpengumuman", page: Detailpengumuman_default },
     { path: "/", page: Index_default },
     { path: "/login", page: Login_default },
     { path: "/logout", page: Logout_default },
@@ -106006,7 +107258,7 @@
     { path: "/pengmasinternal", page: Pengmasinternal_default },
     { path: "/pengmasmandiri", page: Pengmasmandiri_default },
     { path: "/profil", page: Profil_default },
-    { path: "/struktur-organisasi", page: Strukturorganisasi_default },
+    { path: "/strukturorganisasi", page: Strukturorganisasi_default },
     { path: "/tokenexpired", page: Tokenexpired_default },
     { path: "/visidanmisi", page: Visidanmisi_default },
     { path: "/admin/:0", page: Index_default2 },
@@ -106252,7 +107504,7 @@
       }
     };
   }
-  function create_if_block31(ctx) {
+  function create_if_block34(ctx) {
     let br;
     let t0;
     let p;
@@ -106389,7 +107641,7 @@
       }
     };
   }
-  function create_fragment57(ctx) {
+  function create_fragment58(ctx) {
     let aside;
     let p;
     let t1;
@@ -106416,7 +107668,7 @@
     );
     let if_block1 = (
       /*role*/
-      ctx[1] === "admin" && create_if_block31(ctx)
+      ctx[1] === "admin" && create_if_block34(ctx)
     );
     return {
       c() {
@@ -106511,19 +107763,19 @@
       }
     };
   }
-  function instance46($$self, $$props, $$invalidate) {
+  function instance51($$self, $$props, $$invalidate) {
     const role = localStorage.getItem("role");
-    let items;
+    let items2;
     if (role === "admin")
-      items = menu_default["admin"];
+      items2 = menu_default["admin"];
     else
-      items = menu_default["dosen"];
-    return [items, role];
+      items2 = menu_default["dosen"];
+    return [items2, role];
   }
   var Sidebar = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance46, create_fragment57, safe_not_equal, {});
+      init(this, options, instance51, create_fragment58, safe_not_equal, {});
     }
   };
   var Sidebar_default = Sidebar;
@@ -106551,7 +107803,7 @@
       }
     };
   }
-  function create_if_block32(ctx) {
+  function create_if_block35(ctx) {
     let div1;
     let a0;
     let icon;
@@ -106648,7 +107900,7 @@
       }
     };
   }
-  function create_fragment58(ctx) {
+  function create_fragment59(ctx) {
     let header;
     let nav;
     let div0;
@@ -106671,7 +107923,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block32, create_else_block17];
+    const if_block_creators = [create_if_block35, create_else_block17];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -106701,7 +107953,7 @@
         a2.textContent = "Beranda";
         t5 = space();
         div2 = element("div");
-        div2.innerHTML = `<a class="navbar-link">About UISI</a> <div class="navbar-dropdown"><a class="navbar-item" href="/profil">Profil</a> <a class="navbar-item" href="/visidanmisi">Visi dan Misi</a> <a class="navbar-item" href="/struktur-organisasi">Struktur Organisasi</a></div>`;
+        div2.innerHTML = `<a class="navbar-link">About UISI</a> <div class="navbar-dropdown"><a class="navbar-item" href="/profil">Profil</a> <a class="navbar-item" href="/visidanmisi">Visi dan Misi</a> <a class="navbar-item" href="/strukturorganisasi">Struktur Organisasi</a></div>`;
         t13 = space();
         div4 = element("div");
         div4.innerHTML = `<a class="navbar-link">Penelitian</a> <div class="navbar-dropdown"><a class="navbar-item" href="/penelitianinternal">Penelitian Internal</a> <a class="navbar-item" href="/penelitianeksternal">Penelitian Eksternal</a> <a class="navbar-item" href="/penelitianmandiri">Penelitian Mandiri</a></div>`;
@@ -106800,7 +108052,7 @@
       }
     };
   }
-  function instance47($$self, $$props, $$invalidate) {
+  function instance52($$self, $$props, $$invalidate) {
     let $route;
     let $isLogin;
     let $isUsername;
@@ -106849,7 +108101,7 @@
   var Navbarmenu = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance47, create_fragment58, safe_not_equal, {});
+      init(this, options, instance52, create_fragment59, safe_not_equal, {});
     }
   };
   var Navbarmenu_default = Navbarmenu;
@@ -106885,7 +108137,7 @@
       }
     };
   }
-  function create_if_block33(ctx) {
+  function create_if_block36(ctx) {
     let main;
     let switch_instance;
     let current;
@@ -106964,7 +108216,7 @@
       }
     };
   }
-  function create_fragment59(ctx) {
+  function create_fragment60(ctx) {
     let navbarmenu;
     let t0;
     let t1;
@@ -106978,7 +108230,7 @@
     );
     let if_block1 = (
       /*cmp*/
-      ctx[0] && create_if_block33(ctx)
+      ctx[0] && create_if_block36(ctx)
     );
     return {
       c() {
@@ -107037,7 +108289,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block33(ctx2);
+            if_block1 = create_if_block36(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
@@ -107078,7 +108330,7 @@
       }
     };
   }
-  function instance48($$self, $$props, $$invalidate) {
+  function instance53($$self, $$props, $$invalidate) {
     let $route;
     component_subscribe($$self, route, ($$value) => $$invalidate(5, $route = $$value));
     let cmp, params;
@@ -107094,7 +108346,7 @@
         // "/detailpengumuman",
         "/profil",
         "/visidanmisi",
-        "/struktur-organisasi",
+        "/strukturorganisasi",
         "/penelitianinternal",
         "/penelitianeksternal",
         "/penelitianmandiri",
@@ -107124,7 +108376,7 @@
   var App = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance48, create_fragment59, safe_not_equal, {});
+      init(this, options, instance53, create_fragment60, safe_not_equal, {});
     }
   };
   var App_default = App;

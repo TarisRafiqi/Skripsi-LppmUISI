@@ -25,7 +25,7 @@
          // "/detailpengumuman",
          "/profil",
          "/visidanmisi",
-         "/struktur-organisasi",
+         "/strukturorganisasi",
          "/penelitianinternal",
          "/penelitianeksternal",
          "/penelitianmandiri",

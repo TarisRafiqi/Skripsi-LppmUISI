@@ -1418,10 +1418,11 @@ article.svelte-h8uanz {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Detailpengumuman.esbuild-svelte-fake-css */
-article.svelte-15actsu {
+article.svelte-rfs8l0 {
   margin-top: 3.5rem;
+  word-spacing: 0.2em;
 }
-.timestamp.svelte-15actsu {
+.timestamp.svelte-rfs8l0 {
   color: grey;
 }
 
@@ -1456,54 +1457,51 @@ article.svelte-15actsu {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Pengumuman.esbuild-svelte-fake-css */
-@media (min-width: 320px) {
-  .pengumuman-container.svelte-17yw29t {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-  }
-}
-@media (min-width: 768px) {
-  .pengumuman-container.svelte-17yw29t {
-    padding-right: 5rem;
-    padding-left: 5rem;
-  }
-}
-@media (min-width: 1024px) {
-  .pengumuman-container.svelte-17yw29t {
-    padding-right: 15rem;
-    padding-left: 15rem;
-  }
-}
 @media (min-width: 1440px) {
-  .pengumuman-container.svelte-17yw29t {
-    padding-right: 25rem;
-    padding-left: 25rem;
+  .pengumuman-container.svelte-1s7g61s {
+    padding-right: 128px;
+    padding-left: 128px;
   }
 }
-.p-pengumuman.svelte-17yw29t {
+.pengumuman-container.svelte-1s7g61s {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.p-pengumuman.svelte-1s7g61s {
   color: rgb(0, 119, 255);
   cursor: pointer;
+  transition: padding-left 0.2s;
 }
-.header-pengumuman.svelte-17yw29t {
+.p-pengumuman.svelte-1s7g61s:hover {
+  padding-left: 10px;
+}
+.header-pengumuman.svelte-1s7g61s {
   text-align: center;
   margin-bottom: 1rem;
 }
-section.svelte-17yw29t {
-  padding: 60px 0;
-  background-color: #ffffff;
-}
-.parent.svelte-17yw29t {
+.parent.svelte-1s7g61s {
   height: 300px;
   overflow: hidden;
 }
-.child.svelte-17yw29t {
+.child.svelte-1s7g61s {
   max-height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.box.svelte-17yw29t {
+.box.svelte-1s7g61s {
   display: flex;
   flex-direction: column;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Totalppm.esbuild-svelte-fake-css */
+section.svelte-1kehiwo {
+  background-image:
+    linear-gradient(
+      to bottom left,
+      #d3413f,
+      #993838);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Login.esbuild-svelte-fake-css */
@@ -1546,9 +1544,9 @@ article.svelte-9f6d4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitianinternal.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
+article.svelte-b4a7is {
   margin-top: 3.5rem;
-  text-align: center;
+  word-spacing: 0.1em;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitianmandiri.esbuild-svelte-fake-css */
@@ -1576,14 +1574,18 @@ article.svelte-9f6d4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Profil.esbuild-svelte-fake-css */
-article.svelte-1baaygb {
+article.svelte-b4a7is {
   margin-top: 3.5rem;
+  word-spacing: 0.1em;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Strukturorganisasi.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
+article.svelte-1jxn14j {
   margin-top: 3.5rem;
-  text-align: center;
+  word-spacing: 0.1em;
+}
+.strukturOrganisasi-cotent.svelte-1jxn14j {
+  padding-left: 1.2rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Tokenexpired.esbuild-svelte-fake-css */
@@ -1603,9 +1605,26 @@ img.svelte-1axbk4p {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Visidanmisi.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
+article.svelte-mm8ndj.svelte-mm8ndj {
   margin-top: 3.5rem;
-  text-align: center;
+  word-spacing: 0.1em;
+}
+.visi-container.svelte-mm8ndj.svelte-mm8ndj {
+  margin-bottom: 2rem;
+}
+.visi-content.svelte-mm8ndj.svelte-mm8ndj {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  text-align: justify;
+}
+.visi-content.svelte-mm8ndj p.svelte-mm8ndj {
+  line-height: 2;
+}
+.misi-content.svelte-mm8ndj.svelte-mm8ndj {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Field.esbuild-svelte-fake-css */
@@ -1644,45 +1663,6 @@ div.svelte-1oy4l94 > span * {
 }
 [href].svelte-1oy4l94.svelte-1oy4l94 {
   color: #35f;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modalerror.esbuild-svelte-fake-css */
-b.svelte-l76t32 {
-  display: block;
-  font-weight: normal;
-  z-index: 17;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0);
-  visibility: hidden;
-}
-b.show.svelte-l76t32 {
-  background-color: rgba(0, 0, 0, 0.5);
-  visibility: visible;
-}
-.cookiesContent.svelte-l76t32 {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-}
-img.svelte-l76t32 {
-  width: 82px;
-  margin-bottom: 15px;
-}
-p.svelte-l76t32 {
-  font-family: "Roboto", sans-serif;
-  margin-bottom: 40px;
-  font-size: 18px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modalchecked.esbuild-svelte-fake-css */
@@ -1746,6 +1726,45 @@ p.svelte-14lwwno {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modalerror.esbuild-svelte-fake-css */
+b.svelte-l76t32 {
+  display: block;
+  font-weight: normal;
+  z-index: 17;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
+}
+b.show.svelte-l76t32 {
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+}
+.cookiesContent.svelte-l76t32 {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+img.svelte-l76t32 {
+  width: 82px;
+  margin-bottom: 15px;
+}
+p.svelte-l76t32 {
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 40px;
+  font-size: 18px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/admin/createuser.esbuild-svelte-fake-css */

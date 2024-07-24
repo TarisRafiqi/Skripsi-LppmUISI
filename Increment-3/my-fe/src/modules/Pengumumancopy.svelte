@@ -59,6 +59,24 @@
 </section>
 
 <style>
+   /* @media (min-width: 320px) {
+      .pengumuman-container {
+         padding-right: 1.5rem;
+         padding-left: 1.5rem;
+      }
+   } */
+   /* @media (min-width: 768px) {
+      .pengumuman-container {
+         padding-right: 5rem;
+         padding-left: 5rem;
+      }
+   } */
+   /* @media (min-width: 1024px) {
+      .pengumuman-container {
+         padding-right: 5rem;
+         padding-left: 5rem;
+      }
+   } */
    .content {
       text-align: center;
    }

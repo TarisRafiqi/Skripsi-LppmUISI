@@ -3,14 +3,166 @@
    import Article from "../../libs/Article.svelte";
    import Field from "../../libs/Field.svelte";
    import Wysiwyg from "../../libs/Wysiwyg.svelte";
+   import { route, apiURL } from "../../store";
+   import Modalchecked from "../../libs/Modalchecked.svelte";
 
-   let lppmUisi, fungsiTujuan, visiMisi;
+   let profilUISI, visi, misi, strukturOrganisasi;
+   let showModalChecked = false;
 
-   function simpanLppmUISI() {}
+   const accessToken = localStorage.getItem("token");
+   const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+   };
 
-   function simpanFungsiTujuan() {}
+   onMount(async () => {
+      await getProfilUISI();
+      await getVisiMisi();
+      await getStrukturOrganisasi();
+   });
 
-   function simpanVisiMisi() {}
+   async function getProfilUISI() {
+      const response = await fetch($apiURL + "/UISI_Profil", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            items = result.dbData;
+            profilUISI = items.profil;
+         }
+      }
+   }
+
+   async function getVisiMisi() {
+      const response = await fetch($apiURL + "/UISI_visiMisi", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            items = result.dbData;
+            visi = items.visi;
+            misi = items.misi;
+         }
+      }
+   }
+
+   async function getStrukturOrganisasi() {
+      const response = await fetch($apiURL + "/UISI_StrukturOrganisasi", {
+         method: "GET",
+         headers: headers,
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            items = result.dbData;
+            strukturOrganisasi = items.struktur_organisasi;
+         }
+      }
+   }
+
+   async function simpanProfilUISI() {
+      profilUISI = tinymce.get("profilUISI").getContent();
+
+      let payload = {
+         profilUISI,
+      };
+
+      const response = await fetch($apiURL + "/UISI_Profil", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            showModalChecked = true;
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
+         } else {
+            console.log(response.msg, error);
+         }
+      }
+   }
+
+   async function simpanVisidanMisi() {
+      misi = tinymce.get("misi").getContent();
+
+      let payload = {
+         visi,
+         misi,
+      };
+
+      const response = await fetch($apiURL + "/UISI_visiMisi", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            showModalChecked = true;
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
+         } else {
+            console.log(response.msg, error);
+         }
+      }
+   }
+
+   async function simpanStrukturOrganisasi() {
+      strukturOrganisasi = tinymce.get("strukturOrganisasi").getContent();
+
+      let payload = {
+         strukturOrganisasi,
+      };
+
+      const response = await fetch($apiURL + "/UISI_StrukturOrganisasi", {
+         method: "PATCH",
+         headers: headers,
+         body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 401) {
+         location.pathname = "/tokenexpired";
+      } else {
+         if (response.ok) {
+            showModalChecked = true;
+            setTimeout(() => {
+               window.location.reload();
+            }, 500);
+         } else {
+            console.log(response.msg, error);
+         }
+      }
+   }
 
    let tab1 = true;
    let tab2;
@@ -37,7 +189,6 @@
 
 <Article>
    <h2 class="title is-2">About UISI</h2>
-   <hr />
 
    <div class="tabs is-boxed">
       <ul>
@@ -68,45 +219,71 @@
       </ul>
    </div>
 
-   {#if tab1 === true}
-      <Wysiwyg id="isi" content={lppmUisi} />
+   <div class="box">
+      {#if tab1 === true}
+         <Field name="Profil">
+            <Wysiwyg id="profilUISI" content={profilUISI} fewFeatures />
+         </Field>
 
-      <hr />
+         <br />
 
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanLppmUISI}
-               >Simpan</button
-            >
-         </p>
-      </div>
-   {/if}
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanProfilUISI}
+                  >Simpan</button
+               >
+            </p>
+         </div>
+      {/if}
 
-   {#if tab2 === true}
-      <Wysiwyg id="isi" content={fungsiTujuan} />
+      {#if tab2 === true}
+         <Field name="Visi">
+            <textarea
+               class="textarea"
+               id="visi"
+               placeholder="Masukkan Visi"
+               bind:value={visi}
+            ></textarea>
+         </Field>
 
-      <hr />
+         <Field name="Misi">
+            <Wysiwyg id="misi" content={misi} fewFeatures />
+         </Field>
 
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanFungsiTujuan}
-               >Simpan</button
-            >
-         </p>
-      </div>
-   {/if}
+         <br />
 
-   {#if tab3 === true}
-      <Wysiwyg id="isi" content={visiMisi} />
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button class="button is-info" on:click={simpanVisidanMisi}
+                  >Simpan</button
+               >
+            </p>
+         </div>
+      {/if}
 
-      <hr />
+      {#if tab3 === true}
+         <Field name="Struktur Organisasi">
+            <Wysiwyg
+               id="strukturOrganisasi"
+               content={strukturOrganisasi}
+               fewFeatures
+            />
+         </Field>
 
-      <div class="field is-grouped is-grouped-right">
-         <p class="control">
-            <button class="button is-info" on:click={simpanVisiMisi}
-               >Simpan</button
-            >
-         </p>
-      </div>
-   {/if}
+         <br />
+
+         <div class="field is-grouped is-grouped-right">
+            <p class="control">
+               <button
+                  class="button is-info"
+                  on:click={simpanStrukturOrganisasi}>Simpan</button
+               >
+            </p>
+         </div>
+      {/if}
+   </div>
 </Article>
+
+<Modalchecked bind:show={showModalChecked}>
+   <p>Berhasil menyimpan data</p>
+</Modalchecked>
