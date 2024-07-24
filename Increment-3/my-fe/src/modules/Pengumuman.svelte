@@ -45,18 +45,13 @@
                   <table class="table is-fullwidth is-striped is-hoverable">
                      <tbody>
                         {#each items as item}
-                           {#if item.active === 1}
-                              <tr
-                                 on:click={handleClickPengumuman}
-                                 pid={item.id}
-                              >
-                                 <td
-                                    ><p class="subtitle is-6 p-pengumuman">
-                                       {item.judul}
-                                    </p>
-                                 </td>
-                              </tr>
-                           {/if}
+                           <tr on:click={handleClickPengumuman} pid={item.id}>
+                              <td
+                                 ><p class="subtitle is-6 p-pengumuman">
+                                    {item.judul}
+                                 </p>
+                              </td>
+                           </tr>
                         {/each}
                      </tbody>
                   </table>

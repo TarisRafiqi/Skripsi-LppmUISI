@@ -69,36 +69,14 @@
 
             <div class="navbar-item has-dropdown is-hoverable">
                <!-- svelte-ignore a11y-missing-attribute -->
-               <a class="navbar-link"> Penelitian </a>
-
-               <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/penelitianinternal">
-                     Penelitian Internal
-                  </a>
-                  <a class="navbar-item" href="/penelitianeksternal">
-                     Penelitian Eksternal
-                  </a>
-                  <a class="navbar-item" href="/penelitianmandiri">
-                     Penelitian Mandiri
-                  </a>
-               </div>
+               <a class="navbar-item" href="/penelitian"> Penelitian </a>
             </div>
 
             <div class="navbar-item has-dropdown is-hoverable">
                <!-- svelte-ignore a11y-missing-attribute -->
-               <a class="navbar-link"> Pengabdian Masyarakat </a>
-
-               <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/pengmasinternal">
-                     Pengabdian Masyarakat Internal
-                  </a>
-                  <a class="navbar-item" href="/pengmaseksternal">
-                     Pengabdian Masyarakat Eksternal
-                  </a>
-                  <a class="navbar-item" href="/pengmasmandiri">
-                     Pengabdian Masyarakat Mandiri
-                  </a>
-               </div>
+               <a class="navbar-item" href="/pengabdianmasyarakat">
+                  Pengabdian Masyarakat
+               </a>
             </div>
 
             {#if $isLogin || token}
@@ -153,7 +131,7 @@
    }
 
    header {
-      z-index: 100;
+      z-index: 10;
       position: fixed;
       top: 0;
       left: 0;

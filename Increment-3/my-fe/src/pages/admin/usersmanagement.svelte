@@ -177,7 +177,6 @@
                      <input
                         class="input"
                         type="text"
-                        placeholder="Search username"
                         bind:value={filterUsername}
                      />
                      <span class="icon is-left">

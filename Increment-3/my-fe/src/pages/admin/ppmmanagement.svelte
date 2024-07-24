@@ -121,12 +121,7 @@
          <div class="column">
             <div class="field">
                <div class="control has-icons-left">
-                  <input
-                     class="input"
-                     type="text"
-                     placeholder="Search judul"
-                     bind:value={filterJudul}
-                  />
+                  <input class="input" type="text" bind:value={filterJudul} />
                   <span class="icon is-left">
                      <Icon id="searchIcon" src={searchIcon} />
                   </span>

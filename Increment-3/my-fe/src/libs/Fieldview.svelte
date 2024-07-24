@@ -22,13 +22,23 @@
                {:else}
                   ...
                {/if}
-            {:else if type === "list"}
+            {:else if type === "listMatkul"}
                {#if content && content.length > 0}
                   <ul style="list-style-type:disc">
                      {#each content as item}
                         <li>{item.label}</li>
                      {/each}
                   </ul>
+               {:else}
+                  ...
+               {/if}
+            {:else if type === "listAnggotaTim"}
+               {#if content && content.length > 0}
+                  <ol>
+                     {#each content as item}
+                        <li>{item.label}</li>
+                     {/each}
+                  </ol>
                {:else}
                   ...
                {/if}
@@ -45,6 +55,10 @@
 </div>
 
 <style>
+   ol {
+      margin-left: 1.2em;
+      margin-top: 1.5em;
+   }
    ul {
       margin-left: 1.2em;
       margin-top: -1em;

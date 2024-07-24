@@ -3053,7 +3053,7 @@
                         <Fieldview
                            title="Mata Kuliah yang diampu"
                            content={user.profile.mata_kuliah}
-                           type="list"
+                           type="listMatkul"
                         />
                         <Fieldview title="" content="" />
                      </div>

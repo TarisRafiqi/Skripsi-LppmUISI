@@ -1537,40 +1537,115 @@ article.svelte-1m5k0v3 {
   width: auto;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitianeksternal.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
-  margin-top: 3.5rem;
-  text-align: center;
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modal.esbuild-svelte-fake-css */
+.close.svelte-az4q15 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close.svelte-az4q15:hover,
+.close.svelte-az4q15:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+b.svelte-az4q15 {
+  display: block;
+  font-weight: normal;
+  z-index: 40;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
+}
+b.show.svelte-az4q15 {
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+}
+div.svelte-az4q15 {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 1em 1.5em;
+  width: 50em;
+  background: white;
+  border-radius: 10px;
+  z-index: 50;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitianinternal.esbuild-svelte-fake-css */
-article.svelte-b4a7is {
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Field.esbuild-svelte-fake-css */
+p.select.svelte-1oy4l94 select.svelte-1oy4l94 {
+  width: 100%;
+}
+input[type=month].svelte-1oy4l94.svelte-1oy4l94 {
+  background-color: #5ca7f1;
+  color: #ffffff;
+  border: none;
+  outline: none;
+}
+.svelte-1oy4l94.svelte-1oy4l94::-webkit-calendar-picker-indicator {
+  background-color: #ffffff;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+div.svelte-1oy4l94.svelte-1oy4l94 {
+  display: grid;
+  grid-template-columns: 12rem auto;
+  gap: 1rem;
+  line-height: 2.5;
+}
+div.svelte-1oy4l94 + div {
+  margin-top: 0.5rem;
+}
+div.svelte-1oy4l94 > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.375rem;
+  column-gap: 0.35rem;
+}
+div.svelte-1oy4l94 > span * {
+  margin: 0;
+}
+[href].svelte-1oy4l94.svelte-1oy4l94 {
+  color: #35f;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
+ol.svelte-faswi.svelte-faswi {
+  margin-left: 1.2em;
+  margin-top: 1.5em;
+}
+ul.svelte-faswi.svelte-faswi {
+  margin-left: 1.2em;
+  margin-top: -1em;
+}
+ul.svelte-faswi li.svelte-faswi {
+  margin-bottom: 4px;
+}
+
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitian.esbuild-svelte-fake-css */
+article.svelte-1tuqe6w {
   margin-top: 3.5rem;
   word-spacing: 0.1em;
 }
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Penelitianmandiri.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
-  margin-top: 3.5rem;
-  text-align: center;
+.border-bottom.svelte-1tuqe6w {
+  border-bottom: 1px solid #cccccc;
 }
 
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Pengmaseksternal.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Pengabdianmasyarakat.esbuild-svelte-fake-css */
+article.svelte-1tuqe6w {
   margin-top: 3.5rem;
-  text-align: center;
+  word-spacing: 0.1em;
 }
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Pengmasinternal.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
-  margin-top: 3.5rem;
-  text-align: center;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Pengmasmandiri.esbuild-svelte-fake-css */
-article.svelte-9f6d4p {
-  margin-top: 3.5rem;
-  text-align: center;
+.border-bottom.svelte-1tuqe6w {
+  border-bottom: 1px solid #cccccc;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Profil.esbuild-svelte-fake-css */
@@ -1625,44 +1700,6 @@ article.svelte-mm8ndj.svelte-mm8ndj {
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding-left: 1.2rem;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Field.esbuild-svelte-fake-css */
-p.select.svelte-1oy4l94 select.svelte-1oy4l94 {
-  width: 100%;
-}
-input[type=month].svelte-1oy4l94.svelte-1oy4l94 {
-  background-color: #5ca7f1;
-  color: #ffffff;
-  border: none;
-  outline: none;
-}
-.svelte-1oy4l94.svelte-1oy4l94::-webkit-calendar-picker-indicator {
-  background-color: #ffffff;
-  padding: 6px;
-  cursor: pointer;
-  border-radius: 20px;
-}
-div.svelte-1oy4l94.svelte-1oy4l94 {
-  display: grid;
-  grid-template-columns: 12rem auto;
-  gap: 1rem;
-  line-height: 2.5;
-}
-div.svelte-1oy4l94 + div {
-  margin-top: 0.5rem;
-}
-div.svelte-1oy4l94 > span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.375rem;
-  column-gap: 0.35rem;
-}
-div.svelte-1oy4l94 > span * {
-  margin: 0;
-}
-[href].svelte-1oy4l94.svelte-1oy4l94 {
-  color: #35f;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modalchecked.esbuild-svelte-fake-css */
@@ -1770,51 +1807,6 @@ p.svelte-l76t32 {
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/admin/createuser.esbuild-svelte-fake-css */
 .help.svelte-1lhj3n7 {
   margin: -6px 0px 0px 0px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Fieldview.esbuild-svelte-fake-css */
-ul.svelte-1p63l8q.svelte-1p63l8q {
-  margin-left: 1.2em;
-  margin-top: -1em;
-}
-ul.svelte-1p63l8q li.svelte-1p63l8q {
-  margin-bottom: 4px;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Modal.esbuild-svelte-fake-css */
-.close.svelte-gcisbw {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close.svelte-gcisbw:hover,
-.close.svelte-gcisbw:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-b.svelte-gcisbw {
-  display: block;
-  font-weight: normal;
-  z-index: 17;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0);
-  visibility: hidden;
-}
-b.show.svelte-gcisbw {
-  background-color: rgba(0, 0, 0, 0.5);
-  visibility: visible;
-}
-div.svelte-gcisbw {
-  padding: 1em 1.5em;
-  width: 40em;
-  background: white;
-  border-radius: 10px;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Select.esbuild-svelte-fake-css */
@@ -2311,23 +2303,23 @@ a.svelte-hu16du.svelte-hu16du {
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Navbarmenu.esbuild-svelte-fake-css */
 @media (min-width: 768px) {
-  nav.svelte-s13wua.svelte-s13wua {
+  nav.svelte-1x4em6y.svelte-1x4em6y {
     padding: 0 10rem;
   }
 }
-header.svelte-s13wua.svelte-s13wua {
-  z-index: 100;
+header.svelte-1x4em6y.svelte-1x4em6y {
+  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 3.5rem;
 }
-nav.svelte-s13wua.svelte-s13wua {
+nav.svelte-1x4em6y.svelte-1x4em6y {
   height: inherit;
   box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.295);
 }
-.navbar-item.svelte-s13wua img.svelte-s13wua {
+.navbar-item.svelte-1x4em6y img.svelte-1x4em6y {
   max-height: 3rem;
 }
 

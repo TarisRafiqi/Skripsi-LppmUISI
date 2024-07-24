@@ -26,13 +26,8 @@
          "/profil",
          "/visidanmisi",
          "/strukturorganisasi",
-         "/penelitianinternal",
-         "/penelitianeksternal",
-         "/penelitianmandiri",
-         "/pengmasinternal",
-         "/pengmaseksternal",
-         "/pengmasmandiri",
-         "/abdimas",
+         "/penelitian",
+         "/pengabdianmasyarakat",
       ];
       inBeranda = paths.some(
          (path) =>

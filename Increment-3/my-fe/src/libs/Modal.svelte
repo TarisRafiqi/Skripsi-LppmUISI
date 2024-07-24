@@ -17,7 +17,7 @@
 <b class:show on:click={handleClick}>
    <div>
       <span>
-         <span class="close" on:click={clickX}>&times;</span>
+         <span class="delete close" on:click={clickX}></span>
          <slot name="header" />
       </span>
       <hr />
@@ -44,7 +44,7 @@
    b {
       display: block;
       font-weight: normal;
-      z-index: 17;
+      z-index: 40;
       position: fixed;
       display: flex;
       align-items: center;
@@ -60,11 +60,15 @@
    }
 
    div {
+      margin-left: 15px;
+      margin-right: 15px;
       padding: 1em 1.5em;
-      /* max-width: 32em; */
-      /* border-radius: 0.5em; */
-      width: 40em;
+      width: 50em;
       background: white;
       border-radius: 10px;
+      z-index: 50;
+      max-height: 80vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
    }
 </style>
