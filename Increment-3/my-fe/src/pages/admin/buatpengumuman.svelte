@@ -10,6 +10,7 @@
    let activePengumuman = "";
    let showModalChecked = false;
 
+   const accountRole = localStorage.getItem("role");
    const accessToken = localStorage.getItem("token");
    const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -54,60 +55,64 @@
 </script>
 
 <Article>
-   <h2 class="title is-2">Buat Pengumuman</h2>
-   <hr />
+   {#if accountRole === "admin"}
+      <h2 class="title is-2">Buat Pengumuman</h2>
+      <hr />
 
-   <div class="box">
-      <Field name="Judul">
-         <input
-            class="input"
-            type="text"
-            placeholder="Masukkan Judul Pengumuman"
-            bind:value={judulPengumuman}
-         />
-      </Field>
+      <div class="box">
+         <Field name="Judul">
+            <input
+               class="input"
+               type="text"
+               placeholder="Masukkan Judul Pengumuman"
+               bind:value={judulPengumuman}
+            />
+         </Field>
 
-      <Field name="Isi Pengumuman">
-         <!-- <Wysiwyg id="isi" content={isiPengumuman} /> -->
-         <Wysiwyg id="isi" content={isiPengumuman} />
-      </Field>
+         <Field name="Isi Pengumuman">
+            <!-- <Wysiwyg id="isi" content={isiPengumuman} /> -->
+            <Wysiwyg id="isi" content={isiPengumuman} />
+         </Field>
 
-      <Field name="Aktif">
-         <div class="control">
-            <label class="radio">
-               <input
-                  id="activePengumuman"
-                  type="radio"
-                  name="active"
-                  value={1}
-                  bind:group={activePengumuman}
-               />
-               Yes
-            </label>
-            <label class="radio">
-               <input
-                  id="activePengumuman"
-                  type="radio"
-                  name="active"
-                  value={0}
-                  bind:group={activePengumuman}
-               />
-               No
-            </label>
-         </div>
-      </Field>
-   </div>
+         <Field name="Aktif">
+            <div class="control">
+               <label class="radio">
+                  <input
+                     id="activePengumuman"
+                     type="radio"
+                     name="active"
+                     value={1}
+                     bind:group={activePengumuman}
+                  />
+                  Yes
+               </label>
+               <label class="radio">
+                  <input
+                     id="activePengumuman"
+                     type="radio"
+                     name="active"
+                     value={0}
+                     bind:group={activePengumuman}
+                  />
+                  No
+               </label>
+            </div>
+         </Field>
+      </div>
 
-   <div class="field is-grouped is-grouped-right">
-      <p class="control">
-         <button class="button is-info is-light" on:click={kembali}
-            >Kembali</button
-         >
-         <button class="button is-info" on:click={submitPengumuman}
-            >Submit</button
-         >
-      </p>
-   </div>
+      <div class="field is-grouped is-grouped-right">
+         <p class="control">
+            <button class="button is-info is-light" on:click={kembali}
+               >Kembali</button
+            >
+            <button class="button is-info" on:click={submitPengumuman}
+               >Submit</button
+            >
+         </p>
+      </div>
+   {:else}
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
+   {/if}
 </Article>
 
 <Modalchecked bind:show={showModalChecked}>

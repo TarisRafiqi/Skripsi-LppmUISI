@@ -31,7 +31,7 @@
    }
 </script>
 
-<article class="container">
+<article class="container" id="pengumuman">
    <div class="pengumuman-container">
       <div class="header-pengumuman">
          <p class="title is-3">PENGUMUMAN</p>

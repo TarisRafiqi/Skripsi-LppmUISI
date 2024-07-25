@@ -1504,6 +1504,16 @@ section.svelte-1kehiwo {
   padding-bottom: 1.5rem;
 }
 
+/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Footer.esbuild-svelte-fake-css */
+strong.svelte-1h60z37 {
+  color: white;
+}
+.footer.svelte-1h60z37 {
+  padding: 1rem;
+  color: white;
+  background-color: #363636;
+}
+
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Login.esbuild-svelte-fake-css */
 #errorLoginHandler.svelte-62xoz.svelte-62xoz {
   display: none;
@@ -2321,16 +2331,6 @@ nav.svelte-1x4em6y.svelte-1x4em6y {
 }
 .navbar-item.svelte-1x4em6y img.svelte-1x4em6y {
   max-height: 3rem;
-}
-
-/* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Footer.esbuild-svelte-fake-css */
-strong.svelte-1h60z37 {
-  color: white;
-}
-.footer.svelte-1h60z37 {
-  padding: 1rem;
-  color: white;
-  background-color: #363636;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/App.esbuild-svelte-fake-css */

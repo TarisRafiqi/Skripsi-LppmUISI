@@ -15,7 +15,9 @@
    }
 
    function addTemplate() {}
+
    function simpanTemplate() {}
+
    function handleDownloadTemplate() {}
 </script>
 
@@ -25,7 +27,7 @@
 
    <div class="columns">
       <div class="column">
-         <button class="button is-info" on:click={simpanTemplate}>
+         <button class="button is-info" on:click={clickModalTambahTemplate}>
             <span class="icon">
                <Icon id="accountAdd" src={add} />
             </span>
@@ -58,7 +60,7 @@
 
          <tbody>
             <tr>
-               <td>Contoh Template Penelitian Internal</td>
+               <td></td>
                <td
                   ><button
                      class="button is-link button is-small"
@@ -90,7 +92,7 @@
 </Article>
 
 <Modal bind:show={showModalTambahTemplate}>
-   <h4 class="title is-4" slot="header">Tambah Template</h4>
+   <h4 class="title is-4" slot="header">Buat Template</h4>
 
    <Field name="Nama Template">
       <input class="input" type="text" bind:value={namaTemplate} />
@@ -99,7 +101,7 @@
    <Field name="File Template">
       <input
          class="input"
-         accept=".xlsx"
+         accept=".xlsx, .pdf"
          type="file"
          on:change={(e) => (file = e.target.files[0])}
       />

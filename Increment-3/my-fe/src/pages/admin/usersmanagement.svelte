@@ -262,7 +262,7 @@
          </div>
       {/if}
    {:else}
-      <h4 class="title is-4">Anda tidak memiliki hak akses halaman ini!</h4>
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
    {/if}
 </Article>
 

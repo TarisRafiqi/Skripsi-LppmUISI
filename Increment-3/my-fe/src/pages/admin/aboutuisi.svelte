@@ -9,6 +9,7 @@
    let profilUISI, visi, misi, strukturOrganisasi;
    let showModalChecked = false;
 
+   const accountRole = localStorage.getItem("role");
    const accessToken = localStorage.getItem("token");
    const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -188,100 +189,104 @@
 </script>
 
 <Article>
-   <h2 class="title is-2">About UISI</h2>
+   {#if accountRole === "admin"}
+      <h2 class="title is-2">About UISI</h2>
 
-   <div class="tabs is-boxed">
-      <ul>
-         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-         <!-- svelte-ignore a11y-click-events-have-key-events -->
-         <li on:click={clicktab1} class:is-active={tab1}>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <a>
-               <span>Profil</span>
-            </a>
-         </li>
-         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-         <!-- svelte-ignore a11y-click-events-have-key-events -->
-         <li on:click={clicktab2} class:is-active={tab2}>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <a>
-               <span>Visi dan Misi</span>
-            </a>
-         </li>
-         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-         <!-- svelte-ignore a11y-click-events-have-key-events -->
-         <li on:click={clicktab3} class:is-active={tab3}>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <a>
-               <span>Struktur Organisasi</span>
-            </a>
-         </li>
-      </ul>
-   </div>
+      <div class="tabs is-boxed">
+         <ul>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab1} class:is-active={tab1}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Profil</span>
+               </a>
+            </li>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab2} class:is-active={tab2}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Visi dan Misi</span>
+               </a>
+            </li>
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <li on:click={clicktab3} class:is-active={tab3}>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <a>
+                  <span>Struktur Organisasi</span>
+               </a>
+            </li>
+         </ul>
+      </div>
 
-   <div class="box">
-      {#if tab1 === true}
-         <Field name="Profil">
-            <Wysiwyg id="profilUISI" content={profilUISI} fewFeatures />
-         </Field>
+      <div class="box">
+         {#if tab1 === true}
+            <Field name="Profil">
+               <Wysiwyg id="profilUISI" content={profilUISI} fewFeatures />
+            </Field>
 
-         <br />
+            <br />
 
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanProfilUISI}
-                  >Simpan</button
-               >
-            </p>
-         </div>
-      {/if}
+            <div class="field is-grouped is-grouped-right">
+               <p class="control">
+                  <button class="button is-info" on:click={simpanProfilUISI}
+                     >Simpan</button
+                  >
+               </p>
+            </div>
+         {/if}
 
-      {#if tab2 === true}
-         <Field name="Visi">
-            <textarea
-               class="textarea"
-               id="visi"
-               placeholder="Masukkan Visi"
-               bind:value={visi}
-            ></textarea>
-         </Field>
+         {#if tab2 === true}
+            <Field name="Visi">
+               <textarea
+                  class="textarea"
+                  id="visi"
+                  placeholder="Masukkan Visi"
+                  bind:value={visi}
+               ></textarea>
+            </Field>
 
-         <Field name="Misi">
-            <Wysiwyg id="misi" content={misi} fewFeatures />
-         </Field>
+            <Field name="Misi">
+               <Wysiwyg id="misi" content={misi} fewFeatures />
+            </Field>
 
-         <br />
+            <br />
 
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button class="button is-info" on:click={simpanVisidanMisi}
-                  >Simpan</button
-               >
-            </p>
-         </div>
-      {/if}
+            <div class="field is-grouped is-grouped-right">
+               <p class="control">
+                  <button class="button is-info" on:click={simpanVisidanMisi}
+                     >Simpan</button
+                  >
+               </p>
+            </div>
+         {/if}
 
-      {#if tab3 === true}
-         <Field name="Struktur Organisasi">
-            <Wysiwyg
-               id="strukturOrganisasi"
-               content={strukturOrganisasi}
-               fewFeatures
-            />
-         </Field>
+         {#if tab3 === true}
+            <Field name="Struktur Organisasi">
+               <Wysiwyg
+                  id="strukturOrganisasi"
+                  content={strukturOrganisasi}
+                  fewFeatures
+               />
+            </Field>
 
-         <br />
+            <br />
 
-         <div class="field is-grouped is-grouped-right">
-            <p class="control">
-               <button
-                  class="button is-info"
-                  on:click={simpanStrukturOrganisasi}>Simpan</button
-               >
-            </p>
-         </div>
-      {/if}
-   </div>
+            <div class="field is-grouped is-grouped-right">
+               <p class="control">
+                  <button
+                     class="button is-info"
+                     on:click={simpanStrukturOrganisasi}>Simpan</button
+                  >
+               </p>
+            </div>
+         {/if}
+      </div>
+   {:else}
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
+   {/if}
 </Article>
 
 <Modalchecked bind:show={showModalChecked}>

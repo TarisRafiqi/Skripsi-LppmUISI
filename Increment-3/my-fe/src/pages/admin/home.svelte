@@ -22,6 +22,7 @@
    let pendaftaranHibahInternal, pendaftaranHibahEksternal, pendaftaranMandiri;
    let tanggalMulai_HibahInternal, tanggalSelesai_HibahInternal;
    let tanggalMulai_PPMMandiri, tanggalSelesai_PPMMandiri;
+   const role = localStorage.getItem("role");
 
    onMount(async () => {
       // ===================== Waktu Pendaftaran Proposal PPM =====================
@@ -206,124 +207,125 @@
 </script>
 
 <Article>
-   <h2 class="title is-2">Dashboard</h2>
+   {#if role === "admin"}
+      <h2 class="title is-2">Dashboard</h2>
 
-   <hr />
+      <hr />
 
-   <div class="columns cardCounter-container is-desktop">
-      {#each cardCounter as cardCounter}
-         <div class="column">
-            <div class="box cardCounter">
-               <div class="flex-item-left">
-                  <Icon id="logo" src={cardCounter.icon} size="2" />
-               </div>
-               <div class="flex-item-right has-text-centered">
-                  <p class="heading">{cardCounter.heading}</p>
-                  {#if cardCounter.title}
-                     <p class="title">{cardCounter.title}</p>
-                  {:else}
-                     <p class="title">...</p>
-                  {/if}
+      <div class="columns cardCounter-container is-desktop">
+         {#each cardCounter as cardCounter}
+            <div class="column">
+               <div class="box cardCounter">
+                  <div class="flex-item-left">
+                     <Icon id="logo" src={cardCounter.icon} size="2" />
+                  </div>
+                  <div class="flex-item-right has-text-centered">
+                     <p class="heading">{cardCounter.heading}</p>
+                     {#if cardCounter.title}
+                        <p class="title">{cardCounter.title}</p>
+                     {:else}
+                        <p class="title">...</p>
+                     {/if}
+                  </div>
                </div>
             </div>
-         </div>
-      {/each}
-   </div>
-
-   <div class="columns is-desktop">
-      <div class="column">
-         <div class="box">
-            <h5 class="title is-5">Waktu Pendaftaran Proposal PPM</h5>
-            <table
-               class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-            >
-               <thead>
-                  <tr>
-                     <th>Jenis Skema</th>
-                     <th class="is-narrow" style="text-align: center;"
-                        >Tanggal Mulai</th
-                     >
-                     <th class="is-narrow" style="text-align: center;"
-                        >Tanggal Selesai</th
-                     >
-                     <th class="is-narrow" style="text-align: center;"
-                        >Buka Pendaftaran</th
-                     >
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>Pendanaan Hibah Internal UISI</td>
-                     <td class="centerText"
-                        ><input
-                           type="date"
-                           class="input is-small"
-                           bind:value={tanggalMulai_HibahInternal}
-                           on:change={onChange_waktuPendaftaran_HibahInternal}
-                        /></td
-                     >
-                     <td class="centerText"
-                        ><input
-                           type="date"
-                           class="input is-small"
-                           bind:value={tanggalSelesai_HibahInternal}
-                           on:change={onChange_waktuPendaftaran_HibahInternal}
-                        /></td
-                     >
-                     <td class="centerText">
-                        <input
-                           type="checkbox"
-                           bind:checked={pendaftaranHibahInternal}
-                           on:change={checkPendaftaranInternal}
-                        />
-                     </td>
-                  </tr>
-
-                  <tr>
-                     <td>Pendanaan Hibah Eksternal</td>
-                     <td></td>
-                     <td></td>
-                     <td class="centerText">
-                        <input
-                           type="checkbox"
-                           bind:checked={pendaftaranHibahEksternal}
-                           on:change={checkPendaftaranEksternal}
-                        />
-                     </td>
-                  </tr>
-
-                  <tr>
-                     <td>Pendanaan Mandiri</td>
-                     <td class="centerText"
-                        ><input
-                           type="date"
-                           class="input is-small"
-                           bind:value={tanggalMulai_PPMMandiri}
-                           on:change={onChange_waktuPendaftaran_HibahInternal}
-                        /></td
-                     >
-                     <td class="centerText"
-                        ><input
-                           type="date"
-                           class="input is-small"
-                           bind:value={tanggalSelesai_PPMMandiri}
-                           on:change={onChange_waktuPendaftaran_HibahInternal}
-                        /></td
-                     >
-                     <td class="centerText">
-                        <input
-                           type="checkbox"
-                           bind:checked={pendaftaranMandiri}
-                           on:change={checkPendaftaranMandiri}
-                        />
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
+         {/each}
       </div>
 
-      <!-- <div class="column">
+      <div class="columns is-desktop">
+         <div class="column">
+            <div class="box">
+               <h5 class="title is-5">Waktu Pendaftaran Proposal PPM</h5>
+               <table
+                  class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+               >
+                  <thead>
+                     <tr>
+                        <th>Jenis Skema</th>
+                        <th class="is-narrow" style="text-align: center;"
+                           >Tanggal Mulai</th
+                        >
+                        <th class="is-narrow" style="text-align: center;"
+                           >Tanggal Selesai</th
+                        >
+                        <th class="is-narrow" style="text-align: center;"
+                           >Buka Pendaftaran</th
+                        >
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>Pendanaan Hibah Internal UISI</td>
+                        <td class="centerText"
+                           ><input
+                              type="date"
+                              class="input is-small"
+                              bind:value={tanggalMulai_HibahInternal}
+                              on:change={onChange_waktuPendaftaran_HibahInternal}
+                           /></td
+                        >
+                        <td class="centerText"
+                           ><input
+                              type="date"
+                              class="input is-small"
+                              bind:value={tanggalSelesai_HibahInternal}
+                              on:change={onChange_waktuPendaftaran_HibahInternal}
+                           /></td
+                        >
+                        <td class="centerText">
+                           <input
+                              type="checkbox"
+                              bind:checked={pendaftaranHibahInternal}
+                              on:change={checkPendaftaranInternal}
+                           />
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td>Pendanaan Hibah Eksternal</td>
+                        <td></td>
+                        <td></td>
+                        <td class="centerText">
+                           <input
+                              type="checkbox"
+                              bind:checked={pendaftaranHibahEksternal}
+                              on:change={checkPendaftaranEksternal}
+                           />
+                        </td>
+                     </tr>
+
+                     <tr>
+                        <td>Pendanaan Mandiri</td>
+                        <td class="centerText"
+                           ><input
+                              type="date"
+                              class="input is-small"
+                              bind:value={tanggalMulai_PPMMandiri}
+                              on:change={onChange_waktuPendaftaran_HibahInternal}
+                           /></td
+                        >
+                        <td class="centerText"
+                           ><input
+                              type="date"
+                              class="input is-small"
+                              bind:value={tanggalSelesai_PPMMandiri}
+                              on:change={onChange_waktuPendaftaran_HibahInternal}
+                           /></td
+                        >
+                        <td class="centerText">
+                           <input
+                              type="checkbox"
+                              bind:checked={pendaftaranMandiri}
+                              on:change={checkPendaftaranMandiri}
+                           />
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+
+         <!-- <div class="column">
          <div class="box">
             <h5 class="title is-5">Pengumuman</h5>
             <p class="subtitle is-6">
@@ -334,7 +336,10 @@
             </p>
          </div>
       </div> -->
-   </div>
+      </div>
+   {:else}
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
+   {/if}
 </Article>
 
 <style>

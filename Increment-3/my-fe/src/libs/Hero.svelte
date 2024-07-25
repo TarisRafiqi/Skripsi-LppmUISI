@@ -3,14 +3,14 @@
    let urlImage = dev
       ? "url(http://localhost:3000/img/Homepage-Background.svg"
       : "url(https://lppmuisi.dififa.com/img/Homepage-Background.svg";
-</script>
 
-<!-- <section class="hero is-large">
-   <div class="hero-body" style:--url={urlImage}>
-      <p class="title">LPPM Universitas Internasional Semen Indonesia</p>
-      <p class="subtitle">test</p>
-   </div>
-</section> -->
+   function scrollToPengumuman() {
+      const pengumumanSection = document.getElementById("pengumuman");
+      if (pengumumanSection) {
+         pengumumanSection.scrollIntoView({ behavior: "smooth" });
+      }
+   }
+</script>
 
 <section class="hero is-fullheight" style:--url={urlImage}>
    <div class="hero-body">
@@ -23,9 +23,12 @@
                Lembaga Penelitian Dan Pengabdian Kepada Masyarakat
             </p>
             <button class="button is-dark is-rounded">Panduan PPM UISI</button>
-            <button class="button is-danger is-outlined is-rounded"
-               >Pengumuman</button
+            <button
+               class="button is-danger is-outlined is-rounded"
+               on:click={scrollToPengumuman}
             >
+               Pengumuman
+            </button>
          </div>
 
          <div class="column"></div>

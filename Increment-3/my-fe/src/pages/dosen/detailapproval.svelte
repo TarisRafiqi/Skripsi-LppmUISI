@@ -881,385 +881,633 @@
    }
 </script>
 
-{#if data}
-   <Article>
-      <h2 class="title is-2">Detail PPM</h2>
+<Article>
+   {#if role != "dosen"}
+      {#if data}
+         <h2 class="title is-2">Detail PPM</h2>
 
-      <div class="tabs is-boxed">
-         <ul>
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab1} class:is-active={tab1}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Detail PPM</span>
-               </a>
-            </li>
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <li on:click={clicktab2} class:is-active={tab2}>
-               <!-- svelte-ignore a11y-missing-attribute -->
-               <a>
-                  <span>Biodata Peneliti</span>
-               </a>
-            </li>
-         </ul>
-      </div>
+         <div class="tabs is-boxed">
+            <ul>
+               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <li on:click={clicktab1} class:is-active={tab1}>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a>
+                     <span>Detail PPM</span>
+                  </a>
+               </li>
+               <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+               <!-- svelte-ignore a11y-click-events-have-key-events -->
+               <li on:click={clicktab2} class:is-active={tab2}>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a>
+                     <span>Biodata Peneliti</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
 
-      <!-- Tab Detail PPM -->
-      {#if tab1 === true}
-         <div class="box">
-            <div class="columns is-desktop">
-               <Fieldview title="Judul" content={data.judul} />
-            </div>
-
-            <div class="columns is-desktop">
-               <Fieldview title="Abstrak" content={data.abstrak} />
-            </div>
-
-            <div class="columns is-desktop">
-               <Fieldview
-                  title="Status"
-                  content={status}
-                  skema={data.jenis_skema}
-                  type="status"
-               />
-            </div>
-
-            <hr />
-
-            <div class="columns is-desktop">
-               <Fieldview title="Jenis Proposal" content={jenisProposal} />
-               <Fieldview title="Jenis Kegiatan" content={jenisKegiatan} />
-            </div>
-
-            <div class="columns is-desktop">
-               <Fieldview title="Jenis Skema" content={jenisSkema} />
-               <Fieldview
-                  title="Kelompok Keahlian"
-                  content={kelompokKeahlian}
-               />
-            </div>
-
-            <div class="columns is-desktop">
-               <Fieldview title="Topik" content={topik} />
-               <Fieldview title="Biaya Penelitian" content={biayaPenelitian} />
-            </div>
-
-            <div class="columns is-desktop">
-               <Fieldview title="Tanggal Mulai" content={tanggalMulai} />
-               <Fieldview title="Tanggal Selesai" content={tanggalSelesai} />
-            </div>
-
-            <div class="columns is-desktop">
-               <div class="column">
-                  <div class="field">
-                     <p class="title is-6"><b>File Proposal</b></p>
-                     <p class="subtitle is-6">
-                        <button
-                           class="button is-link button is-small"
-                           on:click={handleDownloadPpm}
-                           >Download Proposal</button
-                        >
-                     </p>
-                  </div>
+         <!-- Tab Detail PPM -->
+         {#if tab1 === true}
+            <div class="box">
+               <div class="columns is-desktop">
+                  <Fieldview title="Judul" content={data.judul} />
                </div>
 
-               {#if skemaEksternal.includes(jenisSkema)}
-                  <div class="column">
-                     <p class="title is-6"><b>File Kontrak PPM</b></p>
-                     <p class="subtitle is-6">
-                        <button
-                           class="button is-link button is-small"
-                           on:click={handleDownloadKontrakPpmEksternal}
-                           >Download Kontrak PPM</button
-                        >
-                     </p>
-                  </div>
-               {/if}
+               <div class="columns is-desktop">
+                  <Fieldview title="Abstrak" content={data.abstrak} />
+               </div>
 
-               {#if skemaInternal.includes(jenisSkema)}
+               <div class="columns is-desktop">
+                  <Fieldview
+                     title="Status"
+                     content={status}
+                     skema={data.jenis_skema}
+                     type="status"
+                  />
+               </div>
+
+               <hr />
+
+               <div class="columns is-desktop">
+                  <Fieldview title="Jenis Proposal" content={jenisProposal} />
+                  <Fieldview title="Jenis Kegiatan" content={jenisKegiatan} />
+               </div>
+
+               <div class="columns is-desktop">
+                  <Fieldview title="Jenis Skema" content={jenisSkema} />
+                  <Fieldview
+                     title="Kelompok Keahlian"
+                     content={kelompokKeahlian}
+                  />
+               </div>
+
+               <div class="columns is-desktop">
+                  <Fieldview title="Topik" content={topik} />
+                  <Fieldview
+                     title="Biaya Penelitian"
+                     content={biayaPenelitian}
+                  />
+               </div>
+
+               <div class="columns is-desktop">
+                  <Fieldview title="Tanggal Mulai" content={tanggalMulai} />
+                  <Fieldview title="Tanggal Selesai" content={tanggalSelesai} />
+               </div>
+
+               <div class="columns is-desktop">
                   <div class="column">
                      <div class="field">
-                        <p class="title is-6">
-                           <b>File RAB (Rencana Anggaran Biaya)</b>
-                        </p>
+                        <p class="title is-6"><b>File Proposal</b></p>
                         <p class="subtitle is-6">
                            <button
                               class="button is-link button is-small"
-                              on:click={handleDownloadRab}>Download RAB</button
+                              on:click={handleDownloadPpm}
+                              >Download Proposal</button
                            >
                         </p>
                      </div>
                   </div>
-               {/if}
-            </div>
 
-            <div class="field">
-               <p class="title is-6"><b>Anggota Tim</b></p>
-               <table
-                  class="table is-fullwidth is-striped is-hoverable is-bordered"
-               >
-                  <thead>
-                     <tr>
-                        <th class="is-narrow">Role</th>
-                        <th>Nama</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {#if anggotaTim.length > 0}
-                        {#each anggotaTim as member}
-                           <tr>
-                              <td>{member.role}</td>
-                              <td>{member.label}</td>
-                           </tr>
-                        {/each}
-                     {/if}
-                  </tbody>
-               </table>
-            </div>
-         </div>
-
-         <!-- ========================================== -->
-         <!--           Input Penilaian Proposal         -->
-         <!-- ========================================== -->
-         {#if skemaInternal.includes(jenisSkema)}
-            {#if role === "reviewer"}
-               <div class="box">
-                  <!-- svelte-ignore a11y-no-static-element-interactions -->
-                  <!-- svelte-ignore a11y-click-events-have-key-events -->
-                  <h5 class="title is-6">
-                     Penilaian Proposal
-                     <span
-                        class="toggle-button"
-                        on:click={() => (iPPVisible = !iPPVisible)}
-                     >
-                        {iPPVisible ? "(tutup)" : "(buka)"}
-                     </span>
-                  </h5>
-
-                  {#if iPPVisible}
-                     <hr />
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 70%;">Nama</th>
-                              <th class="is-narrow" style="text-align: center"
-                                 >Upload File (.xlsx)</th
-                              >
-                              <th class="is-narrow" style="text-align: center"
-                                 >Download File</th
-                              >
-                           </tr>
-                        </thead>
-
-                        <tbody>
-                           <td>Penilaian Proposal PPM</td>
-                           <td>
-                              <span class="inputf__wrapper mb-1">
-                                 <input
-                                    id="filePenilaian"
-                                    class="inputf custom-file-input"
-                                    accept=".xlsx"
-                                    type="file"
-                                    on:change={filePenilaianChange}
-                                 />
-                                 <div class="file has-name is-small">
-                                    <label
-                                       class="file-label"
-                                       for="filePenilaian"
-                                    >
-                                       <input
-                                          class="file-input"
-                                          type="file"
-                                          name="resume"
-                                       />
-                                       <span class="file-cta">
-                                          <span class="file-icon">
-                                             <Icon
-                                                id="download"
-                                                src={downloadIcon}
-                                             />
-                                          </span>
-                                          <span class="file-label">
-                                             Choose a file</span
-                                          >
-                                       </span>
-                                       {#if $penilaianFile?.name}
-                                          <span class="file-name">
-                                             {$penilaianFile.name}</span
-                                          >
-                                       {:else}
-                                          <span class="file-name"
-                                             >No file chosen</span
-                                          >
-                                       {/if}
-                                    </label>
-                                 </div>
-                              </span>
-                           </td>
-                           <td style="text-align: center"
-                              ><button
-                                 class="button is-link button is-small"
-                                 on:click={handleDownloadPenilaian}
-                                 >Download
-                              </button></td
-                           >
-                        </tbody>
-                     </table>
-
-                     <div class="field is-grouped is-grouped-right">
-                        <p class="control">
+                  {#if skemaEksternal.includes(jenisSkema)}
+                     <div class="column">
+                        <p class="title is-6"><b>File Kontrak PPM</b></p>
+                        <p class="subtitle is-6">
                            <button
-                              class="button is-info"
-                              on:click={handleSimpanPenilaian}
-                              class:is-loading={isLoading}
-                              >Simpan Penilaian</button
+                              class="button is-link button is-small"
+                              on:click={handleDownloadKontrakPpmEksternal}
+                              >Download Kontrak PPM</button
                            >
                         </p>
                      </div>
                   {/if}
+
+                  {#if skemaInternal.includes(jenisSkema)}
+                     <div class="column">
+                        <div class="field">
+                           <p class="title is-6">
+                              <b>File RAB (Rencana Anggaran Biaya)</b>
+                           </p>
+                           <p class="subtitle is-6">
+                              <button
+                                 class="button is-link button is-small"
+                                 on:click={handleDownloadRab}
+                                 >Download RAB</button
+                              >
+                           </p>
+                        </div>
+                     </div>
+                  {/if}
                </div>
-            {:else if role !== "K.Departemen"}
+
+               <div class="field">
+                  <p class="title is-6"><b>Anggota Tim</b></p>
+                  <table
+                     class="table is-fullwidth is-striped is-hoverable is-bordered"
+                  >
+                     <thead>
+                        <tr>
+                           <th class="is-narrow">Role</th>
+                           <th>Nama</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {#if anggotaTim.length > 0}
+                           {#each anggotaTim as member}
+                              <tr>
+                                 <td>{member.role}</td>
+                                 <td>{member.label}</td>
+                              </tr>
+                           {/each}
+                        {/if}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!--           Input Penilaian Proposal         -->
+            <!-- ========================================== -->
+            {#if skemaInternal.includes(jenisSkema)}
+               {#if role === "reviewer"}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        Penilaian Proposal
+                        <span
+                           class="toggle-button"
+                           on:click={() => (iPPVisible = !iPPVisible)}
+                        >
+                           {iPPVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
+
+                     {#if iPPVisible}
+                        <hr />
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 70%;">Nama</th>
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center"
+                                    >Upload File (.xlsx)</th
+                                 >
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center">Download File</th
+                                 >
+                              </tr>
+                           </thead>
+
+                           <tbody>
+                              <td>Penilaian Proposal PPM</td>
+                              <td>
+                                 <span class="inputf__wrapper mb-1">
+                                    <input
+                                       id="filePenilaian"
+                                       class="inputf custom-file-input"
+                                       accept=".xlsx"
+                                       type="file"
+                                       on:change={filePenilaianChange}
+                                    />
+                                    <div class="file has-name is-small">
+                                       <label
+                                          class="file-label"
+                                          for="filePenilaian"
+                                       >
+                                          <input
+                                             class="file-input"
+                                             type="file"
+                                             name="resume"
+                                          />
+                                          <span class="file-cta">
+                                             <span class="file-icon">
+                                                <Icon
+                                                   id="download"
+                                                   src={downloadIcon}
+                                                />
+                                             </span>
+                                             <span class="file-label">
+                                                Choose a file</span
+                                             >
+                                          </span>
+                                          {#if $penilaianFile?.name}
+                                             <span class="file-name">
+                                                {$penilaianFile.name}</span
+                                             >
+                                          {:else}
+                                             <span class="file-name"
+                                                >No file chosen</span
+                                             >
+                                          {/if}
+                                       </label>
+                                    </div>
+                                 </span>
+                              </td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadPenilaian}
+                                    >Download
+                                 </button></td
+                              >
+                           </tbody>
+                        </table>
+
+                        <div class="field is-grouped is-grouped-right">
+                           <p class="control">
+                              <button
+                                 class="button is-info"
+                                 on:click={handleSimpanPenilaian}
+                                 class:is-loading={isLoading}
+                                 >Simpan Penilaian</button
+                              >
+                           </p>
+                        </div>
+                     {/if}
+                  </div>
+               {:else if role !== "K.Departemen"}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        Penilaian Proposal
+                        <span
+                           class="toggle-button"
+                           on:click={() => (iPPVisible = !iPPVisible)}
+                        >
+                           {iPPVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
+
+                     {#if iPPVisible}
+                        <hr />
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 70%;">Nama</th>
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center">Download File</th
+                                 >
+                              </tr>
+                           </thead>
+
+                           <tbody>
+                              <td>Penilaian Proposal PPM</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadPenilaian}
+                                    >Download
+                                 </button></td
+                              >
+                           </tbody>
+                        </table>
+                     {/if}
+                  </div>
+               {/if}
+            {/if}
+
+            <!-- ========================================== -->
+            <!--           Catatan Revisi Proposal          -->
+            <!-- ========================================== -->
+            {#if role !== "K.Departemen" && role !== "reviewer"}
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Penilaian Proposal
-                     <span
+                     Informasi Revisi Proposal <span
                         class="toggle-button"
-                        on:click={() => (iPPVisible = !iPPVisible)}
+                        on:click={() => (CRPVisible = !CRPVisible)}
                      >
-                        {iPPVisible ? "(tutup)" : "(buka)"}
+                        {CRPVisible ? "(tutup)" : "(buka)"}
                      </span>
                   </h5>
 
-                  {#if iPPVisible}
+                  {#if CRPVisible}
                      <hr />
+                     {#if cttnRevisiProposalisRequired()}
+                        <div class="notification is-warning is-light">
+                           <p>
+                              Berikan catatan revisi jika ingin revisi proposal
+                           </p>
+                        </div>
+
+                        <div class="field">
+                           <p class="title is-6"><b>Catatan Revisi</b></p>
+                           <textarea
+                              class="textarea mb-1"
+                              bind:value={catatanRevisiProposal}
+                              name="komentar"
+                              id="komentar"
+                           ></textarea>
+                           {#if error.catatanRevisiProposal}
+                              <p class="help error is-danger">
+                                 {error.catatanRevisiProposal}
+                              </p>
+                           {/if}
+                        </div>
+                        <hr />
+                     {/if}
+
+                     <!-- {/if} -->
+
                      <table
                         class="table is-fullwidth is-striped is-hoverable is-bordered"
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Nama</th>
-                              <th class="is-narrow" style="text-align: center"
-                                 >Download File</th
+                              <th style="width: 70%;">Riwayat Catatan Revisi</th
+                              >
+                              <th style="width: 15%; text-align: center"
+                                 >Evaluator</th
+                              >
+                              <th style="width: 15%; text-align: center"
+                                 >Tanggal</th
                               >
                            </tr>
                         </thead>
-
-                        <tbody>
-                           <td>Penilaian Proposal PPM</td>
-                           <td style="text-align: center"
-                              ><button
-                                 class="button is-link button is-small"
-                                 on:click={handleDownloadPenilaian}
-                                 >Download
-                              </button></td
-                           >
-                        </tbody>
+                        {#if itemsRCR}
+                           <tbody>
+                              {#each itemsRCR as item}
+                                 <tr>
+                                    <td>{item.catatan_revisi_proposal}</td>
+                                    <td style="text-align: center"
+                                       >{item.evaluator}</td
+                                    >
+                                    <td style="text-align: center"
+                                       >{item.time}</td
+                                    >
+                                 </tr>
+                              {/each}
+                           </tbody>
+                        {/if}
                      </table>
                   {/if}
                </div>
             {/if}
-         {/if}
 
-         <!-- ========================================== -->
-         <!--           Catatan Revisi Proposal          -->
-         <!-- ========================================== -->
-         {#if role !== "K.Departemen" && role !== "reviewer"}
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Informasi Revisi Proposal <span
-                     class="toggle-button"
-                     on:click={() => (CRPVisible = !CRPVisible)}
-                  >
-                     {CRPVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
+            {#if (skemaInternal.includes(jenisSkema) && status >= 8) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
+               <!-- ============================================================ -->
+               <!--     Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas    -->
+               <!-- ============================================================ -->
+               {#if skemaInternal.includes(jenisSkema)}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        <!-- File SK Pendanaan / Surat Kontrak PPM / Surat Tugas -->
+                        Download Dokumen Pendukung
+                        <span
+                           class="toggle-button"
+                           on:click={() => (skpVisible = !skpVisible)}
+                        >
+                           {skpVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
 
-               {#if CRPVisible}
-                  <hr />
-                  {#if cttnRevisiProposalisRequired()}
+                     {#if skpVisible}
+                        <hr />
+
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 70%;">Nama </th>
+
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center">Download File</th
+                                 >
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>SK Pendanaan</td>
+                                 <td style="text-align: center"
+                                    ><button
+                                       class="button is-link button is-small"
+                                       on:click={handleDownloadSkPendanaan}
+                                       >Download</button
+                                    ></td
+                                 >
+                              </tr>
+                              <!-- ====================================================== -->
+                              <tr>
+                                 <td>Surat Kontrak PPM</td>
+                                 <td style="text-align: center"
+                                    ><button
+                                       class="button is-link button is-small"
+                                       on:click={handleDownloadSuratKontrak}
+                                       >Download</button
+                                    ></td
+                                 >
+                              </tr>
+                              <!-- ====================================================== -->
+                              <tr>
+                                 <td>Surat Tugas</td>
+                                 <td style="text-align: center"
+                                    ><button
+                                       class="button is-link button is-small"
+                                       on:click={handleDownloadSuratTugas}
+                                       >Download</button
+                                    ></td
+                                 >
+                              </tr>
+                           </tbody>
+                        </table>
+                     {/if}
+                  </div>
+               {:else}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        <!-- File Surat Tugas -->
+                        Download Dokumen Pendukung
+                        <span
+                           class="toggle-button"
+                           on:click={() => (skpVisible = !skpVisible)}
+                        >
+                           {skpVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
+
+                     {#if skpVisible}
+                        <hr />
+
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 70%;">Nama </th>
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center">Download File</th
+                                 >
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>Surat Tugas</td>
+                                 <td style="text-align: center"
+                                    ><button
+                                       class="button is-link button is-small"
+                                       on:click={handleDownloadSuratTugas}
+                                       >Download</button
+                                    ></td
+                                 >
+                              </tr>
+                           </tbody>
+                        </table>
+                     {/if}
+                  </div>
+               {/if}
+
+               <!-- ========================================== -->
+               <!--                  Dana PPM                  -->
+               <!-- ========================================== -->
+               {#if skemaInternal.includes(jenisSkema)}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        Pendanaan PPM
+                        <span
+                           class="toggle-button"
+                           on:click={() => (danaPPMVisible = !danaPPMVisible)}
+                        >
+                           {danaPPMVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
+
+                     {#if danaPPMVisible}
+                        <hr />
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 70%;"
+                                    >Status Pencairan Dana</th
+                                 >
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center"
+                                    ><span class="tag is-info"
+                                       >{statusPencairanDana}</span
+                                    ></th
+                                 >
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td colspan="2"
+                                    ><div
+                                       class="notification is-warning is-light"
+                                    >
+                                       <p class="subtitle is-6">
+                                          Untuk pengambilan dana dan penjelasan
+                                          lebih lanjut terkait Pendanaan,
+                                          hubungi LPPM UISI.
+                                       </p>
+                                    </div></td
+                                 >
+                              </tr>
+                           </tbody>
+                        </table>
+                     {/if}
+                  </div>
+               {/if}
+
+               <!-- ========================================== -->
+               <!--               Hasil PPM                    -->
+               <!-- ========================================== -->
+               <div class="box">
+                  <!-- svelte-ignore a11y-no-static-element-interactions -->
+                  <!-- svelte-ignore a11y-click-events-have-key-events -->
+                  <h5 class="title is-6">
+                     Laporan Hasil PPM
+                     <span
+                        class="toggle-button"
+                        on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
+                     >
+                        {hasilPPMVisible ? "(tutup)" : "(buka)"}
+                     </span>
+                  </h5>
+
+                  {#if hasilPPMVisible}
+                     <hr />
+                     <table
+                        class="table is-fullwidth is-striped is-hoverable is-bordered"
+                     >
+                        <thead>
+                           <tr>
+                              <th style="width: 70%;">Nama</th>
+                              <th class="is-narrow" style="text-align: center"
+                                 >Download File</th
+                              >
+                           </tr>
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td>Laporan Hasil PPM</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadHasilPPM}
+                                    >Download</button
+                                 ></td
+                              >
+                           </tr>
+                           {#if skemaInternal.includes(jenisSkema)}
+                              <tr>
+                                 <td>Laporan Keuangan</td>
+                                 <td style="text-align: center"
+                                    ><button
+                                       class="button is-link button is-small"
+                                       on:click={handleDownloadLaporanKeuangan}
+                                       >Download</button
+                                    ></td
+                                 >
+                              </tr>
+                           {/if}
+                        </tbody>
+                     </table>
+
+                     <hr />
+
                      <div class="notification is-warning is-light">
-                        <p>Berikan catatan revisi jika ingin revisi proposal</p>
+                        <p>
+                           Berikan catatan revisi jika ingin revisi Hasil PPM
+                        </p>
                      </div>
 
                      <div class="field">
                         <p class="title is-6"><b>Catatan Revisi</b></p>
                         <textarea
                            class="textarea mb-1"
-                           bind:value={catatanRevisiProposal}
-                           name="komentar"
-                           id="komentar"
+                           name="catatanRevisiHasilPPM"
+                           id="catatanRevisiHasilPPM"
+                           bind:value={catatanRevisiHasilPPM}
                         ></textarea>
-                        {#if error.catatanRevisiProposal}
+                        {#if error.catatanRevisiHasilPPM}
                            <p class="help error is-danger">
-                              {error.catatanRevisiProposal}
+                              {error.catatanRevisiHasilPPM}
                            </p>
                         {/if}
                      </div>
-                     <hr />
-                  {/if}
 
-                  <!-- {/if} -->
-
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
-                           <th style="width: 15%; text-align: center"
-                              >Evaluator</th
-                           >
-                           <th style="width: 15%; text-align: center"
-                              >Tanggal</th
-                           >
-                        </tr>
-                     </thead>
-                     {#if itemsRCR}
-                        <tbody>
-                           {#each itemsRCR as item}
-                              <tr>
-                                 <td>{item.catatan_revisi_proposal}</td>
-                                 <td style="text-align: center"
-                                    >{item.evaluator}</td
-                                 >
-                                 <td style="text-align: center">{item.time}</td>
-                              </tr>
-                           {/each}
-                        </tbody>
-                     {/if}
-                  </table>
-               {/if}
-            </div>
-         {/if}
-
-         {#if (skemaInternal.includes(jenisSkema) && status >= 8) || (skemaEksternal.includes(jenisSkema) && status >= 8) || (skemaMandiri.includes(jenisSkema) && status >= 8)}
-            <!-- ============================================================ -->
-            <!--     Download SK Pendanaan, Surat Kontrak PPM, Surat Tugas    -->
-            <!-- ============================================================ -->
-            {#if skemaInternal.includes(jenisSkema)}
-               <div class="box">
-                  <!-- svelte-ignore a11y-no-static-element-interactions -->
-                  <!-- svelte-ignore a11y-click-events-have-key-events -->
-                  <h5 class="title is-6">
-                     <!-- File SK Pendanaan / Surat Kontrak PPM / Surat Tugas -->
-                     Download Dokumen Pendukung
-                     <span
-                        class="toggle-button"
-                        on:click={() => (skpVisible = !skpVisible)}
-                     >
-                        {skpVisible ? "(tutup)" : "(buka)"}
-                     </span>
-                  </h5>
-
-                  {#if skpVisible}
                      <hr />
 
                      <table
@@ -1267,302 +1515,129 @@
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Nama </th>
-
-                              <th class="is-narrow" style="text-align: center"
-                                 >Download File</th
+                              <th style="width: 70%;">Riwayat Catatan Revisi</th
+                              >
+                              <th style="width: 15%; text-align: center"
+                                 >Evaluator</th
+                              >
+                              <th style="width: 15%; text-align: center"
+                                 >Tanggal</th
                               >
                            </tr>
                         </thead>
-                        <tbody>
-                           <tr>
-                              <td>SK Pendanaan</td>
-                              <td style="text-align: center"
-                                 ><button
-                                    class="button is-link button is-small"
-                                    on:click={handleDownloadSkPendanaan}
-                                    >Download</button
-                                 ></td
-                              >
-                           </tr>
-                           <!-- ====================================================== -->
-                           <tr>
-                              <td>Surat Kontrak PPM</td>
-                              <td style="text-align: center"
-                                 ><button
-                                    class="button is-link button is-small"
-                                    on:click={handleDownloadSuratKontrak}
-                                    >Download</button
-                                 ></td
-                              >
-                           </tr>
-                           <!-- ====================================================== -->
-                           <tr>
-                              <td>Surat Tugas</td>
-                              <td style="text-align: center"
-                                 ><button
-                                    class="button is-link button is-small"
-                                    on:click={handleDownloadSuratTugas}
-                                    >Download</button
-                                 ></td
-                              >
-                           </tr>
-                        </tbody>
-                     </table>
-                  {/if}
-               </div>
-            {:else}
-               <div class="box">
-                  <!-- svelte-ignore a11y-no-static-element-interactions -->
-                  <!-- svelte-ignore a11y-click-events-have-key-events -->
-                  <h5 class="title is-6">
-                     <!-- File Surat Tugas -->
-                     Download Dokumen Pendukung
-                     <span
-                        class="toggle-button"
-                        on:click={() => (skpVisible = !skpVisible)}
-                     >
-                        {skpVisible ? "(tutup)" : "(buka)"}
-                     </span>
-                  </h5>
 
-                  {#if skpVisible}
-                     <hr />
-
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 70%;">Nama </th>
-                              <th class="is-narrow" style="text-align: center"
-                                 >Download File</th
-                              >
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>Surat Tugas</td>
-                              <td style="text-align: center"
-                                 ><button
-                                    class="button is-link button is-small"
-                                    on:click={handleDownloadSuratTugas}
-                                    >Download</button
-                                 ></td
-                              >
-                           </tr>
-                        </tbody>
-                     </table>
-                  {/if}
-               </div>
-            {/if}
-
-            <!-- ========================================== -->
-            <!--                  Dana PPM                  -->
-            <!-- ========================================== -->
-            {#if skemaInternal.includes(jenisSkema)}
-               <div class="box">
-                  <!-- svelte-ignore a11y-no-static-element-interactions -->
-                  <!-- svelte-ignore a11y-click-events-have-key-events -->
-                  <h5 class="title is-6">
-                     Pendanaan PPM
-                     <span
-                        class="toggle-button"
-                        on:click={() => (danaPPMVisible = !danaPPMVisible)}
-                     >
-                        {danaPPMVisible ? "(tutup)" : "(buka)"}
-                     </span>
-                  </h5>
-
-                  {#if danaPPMVisible}
-                     <hr />
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 70%;">Status Pencairan Dana</th>
-                              <th class="is-narrow" style="text-align: center"
-                                 ><span class="tag is-info"
-                                    >{statusPencairanDana}</span
-                                 ></th
-                              >
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td colspan="2"
-                                 ><div class="notification is-warning is-light">
-                                    <p class="subtitle is-6">
-                                       Untuk pengambilan dana dan penjelasan
-                                       lebih lanjut terkait Pendanaan, hubungi
-                                       LPPM UISI.
-                                    </p>
-                                 </div></td
-                              >
-                           </tr>
-                        </tbody>
-                     </table>
-                  {/if}
-               </div>
-            {/if}
-
-            <!-- ========================================== -->
-            <!--               Hasil PPM                    -->
-            <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  Laporan Hasil PPM
-                  <span
-                     class="toggle-button"
-                     on:click={() => (hasilPPMVisible = !hasilPPMVisible)}
-                  >
-                     {hasilPPMVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
-
-               {#if hasilPPMVisible}
-                  <hr />
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Download File</th
-                           >
-                        </tr>
-                     </thead>
-
-                     <tbody>
-                        <tr>
-                           <td>Laporan Hasil PPM</td>
-                           <td style="text-align: center"
-                              ><button
-                                 class="button is-link button is-small"
-                                 on:click={handleDownloadHasilPPM}
-                                 >Download</button
-                              ></td
-                           >
-                        </tr>
-                        {#if skemaInternal.includes(jenisSkema)}
-                           <tr>
-                              <td>Laporan Keuangan</td>
-                              <td style="text-align: center"
-                                 ><button
-                                    class="button is-link button is-small"
-                                    on:click={handleDownloadLaporanKeuangan}
-                                    >Download</button
-                                 ></td
-                              >
-                           </tr>
+                        {#if itemsCHP}
+                           <tbody>
+                              {#each itemsCHP as item}
+                                 <tr>
+                                    <td>{item.catatan_revisi_hasil_ppm}</td>
+                                    <td style="text-align: center"
+                                       >{item.evaluator}</td
+                                    >
+                                    <td style="text-align: center"
+                                       >{item.time}</td
+                                    >
+                                 </tr>
+                              {/each}
+                           </tbody>
                         {/if}
-                     </tbody>
-                  </table>
+                     </table>
+                  {/if}
+               </div>
 
-                  <hr />
+               <!-- ========================================== -->
+               <!--             Presentasi Hasil PPM           -->
+               <!-- ========================================== -->
+               {#if !skemaEksternal.includes(jenisSkema) && !skemaMandiri.includes(jenisSkema)}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h5 class="title is-6">
+                        Presentasi Hasil PPM
+                        <span
+                           class="toggle-button"
+                           on:click={() =>
+                              (presentasiVisible = !presentasiVisible)}
+                        >
+                           {presentasiVisible ? "(tutup)" : "(buka)"}
+                        </span>
+                     </h5>
 
-                  <div class="notification is-warning is-light">
-                     <p>Berikan catatan revisi jika ingin revisi Hasil PPM</p>
-                  </div>
-
-                  <div class="field">
-                     <p class="title is-6"><b>Catatan Revisi</b></p>
-                     <textarea
-                        class="textarea mb-1"
-                        name="catatanRevisiHasilPPM"
-                        id="catatanRevisiHasilPPM"
-                        bind:value={catatanRevisiHasilPPM}
-                     ></textarea>
-                     {#if error.catatanRevisiHasilPPM}
-                        <p class="help error is-danger">
-                           {error.catatanRevisiHasilPPM}
-                        </p>
-                     {/if}
-                  </div>
-
-                  <hr />
-
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Riwayat Catatan Revisi</th>
-                           <th style="width: 15%; text-align: center"
-                              >Evaluator</th
-                           >
-                           <th style="width: 15%; text-align: center"
-                              >Tanggal</th
-                           >
-                        </tr>
-                     </thead>
-
-                     {#if itemsCHP}
-                        <tbody>
-                           {#each itemsCHP as item}
+                     {#if presentasiVisible}
+                        <hr />
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
                               <tr>
-                                 <td>{item.catatan_revisi_hasil_ppm}</td>
-                                 <td style="text-align: center"
-                                    >{item.evaluator}</td
+                                 <th style="width: 70%;">Kegiatan</th>
+                                 <th
+                                    class="is-narrow"
+                                    style="text-align: center">Checkbox</th
                                  >
-                                 <td style="text-align: center">{item.time}</td>
                               </tr>
-                           {/each}
-                        </tbody>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td
+                                    >Mempresentasikan hasil PPM di seminar
+                                    Penelitian / Pengmas bersama UISI di bulan
+                                    Desember</td
+                                 >
+                                 <td style="text-align: center">
+                                    <input
+                                       type="checkbox"
+                                       bind:checked={presentasiHasilPPM}
+                                       on:change={checkboxPresentasiHasilPPM}
+                                    />
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
                      {/if}
-                  </table>
+                  </div>
                {/if}
-            </div>
 
-            <!-- ========================================== -->
-            <!--             Presentasi Hasil PPM           -->
-            <!-- ========================================== -->
-            {#if !skemaEksternal.includes(jenisSkema) && !skemaMandiri.includes(jenisSkema)}
+               <!-- ========================================== -->
+               <!--                File SK PPM                 -->
+               <!-- ========================================== -->
                <div class="box">
                   <!-- svelte-ignore a11y-no-static-element-interactions -->
                   <!-- svelte-ignore a11y-click-events-have-key-events -->
                   <h5 class="title is-6">
-                     Presentasi Hasil PPM
+                     File SK PPM
                      <span
                         class="toggle-button"
-                        on:click={() =>
-                           (presentasiVisible = !presentasiVisible)}
+                        on:click={() => (skPPMVisible = !skPPMVisible)}
                      >
-                        {presentasiVisible ? "(tutup)" : "(buka)"}
+                        {skPPMVisible ? "(tutup)" : "(buka)"}
                      </span>
                   </h5>
 
-                  {#if presentasiVisible}
+                  {#if skPPMVisible}
                      <hr />
+
                      <table
                         class="table is-fullwidth is-striped is-hoverable is-bordered"
                      >
                         <thead>
                            <tr>
-                              <th style="width: 70%;">Kegiatan</th>
+                              <th style="width: 70%;">Nama</th>
                               <th class="is-narrow" style="text-align: center"
-                                 >Checkbox</th
+                                 >Download File</th
                               >
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
-                              <td
-                                 >Mempresentasikan hasil PPM di seminar
-                                 Penelitian / Pengmas bersama UISI di bulan
-                                 Desember</td
+                              <td>SK PPM</td>
+                              <td style="text-align: center"
+                                 ><button
+                                    class="button is-link button is-small"
+                                    on:click={handleDownloadSkPPM}
+                                    >Download</button
+                                 ></td
                               >
-                              <td style="text-align: center">
-                                 <input
-                                    type="checkbox"
-                                    bind:checked={presentasiHasilPPM}
-                                    on:change={checkboxPresentasiHasilPPM}
-                                 />
-                              </td>
                            </tr>
                         </tbody>
                      </table>
@@ -1571,531 +1646,496 @@
             {/if}
 
             <!-- ========================================== -->
-            <!--                File SK PPM                 -->
+            <!--              Action Button                 -->
             <!-- ========================================== -->
-            <div class="box">
-               <!-- svelte-ignore a11y-no-static-element-interactions -->
-               <!-- svelte-ignore a11y-click-events-have-key-events -->
-               <h5 class="title is-6">
-                  File SK PPM
-                  <span
-                     class="toggle-button"
-                     on:click={() => (skPPMVisible = !skPPMVisible)}
-                  >
-                     {skPPMVisible ? "(tutup)" : "(buka)"}
-                  </span>
-               </h5>
-
-               {#if skPPMVisible}
-                  <hr />
-
-                  <table
-                     class="table is-fullwidth is-striped is-hoverable is-bordered"
-                  >
-                     <thead>
-                        <tr>
-                           <th style="width: 70%;">Nama</th>
-                           <th class="is-narrow" style="text-align: center"
-                              >Download File</th
-                           >
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td>SK PPM</td>
-                           <td style="text-align: center"
-                              ><button
-                                 class="button is-link button is-small"
-                                 on:click={handleDownloadSkPPM}>Download</button
-                              ></td
-                           >
-                        </tr>
-                     </tbody>
-                  </table>
+            {#if role === "K.Departemen"}
+               {#if status === 4}
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           on:click={handlePass}
+                           class:is-loading={isLoading}>Setujui</button
+                        >
+                     </p>
+                  </div>
                {/if}
-            </div>
-         {/if}
+            {/if}
 
-         <!-- ========================================== -->
-         <!--              Action Button                 -->
-         <!-- ========================================== -->
-         {#if role === "K.Departemen"}
-            {#if status === 4}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        on:click={handlePass}
-                        class:is-loading={isLoading}>Setujui</button
-                     >
-                  </p>
-               </div>
+            {#if role === "K.PusatKajian" || role === "K.LPPM"}
+               {#if ShowRPButton()}
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info is-light is-outlined"
+                           on:click={handleRevisi}
+                           class:is-loading={isLoading}>Revisi</button
+                        >
+                     </p>
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           on:click={handlePass}
+                           class:is-loading={isLoading}>Setujui</button
+                        >
+                     </p>
+                  </div>
+               {/if}
+            {/if}
+
+            {#if role === "K.PusatKajian" || role === "K.LPPM"}
+               {#if ShowRDPButton()}
+                  <div class="field is-grouped is-grouped-right">
+                     <p class="control">
+                        <button
+                           class="button is-info is-light is-outlined"
+                           on:click={handleRevisi}
+                           class:is-loading={isLoading}>Revisi</button
+                        >
+                     </p>
+
+                     <p class="control">
+                        <button
+                           class="button is-danger is-light is-outlined"
+                           on:click={handleDitolak}
+                           class:is-loading={isLoading}>Ditolak</button
+                        >
+                     </p>
+
+                     <p class="control">
+                        <button
+                           class="button is-info"
+                           on:click={handlePass}
+                           class:is-loading={isLoading}>Setujui</button
+                        >
+                     </p>
+                  </div>
+               {/if}
             {/if}
          {/if}
 
-         {#if role === "K.PusatKajian" || role === "K.LPPM"}
-            {#if ShowRPButton()}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}
-                        class:is-loading={isLoading}>Revisi</button
-                     >
-                  </p>
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        on:click={handlePass}
-                        class:is-loading={isLoading}>Setujui</button
-                     >
-                  </p>
-               </div>
-            {/if}
-         {/if}
+         {#if tab2 === true}
+            {#if biodataAnggota.length > 0}
+               {#each biodataAnggota as user, index}
+                  <div class="box">
+                     <!-- svelte-ignore a11y-no-static-element-interactions -->
+                     <!-- svelte-ignore a11y-click-events-have-key-events -->
+                     <h6 class="title is-6">
+                        Biodata - {user.profile.nama_lengkap}
+                        <span
+                           class="toggle-button"
+                           on:click={() =>
+                              (biodataAnggota[index].profileVisible =
+                                 !biodataAnggota[index].profileVisible)}
+                        >
+                           {biodataAnggota[index].profileVisible
+                              ? "(tutup)"
+                              : "(buka)"}
+                        </span>
+                     </h6>
 
-         {#if role === "K.PusatKajian" || role === "K.LPPM"}
-            {#if ShowRDPButton()}
-               <div class="field is-grouped is-grouped-right">
-                  <p class="control">
-                     <button
-                        class="button is-info is-light is-outlined"
-                        on:click={handleRevisi}
-                        class:is-loading={isLoading}>Revisi</button
-                     >
-                  </p>
+                     {#if biodataAnggota[index].profileVisible}
+                        <!-- =================== -->
+                        <!-- Identitas -->
+                        <!-- =================== -->
+                        <hr class="has-background-grey-light" />
 
-                  <p class="control">
-                     <button
-                        class="button is-danger is-light is-outlined"
-                        on:click={handleDitolak}
-                        class:is-loading={isLoading}>Ditolak</button
-                     >
-                  </p>
+                        <h5 class="title is-5">Identitas Diri</h5>
+                        <div class="notification is-info is-light">
+                           <p>Pastikan untuk melengkapi Identitas Diri.</p>
+                        </div>
 
-                  <p class="control">
-                     <button
-                        class="button is-info"
-                        on:click={handlePass}
-                        class:is-loading={isLoading}>Setujui</button
-                     >
-                  </p>
-               </div>
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Nama Lengkap"
+                              content={user.profile.nama_lengkap}
+                           />
+                           <Fieldview
+                              title="Jabatan Fungsional"
+                              content={user.profile.jabatan_fungsional}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview title="NIP" content={user.profile.nip} />
+                           <Fieldview
+                              title="NIDN"
+                              content={user.profile.nidn}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Email"
+                              content={user.profile.email}
+                           />
+                           <Fieldview
+                              title="Nomor Handphone"
+                              content={user.profile.nomor_handphone}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Tempat Lahir"
+                              content={user.profile.tempat_lahir}
+                           />
+                           <Fieldview
+                              title="Tanggal Lahir"
+                              content={user.profile.tanggal_lahir}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Alamat Rumah"
+                              content={user.profile.alamat_rumah}
+                           />
+                           <Fieldview
+                              title="Telp/Fax Rumah"
+                              content={user.profile.telp_fax_rumah}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Alamat Kantor"
+                              content={user.profile.alamat_kantor}
+                           />
+                           <Fieldview
+                              title="Telp/Fax Kantor"
+                              content={user.profile.telp_fax_kantor}
+                           />
+                        </div>
+
+                        <div class="columns is-desktop">
+                           <Fieldview
+                              title="Mata Kuliah yang diampu"
+                              content={user.profile.mata_kuliah}
+                              type="listMatkul"
+                           />
+                        </div>
+
+                        <hr class="has-background-grey-light" />
+
+                        <!-- ===================== -->
+                        <!-- Riwayat Pendidikan S1 -->
+                        <!-- ===================== -->
+                        <h5 class="title is-5">Riwayat Pendidikan</h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 25%;"
+                                    >Nama Perguruan Tinggi (S1)</th
+                                 >
+                                 <th style="width: 20%;">Bidang Ilmu</th>
+                                 <th style="width: 10%;">Tahun Masuk</th>
+                                 <th style="width: 10%;">Tahun Lulus</th>
+                                 <th style="width: 35%;">Judul Skripsi</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.RPS1.length > 0}
+                                 {#each user.RPS1 as RPS1}
+                                    <tr>
+                                       <td>{RPS1.nama_perguruan_tinggi}</td>
+                                       <td>{RPS1.bidang_ilmu}</td>
+                                       <td>{RPS1.tahun_masuk}</td>
+                                       <td>{RPS1.tahun_lulus}</td>
+                                       <td>{RPS1.judul_skripsi}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <!-- ===================== -->
+                        <!-- Riwayat Pendidikan S2 -->
+                        <!-- ===================== -->
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 25%;"
+                                    >Nama Perguruan Tinggi (S2)</th
+                                 >
+                                 <th style="width: 20%;">Bidang Ilmu</th>
+                                 <th style="width: 10%;">Tahun Masuk</th>
+                                 <th style="width: 10%;">Tahun Lulus</th>
+                                 <th style="width: 35%;">Judul Tesis</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.RPS2.length > 0}
+                                 {#each user.RPS2 as RPS2}
+                                    <tr>
+                                       <td>{RPS2.nama_perguruan_tinggi}</td>
+                                       <td>{RPS2.bidang_ilmu}</td>
+                                       <td>{RPS2.tahun_masuk}</td>
+                                       <td>{RPS2.tahun_lulus}</td>
+                                       <td>{RPS2.judul_tesis}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <!-- ===================== -->
+                        <!-- Riwayat Pendidikan S3 -->
+                        <!-- ===================== -->
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th style="width: 25%;"
+                                    >Nama Perguruan Tinggi (S3)</th
+                                 >
+                                 <th style="width: 20%;">Bidang Ilmu</th>
+                                 <th style="width: 10%;">Tahun Masuk</th>
+                                 <th style="width: 10%;">Tahun Lulus</th>
+                                 <th style="width: 35%;">Judul Disertasi</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.RPS3.length > 0}
+                                 {#each user.RPS3 as RPS3}
+                                    <tr>
+                                       <td>{RPS3.nama_perguruan_tinggi}</td>
+                                       <td>{RPS3.bidang_ilmu}</td>
+                                       <td>{RPS3.tahun_masuk}</td>
+                                       <td>{RPS3.tahun_lulus}</td>
+                                       <td>{RPS3.judul_disertasi}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- ===================== -->
+                        <!-- Pengalaman Penelitian -->
+                        <!-- ===================== -->
+                        <h5 class="title is-5">Pengalaman Penelitian</h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul Penelitian</th>
+                                 <th class="is-narrow">Role</th>
+                                 <th class="is-narrow">Sumber Dana</th>
+                                 <th>Jumlah Rp.</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.Ppenelitian.length > 0}
+                                 {#each user.Ppenelitian as PP}
+                                    <tr>
+                                       <td>{PP.tahun_penelitian}</td>
+                                       <td>{PP.judul_penelitian}</td>
+                                       <td>{PP.role_penelitian}</td>
+                                       <td>{PP.sumber_dana}</td>
+                                       <td>{PP.jumlah}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- ===================== -->
+                        <!-- Pengalaman Pengmas    -->
+                        <!-- ===================== -->
+                        <h5 class="title is-5">
+                           Pengalaman Pengabdian Masyarakat
+                        </h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul Pengabdian Masyarakat</th>
+                                 <th class="is-narrow">Role</th>
+                                 <th class="is-narrow">Sumber Dana</th>
+                                 <th>Jumlah Rp.</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.Ppengmas.length > 0}
+                                 {#each user.Ppengmas as PM}
+                                    <tr>
+                                       <td>{PM.tahun_pengmas}</td>
+                                       <td>{PM.judul_pengmas}</td>
+                                       <td>{PM.role_pengmas}</td>
+                                       <td>{PM.sumber_dana}</td>
+                                       <td>{PM.jumlah}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- =============================== -->
+                        <!-- Pengalaman Diseminasi Ilmiah    -->
+                        <!-- =============================== -->
+                        <h5 class="title is-5">
+                           Pengalaman Diseminasi Ilmiah dalam Pertemuan /
+                           Pameran
+                        </h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul Artikel</th>
+                                 <th>Nama Pemakalah</th>
+                                 <th class="is-narrow"
+                                    >Nama Pertemuan Ilmiah / Pameran</th
+                                 >
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.Pdiseminasi.length > 0}
+                                 {#each user.Pdiseminasi as PD}
+                                    <tr>
+                                       <td>{PD.tahun_diseminasi}</td>
+                                       <td>{PD.judul_artikel}</td>
+                                       <td>{PD.nama_pemakalah}</td>
+                                       <td>{PD.nama_pertemuan}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- =============================== -->
+                        <!-- Pengalaman Publikasi Ilmiah     -->
+                        <!-- =============================== -->
+                        <h5 class="title is-5">
+                           Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
+                           Proceeding)
+                        </h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul Artikel</th>
+                                 <th>Nama Penulis</th>
+                                 <th
+                                    >Nama Jurnal, Vol., No Issue/No Artikel,
+                                    Halaman</th
+                                 >
+                                 <th>Impact Factor/Scopus Quarter/Akreditasi</th
+                                 >
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.Ppublikasi.length > 0}
+                                 {#each user.Ppublikasi as PPub}
+                                    <tr>
+                                       <td>{PPub.tahun_publikasi}</td>
+                                       <td>{PPub.judul_artikel}</td>
+                                       <td>{PPub.nama_penulis}</td>
+                                       <td>{PPub.nama_jurnal}</td>
+                                       <td>{PPub.impact}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- ============================= -->
+                        <!-- Pengalaman Penulisan Buku     -->
+                        <!-- ============================= -->
+                        <h5 class="title is-5">Pengalaman Penulisan Buku</h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul Buku</th>
+                                 <th>Nama Penulis</th>
+                                 <th>Penerbit</th>
+                                 <th>ISBN</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.PpenulisanBuku.length > 0}
+                                 {#each user.PpenulisanBuku as PPB}
+                                    <tr>
+                                       <td>{PPB.tahun_buku}</td>
+                                       <td>{PPB.judul_buku}</td>
+                                       <td>{PPB.nama_penulis}</td>
+                                       <td>{PPB.penerbit}</td>
+                                       <td>{PPB.isbn}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+
+                        <hr />
+
+                        <!-- ======================================= -->
+                        <!-- Pengalaman Hak Kekayaan Intelektual     -->
+                        <!-- ======================================= -->
+                        <h5 class="title is-5">
+                           Pengalaman Hak Kekayaan Intelektual
+                        </h5>
+                        <table
+                           class="table is-fullwidth is-striped is-hoverable is-bordered"
+                        >
+                           <thead>
+                              <tr>
+                                 <th class="is-narrow">Tahun</th>
+                                 <th>Judul HKI</th>
+                                 <th>Nama Penulis</th>
+                                 <th>Jenis HKI</th>
+                                 <th>No HKI</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {#if user.Phki.length > 0}
+                                 {#each user.Phki as PHKI}
+                                    <tr>
+                                       <td>{PHKI.tahun_hki}</td>
+                                       <td>{PHKI.judul_hki}</td>
+                                       <td>{PHKI.nama_penulis}</td>
+                                       <td>{PHKI.jenis_hki}</td>
+                                       <td>{PHKI.no_hki}</td>
+                                    </tr>
+                                 {/each}
+                              {/if}
+                           </tbody>
+                        </table>
+                     {/if}
+                  </div>
+               {/each}
             {/if}
          {/if}
       {/if}
-
-      {#if tab2 === true}
-         {#if biodataAnggota.length > 0}
-            {#each biodataAnggota as user, index}
-               <div class="box">
-                  <!-- svelte-ignore a11y-no-static-element-interactions -->
-                  <!-- svelte-ignore a11y-click-events-have-key-events -->
-                  <h6 class="title is-6">
-                     Biodata - {user.profile.nama_lengkap}
-                     <span
-                        class="toggle-button"
-                        on:click={() =>
-                           (biodataAnggota[index].profileVisible =
-                              !biodataAnggota[index].profileVisible)}
-                     >
-                        {biodataAnggota[index].profileVisible
-                           ? "(tutup)"
-                           : "(buka)"}
-                     </span>
-                  </h6>
-
-                  {#if biodataAnggota[index].profileVisible}
-                     <!-- =================== -->
-                     <!-- Identitas -->
-                     <!-- =================== -->
-                     <hr class="has-background-grey-light" />
-
-                     <h5 class="title is-5">Identitas Diri</h5>
-                     <div class="notification is-info is-light">
-                        <p>Pastikan untuk melengkapi Identitas Diri.</p>
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview
-                           title="Nama Lengkap"
-                           content={user.profile.nama_lengkap}
-                        />
-                        <Fieldview
-                           title="Jabatan Fungsional"
-                           content={user.profile.jabatan_fungsional}
-                        />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview title="NIP" content={user.profile.nip} />
-                        <Fieldview title="NIDN" content={user.profile.nidn} />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview title="Email" content={user.profile.email} />
-                        <Fieldview
-                           title="Nomor Handphone"
-                           content={user.profile.nomor_handphone}
-                        />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview
-                           title="Tempat Lahir"
-                           content={user.profile.tempat_lahir}
-                        />
-                        <Fieldview
-                           title="Tanggal Lahir"
-                           content={user.profile.tanggal_lahir}
-                        />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview
-                           title="Alamat Rumah"
-                           content={user.profile.alamat_rumah}
-                        />
-                        <Fieldview
-                           title="Telp/Fax Rumah"
-                           content={user.profile.telp_fax_rumah}
-                        />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview
-                           title="Alamat Kantor"
-                           content={user.profile.alamat_kantor}
-                        />
-                        <Fieldview
-                           title="Telp/Fax Kantor"
-                           content={user.profile.telp_fax_kantor}
-                        />
-                     </div>
-
-                     <div class="columns is-desktop">
-                        <Fieldview
-                           title="Mata Kuliah yang diampu"
-                           content={user.profile.mata_kuliah}
-                           type="listMatkul"
-                        />
-                     </div>
-
-                     <hr class="has-background-grey-light" />
-
-                     <!-- ===================== -->
-                     <!-- Riwayat Pendidikan S1 -->
-                     <!-- ===================== -->
-                     <h5 class="title is-5">Riwayat Pendidikan</h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 25%;"
-                                 >Nama Perguruan Tinggi (S1)</th
-                              >
-                              <th style="width: 20%;">Bidang Ilmu</th>
-                              <th style="width: 10%;">Tahun Masuk</th>
-                              <th style="width: 10%;">Tahun Lulus</th>
-                              <th style="width: 35%;">Judul Skripsi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.RPS1.length > 0}
-                              {#each user.RPS1 as RPS1}
-                                 <tr>
-                                    <td>{RPS1.nama_perguruan_tinggi}</td>
-                                    <td>{RPS1.bidang_ilmu}</td>
-                                    <td>{RPS1.tahun_masuk}</td>
-                                    <td>{RPS1.tahun_lulus}</td>
-                                    <td>{RPS1.judul_skripsi}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <!-- ===================== -->
-                     <!-- Riwayat Pendidikan S2 -->
-                     <!-- ===================== -->
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 25%;"
-                                 >Nama Perguruan Tinggi (S2)</th
-                              >
-                              <th style="width: 20%;">Bidang Ilmu</th>
-                              <th style="width: 10%;">Tahun Masuk</th>
-                              <th style="width: 10%;">Tahun Lulus</th>
-                              <th style="width: 35%;">Judul Tesis</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.RPS2.length > 0}
-                              {#each user.RPS2 as RPS2}
-                                 <tr>
-                                    <td>{RPS2.nama_perguruan_tinggi}</td>
-                                    <td>{RPS2.bidang_ilmu}</td>
-                                    <td>{RPS2.tahun_masuk}</td>
-                                    <td>{RPS2.tahun_lulus}</td>
-                                    <td>{RPS2.judul_tesis}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <!-- ===================== -->
-                     <!-- Riwayat Pendidikan S3 -->
-                     <!-- ===================== -->
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th style="width: 25%;"
-                                 >Nama Perguruan Tinggi (S3)</th
-                              >
-                              <th style="width: 20%;">Bidang Ilmu</th>
-                              <th style="width: 10%;">Tahun Masuk</th>
-                              <th style="width: 10%;">Tahun Lulus</th>
-                              <th style="width: 35%;">Judul Disertasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.RPS3.length > 0}
-                              {#each user.RPS3 as RPS3}
-                                 <tr>
-                                    <td>{RPS3.nama_perguruan_tinggi}</td>
-                                    <td>{RPS3.bidang_ilmu}</td>
-                                    <td>{RPS3.tahun_masuk}</td>
-                                    <td>{RPS3.tahun_lulus}</td>
-                                    <td>{RPS3.judul_disertasi}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- ===================== -->
-                     <!-- Pengalaman Penelitian -->
-                     <!-- ===================== -->
-                     <h5 class="title is-5">Pengalaman Penelitian</h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul Penelitian</th>
-                              <th class="is-narrow">Role</th>
-                              <th class="is-narrow">Sumber Dana</th>
-                              <th>Jumlah Rp.</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.Ppenelitian.length > 0}
-                              {#each user.Ppenelitian as PP}
-                                 <tr>
-                                    <td>{PP.tahun_penelitian}</td>
-                                    <td>{PP.judul_penelitian}</td>
-                                    <td>{PP.role_penelitian}</td>
-                                    <td>{PP.sumber_dana}</td>
-                                    <td>{PP.jumlah}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- ===================== -->
-                     <!-- Pengalaman Pengmas    -->
-                     <!-- ===================== -->
-                     <h5 class="title is-5">
-                        Pengalaman Pengabdian Masyarakat
-                     </h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul Pengabdian Masyarakat</th>
-                              <th class="is-narrow">Role</th>
-                              <th class="is-narrow">Sumber Dana</th>
-                              <th>Jumlah Rp.</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.Ppengmas.length > 0}
-                              {#each user.Ppengmas as PM}
-                                 <tr>
-                                    <td>{PM.tahun_pengmas}</td>
-                                    <td>{PM.judul_pengmas}</td>
-                                    <td>{PM.role_pengmas}</td>
-                                    <td>{PM.sumber_dana}</td>
-                                    <td>{PM.jumlah}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- =============================== -->
-                     <!-- Pengalaman Diseminasi Ilmiah    -->
-                     <!-- =============================== -->
-                     <h5 class="title is-5">
-                        Pengalaman Diseminasi Ilmiah dalam Pertemuan / Pameran
-                     </h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul Artikel</th>
-                              <th>Nama Pemakalah</th>
-                              <th class="is-narrow"
-                                 >Nama Pertemuan Ilmiah / Pameran</th
-                              >
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.Pdiseminasi.length > 0}
-                              {#each user.Pdiseminasi as PD}
-                                 <tr>
-                                    <td>{PD.tahun_diseminasi}</td>
-                                    <td>{PD.judul_artikel}</td>
-                                    <td>{PD.nama_pemakalah}</td>
-                                    <td>{PD.nama_pertemuan}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- =============================== -->
-                     <!-- Pengalaman Publikasi Ilmiah     -->
-                     <!-- =============================== -->
-                     <h5 class="title is-5">
-                        Pengalaman Publikasi Ilmiah dalam Jurnal (bukan
-                        Proceeding)
-                     </h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul Artikel</th>
-                              <th>Nama Penulis</th>
-                              <th
-                                 >Nama Jurnal, Vol., No Issue/No Artikel,
-                                 Halaman</th
-                              >
-                              <th>Impact Factor/Scopus Quarter/Akreditasi</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.Ppublikasi.length > 0}
-                              {#each user.Ppublikasi as PPub}
-                                 <tr>
-                                    <td>{PPub.tahun_publikasi}</td>
-                                    <td>{PPub.judul_artikel}</td>
-                                    <td>{PPub.nama_penulis}</td>
-                                    <td>{PPub.nama_jurnal}</td>
-                                    <td>{PPub.impact}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- ============================= -->
-                     <!-- Pengalaman Penulisan Buku     -->
-                     <!-- ============================= -->
-                     <h5 class="title is-5">Pengalaman Penulisan Buku</h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul Buku</th>
-                              <th>Nama Penulis</th>
-                              <th>Penerbit</th>
-                              <th>ISBN</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.PpenulisanBuku.length > 0}
-                              {#each user.PpenulisanBuku as PPB}
-                                 <tr>
-                                    <td>{PPB.tahun_buku}</td>
-                                    <td>{PPB.judul_buku}</td>
-                                    <td>{PPB.nama_penulis}</td>
-                                    <td>{PPB.penerbit}</td>
-                                    <td>{PPB.isbn}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-
-                     <hr />
-
-                     <!-- ======================================= -->
-                     <!-- Pengalaman Hak Kekayaan Intelektual     -->
-                     <!-- ======================================= -->
-                     <h5 class="title is-5">
-                        Pengalaman Hak Kekayaan Intelektual
-                     </h5>
-                     <table
-                        class="table is-fullwidth is-striped is-hoverable is-bordered"
-                     >
-                        <thead>
-                           <tr>
-                              <th class="is-narrow">Tahun</th>
-                              <th>Judul HKI</th>
-                              <th>Nama Penulis</th>
-                              <th>Jenis HKI</th>
-                              <th>No HKI</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {#if user.Phki.length > 0}
-                              {#each user.Phki as PHKI}
-                                 <tr>
-                                    <td>{PHKI.tahun_hki}</td>
-                                    <td>{PHKI.judul_hki}</td>
-                                    <td>{PHKI.nama_penulis}</td>
-                                    <td>{PHKI.jenis_hki}</td>
-                                    <td>{PHKI.no_hki}</td>
-                                 </tr>
-                              {/each}
-                           {/if}
-                        </tbody>
-                     </table>
-                  {/if}
-               </div>
-            {/each}
-         {/if}
-      {/if}
-   </Article>
-{/if}
+   {:else}
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
+   {/if}
+</Article>
 
 <Modalerror bind:show={showModalErrorRevisi}>
    <p>Anda belum memasukkan catatan revisi</p>

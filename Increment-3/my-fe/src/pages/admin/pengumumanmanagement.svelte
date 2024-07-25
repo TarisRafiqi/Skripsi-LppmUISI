@@ -8,6 +8,7 @@
    let items, aktifPengumuman;
    let filterJudul = "";
 
+   const accountRole = localStorage.getItem("role");
    const accessToken = localStorage.getItem("token");
    const headers = {
       Authorization: `Bearer ${accessToken}`,
@@ -89,91 +90,98 @@
 </script>
 
 <Article>
-   <h2 class="title is-2">Pengumuman</h2>
-   <hr />
+   {#if accountRole === "admin"}
+      <h2 class="title is-2">Pengumuman</h2>
+      <hr />
 
-   <div class="columns">
-      <div class="column">
-         <button class="button is-info" on:click={addPengumuman}>
-            <span class="icon">
-               <Icon id="accountAdd" src={add} />
-            </span>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <span><a>Buat Pengumuman</a></span>
-         </button>
-      </div>
-
-      <div class="column">
-         <div class="field">
-            <div class="control has-icons-left">
-               <input class="input" type="text" bind:value={filterJudul} />
-               <span class="icon is-left">
-                  <Icon id="searchIcon" src={searchIcon} />
+      <div class="columns">
+         <div class="column">
+            <button class="button is-info" on:click={addPengumuman}>
+               <span class="icon">
+                  <Icon id="accountAdd" src={add} />
                </span>
+               <!-- svelte-ignore a11y-missing-attribute -->
+               <span><a>Buat Pengumuman</a></span>
+            </button>
+         </div>
+
+         <div class="column">
+            <div class="field">
+               <div class="control has-icons-left">
+                  <input class="input" type="text" bind:value={filterJudul} />
+                  <span class="icon is-left">
+                     <Icon id="searchIcon" src={searchIcon} />
+                  </span>
+               </div>
             </div>
          </div>
       </div>
-   </div>
 
-   {#if items}
-      <div class="box parent">
-         <div class="child">
-            <table class="table is-fullwidth is-striped is-hoverable">
-               <thead>
-                  <tr>
-                     <th>Judul</th>
-                     <th style="text-align: center;">Aktif</th>
-                     <th style="text-align: center;" class="is-narrow"
-                        >Delete/Edit</th
-                     >
-                  </tr>
-               </thead>
-
-               <tbody>
-                  <!-- {#each items as item} -->
-                  {#each items.filter((item) => item.judul
-                        .toLowerCase()
-                        .includes(filterJudul.toLowerCase())) as item}
+      {#if items}
+         <div class="box parent">
+            <div class="child">
+               <table class="table is-fullwidth is-striped is-hoverable">
+                  <thead>
                      <tr>
-                        <td>{item.judul}</td>
-                        <td style="text-align: center;">
-                           <input
-                              type="checkbox"
-                              bind:checked={item.active}
-                              on:change={() =>
-                                 checkboxAktifPengumuman(item.id, item.active)}
-                           /></td
+                        <th>Judul</th>
+                        <th style="text-align: center;">Aktif</th>
+                        <th style="text-align: center;" class="is-narrow"
+                           >Delete/Edit</th
                         >
-                        <td>
-                           <div class="field is-grouped">
-                              <p class="control">
-                                 <button
-                                    class="button is-danger is-outlined is-small"
-                                    pid={item.id}
-                                    on:click={deletePengumuman}
-                                    ><span class="icon">
-                                       <Icon id="delete" src={deleteIcon} />
-                                    </span></button
-                                 >
-                              </p>
-                              <p class="control">
-                                 <button
-                                    class="button is-link is-outlined is-small"
-                                    pid={item.id}
-                                    on:click={editPengumuman}
-                                    ><span class="icon">
-                                       <Icon id="edit" src={edit} />
-                                    </span></button
-                                 >
-                              </p>
-                           </div>
-                        </td>
                      </tr>
-                  {/each}
-               </tbody>
-            </table>
+                  </thead>
+
+                  <tbody>
+                     <!-- {#each items as item} -->
+                     {#each items.filter((item) => item.judul
+                           .toLowerCase()
+                           .includes(filterJudul.toLowerCase())) as item}
+                        <tr>
+                           <td>{item.judul}</td>
+                           <td style="text-align: center;">
+                              <input
+                                 type="checkbox"
+                                 bind:checked={item.active}
+                                 on:change={() =>
+                                    checkboxAktifPengumuman(
+                                       item.id,
+                                       item.active
+                                    )}
+                              /></td
+                           >
+                           <td>
+                              <div class="field is-grouped">
+                                 <p class="control">
+                                    <button
+                                       class="button is-danger is-outlined is-small"
+                                       pid={item.id}
+                                       on:click={deletePengumuman}
+                                       ><span class="icon">
+                                          <Icon id="delete" src={deleteIcon} />
+                                       </span></button
+                                    >
+                                 </p>
+                                 <p class="control">
+                                    <button
+                                       class="button is-link is-outlined is-small"
+                                       pid={item.id}
+                                       on:click={editPengumuman}
+                                       ><span class="icon">
+                                          <Icon id="edit" src={edit} />
+                                       </span></button
+                                    >
+                                 </p>
+                              </div>
+                           </td>
+                        </tr>
+                     {/each}
+                  </tbody>
+               </table>
+            </div>
          </div>
-      </div>
+      {/if}
+   {:else}
+      <p class="title is-4">Anda tidak memiliki hak akses halaman ini!</p>
    {/if}
 </Article>
 

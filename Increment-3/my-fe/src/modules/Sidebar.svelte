@@ -58,12 +58,12 @@
             </a>
          </li>
 
-         <li title="Template">
+         <!-- <li title="Template">
             <a href="/admin/template">
                <div class="icon"><Icon id="template" src={template} /></div>
                <div class="page-title">Template</div>
             </a>
-         </li>
+         </li> -->
       </ul>
    {/if}
 </aside>
