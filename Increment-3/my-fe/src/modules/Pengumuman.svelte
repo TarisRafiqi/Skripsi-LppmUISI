@@ -37,40 +37,53 @@
          <p class="title is-3">PENGUMUMAN</p>
       </div>
       <hr />
-
-      <div class="list-pengumuman">
-         <div class="box parent">
-            <div class="child">
-               {#if items}
-                  <table class="table is-fullwidth is-striped is-hoverable">
-                     <tbody>
-                        {#each items as item}
-                           <tr on:click={handleClickPengumuman} pid={item.id}>
-                              <td
-                                 ><p class="subtitle is-6 p-pengumuman">
-                                    {item.judul}
-                                 </p>
-                              </td>
-                           </tr>
-                        {/each}
-                     </tbody>
-                  </table>
-               {/if}
+      <div class="columns">
+         <div class="column is-6">
+            <div class="box parent">
+               <div class="child list-pengumuman">
+                  {#if items}
+                     <table class="table is-fullwidth is-striped is-hoverable">
+                        <tbody>
+                           {#each items as item}
+                              <tr
+                                 on:click={handleClickPengumuman}
+                                 pid={item.id}
+                              >
+                                 <td
+                                    ><p class="subtitle is-6 p-pengumuman">
+                                       {item.judul}
+                                    </p>
+                                 </td>
+                              </tr>
+                           {/each}
+                        </tbody>
+                     </table>
+                  {/if}
+               </div>
             </div>
+         </div>
+
+         <div class="column"></div>
+
+         <div class="column is-5">
+            <figure class="image">
+               <img
+                  alt="announcement-icon"
+                  src="http://localhost:3000/img/icon-announcement.png"
+               />
+            </figure>
          </div>
       </div>
    </div>
 </article>
 
 <style>
-   @media (min-width: 1440px) {
+   /* @media (min-width: 1440px) {
       .pengumuman-container {
-         /* padding-right: 8rem; */
-         /* padding-left: 8rem; */
          padding-right: 128px;
          padding-left: 128px;
       }
-   }
+   } */
 
    .pengumuman-container {
       padding-top: 50px;
@@ -87,7 +100,7 @@
 
    .header-pengumuman {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
    }
 
    /* section {
@@ -109,5 +122,21 @@
    .box {
       display: flex;
       flex-direction: column;
+   }
+
+   /* Define the keyframes for the up and down movement */
+   @keyframes moveUpDown {
+      0%,
+      100% {
+         transform: translateY(0);
+      }
+      50% {
+         transform: translateY(-15px);
+      }
+   }
+
+   /* Apply the animation to the image */
+   .image {
+      animation: moveUpDown 3s infinite;
    }
 </style>

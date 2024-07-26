@@ -1470,7 +1470,7 @@
         article2 = element("article");
         if (default_slot)
           default_slot.c();
-        attr(article2, "class", "svelte-h8uanz");
+        attr(article2, "class", "svelte-1l712yk");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
@@ -1863,10 +1863,8 @@
     let t1;
     let p1;
     let t3;
-    let button0;
+    let button;
     let t5;
-    let button1;
-    let t7;
     let div1;
     let mounted;
     let dispose;
@@ -1882,17 +1880,13 @@
         p1 = element("p");
         p1.textContent = "Lembaga Penelitian Dan Pengabdian Kepada Masyarakat";
         t3 = space();
-        button0 = element("button");
-        button0.textContent = "Panduan PPM UISI";
+        button = element("button");
+        button.textContent = "Pengumuman";
         t5 = space();
-        button1 = element("button");
-        button1.textContent = "Pengumuman";
-        t7 = space();
         div1 = element("div");
         attr(p0, "class", "subtitle custom-subtitle svelte-1ql084h");
         attr(p1, "class", "title custom-title svelte-1ql084h");
-        attr(button0, "class", "button is-dark is-rounded");
-        attr(button1, "class", "button is-danger is-outlined is-rounded");
+        attr(button, "class", "button is-danger is-outlined");
         attr(div0, "class", "column is-9");
         attr(div1, "class", "column");
         attr(div2, "class", "columns");
@@ -1914,13 +1908,11 @@
         append(div0, t1);
         append(div0, p1);
         append(div0, t3);
-        append(div0, button0);
-        append(div0, t5);
-        append(div0, button1);
-        append(div2, t7);
+        append(div0, button);
+        append(div2, t5);
         append(div2, div1);
         if (!mounted) {
-          dispose = listen(button1, "click", scrollToPengumuman);
+          dispose = listen(button, "click", scrollToPengumuman);
           mounted = true;
         }
       },
@@ -2043,7 +2035,7 @@
         p = element("p");
         t0 = text(t0_value);
         t1 = space();
-        attr(p, "class", "subtitle is-6 p-pengumuman svelte-1s7g61s");
+        attr(p, "class", "subtitle is-6 p-pengumuman svelte-25j2k3");
         attr(tr, "pid", tr_pid_value = /*item*/
         ctx[5].id);
       },
@@ -2085,14 +2077,19 @@
   }
   function create_fragment5(ctx) {
     let article2;
-    let div4;
+    let div7;
     let div0;
     let t1;
     let hr;
     let t2;
+    let div6;
     let div3;
     let div2;
     let div1;
+    let t3;
+    let div4;
+    let t4;
+    let div5;
     let if_block = (
       /*items*/
       ctx[0] && create_if_block2(ctx)
@@ -2100,37 +2097,51 @@
     return {
       c() {
         article2 = element("article");
-        div4 = element("div");
+        div7 = element("div");
         div0 = element("div");
         div0.innerHTML = `<p class="title is-3">PENGUMUMAN</p>`;
         t1 = space();
         hr = element("hr");
         t2 = space();
+        div6 = element("div");
         div3 = element("div");
         div2 = element("div");
         div1 = element("div");
         if (if_block)
           if_block.c();
-        attr(div0, "class", "header-pengumuman svelte-1s7g61s");
-        attr(div1, "class", "child svelte-1s7g61s");
-        attr(div2, "class", "box parent svelte-1s7g61s");
-        attr(div3, "class", "list-pengumuman");
-        attr(div4, "class", "pengumuman-container svelte-1s7g61s");
+        t3 = space();
+        div4 = element("div");
+        t4 = space();
+        div5 = element("div");
+        div5.innerHTML = `<figure class="image svelte-25j2k3"><img alt="announcement-icon" src="http://localhost:3000/img/icon-announcement.png"/></figure>`;
+        attr(div0, "class", "header-pengumuman svelte-25j2k3");
+        attr(div1, "class", "child list-pengumuman svelte-25j2k3");
+        attr(div2, "class", "box parent svelte-25j2k3");
+        attr(div3, "class", "column is-6");
+        attr(div4, "class", "column");
+        attr(div5, "class", "column is-5");
+        attr(div6, "class", "columns");
+        attr(div7, "class", "pengumuman-container svelte-25j2k3");
         attr(article2, "class", "container");
         attr(article2, "id", "pengumuman");
       },
       m(target, anchor) {
         insert(target, article2, anchor);
-        append(article2, div4);
-        append(div4, div0);
-        append(div4, t1);
-        append(div4, hr);
-        append(div4, t2);
-        append(div4, div3);
+        append(article2, div7);
+        append(div7, div0);
+        append(div7, t1);
+        append(div7, hr);
+        append(div7, t2);
+        append(div7, div6);
+        append(div6, div3);
         append(div3, div2);
         append(div2, div1);
         if (if_block)
           if_block.m(div1, null);
+        append(div6, t3);
+        append(div6, div4);
+        append(div6, t4);
+        append(div6, div5);
       },
       p(ctx2, [dirty]) {
         if (
@@ -2406,9 +2417,10 @@
     return {
       c() {
         footer = element("footer");
-        footer.innerHTML = `<div class="content has-text-centered"><p>Copyright \xA9 2023
-         <strong class="svelte-1h60z37">LPPM UISI</strong>. All Rights Reserved</p></div>`;
-        attr(footer, "class", "footer svelte-1h60z37");
+        footer.innerHTML = `<article class="container"><div class="columns"><div class="column is-3 is-flex is-align-items-center has-content-centered"><div class="content-header svelte-1eb47uw"><figure class="image"><img alt="announcement-icon" src="http://localhost:3000/img/LogoUISI-putih.png"/></figure></div></div> <div class="column is-4 is-offset-5"><div class="content-header svelte-1eb47uw"><p class="title is-5 svelte-1eb47uw">Kontak Kami</p></div> <div class="content-body"><p class="subtitle is-6 svelte-1eb47uw"><b>Telp:</b> (031) 3985482</p> <p class="subtitle is-6 svelte-1eb47uw"><b>Email:</b> lppm@uisi.ac.id</p> <p class="subtitle is-6 svelte-1eb47uw">Kompleks PT. Semen Indonesia, (Persero) Tbk. Jl. Veteran,
+                  Gresik Jawa Timur 61122</p></div></div></div> <div class="copyright svelte-1eb47uw"><p class="svelte-1eb47uw">Copyright \xA9
+            <strong class="svelte-1eb47uw">LPPM UISI</strong>. All Rights Reserved</p></div></article>`;
+        attr(footer, "class", "footer svelte-1eb47uw");
       },
       m(target, anchor) {
         insert(target, footer, anchor);
@@ -5616,7 +5628,7 @@
         div0 = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Judul Penelitian</th> <th>Jenis Skema</th> <th>Topik</th> <th style="text-align: center;">Detil</th></tr>`;
+        thead.innerHTML = `<tr><th>Judul</th> <th>Jenis Skema</th> <th>Topik</th> <th style="text-align: center;">Detil</th></tr>`;
         t7 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
@@ -6656,7 +6668,7 @@
         div0 = element("div");
         table = element("table");
         thead = element("thead");
-        thead.innerHTML = `<tr><th>Judul Penelitian</th> <th>Jenis Skema</th> <th>Topik</th> <th style="text-align: center;">Detil</th></tr>`;
+        thead.innerHTML = `<tr><th>Judul</th> <th>Jenis Skema</th> <th>Topik</th> <th style="text-align: center;">Detil</th></tr>`;
         t7 = space();
         tbody = element("tbody");
         for (let i = 0; i < each_blocks.length; i += 1) {
@@ -7102,7 +7114,7 @@
     });
     fieldview2 = new Fieldview_default({
       props: {
-        title: "Biaya Penelitian",
+        title: "Biaya Pengabdian Masyarakat",
         content: (
           /*selectedItem*/
           ctx[2].biaya_penelitian

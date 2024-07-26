@@ -1413,8 +1413,9 @@ article.container {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/libs/Article.esbuild-svelte-fake-css */
-article.svelte-h8uanz {
+article.svelte-1l712yk {
   margin-top: 3.5rem;
+  height: 100vh;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/pages/Detailpengumuman.esbuild-svelte-fake-css */
@@ -1457,40 +1458,45 @@ article.svelte-rfs8l0 {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Pengumuman.esbuild-svelte-fake-css */
-@media (min-width: 1440px) {
-  .pengumuman-container.svelte-1s7g61s {
-    padding-right: 128px;
-    padding-left: 128px;
-  }
-}
-.pengumuman-container.svelte-1s7g61s {
+.pengumuman-container.svelte-25j2k3 {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.p-pengumuman.svelte-1s7g61s {
+.p-pengumuman.svelte-25j2k3 {
   color: rgb(0, 119, 255);
   cursor: pointer;
   transition: padding-left 0.2s;
 }
-.p-pengumuman.svelte-1s7g61s:hover {
+.p-pengumuman.svelte-25j2k3:hover {
   padding-left: 10px;
 }
-.header-pengumuman.svelte-1s7g61s {
+.header-pengumuman.svelte-25j2k3 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
-.parent.svelte-1s7g61s {
+.parent.svelte-25j2k3 {
   height: 300px;
   overflow: hidden;
 }
-.child.svelte-1s7g61s {
+.child.svelte-25j2k3 {
   max-height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.box.svelte-1s7g61s {
+.box.svelte-25j2k3 {
   display: flex;
   flex-direction: column;
+}
+@keyframes svelte-25j2k3-moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+.image.svelte-25j2k3 {
+  animation: svelte-25j2k3-moveUpDown 3s infinite;
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Totalppm.esbuild-svelte-fake-css */
@@ -1505,11 +1511,22 @@ section.svelte-1kehiwo {
 }
 
 /* fakecss:C:/Users/fariz/Desktop/Skripsi-LppmUISI/Increment-3/my-fe/src/modules/Footer.esbuild-svelte-fake-css */
-strong.svelte-1h60z37 {
+.copyright.svelte-1eb47uw {
+  border-top: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+strong.svelte-1eb47uw {
   color: white;
 }
-.footer.svelte-1h60z37 {
-  padding: 1rem;
+.content-header.svelte-1eb47uw {
+  margin-bottom: 20px;
+}
+p.svelte-1eb47uw {
+  color: white;
+}
+.footer.svelte-1eb47uw {
+  padding: 2rem;
   color: white;
   background-color: #363636;
 }

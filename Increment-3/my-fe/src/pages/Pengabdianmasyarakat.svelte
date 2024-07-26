@@ -102,7 +102,7 @@
             <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                <thead>
                   <tr>
-                     <th>Judul Penelitian</th>
+                     <th>Judul</th>
                      <th>Jenis Skema</th>
                      <th>Topik</th>
                      <th style="text-align: center;">Detil</th>
@@ -148,7 +148,7 @@
       <div class="border-bottom columns is-desktop">
          <Fieldview title="Jenis Skema" content={selectedItem.jenis_skema} />
          <Fieldview
-            title="Biaya Penelitian"
+            title="Biaya Pengabdian Masyarakat"
             content={selectedItem.biaya_penelitian}
          />
       </div>

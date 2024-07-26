@@ -97,7 +97,7 @@
             <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                <thead>
                   <tr>
-                     <th>Judul Penelitian</th>
+                     <th>Judul</th>
                      <th>Jenis Skema</th>
                      <th>Topik</th>
                      <th style="text-align: center;">Detil</th>

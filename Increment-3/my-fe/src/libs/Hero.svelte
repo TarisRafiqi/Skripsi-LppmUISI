@@ -22,9 +22,8 @@
             <p class="title custom-title">
                Lembaga Penelitian Dan Pengabdian Kepada Masyarakat
             </p>
-            <button class="button is-dark is-rounded">Panduan PPM UISI</button>
             <button
-               class="button is-danger is-outlined is-rounded"
+               class="button is-danger is-outlined"
                on:click={scrollToPengumuman}
             >
                Pengumuman
